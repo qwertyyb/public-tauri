@@ -6,12 +6,22 @@
 use tauri::{Listener, Manager};
 use tauri_nspanel::ManagerExt;
 use tauri_plugin_global_shortcut::{Code, Modifiers, Shortcut, ShortcutState};
-use window::WebviewWindowExt;
+use tauri_nspanel::{tauri_panel, WebviewWindowExt};
 
 mod command;
-mod window;
 
 pub const SPOTLIGHT_LABEL: &str = "main";
+
+// Define your custom panel type
+tauri_panel! {
+    panel!(MainPanel {
+        config: {
+            canBecomeKeyWindow: false,
+            isFloatingPanel: true
+        }
+    })
+}
+
 
 fn main() {
     tauri::Builder::default()
@@ -26,12 +36,12 @@ fn main() {
             let window = handle.get_webview_window(SPOTLIGHT_LABEL).unwrap();
 
             // Convert the window to a spotlight panel
-            let panel = window.to_spotlight_panel()?;
+            let panel = window.to_panel::<MainPanel>()?;
 
             handle.listen(format!("{}_panel_did_resign_key", SPOTLIGHT_LABEL), move |_| {
                 // Hide the panel when it's no longer the key window
                 // This ensures the panel doesn't remain visible when it's not actively being used
-                panel.order_out(None);
+                panel.hide();
             });
 
             Ok(())
@@ -50,9 +60,9 @@ fn main() {
                         let panel = app.get_webview_panel(SPOTLIGHT_LABEL).unwrap();
 
                         if panel.is_visible() {
-                            panel.order_out(None);
+                            panel.hide();
                         } else {
-                            window.center_at_cursor_monitor().unwrap();
+                            // window.center_at_cursor_monitor().unwrap();
 
                             panel.show();
                         }

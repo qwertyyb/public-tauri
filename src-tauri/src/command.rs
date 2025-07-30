@@ -15,6 +15,6 @@ pub fn hide(app_handle: AppHandle) {
     let panel = app_handle.get_webview_panel(SPOTLIGHT_LABEL).unwrap();
 
     if panel.is_visible() {
-        panel.order_out(None);
+        panel.hide();
     }
 }

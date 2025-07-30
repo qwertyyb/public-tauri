@@ -1,13 +1,6 @@
+use objc2_app_kit::NSMainMenuWindowLevel;
 use tauri::{Emitter, Manager, Runtime, WebviewWindow};
-use tauri_nspanel::{
-    cocoa::{
-        appkit::{NSMainMenuWindowLevel, NSView, NSWindowCollectionBehavior},
-        base::{id, YES},
-        foundation::{NSPoint, NSRect},
-    },
-    objc::{msg_send, sel, sel_impl},
-    panel_delegate, Panel, WebviewWindowExt as PanelWebviewWindowExt,
-};
+use tauri_nspanel::{panel, NSPoint, NSRect, Panel};
 use thiserror::Error;
 
 type TauriError = tauri::Error;
