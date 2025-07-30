@@ -1,31 +1,44 @@
-:root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
+@font-face {
+  font-family: 'Material Symbols Outlined';
+  font-style: normal;
   font-weight: 400;
+  src: url(./assets/MaterialSymbolsOutlined.woff2) format('woff2');
+  font-display: block;
+}
 
-  color: #0f0f0f;
-  background-color: #f6f6f6;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
 }
 
-.container {
+* {
   margin: 0;
-  padding-top: 10vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
+  padding: 0;
+  box-sizing: border-box;
+}
+ul, ol {
+  list-style: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    color: #f6f6f6;
-    background-color: #2f2f2f;
-  }
+html, html.dark {
+  --border-color: #eaeaea;
+
+  --selected-bg-color: rgba(0, 128, 0, 0.4);
+  --el-color-primary: green;
+  --el-color-primary-light-3: #95d695;
+  --el-color-primary-light-5: #aabeaa;
+  --el-border-color: #8d8d8d;
+  --el-border-color-hover: #737373;
+  --el-fill-color-blank: transparent;
 }

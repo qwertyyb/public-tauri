@@ -6,6 +6,9 @@
     "devUrl": "http://localhost:1420"
   },
   "bundle": {
+    "macOS": {
+      "minimumSystemVersion": "14.6"
+    },
     "active": true,
     "targets": "all",
     "icon": [
