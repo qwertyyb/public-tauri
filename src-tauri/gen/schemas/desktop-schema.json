@@ -2097,6 +2097,18 @@
           "markdownDescription": "Denies the unminimize command without any pre-configured scope."
         },
         {
+          "description": "Enables the paste command without any pre-configured scope.",
+          "type": "string",
+          "const": "eco-paste:allow-paste",
+          "markdownDescription": "Enables the paste command without any pre-configured scope."
+        },
+        {
+          "description": "Denies the paste command without any pre-configured scope.",
+          "type": "string",
+          "const": "eco-paste:deny-paste",
+          "markdownDescription": "Denies the paste command without any pre-configured scope."
+        },
+        {
           "description": "No features are enabled by default, as we believe\nthe shortcuts can be inherently dangerous and it is\napplication specific if specific shortcuts should be\nregistered or unregistered.\n",
           "type": "string",
           "const": "global-shortcut:default",

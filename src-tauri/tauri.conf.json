@@ -36,7 +36,7 @@
         "devtools": true,
         "transparent": true,
         "windowEffects": {
-          "radius": 4,
+          "radius": 6,
           "effects": ["popover"]
         }
       }
