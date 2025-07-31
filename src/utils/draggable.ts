@@ -57,7 +57,7 @@ export function isFocusable(element: Element) {
 }
 
 export const createDraggable = () => {
-  if (isTauri()) return;
+  if (!isTauri()) return;
   const pointerDownHandler = (e: PointerEvent) => {
     if (e.button !== 0) return;
     const dragArea = e.clientY < 48;

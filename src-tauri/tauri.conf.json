@@ -27,12 +27,18 @@
     "windows": [
       {
         "fullscreen": false,
-        "height": 250,
-        "width": 800,
+        "height": 600,
+        "width": 760,
         "resizable": false,
         "decorations": false,
         "center": true,
-        "visible": false
+        "visible": false,
+        "devtools": true,
+        "transparent": true,
+        "windowEffects": {
+          "radius": 4,
+          "effects": ["popover"]
+        }
       }
     ],
     "security": {

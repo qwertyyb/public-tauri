@@ -6,6 +6,6 @@ export const registerMainShortcut = () => {
   if (!isTauri()) return;
   return register('Command+Space', async () => {
     await getCurrentWindow().show();
-    getCurrentWindow().setFocus()
+    await getCurrentWindow().center();
   })
 }
