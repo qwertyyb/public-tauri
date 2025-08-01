@@ -1,3 +1,6 @@
+packages:
+  - "plugins/*"
+
 onlyBuiltDependencies:
   - esbuild
   - vue-demi

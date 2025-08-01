@@ -1,0 +1,46 @@
+{
+  "name": "clipboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/preload.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "publicPlugin": {
+    "title": "剪切板",
+    "subtitle": "剪切板历史",
+    "icon": "./assets/logo.png",
+    "main": "./dist/preload.js",
+    "commands": [
+      {
+        "name": "clipboard",
+        "title": "剪切板",
+        "matches": [
+          {
+            "type": "text",
+            "keywords": [
+              "剪切板",
+              "clipboard",
+              "cp"
+            ]
+          },
+          {
+            "type": "trigger",
+            "triggers": [
+              "cp"
+            ],
+            "title": "搜索剪切板“$query”..."
+          }
+        ],
+        "mode": "listView",
+        "preload": "./dist/command.preload.js"
+      }
+    ]
+  },
+  "dependencies": {
+    "tauri-plugin-clipboard-api": "^2.1.11"
+  }
+}

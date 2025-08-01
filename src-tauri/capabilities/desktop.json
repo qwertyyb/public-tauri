@@ -12,17 +12,19 @@
   "permissions": [
     "core:default",
     "global-shortcut:default",
-
     "core:window:allow-show",
     "core:window:allow-set-focus",
     "core:window:allow-start-dragging",
     "core:window:allow-center",
     "core:app:allow-set-dock-visibility",
-
     "global-shortcut:allow-is-registered",
     "global-shortcut:allow-register",
     "global-shortcut:allow-unregister",
-
-    "eco-paste:allow-paste"
+    "eco-paste:allow-paste",
+    "shell:default",
+    "shell:allow-spawn",
+    "fs:default",
+    "fs:allow-read",
+    "clipboard:default"
   ]
 }
