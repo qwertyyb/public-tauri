@@ -15,6 +15,7 @@
 </template>
 
 <script setup lang="ts">
+import { debounce } from 'es-toolkit'
 import ResultView from '@/components/ResultView.vue';
 import { ref, toRaw, watch } from 'vue';
 import LoadingBar from '@/components/LoadingBar.vue';
@@ -51,7 +52,7 @@ if (typeof window.publicAppCommand?.enter === 'function') {
   }, { command: toRaw(props.command) })
 }
 
-watch(keyword, window.publicApp.utils.debounce((value: string) => {
+watch(keyword, debounce((value: string) => {
   if (!window.publicAppCommand?.search) return;
   loadingCount.value += 1
   try {

@@ -23,7 +23,8 @@ const keyword = ref('')
 
 watch(keyword, async (value) => {
   if (value) {
-    results.value = await window.pluginManager?.handleQuery(value) || []
+    results.value = await service.query(value) || []
+    console.log('results.value', results.value)
   } else {
     results.value = []
   }

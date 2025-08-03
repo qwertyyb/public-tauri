@@ -6,6 +6,7 @@ import './style.css'
 import { createDraggable } from './utils/draggable';
 import { registerMainShortcut } from './utils/shortcuts';
 import { listenEvents } from './utils/events';
+import { launchPlugins } from './plugin/manager';
 
 createDraggable()
 registerMainShortcut()
@@ -16,3 +17,7 @@ const app = createApp(App)
 app.use(VirtualList)
 
 app.mount('#app')
+
+console.log('builtin plugins path', BUILTIN_PLUGINS_PATH)
+
+launchPlugins()

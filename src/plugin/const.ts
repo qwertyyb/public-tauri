@@ -1,0 +1,1 @@
+export const builtinPluginsPath = BUILTIN_PLUGINS_PATH

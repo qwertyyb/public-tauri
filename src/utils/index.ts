@@ -1,3 +1,6 @@
+import { convertFileSrc } from "@tauri-apps/api/core";
+import { join } from "path-browserify";
+
 export function createAutoResizeInput(input: HTMLInputElement & { autoResizeInstance?: { destroy: () => void } }) {
     // 如果已经存在实例，先销毁
     if (input.autoResizeInstance) {
@@ -107,7 +110,7 @@ export const resourceUrl = (urlOrPath: string | undefined, basePath: string) => 
     }
     let path = urlOrPath
     if (!urlOrPath.startsWith('/')) {
-        path = window.publicApp.utils.pathJoin(basePath, urlOrPath)
+        path = join(basePath, urlOrPath)
     }
-    return `ipublic://public.qwertyyb.com/local-file?path=${encodeURIComponent(path)}`
+    return convertFileSrc(path)
 }
