@@ -1,10 +1,8 @@
 {
-  "name": "clipboard",
+  "name": "translate",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/preload.js",
   "type": "module",
-  "module": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rollup --config ./rollup.config.mjs"
@@ -13,29 +11,30 @@
   "author": "",
   "license": "ISC",
   "publicPlugin": {
-    "title": "剪切板",
-    "subtitle": "剪切板历史",
-    "icon": "./assets/logo.png",
-    "main": "./dist/index.js",
+    "title": "翻译",
+    "subtitle": "翻译输入内容",
+    "icon": "./assets/google-translate.png",
+    "server": "./dist/iciba.js",
     "commands": [
       {
-        "name": "clipboard",
-        "title": "剪切板",
+        "name": "youdao",
+        "title": "翻译",
         "matches": [
           {
             "type": "text",
             "keywords": [
-              "剪切板",
-              "clipboard",
-              "cp"
+              "翻译",
+              "translate",
+              "ts"
             ]
           },
           {
             "type": "trigger",
             "triggers": [
-              "cp"
+              "fy",
+              "ts"
             ],
-            "title": "搜索剪切板“$query”..."
+            "title": "翻译“$query”..."
           }
         ],
         "mode": "listView",
@@ -44,13 +43,14 @@
     ]
   },
   "dependencies": {
-    "@tauri-apps/plugin-sql": "~2",
-    "tauri-plugin-clipboard-api": "^2.1.11"
+    "@public/types": "workspace:^",
+    "@tauri-apps/plugin-http": "^2.5.1",
+    "md5": "^2.3.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^28.0.6",
     "@rollup/plugin-node-resolve": "^16.0.1",
-    "esbuild": "^0.25.8",
+    "@types/md5": "^2.3.5",
     "rollup": "^4.46.2",
     "rollup-plugin-esbuild": "^6.2.1"
   }

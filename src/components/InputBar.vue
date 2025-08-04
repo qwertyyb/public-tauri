@@ -2,6 +2,9 @@
   <div class="inputBar" @pointerup="inputEl?.focus()" tabindex="0" :class="{'is-main-input': isMainInput}">
     <input
       autofocus
+      spellcheck="false"
+      autocorrect="off"
+      autocomplete="false"
       v-if="!disabled"
       class="input"
       ref="input"

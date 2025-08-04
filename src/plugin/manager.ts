@@ -211,7 +211,7 @@ export const launchPlugins = async () => {
   //   'douban', 'magic', 'ai-chat', 'v2ex', 'terminal', 'find', 'google-chrome', 'mdn', 'shortcuts', 'transform',
   //   'settings', 'snippets'
   // ]
-  const names = ['clipboard']
+  const names = ['clipboard', 'translate']
   
   const pluginsPathList = names.map(name => ({ path: path.join(builtinPluginsPath, name)! }))
   pluginsPathList.forEach(({ path }) => {
