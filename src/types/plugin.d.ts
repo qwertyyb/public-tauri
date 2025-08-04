@@ -84,6 +84,7 @@ interface IPluginCommandConfig extends IListItem, Record<string, any> {
   mode?: 'listView' | 'none' | 'view'
   matches?: IPluginCommandMatch[]
   entry?: string
+  server?: string
   preload?: string,
   preferences?: IPreference[]
 }

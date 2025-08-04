@@ -34,6 +34,10 @@
       "type": "string",
       "description": "preload js 文件，此 preload 会在首页执行"
     },
+    "server": {
+      "type": "string",
+      "description": "server js 文件，此 preload 会在首页执行"
+    },
     "preferences": {
       "type": "array",
       "description": "插件的偏好设置列表",

@@ -22,4 +22,4 @@ const createRollupConfig = (input) => ({
   // ]
 })
 
-export default defineConfig([createRollupConfig('./src/command.preload.ts')]);
+export default defineConfig([createRollupConfig('./src/server.ts'), createRollupConfig('./src/command.preload.ts')]);

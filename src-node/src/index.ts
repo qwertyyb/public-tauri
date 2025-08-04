@@ -1,7 +1,10 @@
 import Koa from 'koa'
 import koaBody from '@koa/bodyparser'
+import cors from '@koa/cors'
 import { createServer } from "http";
 import { Server } from "socket.io";
+
+import managerRoutes from './routes/manager'
 
 const logger = require('pino')()
 
@@ -14,6 +17,8 @@ app.use(async (ctx, next) => {
 })
 
 app.use(koaBody())
+app.use(cors())
+app.use(managerRoutes.routes()).use(managerRoutes.allowedMethods())
 
 const httpServer = createServer(app.callback());
 const io = new Server(httpServer, {

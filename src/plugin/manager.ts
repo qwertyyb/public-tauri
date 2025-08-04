@@ -1,10 +1,10 @@
 import Ajv from 'ajv';
-import path from 'path-browserify'
+import path, { join } from 'path-browserify'
 import { readTextFile } from '@tauri-apps/plugin-fs'
 import schema from './plugin.schema.json'
 import { formatCommand, getLocalPath, hanziToPinyin,  openCommandPreferences, openPluginPreferences, popView } from './utils';
 import { getItem, setItem } from './storage';
-import { builtinPluginsPath } from './const';
+import { builtinPluginsPath, pluginServerHost } from './const';
 
 const ajv = new Ajv({ allowUnionTypes: true })
 const validate = ajv.compile(schema)
@@ -34,6 +34,21 @@ const checkManifest = (manifest: Partial<IPluginManifestConfig>) => {
   }
 }
 
+const registerServerModule = async (name: string, modulePath: string) => {
+  const r = await fetch(`${pluginServerHost}/api/manager/register`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ name, modulePath })
+  })
+  const json = await r.json()
+  if (json.errCode !== 0) {
+    throw new Error(`注册服务插件失败:${json.errMessage}`)
+  }
+  return json.data
+}
+
 export const registerPlugin = async (pluginPath: string) => {
   console.log('addPlugin', pluginPath)
   if (checkPluginsRegistered(pluginPath)) {
@@ -58,6 +73,10 @@ export const registerPlugin = async (pluginPath: string) => {
       path: pluginPath,
       commands,
       settings: pluginsSettings[name]
+    }
+    if (manifest.server && !pluginsSettings?.[name]?.disabled) {
+      const serverModulePath = manifest.server ? join(pluginPath, manifest.server) : ''
+      registerServerModule(name, serverModulePath)
     }
     if (main && !pluginsSettings?.[name]?.disabled) {
       const entryPath = getLocalPath(main, pluginPath)!

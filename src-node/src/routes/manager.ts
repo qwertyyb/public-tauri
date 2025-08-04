@@ -28,3 +28,5 @@ router.post('/updatePlugin', (ctx) => {
 router.post('/invoke', async (ctx) => {
   ctx.body = { success: true, data: await callPlugin(ctx.request.body.name, ctx.request.body.method, ctx.request.body.args) }
 })
+
+export default router
