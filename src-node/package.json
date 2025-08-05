@@ -8,6 +8,8 @@
   },
   "scripts": {
     "dev": "tsx src/index.ts",
+    "build:node": "node-gyp rebuild",
+    "build:node:debug": "node-gyp configure --debug -- -f compile_commands_json && mv ./build/Debug/compile_commands.json ./compile_commands.json && node-gyp rebuild --debug",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -26,6 +28,7 @@
   "devDependencies": {
     "@types/koa": "^3.0.0",
     "@types/koa__cors": "^5.0.0",
-    "@types/koa__router": "^12.0.4"
+    "@types/koa__router": "^12.0.4",
+    "node-addon-api": "^8.5.0"
   }
 }

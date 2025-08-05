@@ -1,8 +1,4 @@
-import { io } from 'socket.io-client'
-
-const socket = io('http://127.0.0.1:2345', {
-  path: 'ws'
-})
+import * as clipboard from '@tauri-apps/plugin-clipboard-manager'
 
 const invokeServer = async (name: string, method: string, args: any[]) => {
   const r = await fetch('http://127.0.0.1:2345/api/manager/invoke', {
@@ -22,8 +18,7 @@ const createPluginAPI = (name: string) => {
       return invokeServer(name, method, args)
     },
     on: (event: string, callback: (data: any) => void) => {
-      socket.on(event, callback)
-    }
+    },
   }
 }
 

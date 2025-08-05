@@ -1,0 +1,8 @@
+{
+  "include": ["src/**/*.ts"],
+  "compilerOptions": {
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "baseUrl": "."
+  }
+}

@@ -1,5 +1,6 @@
 import KoaRouter from '@koa/router'
-import { callPlugin, registerPlugin, unregisterPlugin } from '../plugin/manager'
+import { callPlugin, registerPlugin, unregisterPlugin, updatePlugin } from '../plugin/manager'
+import { createResponse } from '../utils/response'
 
 const router = new KoaRouter({
   prefix: '/api/manager'
@@ -7,26 +8,22 @@ const router = new KoaRouter({
 
 router.post('/register', async (ctx) => {
   const { name, modulePath } = ctx.request.body
-  try {
-    await registerPlugin(name, modulePath)
-    ctx.body = { success: true }
-  } catch (err) {
-    ctx.throw(err)
-  }
+  await registerPlugin(name, modulePath)
+  ctx.body = createResponse()
 })
 
 router.post('/unregister', (ctx) => {
   unregisterPlugin(ctx.request.body.modulePath)
-  ctx.body = { success: true }
+  ctx.body = createResponse()
 })
 
 router.post('/updatePlugin', (ctx) => {
-  unregisterPlugin(ctx.request.body.name)
-  ctx.body = { success: true }
+  updatePlugin(ctx.request.body.name, ctx.request.body.modulePath)
+  ctx.body = createResponse()
 })
 
 router.post('/invoke', async (ctx) => {
-  ctx.body = { success: true, data: await callPlugin(ctx.request.body.name, ctx.request.body.method, ctx.request.body.args) }
+  ctx.body = createResponse(await callPlugin(ctx.request.body.name, ctx.request.body.method, ctx.request.body.args))
 })
 
 export default router

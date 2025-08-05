@@ -1,0 +1,30 @@
+{
+  "name": "launcher",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/preload.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup --config ./rollup.config.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "publicPlugin": {
+    "title": "应用启动器",
+    "subtitle": "快速启动应用",
+    "icon": "./assets/icon.png",
+    "main": "./dist/preload.js",
+    "server": "./dist/server.js"
+  },
+  "dependencies": {
+    "socket.io-client": "^4.8.1"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.6",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "rollup": "^4.46.2",
+    "rollup-plugin-esbuild": "^6.2.1"
+  }
+}

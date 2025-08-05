@@ -15,6 +15,8 @@
 import InputBar from '@/components/InputBar.vue';
 import ResultView from '@/components/ResultView.vue';
 import * as service from '@/services'
+import type { UnlistenFn } from '@tauri-apps/api/event';
+import { getCurrentWindow } from '@tauri-apps/api/window';
 import { onBeforeUnmount, onMounted, ref, toRaw, watch } from 'vue';
 
 const results = ref<IPluginCommand[]>([])
@@ -59,14 +61,22 @@ declare global {
   }
 }
 
-onMounted(() => {
+let unlistenFocusChange: UnlistenFn
+
+onMounted(async () => {
   window.addEventListener('plugin:showCommands', setPluginResults)
   window.addEventListener('publicApp.mainWindow.show', focusInput)
+  unlistenFocusChange = await getCurrentWindow().onFocusChanged(({ payload: focused }) => {
+    if (focused) {
+      focusInput()
+    }
+  })
 })
 
 onBeforeUnmount(() => {
   window.removeEventListener('plugin:showCommands', setPluginResults)
   window.removeEventListener('publicApp.mainWindow.show', focusInput)
+  unlistenFocusChange?.()
 })
 </script>
 

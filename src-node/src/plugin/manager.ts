@@ -1,12 +1,23 @@
+import { emitEvent } from "./sockets"
+
 export const plugins = new Map<string, {
   modulePath: string,
   instance: any
 }>()
 
+const createContext = (name: string) => {
+  return {
+    emit: (event: string, ...args: any[]) => {
+      emitEvent(name, event, ...args)
+    }
+  }
+}
+
 export const registerPlugin = async (name: string, modulePath: string) => {
+  const mod = await import(modulePath).then(mod => mod.default || mod)
   plugins.set(name, {
     modulePath,
-    instance: await import(modulePath).then(mod => mod.default || mod)
+    instance: mod(createContext(name))
   })
 }
 

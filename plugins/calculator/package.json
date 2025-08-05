@@ -1,0 +1,31 @@
+{
+  "name": "calculator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup --config ./rollup.config.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "publicPlugin": {
+    "title": "计算器",
+    "subtitle": "快捷计算表达式",
+    "icon": "./assets/icon.png",
+    "main": "./dist/index.js"
+  },
+  "dependencies": {
+    "@public/types": "workspace:^",
+    "mathjs": "^14.6.0",
+    "tauri-plugin-clipboard-api": "^2.1.11"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.6",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "rollup": "^4.46.2",
+    "rollup-plugin-esbuild": "^6.2.1"
+  }
+}

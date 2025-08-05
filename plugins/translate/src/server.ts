@@ -64,3 +64,11 @@ export const translate = async (keyword: string) => {
   })
   return [...means, ...exchange]
 }
+
+const createPlugin = () => {
+  return {
+    translate
+  }
+}
+
+export default createPlugin
