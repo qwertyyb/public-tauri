@@ -5052,6 +5052,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "tauri-plugin-enigo"
+version = "0.1.0"
+dependencies = [
+ "enigo",
+ "tauri",
+ "tauri-plugin",
+]
+
+[[package]]
 name = "tauri-plugin-fs"
 version = "2.4.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"

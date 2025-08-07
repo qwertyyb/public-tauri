@@ -1,0 +1,13 @@
+# Automatically generated - DO NOT EDIT!
+
+"$schema" = "../../schemas/schema.json"
+
+[[permission]]
+identifier = "allow-enigo"
+description = "Enables the enigo command without any pre-configured scope."
+commands.allow = ["enigo"]
+
+[[permission]]
+identifier = "deny-enigo"
+description = "Denies the enigo command without any pre-configured scope."
+commands.deny = ["enigo"]

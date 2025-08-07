@@ -1,3 +1,4 @@
+import { getCurrentWindow } from '@tauri-apps/api/window'
 import * as clipboard from '@tauri-apps/plugin-clipboard-manager'
 
 const invokeServer = async (name: string, method: string, args: any[]) => {
@@ -14,6 +15,21 @@ const invokeServer = async (name: string, method: string, args: any[]) => {
 
 const createPluginAPI = (name: string) => {
   return {
+    clipboard,
+    window: {
+      hide() {
+        getCurrentWindow().hide()
+      },
+      show() {
+        getCurrentWindow().show()
+      },
+      clearInput() {
+        window.dispatchEvent(new CustomEvent('clearInput'))
+      },
+      popToRoot(options?: { clearInput?: boolean }) {
+        window.dispatchEvent(new CustomEvent('pop-to-root', { detail: { ...options } }))
+      },
+    },
     invoke: async (method: string, ...args: any[]) => {
       return invokeServer(name, method, args)
     },

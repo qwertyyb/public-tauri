@@ -31,3 +31,4 @@ tauri-plugin-sql = { version = "2", features = ["sqlite"] }
 tauri-plugin-global-shortcut = "2"
 
 [workspace]
+members = ["plugins/enigo"]
