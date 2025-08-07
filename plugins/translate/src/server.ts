@@ -1,6 +1,9 @@
 import md5 from 'md5'
+import { DOMParser } from '@xmldom/xmldom'
+import lib from './lib'
+import { exec } from 'child_process'
 
-export const translate = async (keyword: string) => {
+export const lookupIciba = async (keyword: string) => {
   const rawWord = keyword
   const now = Date.now()
   const wordCapital = true
@@ -63,6 +66,68 @@ export const translate = async (keyword: string) => {
     }
   })
   return [...means, ...exchange]
+}
+
+export const parser = new DOMParser()
+
+const lookupFromDict = (keyword: string) => {
+  const results: any[] = []
+  const dictionaries = lib.lookupWordHTML(keyword)
+  dictionaries.forEach(d => {
+    if (!d.entries.length) return;
+    d.entries.forEach(entry => {
+      const doc = parser.parseFromString(entry.html, 'application/xhtml+xml')
+      Array.from(doc.getElementsByTagName('d:entry')).forEach(item => {
+        const title = item.getAttribute('d:title')
+        results.push({
+          subtitle: d.dictionary,
+        })
+        Array.from(item.childNodes).forEach(item => {
+          if (item.textContent?.trim()) {
+            results.push({
+              title: item.textContent?.trim(),
+              subtitle: d.dictionary,
+              icon: './assets/google-translate.png'
+            })
+          }
+        })
+      })
+    })
+  })
+  return results
+}
+
+const translateUseApple = (keyword: string) => {
+  return new Promise<any[]>((resolve, reject) => {
+    exec(`shortcuts run "翻译(public专用)" -i ${JSON.stringify(keyword)} | cat`, { encoding: 'utf-8' }, (err, stdout) => {
+      if (err) {
+        return reject(err)
+      }
+      if (!stdout) {
+        resolve([])
+        return
+      }
+      return resolve([
+        {
+          subtitle: '翻译'
+        },
+        {
+          title: stdout,
+          subtitle: '复制到剪切板',
+          icon: './assets/google-translate.png'
+        }
+      ])
+    })
+  })
+};
+
+export const translate = async (keyword: string) => {
+  const results = await Promise.all([
+    lookupIciba(keyword),
+    lookupFromDict(keyword),
+    translateUseApple(keyword)
+  ])
+  return results.flat()
 }
 
 const createPlugin = () => {

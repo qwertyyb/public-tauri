@@ -10,8 +10,7 @@ import createLoggerMiddleware from './middlewares/log';
 import createErrorHandler from './middlewares/err';
 import { startSocketIO } from './socket.io';
 import createCacheMiddleware from './middlewares/cache';
-
-const logger = require('pino')()
+import logger from './utils/logger';
 
 const app = new Koa()
 

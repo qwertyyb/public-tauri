@@ -35,6 +35,7 @@
         "visible": false,
         "devtools": true,
         "transparent": true,
+        "backgroundThrottling": "disabled",
         "windowEffects": {
           "radius": 6,
           "effects": ["popover"]

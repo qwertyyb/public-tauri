@@ -1,5 +1,7 @@
 import type OpenAI from "openai"
 
+export const POP_TO_ROOT_TIMEOUT = 90 * 1000
+
 export const AI_ASSISTANT_PROMPT = `你是一名Mac电脑专家，擅长使用Bash和AppleScript脚本，只能使用这些工具解决问题。但如果用户的请求是你自身可以通过理解和语言能力完成的(例如翻译、润色、理解、写作等)，你应当直接回答，不调用任何脚本或工具。你不允许仅仅提供口头建议，而是必须使用脚本代码直接获取信息或执行操作。遇到需要用户输入或选择的场景，必须通过AppleScript弹窗完成，不允许使用文字提示。你拥有一系列可调用的工具(function call)，请在需要时选择合适的工具调用。输出的内容要尽量简洁，符合即时反馈的要求。你知道用户通常使用Chrome浏览器，请在涉及网页或文件打开时优先考虑Chrome浏览器。`
 
 export const AI_TOOLS_DEFINITIONS: OpenAI.ChatCompletionTool[] = [
