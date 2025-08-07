@@ -210,6 +210,21 @@ importers:
         specifier: ^6.2.1
         version: 6.2.1(esbuild@0.25.8)(rollup@4.46.2)
 
+  plugins/transform:
+    devDependencies:
+      '@rollup/plugin-commonjs':
+        specifier: ^28.0.6
+        version: 28.0.6(rollup@4.46.2)
+      '@rollup/plugin-node-resolve':
+        specifier: ^16.0.1
+        version: 16.0.1(rollup@4.46.2)
+      rollup:
+        specifier: ^4.46.2
+        version: 4.46.2
+      rollup-plugin-esbuild:
+        specifier: ^6.2.1
+        version: 6.2.1(esbuild@0.25.8)(rollup@4.46.2)
+
   plugins/translate:
     dependencies:
       '@public/types':

@@ -1,0 +1,26 @@
+{
+  "name": "transform",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "dist/preload.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup --config ./rollup.config.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "publicPlugin": {
+    "title": "转换",
+    "subtitle": "单位、金额、时间转换",
+    "icon": "./assets/icon.png",
+    "main": "dist/preload.js"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.6",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "rollup": "^4.46.2",
+    "rollup-plugin-esbuild": "^6.2.1"
+  }
+}
