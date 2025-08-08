@@ -44,6 +44,7 @@
     ]
   },
   "dependencies": {
+    "@public/api": "workspace:^",
     "@tauri-apps/plugin-sql": "~2",
     "tauri-plugin-clipboard-api": "^2.1.11"
   },

@@ -36,6 +36,7 @@
     "clipboard:allow-start-monitor",
     "clipboard:monitor-all",
     "clipboard:read-all",
+    "clipboard:write-all",
     "sql:default",
     "sql:allow-execute",
     "sql:allow-load",
@@ -44,6 +45,7 @@
     {
       "identifier": "http:default",
       "allow": [{ "url": "https://*:*/**" }]
-    }
+    },
+    "dialog:default"
   ]
 }

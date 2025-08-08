@@ -1,4 +1,6 @@
-import type { IPluginCommand } from "@public/shared";
+import { createPluginAPI } from "@public/api";
+
+const api = createPluginAPI('transform')
 
 const formatCurrency = (amount: number) => {
   // JS 精度有问题, 简单处理一下
@@ -7,7 +9,7 @@ const formatCurrency = (amount: number) => {
 
 // 常用的几个汇率 CNY <-> HK <-> US <-> JP
 const fetchExchangeRate = async () => {
-  const r = await window.publicApp.fetch("https://www.safe.gov.cn/json/rmbData.json");
+  const r = await api.fetch("https://www.safe.gov.cn/json/rmbData.json");
   const json: { currency: string; para1: string; middlerate: number; para2: string }[] =
     await r.json();
   const USDtoCNY = json.find(

@@ -1,5 +1,8 @@
 import KoaRouter from '@koa/router'
 import { getFileIcon } from '../lib/macos'
+import utils from '../services/utils'
+import { createResponse } from '../utils/response'
+import Stream from 'stream'
 
 const router = new KoaRouter({
   prefix: '/utils'
@@ -10,6 +13,27 @@ router.get('/file-icon', async ctx => {
   const buffer = await getFileIcon(path, parseInt(size, 10))
   ctx.set('Content-Type', 'image/png')
   ctx.body = buffer
+})
+
+router.post('/invoke', async (ctx) => {
+  const { method, args } = ctx.request.body as { method: string, args: any[] }
+  if (method === 'fetch') {
+    // @ts-ignore
+    const r = await utils.fetch(...args)
+    ctx.status = r.status
+    ctx.set({
+      ...[...r.headers].reduce((acc, item) => { return { ...acc, [item[0]]: item[1] } }, {})
+    })
+    ctx.flushHeaders()
+    // @ts-ignore
+    ctx.body = Stream.Readable.fromWeb(r.body!)
+    return
+  }
+  if (typeof utils[method] === 'function') {
+    ctx.body = createResponse(await utils[method](...args))
+    return;
+  }
+  throw new Error(`方法 ${method} 不存在`)
 })
 
 export default router

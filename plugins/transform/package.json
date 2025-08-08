@@ -22,5 +22,8 @@
     "@rollup/plugin-node-resolve": "^16.0.1",
     "rollup": "^4.46.2",
     "rollup-plugin-esbuild": "^6.2.1"
+  },
+  "dependencies": {
+    "@public/api": "workspace:^"
   }
 }
