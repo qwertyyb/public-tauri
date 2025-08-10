@@ -38,7 +38,8 @@
 </template>
 
 <script setup lang="ts">
-import type { IPluginManifest } from '@public/shared';
+import { getPlugin, updateCommandPreferences, updatePluginPreferences } from '@/plugin/manager';
+import type { IPluginManifest } from '@public/types';
 import { ElForm, ElFormItem, ElInput, ElSelect, ElOption, ElButton } from 'element-plus';
 import { computed, nextTick, ref, shallowRef, toRaw, watch } from 'vue';
 
@@ -67,14 +68,14 @@ let inited = false
 watch(formValue, () => {
   if (!inited) return;
   if (props.command) {
-    window.pluginManager?.updateCommandPreferences(props.plugin, props.command, toRaw(formValue.value))
+    updateCommandPreferences(props.plugin, props.command, toRaw(formValue.value))
   } else {
-    window.pluginManager?.updatePluginPreferences(props.plugin, toRaw(formValue.value))
+    updatePluginPreferences(props.plugin, toRaw(formValue.value))
   }
 }, { deep: true })
 
 const refresh = async () => {
-  const plugin = window.pluginManager?.getPlugin(props.plugin)
+  const plugin = getPlugin(props.plugin)
   if (!plugin) return;
   manifest.value = plugin.manifest
   if (props.command) {

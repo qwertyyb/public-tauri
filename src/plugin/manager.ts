@@ -1,10 +1,11 @@
 import Ajv from 'ajv';
 import path, { join } from 'path-browserify'
+import { globalShortcut, mainWindow, registerServerModule, storage } from '@public/api/core'
 import { readTextFile } from '@tauri-apps/plugin-fs'
 import schema from './plugin.schema.json'
-import { formatCommand, getLocalPath, hanziToPinyin,  openCommandPreferences, openPluginPreferences, popView } from './utils';
-import { getItem, setItem } from './storage';
-import { builtinPluginsPath, pluginServerHost } from './const';
+import { formatCommand, getLocalPath, hanziToPinyin, openCommandPreferences, openPluginPreferences, popView } from './utils';
+import { builtinPluginsPath } from './const';
+import { set } from 'es-toolkit/compat'
 
 const ajv = new Ajv({ allowUnionTypes: true })
 const validate = ajv.compile(schema)
@@ -15,7 +16,7 @@ let pluginsSettings: IPluginsSettings = {}
 const resultsMap = new WeakMap<IPluginCommand, { score: number, query: string, owner: IRunningPlugin }>()
 
 const save = () => {
-  return setItem('pluginsSettings', pluginsSettings)
+  return storage.setItem('pluginsSettings', pluginsSettings)
 }
 
 const checkPluginsRegistered = (path: string) => {
@@ -32,21 +33,6 @@ const checkManifest = (manifest: Partial<IPluginManifestConfig>) => {
     err.errors = [...validate.errors]
     throw err
   }
-}
-
-const registerServerModule = async (name: string, modulePath: string) => {
-  const r = await fetch(`${pluginServerHost}/api/manager/register`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ name, modulePath })
-  })
-  const json = await r.json()
-  if (json.errCode !== 0) {
-    throw new Error(`注册服务插件失败:${json.errMessage}`)
-  }
-  return json.data
 }
 
 export const registerPlugin = async (pluginPath: string) => {
@@ -81,7 +67,7 @@ export const registerPlugin = async (pluginPath: string) => {
     if (main && !pluginsSettings?.[name]?.disabled) {
       const entryPath = getLocalPath(main, pluginPath)!
       console.log('plugin', name)
-      const mod = await import(entryPath)
+      const mod = await import(/* @vite-ignore */entryPath)
       const createPlugin = mod.default || mod as IPluginCreator
       if (typeof createPlugin === 'function') {
         const pluginReturn = createPlugin({
@@ -164,7 +150,7 @@ export const disablePluginCommand = (name: string, commandName: string, disabled
         [commandName]: {
           disabled,
           alias: '',
-          shortcuts: '',
+          shortcut: '',
         }
       }
     }
@@ -176,7 +162,7 @@ export const disablePluginCommand = (name: string, commandName: string, disabled
       [commandName]: {
         disabled,
         alias: '',
-        shortcuts: '',
+        shortcut: '',
       }
     }
     save()
@@ -186,7 +172,7 @@ export const disablePluginCommand = (name: string, commandName: string, disabled
     settings.commands[commandName] = {
       disabled,
       alias: '',
-      shortcuts: '',
+      shortcut: '',
     }
     save()
     return
@@ -209,7 +195,7 @@ export const updatePluginSettings = (name: string, value: Partial<Omit<IPluginSe
   })
 }
 
-export const updateCommandSettings = (pluginName: string, commandName: string, settings: ICommandSettings) => {
+export const updateCommandSettings = (pluginName: string, commandName: string, settings: Partial<ICommandSettings>) => {
   const plugin = plugins.get(pluginName)
   if (!plugin) return;
   plugin.settings!.commands[commandName] = { ...plugin.settings?.commands[commandName], ...settings }
@@ -220,25 +206,25 @@ export const getPlugin = (name: string) => {
   return plugins.get(name)
 }
 
-export const launchPlugins = async () => {
-  const result = await getItem<IPluginsSettings>('pluginsSettings')
-  console.log('pluginsSettings', result)
-  pluginsSettings = result || {}
+// export const launchPlugins = async () => {
+//   const result = await getItem<IPluginsSettings>('pluginsSettings')
+//   console.log('pluginsSettings', result)
+//   pluginsSettings = result || {}
 
-  // const names = [
-  //   'launcher', 'command', 'calculator', 'qrcode', 'links', 'translate', 'clipboard',
-  //   'douban', 'magic', 'ai-chat', 'v2ex', 'terminal', 'find', 'google-chrome', 'mdn', 'shortcuts', 'transform',
-  //   'settings', 'snippets'
-  // ]
-  const names = ['clipboard', 'translate', 'launcher', 'calculator', 'transform']
+//   // const names = [
+//   //   'launcher', 'command', 'calculator', 'qrcode', 'links', 'translate', 'clipboard',
+//   //   'douban', 'magic', 'ai-chat', 'v2ex', 'terminal', 'find', 'google-chrome', 'mdn', 'shortcuts', 'transform',
+//   //   'settings', 'snippets'
+//   // ]
+//   const names = ['clipboard', 'translate', 'launcher', 'calculator', 'transform', 'ai', 'settings']
   
-  const pluginsPathList = names.map(name => ({ path: path.join(builtinPluginsPath, name)! }))
-  pluginsPathList.forEach(({ path }) => {
-    registerPlugin(path).catch(err => {
-      console.error(err)
-    })
-  })
-}
+//   const pluginsPathList = names.map(name => ({ path: path.join(builtinPluginsPath, name)! }))
+//   pluginsPathList.forEach(({ path }) => {
+//     registerPlugin(path).catch(err => {
+//       console.error(err)
+//     })
+//   })
+// }
 
 // launchPlugins()
 
@@ -317,7 +303,7 @@ export const enterCommand = async (owner: IRunningPlugin, command: IPluginComman
   if (command.mode === 'none' || !command.mode) {
     owner.plugin?.onEnter?.(command, matchData)
   } else if (command.mode === 'listView') {
-    const mod = await import(command.preload!)
+    const mod = await import(/* @vite-ignore */command.preload!)
     // @ts-ignore
     window.publicAppCommand = mod.default || mod
     window.dispatchEvent(new CustomEvent('push-view', { detail: { path: '/plugin/list-view', params: { command, plugin: owner, match: matchData, publicCommand: mod.default || mod } } }))
@@ -332,4 +318,76 @@ export const enterCommandByName = (pluginName: string, commandName: string, matc
   const command = plugin.commands.find(item => item.name === commandName)
   if (!command) return;
   return enterCommand(plugin, command, matchData)
+}
+
+export const getPreferenceValues = (pluginName: string) => {
+  return pluginsSettings[pluginName]?.preferences || {}
+}
+
+// shortcut
+export const updateCommandShortcut = async (pluginName: string, commandName: string, shortcut?: string) => {
+  const old = pluginsSettings?.[pluginName]?.commands[commandName]?.shortcut
+  if (old && old !== shortcut) {
+    globalShortcut.unregister(old)
+  }
+  set(pluginsSettings, [pluginName, 'commands', commandName, shortcut].join('.'), 'shortcut')
+  save()
+  if (!shortcut) return;
+  if (await globalShortcut.isRegistered(shortcut)) {
+    throw new Error(`shortcut ${shortcut} already registered`)
+  }
+  await globalShortcut.register(shortcut, () => {
+    enterCommandByName(pluginName, commandName, { from: 'hotkey', score: 0, keyword: '', query: '' })
+    mainWindow.show()
+  })
+  save()
+}
+
+const initInnerPlugins = () => {
+  const names = ['clipboard', 'translate', 'launcher', 'calculator', 'transform', 'ai', 'settings']
+  
+  const pluginsPathList = names.map(name => ({ path: path.join(builtinPluginsPath, name)! }))
+  pluginsPathList.forEach(({ path }) => {
+    registerPlugin(path).catch(err => {
+      console.error(err)
+    })
+  })
+}
+
+const initCustomPlugins = async () => {
+  const pluginPathList: string[] | undefined = await storage.getItem('customPluginPathList')
+  if (!pluginPathList) return;
+  return pluginPathList.forEach(pluginPath => {
+    registerPlugin(pluginPath).catch(err => {
+      console.error('register plugin error: ', pluginPath, err)
+    })
+  })
+}
+
+const initCommandsShortcut = () => {
+  [...plugins.entries()].forEach(([pluginName, plugin]) => {
+    if (plugin.settings?.disabled) return
+    plugin?.commands.forEach((command) => {
+      const commandSettings = plugin.settings?.commands?.[command.name]
+      if (commandSettings?.disabled) return
+      const shortcut = commandSettings?.shortcut
+      if (!shortcut) return
+      const handler = () => {
+        enterCommandByName(pluginName, command.name, { from: 'hotkey', score: 0, keyword: '', query: '' })
+        mainWindow.show();
+      };
+      globalShortcut.register(shortcut, handler);
+    })
+  })
+}
+
+export const init = async () => {
+  const result: IPluginsSettings = await storage.getItem('pluginsSettings')
+  console.log('pluginsSettings', result)
+  pluginsSettings = result || {}
+
+  await initInnerPlugins()
+  await initCustomPlugins()
+
+  initCommandsShortcut()
 }

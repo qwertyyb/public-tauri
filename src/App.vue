@@ -10,6 +10,7 @@ import RoutePage from '@/components/RoutePage.vue'
 import { computed, nextTick, onBeforeUnmount, provide, shallowRef, useTemplateRef, type Component } from 'vue'
 import { routerSymbol } from './router/hooks'
 import CreateSnippetView from './views/CreateSnippetView.vue'
+import { showAlert, showConfirm, showToast } from '@/utils/feedback'
 
 const hash = location.hash.substring(1)
 
@@ -68,16 +69,37 @@ const popToRootHandler = () => {
   popView({ count: history.value.length - 1 })
 }
 
+const showAlertHandler = (event: any) => {
+  const { message, title, ...options } = event.detail.options
+  return showAlert(message, title, options)
+}
+
+const showConfirmHandler = (event: any) => {
+  const { message, title, ...options } = event.detail.options
+  return showConfirm(message, title, options)
+}
+
+const showToastHandler = (event: any) => {
+  const { message, ...options } = event.detail.options
+  return showToast(message, options)
+}
+
 window.addEventListener('create-view', toPluginView)
 window.addEventListener('push-view', pushViewHandler)
 window.addEventListener('pop-view', popViewHandler)
 window.addEventListener('pop-to-root', popToRootHandler)
+window.addEventListener('app:showAlert', showAlertHandler)
+window.addEventListener('app:showConfirm', showConfirmHandler)
+window.addEventListener('app:showToast', showToastHandler)
 
 onBeforeUnmount(() => {
   window.removeEventListener('create-view', toPluginView)
   window.removeEventListener('push-view', pushViewHandler)
   window.removeEventListener('pop-view', popViewHandler)
   window.removeEventListener('pop-to-root', popToRootHandler)
+  window.removeEventListener('app:showAlert', showAlertHandler)
+  window.removeEventListener('app:showConfirm', showConfirmHandler)
+  window.removeEventListener('app:showToast', showToastHandler)
 })
 
 provide(routerSymbol, {

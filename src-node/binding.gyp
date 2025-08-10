@@ -4,7 +4,6 @@
       "target_name": "addon",
       "sources": [
         "lib/addon.mm",
-        "lib/DictionaryKit/TTTDictionary.m",
         "lib/getIconForFile.mm"
       ],
       "include_dirs": [

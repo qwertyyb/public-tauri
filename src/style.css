@@ -33,6 +33,7 @@ ul, ol {
 
 html, html.dark {
   --border-color: #eaeaea;
+  --theme-color: green;
 
   --selected-bg-color: rgba(0, 128, 0, 0.4);
   --el-color-primary: green;

@@ -1,0 +1,47 @@
+{
+  "name": "settings",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup --config ./rollup.config.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "publicPlugin": {
+    "title": "Public设置",
+    "subtitle": "Public应用设置",
+    "icon": "./assets/settings.png",
+    "main": "./dist/index.js",
+    "commands": [
+      {
+        "name": "settings",
+        "title": "Public应用设置",
+        "matches": [
+          {
+            "type": "text",
+            "keywords": [
+              "public settings",
+              "Public设置"
+            ]
+          }
+        ],
+        "mode": "none"
+      }
+    ]
+  },
+  "dependencies": {
+    "@electron/remote": "^2.1.2",
+    "@public/api": "workspace:^",
+    "@rollup/plugin-replace": "^6.0.2"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.6",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "rollup": "^4.46.2",
+    "rollup-plugin-esbuild": "^6.2.1"
+  }
+}

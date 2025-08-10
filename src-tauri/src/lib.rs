@@ -13,8 +13,9 @@ pub fn run() {
         .plugin(tauri_plugin_http::init())
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_nspanel::init())
-        .plugin(tauri_plugin_eco_paste::init())
         .setup(move |app| {
+            #[cfg(desktop)]
+            let _ = app.handle().plugin(tauri_plugin_autostart::init(tauri_plugin_autostart::MacosLauncher::LaunchAgent, Some(vec![]) /* arbitrary number of args to pass to your app */));
             // Set activation poicy to Accessory to prevent the app icon from showing on the dock
             app.set_activation_policy(tauri::ActivationPolicy::Accessory);
 

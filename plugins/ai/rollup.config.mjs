@@ -1,0 +1,21 @@
+import { defineConfig } from 'rollup';
+import esbuild from 'rollup-plugin-esbuild'
+import commonjs from '@rollup/plugin-commonjs';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
+
+const createRollupConfig = (input) => ({
+  input: input,
+  output: {
+    dir: 'dist',
+    format: 'esm',
+  },
+	plugins: [
+    commonjs(),
+    nodeResolve(),
+    esbuild({
+      target: 'es2022',
+    })
+  ],
+})
+
+export default defineConfig([createRollupConfig('./src/index.ts')]);

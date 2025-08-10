@@ -45,18 +45,11 @@ export interface ISettings {
 
 declare global {
   interface Window {
-    pluginManager?: IPluginManager
-
-
     PublicAppBridge?: {
       invoke<R>(method: string, ...args: unknown[]): Promise<R>;
       handle(channel: string, callback: (...args: any[]) => any): void;
       unhandle(channel: string): void;
     };
-
-    PublicApp: {
-      mainAPI: IPublicAppMainAPI,
-    }
   }
 
   interface WindowEventMap {

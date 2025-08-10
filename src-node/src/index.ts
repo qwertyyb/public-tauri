@@ -14,12 +14,12 @@ import logger from './utils/logger';
 
 const app = new Koa()
 
+app.use(koaBody())
+app.use(cors())
+
 app.use(createLoggerMiddleware())
 app.use(createErrorHandler())
 app.use(createCacheMiddleware())
-
-app.use(koaBody())
-app.use(cors())
 
 app.use(managerRoutes.routes()).use(managerRoutes.allowedMethods())
 app.use(utilsRouter.routes()).use(utilsRouter.allowedMethods())

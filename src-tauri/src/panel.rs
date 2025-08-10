@@ -49,6 +49,6 @@ pub fn setup_panel(app: &mut App) {
     handler.window_did_resign_key(move |_notification| {
         println!("[info]: panel resigned from key window!");
         let _ = handle1.emit_to("main", "focus", false);
-        panel.hide();
+        // panel.hide();
     });
 }

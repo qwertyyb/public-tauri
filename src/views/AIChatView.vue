@@ -30,6 +30,9 @@ import { ElInput, ElButton } from 'element-plus';
 import { onPageEnter } from '@/router/hooks';
 import { isKeyPressed } from '@/utils/keyboard';
 import { AI_ASSISTANT_PROMPT, AI_TOOLS_DEFINITIONS, AI_TOOLS } from '@/const';
+import { getPreferenceValues } from '@/plugin/manager';
+import { popToRoot } from '@/plugin/utils';
+import logger from '@/utils/logger';
 
 const props = defineProps<{ query?: string }>()
 
@@ -81,10 +84,12 @@ const scrollToBottom = async (): Promise<void> => {
   }
 };
 
-const preferences = window.publicApp.plugin.getPreferenceValues('ai-chat')
+const preferences = getPreferenceValues('ai')
+
+logger.info('preferences', preferences)
 const client = new OpenAI({
-  apiKey: preferences.apiKey, // 模型APIKey
-  baseURL: preferences.baseURL, // 模型API地址
+  apiKey: preferences.apiKey as string, // 模型APIKey
+  baseURL: preferences.baseURL as string, // 模型API地址
   dangerouslyAllowBrowser: true,
 });
 
@@ -109,7 +114,7 @@ const runTools = async (toolCall: OpenAI.ChatCompletionMessageToolCall) => {
 
 const ask = async () => {
   const completion = await client.chat.completions.create({
-    model: preferences.model,
+    model: preferences.model as string,
     messages: toRaw(messages.value),
     tools: AI_TOOLS_DEFINITIONS,
     tool_choice: 'auto',
@@ -195,7 +200,7 @@ const keyDownHandler = (e: KeyboardEvent | Event) => {
       userInput.value = ''
       return;
     } else {
-      window.publicApp.mainWindow.popToRoot()
+      popToRoot();
       return
     }
   }

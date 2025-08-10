@@ -12,11 +12,15 @@ let popToRootTimeout: ReturnType<typeof setTimeout> | null
 
 export const listenEvents = async () => {
   if (!isTauri()) return;
-  app.setDockVisibility(false)
+  if (import.meta.env.PROD) {
+    app.setDockVisibility(false)
+  }
   unlisten = await listen('focus', (event) => {
     logger.info('onFocusChanged', event)
     if (!event.payload) {
-      getCurrentWindow().hide()
+      // if (import.meta.env.PROD) {
+        getCurrentWindow().hide()
+      // }
       popToRootTimeout = setTimeout(() => {
         logger.info('popToTimeout callback')
         popToRoot({ clearInput: true })

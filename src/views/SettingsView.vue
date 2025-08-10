@@ -138,9 +138,11 @@ import { computed, ref, toRaw } from 'vue';
 import { ElMessage, ElButton, ElSelect, ElSwitch, ElOption, ElInput, ElForm, ElFormItem, ElIcon } from 'element-plus';
 import { ArrowRightBold, Plus, Delete, Operation } from '@element-plus/icons-vue';
 import ShortcutsRecorder from '@/components/ShortcutsRecorder.vue';
-import type { ICommandSettings, IPluginCommand, IRunningPlugin } from '@public/shared';
-import { getSettings, updateSettings, getPlugins, openPreferences, removePlugin, updateCommandSettings, updatePluginSettings, unregisterShortcuts, registerCommandShortcuts } from '@/services/settings';
+import type { ICommandSettings, IPluginCommand, IRunningPlugin } from '@public/types';
+import { getSettings, updateSettings, getPlugins } from '@/services/settings';
 import { onPageEnter, useRouter } from '@/router/hooks';
+import { unregisterPlugin, updateCommandSettings, updateCommandShortcut, updatePluginPreferences, updatePluginSettings } from '@/plugin/manager';
+import { openCommandPreferences, openPluginPreferences } from '@/plugin/utils';
 
 const views = ref({
   'common': '通用',
@@ -206,13 +208,7 @@ const onPluginDisabledChange = async (enabled: boolean, plugin: IRunningPlugin) 
 }
 const onCommandChange = async (values: Partial<ICommandSettings>, plugin: IRunningPlugin, command: IPluginCommand) => {
   if ('shortcuts' in values) {
-    const original = plugin.settings?.commands?.[command.name]?.shortcuts
-    if (original) {
-      unregisterShortcuts(original)
-    }
-    if (values.shortcuts) {
-      registerCommandShortcuts(values.shortcuts, plugin.manifest.name, command.name)
-    }
+    updateCommandShortcut(plugin.manifest.name, command.name, values.shortcuts)
   }
   plugin.settings!.commands![command.name] = { ...plugin.settings!.commands![command.name], ...values }
   await updateCommandSettings(plugin.manifest.name, command.name, { ...values })
@@ -258,7 +254,7 @@ const onAddPluginClick = async () => {
 }
 
 const onRemovePluginClick = async (index: number, plugin: IRunningPlugin) => {
-  await removePlugin(plugin.manifest.name)
+  await unregisterPlugin(plugin.manifest.name)
   ElMessage.success('插件移除成功')
   refreshSettings()
 }
@@ -268,7 +264,7 @@ const openPrfsView = async (plugin: string, command?: string) => {
     curView.value = 'links'
     return;
   }
-  await openPreferences(plugin, command)
+  command ? openCommandPreferences(plugin, command) : openPluginPreferences(plugin)
 }
 
 const router = useRouter()
@@ -281,7 +277,7 @@ const createLink = () => {
 const removeLink = async (index: number) => {
   const preferences = plugins.value.find(i => i.manifest.name === 'links')?.settings?.preferences
   const newLinks = [...toRaw(links.value.filter((_, i) => i !== index))]
-  await window.pluginManager?.updatePluginPreferences('links', { ...toRaw(preferences), links: newLinks })
+  await updatePluginPreferences('links', { ...toRaw(preferences), links: newLinks })
   refreshSettings()
 }
 
@@ -293,6 +289,8 @@ onPageEnter(() => {
 
 <style lang="scss" scoped>
 .settings-view {
+  --nav-width: 36px;
+  --nav-height: 48px;
   height: 100vh;
   padding-top: var(--nav-height);
   box-sizing: border-box;

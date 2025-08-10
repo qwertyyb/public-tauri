@@ -21,7 +21,6 @@
     "global-shortcut:allow-is-registered",
     "global-shortcut:allow-register",
     "global-shortcut:allow-unregister",
-    "eco-paste:allow-paste",
     "shell:default",
     "shell:allow-spawn",
     "fs:default",
@@ -46,6 +45,9 @@
       "identifier": "http:default",
       "allow": [{ "url": "https://*:*/**" }]
     },
-    "dialog:default"
+    "dialog:default",
+    "autostart:allow-disable",
+    "autostart:allow-enable",
+    "autostart:allow-is-enabled"
   ]
 }

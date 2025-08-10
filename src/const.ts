@@ -1,4 +1,5 @@
 import type OpenAI from "openai"
+import { utils, clipboard, mainWindow } from '@public/api/core'
 
 export const POP_TO_ROOT_TIMEOUT = 90 * 1000
 
@@ -101,15 +102,21 @@ export const AI_TOOLS_DEFINITIONS: OpenAI.ChatCompletionTool[] = [
 ]
 
 export const AI_TOOLS = {
-  runBaseCommand: (options: { command: string }) => window.PublicApp.mainAPI.runBashCommand(options.command),
-  runAppleScript: (options: { script: string }) => window.PublicApp.mainAPI.runAppleScript(options.script),
-  getCurrentPath: () => window.PublicApp.mainAPI.utils.getCurrentPath(),
-  getSelectedPath: () => window.PublicApp.mainAPI.utils.getSelectedPath(),
-  getFrontmostApplication: () => window.PublicApp.mainAPI.utils.getFrontmostApplication(),
+  runBaseCommand: (options: { command: string }) => utils.runCommand(options.command),
+  runAppleScript: (options: { script: string }) => utils.runAppleScript(options.script),
+  getCurrentPath: () => utils.getCurrentPath(),
+  getSelectedPath: () => utils.getSelectedPath(),
+  getFrontmostApplication: () => utils.getFrontmostApplication(),
   readClipboard: (options: { type: 'text' | 'html' }) => {
-    return options.type === 'text' ? window.PublicApp.mainAPI.clipboard.readText() : window.PublicApp.mainAPI.clipboard.readHTML()
+    return options.type === 'text' ? clipboard.readText() : clipboard.readHtml()
   },
-  paste: (options: { type: 'text' | 'html', content: string }) => {
-    return window.PublicApp.mainAPI.clipboard.paste(options.type === 'text' ? options.content : { html: options.content })
+  paste: async (options: { type: 'text' | 'html', content: string }) => {
+    if (options.type === 'text') {
+      await clipboard.writeText(options.content)
+    } else {
+      await clipboard.writeHtml(options.content)
+    }
+    await mainWindow.hide()
+    return clipboard.paste()
   }
 }

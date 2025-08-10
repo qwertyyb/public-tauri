@@ -113,7 +113,7 @@ interface IPluginCommandListView<Item extends IResultItem = IResultItem> {
 
 interface ICommandSettings {
   alias?: string
-  shortcuts?: string
+  shortcut?: string
   disabled?: boolean
   preferences?: Record<string, any>
 }
