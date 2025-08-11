@@ -9,6 +9,8 @@
       class="input"
       ref="input"
       @keydown="keyDownHandler"
+      @compositionstart="compositionStartHandler"
+      @compositionend="compositionEndHandler"
       v-model="modelValue"
       id="main-input" />
     <div class="input-placeholder" v-if="!disabled && !modelValue">{{ placeholder }}</div>
@@ -49,6 +51,17 @@ const fetchPlaceholder = async () => {
   const r = await fetch('https://v1.hitokoto.cn/')
   const json = await r.json()
   placeholder.value = json?.hitokoto || '欢迎使用 Public App'
+}
+
+const compositionStartHandler = () => {
+  if (!inputEl.value?.classList.contains('composing')) {
+    inputEl.value?.classList.add('composing')
+  }
+  inputEl.value?.focus()
+}
+
+const compositionEndHandler = () => {
+  inputEl.value?.classList.remove('composing')
 }
 
 const popToRootHandler = (e: any) => {
@@ -117,6 +130,9 @@ onPageEnter(() => {
 }
 .input:empty + .input-placeholder {
   opacity: 1;
+}
+.input.composing + .input-placeholder {
+  opacity: 0;
 }
 .searchSpace {
   flex: 1;

@@ -102,8 +102,12 @@ export const AI_TOOLS_DEFINITIONS: OpenAI.ChatCompletionTool[] = [
 ]
 
 export const AI_TOOLS = {
-  runBaseCommand: (options: { command: string }) => utils.runCommand(options.command),
-  runAppleScript: (options: { script: string }) => utils.runAppleScript(options.script),
+  runBashCommand: (options: { command: string }) => utils.runCommand(options.command).catch(err => {
+    return `执行脚本失败: ${err.message}`
+  }),
+  runAppleScript: (options: { script: string }) => utils.runAppleScript(options.script).catch(err => {
+    return `运行 AppleScript 失败： ${err.message}`
+  }),
   getCurrentPath: () => utils.getCurrentPath(),
   getSelectedPath: () => utils.getSelectedPath(),
   getFrontmostApplication: () => utils.getFrontmostApplication(),
@@ -120,3 +124,6 @@ export const AI_TOOLS = {
     return clipboard.paste()
   }
 }
+
+// @ts-ignore
+window.AI_TOOLS = AI_TOOLS

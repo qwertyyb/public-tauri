@@ -21,6 +21,9 @@ export const invokeServerUtils = async (method: string, args: any[] = [], option
   if (options.raw) {
     return r
   }
-  const { data } = await r.json()
-  return data
+  const { data, errCode, errMsg } = await r.json()
+  if (errCode === 0) {
+    return data
+  }
+  throw new Error(errMsg)
 }

@@ -4,6 +4,27 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+catalogs:
+  plugin:
+    '@rollup/plugin-commonjs':
+      specifier: ^28.0.6
+      version: 28.0.6
+    '@rollup/plugin-json':
+      specifier: ^6.1.0
+      version: 6.1.0
+    '@rollup/plugin-node-resolve':
+      specifier: ^16.0.1
+      version: 16.0.1
+    '@rollup/plugin-replace':
+      specifier: ^6.0.2
+      version: 6.0.2
+    rollup:
+      specifier: ^4.46.2
+      version: 4.46.2
+    rollup-plugin-esbuild:
+      specifier: ^6.2.1
+      version: 6.2.1
+
 importers:
 
   .:
@@ -175,16 +196,19 @@ importers:
         version: link:../../packages/api
     devDependencies:
       '@rollup/plugin-commonjs':
-        specifier: ^28.0.6
+        specifier: catalog:plugin
         version: 28.0.6(rollup@4.46.2)
       '@rollup/plugin-node-resolve':
-        specifier: ^16.0.1
+        specifier: catalog:plugin
         version: 16.0.1(rollup@4.46.2)
+      '@rollup/plugin-replace':
+        specifier: catalog:plugin
+        version: 6.0.2(rollup@4.46.2)
       rollup:
-        specifier: ^4.46.2
+        specifier: catalog:plugin
         version: 4.46.2
       rollup-plugin-esbuild:
-        specifier: ^6.2.1
+        specifier: catalog:plugin
         version: 6.2.1(esbuild@0.25.8)(rollup@4.46.2)
 
   plugins/calculator:
@@ -200,16 +224,19 @@ importers:
         version: 2.1.11(typescript@5.8.3)
     devDependencies:
       '@rollup/plugin-commonjs':
-        specifier: ^28.0.6
+        specifier: catalog:plugin
         version: 28.0.6(rollup@4.46.2)
       '@rollup/plugin-node-resolve':
-        specifier: ^16.0.1
+        specifier: catalog:plugin
         version: 16.0.1(rollup@4.46.2)
+      '@rollup/plugin-replace':
+        specifier: catalog:plugin
+        version: 6.0.2(rollup@4.46.2)
       rollup:
-        specifier: ^4.46.2
+        specifier: catalog:plugin
         version: 4.46.2
       rollup-plugin-esbuild:
-        specifier: ^6.2.1
+        specifier: catalog:plugin
         version: 6.2.1(esbuild@0.25.8)(rollup@4.46.2)
 
   plugins/clipboard:
@@ -225,19 +252,19 @@ importers:
         version: 2.1.11(typescript@5.8.3)
     devDependencies:
       '@rollup/plugin-commonjs':
-        specifier: ^28.0.6
+        specifier: catalog:plugin
         version: 28.0.6(rollup@4.46.2)
       '@rollup/plugin-node-resolve':
-        specifier: ^16.0.1
+        specifier: catalog:plugin
         version: 16.0.1(rollup@4.46.2)
-      esbuild:
-        specifier: ^0.25.8
-        version: 0.25.8
+      '@rollup/plugin-replace':
+        specifier: catalog:plugin
+        version: 6.0.2(rollup@4.46.2)
       rollup:
-        specifier: ^4.46.2
+        specifier: catalog:plugin
         version: 4.46.2
       rollup-plugin-esbuild:
-        specifier: ^6.2.1
+        specifier: catalog:plugin
         version: 6.2.1(esbuild@0.25.8)(rollup@4.46.2)
 
   plugins/launcher:
@@ -247,16 +274,19 @@ importers:
         version: 4.8.1
     devDependencies:
       '@rollup/plugin-commonjs':
-        specifier: ^28.0.6
+        specifier: catalog:plugin
         version: 28.0.6(rollup@4.46.2)
       '@rollup/plugin-node-resolve':
-        specifier: ^16.0.1
+        specifier: catalog:plugin
         version: 16.0.1(rollup@4.46.2)
+      '@rollup/plugin-replace':
+        specifier: catalog:plugin
+        version: 6.0.2(rollup@4.46.2)
       rollup:
-        specifier: ^4.46.2
+        specifier: catalog:plugin
         version: 4.46.2
       rollup-plugin-esbuild:
-        specifier: ^6.2.1
+        specifier: catalog:plugin
         version: 6.2.1(esbuild@0.25.8)(rollup@4.46.2)
 
   plugins/settings:
@@ -267,21 +297,21 @@ importers:
       '@public/api':
         specifier: workspace:^
         version: link:../../packages/api
-      '@rollup/plugin-replace':
-        specifier: ^6.0.2
-        version: 6.0.2(rollup@4.46.2)
     devDependencies:
       '@rollup/plugin-commonjs':
-        specifier: ^28.0.6
+        specifier: catalog:plugin
         version: 28.0.6(rollup@4.46.2)
       '@rollup/plugin-node-resolve':
-        specifier: ^16.0.1
+        specifier: catalog:plugin
         version: 16.0.1(rollup@4.46.2)
+      '@rollup/plugin-replace':
+        specifier: catalog:plugin
+        version: 6.0.2(rollup@4.46.2)
       rollup:
-        specifier: ^4.46.2
+        specifier: catalog:plugin
         version: 4.46.2
       rollup-plugin-esbuild:
-        specifier: ^6.2.1
+        specifier: catalog:plugin
         version: 6.2.1(esbuild@0.25.8)(rollup@4.46.2)
 
   plugins/transform:
@@ -291,16 +321,19 @@ importers:
         version: link:../../packages/api
     devDependencies:
       '@rollup/plugin-commonjs':
-        specifier: ^28.0.6
+        specifier: catalog:plugin
         version: 28.0.6(rollup@4.46.2)
       '@rollup/plugin-node-resolve':
-        specifier: ^16.0.1
+        specifier: catalog:plugin
         version: 16.0.1(rollup@4.46.2)
+      '@rollup/plugin-replace':
+        specifier: catalog:plugin
+        version: 6.0.2(rollup@4.46.2)
       rollup:
-        specifier: ^4.46.2
+        specifier: catalog:plugin
         version: 4.46.2
       rollup-plugin-esbuild:
-        specifier: ^6.2.1
+        specifier: catalog:plugin
         version: 6.2.1(esbuild@0.25.8)(rollup@4.46.2)
 
   plugins/translate:
@@ -319,14 +352,17 @@ importers:
         version: 2.3.0
     devDependencies:
       '@rollup/plugin-commonjs':
-        specifier: ^28.0.6
+        specifier: catalog:plugin
         version: 28.0.6(rollup@4.46.2)
       '@rollup/plugin-json':
-        specifier: ^6.1.0
+        specifier: catalog:plugin
         version: 6.1.0(rollup@4.46.2)
       '@rollup/plugin-node-resolve':
-        specifier: ^16.0.1
+        specifier: catalog:plugin
         version: 16.0.1(rollup@4.46.2)
+      '@rollup/plugin-replace':
+        specifier: catalog:plugin
+        version: 6.0.2(rollup@4.46.2)
       '@types/jsdom':
         specifier: ^21.1.7
         version: 21.1.7
@@ -337,10 +373,10 @@ importers:
         specifier: ^8.5.0
         version: 8.5.0
       rollup:
-        specifier: ^4.46.2
+        specifier: catalog:plugin
         version: 4.46.2
       rollup-plugin-esbuild:
-        specifier: ^6.2.1
+        specifier: catalog:plugin
         version: 6.2.1(esbuild@0.25.8)(rollup@4.46.2)
 
   src-node:
@@ -871,19 +907,16 @@ packages:
   '@nut-tree-fork/libnut-darwin@2.7.5':
     resolution: {integrity: sha512-LbqtPtMPTJUcg4XoPP2jsU1wc8flBcGyKTerKsIfK9cD7nBHROnO0QksbrsbSWEpLym8T8fRtuU7XEY83l6Z2Q==}
     engines: {node: '>=10.15.3'}
-    cpu: [x64, arm64]
     os: [darwin, linux, win32]
 
   '@nut-tree-fork/libnut-linux@2.7.5':
     resolution: {integrity: sha512-uxaXEcRKnFObAljsoR6tLOBUU1dJ2sctloG6gFgCBGN7+k6Jdv6jZfOuNjd/fpdq2C5WPMm0rtn9EE7h5J3Jcg==}
     engines: {node: '>=10.15.3'}
-    cpu: [x64, arm64]
     os: [darwin, linux, win32]
 
   '@nut-tree-fork/libnut-win32@2.7.5':
     resolution: {integrity: sha512-yqC87zvmFcDPwFrRU40DYhN0xmEVM3aSkOuyF0IX+y1x+HWSu/i0PNklATpPBhGid3QVb/TOHuVoaraMrUFCNw==}
     engines: {node: '>=10.15.3'}
-    cpu: [x64, arm64]
     os: [darwin, linux, win32]
 
   '@nut-tree-fork/libnut@4.2.6':
@@ -897,7 +930,6 @@ packages:
   '@nut-tree-fork/nut-js@4.2.6':
     resolution: {integrity: sha512-aI/WCX7gE1HFGPH3EZP/UWqpNMM1NMoM/EkXqp7pKMgXFCi8e5+o5p+jd/QOYpmALv9bQg7+s69nI7FONbMqDg==}
     engines: {node: '>=16'}
-    cpu: [x64, arm64]
     os: [linux, darwin, win32]
 
   '@nut-tree-fork/provider-interfaces@4.2.6':
@@ -988,67 +1020,56 @@ packages:
     resolution: {integrity: sha512-EtP8aquZ0xQg0ETFcxUbU71MZlHaw9MChwrQzatiE8U/bvi5uv/oChExXC4mWhjiqK7azGJBqU0tt5H123SzVA==}
     cpu: [arm]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-arm-musleabihf@4.46.2':
     resolution: {integrity: sha512-qO7F7U3u1nfxYRPM8HqFtLd+raev2K137dsV08q/LRKRLEc7RsiDWihUnrINdsWQxPR9jqZ8DIIZ1zJJAm5PjQ==}
     cpu: [arm]
     os: [linux]
-    libc: [musl]
 
   '@rollup/rollup-linux-arm64-gnu@4.46.2':
     resolution: {integrity: sha512-3dRaqLfcOXYsfvw5xMrxAk9Lb1f395gkoBYzSFcc/scgRFptRXL9DOaDpMiehf9CO8ZDRJW2z45b6fpU5nwjng==}
     cpu: [arm64]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-arm64-musl@4.46.2':
     resolution: {integrity: sha512-fhHFTutA7SM+IrR6lIfiHskxmpmPTJUXpWIsBXpeEwNgZzZZSg/q4i6FU4J8qOGyJ0TR+wXBwx/L7Ho9z0+uDg==}
     cpu: [arm64]
     os: [linux]
-    libc: [musl]
 
   '@rollup/rollup-linux-loongarch64-gnu@4.46.2':
     resolution: {integrity: sha512-i7wfGFXu8x4+FRqPymzjD+Hyav8l95UIZ773j7J7zRYc3Xsxy2wIn4x+llpunexXe6laaO72iEjeeGyUFmjKeA==}
     cpu: [loong64]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-ppc64-gnu@4.46.2':
     resolution: {integrity: sha512-B/l0dFcHVUnqcGZWKcWBSV2PF01YUt0Rvlurci5P+neqY/yMKchGU8ullZvIv5e8Y1C6wOn+U03mrDylP5q9Yw==}
     cpu: [ppc64]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-riscv64-gnu@4.46.2':
     resolution: {integrity: sha512-32k4ENb5ygtkMwPMucAb8MtV8olkPT03oiTxJbgkJa7lJ7dZMr0GCFJlyvy+K8iq7F/iuOr41ZdUHaOiqyR3iQ==}
     cpu: [riscv64]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-riscv64-musl@4.46.2':
     resolution: {integrity: sha512-t5B2loThlFEauloaQkZg9gxV05BYeITLvLkWOkRXogP4qHXLkWSbSHKM9S6H1schf/0YGP/qNKtiISlxvfmmZw==}
     cpu: [riscv64]
     os: [linux]
-    libc: [musl]
 
   '@rollup/rollup-linux-s390x-gnu@4.46.2':
     resolution: {integrity: sha512-YKjekwTEKgbB7n17gmODSmJVUIvj8CX7q5442/CK80L8nqOUbMtf8b01QkG3jOqyr1rotrAnW6B/qiHwfcuWQA==}
     cpu: [s390x]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-x64-gnu@4.46.2':
     resolution: {integrity: sha512-Jj5a9RUoe5ra+MEyERkDKLwTXVu6s3aACP51nkfnK9wJTraCC8IMe3snOfALkrjTYd2G1ViE1hICj0fZ7ALBPA==}
     cpu: [x64]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-x64-musl@4.46.2':
     resolution: {integrity: sha512-7kX69DIrBeD7yNp4A5b81izs8BqoZkCIaxQaOpumcJ1S/kmqNFjPhDu1LHeVXv0SexfHQv5cqHsxLOjETuqDuA==}
     cpu: [x64]
     os: [linux]
-    libc: [musl]
 
   '@rollup/rollup-win32-arm64-msvc@4.46.2':
     resolution: {integrity: sha512-wiJWMIpeaak/jsbaq2HMh/rzZxHVW1rU6coyeNNpMwk5isiPjSTx0a4YLSlYDwBH/WBvLz+EtsNqQScZTLJy3g==}
@@ -1108,35 +1129,30 @@ packages:
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
-    libc: [glibc]
 
   '@tauri-apps/cli-linux-arm64-musl@2.7.1':
     resolution: {integrity: sha512-/HXY0t4FHkpFzjeYS5c16mlA6z0kzn5uKLWptTLTdFSnYpr8FCnOP4Sdkvm2TDQPF2ERxXtNCd+WR/jQugbGnA==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
-    libc: [musl]
 
   '@tauri-apps/cli-linux-riscv64-gnu@2.7.1':
     resolution: {integrity: sha512-GeW5lVI2GhhnaYckiDzstG2j2Jwlud5d2XefRGwlOK+C/bVGLT1le8MNPYK8wgRlpeK8fG1WnJJYD6Ke7YQ8bg==}
     engines: {node: '>= 10'}
     cpu: [riscv64]
     os: [linux]
-    libc: [glibc]
 
   '@tauri-apps/cli-linux-x64-gnu@2.7.1':
     resolution: {integrity: sha512-DprxKQkPxIPYwUgg+cscpv2lcIUhn2nxEPlk0UeaiV9vATxCXyytxr1gLcj3xgjGyNPlM0MlJyYaPy1JmRg1cA==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
-    libc: [glibc]
 
   '@tauri-apps/cli-linux-x64-musl@2.7.1':
     resolution: {integrity: sha512-KLlq3kOK7OUyDR757c0zQjPULpGZpLhNB0lZmZpHXvoOUcqZoCXJHh4dT/mryWZJp5ilrem5l8o9ngrDo0X1AA==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
-    libc: [musl]
 
   '@tauri-apps/cli-win32-arm64-msvc@2.7.1':
     resolution: {integrity: sha512-dH7KUjKkSypCeWPiainHyXoES3obS+JIZVoSwSZfKq2gWgs48FY3oT0hQNYrWveE+VR4VoR3b/F3CPGbgFvksA==}

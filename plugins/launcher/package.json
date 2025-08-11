@@ -22,9 +22,10 @@
     "socket.io-client": "^4.8.1"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^28.0.6",
-    "@rollup/plugin-node-resolve": "^16.0.1",
-    "rollup": "^4.46.2",
-    "rollup-plugin-esbuild": "^6.2.1"
+    "@rollup/plugin-commonjs": "catalog:plugin",
+    "@rollup/plugin-node-resolve": "catalog:plugin",
+    "rollup": "catalog:plugin",
+    "rollup-plugin-esbuild": "catalog:plugin",
+    "@rollup/plugin-replace": "catalog:plugin"
   }
 }

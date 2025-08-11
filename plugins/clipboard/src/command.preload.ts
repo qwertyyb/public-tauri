@@ -1,8 +1,6 @@
-import { createPluginAPI } from '@public/api'
+import { clipboard, mainWindow } from '@public/api'
 import Database from "@tauri-apps/plugin-sql"
 import { ContentType, DATABASE_PATH } from './const'
-
-const api = createPluginAPI('clipboard')
 
 const db = new Database(DATABASE_PATH)
 
@@ -55,12 +53,12 @@ const listView: IPluginCommandListView = {
   },
   async action(item) {
     if (item.contentType === ContentType.text) {
-      api.clipboard.writeText(item.contentValue)
+      clipboard.writeText(item.contentValue)
     } else if (item.contentType === ContentType.image) {
-      api.clipboard.writeImage(item.contentValue)
+      clipboard.writeImageBinary(item.contentValue)
     }
-    await api.window.hide()
-    api.clipboard.paste()
+    await mainWindow.hide()
+    clipboard.paste()
   }
 }
 
