@@ -1,4 +1,4 @@
-import { fetch } from "@public/api";
+import { fetch, ICommand } from "@public/api";
 
 const formatCurrency = (amount: number) => {
   // JS 精度有问题, 简单处理一下
@@ -74,7 +74,7 @@ const toCurrencies = async (amount: number, source: string = 'CNY', to: string[]
 }
 
 // 从用户输入中提取金额和货币类型，如果货币类型是人民币，则转换为美元、欧元、日元和港元，否则转换为人民币
-export const transformCurrency = async (keyword: string): Promise<IPluginCommand[]> => {
+export const transformCurrency = async (keyword: string): Promise<ICommand[]> => {
   // 解析货币输入的几种格式 $100、 100usd、 usd100、 usd 100、 100 usd
   let source: string = ''
   let amount: number = 0

@@ -19,7 +19,7 @@
 </template>
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref, useTemplateRef } from 'vue'
-import { onPageEnter } from '@/router/hooks';
+import { router } from '@public/api/core';
 
 const modelValue = defineModel({ default: '' })
 const props = defineProps<{
@@ -78,7 +78,7 @@ onBeforeUnmount(() => {
   window.removeEventListener('pop-to-root', popToRootHandler)
 })
 
-onPageEnter(() => {
+router.onPageEnter(() => {
   inputEl.value?.focus()
   if (props.isMainInput) {
     fetchPlaceholder()

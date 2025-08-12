@@ -1,4 +1,4 @@
-import { mainWindow } from '@public/api'
+import { IPlugin, mainWindow } from '@public/api'
 
 const createPlugin: IPlugin = () =>  ({
   onEnter(command, matchData) {

@@ -140,9 +140,11 @@ import { ArrowRightBold, Plus, Delete, Operation } from '@element-plus/icons-vue
 import ShortcutsRecorder from '@/components/ShortcutsRecorder.vue';
 import type { ICommandSettings, IPluginCommand, IRunningPlugin } from '@public/types';
 import { getSettings, updateSettings, getPlugins } from '@/services/settings';
-import { onPageEnter, useRouter } from '@/router/hooks';
+import { router as coreRotuer } from '@public/api/core';
 import { unregisterPlugin, updateCommandSettings, updateCommandShortcut, updatePluginPreferences, updatePluginSettings } from '@/plugin/manager';
 import { openCommandPreferences, openPluginPreferences } from '@/plugin/utils';
+
+const { useRouter, onPageEnter } = coreRotuer
 
 const views = ref({
   'common': '通用',

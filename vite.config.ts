@@ -1,17 +1,13 @@
 import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
-import ElementPlus from 'unplugin-element-plus/vite'
 
 const host = process.env.TAURI_DEV_HOST;
 
 // https://vitejs.dev/config/
 export default defineConfig(async () => ({
   plugins: [
-    vue(),
-    ElementPlus({
-      // options
-    })
+    vue()
   ],
   define: {
     BUILTIN_PLUGINS_PATH: JSON.stringify(fileURLToPath(new URL('./plugins', import.meta.url))),
@@ -23,7 +19,9 @@ export default defineConfig(async () => ({
   clearScreen: false,
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      "vue": "https://unpkg.com/vue@3.5.18/dist/vue.esm-browser.js",
+      "element-plus": "https://unpkg.com/element-plus@2.10.7/dist/index.full.mjs"
     }
   },
   // 2. tauri expects a fixed port, fail if that port is not available

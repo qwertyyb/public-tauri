@@ -43,20 +43,20 @@
     ]
   },
   "dependencies": {
-    "@public/types": "workspace:^",
+    "@public/api": "workspace:^",
     "@tauri-apps/plugin-http": "^2.5.1",
     "@xmldom/xmldom": "^0.9.8",
     "md5": "^2.3.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "catalog:plugin",
-    "@rollup/plugin-node-resolve": "catalog:plugin",
-    "rollup": "catalog:plugin",
-    "rollup-plugin-esbuild": "catalog:plugin",
-    "@rollup/plugin-replace": "catalog:plugin",
     "@rollup/plugin-json": "catalog:plugin",
+    "@rollup/plugin-node-resolve": "catalog:plugin",
+    "@rollup/plugin-replace": "catalog:plugin",
     "@types/jsdom": "^21.1.7",
     "@types/md5": "^2.3.5",
-    "node-addon-api": "^8.5.0"
+    "node-addon-api": "^8.5.0",
+    "rollup": "catalog:plugin",
+    "rollup-plugin-esbuild": "catalog:plugin"
   }
 }

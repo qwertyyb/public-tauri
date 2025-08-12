@@ -8,21 +8,23 @@ import SettingsView from '@/views/SettingsView.vue'
 import CreateLinkView from './views/CreateLinkView.vue'
 import RoutePage from '@/components/RoutePage.vue'
 import { computed, nextTick, onBeforeUnmount, provide, shallowRef, useTemplateRef, type Component } from 'vue'
-import { routerSymbol } from './router/hooks'
+import { router } from '@public/api/core'
 import CreateSnippetView from './views/CreateSnippetView.vue'
 import { showAlert, showConfirm, showToast } from '@/utils/feedback'
+import PluginCustomView from '@/views/PluginCustomView.vue'
 
 const hash = location.hash.substring(1)
 
 const routes: Record<string, Component | undefined> = {
   '/': HomeView,
-  '/ai/chat': AIChatView,
+  // '/ai/chat': AIChatView,
   '/plugin/list-view': ListView,
   '/plugin/view': PluginView,
   '/plugin/prfs': PluginPrfsView,
   '/settings': SettingsView,
-  '/plugin/link/create': CreateLinkView,
-  '/plugin/snippets/create': CreateSnippetView,
+  '/plugin/view/custom': PluginCustomView,
+  // '/plugin/link/create': CreateLinkView,
+  // '/plugin/snippets/create': CreateSnippetView,
 }
 
 const pages = useTemplateRef('page')
@@ -102,7 +104,7 @@ onBeforeUnmount(() => {
   window.removeEventListener('app:showToast', showToastHandler)
 })
 
-provide(routerSymbol, {
+provide(router.routerSymbol, {
   pushView: (path: string, params: any) => pushView({ path, params }),
   popView: (options?: { count?: number }) => popView(options)
 })

@@ -1,4 +1,4 @@
-import { clipboard, mainWindow } from '@public/api'
+import { clipboard, mainWindow, type IListViewCommand } from '@public/api'
 import Database from "@tauri-apps/plugin-sql"
 import { ContentType, DATABASE_PATH } from './const'
 
@@ -18,7 +18,7 @@ const queryRecordList = async ({ keyword = '' } = {}, { strict = false } = {}) =
   })
 }
 
-const listView: IPluginCommandListView = {
+const listView: IListViewCommand = {
   search: async (value: string, setList: (list: any[]) => void) => {
     let list = await queryRecordList({ keyword: value })
     list = list.map((item: any) => {

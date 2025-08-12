@@ -1,3 +1,4 @@
+import type { IPlugin, ICommand } from '@public/api'
 import { hToM, msToDuration, msToLocaleString, mToS, sToLocaleString, sToMs } from "./lib/time"
 import { transformCurrency } from './lib/currency'
 

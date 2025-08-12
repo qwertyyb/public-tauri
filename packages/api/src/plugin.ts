@@ -1,5 +1,9 @@
+import { IListViewCommand, IPlugin, IPluginCommand as ICommand } from '@public/types'
 import { clipboard as coreClipboard, dialog as coreDialog, mainWindow as coreMainWindow, fetch as coreFetch, storage as CoreStorage } from './core'
+import { useRouter, onPageEnter, onPageLeave } from './router'
 import { invokePluginServerMethod } from './utils'
+
+export type { IListViewCommand, IPlugin, ICommand }
 
 const createPluginStorage = (name: string) => {
   const getKey = (key: string) => `${name}:${key}`
@@ -52,3 +56,5 @@ export {
 }
 
 export const storage = createPluginStorage(pluginName)
+
+export const router = { useRouter, onPageEnter, onPageLeave }

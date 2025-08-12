@@ -21,7 +21,9 @@ import { ref, toRaw, watch } from 'vue';
 import LoadingBar from '@/components/LoadingBar.vue';
 import InputBar from '@/components/InputBar.vue';
 import { resourceUrl } from '@/utils';
-import { onPageEnter, onPageLeave, useRouter } from '@/router/hooks';
+import { router as coreRouter } from '@public/api/core';
+
+const { onPageEnter, onPageLeave, useRouter } = coreRouter
 
 const props = defineProps<{
   command: IPluginCommand,

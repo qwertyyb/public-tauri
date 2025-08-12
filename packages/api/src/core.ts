@@ -3,6 +3,7 @@ export * as globalShortcut from '@tauri-apps/plugin-global-shortcut'
 import { getCurrentWindow } from "@tauri-apps/api/window"
 import * as autostart from '@tauri-apps/plugin-autostart'
 import { invokeServerUtils } from './utils'
+import * as router from './router'
 
 export const mainWindow = {
   hide() {
@@ -50,14 +51,6 @@ export const clipboard = {
 
 export const fetch = (...args: Parameters<typeof window.fetch>): Promise<Response> => {
   return invokeServerUtils('fetch', args, { raw: true })
-}
-
-export const runCommand = () => {
-
-}
-
-export const runAppleScript = () => {
-
 }
 
 interface IApplication {
@@ -121,3 +114,5 @@ export const registerServerModule = async (name: string, modulePath: string) => 
   }
   return json.data
 }
+
+export { router }

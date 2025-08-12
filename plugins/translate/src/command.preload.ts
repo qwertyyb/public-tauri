@@ -1,4 +1,4 @@
-import { type IListViewCommand } from '@public/types'
+import { type IListViewCommand } from '@public/api'
 
 const invokeServer = async (name: string, method: string, args: any[]) => {
   const r = await fetch('http://127.0.0.1:2345/api/manager/invoke', {

@@ -344,7 +344,7 @@ export const updateCommandShortcut = async (pluginName: string, commandName: str
 }
 
 const initInnerPlugins = () => {
-  const names = ['clipboard', 'translate', 'launcher', 'calculator', 'transform', 'ai', 'settings']
+  const names = ['clipboard', 'translate', 'launcher', 'calculator', 'transform', 'ai', 'settings', 'snippets']
   
   const pluginsPathList = names.map(name => ({ path: path.join(builtinPluginsPath, name)! }))
   pluginsPathList.forEach(({ path }) => {
