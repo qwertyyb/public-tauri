@@ -11,7 +11,7 @@ const createRollupConfig = (input, options = {}) => ({
     format: 'esm',
   },
   plugins: [
-    commonjs(),
+    // commonjs(),
     nodeResolve({
       browser: options.isBrowser
     }),
@@ -25,9 +25,9 @@ const createRollupConfig = (input, options = {}) => ({
       'process.env.PLUGIN_NAME': JSON.stringify('launcher'),
     })
   ],
-  // external: [
-  //   /^\@tauri-apps\/api/,
-  // ]
+  external: [
+    'vue',
+  ]
 })
 
 export default defineConfig([createRollupConfig('./src/server.ts'), createRollupConfig('./src/preload.ts', { isBrowser: true })]);

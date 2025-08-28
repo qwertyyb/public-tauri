@@ -3,7 +3,7 @@ export * as globalShortcut from '@tauri-apps/plugin-global-shortcut'
 import { getCurrentWindow } from "@tauri-apps/api/window"
 import * as autostart from '@tauri-apps/plugin-autostart'
 import { invokeServerUtils } from './utils'
-import * as router from './router'
+import { useRouter, onPageEnter, onPageLeave, pageEventSymbol, routerSymbol } from './router'
 
 export const mainWindow = {
   hide() {
@@ -115,4 +115,4 @@ export const registerServerModule = async (name: string, modulePath: string) => 
   return json.data
 }
 
-export { router }
+export const router = { pageEventSymbol, routerSymbol, onPageEnter, onPageLeave, useRouter }

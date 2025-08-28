@@ -4011,6 +4011,12 @@
           "markdownDescription": "Enables the set_focus command without any pre-configured scope."
         },
         {
+          "description": "Enables the set_focusable command without any pre-configured scope.",
+          "type": "string",
+          "const": "core:window:allow-set-focusable",
+          "markdownDescription": "Enables the set_focusable command without any pre-configured scope."
+        },
+        {
           "description": "Enables the set_fullscreen command without any pre-configured scope.",
           "type": "string",
           "const": "core:window:allow-set-fullscreen",
@@ -4081,6 +4087,12 @@
           "type": "string",
           "const": "core:window:allow-set-shadow",
           "markdownDescription": "Enables the set_shadow command without any pre-configured scope."
+        },
+        {
+          "description": "Enables the set_simple_fullscreen command without any pre-configured scope.",
+          "type": "string",
+          "const": "core:window:allow-set-simple-fullscreen",
+          "markdownDescription": "Enables the set_simple_fullscreen command without any pre-configured scope."
         },
         {
           "description": "Enables the set_size command without any pre-configured scope.",
@@ -4455,6 +4467,12 @@
           "markdownDescription": "Denies the set_focus command without any pre-configured scope."
         },
         {
+          "description": "Denies the set_focusable command without any pre-configured scope.",
+          "type": "string",
+          "const": "core:window:deny-set-focusable",
+          "markdownDescription": "Denies the set_focusable command without any pre-configured scope."
+        },
+        {
           "description": "Denies the set_fullscreen command without any pre-configured scope.",
           "type": "string",
           "const": "core:window:deny-set-fullscreen",
@@ -4525,6 +4543,12 @@
           "type": "string",
           "const": "core:window:deny-set-shadow",
           "markdownDescription": "Denies the set_shadow command without any pre-configured scope."
+        },
+        {
+          "description": "Denies the set_simple_fullscreen command without any pre-configured scope.",
+          "type": "string",
+          "const": "core:window:deny-set-simple-fullscreen",
+          "markdownDescription": "Denies the set_simple_fullscreen command without any pre-configured scope."
         },
         {
           "description": "Denies the set_size command without any pre-configured scope.",
@@ -6529,6 +6553,36 @@
           "type": "string",
           "const": "http:deny-fetch-send",
           "markdownDescription": "Denies the fetch_send command without any pre-configured scope."
+        },
+        {
+          "description": "This permission set configures which\nprocess features are by default exposed.\n\n#### Granted Permissions\n\nThis enables to quit via `allow-exit` and restart via `allow-restart`\nthe application.\n\n#### This default permission set includes:\n\n- `allow-exit`\n- `allow-restart`",
+          "type": "string",
+          "const": "process:default",
+          "markdownDescription": "This permission set configures which\nprocess features are by default exposed.\n\n#### Granted Permissions\n\nThis enables to quit via `allow-exit` and restart via `allow-restart`\nthe application.\n\n#### This default permission set includes:\n\n- `allow-exit`\n- `allow-restart`"
+        },
+        {
+          "description": "Enables the exit command without any pre-configured scope.",
+          "type": "string",
+          "const": "process:allow-exit",
+          "markdownDescription": "Enables the exit command without any pre-configured scope."
+        },
+        {
+          "description": "Enables the restart command without any pre-configured scope.",
+          "type": "string",
+          "const": "process:allow-restart",
+          "markdownDescription": "Enables the restart command without any pre-configured scope."
+        },
+        {
+          "description": "Denies the exit command without any pre-configured scope.",
+          "type": "string",
+          "const": "process:deny-exit",
+          "markdownDescription": "Denies the exit command without any pre-configured scope."
+        },
+        {
+          "description": "Denies the restart command without any pre-configured scope.",
+          "type": "string",
+          "const": "process:deny-restart",
+          "markdownDescription": "Denies the restart command without any pre-configured scope."
         },
         {
           "description": "This permission set configures which\nshell functionality is exposed by default.\n\n#### Granted Permissions\n\nIt allows to use the `open` functionality with a reasonable\nscope pre-configured. It will allow opening `http(s)://`,\n`tel:` and `mailto:` links.\n\n#### This default permission set includes:\n\n- `allow-open`",

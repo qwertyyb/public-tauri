@@ -4,6 +4,7 @@
   "description": "",
   "main": "src/plugin.ts",
   "type": "module",
+  "sideEffects": false,
   "exports": {
     ".": "./src/plugin.ts",
     "./core": "./src/core.ts",

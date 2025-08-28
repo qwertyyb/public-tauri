@@ -2,6 +2,7 @@ import { IListViewCommand, IPlugin, IPluginCommand as ICommand } from '@public/t
 import { clipboard as coreClipboard, dialog as coreDialog, mainWindow as coreMainWindow, fetch as coreFetch, storage as CoreStorage } from './core'
 import { useRouter, onPageEnter, onPageLeave } from './router'
 import { invokePluginServerMethod } from './utils'
+import { io } from "https://cdn.socket.io/4.8.1/socket.io.esm.min.js";
 
 export type { IListViewCommand, IPlugin, ICommand }
 
@@ -27,6 +28,12 @@ const createPluginStorage = (name: string) => {
 }
 
 export const createPluginAPI = (name: string) => {
+  const socket = io('http://localhost:2345', {
+    path: '/socket.io',
+    query: {
+      name
+    }
+  })
   return {
     clipboard: coreClipboard,
     mainWindow: coreMainWindow,
@@ -38,6 +45,7 @@ export const createPluginAPI = (name: string) => {
       return invokePluginServerMethod(name, method, args)
     },
     on: (event: string, callback: (data: any) => void) => {
+      socket.on(event, callback)
     },
   }
 }

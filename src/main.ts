@@ -8,10 +8,12 @@ import { createDraggable } from './utils/draggable';
 import { registerMainShortcut } from './utils/shortcut';
 import { listenEvents } from './utils/events';
 import { init } from './plugin/manager';
+import { createTray } from './utils/tray';
 
 createDraggable()
 registerMainShortcut('Command+Space')
 listenEvents()
+createTray()
 
 const app = createApp(App)
 

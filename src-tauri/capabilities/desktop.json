@@ -17,6 +17,7 @@
     "core:window:allow-start-dragging",
     "core:window:allow-center",
     "core:window:allow-hide",
+    "core:window:allow-close",
     "core:app:allow-set-dock-visibility",
     "global-shortcut:allow-is-registered",
     "global-shortcut:allow-register",
@@ -48,6 +49,7 @@
     "dialog:default",
     "autostart:allow-disable",
     "autostart:allow-enable",
-    "autostart:allow-is-enabled"
+    "autostart:allow-is-enabled",
+    "process:default"
   ]
 }
