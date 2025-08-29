@@ -1,0 +1,86 @@
+{
+  "name": "qrcode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup --config ./rollup.config.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "publicPlugin": {
+    "title": "二维码",
+    "subtitle": "生成、解析二维码",
+    "icon": "./assets/qrcode.png",
+    "main": "./dist/index.js",
+    "commands": [
+      {
+        "name": "generate",
+        "title": "生成二维码",
+        "subtitle": "生成二维码",
+        "mode": "none",
+        "matches": [
+          {
+            "type": "text",
+            "keywords": [
+              "qrcode",
+              "生成二维码"
+            ]
+          },
+          {
+            "type": "trigger",
+            "triggers": [
+              "qr"
+            ],
+            "title": "生成二维码“$query”"
+          }
+        ]
+      },
+      {
+        "name": "generate-for-current-url",
+        "title": "分享当前页面",
+        "subtitle": "生成当前页面的分享二维码",
+        "mode": "none",
+        "matches": [
+          {
+            "type": "text",
+            "keywords": [
+              "qrcu"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "detect",
+        "title": "解析二维码",
+        "subtitle": "解析二维码",
+        "mode": "listView",
+        "preload": "./dist/detect.preload.js",
+        "matches": [
+          {
+            "type": "text",
+            "keywords": [
+              "detect qrcode",
+              "解析二维码"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "dependencies": {
+    "@public/api": "workspace:^",
+    "qrcode": "^1.4.4"
+  },
+  "devDependencies": {
+    "@types/qrcode": "^1.5.5",
+    "@rollup/plugin-commonjs": "catalog:plugin",
+    "@rollup/plugin-node-resolve": "catalog:plugin",
+    "rollup": "catalog:plugin",
+    "rollup-plugin-esbuild": "catalog:plugin",
+    "@rollup/plugin-replace": "catalog:plugin"
+  }
+}
