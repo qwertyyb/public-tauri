@@ -22,7 +22,10 @@ router.post('/invoke', async (ctx) => {
     const r = await utils.fetch(...args)
     ctx.status = r.status
     ctx.set({
-      ...[...r.headers].reduce((acc, item) => { return { ...acc, [item[0]]: item[1] } }, {})
+      ...[...r.headers].reduce((acc, item) => {
+        if (item[0] === 'content-encoding') { return acc }
+        return { ...acc, [item[0]]: item[1] }
+      }, {})
     })
     ctx.flushHeaders()
     // @ts-ignore

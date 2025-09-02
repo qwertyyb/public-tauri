@@ -1,0 +1,44 @@
+{
+  "name": "v2ex",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup --config ./rollup.config.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "publicPlugin": {
+    "icon": "./assets/v2ex.png",
+    "title": "v2ex",
+    "subtitle": "查看v2ex热贴和新贴",
+    "commands": [
+      {
+        "name": "hot",
+        "title": "v2ex热贴",
+        "subtitle": "查看v2ex热贴",
+        "mode": "listView",
+        "preload": "./dist/index.js"
+      },
+      {
+        "name": "latest",
+        "title": "v2ex新贴",
+        "subtitle": "查看v2ex新贴",
+        "mode": "listView",
+        "preload": "./dist/index.js"
+      }
+    ]
+  },
+  "dependencies": {
+    "@public/api": "workspace:^"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "catalog:plugin",
+    "@rollup/plugin-json": "catalog:plugin",
+    "@rollup/plugin-node-resolve": "catalog:plugin",
+    "@rollup/plugin-replace": "catalog:plugin",
+    "rollup": "catalog:plugin",
+    "rollup-plugin-esbuild": "catalog:plugin"
+  }
+}
