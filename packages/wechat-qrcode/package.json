@@ -1,0 +1,19 @@
+{
+  "name": "wechat-qrcode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "tsx src/test.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.8.0",
+  "devDependencies": {
+    "sharp": "^0.34.3",
+    "tsx": "^4.20.3",
+    "typescript": "~5.8.3"
+  }
+}

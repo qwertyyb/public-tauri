@@ -1,4 +1,5 @@
 import { enterCommand, getPlugins } from './manager';
+import { resultsMap } from './store';
 import { getLocalPath, hanziToPinyin } from './utils';
 
 // 计算匹配分数，越大表示匹配度越高，最大为1
@@ -170,8 +171,6 @@ export const calcCommandMatchInfo = (keyword: string, command: IPluginCommand, o
     } as { result: IPluginCommand, matchInfo: Omit<ICommandFullMatchData, 'owner'> }
   }
 }
-
-const resultsMap = new WeakMap<IPluginCommand, ICommandMatchData & { owner: IRunningPlugin }>()
 
 export const handleQuery = async (keyword: string) => {
   let results: IPluginCommand[] = [];

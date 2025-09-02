@@ -4,7 +4,9 @@ import { getCurrentWindow } from "@tauri-apps/api/window"
 import * as autostart from '@tauri-apps/plugin-autostart'
 import { invokeServerUtils } from './utils'
 import { useRouter, onPageEnter, onPageLeave, pageEventSymbol, routerSymbol } from './router'
+import { listen, UnlistenFn } from '@tauri-apps/api/event'
 
+const listenMap = new WeakMap<Function, UnlistenFn>()
 export const mainWindow = {
   hide() {
     return getCurrentWindow().hide()
@@ -23,6 +25,17 @@ export const mainWindow = {
   },
   popView: (options: { count: number } = { count: 1}) => {
     return window.dispatchEvent(new CustomEvent('pop-view', { detail: { ...options }}))
+  },
+  onShow: async (callback: () => void) => {
+    const unlisten = await listen('focus', (event) => {
+      if (event.payload) {
+        callback()
+      }
+    })
+    listenMap.set(callback, unlisten)
+  },
+  offShow: (callback: () => void) => {
+    listenMap.get(callback)?.()
   }
 }
 

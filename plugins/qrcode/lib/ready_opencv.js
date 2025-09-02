@@ -1,4 +1,4 @@
-const path = require('path')
+import prepareFs from './wechat_qrcode_files';
 
 // 1. 准备Module
 let opencvModule = {
@@ -29,7 +29,7 @@ let opencvModule = {
 opencvModule.setStatus('Downloading...');
 
 // 加载模型文件
-opencvModule = require('./wechat_qrcode_files')(opencvModule, 'file://' + path.resolve(__dirname, './wechat_qrcode_files.data'))
+opencvModule = prepareFs(opencvModule, 'file://' + resolve(__dirname, './wechat_qrcode_files.data'))
 
 // 加载opencv wasm
 const opencv = require('./opencv')(opencvModule)

@@ -1,39 +1,6 @@
-import { clipboard, ICommand, IPlugin } from '@public/api'
-// import * as path from 'path'
+import { clipboard, ICommand, IPlugin, invoke, mainWindow, dialog } from '@public/api'
 import { getChromeCurrentUrl, getSafariCurrentUrl } from "./utils";
 import QRCode from 'qrcode'
-
-let opencv: any;
-
-const detectWithOpencv = (() => {
-  let wr: any = null
-  return (imageBase64: string) => {
-    const img = new Image()
-    img.src = imageBase64
-
-    if (!wr) {
-      wr = new opencv.wechat_qrcode_WeChatQRCode("wechat_qrcode/detect.prototxt", "wechat_qrcode/detect.caffemodel", "wechat_qrcode/sr.prototxt", "wechat_qrcode/sr.caffemodel")
-    }
-
-    console.log(wr, opencv)
-
-    const results = wr.detectAndDecode(opencv.imread(img))
-    if (results.size() < 1) {
-      throw new Error('未识别到二维码')
-    }
-    let i = 0
-    let arr: string[] = []
-    while(i < results.size()) {
-      arr.push(results.get(i++))
-    }
-    results.delete()
-    console.log(arr)
-    return arr
-  }
-})()
-
-// @ts-ignore
-// window.filePath = path.resolve(__dirname, 'lib/wechat_qrcode_files.data')
 
 const createClipboardItem = (text: string) => {
   const item: ICommand = {
@@ -50,18 +17,24 @@ const createClipboardItem = (text: string) => {
 }
 
 const createQrcodePlugin: IPlugin = (utils) => {
-  // window.requestIdleCallback(async () => {
-  //   opencv = await __non_webpack_require__('../lib/ready_opencv.js')
-  // })
 
-  window.addEventListener('publicApp.mainWindow.show', async () => {
-    const image = await clipboard.readImageBase64()
-    if (!image) return
-    const texts = detectWithOpencv(image)
-    if (!texts?.length) return
-    const list = texts.map(text => createClipboardItem(text))
-    utils.showCommands(list)
-  })
+  const detectClipboard = async () => {
+    try {
+      const imgbase64 = await clipboard.readImageBase64()
+      if (!imgbase64) return
+      
+      const texts = (await invoke<string[]>('detect', imgbase64)) || []
+      const list = texts.map(text => createClipboardItem(text))
+      utils.showCommands(list)
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  detectClipboard()
+
+  mainWindow.onShow(detectClipboard)
+
   return {
     async onSelect(command, match) {
       let text = match.from === 'match' && match.match.type === 'trigger' ? (match as any).matchData.query : match.keyword
@@ -84,8 +57,10 @@ const createQrcodePlugin: IPlugin = (utils) => {
       }
     },
     onEnter: (command) => {
+      console.log(command)
       if (command.name === 'detect' && command.text) {
         clipboard.writeText(command.text)
+        dialog.showToast('已写入到剪切板')
       }
     },
   }

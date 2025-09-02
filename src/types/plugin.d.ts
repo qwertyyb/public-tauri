@@ -143,6 +143,6 @@ interface ICommandAliasMatchData extends ICommandBaseMatchData { from: 'alias' }
 
 interface ICommandOnInputMatchData extends ICommandBaseMatchData { from: 'onInput' }
 
-type ICommandMatchData = ICommandTextMatchData | ICommandTriggerMatchData | ICommandRegExpMatchData | ICommandFullMatchData | ICommandHotKeyMatchData | ICommandAliasMatchData | ICommandOnInputMatchData
+type ICommandMatchData = ICommandTextMatchData | ICommandTriggerMatchData | ICommandRegExpMatchData | ICommandFullMatchData | ICommandHotKeyMatchData | ICommandAliasMatchData | ICommandOnInputMatchData | null
 
 interface IResultItem extends IListItem, Record<string, any> { }

@@ -177,4 +177,5 @@ const prepareFs = function (Module, dataFilePath) {
   return Module
 };
 
-module.exports = prepareFs
+// module.exports = prepareFs
+export default prepareFs

@@ -6,14 +6,13 @@ import schema from './plugin.schema.json'
 import { formatCommand, getLocalPath, hanziToPinyin, openCommandPreferences, openPluginPreferences, popView } from './utils';
 import { builtinPluginsPath } from './const';
 import { set } from 'es-toolkit/compat'
+import { resultsMap } from './store';
 
 const ajv = new Ajv({ allowUnionTypes: true })
 const validate = ajv.compile(schema)
 
 const plugins: Map<string, IRunningPlugin> = new Map()
 let pluginsSettings: IPluginsSettings = {}
-
-const resultsMap = new WeakMap<IPluginCommand, { score: number, query: string, owner: IRunningPlugin }>()
 
 const save = () => {
   return storage.setItem('pluginsSettings', pluginsSettings)
@@ -75,8 +74,13 @@ export const registerPlugin = async (pluginPath: string) => {
             pluginInstance.commands = commands.map(item => formatCommand(item, manifest, pluginPath))
           },
           showCommands: (commands: IPluginCommandConfig[]) => {
-            commands.forEach(command => resultsMap.set(formatCommand(command, manifest, pluginPath), { score: 1, query: '', owner: pluginInstance }))
-            window.dispatchEvent(new CustomEvent('plugin:showCommands', { detail: { name: manifest.name, commands }}))
+            const list: IPluginCommandConfig[] = []
+            commands.forEach(command => {
+              const item = formatCommand(command, manifest, pluginPath)
+              list.push(item)
+              resultsMap.set(item, { score: 1, from: 'onInput', keyword: '', query: '', owner: pluginInstance })
+            })
+            window.dispatchEvent(new CustomEvent('plugin:showCommands', { detail: { name: manifest.name, commands: list }}))
           },
           getPreferences: () => {
             return pluginsSettings[name]?.preferences || {}

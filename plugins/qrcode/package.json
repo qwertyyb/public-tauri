@@ -16,6 +16,7 @@
     "subtitle": "生成、解析二维码",
     "icon": "./assets/qrcode.png",
     "main": "./dist/index.js",
+    "server": "./dist/server.js",
     "commands": [
       {
         "name": "generate",
@@ -73,14 +74,16 @@
   },
   "dependencies": {
     "@public/api": "workspace:^",
-    "qrcode": "^1.4.4"
+    "qrcode": "^1.4.4",
+    "sharp": "^0.34.3",
+    "wechat-qrcode": "workspace:^"
   },
   "devDependencies": {
-    "@types/qrcode": "^1.5.5",
     "@rollup/plugin-commonjs": "catalog:plugin",
     "@rollup/plugin-node-resolve": "catalog:plugin",
+    "@rollup/plugin-replace": "catalog:plugin",
+    "@types/qrcode": "^1.5.5",
     "rollup": "catalog:plugin",
-    "rollup-plugin-esbuild": "catalog:plugin",
-    "@rollup/plugin-replace": "catalog:plugin"
+    "rollup-plugin-esbuild": "catalog:plugin"
   }
 }

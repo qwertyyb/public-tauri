@@ -34,7 +34,7 @@ if (!pluginName) {
   throw new Error(`PLUGIN_NAME is not defined`)
 }
 
-export const invoke = async (method: string, ...args: any[]): Promise<Response> => {
+export const invoke = async <T>(method: string, ...args: any[]): Promise<T> => {
   return invokePluginServerMethod(pluginName, method, args)
 }
 

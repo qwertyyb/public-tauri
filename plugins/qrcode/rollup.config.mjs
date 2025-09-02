@@ -26,8 +26,8 @@ const createRollupConfig = (input, options = {}) => ({
     })
   ],
   external: [
-    'vue',
+    'vue', 'sharp'
   ]
 })
 
-export default defineConfig([createRollupConfig('./src/index.ts', { isBrowser: true }), createRollupConfig('./src/detect.preload.ts', { isBrowser: true })]);
+export default defineConfig([createRollupConfig('./src/index.ts', { isBrowser: true }), createRollupConfig('./src/detect.preload.ts', { isBrowser: true }), createRollupConfig('./src/server.ts', { isBrowser: false })]);
