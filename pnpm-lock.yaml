@@ -344,6 +344,31 @@ importers:
         specifier: catalog:plugin
         version: 6.2.1(esbuild@0.25.8)(rollup@4.46.2)
 
+  plugins/mdn:
+    dependencies:
+      '@public/api':
+        specifier: workspace:^
+        version: link:../../packages/api
+    devDependencies:
+      '@rollup/plugin-commonjs':
+        specifier: catalog:plugin
+        version: 28.0.6(rollup@4.46.2)
+      '@rollup/plugin-json':
+        specifier: catalog:plugin
+        version: 6.1.0(rollup@4.46.2)
+      '@rollup/plugin-node-resolve':
+        specifier: catalog:plugin
+        version: 16.0.1(rollup@4.46.2)
+      '@rollup/plugin-replace':
+        specifier: catalog:plugin
+        version: 6.0.2(rollup@4.46.2)
+      rollup:
+        specifier: catalog:plugin
+        version: 4.46.2
+      rollup-plugin-esbuild:
+        specifier: catalog:plugin
+        version: 6.2.1(esbuild@0.25.8)(rollup@4.46.2)
+
   plugins/qrcode:
     dependencies:
       '@public/api':
