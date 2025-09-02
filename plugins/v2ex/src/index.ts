@@ -1,4 +1,4 @@
-import { IListViewCommand, fetch } from '@public/api'
+import { IListViewCommand, fetch, utils } from '@public/api'
 
 const withCache = <F extends (...args: any[]) => any>(fn: F) => {
   let results = new Map<string, any>()
@@ -33,7 +33,7 @@ const command: IListViewCommand = {
     })
   },
   action(item: any) {
-    require('electron').shell.openExternal(item.url)
+    utils.open(item.url)
   }
 }
 
