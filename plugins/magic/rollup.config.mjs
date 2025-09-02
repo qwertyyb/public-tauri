@@ -21,7 +21,7 @@ const createRollupConfig = (input) => ({
     }),
     replace({
       preventAssignment: true,
-      'process.env.PLUGIN_NAME': JSON.stringify('v2ex'),
+      'process.env.PLUGIN_NAME': JSON.stringify('magic'),
     })
   ],
   external: [
