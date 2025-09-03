@@ -24,9 +24,10 @@ const createRollupConfig = (input) => ({
       'process.env.PLUGIN_NAME': JSON.stringify('v2ex'),
     })
   ],
-  external: [
-    'vue'
-  ]
+  // external: [
+  //   'vue'
+  // ],
+  treeshake: 'smallest'
 })
 
 export default defineConfig([createRollupConfig('./src/index.ts')]);

@@ -1,20 +1,43 @@
 <template>
-  <div class="resultItem result-item"
+  <div
+    class="resultItem result-item"
     :class="{selected}"
     :data-result-item-index="index"
     @click="$emit('select')"
     @dblclick="$emit('enter')"
   >
-    <div class="itemImageWrapper flex-h-v" v-if="icon">
-      <img :src="icon" alt="" loading="lazy" />
+    <div
+      v-if="icon"
+      class="itemImageWrapper flex-h-v"
+    >
+      <img
+        :src="icon"
+        alt=""
+        loading="lazy"
+      >
     </div>
     <div class="itemInfo flex-1 flex-col-center">
-      <h3 class="itemTitle text-single-line" v-html="title"></h3>
-      <h5 class="itemSubtitle color-666 text-sm text-single-line" v-if="subtitle" v-html="subtitle"></h5>
+      <h3
+        class="itemTitle text-single-line"
+        v-html="title"
+      />
+      <h5
+        v-if="subtitle"
+        class="itemSubtitle color-666 text-sm text-single-line"
+        v-html="subtitle"
+      />
     </div>
     <div class="actions cursor-pointer">
-      <ShortcutsKey shortcuts="Enter" v-if="selected" @click="$emit('enter')"></ShortcutsKey>
-      <ShortcutsKey :shortcuts="['Meta', actionKey]" v-else-if="actionKey" @click="$emit('enter')"></ShortcutsKey>
+      <ShortcutsKey
+        v-if="selected"
+        shortcuts="Enter"
+        @click="$emit('enter')"
+      />
+      <ShortcutsKey
+        v-else-if="actionKey"
+        :shortcuts="['Meta', actionKey]"
+        @click="$emit('enter')"
+      />
     </div>
   </div>
 </template>
@@ -33,12 +56,12 @@ interface IResultItemProps extends IResultItem {
   actionKey?: string,
 }
 
-defineProps<IResultItemProps>()
+defineProps<IResultItemProps>();
 
 defineEmits<{
   select: [],
   enter: []
-}>()
+}>();
 
 </script>
 

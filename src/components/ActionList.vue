@@ -1,13 +1,22 @@
 <template>
   <ul class="action-list">
-    <li class="action-item"
+    <li
       v-for="(action, index) in actions"
-      @click="$emit('action', action)"
       :key="index"
-      :data-action-name="action.name">
-      <div class="material-symbols-outlined action-icon">{{ action.icon }}</div>
-      <div class="action-title">{{ action.title }}</div>
-      <ShortcutsKey :shortcuts="action.shortcuts" v-if="action.shortcuts"></ShortcutsKey>
+      class="action-item"
+      :data-action-name="action.name"
+      @click="$emit('action', action)"
+    >
+      <div class="material-symbols-outlined action-icon">
+        {{ action.icon }}
+      </div>
+      <div class="action-title">
+        {{ action.title }}
+      </div>
+      <ShortcutsKey
+        v-if="action.shortcuts"
+        :shortcuts="action.shortcuts"
+      />
     </li>
   </ul>
 </template>
@@ -22,9 +31,9 @@ export interface IActionItem {
   shortcuts?: string
 }
 
-defineProps<{ actions: IActionItem[] }>()
+defineProps<{ actions: IActionItem[] }>();
 
-defineEmits<{ action: [action: IActionItem] }>()
+defineEmits<{ action: [action: IActionItem] }>();
 
 </script>
 

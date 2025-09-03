@@ -1,89 +1,100 @@
 <template>
-  <div class="inputBar" @pointerup="inputEl?.focus()" tabindex="0" :class="{'is-main-input': isMainInput}">
+  <div
+    class="inputBar"
+    tabindex="0"
+    :class="{'is-main-input': isMainInput}"
+    @pointerup="inputEl?.focus()"
+  >
     <input
+      v-if="!disabled"
+      id="main-input"
+      ref="input"
+      v-model="modelValue"
       autofocus
       spellcheck="false"
       autocorrect="off"
       autocomplete="false"
-      v-if="!disabled"
       class="input"
-      ref="input"
       @keydown="keyDownHandler"
       @compositionstart="compositionStartHandler"
       @compositionend="compositionEndHandler"
-      v-model="modelValue"
-      id="main-input" />
-    <div class="input-placeholder" v-if="!disabled && !modelValue">{{ placeholder }}</div>
-    <div class="searchSpace"></div>
+    >
+    <div
+      v-if="!disabled && !modelValue"
+      class="input-placeholder"
+    >
+      {{ placeholder }}
+    </div>
+    <div class="searchSpace" />
   </div>
 </template>
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref, useTemplateRef } from 'vue'
+import { onBeforeUnmount, onMounted, ref, useTemplateRef } from 'vue';
 import { router } from '@public/api/core';
 
-const modelValue = defineModel({ default: '' })
+const modelValue = defineModel({ default: '' });
 const props = defineProps<{
   command?: { icon: string } | null,
   disabled?: boolean,
   isMainInput?: boolean,
-}>()
-const emits = defineEmits<{ escape: [] }>()
+}>();
+const emits = defineEmits<{ escape: [] }>();
 
-const inputEl = useTemplateRef('input')
-const placeholder = ref('search...')
+const inputEl = useTemplateRef('input');
+const placeholder = ref('search...');
 
 const keyDownHandler = (event: KeyboardEvent) => {
   if (event.key === 'Escape') {
     if (modelValue.value) {
-      event.preventDefault()
-      modelValue.value = ''
+      event.preventDefault();
+      modelValue.value = '';
     } else {
-      event.preventDefault()
-      emits('escape')
+      event.preventDefault();
+      emits('escape');
     }
   } else if (event.key === 'Backspace' && !modelValue.value && !event.isComposing) {
-    event.preventDefault()
-    emits('escape')
+    event.preventDefault();
+    emits('escape');
   }
-}
+};
 
 const fetchPlaceholder = async () => {
-  const r = await fetch('https://v1.hitokoto.cn/')
-  const json = await r.json()
-  placeholder.value = json?.hitokoto || '欢迎使用 Public App'
-}
+  const r = await fetch('https://v1.hitokoto.cn/');
+  const json = await r.json();
+  placeholder.value = json?.hitokoto || '欢迎使用 Public App';
+};
 
 const compositionStartHandler = () => {
   if (!inputEl.value?.classList.contains('composing')) {
-    inputEl.value?.classList.add('composing')
+    inputEl.value?.classList.add('composing');
   }
-  inputEl.value?.focus()
-}
+  inputEl.value?.focus();
+};
 
 const compositionEndHandler = () => {
-  inputEl.value?.classList.remove('composing')
-}
+  inputEl.value?.classList.remove('composing');
+};
 
 const popToRootHandler = (e: any) => {
   if (e.detail?.clearInput && props.isMainInput) {
-    modelValue.value = ''
+    modelValue.value = '';
   }
-}
+};
 
 onMounted(() => {
-  window.addEventListener('pop-to-root', popToRootHandler)
-})
+  window.addEventListener('pop-to-root', popToRootHandler);
+});
 
 onBeforeUnmount(() => {
-  window.removeEventListener('pop-to-root', popToRootHandler)
-})
+  window.removeEventListener('pop-to-root', popToRootHandler);
+});
 
 router.onPageEnter(() => {
-  inputEl.value?.focus()
+  inputEl.value?.focus();
   if (props.isMainInput) {
-    fetchPlaceholder()
+    fetchPlaceholder();
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>

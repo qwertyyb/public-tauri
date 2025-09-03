@@ -1,13 +1,13 @@
-import { fileURLToPath, URL } from 'node:url'
-import { defineConfig } from "vite";
-import vue from "@vitejs/plugin-vue";
+import { fileURLToPath, URL } from 'node:url';
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
 
 const host = process.env.TAURI_DEV_HOST;
 
 // https://vitejs.dev/config/
 export default defineConfig(async () => ({
   plugins: [
-    vue()
+    vue(),
   ],
   define: {
     BUILTIN_PLUGINS_PATH: JSON.stringify(fileURLToPath(new URL('./plugins', import.meta.url))),
@@ -20,9 +20,9 @@ export default defineConfig(async () => ({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
-      "vue": "https://unpkg.com/vue@3.5.18/dist/vue.esm-browser.js",
-      "element-plus": "https://unpkg.com/element-plus@2.10.7/dist/index.full.mjs"
-    }
+      vue: 'https://unpkg.com/vue@3.5.18/dist/vue.esm-browser.js',
+      'element-plus': 'https://unpkg.com/element-plus@2.10.7/dist/index.full.mjs',
+    },
   },
   // 2. tauri expects a fixed port, fail if that port is not available
   server: {
@@ -31,14 +31,14 @@ export default defineConfig(async () => ({
     host: host || false,
     hmr: host
       ? {
-          protocol: "ws",
-          host,
-          port: 1421,
-        }
+        protocol: 'ws',
+        host,
+        port: 1421,
+      }
       : undefined,
     watch: {
       // 3. tell vite to ignore watching `src-tauri`
-      ignored: ["**/src-tauri/**"],
+      ignored: ['**/src-tauri/**'],
     },
   },
 }));

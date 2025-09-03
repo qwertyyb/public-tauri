@@ -1,33 +1,36 @@
 <template>
   <section class="resultItemPreview">
-    <div class="previewWrapper" ref="previewEl"></div>
+    <div
+      ref="previewEl"
+      class="previewWrapper"
+    />
   </section>
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref, watch } from 'vue'
+import { onMounted, ref, watch } from 'vue';
 
 const props = defineProps<{
   html: string | HTMLElement
-}>()
+}>();
 
-const previewEl = ref<HTMLDivElement>()
+const previewEl = ref<HTMLDivElement>();
 
 const renderPreview = () => {
-  if (!previewEl.value) return
+  if (!previewEl.value) return;
   if (typeof props.html === 'string') {
-    previewEl.value.innerHTML = props.html
+    previewEl.value.innerHTML = props.html;
   } else {
-    previewEl.value.innerHTML = ''
-    previewEl.value.appendChild(props.html)
+    previewEl.value.innerHTML = '';
+    previewEl.value.appendChild(props.html);
   }
-}
+};
 
-watch(() => props.html, renderPreview)
+watch(() => props.html, renderPreview);
 
 onMounted(() => {
-  renderPreview()
-})
+  renderPreview();
+});
 
 </script>
 

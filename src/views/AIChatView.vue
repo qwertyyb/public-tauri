@@ -1,23 +1,38 @@
 <template>
   <div class="ai-chat-container">
-    <div class="chat-messages" ref="messagesContainer">
-      <div v-for="(message, index) in messages"
-        :key="index"   
-        :class="['message', message.role]">
-        <div class="message-content" v-html="renderMessage(message)"></div>
+    <div
+      ref="messagesContainer"
+      class="chat-messages"
+    >
+      <div
+        v-for="(message, index) in messages"
+        :key="index"
+        :class="['message', message.role]"
+      >
+        <div
+          class="message-content"
+          v-html="renderMessage(message)"
+        />
       </div>
     </div>
     <div class="chat-input">
-      <el-input type="textarea"
-        autofocus
-        v-model="userInput"
-        @keydown="keyDownHandler"
-        placeholder="请AI帮你执行任务"
+      <el-input
         ref="textarea"
+        v-model="userInput"
+        type="textarea"
+        autofocus
+        placeholder="请AI帮你执行任务"
         class="user-input"
         autosize
-      ></el-input>
-      <el-button @click="sendMessage" class="send-btn" type="primary">发送</el-button>
+        @keydown="keyDownHandler"
+      />
+      <el-button
+        class="send-btn"
+        type="primary"
+        @click="sendMessage"
+      >
+        发送
+      </el-button>
     </div>
   </div>
 </template>
@@ -34,7 +49,7 @@ import { getPreferenceValues } from '@/plugin/manager';
 import { popToRoot } from '@/plugin/utils';
 import logger from '@/utils/logger';
 
-const props = defineProps<{ query?: string }>()
+const props = defineProps<{ query?: string }>();
 
 const md = new MarkdownIt();
 const messages = ref<OpenAI.ChatCompletionMessageParam[]>([{
@@ -42,32 +57,26 @@ const messages = ref<OpenAI.ChatCompletionMessageParam[]>([{
   content: AI_ASSISTANT_PROMPT,
 }]);
 const userInput = ref<string>(props.query || '');
-const textarea = useTemplateRef('textarea')
+const textarea = useTemplateRef('textarea');
 const messagesContainer = ref<HTMLDivElement | null>(null);
 
-const renderedMarkdown = (text: string): string => {
-  return md.render(text);
-};
+const renderedMarkdown = (text: string): string => md.render(text);
 
-const joinContent = (content: string | (OpenAI.Chat.Completions.ChatCompletionContentPartText | OpenAI.ChatCompletionContentPartRefusal)[] | undefined | null) => {
-  return Array.isArray(content) ? content.map(item => {
-    if (item.type === 'text') return item.text
-    return item.refusal
-  }).join('\n') : content || '';
-}
+const joinContent = (content: string | (OpenAI.Chat.Completions.ChatCompletionContentPartText | OpenAI.ChatCompletionContentPartRefusal)[] | undefined | null) => (Array.isArray(content) ? content.map((item) => {
+  if (item.type === 'text') return item.text;
+  return item.refusal;
+}).join('\n') : content || '');
 
 const renderMessage = (message: OpenAI.ChatCompletionMessageParam) => {
   if (message.role === 'system') {
     return renderedMarkdown(joinContent(message.content));
   }
   if (message.role === 'tool') {
-    return `<h4>工具调用结果<h4><p>${message.content}</p>`
+    return `<h4>工具调用结果<h4><p>${message.content}</p>`;
   }
   if (message.role === 'assistant') {
     if (message.tool_calls?.length) {
-      return message.tool_calls.map((item) => {
-        return `<h4 class="tool-call">AI调用工具</h4><pre>${item.function.name}(${item.function.arguments})</pre>`
-      }).join('<br />')
+      return message.tool_calls.map(item => `<h4 class="tool-call">AI调用工具</h4><pre>${item.function.name}(${item.function.arguments})</pre>`).join('<br />');
     }
     return renderedMarkdown(joinContent(message.content));
   }
@@ -84,33 +93,33 @@ const scrollToBottom = async (): Promise<void> => {
   }
 };
 
-const preferences = getPreferenceValues('ai')
+const preferences = getPreferenceValues('ai');
 
-logger.info('preferences', preferences)
+logger.info('preferences', preferences);
 const client = new OpenAI({
   apiKey: preferences.apiKey as string, // 模型APIKey
   baseURL: preferences.baseURL as string, // 模型API地址
   dangerouslyAllowBrowser: true,
 });
 
-const getLastMessage = () => messages.value[messages.value.length - 1]
+const getLastMessage = () => messages.value[messages.value.length - 1];
 
 const runTools = async (toolCall: OpenAI.ChatCompletionMessageToolCall) => {
   if (toolCall.function.name in AI_TOOLS) {
-    const args = toolCall.function.arguments ? JSON.parse(toolCall.function.arguments) : undefined
+    const args = toolCall.function.arguments ? JSON.parse(toolCall.function.arguments) : undefined;
     try {
-      const result = await AI_TOOLS[toolCall.function.name as keyof typeof AI_TOOLS](args)
-      if (!result) return ''
-      if (typeof result === 'string') return result
-      return JSON.stringify(result)
+      const result = await AI_TOOLS[toolCall.function.name as keyof typeof AI_TOOLS](args);
+      if (!result) return '';
+      if (typeof result === 'string') return result;
+      return JSON.stringify(result);
     } catch (err) {
-      console.error(err)
-      return `调用${toolCall.function.name}失败，失败信息如下， ${String(err)}`
+      console.error(err);
+      return `调用${toolCall.function.name}失败，失败信息如下， ${String(err)}`;
     }
   } else {
-    return `工具${toolCall.function.name}不存在，无法调用`
+    return `工具${toolCall.function.name}不存在，无法调用`;
   }
-}
+};
 
 const ask = async () => {
   const completion = await client.chat.completions.create({
@@ -119,24 +128,24 @@ const ask = async () => {
     tools: AI_TOOLS_DEFINITIONS,
     tool_choice: 'auto',
     stream: true,
-  }).catch(err => {
-    messages.value.push({ role: 'assistant', content: err.message })
-    scrollToBottom()
-    throw err
-  })
+  }).catch((err) => {
+    messages.value.push({ role: 'assistant', content: err.message });
+    scrollToBottom();
+    throw err;
+  });
   messages.value.push({
     role: 'assistant',
-    content: ''
+    content: '',
   });
   for await (const chunk of completion) {
-    const lastMessage = getLastMessage()
+    const lastMessage = getLastMessage();
     if (chunk.choices[0]?.finish_reason === 'tool_calls' && lastMessage.role === 'assistant' && 'tool_calls' in lastMessage) {
       // 工具调用的返回结束，可以开始调用工具了
-      const results: OpenAI.ChatCompletionToolMessageParam[] = await Promise.all(lastMessage.tool_calls!.map(async toolCall => {
-        const result = await runTools(toolCall)
-        return { role: 'tool', content: result, tool_call_id: toolCall.id }
+      const results: OpenAI.ChatCompletionToolMessageParam[] = await Promise.all(lastMessage.tool_calls!.map(async (toolCall) => {
+        const result = await runTools(toolCall);
+        return { role: 'tool', content: result, tool_call_id: toolCall.id };
       }));
-      messages.value.push(...results)
+      messages.value.push(...results);
       scrollToBottom();
       // 工具调用完成，再次调用大模型总结结果
       return ask();
@@ -145,11 +154,11 @@ const ask = async () => {
     if (chunk.choices[0]?.delta?.tool_calls) {
       const deltaToolCalls = chunk.choices[0]?.delta?.tool_calls;
       if (deltaToolCalls) {
-        const msg = lastMessage as OpenAI.ChatCompletionAssistantMessageParam
+        const msg = lastMessage as OpenAI.ChatCompletionAssistantMessageParam;
         if (!('tool_calls' in lastMessage)) {
           msg.tool_calls = [];
         }
-        deltaToolCalls.forEach(deltaToolCall => {
+        deltaToolCalls.forEach((deltaToolCall) => {
           if (deltaToolCall.index === (lastMessage as OpenAI.ChatCompletionAssistantMessageParam).tool_calls!.length) {
             msg.tool_calls!.push({
               id: deltaToolCall.id!,
@@ -157,7 +166,7 @@ const ask = async () => {
                 name: deltaToolCall.function!.name!,
                 arguments: deltaToolCall.function!.arguments || '',
               },
-              type: 'function'
+              type: 'function',
             });
           } else {
             msg.tool_calls![deltaToolCall.index].function.arguments += deltaToolCall.function!.arguments || '';
@@ -177,7 +186,7 @@ const ask = async () => {
 
 const sendMessage = async (): Promise<void> => {
   if (!userInput.value.trim()) return;
-  
+
   // Add user message
   scrollToBottom();
   messages.value.push({ role: 'user', content: userInput.value });
@@ -191,25 +200,24 @@ const sendMessage = async (): Promise<void> => {
 const keyDownHandler = (e: KeyboardEvent | Event) => {
   if (!(e instanceof KeyboardEvent)) return;
   if (isKeyPressed(e, 'Enter')) {
-    e.preventDefault()
+    e.preventDefault();
     sendMessage();
     return;
   }
   if (isKeyPressed(e, 'Escape')) {
     if (userInput.value) {
-      userInput.value = ''
+      userInput.value = '';
       return;
-    } else {
-      popToRoot();
-      return
     }
+    popToRoot();
+    return;
   }
-}
+};
 
 onPageEnter(async () => {
-  await nextTick()
-  textarea.value?.focus()
-})
+  await nextTick();
+  textarea.value?.focus();
+});
 </script>
 
 <style scoped lang="scss">

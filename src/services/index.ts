@@ -1,20 +1,17 @@
-import { handleQuery, handleSelect, handleEnter, handleAction } from "@/plugin/service"
+import { handleQuery, handleSelect, handleEnter, handleAction } from '@/plugin/service';
 
-export const query = (keyword: string) => {
-  return handleQuery(keyword) || []
-}
+export const query = (keyword: string) => handleQuery(keyword) || [];
 
-export const select = (result: IResultItem, keyword: string) => {
+export const select = (result: IResultItem, keyword: string) =>
   // @ts-ignore
-  return handleSelect(result, keyword)
-}
+  handleSelect(result, keyword);
 
-export const enter = (result: IResultItem, keyword: string) => {
-  // @ts-ignore
-  return handleEnter(result)
-}
 
-export const action = (result: IResultItem, action: IActionItem, keyword: string) => {
+export const enter = (result: IResultItem, keyword: string) =>
   // @ts-ignore
-  return handleAction(result, action, keyword)
-}
+  handleEnter(result);
+
+
+export const action = (result: IResultItem, action: IActionItem, keyword: string) =>
+  // @ts-ignore
+  handleAction(result, action, keyword);

@@ -1,27 +1,25 @@
-import type { ICommandSettings, IPluginSettings, IRunningPlugin, ISettings } from "@public/types"
-import { storage } from '@public/api/core'
-import { getPlugins as getAllPlugins } from "@/plugin/manager"
+import type { ICommandSettings, IPluginSettings, IRunningPlugin, ISettings } from '@public/types';
+import { storage } from '@public/api/core';
+import { getPlugins as getAllPlugins } from '@/plugin/manager';
 
 export const getSettings = async (): Promise<ISettings> => {
   const defaultSettings = {
     launchAtLogin: true,
     shortcuts: 'Meta+Meta',
     clearTimeout: 90,
-  }
-  const settings = await storage.getItem('settings/settings') as ISettings
+  };
+  const settings = await storage.getItem('settings/settings') as ISettings;
   return {
     ...defaultSettings,
-    ...settings
-  }
-}
+    ...settings,
+  };
+};
 
 export const updateSettings = (settings: Partial<ISettings>) => {
-  storage.setItem('settings/settings', settings)
-}
+  storage.setItem('settings/settings', settings);
+};
 
-export const getPlugins = () => Promise.resolve([...getAllPlugins({ includeDisabledPlugins: true, includeDisabledCommands: true }).values() ?? []]).then(list => {
-  return list.sort((prev, next) => prev.manifest.name.localeCompare(next.manifest.name))
-})
+export const getPlugins = () => Promise.resolve([...getAllPlugins({ includeDisabledPlugins: true, includeDisabledCommands: true }).values() ?? []]).then(list => list.sort((prev, next) => prev.manifest.name.localeCompare(next.manifest.name)));
 
 // export const updatePluginSettings = (plugin: string, settings: Partial<Omit<IPluginSettings, 'commands'>>) => {
 //   updatePluginSettings(plugin, settings);

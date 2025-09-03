@@ -1,3 +1,3 @@
-export const builtinPluginsPath = BUILTIN_PLUGINS_PATH
+export const builtinPluginsPath = BUILTIN_PLUGINS_PATH;
 
-export const pluginServerHost = 'http://localhost:2345'
+export const pluginServerHost = 'http://localhost:2345';

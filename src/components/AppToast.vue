@@ -1,7 +1,12 @@
 <template>
-  <dialog class="app-toast" ref="dialog">
-    <div class="toast-icon"></div>
-    <div class="toast-message">{{ options.message }}</div>
+  <dialog
+    ref="dialog"
+    class="app-toast"
+  >
+    <div class="toast-icon" />
+    <div class="toast-message">
+      {{ options.message }}
+    </div>
   </dialog>
 </template>
 
@@ -10,24 +15,24 @@ import { onMounted, onUnmounted, useTemplateRef } from 'vue';
 
 const props = defineProps<{
   options: IToastOptions
-}>()
+}>();
 
-const dialog = useTemplateRef('dialog')
+const dialog = useTemplateRef('dialog');
 
-let timeout: ReturnType<typeof setTimeout> | null = null
+let timeout: ReturnType<typeof setTimeout> | null = null;
 onMounted(() => {
   dialog.value?.show();
   timeout = setTimeout(() => {
     dialog.value?.close();
     props.options.done?.();
-  }, props.options.duration || 1500)
-})
+  }, props.options.duration || 1500);
+});
 
 onUnmounted(() => {
   dialog.value?.close();
   props.options.done?.();
-  timeout && clearTimeout(timeout)
-})
+  timeout && clearTimeout(timeout);
+});
 
 </script>
 

@@ -1,4 +1,4 @@
-type WithRequired<T, K extends keyof T> = T & { [P in K]-?: T[P] }
+type WithRequired<T, K extends keyof T> = T & { [P in K]-?: T[P] };
 
 interface IActionItem {
   name: string
@@ -19,7 +19,7 @@ type IPluginReturn = {
   onSelect?: (command: IPluginCommand, matchData: ICommandMatchData) => string | undefined | HTMLElement | Promise<string | HTMLElement | undefined>,
   onEnter?: (command: IPluginCommand, matchData: ICommandMatchData) => void,
   onAction?: (command: IPluginCommand, action: IActionItem, keyword: string) => void,
-} | undefined | null
+} | undefined | null;
 
 interface IPluginSettings {
   disabled?: boolean,
@@ -55,9 +55,9 @@ type IPluginCreator = (utils: {
   updateCommands: (commands: IPluginCommandConfig[]) => void,
   showCommands: (commands: IPluginCommandConfig[]) => void,
   getPreferences: () => any,
-}) => IPluginReturn
+}) => IPluginReturn;
 
-type IPluginCommandMatch = ITextPluginCommandMatch | ITriggerPluginCommandMatch | IFullPluginCommandMatch | IRegExpPluginCommandMatch
+type IPluginCommandMatch = ITextPluginCommandMatch | ITriggerPluginCommandMatch | IFullPluginCommandMatch | IRegExpPluginCommandMatch;
 
 interface IPreference {
   name: string
@@ -89,7 +89,7 @@ interface IPluginCommandConfig extends IListItem, Record<string, any> {
   preferences?: IPreference[]
 }
 
-type IPluginCommand = IPluginCommandConfig
+type IPluginCommand = IPluginCommandConfig;
 
 interface IPluginManifest extends WithRequired<IPluginCommandConfig, 'name' | 'icon' | 'title'> {
   commands: IPluginCommandConfig[]
@@ -124,25 +124,41 @@ interface IPluginSettings {
   preferences?: Record<string, string | number | boolean>
 }
 
-type IPluginsSettings = Record<string, IPluginSettings | undefined>
+type IPluginsSettings = Record<string, IPluginSettings | undefined>;
 
 
-interface ICommandBaseMatchData { keyword: string, score: number, query: string }
+interface ICommandBaseMatchData {
+  keyword: string, score: number, query: string
+}
 
-interface ICommandTextMatchData extends ICommandBaseMatchData { from: 'match', match: ITextPluginCommandMatch, matchData: { keyword: string } }
+interface ICommandTextMatchData extends ICommandBaseMatchData {
+  from: 'match', match: ITextPluginCommandMatch, matchData: { keyword: string }
+}
 
-interface ICommandTriggerMatchData extends ICommandBaseMatchData { from: 'match', match: ITriggerPluginCommandMatch, matchData: { trigger: string, query: string } }
+interface ICommandTriggerMatchData extends ICommandBaseMatchData {
+  from: 'match', match: ITriggerPluginCommandMatch, matchData: { trigger: string, query: string }
+}
 
-interface ICommandRegExpMatchData extends ICommandBaseMatchData { from: 'match', match: IRegExpPluginCommandMatch, matchData: { matches: RegExpMatchArray } }
+interface ICommandRegExpMatchData extends ICommandBaseMatchData {
+  from: 'match', match: IRegExpPluginCommandMatch, matchData: { matches: RegExpMatchArray }
+}
 
-interface ICommandFullMatchData extends ICommandBaseMatchData { from: 'match', match: IFullPluginCommandMatch }
+interface ICommandFullMatchData extends ICommandBaseMatchData {
+  from: 'match', match: IFullPluginCommandMatch
+}
 
-interface ICommandHotKeyMatchData extends ICommandBaseMatchData { from: 'hotkey' }
+interface ICommandHotKeyMatchData extends ICommandBaseMatchData {
+  from: 'hotkey'
+}
 
-interface ICommandAliasMatchData extends ICommandBaseMatchData { from: 'alias' }
+interface ICommandAliasMatchData extends ICommandBaseMatchData {
+  from: 'alias'
+}
 
-interface ICommandOnInputMatchData extends ICommandBaseMatchData { from: 'onInput' }
+interface ICommandOnInputMatchData extends ICommandBaseMatchData {
+  from: 'onInput'
+}
 
-type ICommandMatchData = ICommandTextMatchData | ICommandTriggerMatchData | ICommandRegExpMatchData | ICommandFullMatchData | ICommandHotKeyMatchData | ICommandAliasMatchData | ICommandOnInputMatchData | null
+type ICommandMatchData = ICommandTextMatchData | ICommandTriggerMatchData | ICommandRegExpMatchData | ICommandFullMatchData | ICommandHotKeyMatchData | ICommandAliasMatchData | ICommandOnInputMatchData | null;
 
 interface IResultItem extends IListItem, Record<string, any> { }

@@ -1,6 +1,6 @@
 import { TrayIcon } from '@tauri-apps/api/tray';
 import { Menu } from '@tauri-apps/api/menu';
-import { Image } from '@tauri-apps/api/image'
+import { Image } from '@tauri-apps/api/image';
 import { resolveResource } from '@tauri-apps/api/path';
 import { getCurrentWindow } from '@tauri-apps/api/window';
 
@@ -10,13 +10,13 @@ const menu = await Menu.new({
       id: 'toggle',
       text: '显示/隐藏',
       async action() {
-        const visible = await getCurrentWindow().isVisible()
+        const visible = await getCurrentWindow().isVisible();
         if (visible) {
-          getCurrentWindow().hide()
+          getCurrentWindow().hide();
         } else {
-          getCurrentWindow().show()
+          getCurrentWindow().show();
         }
-      }
+      },
     },
     {
       text: 'separator-text',
@@ -33,12 +33,12 @@ const menu = await Menu.new({
     },
     {
       id: 'checkUpdates',
-      text: '检查更新...'
+      text: '检查更新...',
     },
     {
       id: 'about',
       text: '关于...',
-    }
+    },
   ],
 });
 
@@ -49,9 +49,9 @@ const options = {
   menuOnLeftClick: true,
 };
 
-let tray: TrayIcon
+let tray: TrayIcon;
 
 export const createTray = async () => {
-  TrayIcon.removeById(options.id)
+  TrayIcon.removeById(options.id);
   tray = await TrayIcon.new(options);
-}
+};

@@ -1,131 +1,221 @@
 <template>
   <div class="settings-view">
     <ul class="panel-list">
-      <li class="panel-item"
+      <li
         v-for="(label, keyName) in views"
         :key="keyName"
+        class="panel-item"
         :class="{
           'active': curView === keyName,
         }"
-        @click="curView=keyName">{{label}}</li>
+        @click="curView=keyName"
+      >
+        {{ label }}
+      </li>
     </ul>
     <div class="settings-view-main flex-1 h-full overflow-auto">
-      <div v-if="curView === 'common'" class="settings-panel">
+      <div
+        v-if="curView === 'common'"
+        class="settings-panel"
+      >
         <el-form label-width="180px">
           <el-form-item label="开机启动">
-            <el-switch v-model="settings.launchAtLogin"
+            <el-switch
+              v-model="settings.launchAtLogin"
               :active-value="true"
               :inactive-value="false"
               @change="onLaunchAtLoginChange"
             />
           </el-form-item>
           <el-form-item label="快捷键">
-            <ShortcutsRecorder v-model="settings.shortcuts"
+            <ShortcutsRecorder
+              v-model="settings.shortcuts"
               size="large"
-              @update:model-value="onShortcutsChange"
               class="main-shortcuts"
+              @update:model-value="onShortcutsChange"
             />
           </el-form-item>
           <el-form-item label="清除超时">
             <div class="w-64">
-              <el-select v-model="settings.clearTimeout"
+              <el-select
+                v-model="settings.clearTimeout"
+                style="width:200px"
                 @change="onClearTimeoutChange"
-                style="width:200px">
-                <el-option :value="0" label="即时"></el-option>
-                <el-option :value="5" label="5 秒后"></el-option>
-                <el-option :value="30" label="30 秒后"></el-option>
-                <el-option :value="90" label="90 秒后"></el-option>
-                <el-option :value="180" label="3 分钟后"></el-option>
-                <el-option :value="600" label="10 分钟后"></el-option>
-                <el-option :value="-1" label="永不"></el-option>
+              >
+                <el-option
+                  :value="0"
+                  label="即时"
+                />
+                <el-option
+                  :value="5"
+                  label="5 秒后"
+                />
+                <el-option
+                  :value="30"
+                  label="30 秒后"
+                />
+                <el-option
+                  :value="90"
+                  label="90 秒后"
+                />
+                <el-option
+                  :value="180"
+                  label="3 分钟后"
+                />
+                <el-option
+                  :value="600"
+                  label="10 分钟后"
+                />
+                <el-option
+                  :value="-1"
+                  label="永不"
+                />
               </el-select>
             </div>
           </el-form-item>
         </el-form>
       </div>
-      <div v-else-if="curView==='plugins'" class="settings-panel">
+      <div
+        v-else-if="curView==='plugins'"
+        class="settings-panel"
+      >
         <div class="panel-header">
           插件管理
-          <el-button :icon="Plus" circle size="small" @click="onAddPluginClick"></el-button>
+          <el-button
+            :icon="Plus"
+            circle
+            size="small"
+            @click="onAddPluginClick"
+          />
         </div>
         <ul class="plugin-list">
-          <li class="plugin-item"
+          <li
             v-for="(plugin, index) in plugins"
-            :key="plugin.path">
+            :key="plugin.path"
+            class="plugin-item"
+          >
             <div class="plugin-item-self">
-              <el-icon class="plugin-expand-icon"
+              <el-icon
+                class="plugin-expand-icon"
                 :size="14"
-                @click="onExpandPluginClick(plugin)"
                 :class="{ expanded: expand[plugin.manifest.name], hidden: plugin.commands.length <= 0 }"
-              ><ArrowRightBold /></el-icon>
-              <img :src="plugin.manifest.icon" alt="" class="plugin-icon">
+                @click="onExpandPluginClick(plugin)"
+              >
+                <ArrowRightBold />
+              </el-icon>
+              <img
+                :src="plugin.manifest.icon"
+                alt=""
+                class="plugin-icon"
+              >
               <div class="plugin-info">
-                <h3 class="plugin-title">{{plugin.manifest.title}}</h3>
-                <p class="plugin-subtitle">{{plugin.manifest.subtitle}}</p>
+                <h3 class="plugin-title">
+                  {{ plugin.manifest.title }}
+                </h3>
+                <p class="plugin-subtitle">
+                  {{ plugin.manifest.subtitle }}
+                </p>
               </div>
-              <el-button :icon="Operation" circle
-                class="action-item"
-                size="small"
+              <el-button
                 v-if="plugin.manifest.preferences?.length"
+                :icon="Operation"
+                circle
+                class="action-item"
+                size="small"
                 @click="openPrfsView(plugin.manifest.name)"
-              ></el-button>
-              <el-button type="danger" :icon="Delete"
+              />
+              <el-button
+                type="danger"
+                :icon="Delete"
                 size="small"
                 class="action-item"
+                circle
                 @click="onRemovePluginClick(index, plugin)"
-                circle></el-button>
-              <el-switch class="action-item"
+              />
+              <el-switch
+                class="action-item"
                 :model-value="plugin.settings?.disabled !== true"
                 @update:model-value="onPluginDisabledChange($event as boolean, plugin)"
-              ></el-switch>
+              />
             </div>
-            <ul class="command-list" v-if="expand[plugin.manifest.name]">
-              <li class="command-item"
+            <ul
+              v-if="expand[plugin.manifest.name]"
+              class="command-list"
+            >
+              <li
                 v-for="command in plugin.commands"
-                :key="command.name">
-                <img :src="command.icon" alt="" class="command-icon">
+                :key="command.name"
+                class="command-item"
+              >
+                <img
+                  :src="command.icon"
+                  alt=""
+                  class="command-icon"
+                >
                 <div class="command-info">
-                  <h3 class="command-title">{{command.title}}</h3>
-                  <h5 class="command-subtitle">{{command.subtitle}}</h5>
+                  <h3 class="command-title">
+                    {{ command.title }}
+                  </h3>
+                  <h5 class="command-subtitle">
+                    {{ command.subtitle }}
+                  </h5>
                 </div>
                 <div class="action-item">
-                  <el-input size="small"
+                  <el-input
+                    size="small"
                     placeholder="别名"
                     :model-value="plugin.settings?.commands?.[command.name]?.alias ?? ''"
                     @update:model-value="onCommandChange({ alias: $event }, plugin, command)"
-                  ></el-input>
+                  />
                 </div>
                 <div class="action-item">
                   <ShortcutsRecorder
                     :model-value="plugin.settings?.commands?.[command.name]?.shortcuts ?? ''"
                     @update:model-value="onCommandChange({ shortcuts: $event }, plugin, command)"
-                  ></ShortcutsRecorder>
+                  />
                 </div>
                 <div class="action-item">
                   <el-switch
                     :model-value="!plugin.settings?.commands?.[command.name]?.disabled"
-                    @update:model-value="onCommandChange({ disabled: !$event }, plugin, command)"
                     size="small"
-                  ></el-switch>
+                    @update:model-value="onCommandChange({ disabled: !$event }, plugin, command)"
+                  />
                 </div>
               </li>
             </ul>
           </li>
         </ul>
       </div>
-      <div v-else-if="curView==='links'" class="settings-panel">
+      <div
+        v-else-if="curView==='links'"
+        class="settings-panel"
+      >
         <div class="panel-header">
           快捷链接
-          <el-button :icon="Plus" circle size="small" @click="createLink"></el-button>
+          <el-button
+            :icon="Plus"
+            circle
+            size="small"
+            @click="createLink"
+          />
         </div>
         <ul class="link-list">
-          <li class="link-item flex justify-between items-center" v-for="(item, index) in links" :key="index">
-            <h3 class="link-title">{{ item.title }}</h3>
-            <el-button type="danger" :icon="Delete"
+          <li
+            v-for="(item, index) in links"
+            :key="index"
+            class="link-item flex justify-between items-center"
+          >
+            <h3 class="link-title">
+              {{ item.title }}
+            </h3>
+            <el-button
+              type="danger"
+              :icon="Delete"
               size="small"
               class="action-item"
+              circle
               @click="removeLink(index)"
-              circle></el-button>
+            />
           </li>
         </ul>
       </div>
@@ -144,16 +234,16 @@ import { router as coreRotuer } from '@public/api/core';
 import { unregisterPlugin, updateCommandSettings, updateCommandShortcut, updatePluginPreferences, updatePluginSettings } from '@/plugin/manager';
 import { openCommandPreferences, openPluginPreferences } from '@/plugin/utils';
 
-const { useRouter, onPageEnter } = coreRotuer
+const { useRouter, onPageEnter } = coreRotuer;
 
 const views = ref({
-  'common': '通用',
-  'plugins': '插件设置',
-  'links': '快捷链接'
-})
-const curView = ref('common')
+  common: '通用',
+  plugins: '插件设置',
+  links: '快捷链接',
+});
+const curView = ref('common');
 
-const plugins = ref<IRunningPlugin[]>([])
+const plugins = ref<IRunningPlugin[]>([]);
 
 const settings = ref<{
   launchAtLogin: boolean,
@@ -163,8 +253,8 @@ const settings = ref<{
   launchAtLogin: false,
   shortcuts: '',
   clearTimeout: 90,
-})
-const expand = ref<Record<string, boolean | undefined>>({})
+});
+const expand = ref<Record<string, boolean | undefined>>({});
 
 interface ILink {
   trigger: string
@@ -172,120 +262,114 @@ interface ILink {
   link: string
 }
 
-const links = computed(() => {
-  return plugins.value.find(i => i.manifest.name === 'links')?.settings?.preferences?.links as unknown as ILink[] || []
-})
+const links = computed(() => plugins.value.find(i => i.manifest.name === 'links')?.settings?.preferences?.links as unknown as ILink[] || []);
 
 const refreshSettings = async () => {
   getSettings()?.then((data: any) => {
     settings.value = {
       ...settings.value,
-      ...data
-    }
-    console.log('settings.value', settings.value)
-  })
+      ...data,
+    };
+    console.log('settings.value', settings.value);
+  });
   getPlugins()?.then((data: IRunningPlugin[]) => {
-    plugins.value = data
-  })
-}
+    plugins.value = data;
+  });
+};
 const onLaunchAtLoginChange = async (launchAtLogin: any) => {
-  settings.value.launchAtLogin = !!launchAtLogin
-  await updateSettings({ launchAtLogin: settings.value.launchAtLogin })
-  refreshSettings()
-}
+  settings.value.launchAtLogin = !!launchAtLogin;
+  await updateSettings({ launchAtLogin: settings.value.launchAtLogin });
+  refreshSettings();
+};
 const onShortcutsChange = async (shortcuts: string) => {
-  settings.value.shortcuts = shortcuts
-  await updateSettings({ shortcuts: settings.value.shortcuts })
-  refreshSettings()
-}
+  settings.value.shortcuts = shortcuts;
+  await updateSettings({ shortcuts: settings.value.shortcuts });
+  refreshSettings();
+};
 const onClearTimeoutChange = async () => {
-  await updateSettings({ clearTimeout: settings.value.clearTimeout })
-  refreshSettings()
-}
+  await updateSettings({ clearTimeout: settings.value.clearTimeout });
+  refreshSettings();
+};
 const onPluginDisabledChange = async (enabled: boolean, plugin: IRunningPlugin) => {
-  console.log('plugin enabled', enabled)
-  plugin.settings = { ...plugin.settings!, disabled: !enabled }
-  await updatePluginSettings(plugin.manifest.name, { disabled: !enabled })
-  refreshSettings()
-}
+  console.log('plugin enabled', enabled);
+  // eslint-disable-next-line no-param-reassign
+  plugin.settings = { ...plugin.settings!, disabled: !enabled };
+  await updatePluginSettings(plugin.manifest.name, { disabled: !enabled });
+  refreshSettings();
+};
 const onCommandChange = async (values: Partial<ICommandSettings>, plugin: IRunningPlugin, command: IPluginCommand) => {
   if ('shortcuts' in values) {
-    updateCommandShortcut(plugin.manifest.name, command.name, values.shortcuts)
+    updateCommandShortcut(plugin.manifest.name, command.name, values.shortcuts);
   }
-  plugin.settings!.commands![command.name] = { ...plugin.settings!.commands![command.name], ...values }
-  await updateCommandSettings(plugin.manifest.name, command.name, { ...values })
-  refreshSettings()
-}
+  // eslint-disable-next-line no-param-reassign
+  plugin.settings!.commands![command.name] = { ...plugin.settings!.commands![command.name], ...values };
+  await updateCommandSettings(plugin.manifest.name, command.name, { ...values });
+  refreshSettings();
+};
 
 const onExpandPluginClick = (plugin: IRunningPlugin) => {
   expand.value = {
     ...expand.value,
-    [plugin.manifest.name]: !expand.value[plugin.manifest.name]
-  }
-}
+    [plugin.manifest.name]: !expand.value[plugin.manifest.name],
+  };
+};
 const onAddPluginClick = async () => {
   const file = await new Promise<File>((resolve, reject) => {
-    const input = document.createElement('input')
-    input.type = 'file'
-    input.accept = '.js'
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.js';
     input.onchange = (e) => {
-      // const [file] = e.target.files
-      // if (!file) reject(new Error('no file selected'))
-      resolve(file)
-    }
-    input.click()
-  })
+      const file = (e.target as HTMLInputElement).files?.[0];
+      if (!file) reject(new Error('no file selected'));
+      resolve(file!);
+    };
+    input.click();
+  });
 
-  const validateFile = (file: File) => {
-    // try {
-    //   const plugin = window.require(file.path)
-    //   if (typeof plugin !== 'function' && typeof plugin.default !== 'function') {
-    //     throw new Error('应该是一个函数')
-    //   }
-    // } catch(err) {
-    //   ElMessage.error('导入插件失败')
-    //   throw err
-    // }
-  }
-  
-  validateFile(file)
+  const validateFile = (_file: File) => {
+    // @todo
+    ElMessage.error('待实现');
+    throw new Error('未实现');
+  };
+
+  validateFile(file);
 
   // await window.window.PublicAppBridge.invoke('registerPlugin', { path: file.path })
-  ElMessage.success('插件添加成功')
-  refreshSettings()
-}
+  ElMessage.success('插件添加成功');
+  refreshSettings();
+};
 
-const onRemovePluginClick = async (index: number, plugin: IRunningPlugin) => {
-  await unregisterPlugin(plugin.manifest.name)
-  ElMessage.success('插件移除成功')
-  refreshSettings()
-}
+const onRemovePluginClick = async (_index: number, plugin: IRunningPlugin) => {
+  await unregisterPlugin(plugin.manifest.name);
+  ElMessage.success('插件移除成功');
+  refreshSettings();
+};
 
 const openPrfsView = async (plugin: string, command?: string) => {
   if (plugin === 'links') {
-    curView.value = 'links'
+    curView.value = 'links';
     return;
   }
-  command ? openCommandPreferences(plugin, command) : openPluginPreferences(plugin)
-}
+  command ? openCommandPreferences(plugin, command) : openPluginPreferences(plugin);
+};
 
-const router = useRouter()
+const router = useRouter();
 
 const createLink = () => {
-  console.log('router', router)
-  router?.pushView('/plugin/link/create')
-}
+  console.log('router', router);
+  router?.pushView('/plugin/link/create');
+};
 
 const removeLink = async (index: number) => {
-  const preferences = plugins.value.find(i => i.manifest.name === 'links')?.settings?.preferences
-  const newLinks = [...toRaw(links.value.filter((_, i) => i !== index))]
-  await updatePluginPreferences('links', { ...toRaw(preferences), links: newLinks })
-  refreshSettings()
-}
+  const preferences = plugins.value.find(i => i.manifest.name === 'links')?.settings?.preferences;
+  const newLinks = [...toRaw(links.value.filter((_, i) => i !== index))];
+  await updatePluginPreferences('links', { ...toRaw(preferences), links: newLinks });
+  refreshSettings();
+};
 
 onPageEnter(() => {
-  refreshSettings()
-})
+  refreshSettings();
+});
 
 </script>
 

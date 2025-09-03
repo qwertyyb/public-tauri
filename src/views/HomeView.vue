@@ -1,58 +1,63 @@
 <template>
   <div class="home-view">
-    <InputBar v-model="keyword" class="input-bar" is-main-input />
-    <ResultView :results="results"
+    <InputBar
+      v-model="keyword"
+      class="input-bar"
+      is-main-input
+    />
+    <ResultView
+      :results="results"
       :preview="preview"
+      class="result-view"
       @select="onResultSelected"
       @enter="onResultEnter"
       @action="onResultAction"
-      class="result-view"
-    ></ResultView>
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 import InputBar from '@/components/InputBar.vue';
 import ResultView from '@/components/ResultView.vue';
-import * as service from '@/services'
+import * as service from '@/services';
 import type { UnlistenFn } from '@tauri-apps/api/event';
 import { getCurrentWindow } from '@tauri-apps/api/window';
 import { onBeforeUnmount, onMounted, ref, toRaw, watch } from 'vue';
 
-const results = ref<IPluginCommand[]>([])
-const preview = ref<string | HTMLElement | undefined>('')
-const keyword = ref('')
+const results = ref<IPluginCommand[]>([]);
+const preview = ref<string | HTMLElement | undefined>('');
+const keyword = ref('');
 
 watch(keyword, async (value) => {
   if (value) {
-    results.value = await service.query(value) || []
-    console.log('results.value', results.value)
+    results.value = await service.query(value) || [];
+    console.log('results.value', results.value);
   } else {
-    results.value = []
+    results.value = [];
   }
-})
+});
 
 const focusInput = () => {
-  const el = document.querySelector<HTMLInputElement>('#main-input')
-  el?.focus()
-}
+  const el = document.querySelector<HTMLInputElement>('#main-input');
+  el?.focus();
+};
 
 const onResultEnter = (item: IPluginCommand | null, itemIndex: number) => {
-  service.enter(toRaw(results.value[itemIndex]), keyword.value)
-}
+  service.enter(toRaw(results.value[itemIndex]), keyword.value);
+};
 
 const onResultSelected = async (item: IPluginCommand | null, itemIndex: number) => {
-  preview.value = await service.select(toRaw(results.value[itemIndex]), keyword.value)
-}
+  preview.value = await service.select(toRaw(results.value[itemIndex]), keyword.value);
+};
 
 const onResultAction = async (item: IPluginCommand, itemIndex: number, action: IActionItem) => {
-  service.action(toRaw(item), toRaw(action), keyword.value)
-}
+  service.action(toRaw(item), toRaw(action), keyword.value);
+};
 
 const setPluginResults = (e: CustomEvent<{ commands: IPluginCommand[] }>) => {
-  const { commands } = e.detail || {}
-  results.value = commands
-}
+  const { commands } = e.detail || {};
+  results.value = commands;
+};
 
 declare global {
   interface WindowEventMap {
@@ -61,23 +66,23 @@ declare global {
   }
 }
 
-let unlistenFocusChange: UnlistenFn
+let unlistenFocusChange: UnlistenFn;
 
 onMounted(async () => {
-  window.addEventListener('plugin:showCommands', setPluginResults)
-  window.addEventListener('publicApp.mainWindow.show', focusInput)
+  window.addEventListener('plugin:showCommands', setPluginResults);
+  window.addEventListener('publicApp.mainWindow.show', focusInput);
   unlistenFocusChange = await getCurrentWindow().onFocusChanged(({ payload: focused }) => {
     if (focused) {
-      focusInput()
+      focusInput();
     }
-  })
-})
+  });
+});
 
 onBeforeUnmount(() => {
-  window.removeEventListener('plugin:showCommands', setPluginResults)
-  window.removeEventListener('publicApp.mainWindow.show', focusInput)
-  unlistenFocusChange?.()
-})
+  window.removeEventListener('plugin:showCommands', setPluginResults);
+  window.removeEventListener('publicApp.mainWindow.show', focusInput);
+  unlistenFocusChange?.();
+});
 </script>
 
 <style lang="scss" scoped>

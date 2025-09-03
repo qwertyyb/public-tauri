@@ -1,11 +1,13 @@
 <template>
-  <div class="keyboard-key">{{ keyValue }}</div>
+  <div class="keyboard-key">
+    {{ keyValue }}
+  </div>
 </template>
 
 <script lang="ts" setup>
 import { computed } from 'vue';
 
-const props = defineProps<{ value: string }>()
+const props = defineProps<{ value: string }>();
 
 const keyValue = computed(() => {
   const keyMap: Record<string, string | undefined> = {
@@ -16,10 +18,10 @@ const keyValue = computed(() => {
     Alt: '⌥',
     Shift: '⇧',
     Control: '^',
-    Backspace: '←'
-  }
-  return keyMap[props.value] || props.value
-})
+    Backspace: '←',
+  };
+  return keyMap[props.value] || props.value;
+});
 
 </script>
 

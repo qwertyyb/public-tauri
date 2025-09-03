@@ -1,5 +1,8 @@
 <template>
-  <div class="virtual-list" ref="listWrapper">
+  <div
+    ref="listWrapper"
+    class="virtual-list"
+  >
     <div
       class="virtual-list__inner"
       :style="{
@@ -7,8 +10,15 @@
         'minHeight': `${totalHeight}px`,
       }"
     >
-      <div class="virtual-list-item" v-for="(item, index) in visibleList" :key="index">
-        <slot :item="item" :index="index + start"></slot>
+      <div
+        v-for="(item, index) in visibleList"
+        :key="index"
+        class="virtual-list-item"
+      >
+        <slot
+          :item="item"
+          :index="index + start"
+        />
       </div>
     </div>
   </div>
@@ -16,7 +26,7 @@
 
 <script setup lang="ts">
 import { onPageEnter, onPageLeave } from '@/router/hooks';
-import { computed, nextTick, ref, watch } from 'vue'
+import { computed, nextTick, ref, watch } from 'vue';
 
 const props = withDefaults(defineProps<{
   itemHeight: number,
@@ -25,28 +35,30 @@ const props = withDefaults(defineProps<{
 }>(), {
   itemHeight: 54,
   keeps: 30,
-  list: () => []
-})
+  list: () => [],
+});
 
 const emit = defineEmits<{
   updated: []
-}>()
+}>();
 
-const listWrapper = ref<HTMLElement>()
+const listWrapper = ref<HTMLElement>();
 
-const startOffset = ref(0)
+const startOffset = ref(0);
 
-const totalHeight = computed(() => props.itemHeight * props.list.length)
+const totalHeight = computed(() => props.itemHeight * props.list.length);
 
-const start = computed(() => Math.floor(startOffset.value / props.itemHeight))
+const start = computed(() => Math.floor(startOffset.value / props.itemHeight));
 
-const visibleList = computed(() => props.list.slice(start.value, start.value + props.keeps))
+const visibleList = computed(() => props.list.slice(start.value, start.value + props.keeps));
 
 watch(() => props.list, () => {
-  startOffset.value = 0
-})
+  startOffset.value = 0;
+});
 
-watch(visibleList, () => { nextTick(() => emit('updated')) }, { flush: 'post' })
+watch(visibleList, () => {
+  nextTick(() => emit('updated'));
+}, { flush: 'post' });
 
 const scrollHandler = () => {
   const prevCount = 10;
@@ -55,16 +67,16 @@ const scrollHandler = () => {
   let newStartOffset = Math.max(scrollTop - props.itemHeight * prevCount, 0);
   newStartOffset = Math.min(Math.max(0, totalHeight.value - props.itemHeight * props.keeps), newStartOffset);
 
-  startOffset.value = newStartOffset
+  startOffset.value = newStartOffset;
 };
 
 onPageEnter(() => {
-  listWrapper.value?.addEventListener('scroll', scrollHandler)
-})
+  listWrapper.value?.addEventListener('scroll', scrollHandler);
+});
 
 onPageLeave(() => {
-  listWrapper.value?.removeEventListener('scroll', scrollHandler)
-})
+  listWrapper.value?.removeEventListener('scroll', scrollHandler);
+});
 </script>
 
 <style lang="scss" scoped>

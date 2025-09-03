@@ -1,6 +1,10 @@
 <template>
   <div class="shortcuts-key">
-    <KeyboardKey v-for="(item, index) in keys" :key="index" :value="item"></KeyboardKey>
+    <KeyboardKey
+      v-for="(item, index) in keys"
+      :key="index"
+      :value="item"
+    />
   </div>
 </template>
 
@@ -8,14 +12,14 @@
 import { computed } from 'vue';
 import KeyboardKey from '@/components/KeyboardKey.vue';
 
-const props = defineProps<{ shortcuts: string | string[] }>()
+const props = defineProps<{ shortcuts: string | string[] }>();
 
 const keys = computed(() => {
   if (typeof props.shortcuts === 'string') {
-    return props.shortcuts.split('+')
+    return props.shortcuts.split('+');
   }
-  return props.shortcuts || ['', '']
-})
+  return props.shortcuts || ['', ''];
+});
 
 </script>
 

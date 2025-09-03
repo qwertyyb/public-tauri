@@ -1,6 +1,6 @@
 <template>
   <section class="route-page">
-    <slot></slot>
+    <slot />
   </section>
 </template>
 
@@ -8,24 +8,24 @@
 import { router } from '@public/api/core';
 import { onBeforeUnmount, onMounted, provide } from 'vue';
 
-const pageEvent = new EventTarget()
+const pageEvent = new EventTarget();
 
-provide(router.pageEventSymbol, pageEvent)
+provide(router.pageEventSymbol, pageEvent);
 
 const dispatchLeave = () => {
-  pageEvent.dispatchEvent(new CustomEvent('pageLeave'))
-}
+  pageEvent.dispatchEvent(new CustomEvent('pageLeave'));
+};
 const dispatchEnter = () => {
-  console.log('dispatchEnter')
-  pageEvent.dispatchEvent(new CustomEvent('pageEnter'))
-}
+  console.log('dispatchEnter');
+  pageEvent.dispatchEvent(new CustomEvent('pageEnter'));
+};
 
-onMounted(dispatchEnter)
+onMounted(dispatchEnter);
 
-onBeforeUnmount(dispatchLeave)
+onBeforeUnmount(dispatchLeave);
 
 defineExpose({
   dispatchLeave,
-  dispatchEnter
-})
+  dispatchEnter,
+});
 </script>

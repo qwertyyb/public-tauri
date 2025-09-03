@@ -1,24 +1,22 @@
 import { convertFileSrc } from '@tauri-apps/api/core';
-import { join } from 'path-browserify'
+import { join } from 'path-browserify';
 
-// @todo 
-export const hanziToPinyin = (str: string) => {
-  return str
-}
+// @todo
+export const hanziToPinyin = (str: string) => str;
 
 export const getLocalPath = (
   urlOrPath: string | undefined,
-  basePath: string
+  basePath: string,
 ) => {
   if (
-    !urlOrPath ||
-    /^\w+:\/\//.test(urlOrPath) ||
-    urlOrPath.startsWith("data:")
+    !urlOrPath
+    || /^\w+:\/\//.test(urlOrPath)
+    || urlOrPath.startsWith('data:')
   ) {
     return urlOrPath;
   }
   let path = urlOrPath;
-  if (!urlOrPath.startsWith("/")) {
+  if (!urlOrPath.startsWith('/')) {
     path = join(basePath, urlOrPath);
   }
   return convertFileSrc(path);
@@ -26,16 +24,19 @@ export const getLocalPath = (
 
 const pinyin = (text: string) => {
   if (/[^\x00-\xff]/.test(text)) {
-    const full: string = hanziToPinyin(text)
+    const full: string = hanziToPinyin(text);
     if (full) {
       return [
         full.replace(/\s/g, ''),
-        full.split(' ').map(i => i.trim()[0]).filter(i => i).join('').toLowerCase()
-      ]
+        full.split(' ').map(i => i.trim()[0])
+          .filter(i => i)
+          .join('')
+          .toLowerCase(),
+      ];
     }
   }
-  return []
-}
+  return [];
+};
 
 export const formatCommand = (command: IPluginCommandConfig, manifest: IPluginManifest, pluginPath: string): IPluginCommand => {
   const item = {
@@ -47,49 +48,41 @@ export const formatCommand = (command: IPluginCommandConfig, manifest: IPluginMa
     mode: command.mode ?? 'none',
     entry: getLocalPath(command.entry, pluginPath),
     preload: command.preload ? join(pluginPath, command.preload) : command.preload,
-  }
-  const keywords: string[] = [item.name, item.title, item.subtitle || '', ...pinyin(item.title), ...pinyin(item.subtitle || '')].filter(Boolean)
-  const matches = (command.matches || []).map(match => {
+  };
+  const keywords: string[] = [item.name, item.title, item.subtitle || '', ...pinyin(item.title), ...pinyin(item.subtitle || '')].filter(Boolean);
+  const matches = (command.matches || []).map((match) => {
     if (match.type === 'text') {
-      const keywords = (match.keywords || []).reduce<string[]>((acc, keyword) => {
-        return [...acc, keyword, ...pinyin(keyword)]
-      }, [])
-      return { ...match, keywords }
+      const keywords = (match.keywords || []).reduce<string[]>((acc, keyword) => [...acc, keyword, ...pinyin(keyword)], []);
+      return { ...match, keywords };
     }
-    return match
-  })
+    return match;
+  });
   return {
     ...item,
-    matches: [...matches, { type: 'text', keywords } as ITextPluginCommandMatch]
-  }
-}
+    matches: [...matches, { type: 'text', keywords } as ITextPluginCommandMatch],
+  };
+};
 
-export const pushView = (options: { path: string, params?: any }) => {
-  return window.dispatchEvent(new CustomEvent('push-view', { detail: { ...options }}))
-}
+export const pushView = (options: { path: string, params?: any }) => window.dispatchEvent(new CustomEvent('push-view', { detail: { ...options } }));
 
-export const popView = (options: { count: number } = { count: 1}) => {
-  return window.dispatchEvent(new CustomEvent('pop-view', { detail: { ...options }}))
-}
+export const popView = (options: { count: number } = { count: 1 }) => window.dispatchEvent(new CustomEvent('pop-view', { detail: { ...options } }));
 
-export const popToRoot = (options?: { clearInput?: boolean }) => {
-  return window.dispatchEvent(new CustomEvent('pop-to-root', { detail: { ...options } }))
-}
+export const popToRoot = (options?: { clearInput?: boolean }) => window.dispatchEvent(new CustomEvent('pop-to-root', { detail: { ...options } }));
 
 export const openPluginPreferences = (plugin: string, options?: { wait?: boolean }) => {
   if (!options?.wait) {
-    return pushView({ path: '/plugin/prfs', params: { plugin } })
+    return pushView({ path: '/plugin/prfs', params: { plugin } });
   }
-  return new Promise<void>(resolve => {
-    pushView({ path: '/plugin/prfs', params: { plugin, done: resolve } })
-  })
-}
+  return new Promise<void>((resolve) => {
+    pushView({ path: '/plugin/prfs', params: { plugin, done: resolve } });
+  });
+};
 
 export const openCommandPreferences = (plugin: string, command: string, options?: { wait?: boolean }) => {
   if (!options?.wait) {
-    return pushView({ path: '/plugin/prfs', params: { plugin, command } })
+    return pushView({ path: '/plugin/prfs', params: { plugin, command } });
   }
-  return new Promise<void>(resolve => {
-    pushView({ path: '/plugin/prfs', params: { plugin, command, done: resolve } })
-  })
-}
+  return new Promise<void>((resolve) => {
+    pushView({ path: '/plugin/prfs', params: { plugin, command, done: resolve } });
+  });
+};

@@ -1,11 +1,29 @@
 <template>
-  <dialog class="confirm-dialog" ref="dialog">
-    <h1 class="dialog-title">{{ options.title }}</h1>
-    <div class="dialog-icon"></div>
-    <div class="dialog-message">{{ options.message }}</div>
+  <dialog
+    ref="dialog"
+    class="confirm-dialog"
+  >
+    <h1 class="dialog-title">
+      {{ options.title }}
+    </h1>
+    <div class="dialog-icon" />
+    <div class="dialog-message">
+      {{ options.message }}
+    </div>
     <ul class="dialog-action-btns">
-      <li class="dialog-action-btn cancel-btn" @click="onCancel" v-if="options.showCancel">{{ options.cancelText || '取消' }}</li>
-      <li class="dialog-action-btn confirm-btn" @click="onConfirm">{{ options.confirmText || '确认' }}</li>
+      <li
+        v-if="options.showCancel"
+        class="dialog-action-btn cancel-btn"
+        @click="onCancel"
+      >
+        {{ options.cancelText || '取消' }}
+      </li>
+      <li
+        class="dialog-action-btn confirm-btn"
+        @click="onConfirm"
+      >
+        {{ options.confirmText || '确认' }}
+      </li>
     </ul>
   </dialog>
 </template>
@@ -15,27 +33,27 @@ import { onMounted, onUnmounted, useTemplateRef } from 'vue';
 
 const props = defineProps<{
   options: IDialogOptions
-}>()
+}>();
 
-const dialog = useTemplateRef('dialog')
+const dialog = useTemplateRef('dialog');
 
 const onConfirm = () => {
   dialog.value?.close();
-  props.options.onConfirm?.()
-}
+  props.options.onConfirm?.();
+};
 
 const onCancel = () => {
   dialog.value?.close();
   props.options.onCancel?.();
-}
+};
 
 onMounted(() => {
-  dialog.value?.showModal()
-})
+  dialog.value?.showModal();
+});
 
 onUnmounted(() => {
-  dialog.value?.close()
-})
+  dialog.value?.close();
+});
 </script>
 
 <style lang="scss" scoped>

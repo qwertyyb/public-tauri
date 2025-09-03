@@ -1,4 +1,4 @@
-import { setupApp, preloadApp } from 'wujie'
+import { setupApp, preloadApp } from 'wujie';
 
 
 interface IListItem extends Record<string, any> {
@@ -16,21 +16,19 @@ interface IPlugin {
   onEnter?: (result: IListItem) => Promise<void> | void,
 }
 
-export const loadPlugin = (entry: string): Promise<IPlugin> => {
-  return new Promise((resolve, reject) => {
-    setupApp({
-      name: entry,
-      exec: true,
-      url: entry,
-      loadError: (url, error) => {
-        reject(error)
+export const loadPlugin = (entry: string): Promise<IPlugin> => new Promise((resolve, reject) => {
+  setupApp({
+    name: entry,
+    exec: true,
+    url: entry,
+    loadError: (url, error) => {
+      reject(error);
+    },
+    props: {
+      register: (plugin: IPlugin) => {
+        resolve(plugin);
       },
-      props: {
-        register: (plugin: IPlugin) => {
-          resolve(plugin)
-        }
-      }
-    })
-    preloadApp({ name: entry })
-  })
-}
+    },
+  });
+  preloadApp({ name: entry });
+});

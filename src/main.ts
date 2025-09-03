@@ -1,27 +1,27 @@
-import { createApp } from 'vue'
+import { createApp } from 'vue';
 import VirtualList from 'vue-virtual-list-v3';
-import ElementPlus from 'element-plus'
+import ElementPlus from 'element-plus';
 // import 'element-plus/dist/index.css'
-import App from './App.vue'
-import './style.css'
+import App from './App.vue';
+import './style.css';
 import { createDraggable } from './utils/draggable';
 import { registerMainShortcut } from './utils/shortcut';
 import { listenEvents } from './utils/events';
 import { init } from './plugin/manager';
 import { createTray } from './utils/tray';
 
-createDraggable()
-registerMainShortcut('Command+Space')
-listenEvents()
-createTray()
+createDraggable();
+registerMainShortcut('Command+Space');
+listenEvents();
+createTray();
 
-const app = createApp(App)
+const app = createApp(App);
 
-app.use(VirtualList)
-app.use(ElementPlus)
+app.use(VirtualList);
+app.use(ElementPlus);
 
-app.mount('#app')
+app.mount('#app');
 
-console.log('builtin plugins path', BUILTIN_PLUGINS_PATH)
+console.log('builtin plugins path', BUILTIN_PLUGINS_PATH);
 
-init()
+init();

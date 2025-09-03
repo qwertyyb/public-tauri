@@ -1,6 +1,6 @@
 <template>
   <div class="loadingBar">
-    <div class="loadingBarInner"></div>
+    <div class="loadingBarInner" />
   </div>
 </template>
 

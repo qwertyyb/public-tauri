@@ -1,37 +1,65 @@
 <template>
   <div class="plugin-prfs-view">
     <header class="prfs-header">
-      <img :src="manifest?.icon" alt="" class="prfs-image">
-      <h2 class="prfs-title">{{ manifest?.title }}</h2>
-      <p class="prfs-desc">{{ manifest?.descript }}</p>
-      <p class="fill-desc">为保障功能正常使用，请先填写配置信息</p>
+      <img
+        :src="manifest?.icon"
+        alt=""
+        class="prfs-image"
+      >
+      <h2 class="prfs-title">
+        {{ manifest?.title }}
+      </h2>
+      <p class="prfs-desc">
+        {{ manifest?.descript }}
+      </p>
+      <p class="fill-desc">
+        为保障功能正常使用，请先填写配置信息
+      </p>
     </header>
-    <el-form class="prfs-form"
+    <el-form
+      class="prfs-form"
       label-position="top"
     >
-      <el-form-item class="prfs-form-item"
-        :label="item.title"
+      <el-form-item
         v-for="item in preferences"
         :key="item.name"
+        class="prfs-form-item"
+        :label="item.title"
         :required="item.required"
       >
-        <el-input v-if="item.type === 'text' || item.type === 'textarea'"
-          :placeholder="item.placeholder"
+        <el-input
+          v-if="item.type === 'text' || item.type === 'textarea'"
           v-model="formValue[item.name]"
-        ></el-input>
-        <el-select v-if="item.type === 'select'"
+          :placeholder="item.placeholder"
+        />
+        <el-select
+          v-if="item.type === 'select'"
           v-model="formValue[item.name]"
           :placeholder="item.placeholder"
         >
-          <el-option v-for="option in item.options || []"
+          <el-option
+            v-for="option in item.options || []"
             :key="option.value"
-            :value="option.value" :label="option.label"
-          ></el-option>
+            :value="option.value"
+            :label="option.label"
+          />
         </el-select>
-        <p class="form-item-desc">{{ item.description }}</p>
+        <p class="form-item-desc">
+          {{ item.description }}
+        </p>
       </el-form-item>
-      <el-form-item class="btn-item" v-if="done">
-        <el-button type="primary" style="margin: 0 auto" :disabled="btnDisabled" @click="confirm">继续</el-button>
+      <el-form-item
+        v-if="done"
+        class="btn-item"
+      >
+        <el-button
+          type="primary"
+          style="margin: 0 auto"
+          :disabled="btnDisabled"
+          @click="confirm"
+        >
+          继续
+        </el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -43,9 +71,9 @@ import type { IPluginManifest } from '@public/types';
 import { ElForm, ElFormItem, ElInput, ElSelect, ElOption, ElButton } from 'element-plus';
 import { computed, nextTick, ref, shallowRef, toRaw, watch } from 'vue';
 
-const props = defineProps<{ plugin: string, command?: string, done?: () => void }>();
+const props = defineProps<{ plugin: string, command?: string, done?:() => void }>();
 
-const manifest = shallowRef<Omit<IPluginManifest, 'commands'>>()
+const manifest = shallowRef<Omit<IPluginManifest, 'commands'>>();
 
 const preferences = shallowRef<{
   name: string,
@@ -55,45 +83,45 @@ const preferences = shallowRef<{
   required?: boolean,
   placeholder?: string,
   options?: { value: string, label: string }[]
-}[]>([])
+}[]>([]);
 
-const formValue = ref<Record<string, any>>({})
+const formValue = ref<Record<string, any>>({});
 
 const btnDisabled = computed(() => {
-  const requiredFields = preferences.value.filter(item => item.required)
-  return requiredFields.some(item => !formValue.value[item.name])
-})
+  const requiredFields = preferences.value.filter(item => item.required);
+  return requiredFields.some(item => !formValue.value[item.name]);
+});
 
-let inited = false
+let inited = false;
 watch(formValue, () => {
   if (!inited) return;
   if (props.command) {
-    updateCommandPreferences(props.plugin, props.command, toRaw(formValue.value))
+    updateCommandPreferences(props.plugin, props.command, toRaw(formValue.value));
   } else {
-    updatePluginPreferences(props.plugin, toRaw(formValue.value))
+    updatePluginPreferences(props.plugin, toRaw(formValue.value));
   }
-}, { deep: true })
+}, { deep: true });
 
 const refresh = async () => {
-  const plugin = getPlugin(props.plugin)
+  const plugin = getPlugin(props.plugin);
   if (!plugin) return;
-  manifest.value = plugin.manifest
+  manifest.value = plugin.manifest;
   if (props.command) {
-    preferences.value = plugin.commands.find(c => c.name === props.command)?.preferences || []
-    formValue.value = plugin.settings?.commands?.[props.command]?.preferences || {}
+    preferences.value = plugin.commands.find(c => c.name === props.command)?.preferences || [];
+    formValue.value = plugin.settings?.commands?.[props.command]?.preferences || {};
   } else {
-    preferences.value = plugin.manifest.preferences || []
-    formValue.value = plugin.settings?.preferences || {}
+    preferences.value = plugin.manifest.preferences || [];
+    formValue.value = plugin.settings?.preferences || {};
   }
-  await nextTick()
-  inited = true
-}
+  await nextTick();
+  inited = true;
+};
 
-refresh()
+refresh();
 
 const confirm = () => {
-  props.done?.()
-}
+  props.done?.();
+};
 
 </script>
 
