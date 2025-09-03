@@ -1,5 +1,5 @@
 import * as clipboardBase from 'tauri-plugin-clipboard-api';
-import { getCurrentWindow } from '@tauri-apps/api/window';
+import { availableMonitors, getCurrentWindow } from '@tauri-apps/api/window';
 import * as autostart from '@tauri-apps/plugin-autostart';
 import { invokeServerUtils } from './utils';
 import { useRouter, onPageEnter, onPageLeave, pageEventSymbol, routerSymbol } from './router';
@@ -41,6 +41,8 @@ export const screen = {
   getDetails: () => invoke('get_monitors'),
   capture: (id: number) => invoke<string>('screenshot', { id }),
 };
+
+availableMonitors
 
 export const dialog = {
   showAlert(message: string, title?: string, options?: { type: 'info' | 'warning' | 'error', confirmText: string }) {

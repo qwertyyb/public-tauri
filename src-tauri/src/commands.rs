@@ -30,6 +30,11 @@ pub fn get_monitors() -> Vec<MonitorWrapper> {
 }
 
 #[tauri::command]
+pub fn monitor_from_point(x: i32, y: i32) -> MonitorWrapper {
+    MonitorWrapper(Monitor::from_point(x, y).unwrap())
+}
+
+#[tauri::command]
 pub fn screenshot(id: u32) -> Result<String, String> {
     let start = Instant::now();
     let monitors = Monitor::all().unwrap();

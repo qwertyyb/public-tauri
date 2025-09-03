@@ -15,7 +15,7 @@ pub fn run() {
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_nspanel::init())
         .plugin(tauri_plugin_process::init())
-        .invoke_handler(tauri::generate_handler![commands::get_monitors, commands::screenshot])
+        .invoke_handler(tauri::generate_handler![commands::get_monitors, commands::screenshot, commands::monitor_from_point])
         .setup(move |app| {
             #[cfg(desktop)]
             let _ = app.handle().plugin(tauri_plugin_autostart::init(tauri_plugin_autostart::MacosLauncher::LaunchAgent, Some(vec![]) /* arbitrary number of args to pass to your app */));
