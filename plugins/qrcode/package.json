@@ -59,7 +59,7 @@
         "title": "解析二维码",
         "subtitle": "解析二维码",
         "mode": "listView",
-        "preload": "./dist/detect.preload.js",
+        "preload": "./dist/detect.command.js",
         "matches": [
           {
             "type": "text",

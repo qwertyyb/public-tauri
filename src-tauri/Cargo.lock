@@ -4144,6 +4144,7 @@ checksum = "33cb294fe86a74cbcf50d4445b37da762029549ebeea341421c7c70370f86cac"
 name = "public-tauri"
 version = "0.1.0"
 dependencies = [
+ "base64 0.22.1",
  "png 0.18.0",
  "serde",
  "tauri",

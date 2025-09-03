@@ -14,7 +14,9 @@ import logger from './utils/logger';
 
 const app = new Koa()
 
-app.use(koaBody())
+app.use(koaBody({
+  jsonLimit: '100mb'
+}))
 app.use(cors())
 
 app.use(createLoggerMiddleware())

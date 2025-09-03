@@ -1,53 +1,48 @@
-import { IListViewCommand, IPlugin, IPluginCommand as ICommand } from '@public/types'
-export { clipboard, dialog, mainWindow, fetch, utils } from './core'
-import { useRouter, onPageEnter, onPageLeave } from './router'
-import { invokePluginServerMethod } from './utils'
-import { io } from "https://cdn.socket.io/4.8.1/socket.io.esm.min.js";
-
-
-export type { IListViewCommand, IPlugin, ICommand }
+import { useRouter, onPageEnter, onPageLeave } from './router';
+import { invokePluginServerMethod } from './utils';
+import { io } from 'https://cdn.socket.io/4.8.1/socket.io.esm.min.js';
+export type { IListViewCommand, IPlugin, IPluginCommand as ICommand } from '@public/types';
+export { clipboard, dialog, mainWindow, fetch, utils, screen } from './core';
 
 const createPluginStorage = (name: string) => {
-  const getKey = (key: string) => `${name}:${key}`
+  const getKey = (key: string) => `${name}:${key}`;
   return {
     getItem(key: string) {
-      return CoreStorage.getItem(getKey(key))
+      return CoreStorage.getItem(getKey(key));
     },
     setItem(key: string, value: any) {
-      return CoreStorage.setItem(getKey(key), value)
+      return CoreStorage.setItem(getKey(key), value);
     },
     allItems() {
-      return CoreStorage.allItems(`${name}:`)
+      return CoreStorage.allItems(`${name}:`);
     },
     clear(keyPrefix?: string) {
-      return CoreStorage.clear(`${name}:`)
+      return CoreStorage.clear(`${name}:`);
     },
     removeItem(key: string) {
-      return CoreStorage.removeItem(getKey(key))
-    }
-  }
-}
+      return CoreStorage.removeItem(getKey(key));
+    },
+  };
+};
 
-const pluginName = process.env.PLUGIN_NAME
+const pluginName = process.env.PLUGIN_NAME;
 
 if (!pluginName) {
-  throw new Error(`PLUGIN_NAME is not defined`)
+  throw new Error('PLUGIN_NAME is not defined');
 }
 
-export const invoke = async <T>(method: string, ...args: any[]): Promise<T> => {
-  return invokePluginServerMethod(pluginName, method, args)
-}
+export const invoke = async <T>(method: string, ...args: any[]): Promise<T> => invokePluginServerMethod(pluginName, method, args);
 
 const socket = io('http://localhost:2345', {
   path: '/socket.io',
   query: {
-    name: pluginName
-  }
-})
+    name: pluginName,
+  },
+});
 export const on = (event: string, callback: (data: any) => void) => {
-  socket.on(event, callback)
-}
+  socket.on(event, callback);
+};
 
-export const storage = createPluginStorage(pluginName)
+export const storage = createPluginStorage(pluginName);
 
-export const router = { useRouter, onPageEnter, onPageLeave }
+export const router = { useRouter, onPageEnter, onPageLeave };

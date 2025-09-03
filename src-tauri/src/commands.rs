@@ -1,4 +1,5 @@
 use std::{io::Cursor, time::Instant};
+use base64::{engine::general_purpose, Engine};
 use xcap::{Monitor};
 use serde::ser::{Serialize, SerializeStruct, Serializer};
 
@@ -29,18 +30,19 @@ pub fn get_monitors() -> Vec<MonitorWrapper> {
 }
 
 #[tauri::command]
-pub fn screenshot(id: u32) -> Result<Vec<u8>, String> {
+pub fn screenshot(id: u32) -> Result<String, String> {
     let start = Instant::now();
     let monitors = Monitor::all().unwrap();
     let monitor = monitors.iter().find(|&item| item.id().unwrap() == id).unwrap();
 
     let image = monitor.capture_image().unwrap();
     print!("截图耗时: {:?}", start.elapsed());
+
     let mut buffer = Cursor::new(Vec::new());
     image.write_to(&mut buffer, xcap::image::ImageFormat::WebP)
       .map_err(|e| e.to_string())?;
 
     println!("运行耗时: {:?}", start.elapsed());
 
-    Ok(buffer.into_inner())
+    Ok(general_purpose::STANDARD.encode(buffer.get_ref()))
 }

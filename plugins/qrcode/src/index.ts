@@ -32,7 +32,9 @@ const createQrcodePlugin: IPlugin = (utils) => {
 
   detectClipboard();
 
-  mainWindow.onShow(detectClipboard);
+  mainWindow.onShow(() => {
+    detectClipboard();
+  });
 
   return {
     async onSelect(command, match) {
@@ -43,15 +45,18 @@ const createQrcodePlugin: IPlugin = (utils) => {
       if (command.name === 'generate' || command.name === 'generate-for-current-url') {
         if (!text) return;
         // 生成二维码
-        const res: { html: string, url: string } = await new Promise(resolve => QRCode.toDataURL(text).then((url: string) => {
-          const html = `
-            <div class="flex flex-col justify-center items-center w-full h-full">
-              <img src="${url}" class="w-full" />
-              <div class="text-single-line mt-2" style="max-width:100%" title=${JSON.stringify(text)}>${text}</div>
-            </div>
-          `;
-          resolve({ html, url });
-        }));
+        const res: { html: string, url: string } = await new Promise<{html: string, url: string}>((resolve) => {
+          QRCode.toDataURL(text)
+            .then((url: string) => {
+              const html = `
+              <div class="flex flex-col justify-center items-center w-full h-full">
+                <img src="${url}" class="w-full" />
+                <div class="text-single-line mt-2" style="max-width:100%" title=${JSON.stringify(text)}>${text}</div>
+              </div>
+            `;
+              resolve({ html, url });
+            });
+        });
         return res.html;
       }
     },
