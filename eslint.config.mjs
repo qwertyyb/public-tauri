@@ -4,11 +4,15 @@ import globals from 'globals';
 import { fileURLToPath } from 'node:url';
 import typescriptEslint from 'typescript-eslint';
 
-export default typescriptEslint.config([
+export default typescriptEslint.config(
   { ignores: ['*.d.ts', '**/coverage', '**/dist'] },
   ...eslintTencent({
     tsconfigRootDir: fileURLToPath(new URL('./', import.meta.url)),
-    project: fileURLToPath(new URL('./tsconfig.node.json', import.meta.url)),
+    project: [
+      fileURLToPath(new URL('./tsconfig.node.json', import.meta.url)),
+      fileURLToPath(new URL('./tsconfig.app.json', import.meta.url)),
+      fileURLToPath(new URL('./tsconfig.plugins.json', import.meta.url)),
+    ],
   }),
   {
     // eslint.config.mjs 的 eslint 配置
@@ -17,10 +21,6 @@ export default typescriptEslint.config([
       globals: globals.node,
     },
   },
-  ...eslintTencent({
-    tsconfigRootDir: fileURLToPath(new URL('./', import.meta.url)),
-    project: fileURLToPath(new URL('./tsconfig.app.json', import.meta.url)),
-  }),
   {
     // 业务代码的 eslint 配置
     extends: [
@@ -36,22 +36,4 @@ export default typescriptEslint.config([
       },
     },
   },
-  // {
-  //   extends: [
-  //   ],
-  //   // files: ['src/**/*.ts', 'src/**/*.vue'],
-  //   // languageOptions: {
-  //   //   ecmaVersion: 'latest',
-  //   //   sourceType: 'module',
-  //   //   globals: globals.browser,
-  //   //   parserOptions: {
-  //   //     parser: typescriptEslint.parser,
-  //   //     project: './tsconfig.app.json',
-  //   //     extraFileExtensions: ['.vue'],
-  //   //   },
-  //   // },
-  //   rules: {
-  //     '@typescript-eslint/no-explicit-any': false,
-  //   },
-  // },
-]);
+);

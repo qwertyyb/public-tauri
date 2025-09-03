@@ -1,27 +1,27 @@
-import { exec } from 'child_process'
-import * as path from 'path'
+import { exec } from 'child_process';
+import * as path from 'path';
 
 const REAL_KEYS = {
   kMDItemDisplayName: 'name',
   kMDItemLastUsedDate: 'lastUsed',
-  kMDItemUseCount: 'useCount'
-}
+  kMDItemUseCount: 'useCount',
+};
 
 const mfindAsync = (args: string) => {
-  let childProcess: any
+  let childProcess: any;
   const stdout = new Promise((resolve, reject) => {
     childProcess = exec(`mdfind ${args}`, (err, result) => {
-      if (err) return reject(err)
-      const lines = result.split('\0').filter(r => r)
-      const results = lines.map(line => parseLine(line))
-      return resolve(results)
-    })
-  })
+      if (err) return reject(err);
+      const lines = result.split('\0').filter(r => r);
+      const results = lines.map(line => parseLine(line));
+      return resolve(results);
+    });
+  });
   return {
     stdout,
-    terminate: () => childProcess.kill()
-  }
-}
+    terminate: () => childProcess.kill(),
+  };
+};
 
 /**
  * Parse mdfind result line to JS object
@@ -30,35 +30,35 @@ const mfindAsync = (args: string) => {
  * @return {Object}
  */
 function parseLine(line: string) {
-  const attrs = line.split('   ')
+  const attrs = line.split('   ');
   // First attr is always full path to the item
-  const filePath = <string>attrs.shift()
+  const filePath = attrs.shift() as string;
   const result: any = {
     path: filePath,
-    filename: path.basename(filePath).replace(/\.app$/, '')
-  }
-  attrs.forEach(attr => {
-    const [key, value] = attr.split(' = ')
+    filename: path.basename(filePath).replace(/\.app$/, ''),
+  };
+  attrs.forEach((attr) => {
+    const [key, value] = attr.split(' = ');
     // @ts-ignore
-    result[REAL_KEYS[key] || key] = getValue(value)
-  })
-  return result
+    result[REAL_KEYS[key] || key] = getValue(value);
+  });
+  return result;
 }
 
 const getValue = (item: string) => {
   if (!item || item === '(null)') {
-    return null
-  } else if (item.startsWith('(\n    "') && item.endsWith('"\n)')) {
-    const actual = item.slice(7, -3)
-    const lines = actual.split('",\n    "')
-    return lines
+    return null;
+  } if (item.startsWith('(\n    "') && item.endsWith('"\n)')) {
+    const actual = item.slice(7, -3);
+    const lines = actual.split('",\n    "');
+    return lines;
   }
-  return item
-}
+  return item;
+};
 
 const makeArgs = (array: string[], argName: string) => (
   array.map(item => [argName, item]).flat()
-)
+);
 
 export default function mdfind({
   query = '',
@@ -69,11 +69,11 @@ export default function mdfind({
   interpret = false,
   limit = 1024,
 } = {}) {
-  const dirArgs = makeArgs(directories, '-onlyin')
-  const nameArgs = makeArgs(names, '-name')
-  const attrArgs = makeArgs(attributes, '-attr')
-  const interpretArgs = interpret ? ['-interpret'] : []
-  const queryArgs = query ? [query] : []
+  const dirArgs = makeArgs(directories, '-onlyin');
+  const nameArgs = makeArgs(names, '-name');
+  const attrArgs = makeArgs(attributes, '-attr');
+  const interpretArgs = interpret ? ['-interpret'] : [];
+  const queryArgs = query ? [query] : [];
 
   const args = ['-0'].concat(
     dirArgs,
@@ -81,15 +81,16 @@ export default function mdfind({
     attrArgs,
     interpretArgs,
     live ? ['-live', '-reprint'] : [],
-    queryArgs
-  ).flat().join(' ')
+    queryArgs,
+  ).flat()
+    .join(' ');
 
-  console.log('search apps', args)
+  console.log('search apps', args);
 
-  const process = mfindAsync(`${args}`)
+  const process = mfindAsync(`${args}`);
   // @ts-ignore
-  process.stdout = process.stdout
-  
+  process.stdout = process.stdout;
 
-  return process
+
+  return process;
 }

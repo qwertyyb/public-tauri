@@ -1,38 +1,37 @@
-import * as path from 'path'
+import * as path from 'path';
 
 // @ts-ignore
-window.filePath = path.resolve(__dirname, 'lib/wechat_qrcode_files.data')
+window.filePath = path.resolve(__dirname, 'lib/wechat_qrcode_files.data');
 
-let opencv: any
+let opencv: any;
 
 const loadOpencv = () => {
   if (opencv) {
-    return opencv
+    return opencv;
   }
-  opencv = __non_webpack_require__('../lib/ready_opencv.js')
-  return opencv
-}
+  opencv = __non_webpack_require__('../lib/ready_opencv.js');
+  return opencv;
+};
 
 export const detectWithOpencv = (() => {
-  let wr: any = null
+  let wr: any = null;
   return async (imgData: ImageData) => {
-
-    let opencv: any
+    let opencv: any;
     if (!wr) {
-      opencv = await loadOpencv()
-      wr = new opencv.wechat_qrcode_WeChatQRCode("wechat_qrcode/detect.prototxt", "wechat_qrcode/detect.caffemodel", "wechat_qrcode/sr.prototxt", "wechat_qrcode/sr.caffemodel")
+      opencv = await loadOpencv();
+      wr = new opencv.wechat_qrcode_WeChatQRCode('wechat_qrcode/detect.prototxt', 'wechat_qrcode/detect.caffemodel', 'wechat_qrcode/sr.prototxt', 'wechat_qrcode/sr.caffemodel');
     }
 
-    const results = wr.detectAndDecode(opencv.matFromImageData(imgData))
+    const results = wr.detectAndDecode(opencv.matFromImageData(imgData));
     if (results.size() < 1) {
-      return []
+      return [];
     }
-    let i = 0
-    let arr = []
-    while(i < results.size()) {
-      arr.push(results.get(i++))
+    let i = 0;
+    const arr = [];
+    while (i < results.size()) {
+      arr.push(results.get(i++));
     }
-    results.delete()
-    return arr
-  }
-})()
+    results.delete();
+    return arr;
+  };
+})();

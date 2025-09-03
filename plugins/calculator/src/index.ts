@@ -1,10 +1,10 @@
 
-import type { IPlugin } from '@public/types'
+import type { IPlugin } from '@public/types';
 import { writeText } from 'tauri-plugin-clipboard-api';
-import { create, all } from "mathjs";
+import { create, all } from 'mathjs';
 
-const DECIMAL_SEPARATOR = '.'
-const ARG_SEPARATOR = ','
+const DECIMAL_SEPARATOR = '.';
+const ARG_SEPARATOR = ',';
 
 const mathjs = create(all, {
   relTol: 1e-12,
@@ -13,18 +13,18 @@ const mathjs = create(all, {
   number: 'BigNumber',
   precision: 64,
   predictable: false,
-  randomSeed: null
-})
+  randomSeed: null,
+});
 
 export class Calculator {
   public static isValidInput(input: string): boolean {
-    const blackListInputs = ["version", "i"];
+    const blackListInputs = ['version', 'i'];
 
     if (input.length === 0) {
       return false;
     }
 
-    if (blackListInputs.find((b) => input === b) !== undefined) {
+    if (blackListInputs.find(b => input === b) !== undefined) {
       return false;
     }
 
@@ -47,44 +47,42 @@ export class Calculator {
   private static normalizeInput(input: string) {
     return input.replace(
       new RegExp(`\\${DECIMAL_SEPARATOR}|\\${ARG_SEPARATOR}`, 'g'),
-      (match) => match === DECIMAL_SEPARATOR ? '.' : ',');
+      match => (match === DECIMAL_SEPARATOR ? '.' : ','),
+    );
   }
 
   public static calculate(input: string): string {
     const result: string = mathjs.evaluate?.(this.normalizeInput(input)).toString();
     return result.replace(
       new RegExp(',|\\.', 'g'),
-      (match) => match === '.' ? DECIMAL_SEPARATOR : ARG_SEPARATOR);
+      match => (match === '.' ? DECIMAL_SEPARATOR : ARG_SEPARATOR),
+    );
   }
 }
 
-const calculatorPlugin: IPlugin = (utils) => {
-  return {
-    onInput(
-      keyword: string
-    ) {
-      if (Calculator.isValidInput(keyword)) {
-        const result = Calculator.calculate(keyword)
-        console.log('keyword', result)
-        return [
-          {
-            name: "calculator",
-            title: `= ${result}`,
-            subtitle: '点击复制到剪切板',
-            icon: './assets/icon.png',
-            text: `${result}`,
-            matches: [
-              { type: 'text', keywords: [keyword] }
-            ]
-          }
-        ]
-      }
-    },
-    onEnter (item) {
-      writeText(String(item.text))
-      // api.showHUD('已复制到剪切板')
+const calculatorPlugin: IPlugin = utils => ({
+  onInput(keyword: string) {
+    if (Calculator.isValidInput(keyword)) {
+      const result = Calculator.calculate(keyword);
+      console.log('keyword', result);
+      return [
+        {
+          name: 'calculator',
+          title: `= ${result}`,
+          subtitle: '点击复制到剪切板',
+          icon: './assets/icon.png',
+          text: `${result}`,
+          matches: [
+            { type: 'text', keywords: [keyword] },
+          ],
+        },
+      ];
     }
-  }
-}
+  },
+  onEnter(item) {
+    writeText(String(item.text));
+    // api.showHUD('已复制到剪切板')
+  },
+});
 
-export default calculatorPlugin
+export default calculatorPlugin;

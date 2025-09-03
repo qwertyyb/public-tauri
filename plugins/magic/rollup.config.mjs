@@ -1,12 +1,12 @@
 import { defineConfig } from 'rollup';
-import esbuild from 'rollup-plugin-esbuild'
+import esbuild from 'rollup-plugin-esbuild';
 import commonjs from '@rollup/plugin-commonjs';
-import json from '@rollup/plugin-json'
+import json from '@rollup/plugin-json';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 
-const createRollupConfig = (input) => ({
-  input: input,
+const createRollupConfig = input => ({
+  input,
   output: {
     dir: 'dist',
     format: 'esm',
@@ -22,11 +22,11 @@ const createRollupConfig = (input) => ({
     replace({
       preventAssignment: true,
       'process.env.PLUGIN_NAME': JSON.stringify('magic'),
-    })
+    }),
   ],
   external: [
-    'vue'
-  ]
-})
+    'vue',
+  ],
+});
 
 export default defineConfig([createRollupConfig('./src/index.ts')]);

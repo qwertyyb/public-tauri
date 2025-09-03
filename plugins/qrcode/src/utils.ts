@@ -1,4 +1,4 @@
-import { utils } from '@public/api'
+import { utils } from '@public/api';
 
 export const getChromeCurrentUrl = async () => {
   const script = `
@@ -11,13 +11,13 @@ export const getChromeCurrentUrl = async () => {
       return ""
     end if
   end tell
-  `
+  `;
   try {
-    return await utils.runAppleScript(script)
+    return await utils.runAppleScript(script);
   } catch (err) {
-    return ''
+    return '';
   }
-}
+};
 
 export const getSafariCurrentUrl = async () => {
   const script = `
@@ -33,8 +33,8 @@ export const getSafariCurrentUrl = async () => {
   `;
 
   try {
-    return await utils.runAppleScript(script)
+    return await utils.runAppleScript(script);
   } catch (err) {
-    return ''
+    return '';
   }
-}
+};

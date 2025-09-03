@@ -1,6 +1,6 @@
 import { handleQuery, handleSelect, handleEnter, handleAction } from '@/plugin/service';
 
-export const query = (keyword: string) => handleQuery(keyword) || [];
+export const query = (keyword: string) => handleQuery(keyword);
 
 export const select = (result: IResultItem, keyword: string) =>
   // @ts-ignore

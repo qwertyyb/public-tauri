@@ -1,30 +1,29 @@
 const prepareFs = function (Module, dataFilePath) {
-  var loadPackage = function (metadata) {
-
-    var PACKAGE_PATH = '';
+  const loadPackage = function (metadata) {
+    let PACKAGE_PATH = '';
     if (typeof window === 'object') {
-      PACKAGE_PATH = window['encodeURIComponent'](window.location.pathname.toString().substring(0, window.location.pathname.toString().lastIndexOf('/')) + '/');
+      PACKAGE_PATH = window.encodeURIComponent(`${window.location.pathname.toString().substring(0, window.location.pathname.toString().lastIndexOf('/'))}/`);
     } else if (typeof process === 'undefined' && typeof location !== 'undefined') {
       // web worker
-      PACKAGE_PATH = encodeURIComponent(location.pathname.toString().substring(0, location.pathname.toString().lastIndexOf('/')) + '/');
+      PACKAGE_PATH = encodeURIComponent(`${location.pathname.toString().substring(0, location.pathname.toString().lastIndexOf('/'))}/`);
     }
-    var PACKAGE_NAME = 'wechat_qrcode_files.data';
-    var REMOTE_PACKAGE_BASE = 'wechat_qrcode_files.data';
-    if (typeof Module['locateFilePackage'] === 'function' && !Module['locateFile']) {
-      Module['locateFile'] = Module['locateFilePackage'];
+    const PACKAGE_NAME = 'wechat_qrcode_files.data';
+    const REMOTE_PACKAGE_BASE = 'wechat_qrcode_files.data';
+    if (typeof Module.locateFilePackage === 'function' && !Module.locateFile) {
+      Module.locateFile = Module.locateFilePackage;
       err('warning: you defined Module.locateFilePackage, that has been renamed to Module.locateFile (using your locateFilePackage for now)');
     }
-    var REMOTE_PACKAGE_NAME = Module['locateFile'] ? Module['locateFile'](REMOTE_PACKAGE_BASE, '') : REMOTE_PACKAGE_BASE;
+    const REMOTE_PACKAGE_NAME = Module.locateFile ? Module.locateFile(REMOTE_PACKAGE_BASE, '') : REMOTE_PACKAGE_BASE;
 
-    var REMOTE_PACKAGE_SIZE = metadata['remote_package_size'];
+    const REMOTE_PACKAGE_SIZE = metadata.remote_package_size;
 
     function fetchPackageByXhr(packageName, packageSize, callback, errback) {
-      var xhr = new XMLHttpRequest();
+      const xhr = new XMLHttpRequest();
       xhr.open('GET', dataFilePath, true);
       xhr.responseType = 'arraybuffer';
       xhr.onprogress = function (event) {
-        var url = packageName;
-        var size = packageSize;
+        const url = packageName;
+        let size = packageSize;
         if (event.total) size = event.total;
         if (event.loaded) {
           if (!xhr.addedTotal) {
@@ -32,60 +31,60 @@ const prepareFs = function (Module, dataFilePath) {
             if (!Module.dataFileDownloads) Module.dataFileDownloads = {};
             Module.dataFileDownloads[url] = {
               loaded: event.loaded,
-              total: size
+              total: size,
             };
           } else {
             Module.dataFileDownloads[url].loaded = event.loaded;
           }
-          var total = 0;
-          var loaded = 0;
-          var num = 0;
-          for (var download in Module.dataFileDownloads) {
-            var data = Module.dataFileDownloads[download];
+          let total = 0;
+          let loaded = 0;
+          let num = 0;
+          for (const download in Module.dataFileDownloads) {
+            const data = Module.dataFileDownloads[download];
             total += data.total;
             loaded += data.loaded;
             num++;
           }
-          if (Module['setStatus']) Module['setStatus']('Downloading data... (' + loaded + '/' + total + ')');
+          if (Module.setStatus) Module.setStatus(`Downloading data... (${loaded}/${total})`);
         } else if (!Module.dataFileDownloads) {
-          if (Module['setStatus']) Module['setStatus']('Downloading data...');
+          if (Module.setStatus) Module.setStatus('Downloading data...');
         }
       };
       xhr.onerror = function (event) {
-        throw new Error("NetworkError for: " + packageName);
-      }
+        throw new Error(`NetworkError for: ${packageName}`);
+      };
       xhr.onload = function (event) {
         if (xhr.status == 200 || xhr.status == 304 || xhr.status == 206 || (xhr.status == 0 && xhr.response)) { // file URLs can return 0
-          var packageData = xhr.response;
+          const packageData = xhr.response;
           callback(packageData);
         } else {
-          throw new Error(xhr.statusText + " : " + xhr.responseURL);
+          throw new Error(`${xhr.statusText} : ${xhr.responseURL}`);
         }
       };
       xhr.send(null);
     };
 
     const fetchPackageByNode = (packageName, packageSize, callback) => {
-      const fs = require('fs')
-      const path = require('path')
-      callback(fs.readFileSync(path.join(__dirname, packageName)))
-    }
+      const fs = require('fs');
+      const path = require('path');
+      callback(fs.readFileSync(path.join(__dirname, packageName)));
+    };
 
     const fetchRemotePackage = (...args) => {
       if (typeof require === 'function' && typeof module === 'object') {
-        return fetchPackageByNode(...args)
+        return fetchPackageByNode(...args);
       }
-      return fetchPackageByXhr(...args)
-    }
+      return fetchPackageByXhr(...args);
+    };
 
     function handleError(error) {
       console.error('package error:', error);
     };
 
-    var fetchedCallback = null;
-    var fetched = Module['getPreloadedPackage'] ? Module['getPreloadedPackage'](REMOTE_PACKAGE_NAME, REMOTE_PACKAGE_SIZE) : null;
+    let fetchedCallback = null;
+    let fetched = Module.getPreloadedPackage ? Module.getPreloadedPackage(REMOTE_PACKAGE_NAME, REMOTE_PACKAGE_SIZE) : null;
 
-    if (!fetched) fetchRemotePackage(REMOTE_PACKAGE_NAME, REMOTE_PACKAGE_SIZE, function (data) {
+    if (!fetched) fetchRemotePackage(REMOTE_PACKAGE_NAME, REMOTE_PACKAGE_SIZE, (data) => {
       if (fetchedCallback) {
         fetchedCallback(data);
         fetchedCallback = null;
@@ -95,11 +94,10 @@ const prepareFs = function (Module, dataFilePath) {
     }, handleError);
 
     function runWithFS() {
-
       function assert(check, msg) {
         if (!check) throw msg + new Error().stack;
       }
-      Module['FS_createPath']("/", "wechat_qrcode", true, true);
+      Module.FS_createPath('/', 'wechat_qrcode', true, true);
 
       /** @constructor */
       function DataRequest(start, end, audio) {
@@ -109,50 +107,49 @@ const prepareFs = function (Module, dataFilePath) {
       }
       DataRequest.prototype = {
         requests: {},
-        open: function (mode, name) {
+        open(mode, name) {
           this.name = name;
           this.requests[name] = this;
-          Module['addRunDependency']('fp ' + this.name);
+          Module.addRunDependency(`fp ${this.name}`);
         },
-        send: function () { },
-        onload: function () {
-          var byteArray = this.byteArray.subarray(this.start, this.end);
+        send() { },
+        onload() {
+          const byteArray = this.byteArray.subarray(this.start, this.end);
           this.finish(byteArray);
         },
-        finish: function (byteArray) {
-          var that = this;
+        finish(byteArray) {
+          const that = this;
 
-          Module['FS_createDataFile'](this.name, null, byteArray, true, true, true); // canOwn this data in the filesystem, it is a slide into the heap that will never change
-          Module['removeRunDependency']('fp ' + that.name);
+          Module.FS_createDataFile(this.name, null, byteArray, true, true, true); // canOwn this data in the filesystem, it is a slide into the heap that will never change
+          Module.removeRunDependency(`fp ${that.name}`);
 
           this.requests[this.name] = null;
-        }
+        },
       };
 
-      var files = metadata['files'];
-      for (var i = 0; i < files.length; ++i) {
-        new DataRequest(files[i]['start'], files[i]['end'], files[i]['audio']).open('GET', files[i]['filename']);
+      const { files } = metadata;
+      for (let i = 0; i < files.length; ++i) {
+        new DataRequest(files[i].start, files[i].end, files[i].audio).open('GET', files[i].filename);
       }
 
 
       function processPackageData(arrayBuffer) {
-        console.log(arrayBuffer)
+        console.log(arrayBuffer);
         assert(arrayBuffer, 'Loading data file failed.');
         assert(arrayBuffer instanceof ArrayBuffer || arrayBuffer instanceof Uint8Array, 'bad input to processPackageData');
-        var byteArray = new Uint8Array(arrayBuffer);
-        var curr;
+        const byteArray = new Uint8Array(arrayBuffer);
+        let curr;
 
         // Reuse the bytearray from the XHR as the source for file reads.
         DataRequest.prototype.byteArray = byteArray;
 
-        var files = metadata['files'];
-        for (var i = 0; i < files.length; ++i) {
+        const { files } = metadata;
+        for (let i = 0; i < files.length; ++i) {
           DataRequest.prototype.requests[files[i].filename].onload();
         }
-        Module['removeRunDependency']('datafile_build_wasm/bin/wechat_qrcode_files.data');
-
+        Module.removeRunDependency('datafile_build_wasm/bin/wechat_qrcode_files.data');
       };
-      Module['addRunDependency']('datafile_build_wasm/bin/wechat_qrcode_files.data');
+      Module.addRunDependency('datafile_build_wasm/bin/wechat_qrcode_files.data');
 
       if (!Module.preloadResults) Module.preloadResults = {};
 
@@ -163,19 +160,18 @@ const prepareFs = function (Module, dataFilePath) {
       } else {
         fetchedCallback = processPackageData;
       }
-
     }
-    if (Module['calledRun']) {
+    if (Module.calledRun) {
       runWithFS();
     } else {
-      if (!Module['preRun']) Module['preRun'] = [];
-      Module["preRun"].push(runWithFS); // FS is not initialized yet, wait for it
+      if (!Module.preRun) Module.preRun = [];
+      Module.preRun.push(runWithFS); // FS is not initialized yet, wait for it
     }
-  }
-  loadPackage({ "files": [{ "filename": "/wechat_qrcode/detect.prototxt", "start": 0, "end": 42656, "audio": 0 }, { "filename": "/wechat_qrcode/sr.caffemodel", "start": 42656, "end": 66585, "audio": 0 }, { "filename": "/wechat_qrcode/sr.prototxt", "start": 66585, "end": 72569, "audio": 0 }, { "filename": "/wechat_qrcode/detect.caffemodel", "start": 72569, "end": 1037999, "audio": 0 }], "remote_package_size": 1037999, "package_uuid": "190540bd-18cf-4576-9232-dd354a4a06e0" });
+  };
+  loadPackage({ files: [{ filename: '/wechat_qrcode/detect.prototxt', start: 0, end: 42656, audio: 0 }, { filename: '/wechat_qrcode/sr.caffemodel', start: 42656, end: 66585, audio: 0 }, { filename: '/wechat_qrcode/sr.prototxt', start: 66585, end: 72569, audio: 0 }, { filename: '/wechat_qrcode/detect.caffemodel', start: 72569, end: 1037999, audio: 0 }], remote_package_size: 1037999, package_uuid: '190540bd-18cf-4576-9232-dd354a4a06e0' });
 
-  return Module
+  return Module;
 };
 
 // module.exports = prepareFs
-export default prepareFs
+export default prepareFs;

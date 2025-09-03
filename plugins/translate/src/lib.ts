@@ -1,7 +1,7 @@
-import { Module } from 'module'
+import { Module } from 'module';
 
-const require = Module.createRequire(import.meta.url)
+const require = Module.createRequire(import.meta.url);
 
-const addon = require('../build/Release/addon.node')
+const addon = require('../build/Release/addon.node');
 
-export default addon
+export default addon;

@@ -1,9 +1,7 @@
-import { detectBase64 } from 'wechat-qrcode'
+import { detectBase64 } from 'wechat-qrcode';
 
-const createQrcode = () => {
-  return {
-    detect: detectBase64
-  }
-}
+const createQrcode = () => ({
+  detect: detectBase64,
+});
 
-export default createQrcode
+export default createQrcode;
