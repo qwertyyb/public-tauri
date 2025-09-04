@@ -9,12 +9,13 @@ import { computed, nextTick, onBeforeUnmount, provide, shallowRef, useTemplateRe
 import { router } from '@public/api/core';
 import { showAlert, showConfirm, showToast } from '@/utils/feedback';
 import PluginCustomView from '@/views/PluginCustomView.vue';
+import AIChatView from '@/views/AIChatView.vue';
 
 const hash = location.hash.substring(1);
 
 const routes: Record<string, Component | undefined> = {
   '/': HomeView,
-  // '/ai/chat': AIChatView,
+  '/ai/chat': AIChatView,
   '/plugin/list-view': ListView,
   '/plugin/view': PluginView,
   '/plugin/prfs': PluginPrfsView,

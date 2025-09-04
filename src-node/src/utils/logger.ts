@@ -1,5 +1,5 @@
-import pino from 'pino'
+import pino from 'pino';
 
-const logger = pino()
+const logger = pino();
 
-export default console
+export default process.env.NODE_ENV === 'development' ? console : logger;

@@ -43,7 +43,7 @@ const focusInput = () => {
 };
 
 const onResultEnter = (item: IPluginCommand | null, itemIndex: number) => {
-  service.enter(toRaw(results.value[itemIndex]), keyword.value);
+  service.enter(toRaw(results.value[itemIndex]));
 };
 
 const onResultSelected = async (item: IPluginCommand | null, itemIndex: number) => {

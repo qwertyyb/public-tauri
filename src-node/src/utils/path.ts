@@ -1,12 +1,11 @@
-import { homedir } from 'node:os'
-import { join } from 'node:path'
-import { ensureDirSync } from 'fs-extra'
-import logger from './logger'
+import { homedir } from 'node:os';
+import { join } from 'node:path';
+import { ensureDirSync } from 'fs-extra';
 
-const bundleIdentifier = 'com.qwertyyb.public'
+const bundleIdentifier = 'com.qwertyyb.public';
 
 export const getConfigDir = () => {
-  const configDir = join(homedir(), `Application Support/${bundleIdentifier}`)
-  ensureDirSync(configDir)
-  return configDir
-}
+  const configDir = join(homedir(), `Application Support/${bundleIdentifier}`);
+  ensureDirSync(configDir);
+  return configDir;
+};

@@ -12,6 +12,12 @@ onlyBuiltDependencies:
   - esbuild
   - vue-demi
 
+nodeVersion: 24.5.0
+engineStrict: true
+
+catalog:
+  typescript: ~5.9.2
+
 catalogs:
   plugin:
     "@rollup/plugin-commonjs": ^28.0.6

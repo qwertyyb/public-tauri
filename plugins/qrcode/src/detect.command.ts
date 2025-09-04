@@ -1,4 +1,4 @@
-import { clipboard, dialog, ICommand, IListViewCommand, invoke, mainWindow, screen } from '@public/api';
+import { clipboard, dialog, ICommand, IListViewCommand, invoke, mainWindow, screen, utils } from '@public/api';
 
 const createClipboardItem = (text: string) => {
   const item: ICommand = {
@@ -24,10 +24,17 @@ const detectClipboard = async (): Promise<string[]> => {
 };
 
 const detectScreen = async (): Promise<string[]> => {
-  await mainWindow.hide();
-  const imgbase64 = await screen.capture(2);
-  const texts = (await invoke<string[]>('detect', imgbase64)) || [];
-  return texts;
+  try {
+    await mainWindow.hide();
+    const cursorPosition = await utils.getMousePosition();
+    const monitor = await screen.screenFromPoint(cursorPosition.x, cursorPosition.y);
+    const imgbase64 = await screen.capture(monitor.id);
+    const texts = (await invoke<string[]>('detect', imgbase64)) || [];
+    return texts;
+  } catch (err) {
+    console.error(err);
+    return [];
+  }
 };
 
 const detect = async () => {

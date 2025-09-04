@@ -1,10 +1,10 @@
-import { Middleware } from "koa";
+import type { Middleware } from 'koa';
 
 const createCacheMiddleware = (): Middleware => async (ctx, next) => {
   if (ctx.query.max_age && /^\d+$/.test(ctx.query.max_age as string)) {
-    ctx.set('Cache-Control', `max_age=${ctx.query.max_age}`)
+    ctx.set('Cache-Control', `max_age=${ctx.query.max_age}`);
   }
-  await next()
-}
+  await next();
+};
 
-export default createCacheMiddleware
+export default createCacheMiddleware;

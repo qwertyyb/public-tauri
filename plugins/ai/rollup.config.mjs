@@ -21,6 +21,7 @@ const createRollupConfig = input => ({
       'process.env.PLUGIN_NAME': JSON.stringify('ai'),
     }),
   ],
+  treeshake: 'smallest',
 });
 
 export default defineConfig([createRollupConfig('./src/index.ts')]);

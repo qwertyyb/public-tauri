@@ -320,6 +320,10 @@ export const getPreferenceValues = (pluginName: string) => pluginsSettings[plugi
 
 // shortcut
 export const updateCommandShortcut = async (pluginName: string, commandName: string, shortcut?: string) => {
+  shortcut = shortcut?.split('+').map(key => {
+    if (key === 'Meta') return 'Command'
+    return key
+  }).join('+')
   const old = pluginsSettings?.[pluginName]?.commands[commandName]?.shortcut;
   if (old && old !== shortcut) {
     globalShortcut.unregister(old);

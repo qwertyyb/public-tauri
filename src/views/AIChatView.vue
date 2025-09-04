@@ -42,11 +42,11 @@ import { ref, nextTick, toRaw, useTemplateRef } from 'vue';
 import OpenAI from 'openai';
 import MarkdownIt from 'markdown-it';
 import { ElInput, ElButton } from 'element-plus';
-import { onPageEnter } from '@/router/hooks';
 import { isKeyPressed } from '@/utils/keyboard';
 import { AI_ASSISTANT_PROMPT, AI_TOOLS_DEFINITIONS, AI_TOOLS } from '@/const';
 import { getPreferenceValues } from '@/plugin/manager';
 import { popToRoot } from '@/plugin/utils';
+import { onPageEnter } from '@public/api/router'
 import logger from '@/utils/logger';
 
 const props = defineProps<{ query?: string }>();
@@ -244,8 +244,6 @@ onPageEnter(async () => {
   overflow: auto;
   &.user {
     margin-left: auto;
-    .message-content {
-    }
   }
   :deep(.message-content) {
     pre {

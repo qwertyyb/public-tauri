@@ -26,6 +26,10 @@ app.use(createCacheMiddleware());
 app.use(managerRoutes.routes()).use(managerRoutes.allowedMethods());
 app.use(utilsRouter.routes()).use(utilsRouter.allowedMethods());
 
+console.log(app.callback());
+
+// app.callback 的类型定义有问题，先 disable 一下
+// eslint-disable-next-line @typescript-eslint/no-misused-promises
 const httpServer = createServer(app.callback());
 
 startSocketIO(httpServer);

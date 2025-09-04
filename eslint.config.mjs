@@ -6,12 +6,18 @@ import typescriptEslint from 'typescript-eslint';
 
 export default typescriptEslint.config(
   { ignores: ['*.d.ts', '**/coverage', '**/dist'] },
+  {
+    rules: {
+      '@typescript-eslint/no-misused-promises': false,
+    },
+  },
   ...eslintTencent({
     tsconfigRootDir: fileURLToPath(new URL('./', import.meta.url)),
     project: [
       fileURLToPath(new URL('./tsconfig.node.json', import.meta.url)),
       fileURLToPath(new URL('./tsconfig.app.json', import.meta.url)),
       fileURLToPath(new URL('./tsconfig.plugins.json', import.meta.url)),
+      fileURLToPath(new URL('./src-node/tsconfig.json', import.meta.url)),
     ],
   }),
   {

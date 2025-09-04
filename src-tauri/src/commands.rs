@@ -30,8 +30,9 @@ pub fn get_monitors() -> Vec<MonitorWrapper> {
 }
 
 #[tauri::command]
-pub fn monitor_from_point(x: i32, y: i32) -> MonitorWrapper {
-    MonitorWrapper(Monitor::from_point(x, y).unwrap())
+pub fn monitor_from_point(x: i32, y: i32) -> Result<MonitorWrapper, String> {
+    let monitor = Monitor::from_point(x, y).map_err(|e| e.to_string())?;
+    Ok(MonitorWrapper(monitor))
 }
 
 #[tauri::command]

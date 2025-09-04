@@ -1,5 +1,5 @@
 import * as clipboardBase from 'tauri-plugin-clipboard-api';
-import { availableMonitors, getCurrentWindow } from '@tauri-apps/api/window';
+import { cursorPosition, getCurrentWindow } from '@tauri-apps/api/window';
 import * as autostart from '@tauri-apps/plugin-autostart';
 import { invokeServerUtils } from './utils';
 import { useRouter, onPageEnter, onPageLeave, pageEventSymbol, routerSymbol } from './router';
@@ -37,12 +37,22 @@ export const mainWindow = {
   },
 };
 
-export const screen = {
-  getDetails: () => invoke('get_monitors'),
-  capture: (id: number) => invoke<string>('screenshot', { id }),
-};
+interface ScreenDetail {
+  id: number
+  name: number
+  width: number
+  height: number
+  isBuiltin: boolean
+  isPrimary: boolean
+  x: number
+  y: number
+}
 
-availableMonitors
+export const screen = {
+  getDetails: () => invoke<ScreenDetail[]>('get_monitors'),
+  capture: (id: number) => invoke<string>('screenshot', { id }),
+  screenFromPoint: (x: number, y: number) => invoke<ScreenDetail>('monitor_from_point', { x: Math.round(x), y: Math.round(y) }),
+};
 
 export const dialog = {
   showAlert(message: string, title?: string, options?: { type: 'info' | 'warning' | 'error', confirmText: string }) {
@@ -82,6 +92,10 @@ export const utils = {
   runCommand: (command: string): Promise<string> => invokeServerUtils('system.runCommand', [command]),
   runAppleScript: (script: string): Promise<string> => invokeServerUtils('system.runAppleScript', [script]),
   open,
+  getMousePosition: async () => {
+    const [position, scaleFactor] = await Promise.all([cursorPosition(), getCurrentWindow().scaleFactor()]);
+    return position.toLogical(scaleFactor);
+  },
 };
 
 export const system = {

@@ -9,7 +9,8 @@
     ".": "./src/plugin.ts",
     "./core": "./src/core.ts",
     "./plugin": "./src/plugin.ts",
-    "./utils": "./src/utils.ts"
+    "./utils": "./src/utils.ts",
+    "./router": "./src/router.ts"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

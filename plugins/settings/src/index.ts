@@ -1,19 +1,13 @@
-import { mainWindow } from '@public/api';
+import { mainWindow, type IPlugin } from '@public/api';
 
-const createSettingsPlugin: IPlugin = utils =>
-
-// window.requestIdleCallback(() => {
-//   initSettings()
-// })
-
-  ({
-    onEnter: async (item, matchData) => {
-      mainWindow.pushView({
-        path: '/settings',
-        params: { query: matchData.query },
-      });
-    },
-  });
+const createSettingsPlugin: IPlugin = () => ({
+  onEnter: async (_item, matchData) => {
+    mainWindow.pushView({
+      path: '/settings',
+      params: { query: matchData.query },
+    });
+  },
+});
 
 
 export default createSettingsPlugin;

@@ -7,7 +7,7 @@ export const select = (result: IResultItem, keyword: string) =>
   handleSelect(result, keyword);
 
 
-export const enter = (result: IResultItem, keyword: string) =>
+export const enter = (result: IResultItem) =>
   // @ts-ignore
   handleEnter(result);
 

@@ -1,4 +1,4 @@
-type WithRequired<T, K extends keyof T> = T & { [P in K]-?: T[P] }
+type WithRequired<T, K extends keyof T> = T & { [P in K]-?: T[P] };
 
 export interface IActionItem {
   name: string
@@ -19,13 +19,13 @@ export type IPluginReturn = {
   onSelect?: (command: IPluginCommand, matchData: ICommandMatchData) => string | undefined | HTMLElement | Promise<string | HTMLElement | undefined>,
   onEnter?: (command: IPluginCommand, matchData: ICommandMatchData) => void,
   onAction?: (command: IPluginCommand, action: IActionItem, keyword: string) => void,
-} | undefined | null
+} | undefined | null;
 
 export type IPlugin = (utils: {
   updateCommands: (commands: IPluginCommandConfig[]) => void,
   showCommands: (commands: IPluginCommandConfig[]) => void,
   getPreferences: () => any,
-}) => IPluginReturn
+}) => IPluginReturn;
 
 export interface ITriggerPluginCommandMatch {
   type: 'trigger'
@@ -51,25 +51,41 @@ export interface IRegExpPluginCommandMatch {
   subtitle?: string
 }
 
-export type IPluginCommandMatch = ITextPluginCommandMatch | ITriggerPluginCommandMatch | IFullPluginCommandMatch | IRegExpPluginCommandMatch
+export type IPluginCommandMatch = ITextPluginCommandMatch | ITriggerPluginCommandMatch | IFullPluginCommandMatch | IRegExpPluginCommandMatch;
 
-interface ICommandBaseMatchData { keyword: string, score: number, query: string }
+interface ICommandBaseMatchData {
+  keyword: string, score: number, query: string
+}
 
-interface ICommandTextMatchData extends ICommandBaseMatchData { from: 'match', match: ITextPluginCommandMatch, matchData: { keyword: string } }
+interface ICommandTextMatchData extends ICommandBaseMatchData {
+  from: 'match', match: ITextPluginCommandMatch, matchData: { keyword: string }
+}
 
-interface ICommandTriggerMatchData extends ICommandBaseMatchData { from: 'match', match: ITriggerPluginCommandMatch, matchData: { trigger: string, query: string } }
+interface ICommandTriggerMatchData extends ICommandBaseMatchData {
+  from: 'match', match: ITriggerPluginCommandMatch, matchData: { trigger: string, query: string }
+}
 
-interface ICommandRegExpMatchData extends ICommandBaseMatchData { from: 'match', match: IRegExpPluginCommandMatch, matchData: { matches: RegExpMatchArray } }
+interface ICommandRegExpMatchData extends ICommandBaseMatchData {
+  from: 'match', match: IRegExpPluginCommandMatch, matchData: { matches: RegExpMatchArray }
+}
 
-interface ICommandFullMatchData extends ICommandBaseMatchData { from: 'match', match: IFullPluginCommandMatch }
+interface ICommandFullMatchData extends ICommandBaseMatchData {
+  from: 'match', match: IFullPluginCommandMatch
+}
 
-interface ICommandHotKeyMatchData extends ICommandBaseMatchData { from: 'hotkey' }
+interface ICommandHotKeyMatchData extends ICommandBaseMatchData {
+  from: 'hotkey'
+}
 
-interface ICommandAliasMatchData extends ICommandBaseMatchData { from: 'alias' }
+interface ICommandAliasMatchData extends ICommandBaseMatchData {
+  from: 'alias'
+}
 
-interface ICommandOnInputMatchData extends ICommandBaseMatchData { from: 'onInput' }
+interface ICommandOnInputMatchData extends ICommandBaseMatchData {
+  from: 'onInput'
+}
 
-export type ICommandMatchData = ICommandTextMatchData | ICommandTriggerMatchData | ICommandRegExpMatchData | ICommandFullMatchData | ICommandHotKeyMatchData | ICommandAliasMatchData | ICommandOnInputMatchData
+export type ICommandMatchData = ICommandTextMatchData | ICommandTriggerMatchData | ICommandRegExpMatchData | ICommandFullMatchData | ICommandHotKeyMatchData | ICommandAliasMatchData | ICommandOnInputMatchData;
 
 export interface IPluginCommandConfig extends IListItem, Record<string, any> {
   name: string
@@ -80,7 +96,7 @@ export interface IPluginCommandConfig extends IListItem, Record<string, any> {
   preferences?: IPreference[]
 }
 
-export type IPluginCommand = IPluginCommandConfig
+export type IPluginCommand = IPluginCommandConfig;
 
 export interface IPreference {
   name: string
@@ -137,4 +153,4 @@ export interface IPluginSettings {
   preferences?: Record<string, string | number | boolean>
 }
 
-export type IPluginsSettings = Record<string, IPluginSettings | undefined>
+export type IPluginsSettings = Record<string, IPluginSettings | undefined>;
