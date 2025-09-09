@@ -47,6 +47,7 @@ const options = {
   icon: await Image.fromPath(await resolveResource('icons/icon.ico')),
   menu,
   menuOnLeftClick: true,
+  iconAsTemplate: true,
 };
 
 let tray: TrayIcon;

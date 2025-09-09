@@ -5,6 +5,10 @@ settings:
   excludeLinksFromLockfile: false
 
 catalogs:
+  default:
+    typescript:
+      specifier: ~5.9.2
+      version: 5.9.2
   plugin:
     '@rollup/plugin-commonjs':
       specifier: ^28.0.6
@@ -89,6 +93,9 @@ importers:
       pino:
         specifier: ^9.7.0
         version: 9.7.0
+      pinyin-pro:
+        specifier: ^3.27.0
+        version: 3.27.0
       tauri-plugin-clipboard-api:
         specifier: ^2.1.11
         version: 2.1.11(typescript@5.9.2)
@@ -145,7 +152,7 @@ importers:
         specifier: ^1.89.2
         version: 1.89.2
       typescript:
-        specifier: ~5.9.2
+        specifier: 'catalog:'
         version: 5.9.2
       typescript-eslint:
         specifier: ^8.38.0
@@ -601,7 +608,7 @@ importers:
         specifier: ^8.5.0
         version: 8.5.0
       typescript:
-        specifier: ~5.9.2
+        specifier: 'catalog:'
         version: 5.9.2
 
 packages:
@@ -3544,6 +3551,9 @@ packages:
   pino@9.7.0:
     resolution: {integrity: sha512-vnMCM6xZTb1WDmLvtG2lE/2p+t9hDEIvTWJsu6FejkE62vB7gDhvzrpFR4Cw2to+9JNQxVnkAKVPA1KPB98vWg==}
     hasBin: true
+
+  pinyin-pro@3.27.0:
+    resolution: {integrity: sha512-Osdgjwe7Rm17N2paDMM47yW+jUIUH3+0RGo8QP39ZTLpTaJVDK0T58hOLaMQJbcMmAebVuK2ePunTEVEx1clNQ==}
 
   pixelmatch@4.0.2:
     resolution: {integrity: sha512-J8B6xqiO37sU/gkcMglv6h5Jbd9xNER7aHzpfRdNmV4IbQBzBpe4l9XmbG+xPF/znacgu2jfEw+wHffaq/YkXA==}
@@ -7721,6 +7731,8 @@ snapshots:
       safe-stable-stringify: 2.5.0
       sonic-boom: 4.2.0
       thread-stream: 3.1.0
+
+  pinyin-pro@3.27.0: {}
 
   pixelmatch@4.0.2:
     dependencies:

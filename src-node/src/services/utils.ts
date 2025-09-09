@@ -4,6 +4,7 @@ import { exec } from 'child_process';
 import { promisify } from 'util';
 import { runAppleScript } from 'run-applescript';
 import { storage } from './sqlite';
+import { hanziToPinyin } from '../lib/macos';
 
 const execAsync = promisify(exec);
 
@@ -47,6 +48,10 @@ export const getFrontmostApplication = async (): Promise<Application | undefined
 };
 
 const utils = {
+  'toPinyin': async (words: string) => {
+    return hanziToPinyin(words)
+  },
+
   // 按下又抬起
   'keyboard.press': async (...keys: string[]) => {
     await robot.keyboard.type(...keys.map(key => robot.Key[key as keyof typeof robot.Key]));

@@ -3,7 +3,7 @@ import path, { join } from 'path-browserify';
 import { globalShortcut, mainWindow, registerServerModule, storage } from '@public/api/core';
 import { readTextFile } from '@tauri-apps/plugin-fs';
 import schema from './plugin.schema.json';
-import { formatCommand, getLocalPath, hanziToPinyin, openCommandPreferences, openPluginPreferences, popView } from './utils';
+import { formatCommand, getLocalPath, openCommandPreferences, openPluginPreferences, popView } from './utils';
 import { builtinPluginsPath } from './const';
 import { set } from 'es-toolkit/compat';
 import { resultsMap } from './store';

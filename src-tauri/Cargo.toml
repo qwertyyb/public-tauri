@@ -30,6 +30,7 @@ tauri-plugin-http = "2"
 tauri-plugin-process = "2.3.0"
 tauri-plugin-shell = "2"
 tauri-plugin-sql = { version = "2", features = ["sqlite"] }
+uiohook-rs = "0.2.6"
 xcap = "0.7.0"
 
 [target.'cfg(not(any(target_os = "android", target_os = "ios")))'.dependencies]

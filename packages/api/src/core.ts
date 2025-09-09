@@ -137,3 +137,5 @@ export const registerServerModule = async (name: string, modulePath: string) => 
 };
 
 export const router = { pageEventSymbol, routerSymbol, onPageEnter, onPageLeave, useRouter };
+
+export const toPinyin = (words: string): Promise<string> => invokeServerUtils('toPinyin', [words])

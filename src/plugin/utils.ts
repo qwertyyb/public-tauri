@@ -1,8 +1,6 @@
 import { convertFileSrc } from '@tauri-apps/api/core';
+import { pinyin as proPinyin } from "pinyin-pro";
 import { join } from 'path-browserify';
-
-// @todo
-export const hanziToPinyin = (str: string) => str;
 
 export const getLocalPath = (
   urlOrPath: string | undefined,
@@ -22,7 +20,10 @@ export const getLocalPath = (
   return convertFileSrc(path);
 };
 
+export const hanziToPinyin = (hanzi: string) => proPinyin(hanzi, { toneType: 'none' }) // 获取不带音调格式拼音 pinyin("汉语拼音", { toneType: "none" }); // "han yu pin yin"
+
 const pinyin = (text: string) => {
+  if (!text) return []
   if (/[^\x00-\xff]/.test(text)) {
     const full: string = hanziToPinyin(text);
     if (full) {
@@ -52,7 +53,7 @@ export const formatCommand = (command: IPluginCommandConfig, manifest: IPluginMa
   const keywords: string[] = [item.name, item.title, item.subtitle || '', ...pinyin(item.title), ...pinyin(item.subtitle || '')].filter(Boolean);
   const matches = (command.matches || []).map((match) => {
     if (match.type === 'text') {
-      const keywords = (match.keywords || []).reduce<string[]>((acc, keyword) => [...acc, keyword, ...pinyin(keyword)], []);
+      const keywords = (match.keywords || []).map<string[]>((keyword) => [keyword, ...pinyin(keyword)]).flat();
       return { ...match, keywords };
     }
     return match;

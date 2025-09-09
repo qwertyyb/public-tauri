@@ -12,7 +12,7 @@ const withCache = <F extends (...args: any[]) => any>(fn: F) => {
   };
 };
 
-const getData = withCache(async (type: 'hot' | 'latest' = 'hot') => {
+const getData = async (type: 'hot' | 'latest' = 'hot') => {
   const url = type === 'hot' ? `https://www.v2ex.com/api/topics/hot.json?${Date.now()}` : `https://www.v2ex.com/api/topics/latest.json?${Date.now()}`;
   const response = await fetch(url);
   console.log(response);
@@ -24,7 +24,7 @@ const getData = withCache(async (type: 'hot' | 'latest' = 'hot') => {
     url: item.url,
   }));
   return list;
-});
+}
 
 const command: IListViewCommand = {
   enter(query, setList, options) {
