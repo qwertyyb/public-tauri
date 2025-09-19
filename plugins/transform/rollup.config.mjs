@@ -25,6 +25,7 @@ const createRollupConfig = (input, options = {}) => ({
       'process.env.PLUGIN_NAME': JSON.stringify('transform'),
     }),
   ],
+  treeshake: 'smallest',
   // external: [
   //   /^\@tauri-apps\/api/,
   // ]

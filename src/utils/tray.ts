@@ -53,6 +53,6 @@ const options = {
 let tray: TrayIcon;
 
 export const createTray = async () => {
-  TrayIcon.removeById(options.id);
+  TrayIcon.removeById(options.id).catch(() => {})
   tray = await TrayIcon.new(options);
 };

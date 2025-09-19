@@ -22,6 +22,7 @@ const createRollupConfig = input => ({
       'process.env.PLUGIN_NAME': JSON.stringify('clipboard'),
     }),
   ],
+  treeshake: 'smallest',
   // external: [
   //   /^\@tauri-apps\/api/,
   // ]

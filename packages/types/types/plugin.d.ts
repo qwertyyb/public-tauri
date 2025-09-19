@@ -4,7 +4,7 @@ export interface IActionItem {
   name: string
   icon: string
   title: string
-  shortcuts?: string
+  shortcut?: string
 }
 
 export interface IListItem {
@@ -142,7 +142,7 @@ export interface IListViewCommand<Item extends IResultItem = IResultItem> {
 
 export interface ICommandSettings {
   alias?: string
-  shortcuts?: string
+  shortcut?: string
   disabled?: boolean
   preferences?: Record<string, any>
 }

@@ -7,8 +7,10 @@ import { formatCommand, getLocalPath, openCommandPreferences, openPluginPreferen
 import { builtinPluginsPath } from './const';
 import { set } from 'es-toolkit/compat';
 import { resultsMap } from './store';
+import { resolveResource } from '@tauri-apps/api/path';
 
 const ajv = new Ajv({ allowUnionTypes: true });
+console.log('schema', schema)
 const validate = ajv.compile(schema);
 
 const plugins: Map<string, IRunningPlugin> = new Map();
@@ -202,28 +204,6 @@ export const updateCommandSettings = (pluginName: string, commandName: string, s
 
 export const getPlugin = (name: string) => plugins.get(name);
 
-// export const launchPlugins = async () => {
-//   const result = await getItem<IPluginsSettings>('pluginsSettings')
-//   console.log('pluginsSettings', result)
-//   pluginsSettings = result || {}
-
-//   // const names = [
-//   //   'launcher', 'command', 'calculator', 'qrcode', 'links', 'translate', 'clipboard',
-//   //   'douban', 'magic', 'ai-chat', 'v2ex', 'terminal', 'find', 'google-chrome', 'mdn', 'shortcuts', 'transform',
-//   //   'settings', 'snippets'
-//   // ]
-//   const names = ['clipboard', 'translate', 'launcher', 'calculator', 'transform', 'ai', 'settings']
-
-//   const pluginsPathList = names.map(name => ({ path: path.join(builtinPluginsPath, name)! }))
-//   pluginsPathList.forEach(({ path }) => {
-//     registerPlugin(path).catch(err => {
-//       console.error(err)
-//     })
-//   })
-// }
-
-// launchPlugins()
-
 export const getPluginPreferences = (name: string) => {
   const plugin = plugins.get(name);
   if (!plugin) return {};
@@ -299,7 +279,8 @@ export const enterCommand = async (owner: IRunningPlugin, command: IPluginComman
   if (command.mode === 'none' || !command.mode) {
     owner.plugin?.onEnter?.(command, matchData);
   } else if (command.mode === 'listView') {
-    const mod = await import(/* @vite-ignore */command.preload!);
+    const modPath = import.meta.env.PROD ? `asset://localhost/${encodeURIComponent(command.preload!)}` : command.preload!
+    const mod = await import(/* @vite-ignore */modPath);
     // @ts-ignore
     window.publicAppCommand = mod.default || mod;
     window.dispatchEvent(new CustomEvent('push-view', { detail: { path: '/plugin/list-view', params: { command, plugin: owner, match: matchData, publicCommand: mod.default || mod } } }));
@@ -341,25 +322,30 @@ export const updateCommandShortcut = async (pluginName: string, commandName: str
   save();
 };
 
-const initInnerPlugins = () => {
+const initInnerPlugins = async () => {
   const names = ['clipboard', 'translate', 'launcher', 'calculator', 'transform', 'ai', 'settings', 'snippets', 'qrcode', 'v2ex', 'magic', 'mdn'];
 
-  const pluginsPathList = names.map(name => ({ path: path.join(builtinPluginsPath, name)! }));
-  pluginsPathList.forEach(({ path }) => {
-    registerPlugin(path).catch((err) => {
+  let pluginsPathList: string[] = []
+  if (import.meta.env.DEV) {
+    pluginsPathList = names.map(name => path.join(builtinPluginsPath, name)!);
+  } else {
+    pluginsPathList = await Promise.all(names.map(name => resolveResource(`../plugins/${name}`)))
+  }
+  return Promise.all(pluginsPathList.map((path) => {
+    return registerPlugin(path).catch((err) => {
       console.error(err);
     });
-  });
+  }));
 };
 
 const initCustomPlugins = async () => {
   const pluginPathList: string[] | undefined = await storage.getItem('customPluginPathList');
   if (!pluginPathList) return;
-  return pluginPathList.forEach((pluginPath) => {
-    registerPlugin(pluginPath).catch((err) => {
+  return Promise.all(pluginPathList.map((pluginPath) => {
+    return registerPlugin(pluginPath).catch((err) => {
       console.error('register plugin error: ', pluginPath, err);
     });
-  });
+  }));
 };
 
 const initCommandsShortcut = () => {
@@ -374,6 +360,7 @@ const initCommandsShortcut = () => {
         enterCommandByName(pluginName, command.name, { from: 'hotkey', score: 0, keyword: '', query: '' });
         mainWindow.show();
       };
+      console.log('initCommandsShortcut', shortcut)
       globalShortcut.register(shortcut, handler);
     });
   });

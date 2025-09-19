@@ -1,6 +1,6 @@
 <template>
   <div
-    class="shortcuts-recorder flex items-center cursor-pointer"
+    class="hotkey-recorder flex items-center cursor-pointer"
     :class="{'recording': isRecording, 'large': size === 'large', 'small': size === 'small' }"
   >
     <div
@@ -49,6 +49,8 @@ interface Key {
   modifiers: string[],
   key: string
 }
+
+const isMac = () => navigator.userAgent.includes('Macintosh') || navigator.userAgent.includes('Mac OS X')
 
 const createKeyEventHandler = (onChange: (value: Key) => void, done: (value: Key) => void) => {
   const key: Key = {
@@ -103,11 +105,17 @@ const startRecord = () => {
   stopRecord();
 
   const keyEventHandler = createKeyEventHandler((key) => {
-    recordedKeys.value = [...key.modifiers, key.key].filter(i => i).join('+');
+    recordedKeys.value = [...key.modifiers, key.key].filter(i => i).map(key => {
+      if (isMac() && key === 'Meta') return 'Command'
+      return key
+    }).join('+');
     console.log(recordedKeys.value);
   }, (key) => {
     stopRecord();
-    const value = [...key.modifiers, key.key].filter(i => i).join('+');
+    const value = [...key.modifiers, key.key].filter(i => i).map(key => {
+      if (isMac() && key === 'Meta') return 'Command'
+      return key
+    }).join('+');
     modelValue.value = value;
   });
   clearListener = () => {
@@ -135,7 +143,7 @@ const clear = () => {
 </script>
 
 <style lang="scss" scoped>
-.shortcuts-recorder {
+.hotkey-recorder {
   border-radius: 4px;
   &.large {
     padding: 4px 16px;
@@ -151,7 +159,7 @@ const clear = () => {
     height: 24px;
   }
 }
-.shortcuts-recorder:hover .close-icon {
+.hotkey-recorder:hover .close-icon {
   opacity: 1;
 }
 .close-icon {

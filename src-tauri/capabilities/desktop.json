@@ -25,6 +25,7 @@
     "shell:default",
     "shell:allow-spawn",
     "fs:default",
+    "fs:allow-resource-read-recursive",
     {
       "identifier": "fs:allow-read-text-file",
       "allow": [

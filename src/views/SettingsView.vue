@@ -170,8 +170,8 @@
                 </div>
                 <div class="action-item">
                   <ShortcutsRecorder
-                    :model-value="plugin.settings?.commands?.[command.name]?.shortcuts ?? ''"
-                    @update:model-value="onCommandChange({ shortcuts: $event }, plugin, command)"
+                    :model-value="plugin.settings?.commands?.[command.name]?.shortcut ?? ''"
+                    @update:model-value="onCommandChange({ shortcut: $event }, plugin, command)"
                   />
                 </div>
                 <div class="action-item">
@@ -227,7 +227,7 @@
 import { computed, ref, toRaw } from 'vue';
 import { ElMessage, ElButton, ElSelect, ElSwitch, ElOption, ElInput, ElForm, ElFormItem, ElIcon } from 'element-plus';
 import { ArrowRightBold, Plus, Delete, Operation } from '@element-plus/icons-vue';
-import ShortcutsRecorder from '@/components/ShortcutsRecorder.vue';
+import ShortcutsRecorder from '@/components/HotkeyRecorder.vue';
 import type { ICommandSettings, IPluginCommand, IRunningPlugin } from '@public/types';
 import { getSettings, updateSettings, getPlugins } from '@/services/settings';
 import { router as coreRotuer } from '@public/api/core';
@@ -298,8 +298,9 @@ const onPluginDisabledChange = async (enabled: boolean, plugin: IRunningPlugin) 
   refreshSettings();
 };
 const onCommandChange = async (values: Partial<ICommandSettings>, plugin: IRunningPlugin, command: IPluginCommand) => {
-  if ('shortcuts' in values) {
-    updateCommandShortcut(plugin.manifest.name, command.name, values.shortcuts);
+  if ('shortcut' in values) {
+    updateCommandShortcut(plugin.manifest.name, command.name, values.shortcut);
+    return;
   }
   // eslint-disable-next-line no-param-reassign
   plugin.settings!.commands![command.name] = { ...plugin.settings!.commands![command.name], ...values };
