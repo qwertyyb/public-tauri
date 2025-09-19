@@ -1,49 +1,37 @@
-# Tauri macOS Spotlight Example
+# tools
 
-This is an example project that shows how to create a macOS Spotlight app using Tauri.
+> 一个类似 Alfred、Raycast、utools 的工具，但更快、更便捷、更强大
 
-This template is based on Tauri + React + Typescript template. It should help get you started developing with Tauri, React and Typescript in Vite.
+## 技术环境
 
-## Prerequisites
+基于 Tauri，前端基于 Vue3，支持 Nodejs
 
-- _[<ins>Node.js<ins>](https://nodejs.org)_
-- _[<ins>Tauri CLI<ins>](https://tauri.studio/docs/getting-started/installation)_
-
-## Getting Started
-
-1. Clone this repository:
-
-```
-git clone https://github.com/ahkohd/tauri-macos-spotlight-example.git
-```
-
-2. Navigate to the project directory:
-
-```
-cd tauri-macos-spotlight-example
-```
-
-3. Run the demo
-
-```
-pnpm install
-pnpm tauri dev
-```
-
-4. Press <kbd>Cmd</kbd><kbd>k</kbd> to toggle the spotlight window
-
-![Demo](./demo.gif)
-
-## Recommended IDE Setup
+### 推荐开发环境
 
 - [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
 
-# Related
+### 开发步骤
 
-The following are related to this project:
+相关命令
 
-- [tauri-nspanel](https://github.com/ahkohd/tauri-nspanel/tree/main/examples/vanilla): Tauri plugin to convert a window to panel.
-- [tauri-plugin-spotlight](https://github.com/zzzze/tauri-plugin-spotlight): Tauri plugin that provides a MacOS Spotlight-like search functionality for Tauri windows.
+```shell
+# 安装依赖
+pnpm install
+
+# 运行 Nodejs Server
+cd src-node && pnpm dev
+
+# 开发调试
+pnpm tauri dev
+
+# 构建插件 
+pnpm plugin:build
+
+# 构建应用
+pnpm tauri build
+```
+
+快捷键 <kbd>Cmd</kbd> + <kbd>Space</kbd> 显示/隐藏窗口
 
 # License
 
