@@ -1,7 +1,7 @@
 import KoaRouter from '@koa/router';
-import { getFileIcon } from '../lib/macos';
-import utils from '../services/utils';
-import { createResponse } from '../utils/response';
+import { getFileIcon } from '../lib/macos.ts';
+import utils from '../services/utils.ts';
+import { createResponse } from '../utils/response.ts';
 import Stream from 'stream';
 
 const router = new KoaRouter({

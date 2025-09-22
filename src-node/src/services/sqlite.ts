@@ -1,7 +1,7 @@
 import * as path from 'path';
 import Database from 'better-sqlite3';
-import { getConfigDir } from '../utils/path';
-import logger from '../utils/logger';
+import { getConfigDir } from '../utils/path.ts';
+import logger from '../utils/logger.ts';
 
 const dbPath = path.join(getConfigDir(), 'db.sqlite');
 console.log('dbPath', dbPath);

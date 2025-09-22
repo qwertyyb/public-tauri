@@ -1,4 +1,4 @@
-import { emitEvent } from './sockets';
+import { emitEvent } from './sockets.ts';
 
 export const plugins = new Map<string, {
   modulePath: string,

@@ -3,8 +3,8 @@ import * as robot from '@nut-tree-fork/nut-js';
 import { exec } from 'child_process';
 import { promisify } from 'util';
 import { runAppleScript } from 'run-applescript';
-import { storage } from './sqlite';
-import { hanziToPinyin } from '../lib/macos';
+import { storage } from './sqlite.ts';
+import { hanziToPinyin } from '../lib/macos.ts';
 
 const execAsync = promisify(exec);
 
