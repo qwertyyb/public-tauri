@@ -1,5 +1,5 @@
 import type { Middleware } from 'koa';
-import logger from '../utils/logger.ts';
+import logger from '../utils/logger';
 
 const createLoggerMiddleware = (): Middleware => async (ctx, next) => {
   logger.info(`-> ${ctx.method}: ${ctx.url}, body: ${ctx.method === 'POST' ? JSON.stringify(ctx.request.body) : ''}`);

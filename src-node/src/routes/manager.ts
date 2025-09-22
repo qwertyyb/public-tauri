@@ -1,6 +1,6 @@
 import KoaRouter from '@koa/router';
-import { callPlugin, registerPlugin, unregisterPlugin, updatePlugin } from '../plugin/manager.ts';
-import { createResponse } from '../utils/response.ts';
+import { callPlugin, registerPlugin, unregisterPlugin, updatePlugin } from '../plugin/manager';
+import { createResponse } from '../utils/response';
 
 const router = new KoaRouter({
   prefix: '/api/manager',

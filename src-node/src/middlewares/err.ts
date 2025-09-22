@@ -1,5 +1,5 @@
 import type { Middleware } from 'koa';
-import { createResponse } from '../utils/response.ts';
+import { createResponse } from '../utils/response';
 
 const createErrorHandler = (): Middleware => async (ctx, next) => {
   try {

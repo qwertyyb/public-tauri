@@ -3,14 +3,14 @@ import koaBody from '@koa/bodyparser';
 import cors from '@koa/cors';
 import { createServer } from 'http';
 
-import managerRoutes from './routes/manager.ts';
-import utilsRouter from './routes/utils.ts';
+import managerRoutes from './routes/manager';
+import utilsRouter from './routes/utils';
 
-import createLoggerMiddleware from './middlewares/log.ts';
-import createErrorHandler from './middlewares/err.ts';
-import { startSocketIO } from './socket.io.ts';
-import createCacheMiddleware from './middlewares/cache.ts';
-import logger from './utils/logger.ts';
+import createLoggerMiddleware from './middlewares/log';
+import createErrorHandler from './middlewares/err';
+import { startSocketIO } from './socket.io';
+import createCacheMiddleware from './middlewares/cache';
+import logger from './utils/logger';
 
 const app = new Koa();
 

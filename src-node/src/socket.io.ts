@@ -1,8 +1,8 @@
 
 import { Server } from 'socket.io';
 import { Server as HttpServer } from 'http';
-import { addSocket, removeSocket } from './plugin/sockets.ts';
-import logger from './utils/logger.ts';
+import { addSocket, removeSocket } from './plugin/sockets';
+import logger from './utils/logger';
 
 let io: Server | null = null;
 
