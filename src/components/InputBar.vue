@@ -29,8 +29,9 @@
   </div>
 </template>
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref, useTemplateRef } from 'vue';
+import { onBeforeUnmount, onMounted, ref, useTemplateRef, watch } from 'vue';
 import { router } from '@public/api/core';
+import { createAutoResizeInput } from '@/utils';
 
 const modelValue = defineModel({ default: '' });
 const props = defineProps<{
@@ -42,6 +43,11 @@ const emits = defineEmits<{ escape: [] }>();
 
 const inputEl = useTemplateRef('input');
 const placeholder = ref('search...');
+
+watch(inputEl, (el) => {
+  if (!el) return;
+  createAutoResizeInput(el);
+})
 
 const keyDownHandler = (event: KeyboardEvent) => {
   if (event.key === 'Escape') {

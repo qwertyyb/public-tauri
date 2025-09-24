@@ -309,7 +309,7 @@ export const updateCommandShortcut = async (pluginName: string, commandName: str
   if (old && old !== shortcut) {
     globalShortcut.unregister(old);
   }
-  set(pluginsSettings, [pluginName, 'commands', commandName, shortcut].join('.'), 'shortcut');
+  set(pluginsSettings, [pluginName, 'commands', commandName, 'shortcut'].join('.'), shortcut);
   save();
   if (!shortcut) return;
   if (await globalShortcut.isRegistered(shortcut)) {
