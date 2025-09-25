@@ -196,6 +196,7 @@ provide(router.routerSymbol, {
 <style>
 :root {
   color-scheme: light dark;
+  --nav-height: 48px;
 }
 body {
   margin: 0;

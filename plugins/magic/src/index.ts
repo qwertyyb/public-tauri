@@ -1,4 +1,4 @@
-import { utils, IPlugin, fetch } from '@public/api';
+import { utils, type IPlugin, fetch } from '@public/api';
 
 const createMagicPlugin: IPlugin = () => ({
   async onEnter(command, options) {
