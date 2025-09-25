@@ -1,4 +1,4 @@
-import { fetch, ICommand } from '@public/api';
+import { fetch, type ICommand } from '@public/api';
 
 const formatCurrency = (amount: number) =>
   // JS 精度有问题, 简单处理一下

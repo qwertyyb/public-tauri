@@ -1,6 +1,7 @@
-import type { IPlugin, ICommand } from '@public/api';
+import { type IPlugin, type ICommand, dialog, clipboard } from '@public/api';
 import { hToM, msToDuration, msToLocaleString, mToS, sToLocaleString, sToMs } from './lib/time';
 import { transformCurrency } from './lib/currency';
+import { decode, encode } from './lib/base64';
 
 const transformPlugin: IPlugin = utils => ({
   async onInput(keyword) {
@@ -89,7 +90,7 @@ const transformPlugin: IPlugin = utils => ({
         matches: [
           { type: 'text', keywords: [keyword] },
         ],
-      });
+      }, ...encode(value));
     } else if (prefix === 'decode' || prefix === 'dec') {
       const text = decodeURIComponent(value);
       commands.push({
@@ -100,14 +101,14 @@ const transformPlugin: IPlugin = utils => ({
         matches: [
           { type: 'text', keywords: [keyword] },
         ],
-      });
+      }, ...decode(value));
     }
     // utils.updateCommands(commands)
     return commands;
   },
   onEnter(command) {
-    // require('electron').clipboard.writeText(command.value)
-    // api.showHUD('已复制到剪切板')
+    clipboard.writeText(command.value);
+    dialog.showToast('已复制到剪切板')
   },
 });
 
