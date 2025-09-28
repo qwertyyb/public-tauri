@@ -1,6 +1,6 @@
 import Ajv from 'ajv';
 import path, { join } from 'path-browserify';
-import { globalShortcut, mainWindow, registerServerModule, storage } from '@public/api/core';
+import { fetch, globalShortcut, mainWindow, registerServerModule, storage } from '@public/api/core';
 import { readTextFile } from '@tauri-apps/plugin-fs';
 import schema from './plugin.schema.json';
 import { formatCommand, getLocalPath, openCommandPreferences, openPluginPreferences, popView } from './utils';
@@ -8,6 +8,7 @@ import { builtinPluginsPath } from './const';
 import { set } from 'es-toolkit/compat';
 import { resultsMap } from './store';
 import { resolveResource } from '@tauri-apps/api/path';
+import { preloadApp, setupApp, startApp } from 'wujie';
 
 const ajv = new Ajv({ allowUnionTypes: true });
 console.log('schema', schema)
@@ -366,13 +367,28 @@ const initCommandsShortcut = () => {
   });
 };
 
+// export const init = async () => {
+//   const result: IPluginsSettings = await storage.getItem('pluginsSettings');
+//   console.log('pluginsSettings', result);
+//   pluginsSettings = result || {};
+
+//   await initInnerPlugins();
+//   await initCustomPlugins();
+
+//   initCommandsShortcut();
+// };
+
 export const init = async () => {
-  const result: IPluginsSettings = await storage.getItem('pluginsSettings');
-  console.log('pluginsSettings', result);
-  pluginsSettings = result || {};
-
-  await initInnerPlugins();
-  await initCustomPlugins();
-
-  initCommandsShortcut();
-};
+  setupApp({
+    name: 'snippets',
+    url: 'http://localhost:5173',
+    exec: true,
+    alive: true,
+    fetch(input, init) {
+      return fetch(input, init)
+    },
+  })
+  preloadApp({
+    name: 'snippets',
+  })
+}
