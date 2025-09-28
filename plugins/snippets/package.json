@@ -1,60 +1,31 @@
 {
   "name": "snippets",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.0.0",
+  "private": true,
   "type": "module",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "vite build"
+    "dev": "vite",
+    "build": "run-p type-check \"build-only {@}\" --",
+    "preview": "vite preview",
+    "build-only": "vite build",
+    "type-check": "vue-tsc --build"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "packageManager": "pnpm@10.8.0",
   "dependencies": {
-    "@public/api": "workspace:^",
-    "element-plus": "^2.10.4"
-  },
-  "publicPlugin": {
-    "title": "snippets",
-    "subtitle": "snippets",
-    "icon": "./assets/snippets.png",
-    "main": "./dist/index.js",
-    "commands": [
-      {
-        "name": "create-snippet",
-        "title": "create snippet",
-        "mode": "none",
-        "matches": [
-          {
-            "type": "text",
-            "keywords": [
-              "create snippet"
-            ]
-          }
-        ]
-      },
-      {
-        "name": "search-snippets",
-        "title": "search snippets",
-        "mode": "listView",
-        "preload": "./dist/search.preload.js",
-        "matches": [
-          {
-            "type": "text",
-            "keywords": [
-              "search snippets"
-            ]
-          }
-        ]
-      }
-    ]
+    "vue": "^3.5.18"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^6.0.0",
+    "@tsconfig/node22": "^22.0.2",
+    "@types/node": "^22.16.5",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "@vitejs/plugin-vue-jsx": "^5.0.1",
     "@vue/tsconfig": "^0.7.0",
-    "rollup-plugin-external-globals": "^0.13.0",
-    "vite": "^7.0.6"
+    "npm-run-all2": "^8.0.4",
+    "typescript": "~5.8.0",
+    "vite": "^7.0.6",
+    "vite-plugin-vue-devtools": "^8.0.0",
+    "vue-tsc": "^3.0.4"
   }
 }

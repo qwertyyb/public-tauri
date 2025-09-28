@@ -1,5 +1,9 @@
-import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
+import { fileURLToPath, URL } from 'node:url'
+
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx'
+import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -8,22 +12,12 @@ export default defineConfig({
   },
   plugins: [
     vue(),
+    vueJsx(),
+    vueDevTools(),
   ],
   resolve: {
-  },
-  build: {
-    lib: {
-      entry: {
-        index: './src/index.ts',
-      },
-      formats: ['es'],
-    },
-    rollupOptions: {
-      external: ['vue', 'element-plus'],
-      output: {
-        format: 'esm',
-        dir: 'dist',
-      },
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
-});
+})
