@@ -10,6 +10,7 @@ import { router } from '@public/api/core';
 import { showAlert, showConfirm, showToast } from '@/utils/feedback';
 import PluginCustomView from '@/views/PluginCustomView.vue';
 import AIChatView from '@/views/AIChatView.vue';
+import PluginWujieView from '@/views/PluginWujieView.vue';
 
 const hash = location.hash.substring(1);
 
@@ -21,6 +22,7 @@ const routes: Record<string, Component | undefined> = {
   '/plugin/prfs': PluginPrfsView,
   '/settings': SettingsView,
   '/plugin/view/custom': PluginCustomView,
+  '/plugin/view/wujie': PluginWujieView,
   // '/plugin/link/create': CreateLinkView,
   // '/plugin/snippets/create': CreateSnippetView,
 };

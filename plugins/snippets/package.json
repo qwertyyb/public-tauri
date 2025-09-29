@@ -6,6 +6,41 @@
   "engines": {
     "node": "^20.19.0 || >=22.12.0"
   },
+  "publicPlugin": {
+    "title": "snippets",
+    "subtitle": "snippets",
+    "icon": "./assets/snippets.png",
+    "entry": "http://localhost:5173",
+    "commands": [
+      {
+        "name": "create-snippet",
+        "title": "create snippet",
+        "mode": "web",
+        "matches": [
+          {
+            "type": "text",
+            "keywords": [
+              "create snippet"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "search-snippets",
+        "title": "search snippets",
+        "mode": "listView",
+        "preload": "./dist/search.preload.js",
+        "matches": [
+          {
+            "type": "text",
+            "keywords": [
+              "search snippets"
+            ]
+          }
+        ]
+      }
+    ]
+  },
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
@@ -14,6 +49,7 @@
     "type-check": "vue-tsc --build"
   },
   "dependencies": {
+    "@public/plugin": "workspace:^",
     "vue": "^3.5.18"
   },
   "devDependencies": {

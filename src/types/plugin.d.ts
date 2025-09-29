@@ -101,6 +101,10 @@ interface IRunningPlugin {
   manifest: IPluginManifest
   commands: IPluginCommandConfig[]
   settings?: IPluginSettings
+  lifecycle?: {
+    onEnterCommand?: (name: string, params?: { value: string }) => any,
+    onExitCommand?: (name: string) => any
+  }
 }
 
 interface IPluginCommandListView<Item extends IResultItem = IResultItem> {

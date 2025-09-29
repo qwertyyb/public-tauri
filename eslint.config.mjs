@@ -8,7 +8,7 @@ export default typescriptEslint.config(
   { ignores: ['*.d.ts', '**/coverage', '**/dist'] },
   {
     rules: {
-      '@typescript-eslint/no-misused-promises': false,
+      '@typescript-eslint/no-misused-promises': 0,
     },
   },
   ...eslintTencent({

@@ -1,21 +1,22 @@
 import Ajv from 'ajv';
 import path, { join } from 'path-browserify';
-import { fetch, globalShortcut, mainWindow, registerServerModule, storage } from '@public/api/core';
+import { clipboard, createPluginStorage, dialog, fetch, globalShortcut, mainWindow, registerServerModule, storage, utils, invokePluginServerMethod, createPluginServerListener } from '@public/api/core';
+
 import { readTextFile } from '@tauri-apps/plugin-fs';
 import schema from './plugin.schema.json';
-import { formatCommand, getLocalPath, openCommandPreferences, openPluginPreferences, popView } from './utils';
+import { formatCommand, getLocalPath, openCommandPreferences, openPluginPreferences, popView, pushView } from './utils';
 import { builtinPluginsPath } from './const';
 import { set } from 'es-toolkit/compat';
 import { resultsMap } from './store';
 import { resolveResource } from '@tauri-apps/api/path';
-import { preloadApp, setupApp, startApp } from 'wujie';
+import { preloadApp, setupApp } from 'wujie';
 
 const ajv = new Ajv({ allowUnionTypes: true });
-console.log('schema', schema)
+console.log('schema', schema);
 const validate = ajv.compile(schema);
 
 const plugins: Map<string, IRunningPlugin> = new Map();
-let pluginsSettings: IPluginsSettings = {};
+const pluginsSettings: IPluginsSettings = {};
 
 const save = () => storage.setItem('pluginsSettings', pluginsSettings);
 
@@ -46,6 +47,8 @@ export const registerPlugin = async (pluginPath: string) => {
     const { commands: _, icon, ...rest } = publicPlugin;
     const main = rest.main || pkg.main;
     const name = rest.name || pkg.name;
+    const { entry: html } = rest;
+    console.log(rest, html);
     const manifest: IPluginManifest = { name, ...rest, main, icon: icon ? getLocalPath(icon, pluginPath) : icon };
     checkManifest({ ...manifest, commands: _ });
     const commands: IPluginCommand[] = (publicPlugin.commands || []).map((item: any) => formatCommand(item, manifest, pluginPath));
@@ -85,6 +88,10 @@ export const registerPlugin = async (pluginPath: string) => {
         }) as IPluginReturn;
         pluginInstance.plugin = await pluginReturn;
       }
+    }
+    if (html) {
+      const { lifecycle } = launchWujie(name, html);
+      pluginInstance.lifecycle = lifecycle;
     }
     plugins.set(pkg.name, pluginInstance);
     return pluginInstance;
@@ -280,13 +287,16 @@ export const enterCommand = async (owner: IRunningPlugin, command: IPluginComman
   if (command.mode === 'none' || !command.mode) {
     owner.plugin?.onEnter?.(command, matchData);
   } else if (command.mode === 'listView') {
-    const modPath = import.meta.env.PROD ? `asset://localhost/${encodeURIComponent(command.preload!)}` : command.preload!
+    const modPath = import.meta.env.PROD ? `asset://localhost/${encodeURIComponent(command.preload!)}` : command.preload!;
     const mod = await import(/* @vite-ignore */modPath);
     // @ts-ignore
     window.publicAppCommand = mod.default || mod;
     window.dispatchEvent(new CustomEvent('push-view', { detail: { path: '/plugin/list-view', params: { command, plugin: owner, match: matchData, publicCommand: mod.default || mod } } }));
   } else if (command.mode === 'view') {
     window.dispatchEvent(new CustomEvent('push-view', { detail: { path: '/plugin/view', params: { plugin: owner, command, match: matchData } } }));
+  } else if (command.mode === 'web') {
+    owner.lifecycle?.onEnterCommand?.(command.name);
+    pushView({ path: '/plugin/view/wujie', params: { name: owner.manifest.name } });
   }
 };
 
@@ -302,10 +312,11 @@ export const getPreferenceValues = (pluginName: string) => pluginsSettings[plugi
 
 // shortcut
 export const updateCommandShortcut = async (pluginName: string, commandName: string, shortcut?: string) => {
-  shortcut = shortcut?.split('+').map(key => {
-    if (key === 'Meta') return 'Command'
-    return key
-  }).join('+')
+  shortcut = shortcut?.split('+').map((key) => {
+    if (key === 'Meta') return 'Command';
+    return key;
+  })
+    .join('+');
   const old = pluginsSettings?.[pluginName]?.commands[commandName]?.shortcut;
   if (old && old !== shortcut) {
     globalShortcut.unregister(old);
@@ -326,27 +337,23 @@ export const updateCommandShortcut = async (pluginName: string, commandName: str
 const initInnerPlugins = async () => {
   const names = ['clipboard', 'translate', 'launcher', 'calculator', 'transform', 'ai', 'settings', 'snippets', 'qrcode', 'v2ex', 'magic', 'mdn', 'applescript'];
 
-  let pluginsPathList: string[] = []
+  let pluginsPathList: string[] = [];
   if (import.meta.env.DEV) {
     pluginsPathList = names.map(name => path.join(builtinPluginsPath, name)!);
   } else {
-    pluginsPathList = await Promise.all(names.map(name => resolveResource(`../plugins/${name}`)))
+    pluginsPathList = await Promise.all(names.map(name => resolveResource(`../plugins/${name}`)));
   }
-  return Promise.all(pluginsPathList.map((path) => {
-    return registerPlugin(path).catch((err) => {
-      console.error(err);
-    });
-  }));
+  return Promise.all(pluginsPathList.map(path => registerPlugin(path).catch((err) => {
+    console.error(err);
+  })));
 };
 
 const initCustomPlugins = async () => {
   const pluginPathList: string[] | undefined = await storage.getItem('customPluginPathList');
   if (!pluginPathList) return;
-  return Promise.all(pluginPathList.map((pluginPath) => {
-    return registerPlugin(pluginPath).catch((err) => {
-      console.error('register plugin error: ', pluginPath, err);
-    });
-  }));
+  return Promise.all(pluginPathList.map(pluginPath => registerPlugin(pluginPath).catch((err) => {
+    console.error('register plugin error: ', pluginPath, err);
+  })));
 };
 
 const initCommandsShortcut = () => {
@@ -361,7 +368,7 @@ const initCommandsShortcut = () => {
         enterCommandByName(pluginName, command.name, { from: 'hotkey', score: 0, keyword: '', query: '' });
         mainWindow.show();
       };
-      console.log('initCommandsShortcut', shortcut)
+      console.log('initCommandsShortcut', shortcut);
       globalShortcut.register(shortcut, handler);
     });
   });
@@ -378,17 +385,54 @@ const initCommandsShortcut = () => {
 //   initCommandsShortcut();
 // };
 
-export const init = async () => {
+export const launchWujie = (name: string, entryUrl: string) => {
+  const lifecycle: {
+    onEnterCommand?: (name: string, params?: { value: string }) => any,
+    onExitCommand?: (name: string) => any,
+  } = {};
   setupApp({
-    name: 'snippets',
-    url: 'http://localhost:5173',
+    name,
+    url: entryUrl,
     exec: true,
     alive: true,
     fetch(input, init) {
-      return fetch(input, init)
+      return fetch(input, init);
     },
-  })
+    props: {
+      storage: createPluginStorage(name),
+      dialog,
+      utils,
+      clipboard,
+      fetch,
+      screen,
+      invoke: (method: string, ...args: any[]) => invokePluginServerMethod(name, method, args),
+      on: createPluginServerListener(name),
+      onEnterCommand(fn: (name: string, params?: { value: string }) => any) {
+        lifecycle.onEnterCommand = fn;
+      },
+      onExitCommand(fn: (name: string) => any) {
+        lifecycle.onExitCommand = fn;
+      },
+    },
+  });
   preloadApp({
-    name: 'snippets',
-  })
-}
+    name,
+  });
+  return {
+    lifecycle,
+  };
+};
+
+export const init = async () => {
+  const names = ['snippets'];
+
+  let pluginsPathList: string[] = [];
+  if (import.meta.env.DEV) {
+    pluginsPathList = names.map(name => path.join(builtinPluginsPath, name)!);
+  } else {
+    pluginsPathList = await Promise.all(names.map(name => resolveResource(`../plugins/${name}`)));
+  }
+  return Promise.all(pluginsPathList.map(path => registerPlugin(path).catch((err) => {
+    console.error(err);
+  })));
+};

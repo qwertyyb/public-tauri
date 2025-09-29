@@ -38,6 +38,10 @@
       "type": "string",
       "description": "server js 文件，此 preload 会在首页执行"
     },
+    "entry": {
+      "type": "string",
+      "description": "入口"
+    },
     "preferences": {
       "type": "array",
       "description": "插件的偏好设置列表",
@@ -131,7 +135,7 @@
           },
           "mode": {
             "type": "string",
-            "enum": ["none", "view", "listView"],
+            "enum": ["none", "view", "listView", "web"],
             "description": "命令模式"
           },
           "entry": {

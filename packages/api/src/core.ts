@@ -6,7 +6,10 @@ import { useRouter, onPageEnter, onPageLeave, pageEventSymbol, routerSymbol } fr
 import { listen, type UnlistenFn } from '@tauri-apps/api/event';
 import { open } from '@tauri-apps/plugin-shell';
 import { invoke } from '@tauri-apps/api/core';
+
+import { io } from 'https://unpkg.com/socket.io@4.8.1/client-dist/socket.io.esm.min.js';
 export * as globalShortcut from '@tauri-apps/plugin-global-shortcut';
+export { invokePluginServerMethod } from './utils';
 
 const listenMap = new WeakMap<Function, UnlistenFn>();
 export const mainWindow = {
@@ -138,4 +141,37 @@ export const registerServerModule = async (name: string, modulePath: string) => 
 
 export const router = { pageEventSymbol, routerSymbol, onPageEnter, onPageLeave, useRouter };
 
-export const toPinyin = (words: string): Promise<string> => invokeServerUtils('toPinyin', [words])
+export const toPinyin = (words: string): Promise<string> => invokeServerUtils('toPinyin', [words]);
+
+export const createPluginStorage = (name: string) => {
+  const getKey = (key: string) => `${name}:${key}`;
+  return {
+    getItem(key: string) {
+      return storage.getItem(getKey(key));
+    },
+    setItem(key: string, value: any) {
+      return storage.setItem(getKey(key), value);
+    },
+    allItems() {
+      return storage.allItems(`${name}:`);
+    },
+    clear() {
+      return storage.clear(`${name}:`);
+    },
+    removeItem(key: string) {
+      return storage.removeItem(getKey(key));
+    },
+  };
+};
+
+export const createPluginServerListener = (pluginName: string) => {
+  const socket = io('http://localhost:2345', {
+    path: '/socket.io',
+    query: {
+      name: pluginName,
+    },
+  });
+  return (event: string, callback: (data: any) => void) => {
+    socket.on(event, callback);
+  };
+};
