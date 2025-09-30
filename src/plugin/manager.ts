@@ -325,6 +325,10 @@ export const enterCommand = async (owner: IRunningPlugin, command: IPluginComman
     pushView({ path: '/plugin/view', params: { plugin: owner, command, match: matchData } });
   } else if (command.mode === 'web') {
     const wujie = {
+      initialKeyword: matchData?.query ?? '',
+      onInput(value: string) {
+        console.log('onInput', value);
+      },
       mount(el: HTMLElement) {
         owner.lifecycle?.onEnter?.(command);
         startApp({ name: owner.manifest.name, el, url: owner.manifest.entry! });

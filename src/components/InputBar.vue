@@ -47,7 +47,7 @@ const placeholder = ref('search...');
 watch(inputEl, (el) => {
   if (!el) return;
   createAutoResizeInput(el);
-})
+});
 
 const keyDownHandler = (event: KeyboardEvent) => {
   if (event.key === 'Escape') {
