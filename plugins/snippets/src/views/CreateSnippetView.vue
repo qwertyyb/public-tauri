@@ -16,9 +16,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, toRaw, useTemplateRef } from 'vue'
+import { onMounted, ref, toRaw, useTemplateRef } from 'vue'
 import { ElInput, ElForm, ElFormItem, ElButton } from 'element-plus'
-import { dialog, mainWindow, router } from '@public/api'
+import { dialog, mainWindow, storage } from '@public/plugin'
 
 const formValue = ref({
   title: '',
@@ -28,7 +28,9 @@ const formValue = ref({
 const titleInput = useTemplateRef('title')
 
 const createSnippet = async () => {
-  await window.PublicApp.mainAPI.db.run('INSERT INTO snippets (title, content) VALUES ($title, $content)', { ...toRaw(formValue.value) })
+  const list: { title: string, content: string }[] = (await storage.getItem('snippets')) || []
+  list.unshift({ ...toRaw(formValue.value) })
+  await storage.setItem('snippets', list)
   dialog.showToast('创建成功')
   mainWindow.popToRoot()
 }
@@ -43,13 +45,15 @@ const keyDownHandler = (event: KeyboardEvent | Event, name: 'title' | 'content')
   }
 }
 
-router.onPageEnter(() => {
-  titleInput.value?.focus()
+onMounted(() => {
+  setTimeout(() => {
+    titleInput.value?.focus()
+  }, 200)
 })
 </script>
 
 <style lang="scss" scoped>
 .create-snippet-view {
-  padding: var(--nav-height) 16px 16px 16px;
+  padding: 16px;
 }
 </style>

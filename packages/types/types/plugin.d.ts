@@ -14,12 +14,28 @@ export interface IListItem {
   actions?: IActionItem[]
 }
 
+type IPluginLifecycle  = {
+  onInput?: (keyword: string) => void | IPluginCommand[] | Promise<void> | Promise<IPluginCommand[]>,
+  onSelect?: (command: IPluginCommand, matchData: ICommandMatchData) => string | undefined | HTMLElement | Promise<string | HTMLElement | undefined>,
+  onEnter?: (command: IPluginCommand, matchData?: ICommandMatchData) => void,
+  onExit?: (command: IPluginCommand) => void,
+  onAction?: (command: IPluginCommand, action: IActionItem, keyword: string) => void,
+};
+
 export type IPluginReturn = {
   onInput?: (keyword: string) => void | IPluginCommand[] | Promise<void> | Promise<IPluginCommand[]>,
   onSelect?: (command: IPluginCommand, matchData: ICommandMatchData) => string | undefined | HTMLElement | Promise<string | HTMLElement | undefined>,
   onEnter?: (command: IPluginCommand, matchData: ICommandMatchData) => void,
   onAction?: (command: IPluginCommand, action: IActionItem, keyword: string) => void,
 } | undefined | null;
+
+interface IPluginCommandListView<Item extends IResultItem = IResultItem> {
+  enter?: (query: string, setList: (list: Item[]) => void, options: { command: IPluginCommand }) => void,
+  leave?: () => void,
+  search?: (keyword: string, setList: (list: Item[]) => void) => void,
+  select?: (result: Item, query: string) => string | HTMLElement | Promise<string> | Promise<HTMLElement>,
+  action?: (result: Item, action?: IActionItem) => void
+}
 
 export type IPlugin = (utils: {
   updateCommands: (commands: IPluginCommandConfig[]) => void,

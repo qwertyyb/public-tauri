@@ -1,18 +1,31 @@
 <script setup lang="ts">
-import { onEnterCommand } from '@public/plugin'
+import { createPlugin } from '@public/plugin'
 import CreateSnippetView from '@/views/CreateSnippetView.vue';
+import SnippetsListView from '@/views/SnippetsListView.vue';
 import { ref } from 'vue';
 
 const command = ref('')
 
-onEnterCommand(name => {
-  command.value = name
+createPlugin({
+  onEnter(params: any) {
+    command.value = params.name
+  },
+  onExit() {
+    command.value = ''
+  }
 })
 
 </script>
 
 <template>
   <create-snippet-view v-if="command === 'create-snippet'"></create-snippet-view>
+  <snippets-list-view v-else-if="command === 'search-snippets'"></snippets-list-view>
 </template>
 
-<style scoped></style>
+<style lang="scss">
+body {
+  margin: 0;
+  padding: 0;
+}
+</style>
+

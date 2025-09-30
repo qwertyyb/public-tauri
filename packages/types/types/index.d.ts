@@ -1,11 +1,13 @@
-import { IPublicAppMainAPI } from './api'
-import { IActionItem, ICommandSettings, IPluginCommand, IPluginSettings, IPluginsSettings, IRunningPlugin } from './plugin'
+import { IPublicAppMainAPI } from './api';
+import { IActionItem, ICommandSettings, IPluginCommand, IPluginSettings, IPluginsSettings, IRunningPlugin } from './plugin';
 
-export * from './plugin'
-export * from './utils'
-export * from './api'
+export * from './plugin';
+export * from './utils';
+export * from './api';
 
-export interface IWebviewProps { src: string, preload?: string, nodeintegration?: boolean, nodeintegrationinsubframes?: boolean, httpreferrer?: string, useragent?: string, disablewebsecurity?: boolean, webpreferences?: string }
+export interface IWebviewProps {
+  src: string, preload?: string, nodeintegration?: boolean, nodeintegrationinsubframes?: boolean, httpreferrer?: string, useragent?: string, disablewebsecurity?: boolean, webpreferences?: string
+}
 
 export interface IBridge {
   invoke: <R extends any>(method, ...args: any[]) => Promise<R>,

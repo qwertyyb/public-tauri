@@ -9,14 +9,14 @@ import { builtinPluginsPath } from './const';
 import { set } from 'es-toolkit/compat';
 import { resultsMap } from './store';
 import { resolveResource } from '@tauri-apps/api/path';
-import { preloadApp, setupApp } from 'wujie';
+import { preloadApp, setupApp, startApp } from 'wujie';
 
 const ajv = new Ajv({ allowUnionTypes: true });
 console.log('schema', schema);
 const validate = ajv.compile(schema);
 
 const plugins: Map<string, IRunningPlugin> = new Map();
-const pluginsSettings: IPluginsSettings = {};
+let pluginsSettings: IPluginsSettings = {};
 
 const save = () => storage.setItem('pluginsSettings', pluginsSettings);
 
@@ -34,6 +34,37 @@ const checkManifest = (manifest: Partial<IPluginManifestConfig>) => {
   }
 };
 
+export const createWujie = (name: string, entryUrl: string) => {
+  const lifecycle: IPluginLifecycle = {};
+
+  setupApp({
+    name,
+    url: entryUrl,
+    exec: true,
+    alive: true,
+    fetch(input, init) {
+      return fetch(input, init);
+    },
+    props: {
+      dialog,
+      utils,
+      clipboard,
+      fetch,
+      screen,
+      storage: createPluginStorage(name),
+      invoke: (method: string, ...args: any[]) => invokePluginServerMethod(name, method, args),
+      on: createPluginServerListener(name),
+      createPlugin: (options: IPluginLifecycle) => {
+        Object.assign(lifecycle, { ...options });
+      },
+    },
+  });
+  preloadApp({ name });
+  return {
+    lifecycle,
+  };
+};
+
 export const registerPlugin = async (pluginPath: string) => {
   console.log('addPlugin', pluginPath);
   if (checkPluginsRegistered(pluginPath)) {
@@ -44,11 +75,9 @@ export const registerPlugin = async (pluginPath: string) => {
     console.log('pkgPath', getLocalPath('./package.json', pluginPath)!);
     const pkg = JSON.parse(await readTextFile(getLocalPath('./package.json', pluginPath)!));
     const { publicPlugin } = pkg;
-    const { commands: _, icon, ...rest } = publicPlugin;
+    const { commands: _, icon, entry, ...rest } = publicPlugin;
     const main = rest.main || pkg.main;
     const name = rest.name || pkg.name;
-    const { entry: html } = rest;
-    console.log(rest, html);
     const manifest: IPluginManifest = { name, ...rest, main, icon: icon ? getLocalPath(icon, pluginPath) : icon };
     checkManifest({ ...manifest, commands: _ });
     const commands: IPluginCommand[] = (publicPlugin.commands || []).map((item: any) => formatCommand(item, manifest, pluginPath));
@@ -89,8 +118,8 @@ export const registerPlugin = async (pluginPath: string) => {
         pluginInstance.plugin = await pluginReturn;
       }
     }
-    if (html) {
-      const { lifecycle } = launchWujie(name, html);
+    if (entry) {
+      const { lifecycle } = createWujie(name, entry);
       pluginInstance.lifecycle = lifecycle;
     }
     plugins.set(pkg.name, pluginInstance);
@@ -110,7 +139,7 @@ export const getPlugins = (options?: { includeDisabledPlugins?: boolean, include
     return plugins;
   }
   return [...plugins].reduce<Map<string, IRunningPlugin>>((acc, [name, plugin]) => {
-    const need = options?.includeDisabledPlugins || !options?.includeDisabledPlugins && !plugin.settings?.disabled;
+    const need = options?.includeDisabledPlugins || (!options?.includeDisabledPlugins && !plugin.settings?.disabled);
     if (!need) return acc;
     const commands = plugin.commands.filter((command) => {
       if (options?.includeDisabledCommands) return true;
@@ -191,7 +220,7 @@ export const disablePluginCommand = (name: string, commandName: string, disabled
 
 
 export const updatePluginsSettings = (value: IPluginsSettings) => {
-  // pluginsSettings = value
+  pluginsSettings = value;
 };
 
 export const updatePluginSettings = (name: string, value: Partial<Omit<IPluginSettings, 'commands'>>) => {
@@ -291,12 +320,20 @@ export const enterCommand = async (owner: IRunningPlugin, command: IPluginComman
     const mod = await import(/* @vite-ignore */modPath);
     // @ts-ignore
     window.publicAppCommand = mod.default || mod;
-    window.dispatchEvent(new CustomEvent('push-view', { detail: { path: '/plugin/list-view', params: { command, plugin: owner, match: matchData, publicCommand: mod.default || mod } } }));
+    pushView({ path: '/plugin/list-view', params: { command, plugin: owner, match: matchData, publicCommand: mod.default || mod } });
   } else if (command.mode === 'view') {
-    window.dispatchEvent(new CustomEvent('push-view', { detail: { path: '/plugin/view', params: { plugin: owner, command, match: matchData } } }));
+    pushView({ path: '/plugin/view', params: { plugin: owner, command, match: matchData } });
   } else if (command.mode === 'web') {
-    owner.lifecycle?.onEnterCommand?.(command.name);
-    pushView({ path: '/plugin/view/wujie', params: { name: owner.manifest.name } });
+    const wujie = {
+      mount(el: HTMLElement) {
+        owner.lifecycle?.onEnter?.(command);
+        startApp({ name: owner.manifest.name, el, url: owner.manifest.entry! });
+      },
+      unmount() {
+        owner.lifecycle?.onExit?.(command);
+      },
+    };
+    pushView({ path: '/plugin/view/wujie', params: { wujie } });
   }
 };
 
@@ -335,7 +372,7 @@ export const updateCommandShortcut = async (pluginName: string, commandName: str
 };
 
 const initInnerPlugins = async () => {
-  const names = ['clipboard', 'translate', 'launcher', 'calculator', 'transform', 'ai', 'settings', 'snippets', 'qrcode', 'v2ex', 'magic', 'mdn', 'applescript'];
+  const names = ['clipboard', 'translate', 'launcher', 'calculator', 'transform', 'ai', 'settings', 'snippets', 'qrcode', 'v2ex', 'magic', 'mdn', 'applescript', 'snippets'];
 
   let pluginsPathList: string[] = [];
   if (import.meta.env.DEV) {
@@ -374,65 +411,14 @@ const initCommandsShortcut = () => {
   });
 };
 
-// export const init = async () => {
-//   const result: IPluginsSettings = await storage.getItem('pluginsSettings');
-//   console.log('pluginsSettings', result);
-//   pluginsSettings = result || {};
-
-//   await initInnerPlugins();
-//   await initCustomPlugins();
-
-//   initCommandsShortcut();
-// };
-
-export const launchWujie = (name: string, entryUrl: string) => {
-  const lifecycle: {
-    onEnterCommand?: (name: string, params?: { value: string }) => any,
-    onExitCommand?: (name: string) => any,
-  } = {};
-  setupApp({
-    name,
-    url: entryUrl,
-    exec: true,
-    alive: true,
-    fetch(input, init) {
-      return fetch(input, init);
-    },
-    props: {
-      storage: createPluginStorage(name),
-      dialog,
-      utils,
-      clipboard,
-      fetch,
-      screen,
-      invoke: (method: string, ...args: any[]) => invokePluginServerMethod(name, method, args),
-      on: createPluginServerListener(name),
-      onEnterCommand(fn: (name: string, params?: { value: string }) => any) {
-        lifecycle.onEnterCommand = fn;
-      },
-      onExitCommand(fn: (name: string) => any) {
-        lifecycle.onExitCommand = fn;
-      },
-    },
-  });
-  preloadApp({
-    name,
-  });
-  return {
-    lifecycle,
-  };
-};
-
 export const init = async () => {
-  const names = ['snippets'];
+  const result: IPluginsSettings = await storage.getItem('pluginsSettings');
+  console.log('pluginsSettings', result);
+  pluginsSettings = result || {};
 
-  let pluginsPathList: string[] = [];
-  if (import.meta.env.DEV) {
-    pluginsPathList = names.map(name => path.join(builtinPluginsPath, name)!);
-  } else {
-    pluginsPathList = await Promise.all(names.map(name => resolveResource(`../plugins/${name}`)));
-  }
-  return Promise.all(pluginsPathList.map(path => registerPlugin(path).catch((err) => {
-    console.error(err);
-  })));
+  await initInnerPlugins();
+  await initCustomPlugins();
+
+  initCommandsShortcut();
 };
+

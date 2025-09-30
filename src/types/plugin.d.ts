@@ -14,12 +14,15 @@ interface IListItem {
   actions?: IActionItem[]
 }
 
-type IPluginReturn = {
+type IPluginLifecycle  = {
   onInput?: (keyword: string) => void | IPluginCommand[] | Promise<void> | Promise<IPluginCommand[]>,
   onSelect?: (command: IPluginCommand, matchData: ICommandMatchData) => string | undefined | HTMLElement | Promise<string | HTMLElement | undefined>,
-  onEnter?: (command: IPluginCommand, matchData: ICommandMatchData) => void,
+  onEnter?: (command: IPluginCommand, matchData?: ICommandMatchData) => void,
+  onExit?: (command: IPluginCommand) => void,
   onAction?: (command: IPluginCommand, action: IActionItem, keyword: string) => void,
-} | undefined | null;
+};
+
+type IPluginReturn = IPluginLifecycle | undefined | null;
 
 interface IPluginSettings {
   disabled?: boolean,
@@ -101,10 +104,7 @@ interface IRunningPlugin {
   manifest: IPluginManifest
   commands: IPluginCommandConfig[]
   settings?: IPluginSettings
-  lifecycle?: {
-    onEnterCommand?: (name: string, params?: { value: string }) => any,
-    onExitCommand?: (name: string) => any
-  }
+  lifecycle?: IPluginLifecycle
 }
 
 interface IPluginCommandListView<Item extends IResultItem = IResultItem> {

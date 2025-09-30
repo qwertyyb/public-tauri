@@ -5,7 +5,11 @@
   "main": "./src/index.ts",
   "type": "module",
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./PublicList.vue": "./src/components/PublicList.vue",
+    "./PublicListItem.vue": "./src/components/PublicListItem.vue",
+    "./PublicListItemDetail.vue": "./src/components/PublicListItemDetail.vue",
+    "./CommandListView.vue": "./src/components/CommandListView.vue"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,6 +19,12 @@
   "license": "ISC",
   "packageManager": "pnpm@10.8.0",
   "devDependencies": {
-    "@public/api": "workspace:^"
+    "@public/api": "workspace:^",
+    "@public/types": "workspace:^"
+  },
+  "dependencies": {
+    "es-toolkit": "^1.39.8",
+    "virtua": "^0.43.6",
+    "vue": "^3.5.22"
   }
 }

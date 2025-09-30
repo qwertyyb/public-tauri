@@ -11,6 +11,7 @@ import { showAlert, showConfirm, showToast } from '@/utils/feedback';
 import PluginCustomView from '@/views/PluginCustomView.vue';
 import AIChatView from '@/views/AIChatView.vue';
 import PluginWujieView from '@/views/PluginWujieView.vue';
+import { isKeyPressed } from '@/utils/keyboard';
 
 const hash = location.hash.substring(1);
 
@@ -23,8 +24,6 @@ const routes: Record<string, Component | undefined> = {
   '/settings': SettingsView,
   '/plugin/view/custom': PluginCustomView,
   '/plugin/view/wujie': PluginWujieView,
-  // '/plugin/link/create': CreateLinkView,
-  // '/plugin/snippets/create': CreateSnippetView,
 };
 
 const pages = useTemplateRef('page');
@@ -86,6 +85,12 @@ const showToastHandler = (event: any) => {
   return showToast(message, options);
 };
 
+const keydownHandler = (event: KeyboardEvent) => {
+  if (isKeyPressed(event, 'Escape') && history.value.length > 1) {
+    popView();
+  }
+};
+
 window.addEventListener('create-view', toPluginView);
 window.addEventListener('push-view', pushViewHandler);
 window.addEventListener('pop-view', popViewHandler);
@@ -93,6 +98,7 @@ window.addEventListener('pop-to-root', popToRootHandler);
 window.addEventListener('app:showAlert', showAlertHandler);
 window.addEventListener('app:showConfirm', showConfirmHandler);
 window.addEventListener('app:showToast', showToastHandler);
+window.addEventListener('keydown', keydownHandler);
 
 onBeforeUnmount(() => {
   window.removeEventListener('create-view', toPluginView);
@@ -102,6 +108,7 @@ onBeforeUnmount(() => {
   window.removeEventListener('app:showAlert', showAlertHandler);
   window.removeEventListener('app:showConfirm', showConfirmHandler);
   window.removeEventListener('app:showToast', showToastHandler);
+  window.removeEventListener('keydown', keydownHandler);
 });
 
 provide(router.routerSymbol, {

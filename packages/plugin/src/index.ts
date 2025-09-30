@@ -1,4 +1,5 @@
-import * as api from '@public/api'
+import * as api from '@public/api';
+import type { IPluginLifecycle } from '@public/types';
 
 declare global {
   interface Window {
@@ -8,22 +9,22 @@ declare global {
   }
 }
 
-export const clipboard: typeof api['clipboard'] = window.$wujie?.props?.clipboard
+export const clipboard: typeof api['clipboard'] = window.$wujie?.props?.clipboard;
 
-export const dialog: typeof api['dialog'] = window.$wujie?.props?.dialog
+export const storage: typeof api['storage'] = window.$wujie?.props?.storage;
 
-export const mainWindow: typeof api['mainWindow'] = window.$wujie?.props?.mainWindow
+export const dialog: typeof api['dialog'] = window.$wujie?.props?.dialog;
 
-export const fetch: typeof api['fetch'] = window.$wujie?.props?.mainWindow
+export const mainWindow: typeof api['mainWindow'] = window.$wujie?.props?.mainWindow;
 
-export const utils: typeof api['utils'] = window.$wujie?.props?.utils
+export const fetch: typeof api['fetch'] = window.$wujie?.props?.mainWindow;
 
-export const screen: typeof api['screen'] = window.$wujie?.props?.screen
+export const utils: typeof api['utils'] = window.$wujie?.props?.utils;
 
-export const invoke: typeof api['invoke'] = window.$wujie?.props?.invoke
+export const screen: typeof api['screen'] = window.$wujie?.props?.screen;
 
-export const on: typeof api['on'] = window.$wujie?.props?.on
+export const invoke: typeof api['invoke'] = window.$wujie?.props?.invoke;
 
-export const onEnterCommand = (fn: (name: string, options?: { value: string }) => any) => window.$wujie?.props?.onEnterCommand?.(fn)
+export const on: typeof api['on'] = window.$wujie?.props?.on;
 
-export const onExitCommand = (fn: (name: string) => any) => window.$wujie?.props?.onExitCommand?.(fn)
+export const createPlugin: (options: IPluginLifecycle) => void = window.$wujie?.props?.createPlugin;

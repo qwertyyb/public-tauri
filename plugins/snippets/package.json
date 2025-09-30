@@ -28,8 +28,7 @@
       {
         "name": "search-snippets",
         "title": "search snippets",
-        "mode": "listView",
-        "preload": "./dist/search.preload.js",
+        "mode": "web",
         "matches": [
           {
             "type": "text",

@@ -6,21 +6,30 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, useTemplateRef } from 'vue';
-import { startApp } from 'wujie';
+import { onBeforeUnmount, onMounted, useTemplateRef } from 'vue';
 
-const props = defineProps<{ name: string }>();
+const props = defineProps<{
+  wujie: {
+    // eslint-disable-next-line no-unused-vars
+    mount:(el: HTMLElement) => any,
+    unmount: () => any
+  }
+}>();
 
 const container = useTemplateRef('wujie');
 
 onMounted(() => {
-  // @ts-ignore
-  startApp({ name: props.name, el: container.value!, url: 'http://localhost:5173' });
+  props.wujie.mount(container.value!);
+});
+
+onBeforeUnmount(() => {
+  props.wujie.unmount();
 });
 </script>
 
 <style lang="scss" scoped>
 .plugin-wujie-view {
-  height: 100vh;
+  margin-top: var(--nav-height);
+  height: calc(100vh - var(--nav-height));
 }
 </style>
