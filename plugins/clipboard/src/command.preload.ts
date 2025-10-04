@@ -1,8 +1,10 @@
-import { clipboard, mainWindow, type IListViewCommand } from '@public/api';
-import Database from '@tauri-apps/plugin-sql';
+import { clipboard, mainWindow, Database, type IListViewCommand } from '@public/plugin';
 import { ContentType, DATABASE_PATH } from './const';
 
-const db = new Database(DATABASE_PATH);
+let db: ReturnType<typeof Database['get']>;
+Database.load(DATABASE_PATH).then((result) => {
+  db = result;
+});
 
 const queryRecordList = async ({ keyword = '' } = {}, { strict = false } = {}) => {
   const sql = keyword ? 'SELECT * FROM clipboardHistory where text like $1 order by lastUseAt DESC limit 30' : 'SELECT * FROM clipboardHistory order by lastUseAt DESC limit 30';
@@ -16,7 +18,25 @@ const queryRecordList = async ({ keyword = '' } = {}, { strict = false } = {}) =
   }));
 };
 
+const search = async (keyword?: string) => {
+  const list = await queryRecordList({ keyword });
+  return list.map((item: any) => {
+    const subtitle = `最后使用: ${item.lastUseAt}     创建于: ${item.createdAt}`;
+    return {
+      key: `plugin:clipboard:${item.text}`,
+      title: item.text,
+      subtitle,
+      icon: item.content ? item.content : './assets/text.png',
+      contentValue: item.content ? item.content : item.text,
+      contentType: item.contentType,
+    };
+  });
+};
+
 const listView: IListViewCommand = {
+  async enter(query, setList) {
+    setList(await search());
+  },
   search: async (value: string, setList: (list: any[]) => void) => {
     let list = await queryRecordList({ keyword: value });
     list = list.map((item: any) => {

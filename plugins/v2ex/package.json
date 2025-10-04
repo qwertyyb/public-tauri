@@ -13,25 +13,26 @@
     "icon": "./assets/v2ex.png",
     "title": "v2ex",
     "subtitle": "查看v2ex热贴和新贴",
+    "template": "listView",
     "commands": [
       {
         "name": "hot",
         "title": "v2ex热贴",
         "subtitle": "查看v2ex热贴",
         "mode": "listView",
-        "preload": "./dist/index.js"
+        "preload": "./dist/command-hot.js"
       },
       {
         "name": "latest",
         "title": "v2ex新贴",
         "subtitle": "查看v2ex新贴",
         "mode": "listView",
-        "preload": "./dist/index.js"
+        "preload": "./dist/command-latest.js"
       }
     ]
   },
   "dependencies": {
-    "@public/api": "workspace:^"
+    "@public/plugin": "workspace:^"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "catalog:plugin",

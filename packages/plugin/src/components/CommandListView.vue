@@ -1,7 +1,11 @@
 <template>
   <div class="command-list-view">
+    <InputBar v-model="keyword" v-if="command.search" @escape="exitCommand" />
     <LoadingBar v-if="loadingCount > 0" />
+    <EmptyView v-if="!loadingCount && !results.length" class="empty-view" />
     <ResultView
+      class="result-view"
+      v-show="results.length"
       :results="results"
       :preview="preview"
       @select="onResultSelected"
@@ -14,16 +18,19 @@
 <script setup lang="ts">
 import { debounce } from 'es-toolkit';
 import ResultView from './PublicList.vue';
-import { onBeforeUnmount, onMounted, ref, toRaw, watch } from 'vue';
+import InputBar from './InputBar.vue'
+import EmptyView from './PublicListEmptyView.vue';
+import { onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import LoadingBar from './LoadingBar.vue';
-import type { IPluginCommandListView, IPluginCommandConfig, IListItem, IActionItem } from '@public/types';
+import type { IPluginCommandListView, IListItem, IActionItem } from '@public/types';
+import { mainWindow } from '../api';
 
 const props = defineProps<{
-  command: IPluginCommandListView & IPluginCommandConfig,
-  keyword?: string,
+  command: IPluginCommandListView,
   params?: { query?: string },
 }>();
 
+const keyword = ref(props.params?.query ?? '')
 const results = ref<IListItem[]>([]);
 const preview = ref<string | HTMLElement | undefined>('');
 
@@ -31,24 +38,24 @@ const loadingCount = ref(0);
 
 if (typeof props.command?.enter === 'function') {
   loadingCount.value += 1;
-  const origin = props.keyword ?? '';
-  props.command?.enter?.(props.keyword ?? '', (list) => {
+  const origin = keyword.value ?? '';
+  props.command?.enter?.(keyword.value ?? '', (list) => {
     loadingCount.value -= 1;
-    if (origin !== (props.keyword ?? '')) return;
+    if (origin !== (keyword.value ?? '')) return;
     results.value = list.map(item => ({
       ...item,
       icon: item.icon,
     }));
-  }, { command: toRaw(props.command) });
+  });
 }
 
-watch(() => props.keyword || '', debounce((value: string) => {
+watch(keyword, debounce((value: string) => {
   if (!props.command?.search) return;
   loadingCount.value += 1;
   try {
     props.command?.search?.(value, (list) => {
       loadingCount.value -= 1;
-      if (value !== props.keyword) return;
+      if (value !== keyword.value) return;
       results.value = list.map(item => ({
         ...item,
         icon: item.icon,
@@ -68,7 +75,7 @@ const onResultSelected = async (item: IListItem | null) => {
     preview.value = '';
     return;
   }
-  preview.value = await props.command?.select?.(item, props.keyword || '');
+  preview.value = await props.command?.select?.(item, keyword.value || '');
 };
 
 const onResultAction = (item: IListItem, _itemIndex: number, action: IActionItem) => {
@@ -76,7 +83,7 @@ const onResultAction = (item: IListItem, _itemIndex: number, action: IActionItem
 };
 
 const exitCommand = () => {
-  // router?.popView();
+  mainWindow.popView()
 };
 
 const keyDownHandler = (event: KeyboardEvent) => {
@@ -94,6 +101,7 @@ onMounted(() => {
 });
 
 onBeforeUnmount(() => {
+  props.command.leave?.()
   window.removeEventListener('keyup', keyDownHandler);
 });
 </script>
@@ -105,6 +113,11 @@ onBeforeUnmount(() => {
   height: 100%;
 	color: light-dark(#444, #ccc);
   --nav-width: 36px;
+  --input-bar-height: 48px;
+  .result-view, .empty-view {
+    padding-top: var(--input-bar-height, 48px);
+    box-sizing: border-box;
+  }
   // background-color: light-dark(#e5e8e8, #161616);
 }
 .command-list-view > :v-deep(*) {

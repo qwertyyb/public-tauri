@@ -10,6 +10,7 @@ import { invoke } from '@tauri-apps/api/core';
 import { io } from 'https://unpkg.com/socket.io@4.8.1/client-dist/socket.io.esm.min.js';
 export * as globalShortcut from '@tauri-apps/plugin-global-shortcut';
 export { invokePluginServerMethod } from './utils';
+export { default as Database } from '@tauri-apps/plugin-sql';
 
 const listenMap = new WeakMap<Function, UnlistenFn>();
 export const mainWindow = {
@@ -26,7 +27,9 @@ export const mainWindow = {
     window.dispatchEvent(new CustomEvent('pop-to-root', { detail: { ...options } }));
   },
   pushView: (options: { path: string, params?: any }) => window.dispatchEvent(new CustomEvent('push-view', { detail: { ...options } })),
-  popView: (options: { count: number } = { count: 1 }) => window.dispatchEvent(new CustomEvent('pop-view', { detail: { ...options } })),
+  popView: (options: { count: number } = { count: 1 }) => {
+    return window.dispatchEvent(new CustomEvent('pop-view', { detail: { ...options } }))
+  },
   onShow: async (callback: () => void) => {
     const unlisten = await listen('focus', (event) => {
       if (event.payload) {
@@ -124,13 +127,13 @@ export const storage = {
 };
 
 const pluginServerHost = 'http://localhost:2345';
-export const registerServerModule = async (name: string, modulePath: string) => {
+export const registerServerModule = async (name: string, { modulePath, staticPaths }: { modulePath: string, staticPaths: string[] }) => {
   const r = await fetch(`${pluginServerHost}/api/manager/register`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ name, modulePath }),
+    body: JSON.stringify({ name, modulePath, staticPaths }),
   });
   const json = await r.json();
   if (json.errCode !== 0) {

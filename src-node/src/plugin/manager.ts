@@ -1,8 +1,9 @@
 import { emitEvent } from './sockets';
 
 export const plugins = new Map<string, {
-  modulePath: string,
-  instance: any
+  modulePath?: string | null,
+  instance?: any,
+  staticPaths?: string[] | null,
 }>();
 
 const createContext = (name: string) => ({
@@ -11,11 +12,14 @@ const createContext = (name: string) => ({
   },
 });
 
-export const registerPlugin = async (name: string, modulePath: string) => {
-  const mod = await import(modulePath).then(mod => mod.default || mod);
+export const registerPlugin = async (name: string, options: { staticPaths?: string[], modulePath?: string }) => {
+  let mod: Function | null = null;
+  if (options.modulePath) {
+    mod = await import(options.modulePath).then(mod => mod.default || mod);
+  }
   plugins.set(name, {
-    modulePath,
-    instance: mod(createContext(name)),
+    ...options,
+    instance: mod?.(createContext(name)),
   });
 };
 
@@ -23,9 +27,12 @@ export const unregisterPlugin = (name: string) => {
   plugins.delete(name);
 };
 
-export const updatePlugin = (name: string, modulePath: string) => {
+export const updatePlugin = (name: string, options: { staticPaths?: string[], modulePath?: string }) => {
   unregisterPlugin(name);
-  registerPlugin(name, `${modulePath}?_t=${Math.random()}`);
+  registerPlugin(name, {
+    staticPaths: options.staticPaths,
+    modulePath: options.modulePath ? `${options.modulePath}?_t=${Math.random()}` : undefined,
+  });
 };
 
 export const callPlugin = (name: string, methodName: string, args: any[]) => {

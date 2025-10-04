@@ -10,7 +10,8 @@
     "title": "snippets",
     "subtitle": "snippets",
     "icon": "./assets/snippets.png",
-    "entry": "http://localhost:5173",
+    "root": "./dist",
+    "entry": "./index.html",
     "commands": [
       {
         "name": "create-snippet",

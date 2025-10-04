@@ -1,6 +1,6 @@
-import { fetch, utils } from '@public/api';
+import { fetch, utils, type IListViewCommand } from '@public/plugin';
 
-export default {
+const command: IListViewCommand = {
   search: async (keyword, setList) => {
     const url = new URL('https://developer.mozilla.org/api/v1/search');
     url.searchParams.set('q', keyword);
@@ -20,3 +20,5 @@ export default {
     utils.open(item.url);
   },
 };
+
+export default command;

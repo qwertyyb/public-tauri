@@ -38,9 +38,17 @@
       "type": "string",
       "description": "server js 文件，此 preload 会在首页执行"
     },
+    "root": {
+      "type": "string",
+      "description": "入口"
+    },
     "entry": {
       "type": "string",
       "description": "入口"
+    },
+    "template": {
+      "type": "string",
+      "description": "模板，目前支持 ListView"
     },
     "preferences": {
       "type": "array",

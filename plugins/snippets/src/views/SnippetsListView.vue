@@ -5,22 +5,22 @@
 </template>
 
 <script setup lang="ts">
-import type { IListViewCommand } from '@public/api';
-import { clipboard, mainWindow, storage } from '@public/plugin';
+import { clipboard, mainWindow, storage, type IPluginCommandListView } from '@public/plugin';
 import CommandListView from '@public/plugin/CommandListView.vue'
 import { markRaw } from 'vue';
+import icon from '../assets/snippets.png'
 
 const search = async (keyword: string): Promise<{title: string, content: string}[]> => {
   const list: { title: string, content: string }[] = (await storage.getItem('snippets')) || []
   return list.filter(i => i.title.includes(keyword))
 }
 
-const searchCommand: IListViewCommand = markRaw({
+const searchCommand: IPluginCommandListView = markRaw({
   async enter(query, setList) {
     const snippets = await search(query)
     return setList(snippets.map(snippet => ({
       title: snippet.title,
-      icon: './assets/snippets.png',
+      icon,
       content: snippet.content
     })))
   },
@@ -30,7 +30,7 @@ const searchCommand: IListViewCommand = markRaw({
     return setList(
       snippets.map((snippet) => ({
         title: snippet.title,
-        icon: "./assets/snippets.png",
+        icon,
         content: snippet.content,
       }))
     );
@@ -40,7 +40,7 @@ const searchCommand: IListViewCommand = markRaw({
     const el = document.createElement("pre");
     el.textContent = result.content;
     el.style.cssText =
-      "border-radius:6px;height:var(--preview-height);overflow:auto;box-sizing:border-box;padding:12px;";
+      "border-radius:6px;height:var(--preview-height);overflow:auto;box-sizing:border-box;margin:0";
     return el
   },
 
@@ -51,3 +51,9 @@ const searchCommand: IListViewCommand = markRaw({
   }
 })
 </script>
+
+<style lang="scss" scoped>
+.snippets-list-view {
+  height: 100vh;
+}
+</style>

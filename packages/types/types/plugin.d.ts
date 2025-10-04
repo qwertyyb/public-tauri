@@ -30,7 +30,7 @@ export type IPluginReturn = {
 } | undefined | null;
 
 interface IPluginCommandListView<Item extends IResultItem = IResultItem> {
-  enter?: (query: string, setList: (list: Item[]) => void, options: { command: IPluginCommand }) => void,
+  enter?: (query: string, setList: (list: Item[]) => void) => void,
   leave?: () => void,
   search?: (keyword: string, setList: (list: Item[]) => void) => void,
   select?: (result: Item, query: string) => string | HTMLElement | Promise<string> | Promise<HTMLElement>,

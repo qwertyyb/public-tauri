@@ -3,26 +3,28 @@
     ref="el"
     class="public-list"
   >
-    <VList
-      ref="virtualList"
-      v-slot="{ item, index }"
-      class="result-list"
-      :data="results"
-      :keeps="30"
-      :item-size="54"
-    >
-      <ListItem
-        :key="index"
-        :index="index"
-        :icon="item.icon"
-        :title="item.title"
-        :subtitle="item.subtitle"
-        :selected="selectedIndex === index"
-        :action-key="getActionKey(index, actionKeyStartIndex)"
-        @select="selectedIndex = index;$emit('select', item, index)"
-        @enter="selectedIndex = index;$emit('enter', item, index)"
-      />
-    </VList>
+    <div class="virtual-list-container">
+      <VList
+        ref="virtualList"
+        v-slot="{ item, index }"
+        class="result-list"
+        :data="results"
+        :keeps="30"
+        :item-size="54"
+      >
+        <ListItem
+          :key="index"
+          :index="index"
+          :icon="item.icon"
+          :title="item.title"
+          :subtitle="item.subtitle"
+          :selected="selectedIndex === index"
+          :action-key="getActionKey(index, actionKeyStartIndex)"
+          @select="selectedIndex = index;$emit('select', item, index)"
+          @enter="selectedIndex = index;$emit('enter', item, index)"
+        />
+      </VList>
+    </div>
     <!-- <ActionList
       v-if="visibleActionIndex === selectedIndex && (selectedItem?.actions?.length || 0) > 0"
       :actions="selectedItem.actions!"
@@ -63,6 +65,7 @@ const actionKeyStartIndex = ref(0);
 const selectedItem = computed(() => props.results[selectedIndex.value]);
 
 const el = useTemplateRef('el');
+const virtualList = useTemplateRef('virtualList')
 
 const getPreview = async (item: T) => {
   if (!item) return emit('select', null, -1);
@@ -88,7 +91,7 @@ const calcActionKeyStartIndex = () => {
 
 watch(selectedItem, (value) => {
   visibleActionIndex.value = -1;
-  // virtualList.value?.scrollToIndex(Math.max(0, selectedIndex.value - 4))
+  virtualList.value?.scrollToIndex(Math.max(0, selectedIndex.value - 4))
   getPreview(value);
 }, { immediate: true });
 watch(selectedItem, () => setTimeout(calcActionKeyStartIndex, 600), { flush: 'post' });
@@ -163,15 +166,19 @@ onBeforeMount(() => {
 
 <style lang="scss" scoped>
 .public-list {
+  height: 100%;
   display: flex;
   --container-height: 486px;
 }
-.result-list {
+.virtual-list-container {
   flex: 3;
-  max-height: var(--container-height);
-  min-height: var(--container-height);
+  height: var(--container-height, 100%);
+}
+.result-list {
+  max-height: var(--container-height, 100%);
+  min-height: var(--container-height, 100%);
   overflow: auto;
-  height: var(--container-height);
+  height: var(--container-height, 100%);
 }
 
 /* 滚动槽 */

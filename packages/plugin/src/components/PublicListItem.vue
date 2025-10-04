@@ -110,8 +110,11 @@ defineEmits<{
 }
 .item-title {
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 500;
   margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .item-subtitle {
   font-size: 12px;
@@ -119,7 +122,9 @@ defineEmits<{
   opacity: 0.7;
   height: 16px;
   white-space: pre;
-  font-size: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .item-actions {
   display: flex;

@@ -3,18 +3,18 @@
     <div
       ref="previewEl"
       class="preview-wrapper"
-    />
+    ></div>
   </section>
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref, watch } from 'vue';
+import { onMounted, watch, useTemplateRef } from 'vue';
 
 const props = defineProps<{
   html: string | HTMLElement
 }>();
 
-const previewEl = ref<HTMLDivElement>();
+const previewEl = useTemplateRef('previewEl')
 
 const renderPreview = () => {
   if (!previewEl.value) return;

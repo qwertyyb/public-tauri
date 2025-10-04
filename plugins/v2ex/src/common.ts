@@ -1,16 +1,16 @@
-import { IListViewCommand, fetch, utils } from '@public/api';
+import { type IListViewCommand, fetch, utils } from '@public/plugin';
 
-const withCache = <F extends (...args: any[]) => any>(fn: F) => {
-  const results = new Map<string, any>();
-  return (...args: Parameters<F>): ReturnType<F> => {
-    const key = JSON.stringify(args);
-    const value = results.get(key);
-    if (value) return value;
-    const result = fn(...args);
-    results.set(key, result);
-    return result;
-  };
-};
+// const withCache = <F extends (...args: any[]) => any>(fn: F) => {
+//   const results = new Map<string, any>();
+//   return (...args: Parameters<F>): ReturnType<F> => {
+//     const key = JSON.stringify(args);
+//     const value = results.get(key);
+//     if (value) return value;
+//     const result = fn(...args);
+//     results.set(key, result);
+//     return result;
+//   };
+// };
 
 const getData = async (type: 'hot' | 'latest' = 'hot') => {
   const url = type === 'hot' ? `https://www.v2ex.com/api/topics/hot.json?${Date.now()}` : `https://www.v2ex.com/api/topics/latest.json?${Date.now()}`;
@@ -24,17 +24,15 @@ const getData = async (type: 'hot' | 'latest' = 'hot') => {
     url: item.url,
   }));
   return list;
-}
+};
 
-const command: IListViewCommand = {
-  enter(query, setList, options) {
-    getData(options.command.name as 'hot' | 'latest').then((list) => {
+export const createCommand = (name: 'hot' | 'latest'): IListViewCommand => ({
+  enter(query, setList) {
+    getData(name).then((list) => {
       setList(list);
     });
   },
   action(item: any) {
     utils.open(item.url);
   },
-};
-
-export default command;
+});

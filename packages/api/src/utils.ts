@@ -36,13 +36,8 @@ export const getPressedKeys = (event: KeyboardEvent) => {
   return keys;
 };
 
-export const isKeyPressed = (expect: string | string[] | KeyboardEvent, value: string | string[]) => {
-  let expectKeys: string[] = [];
-  if (expect instanceof KeyboardEvent) {
-    expectKeys = getPressedKeys(expect);
-  } else {
-    expectKeys = typeof expect === 'string' ? expect.split('+') : [...expect];
-  }
+export const isKeyPressed = (event: KeyboardEvent, value: string | string[]) => {
+  const pressedKeys = getPressedKeys(event);
   const valueKeys = typeof value === 'string' ? value.split('+') : [...value];
-  return expectKeys.sort().join('+') === valueKeys.sort().join('+');
+  return pressedKeys.sort().join('+') === valueKeys.sort().join('+');
 };

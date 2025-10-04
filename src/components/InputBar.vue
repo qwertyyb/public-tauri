@@ -101,6 +101,10 @@ router.onPageEnter(() => {
     fetchPlaceholder();
   }
 });
+
+router.onPageLeave(() => {
+  inputEl.value?.blur?.()
+})
 </script>
 
 <style lang="scss" scoped>

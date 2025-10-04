@@ -2,7 +2,6 @@
   "name": "clipboard",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/preload.js",
   "type": "module",
   "module": "dist/index.js",
   "scripts": {
@@ -16,7 +15,7 @@
     "title": "剪切板",
     "subtitle": "剪切板历史",
     "icon": "./assets/logo.png",
-    "main": "./dist/index.js",
+    "template": "listView",
     "commands": [
       {
         "name": "clipboard",
@@ -44,15 +43,13 @@
     ]
   },
   "dependencies": {
-    "@public/api": "workspace:^",
-    "@tauri-apps/plugin-sql": "~2",
-    "tauri-plugin-clipboard-api": "^2.1.11"
+    "@public/plugin": "workspace:^"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "catalog:plugin",
     "@rollup/plugin-node-resolve": "catalog:plugin",
+    "@rollup/plugin-replace": "catalog:plugin",
     "rollup": "catalog:plugin",
-    "rollup-plugin-esbuild": "catalog:plugin",
-    "@rollup/plugin-replace": "catalog:plugin"
+    "rollup-plugin-esbuild": "catalog:plugin"
   }
 }

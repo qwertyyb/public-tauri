@@ -7,7 +7,10 @@ const host = process.env.TAURI_DEV_HOST;
 // https://vitejs.dev/config/
 export default defineConfig(async () => ({
   build: {
-    sourcemap: true
+    sourcemap: true,
+    rollupOptions: {
+      external: ['vue', 'element-plus'],
+    },
   },
   plugins: [
     vue(),
@@ -23,8 +26,6 @@ export default defineConfig(async () => ({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
-      vue: 'https://unpkg.com/vue@3.5.18/dist/vue.esm-browser.js',
-      'element-plus': 'https://unpkg.com/element-plus@2.10.7/dist/index.full.mjs',
     },
   },
   // 2. tauri expects a fixed port, fail if that port is not available

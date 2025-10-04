@@ -11,6 +11,7 @@ import createErrorHandler from './middlewares/err';
 import { startSocketIO } from './socket.io';
 import createCacheMiddleware from './middlewares/cache';
 import logger from './utils/logger';
+import { createPluginMiddleware } from './middlewares/plugin';
 
 const app = new Koa();
 
@@ -22,6 +23,7 @@ app.use(cors());
 app.use(createLoggerMiddleware());
 app.use(createErrorHandler());
 app.use(createCacheMiddleware());
+app.use(createPluginMiddleware());
 
 app.use(managerRoutes.routes()).use(managerRoutes.allowedMethods());
 app.use(utilsRouter.routes()).use(utilsRouter.allowedMethods());

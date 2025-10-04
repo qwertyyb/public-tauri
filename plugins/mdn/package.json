@@ -13,6 +13,7 @@
     "title": "MDN文档",
     "subtitle": "搜索 MDN 文档",
     "icon": "./assets/mdn.png",
+    "template": "listView",
     "commands": [
       {
         "name": "search-mdn",
@@ -41,7 +42,7 @@
     ]
   },
   "dependencies": {
-    "@public/api": "workspace:^"
+    "@public/plugin": "workspace:^"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "catalog:plugin",

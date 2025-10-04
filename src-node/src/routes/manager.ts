@@ -7,8 +7,8 @@ const router = new KoaRouter({
 });
 
 router.post('/register', async (ctx) => {
-  const { name, modulePath } = ctx.request.body;
-  await registerPlugin(name, modulePath);
+  const { name, modulePath, staticPaths } = ctx.request.body;
+  await registerPlugin(name, { modulePath, staticPaths });
   ctx.body = createResponse();
 });
 
@@ -18,7 +18,8 @@ router.post('/unregister', (ctx) => {
 });
 
 router.post('/updatePlugin', (ctx) => {
-  updatePlugin(ctx.request.body.name, ctx.request.body.modulePath);
+  const { name, modulePath, staticPaths } = ctx.request.body;
+  updatePlugin(name, { modulePath, staticPaths });
   ctx.body = createResponse();
 });
 

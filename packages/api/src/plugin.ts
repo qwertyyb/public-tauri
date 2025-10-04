@@ -2,7 +2,7 @@ import { useRouter, onPageEnter, onPageLeave } from './router';
 import { invokePluginServerMethod } from './utils';
 import { io } from 'https://unpkg.com/socket.io@4.8.1/client-dist/socket.io.esm.min.js';
 export type { IListViewCommand, IPlugin, IPluginCommand as ICommand } from '@public/types';
-export { clipboard, dialog, mainWindow, fetch, utils, screen } from './core';
+export { clipboard, dialog, mainWindow, fetch, utils, screen, Database } from './core';
 
 const createPluginStorage = (name: string) => {
   const getKey = (key: string) => `${name}:${key}`;
