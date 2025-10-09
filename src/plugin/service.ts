@@ -212,10 +212,47 @@ export const handleQuery = async (keyword: string) => {
     keys: ['command.title', 'command.subtitle', 'titleZh', 'subtitleZh', ...keywordsKey],
   });
   console.log('queryResults', queryResults, queryResults?.[0]?.obj);
-  queryResults.forEach((result) => {
-    resultsMap.set(result.obj.command, { owner: result.obj.owner });
+  return queryResults.map((result) => {
+    const command = { ...result.obj.command };
+    if (result[0].target) {
+      command.title = result[0].highlight()
+    }
+    if (result[1].target) {
+      command.subtitle = result[1].highlight()
+    }
+    if (result[2].target) {
+      // 拼音匹配标题
+      const pinyinArr = result[2].target.split(' ')
+      const indexes = result[2].indexes
+      let startIndex = -1
+      command.title = Array.from(result.obj.command.title).map((word, i) => {
+        const pinyin = pinyinArr[i]
+        const shouldHighlight = indexes.some(index => index > startIndex && index <= startIndex + pinyin.length)
+        startIndex += (pinyin.length + 1)
+        if (shouldHighlight) {
+          return `<b>${word}</b>`
+        }
+        return word
+      }).join('')
+    }
+    if (result[3].target) {
+      // 拼音匹配副标题
+      const pinyinArr = result[3].target.split(' ')
+      const indexes = result[3].indexes
+      let startIndex = -1
+      command.title = Array.from(result.obj.command.title).map((word, i) => {
+        const pinyin = pinyinArr[i]
+        const shouldHighlight = indexes.some(index => index > startIndex && index <= startIndex + pinyin.length)
+        startIndex += (pinyin.length + 1)
+        if (shouldHighlight) {
+          return `<b>${word}</b>`
+        }
+        return word
+      }).join('')
+    }
+    resultsMap.set(command, { owner: result.obj.owner });
+    return command
   });
-  return queryResults.map(result => result.obj.command);
 };
 
 export const handleSelect = (command: IPluginCommand, keyword: string) => {

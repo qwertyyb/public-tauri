@@ -79,7 +79,7 @@ defineEmits<{
   box-sizing: border-box;
   position: relative;
   cursor: pointer;
-  :deep(mark) {
+  :deep(mark), :deep(b) {
     background: none;
     color: rgb(251, 163, 0);
   }
