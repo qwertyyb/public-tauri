@@ -74,13 +74,13 @@ interface IPreference {
   options?: { value: any, label: string }[]
 }
 
-interface IPluginManifestConfig extends Required<IListItem> {
-  name: string
-  descript?: string,
-  commands?: IPluginCommandConfig[]
-  preload?: string,
-  preferences?: IPreference[]
-}
+// interface IPluginManifestConfig extends Required<IListItem> {
+//   name: string
+//   descript?: string,
+//   commands?: IPluginCommandConfig[]
+//   preload?: string,
+//   preferences?: IPreference[]
+// }
 
 interface IPluginCommandConfig extends IListItem, Record<string, any> {
   name: string
@@ -94,9 +94,9 @@ interface IPluginCommandConfig extends IListItem, Record<string, any> {
 
 type IPluginCommand = IPluginCommandConfig;
 
-interface IPluginManifest extends WithRequired<IPluginCommandConfig, 'name' | 'icon' | 'title'> {
-  commands: IPluginCommandConfig[]
-}
+// interface IPluginManifest extends WithRequired<IPluginCommandConfig, 'name' | 'icon' | 'title'> {
+//   commands: IPluginCommandConfig[]
+// }
 
 interface IRunningPlugin {
   plugin?: IPluginReturn

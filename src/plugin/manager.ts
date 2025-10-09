@@ -1,19 +1,20 @@
-import Ajv from 'ajv';
+// import Ajv from 'ajv';
 import path, { join } from 'path-browserify';
 import { clipboard, createPluginStorage, dialog, fetch, globalShortcut, mainWindow, registerServerModule, storage, utils, invokePluginServerMethod, createPluginServerListener, Database } from '@public/api/core';
 
 import { readTextFile } from '@tauri-apps/plugin-fs';
-import schema from './plugin.schema.json';
+// import schema from './plugin.schema.json';
 import { formatCommand, getLocalPath, openCommandPreferences, openPluginPreferences, popView, pushView } from './utils';
 import { builtinPluginsPath, LIST_VIEW_TEMPLATE_PATH } from './const';
 import { set } from 'es-toolkit/compat';
 import { resultsMap } from './store';
 import { resolveResource } from '@tauri-apps/api/path';
 import { preloadApp, setupApp, startApp } from 'wujie';
+import { parse as parseManifest, type IPluginManifest } from './schema'
 
-const ajv = new Ajv({ allowUnionTypes: true });
-console.log('schema', schema);
-const validate = ajv.compile(schema);
+// const ajv = new Ajv({ allowUnionTypes: true });
+// console.log('schema', schema);
+// const validate = ajv.compile(schema);
 
 const plugins: Map<string, IRunningPlugin> = new Map();
 let pluginsSettings: IPluginsSettings = {};
@@ -21,18 +22,6 @@ let pluginsSettings: IPluginsSettings = {};
 const save = () => storage.setItem('pluginsSettings', pluginsSettings);
 
 const checkPluginsRegistered = (path: string) => Array.from(plugins.values()).some(item => item.path === path);
-
-const checkManifest = (manifest: Partial<IPluginManifestConfig>) => {
-  if (validate(manifest)) return;
-
-  if (validate.errors?.length) {
-    console.error(manifest, validate.errors);
-    const err = new Error('校验失败');
-    // @ts-ignore
-    err.errors = [...validate.errors];
-    throw err;
-  }
-};
 
 export const createWujie = (name: string, entryUrl: string, options?: {
   insertScript: { content: string, module?: boolean }
@@ -86,11 +75,9 @@ export const registerPlugin = async (pluginPath: string) => {
     console.log('pkgPath', getLocalPath('./package.json', pluginPath)!);
     const pkg = JSON.parse(await readTextFile(getLocalPath('./package.json', pluginPath)!));
     const { publicPlugin } = pkg;
-    const { commands: _, icon, root, entry, template, ...rest } = publicPlugin;
-    const main = rest.main || pkg.main;
-    const name = rest.name || pkg.name;
-    const manifest: IPluginManifest = { name, ...rest, main, icon: icon ? getLocalPath(icon, pluginPath) : icon };
-    checkManifest({ ...manifest, commands: _ });
+    const manifest: IPluginManifest = parseManifest({ ...publicPlugin, name: pkg.name });
+    manifest.icon = getLocalPath(manifest.icon, pluginPath)!
+    const { name, template, html } = manifest
     const commands: IPluginCommand[] = (publicPlugin.commands || []).map((item: any) => formatCommand(item, manifest, pluginPath));
     if (!pluginsSettings[name]) {
       pluginsSettings[name] = { disabled: false, commands: {}, preferences: {} };
@@ -101,21 +88,21 @@ export const registerPlugin = async (pluginPath: string) => {
       commands,
       settings: pluginsSettings[name],
     };
-    if ((manifest.server || root || template) && !pluginsSettings?.[name]?.disabled) {
+    if (!pluginsSettings?.[name]?.disabled) {
       const serverModulePath = manifest.server ? join(pluginPath, manifest.server) : '';
       const staticPaths: string[] = []
-      if (root) {
-        staticPaths.push(path.join(pluginPath, root))
-      } else if (template === 'listView') {
+      if (template === 'listView') {
         staticPaths.push(LIST_VIEW_TEMPLATE_PATH, pluginPath)
+      } else {
+        staticPaths.push(pluginPath)
       }
       registerServerModule(name, {
         modulePath: serverModulePath,
         staticPaths
       });
     }
-    if (main && !pluginsSettings?.[name]?.disabled) {
-      const entryPath = getLocalPath(main, pluginPath)!;
+    if (manifest.main && !pluginsSettings?.[name]?.disabled) {
+      const entryPath = getLocalPath(manifest.main, pluginPath)!;
       console.log('plugin', name);
       const mod = await import(/* @vite-ignore */entryPath);
       const createPlugin = mod.default || mod as IPluginCreator;
@@ -138,16 +125,14 @@ export const registerPlugin = async (pluginPath: string) => {
         pluginInstance.plugin = await pluginReturn;
       }
     }
-    if (root) {
+    if (html) {
       const u = new URL(`http://${name}.plugin.localhost:2345`)
-      u.pathname = entry || './index.html'
+      u.pathname = html || '/index.html'
       const { lifecycle } = createWujie(name, u.href);
       pluginInstance.lifecycle = lifecycle;
     } else if (template === 'listView') {
       const host = `${name}.plugin.localhost:2345`
-      const u = new URL(`http://${host}`)
-      u.pathname = entry || './index.html'
-      const entryUrl = u.href
+      const entryUrl = `http://${host}/index.html`
       const commands = (publicPlugin.commands || []).map((item: any) => {
         if (!item.preload) return null
         const url = `http://${path.join(host, item.preload)}`
@@ -355,7 +340,7 @@ export const enterCommand = async (owner: IRunningPlugin, command: IPluginComman
   }
   if (command.mode === 'none' || !command.mode) {
     owner.plugin?.onEnter?.(command, matchData);
-  } else if (command.mode === 'web' || command.mode === 'listView') {
+  } else if (command.mode === 'listView' || command.mode === 'view') {
     const wujie = {
       initialKeyword: matchData?.query ?? '',
       mount(el: HTMLElement) {

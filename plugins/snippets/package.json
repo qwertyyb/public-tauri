@@ -10,13 +10,12 @@
     "title": "snippets",
     "subtitle": "snippets",
     "icon": "./assets/snippets.png",
-    "root": "./dist",
-    "entry": "./index.html",
+    "html": "./dist/index.html",
     "commands": [
       {
         "name": "create-snippet",
         "title": "create snippet",
-        "mode": "web",
+        "mode": "view",
         "matches": [
           {
             "type": "text",
@@ -29,7 +28,7 @@
       {
         "name": "search-snippets",
         "title": "search snippets",
-        "mode": "web",
+        "mode": "view",
         "matches": [
           {
             "type": "text",

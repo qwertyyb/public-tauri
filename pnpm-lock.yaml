@@ -48,33 +48,12 @@ importers:
       '@tauri-apps/plugin-autostart':
         specifier: ^2.5.0
         version: 2.5.0
-      '@tauri-apps/plugin-clipboard-manager':
-        specifier: ~2
-        version: 2.3.0
-      '@tauri-apps/plugin-dialog':
-        specifier: ~2
-        version: 2.3.2
       '@tauri-apps/plugin-fs':
         specifier: ~2
         version: 2.4.1
       '@tauri-apps/plugin-global-shortcut':
         specifier: ~2.3.0
         version: 2.3.0
-      '@tauri-apps/plugin-opener':
-        specifier: ^2
-        version: 2.4.0
-      '@tauri-apps/plugin-process':
-        specifier: ^2.3.0
-        version: 2.3.0
-      '@tauri-apps/plugin-shell':
-        specifier: ~2
-        version: 2.3.0
-      '@tauri-apps/plugin-sql':
-        specifier: ~2
-        version: 2.3.0
-      ajv:
-        specifier: ^8.17.1
-        version: 8.17.1
       element-plus:
         specifier: ^2.10.4
         version: 2.10.4(vue@3.5.18(typescript@5.9.2))
@@ -86,7 +65,7 @@ importers:
         version: 14.1.0
       openai:
         specifier: ^5.11.0
-        version: 5.11.0(ws@8.18.3)
+        version: 5.11.0(ws@8.18.3)(zod@4.1.11)
       path-browserify:
         specifier: ^1.0.1
         version: 1.0.1
@@ -96,9 +75,6 @@ importers:
       pinyin-pro:
         specifier: ^3.27.0
         version: 3.27.0
-      tauri-plugin-clipboard-api:
-        specifier: ^2.1.11
-        version: 2.1.11(typescript@5.9.2)
       vue:
         specifier: ^3.5.13
         version: 3.5.18(typescript@5.9.2)
@@ -108,6 +84,9 @@ importers:
       wujie:
         specifier: ^1.0.29
         version: 1.0.29
+      zod:
+        specifier: ^4.1.11
+        version: 4.1.11
     devDependencies:
       '@eslint/js':
         specifier: ^9.32.0
@@ -337,6 +316,9 @@ importers:
 
   plugins/calculator:
     dependencies:
+      '@public/api':
+        specifier: workspace:^
+        version: link:../../packages/api
       '@public/types':
         specifier: workspace:^
         version: link:../../packages/types
@@ -1919,12 +1901,6 @@ packages:
   '@tauri-apps/plugin-global-shortcut@2.3.0':
     resolution: {integrity: sha512-WbAz0ElhpP+0kzQZRScdCC7UQ7OPH8PAn//fsBNu7+ywihsnVSVOg1L9YhieAtLNtAlnmFI69Yl5AGaA3ge5IQ==}
 
-  '@tauri-apps/plugin-opener@2.4.0':
-    resolution: {integrity: sha512-43VyN8JJtvKWJY72WI/KNZszTpDpzHULFxQs0CJBIYUdCRowQ6Q1feWTDb979N7nldqSuDOaBupZ6wz2nvuWwQ==}
-
-  '@tauri-apps/plugin-process@2.3.0':
-    resolution: {integrity: sha512-0DNj6u+9csODiV4seSxxRbnLpeGYdojlcctCuLOCgpH9X3+ckVZIEj6H7tRQ7zqWr7kSTEWnrxtAdBb0FbtrmQ==}
-
   '@tauri-apps/plugin-shell@2.3.0':
     resolution: {integrity: sha512-6GIRxO2z64uxPX4CCTuhQzefvCC0ew7HjdBhMALiGw74vFBDY95VWueAHOHgNOMV4UOUAFupyidN9YulTe5xlA==}
 
@@ -2425,9 +2401,6 @@ packages:
 
   ajv@6.12.6:
     resolution: {integrity: sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g==}
-
-  ajv@8.17.1:
-    resolution: {integrity: sha512-B/gBuNg5SiMTrPkC+A2+cW0RszwxYmn6VYxB/inlBStS5nx6xHIt/ehKRhIMhqusl7a8LjQoZnjCs5vhwxOQ1g==}
 
   alien-signals@1.0.13:
     resolution: {integrity: sha512-OGj9yyTnJEttvzhTUWuscOvtqxq5vrhF7vL9oS0xJ2mK0ItPYP1/y+vCFebfxoEyAz0++1AIwJ5CMr+Fk3nDmg==}
@@ -3220,9 +3193,6 @@ packages:
     resolution: {integrity: sha512-dwsoQlS7h9hMeYUq1W++23NDcBLV4KqONnITDV9DjfS3q1SgDGVrBdvvTLUotWtPSD7asWDV9/CmsZPy8Hf70A==}
     engines: {node: '>=6'}
 
-  fast-uri@3.0.6:
-    resolution: {integrity: sha512-Atfo14OibSv5wAp4VWNsFYE1AchQRTv9cBGWET4pZWHzYshFSS9NQI6I57rdKn9croWVMbYFbLhJ+yJvmZIIHw==}
-
   fastq@1.19.1:
     resolution: {integrity: sha512-GwLTyxkCXjXbxqIhTsMI2Nui8huMPtnxg7krajPJAjnEG/iiOS7i+zCtWGZR9G0NBKbXKh6X9m9UIsYX/N6vvQ==}
 
@@ -3745,9 +3715,6 @@ packages:
 
   json-schema-traverse@0.4.1:
     resolution: {integrity: sha512-xbbCH5dCYU5T8LcEhhuh7HJ88HXuW3qsI3Y0zOZFKfZEHcpWiHU/Jxzk629Brsab/mMiHQti9wMP+845RPe3Vg==}
-
-  json-schema-traverse@1.0.0:
-    resolution: {integrity: sha512-NM8/P9n3XjXhIZn1lLhkFaACTOURQXjWhV4BA/RnOv8xvgqtqpAX9IO4mRQxSx1Rlo4tqzeqb0sOlruaOy3dug==}
 
   json-stable-stringify-without-jsonify@1.0.1:
     resolution: {integrity: sha512-Bdboy+l7tA3OGW6FjyFHWkP5LuByj1Tk33Ljyq0axyzdk9//JSi2u3fP1QSmd1KNwq6VOKYGlAu87CisVir6Pw==}
@@ -4376,10 +4343,6 @@ packages:
 
   require-directory@2.1.1:
     resolution: {integrity: sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==}
-    engines: {node: '>=0.10.0'}
-
-  require-from-string@2.0.2:
-    resolution: {integrity: sha512-Xf0nWe6RseziFMu+Ap9biiUbmplq6S9/p+7w7YXP/JBHhrUDDUhwa+vANyubuqfZWTveU//DYVGsDG7RKL/vEw==}
     engines: {node: '>=0.10.0'}
 
   require-main-filename@2.0.0:
@@ -5431,6 +5394,9 @@ packages:
   yoctocolors@2.1.2:
     resolution: {integrity: sha512-CzhO+pFNo8ajLM2d2IW/R93ipy99LWjtwblvC1RsoSUMZgyLbYFr221TnSNT7GjGdYui6P459mw9JH/g/zW2ug==}
     engines: {node: '>=18'}
+
+  zod@4.1.11:
+    resolution: {integrity: sha512-WPsqwxITS2tzx1bzhIKsEs19ABD5vmCVa4xBo2tq/SrV4RNZtfws1EnCWQXM6yh8bD08a1idvkB5MZSBiZsjwg==}
 
 snapshots:
 
@@ -6591,14 +6557,6 @@ snapshots:
     dependencies:
       '@tauri-apps/api': 2.7.0
 
-  '@tauri-apps/plugin-opener@2.4.0':
-    dependencies:
-      '@tauri-apps/api': 2.7.0
-
-  '@tauri-apps/plugin-process@2.3.0':
-    dependencies:
-      '@tauri-apps/api': 2.7.0
-
   '@tauri-apps/plugin-shell@2.3.0':
     dependencies:
       '@tauri-apps/api': 2.7.0
@@ -7369,13 +7327,6 @@ snapshots:
       fast-json-stable-stringify: 2.1.0
       json-schema-traverse: 0.4.1
       uri-js: 4.4.1
-
-  ajv@8.17.1:
-    dependencies:
-      fast-deep-equal: 3.1.3
-      fast-uri: 3.0.6
-      json-schema-traverse: 1.0.0
-      require-from-string: 2.0.2
 
   alien-signals@1.0.13: {}
 
@@ -8357,8 +8308,6 @@ snapshots:
 
   fast-redact@3.5.0: {}
 
-  fast-uri@3.0.6: {}
-
   fastq@1.19.1:
     dependencies:
       reusify: 1.1.0
@@ -8869,8 +8818,6 @@ snapshots:
 
   json-schema-traverse@0.4.1: {}
 
-  json-schema-traverse@1.0.0: {}
-
   json-stable-stringify-without-jsonify@1.0.1: {}
 
   json-stringify-safe@5.0.1:
@@ -9209,9 +9156,10 @@ snapshots:
       is-inside-container: 1.0.0
       wsl-utils: 0.1.0
 
-  openai@5.11.0(ws@8.18.3):
+  openai@5.11.0(ws@8.18.3)(zod@4.1.11):
     optionalDependencies:
       ws: 8.18.3
+      zod: 4.1.11
 
   optionator@0.9.4:
     dependencies:
@@ -9490,8 +9438,6 @@ snapshots:
       set-function-name: 2.0.2
 
   require-directory@2.1.1: {}
-
-  require-from-string@2.0.2: {}
 
   require-main-filename@2.0.0: {}
 
@@ -10720,3 +10666,5 @@ snapshots:
   yocto-queue@0.1.0: {}
 
   yoctocolors@2.1.2: {}
+
+  zod@4.1.11: {}

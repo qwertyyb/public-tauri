@@ -14,6 +14,7 @@
     "icon": "https://img.icons8.com/?size=100&id=ZXnn88azBI7W&format=png&color=000000",
     "title": "魔方平台",
     "subtitle": "魔方平台快捷操作",
+    "main": "./dist/index.js",
     "commands": [
       {
         "name": "editor",

@@ -1,6 +1,7 @@
 
 import type { IPlugin } from '@public/types';
 import { writeText } from 'tauri-plugin-clipboard-api';
+import { dialog } from '@public/api/core';
 import { create, all } from 'mathjs';
 
 const DECIMAL_SEPARATOR = '.';
@@ -51,6 +52,7 @@ export class Calculator {
     );
   }
 
+  // eslint-disable-next-line @typescript-eslint/member-ordering
   public static calculate(input: string): string {
     const result: string = mathjs.evaluate?.(this.normalizeInput(input)).toString();
     return result.replace(
@@ -60,7 +62,7 @@ export class Calculator {
   }
 }
 
-const calculatorPlugin: IPlugin = utils => ({
+const calculatorPlugin: IPlugin = () => ({
   onInput(keyword: string) {
     if (Calculator.isValidInput(keyword)) {
       const result = Calculator.calculate(keyword);
@@ -81,7 +83,7 @@ const calculatorPlugin: IPlugin = utils => ({
   },
   onEnter(item) {
     writeText(String(item.text));
-    // api.showHUD('已复制到剪切板')
+    dialog.showToast('结果已复制到剪切板');
   },
 });
 

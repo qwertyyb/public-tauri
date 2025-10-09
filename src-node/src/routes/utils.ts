@@ -26,6 +26,9 @@ router.post('/invoke', async (ctx) => {
         if (item[0] === 'content-encoding') {
           return acc;
         }
+        if (item[0] === 'content-length') {
+          return acc;
+        }
         return { ...acc, [item[0]]: item[1] };
       }, {}),
     });

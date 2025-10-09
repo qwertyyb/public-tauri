@@ -15,6 +15,7 @@
     "icon": "./assets/ai.png",
     "title": "AI助手",
     "subtitle": "AI助手",
+    "main": "./dist/index.js",
     "preferences": [
       {
         "name": "baseURL",
