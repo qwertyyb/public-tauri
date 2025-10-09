@@ -17,6 +17,7 @@ export default defineConfig(async () => ({
   ],
   define: {
     BUILTIN_PLUGINS_PATH: JSON.stringify(fileURLToPath(new URL('./plugins', import.meta.url))),
+    LIST_VIEW_TEMPLATE_PATH: JSON.stringify(fileURLToPath(new URL('./packages/template/dist', import.meta.url))),
   },
 
   // Vite options tailored for Tauri development and only applied in `tauri dev` or `tauri build`

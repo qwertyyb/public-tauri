@@ -3,7 +3,7 @@
     <h1>Create Snippet</h1>
     <el-form @submit.prevent="createSnippet" label-position="top">
       <el-form-item label="Title">
-        <el-input @keydown="keyDownHandler($event, 'title')" ref="title" autofocus type="text" v-model="formValue.title" placeholder="Title" />
+        <el-input @keydown="keyDownHandler($event, 'title')" ref="title" autofocus type="text" v-model="formValue.title" placeholder="Title" autocorrect="off" autocomplete="off" />
       </el-form-item>
       <el-form-item label="Content">
         <el-input @keydown="keyDownHandler($event, 'content')" type="textarea" v-model="formValue.content" placeholder="Content" />

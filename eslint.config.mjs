@@ -18,6 +18,7 @@ export default typescriptEslint.config(
       fileURLToPath(new URL('./tsconfig.app.json', import.meta.url)),
       fileURLToPath(new URL('./tsconfig.plugins.json', import.meta.url)),
       fileURLToPath(new URL('./src-node/tsconfig.json', import.meta.url)),
+      fileURLToPath(new URL('./packages/template/tsconfig.node.json', import.meta.url)),
     ],
   }),
   {

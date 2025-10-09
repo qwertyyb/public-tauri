@@ -1,3 +1,4 @@
+import fuzzysort from 'fuzzysort';
 import { enterCommand, getPlugins } from './manager';
 import { resultsMap } from './store';
 import { getLocalPath, hanziToPinyin } from './utils';
@@ -64,6 +65,7 @@ const match = (query: string, target: string) => {
 };
 
 const compileString = (template: string, vars: any) => {
+  // eslint-disable-next-line no-new-func
   const func = new Function('matches', `return \`${template.replaceAll('`', '``')}\``);
   return func(vars);
 };
@@ -166,11 +168,15 @@ export const calcCommandMatchInfo = (keyword: string, command: IPluginCommand, o
   }
 };
 
+// export const calcCommandMatchInfo = (keyword: string, command: IPluginCommand, options?: { alias?: string }) => {
+
+// };
+
 export const handleQuery = async (keyword: string) => {
   const results: IPluginCommand[] = [];
 
   let plugins = getPlugins();
-  let inputCount = 0;
+  // let inputCount = 0;
   await Promise.all([...plugins.values()].map((plugin) => {
     if (typeof plugin.plugin?.onInput !== 'function') return;
     return Promise.resolve(plugin.plugin?.onInput(keyword)).then((list) => {
@@ -184,23 +190,32 @@ export const handleQuery = async (keyword: string) => {
           icon: getLocalPath(item.icon, plugin.path),
         };
         results.push(result);
-        inputCount += 1;
-        resultsMap.set(result, { owner: plugin, from: 'onInput', keyword, query: keyword, score: score || CommandOnInputBaseScore + inputCount });
+        // inputCount += 1;
+        resultsMap.set(result, { owner: plugin });
       });
     });
   }));
   // 执行 onInput 后，可能会更新 commands，所以需要重新获取一下
   plugins = getPlugins();
-  plugins.forEach((plugin, name) => {
-    const { commands = [] } = plugins.get(name)!;
-    commands.forEach((command) => {
-      const r = calcCommandMatchInfo(keyword, command);
-      if (!r) return;
-      results.push(r.result);
-      resultsMap.set(r.result, { ...r.matchInfo, owner: plugin });
-    });
+  const commands: { command: IPluginCommand, owner: IRunningPlugin }[] = [];
+  plugins.forEach((plugin) => {
+    commands.push(...plugin.commands.map((command) => {
+      const titleZh = /\p{sc=Han}/u.test(command.title) ? hanziToPinyin(command.title) : '';
+      const subtitleZh = command.subtitle && /\p{sc=Han}/u.test(command.subtitle) ? hanziToPinyin(command.subtitle) : '';
+      const keywords = command.matches?.find(item => item.type === 'text')?.keywords || [];
+      return { command, owner: plugin, titleZh, subtitleZh, keywords };
+    }));
   });
-  return results.sort((prev, next) => resultsMap.get(next)!.score - resultsMap.get(prev)!.score);
+  const keywordsKey = new Array(20).fill(0)
+    .map((_, index) => `keywords.${index}`);
+  const queryResults = fuzzysort.go(keyword, commands, {
+    keys: ['command.title', 'command.subtitle', 'titleZh', 'subtitleZh', ...keywordsKey],
+  });
+  console.log('queryResults', queryResults, queryResults?.[0]?.obj);
+  queryResults.forEach((result) => {
+    resultsMap.set(result.obj.command, { owner: result.obj.owner });
+  });
+  return queryResults.map(result => result.obj.command);
 };
 
 export const handleSelect = (command: IPluginCommand, keyword: string) => {

@@ -1,11 +1,18 @@
 <template>
   <div class="command-list-view">
-    <InputBar v-model="keyword" v-if="command.search" @escape="exitCommand" />
+    <InputBar
+      v-if="command.search"
+      v-model="keyword"
+      @escape="exitCommand"
+    />
     <LoadingBar v-if="loadingCount > 0" />
-    <EmptyView v-if="!loadingCount && !results.length" class="empty-view" />
+    <EmptyView
+      v-if="!loadingCount && !results.length"
+      class="empty-view"
+    />
     <ResultView
-      class="result-view"
       v-show="results.length"
+      class="result-view"
       :results="results"
       :preview="preview"
       @select="onResultSelected"
@@ -18,7 +25,7 @@
 <script setup lang="ts">
 import { debounce } from 'es-toolkit';
 import ResultView from './PublicList.vue';
-import InputBar from './InputBar.vue'
+import InputBar from './InputBar.vue';
 import EmptyView from './PublicListEmptyView.vue';
 import { onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import LoadingBar from './LoadingBar.vue';
@@ -30,7 +37,7 @@ const props = defineProps<{
   params?: { query?: string },
 }>();
 
-const keyword = ref(props.params?.query ?? '')
+const keyword = ref(props.params?.query ?? '');
 const results = ref<IListItem[]>([]);
 const preview = ref<string | HTMLElement | undefined>('');
 
@@ -83,7 +90,7 @@ const onResultAction = (item: IListItem, _itemIndex: number, action: IActionItem
 };
 
 const exitCommand = () => {
-  mainWindow.popView()
+  mainWindow.popView();
 };
 
 const keyDownHandler = (event: KeyboardEvent) => {
@@ -101,7 +108,7 @@ onMounted(() => {
 });
 
 onBeforeUnmount(() => {
-  props.command.leave?.()
+  props.command.leave?.();
   window.removeEventListener('keyup', keyDownHandler);
 });
 </script>

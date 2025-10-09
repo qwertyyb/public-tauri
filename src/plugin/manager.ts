@@ -1,20 +1,14 @@
-// import Ajv from 'ajv';
 import path, { join } from 'path-browserify';
 import { clipboard, createPluginStorage, dialog, fetch, globalShortcut, mainWindow, registerServerModule, storage, utils, invokePluginServerMethod, createPluginServerListener, Database } from '@public/api/core';
 
 import { readTextFile } from '@tauri-apps/plugin-fs';
-// import schema from './plugin.schema.json';
 import { formatCommand, getLocalPath, openCommandPreferences, openPluginPreferences, popView, pushView } from './utils';
-import { builtinPluginsPath, LIST_VIEW_TEMPLATE_PATH } from './const';
+import { builtinPluginsPath } from './const';
 import { set } from 'es-toolkit/compat';
 import { resultsMap } from './store';
 import { resolveResource } from '@tauri-apps/api/path';
 import { preloadApp, setupApp, startApp } from 'wujie';
-import { parse as parseManifest, type IPluginManifest } from './schema'
-
-// const ajv = new Ajv({ allowUnionTypes: true });
-// console.log('schema', schema);
-// const validate = ajv.compile(schema);
+import { parse as parseManifest, type IPluginManifest } from './schema';
 
 const plugins: Map<string, IRunningPlugin> = new Map();
 let pluginsSettings: IPluginsSettings = {};
@@ -54,10 +48,10 @@ export const createWujie = (name: string, entryUrl: string, options?: {
     plugins: options?.insertScript ? [
       {
         jsBeforeLoaders: [
-          options.insertScript
-        ]
-      }
-    ] : []
+          options.insertScript,
+        ],
+      },
+    ] : [],
   });
   preloadApp({ name });
   return {
@@ -76,8 +70,8 @@ export const registerPlugin = async (pluginPath: string) => {
     const pkg = JSON.parse(await readTextFile(getLocalPath('./package.json', pluginPath)!));
     const { publicPlugin } = pkg;
     const manifest: IPluginManifest = parseManifest({ ...publicPlugin, name: pkg.name });
-    manifest.icon = getLocalPath(manifest.icon, pluginPath)!
-    const { name, template, html } = manifest
+    manifest.icon = getLocalPath(manifest.icon, pluginPath)!;
+    const { name, template, html } = manifest;
     const commands: IPluginCommand[] = (publicPlugin.commands || []).map((item: any) => formatCommand(item, manifest, pluginPath));
     if (!pluginsSettings[name]) {
       pluginsSettings[name] = { disabled: false, commands: {}, preferences: {} };
@@ -90,15 +84,15 @@ export const registerPlugin = async (pluginPath: string) => {
     };
     if (!pluginsSettings?.[name]?.disabled) {
       const serverModulePath = manifest.server ? join(pluginPath, manifest.server) : '';
-      const staticPaths: string[] = []
+      const staticPaths: string[] = [];
       if (template === 'listView') {
-        staticPaths.push(LIST_VIEW_TEMPLATE_PATH, pluginPath)
+        staticPaths.push(LIST_VIEW_TEMPLATE_PATH, pluginPath);
       } else {
-        staticPaths.push(pluginPath)
+        staticPaths.push(pluginPath);
       }
       registerServerModule(name, {
         modulePath: serverModulePath,
-        staticPaths
+        staticPaths,
       });
     }
     if (manifest.main && !pluginsSettings?.[name]?.disabled) {
@@ -116,7 +110,7 @@ export const registerPlugin = async (pluginPath: string) => {
             commands.forEach((command) => {
               const item = formatCommand(command, manifest, pluginPath);
               list.push(item);
-              resultsMap.set(item, { score: 1, from: 'onInput', keyword: '', query: '', owner: pluginInstance });
+              resultsMap.set(item, { owner: pluginInstance });
             });
             window.dispatchEvent(new CustomEvent('plugin:showCommands', { detail: { name: manifest.name, commands: list } }));
           },
@@ -126,26 +120,26 @@ export const registerPlugin = async (pluginPath: string) => {
       }
     }
     if (html) {
-      const u = new URL(`http://${name}.plugin.localhost:2345`)
-      u.pathname = html || '/index.html'
+      const u = new URL(`http://${name}.plugin.localhost:2345`);
+      u.pathname = html || '/index.html';
       const { lifecycle } = createWujie(name, u.href);
       pluginInstance.lifecycle = lifecycle;
     } else if (template === 'listView') {
-      const host = `${name}.plugin.localhost:2345`
-      const entryUrl = `http://${host}/index.html`
+      const host = `${name}.plugin.localhost:2345`;
+      const entryUrl = `http://${host}/index.html`;
       const commands = (publicPlugin.commands || []).map((item: any) => {
-        if (!item.preload) return null
-        const url = `http://${path.join(host, item.preload)}`
+        if (!item.preload) return null;
+        const url = `http://${path.join(host, item.preload)}`;
         return {
           url,
-          name: item.name
-        }
-      }).filter(Boolean)
-      const scriptContent = `window.$commands = ${JSON.stringify(commands)}`
+          name: item.name,
+        };
+      }).filter(Boolean);
+      const scriptContent = `window.$commands = ${JSON.stringify(commands)}`;
       const { lifecycle } = createWujie(name, entryUrl, {
-        insertScript: { content: scriptContent, module: true }
-      })
-      pluginInstance.lifecycle = lifecycle
+        insertScript: { content: scriptContent, module: true },
+      });
+      pluginInstance.lifecycle = lifecycle;
     }
     plugins.set(pkg.name, pluginInstance);
     return pluginInstance;
