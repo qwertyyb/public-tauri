@@ -172,6 +172,21 @@ export const calcCommandMatchInfo = (keyword: string, command: IPluginCommand, o
 
 // };
 
+const pinyinHighlight = (words: string, pinyin: string, indexes: readonly number[]) => {
+  let startIndex = -1;
+  const pinyinArr = pinyin.split(' ');
+  return Array.from(words).map((word, i) => {
+    const pinyin = pinyinArr[i];
+    const shouldHighlight = indexes.some(index => index > startIndex && index <= startIndex + pinyin.length);
+    startIndex += (pinyin.length + 1);
+    if (shouldHighlight) {
+      return `<b>${word}</b>`;
+    }
+    return word;
+  })
+    .join('');
+};
+
 export const handleQuery = async (keyword: string) => {
   const results: IPluginCommand[] = [];
 
@@ -195,6 +210,9 @@ export const handleQuery = async (keyword: string) => {
       });
     });
   }));
+
+  const commandsSet = new Set<string>();
+
   // 执行 onInput 后，可能会更新 commands，所以需要重新获取一下
   plugins = getPlugins();
   const commands: { command: IPluginCommand, owner: IRunningPlugin }[] = [];
@@ -211,59 +229,97 @@ export const handleQuery = async (keyword: string) => {
   const queryResults = fuzzysort.go(keyword, commands, {
     keys: ['command.title', 'command.subtitle', 'titleZh', 'subtitleZh', ...keywordsKey],
   });
-  console.log('queryResults', queryResults, queryResults?.[0]?.obj);
-  return queryResults.map((result) => {
+  console.log('fuzzyResults', queryResults);
+  results.push(...queryResults.map((result) => {
     const command = { ...result.obj.command };
     if (result[0].target) {
-      command.title = result[0].highlight()
+      command.title = result[0].highlight();
     }
     if (result[1].target) {
-      command.subtitle = result[1].highlight()
+      command.subtitle = result[1].highlight();
     }
     if (result[2].target) {
       // 拼音匹配标题
-      const pinyinArr = result[2].target.split(' ')
-      const indexes = result[2].indexes
-      let startIndex = -1
-      command.title = Array.from(result.obj.command.title).map((word, i) => {
-        const pinyin = pinyinArr[i]
-        const shouldHighlight = indexes.some(index => index > startIndex && index <= startIndex + pinyin.length)
-        startIndex += (pinyin.length + 1)
-        if (shouldHighlight) {
-          return `<b>${word}</b>`
-        }
-        return word
-      }).join('')
+      command.title = pinyinHighlight(result.obj.command.title, result[2].target, result[2].indexes);
     }
     if (result[3].target) {
       // 拼音匹配副标题
-      const pinyinArr = result[3].target.split(' ')
-      const indexes = result[3].indexes
-      let startIndex = -1
-      command.title = Array.from(result.obj.command.title).map((word, i) => {
-        const pinyin = pinyinArr[i]
-        const shouldHighlight = indexes.some(index => index > startIndex && index <= startIndex + pinyin.length)
-        startIndex += (pinyin.length + 1)
-        if (shouldHighlight) {
-          return `<b>${word}</b>`
-        }
-        return word
-      }).join('')
+      command.subtitle = pinyinHighlight(result.obj.command.subtitle!, result[3].target, result[3].indexes);
     }
     resultsMap.set(command, { owner: result.obj.owner });
-    return command
-  });
+    commandsSet.add(`${result.obj.owner.manifest.name}:${result.obj.command.name}`);
+    return command;
+  }));
+  fuzzysort.cleanup();
+
+  console.log('commandsSet', commandsSet);
+  // triggers
+  results.push(...commands.reduce<IPluginCommand[]>((acc, item) => {
+    if (commandsSet.has(`${item.owner.manifest.name}:${item.command.name}`)) return acc;
+    const triggerMatch = item.command.matches?.find(match => match.type === 'trigger');
+    if (!triggerMatch) return acc;
+    const triggerIndex = triggerMatch.triggers.findIndex(trigger => keyword.startsWith(`${trigger} `));
+    if (triggerIndex < 0) return acc;
+    const trigger = triggerMatch.triggers[triggerIndex];
+    const query = keyword.substring(trigger.length + 1);
+    console.log(trigger, query);
+    const result = {
+      ...item.command,
+      title: (query && triggerMatch.title) ? triggerMatch.title.replaceAll('$query', query) : item.command.title,
+      subtitle: (query && triggerMatch.subtitle) ? triggerMatch.subtitle.replaceAll('$query', query) : item.command.subtitle,
+    };
+    resultsMap.set(result, { owner: item.owner, query });
+    commandsSet.add(`${item.owner.manifest.name}:${item.command.name}`);
+    return [...acc, result];
+  }, []));
+
+
+  // 正则匹配
+  results.push(...commands.reduce<IPluginCommand[]>((acc, item) => {
+    if (commandsSet.has(`${item.owner.manifest.name}:${item.command.name}`)) return acc;
+    const regMatches = item.command.matches?.filter(match => match.type === 'regexp');
+    if (!regMatches) return acc;
+    const regMatch = regMatches.find(match => new RegExp(match.regexp).test(keyword));
+    if (!regMatch) return acc;
+    const matches = keyword.match(new RegExp(regMatch.regexp));
+    const result = {
+      ...item.command,
+      title: compileString(regMatch.title || item.command.title, matches),
+      subtitle: compileString(regMatch.subtitle || item.command.subtitle || '', matches),
+    };
+    resultsMap.set(result, { owner: item.owner });
+    commandsSet.add(`${item.owner.manifest.name}:${item.command.name}`);
+    return [...acc, result];
+  }, []));
+
+  // full 匹配
+  results.push(...commands.reduce<IPluginCommand[]>((acc, item) => {
+    if (commandsSet.has(`${item.owner.manifest.name}:${item.command.name}`)) return acc;
+    const { command, owner } = item;
+    const fullMatch = command.matches?.find(match => match.type === 'full');
+    if (!fullMatch) return acc;
+    const result = {
+      ...command,
+      title: (keyword && fullMatch.title) ? fullMatch.title.replaceAll('$query', keyword) : command.title,
+      subtitle: (keyword && fullMatch.subtitle) ? fullMatch.subtitle.replaceAll('$query', keyword) : command.subtitle,
+    };
+    resultsMap.set(result, { owner });
+    commandsSet.add(`${item.owner.manifest.name}:${item.command.name}`);
+    return [...acc, result];
+  }, []));
+
+  return results;
 };
 
 export const handleSelect = (command: IPluginCommand, keyword: string) => {
   const rp = resultsMap.get(command);
-  return rp?.owner.plugin?.onSelect?.(command, rp);
+  return rp?.owner.plugin?.onSelect?.(command, rp.query ?? keyword);
 };
 
-export const handleEnter = (command: IPluginCommand) => {
+export const handleEnter = (command: IPluginCommand, keyword: string) => {
   const rp = resultsMap.get(command);
   if (!rp) return;
-  enterCommand(rp.owner, command, rp);
+  enterCommand(rp.owner, command, rp.query ?? keyword);
 };
 
 export const handleAction = (command: IPluginCommand, action: IActionItem, keyword: string) => {

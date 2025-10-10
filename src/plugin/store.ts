@@ -3,7 +3,7 @@ import { getItem, setItem } from './storage';
 export const plugins: Map<string, IRunningPlugin> = new Map();
 let pluginsSettings: IPluginsSettings = {};
 
-export const resultsMap = new WeakMap<IPluginCommand, { owner: IRunningPlugin }>();
+export const resultsMap = new WeakMap<IPluginCommand, { owner: IRunningPlugin, query?: string }>();
 
 const save = () => setItem('pluginsSettings', pluginsSettings);
 

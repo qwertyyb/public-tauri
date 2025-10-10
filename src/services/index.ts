@@ -7,9 +7,9 @@ export const select = (result: IResultItem, keyword: string) =>
   handleSelect(result, keyword);
 
 
-export const enter = (result: IResultItem) =>
+export const enter = (result: IResultItem, keyword: string) =>
   // @ts-ignore
-  handleEnter(result);
+  handleEnter(result, keyword);
 
 
 export const action = (result: IResultItem, action: IActionItem, keyword: string) =>

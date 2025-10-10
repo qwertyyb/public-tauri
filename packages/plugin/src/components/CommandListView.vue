@@ -34,10 +34,10 @@ import { mainWindow } from '../api';
 
 const props = defineProps<{
   command: IPluginCommandListView,
-  params?: { query?: string },
+  defaultQuery?: string
 }>();
 
-const keyword = ref(props.params?.query ?? '');
+const keyword = ref(props.defaultQuery ?? '');
 const results = ref<IListItem[]>([]);
 const preview = ref<string | HTMLElement | undefined>('');
 

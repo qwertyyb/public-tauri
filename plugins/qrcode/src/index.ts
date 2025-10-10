@@ -37,8 +37,8 @@ const createQrcodePlugin: IPlugin = (utils) => {
   });
 
   return {
-    async onSelect(command, match) {
-      let text = match.from === 'match' && match.match.type === 'trigger' ? (match as any).matchData.query : match.keyword;
+    async onSelect(command, query) {
+      let text = query;
       if (command.name === 'generate-for-current-url') {
         text = await getChromeCurrentUrl() || await getSafariCurrentUrl() || '未获取到当前页面地址';
       }
@@ -61,7 +61,6 @@ const createQrcodePlugin: IPlugin = (utils) => {
       }
     },
     onEnter: (command) => {
-      console.log(command);
       if (command.name === 'detect' && command.text) {
         clipboard.writeText(command.text);
         dialog.showToast('已写入到剪切板');

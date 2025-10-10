@@ -17,15 +17,15 @@ export interface IListItem {
 type IPluginLifecycle  = {
   onInput?: (keyword: string) => void | IPluginCommand[] | Promise<void> | Promise<IPluginCommand[]>,
   onSelect?: (command: IPluginCommand, matchData: ICommandMatchData) => string | undefined | HTMLElement | Promise<string | HTMLElement | undefined>,
-  onEnter?: (command: IPluginCommand, matchData?: ICommandMatchData) => void,
+  onEnter?: (command: IPluginCommand, query?: string) => void,
   onExit?: (command: IPluginCommand) => void,
   onAction?: (command: IPluginCommand, action: IActionItem, keyword: string) => void,
 };
 
 export type IPluginReturn = {
   onInput?: (keyword: string) => void | IPluginCommand[] | Promise<void> | Promise<IPluginCommand[]>,
-  onSelect?: (command: IPluginCommand, matchData: ICommandMatchData) => string | undefined | HTMLElement | Promise<string | HTMLElement | undefined>,
-  onEnter?: (command: IPluginCommand, matchData: ICommandMatchData) => void,
+  onSelect?: (command: IPluginCommand, query?: string) => string | undefined | HTMLElement | Promise<string | HTMLElement | undefined>,
+  onEnter?: (command: IPluginCommand, query?: string) => void,
   onAction?: (command: IPluginCommand, action: IActionItem, keyword: string) => void,
 } | undefined | null;
 

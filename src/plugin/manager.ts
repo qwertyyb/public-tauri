@@ -325,7 +325,7 @@ const checkPreferences = async (owner: IRunningPlugin, command: IPluginCommand) 
   return count;
 };
 
-export const enterCommand = async (owner: IRunningPlugin, command: IPluginCommand, matchData: ICommandMatchData) => {
+export const enterCommand = async (owner: IRunningPlugin, command: IPluginCommand, query?: string) => {
   // 判断一下组件所需的首选项是否都已填写，如果都已填写，则直接执行，否则跳转去配置
   // 首先需要判断插件层级的必须首选项是否已填写，再检查 command 层级的首选项
   const count = await checkPreferences(owner, command);
@@ -333,10 +333,9 @@ export const enterCommand = async (owner: IRunningPlugin, command: IPluginComman
     popView({ count });
   }
   if (command.mode === 'none' || !command.mode) {
-    owner.plugin?.onEnter?.(command, matchData);
+    owner.plugin?.onEnter?.(command, query);
   } else if (command.mode === 'listView' || command.mode === 'view') {
     const wujie = {
-      initialKeyword: matchData?.query ?? '',
       mount(el: HTMLElement) {
         owner.lifecycle?.onEnter?.(command);
         startApp({ name: owner.manifest.name, el, url: owner.manifest.entry! });
@@ -349,12 +348,12 @@ export const enterCommand = async (owner: IRunningPlugin, command: IPluginComman
   }
 };
 
-export const enterCommandByName = (pluginName: string, commandName: string, matchData: ICommandMatchData) => {
+export const enterCommandByName = (pluginName: string, commandName: string, query?: string) => {
   const plugin = plugins.get(pluginName);
   if (!plugin) return;
   const command = plugin.commands.find(item => item.name === commandName);
   if (!command) return;
-  return enterCommand(plugin, command, matchData);
+  return enterCommand(plugin, command, query);
 };
 
 export const getPreferenceValues = (pluginName: string) => pluginsSettings[pluginName]?.preferences || {};
@@ -377,7 +376,7 @@ export const updateCommandShortcut = async (pluginName: string, commandName: str
     throw new Error(`shortcut ${shortcut} already registered`);
   }
   await globalShortcut.register(shortcut, () => {
-    enterCommandByName(pluginName, commandName, { from: 'hotkey', score: 0, keyword: '', query: '' });
+    enterCommandByName(pluginName, commandName);
     mainWindow.show();
   });
   save();
@@ -414,7 +413,7 @@ const initCommandsShortcut = () => {
       const shortcut = commandSettings?.shortcut;
       if (!shortcut) return;
       const handler = () => {
-        enterCommandByName(pluginName, command.name, { from: 'hotkey', score: 0, keyword: '', query: '' });
+        enterCommandByName(pluginName, command.name);
         mainWindow.show();
       };
       console.log('initCommandsShortcut', shortcut);

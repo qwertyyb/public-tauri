@@ -1,9 +1,12 @@
 <template>
-  <CommandListView :command="command" v-if="command" />
+  <CommandListView
+    v-if="command"
+    :command="command"
+  />
 </template>
 
 <script setup lang="ts">
-import CommandListView from '@public/plugin/CommandListView.vue'
+import CommandListView from '@public/plugin/CommandListView.vue';
 import type { IPluginCommandListView } from '@public/plugin';
 import { markRaw } from 'vue';
 
@@ -15,6 +18,6 @@ declare global {
   }
 }
 
-const command = markRaw<IPluginCommandListView>(window.$public!.command)
+const command = markRaw<IPluginCommandListView>(window.$public!.command);
 
 </script>
