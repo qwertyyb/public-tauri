@@ -68,9 +68,9 @@ const compositionEndHandler = () => {
 
 onMounted(() => {
   setTimeout(() => {
-    inputEl.value?.focus()
-  })
-})
+    inputEl.value?.focus();
+  });
+});
 
 </script>
 

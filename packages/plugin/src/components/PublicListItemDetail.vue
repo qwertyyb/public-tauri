@@ -3,7 +3,7 @@
     <div
       ref="previewEl"
       class="preview-wrapper"
-    ></div>
+    />
   </section>
 </template>
 
@@ -14,7 +14,7 @@ const props = defineProps<{
   html: string | HTMLElement
 }>();
 
-const previewEl = useTemplateRef('previewEl')
+const previewEl = useTemplateRef('previewEl');
 
 const renderPreview = () => {
   if (!previewEl.value) return;

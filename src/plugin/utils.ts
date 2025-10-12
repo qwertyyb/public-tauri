@@ -1,5 +1,5 @@
 import { convertFileSrc } from '@tauri-apps/api/core';
-import { pinyin as proPinyin } from "pinyin-pro";
+import { pinyin as proPinyin } from 'pinyin-pro';
 import { join } from 'path-browserify';
 import type { IPluginManifest } from './schema';
 
@@ -21,10 +21,10 @@ export const getLocalPath = (
   return convertFileSrc(path);
 };
 
-export const hanziToPinyin = (hanzi: string) => proPinyin(hanzi, { toneType: 'none' }) // 获取不带音调格式拼音 pinyin("汉语拼音", { toneType: "none" }); // "han yu pin yin"
+export const hanziToPinyin = (hanzi: string) => proPinyin(hanzi, { toneType: 'none' }); // 获取不带音调格式拼音 pinyin("汉语拼音", { toneType: "none" }); // "han yu pin yin"
 
 const pinyin = (text: string) => {
-  if (!text) return []
+  if (!text) return [];
   if (/[^\x00-\xff]/.test(text)) {
     const full: string = hanziToPinyin(text);
     if (full) {
@@ -54,7 +54,7 @@ export const formatCommand = (command: IPluginCommandConfig, manifest: IPluginMa
   const keywords: string[] = [item.name, item.title, item.subtitle || '', ...pinyin(item.title), ...pinyin(item.subtitle || '')].filter(Boolean);
   const matches = (command.matches || []).map((match) => {
     if (match.type === 'text') {
-      const keywords = (match.keywords || []).map<string[]>((keyword) => [keyword, ...pinyin(keyword)]).flat();
+      const keywords = (match.keywords || []).map<string[]>(keyword => [keyword, ...pinyin(keyword)]).flat();
       return { ...match, keywords };
     }
     return match;
@@ -88,3 +88,10 @@ export const openCommandPreferences = (plugin: string, command: string, options?
     pushView({ path: '/plugin/prfs', params: { plugin, command, done: resolve } });
   });
 };
+
+export const htmlEscape = (text: string) => String(text)
+  .replaceAll('&', '&amp;')
+  .replaceAll('<', '&lt;')
+  .replaceAll('>', '&gt;')
+  .replaceAll('"', '&quot;')
+  .replaceAll('\'', '&#39;');

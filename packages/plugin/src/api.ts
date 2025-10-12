@@ -29,4 +29,4 @@ export const on: typeof api['on'] = window.$wujie?.props?.on;
 
 export const createPlugin: (options: IPluginLifecycle) => void = window.$wujie?.props?.createPlugin;
 
-export const Database: typeof api['Database'] = window.$wujie?.props?.Database
+export const Database: typeof api['Database'] = window.$wujie?.props?.Database;

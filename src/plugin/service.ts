@@ -1,7 +1,7 @@
 import fuzzysort from 'fuzzysort';
 import { enterCommand, getPlugins } from './manager';
 import { resultsMap } from './store';
-import { getLocalPath, hanziToPinyin } from './utils';
+import { getLocalPath, hanziToPinyin, htmlEscape } from './utils';
 
 // 计算匹配分数，越大表示匹配度越高，最大为1
 const calcScore = (query: string, target: string) => query.length / target.length;
@@ -218,10 +218,12 @@ export const handleQuery = async (keyword: string) => {
   const commands: { command: IPluginCommand, owner: IRunningPlugin }[] = [];
   plugins.forEach((plugin) => {
     commands.push(...plugin.commands.map((command) => {
-      const titleZh = /\p{sc=Han}/u.test(command.title) ? hanziToPinyin(command.title) : '';
-      const subtitleZh = command.subtitle && /\p{sc=Han}/u.test(command.subtitle) ? hanziToPinyin(command.subtitle) : '';
-      const keywords = command.matches?.find(item => item.type === 'text')?.keywords || [];
-      return { command, owner: plugin, titleZh, subtitleZh, keywords };
+      const title = htmlEscape(command.title)
+      const subtitle = command.subtitle ? htmlEscape(command.subtitle) : ''
+      const titleZh = /\p{sc=Han}/u.test(title) ? hanziToPinyin(title) : '';
+      const subtitleZh = subtitle && /\p{sc=Han}/u.test(subtitle) ? hanziToPinyin(subtitle) : '';
+      const keywords = command.matches?.find(item => item.type === 'text')?.keywords || []
+      return { command, owner: plugin, title, titleZh, subtitle, subtitleZh, keywords };
     }));
   });
   const keywordsKey = new Array(20).fill(0)

@@ -19,13 +19,15 @@
     <div class="item-info">
       <h3
         class="item-title"
-        v-html="title"
-      />
+      >
+        {{ title }}
+      </h3>
       <h5
         v-if="subtitle"
         class="item-subtitle"
-        v-html="subtitle"
-      />
+      >
+        {{ subtitle }}
+      </h5>
     </div>
     <!-- <div class="item-actions">
       <ShortcutsKey

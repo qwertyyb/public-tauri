@@ -65,7 +65,7 @@ const actionKeyStartIndex = ref(0);
 const selectedItem = computed(() => props.results[selectedIndex.value]);
 
 const el = useTemplateRef('el');
-const virtualList = useTemplateRef('virtualList')
+const virtualList = useTemplateRef('virtualList');
 
 const getPreview = async (item: T) => {
   if (!item) return emit('select', null, -1);
@@ -91,7 +91,7 @@ const calcActionKeyStartIndex = () => {
 
 watch(selectedItem, (value) => {
   visibleActionIndex.value = -1;
-  virtualList.value?.scrollToIndex(Math.max(0, selectedIndex.value - 4))
+  virtualList.value?.scrollToIndex(Math.max(0, selectedIndex.value - 4));
   getPreview(value);
 }, { immediate: true });
 watch(selectedItem, () => setTimeout(calcActionKeyStartIndex, 600), { flush: 'post' });
