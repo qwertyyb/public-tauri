@@ -215,14 +215,14 @@ export const handleQuery = async (keyword: string) => {
 
   // 执行 onInput 后，可能会更新 commands，所以需要重新获取一下
   plugins = getPlugins();
-  const commands: { command: IPluginCommand, owner: IRunningPlugin }[] = [];
+  const commands: { command: IPluginCommand, owner: IRunningPlugin, title: string, subtitle: string, titleZh: string, subtitleZh: string }[] = [];
   plugins.forEach((plugin) => {
     commands.push(...plugin.commands.map((command) => {
-      const title = htmlEscape(command.title)
-      const subtitle = command.subtitle ? htmlEscape(command.subtitle) : ''
+      const title = htmlEscape(command.title);
+      const subtitle = command.subtitle ? htmlEscape(command.subtitle) : '';
       const titleZh = /\p{sc=Han}/u.test(title) ? hanziToPinyin(title) : '';
       const subtitleZh = subtitle && /\p{sc=Han}/u.test(subtitle) ? hanziToPinyin(subtitle) : '';
-      const keywords = command.matches?.find(item => item.type === 'text')?.keywords || []
+      const keywords = command.matches?.find(item => item.type === 'text')?.keywords || [];
       return { command, owner: plugin, title, titleZh, subtitle, subtitleZh, keywords };
     }));
   });
@@ -242,11 +242,11 @@ export const handleQuery = async (keyword: string) => {
     }
     if (result[2].target) {
       // 拼音匹配标题
-      command.title = pinyinHighlight(result.obj.command.title, result[2].target, result[2].indexes);
+      command.title = pinyinHighlight(result.obj.title, result[2].target, result[2].indexes);
     }
     if (result[3].target) {
       // 拼音匹配副标题
-      command.subtitle = pinyinHighlight(result.obj.command.subtitle!, result[3].target, result[3].indexes);
+      command.subtitle = pinyinHighlight(result.obj.subtitle!, result[3].target, result[3].indexes);
     }
     resultsMap.set(command, { owner: result.obj.owner });
     commandsSet.add(`${result.obj.owner.manifest.name}:${result.obj.command.name}`);

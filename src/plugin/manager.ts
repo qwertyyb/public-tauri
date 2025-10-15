@@ -383,7 +383,7 @@ export const updateCommandShortcut = async (pluginName: string, commandName: str
 };
 
 const initInnerPlugins = async () => {
-  const names = ['clipboard', 'translate', 'launcher', 'calculator', 'transform', 'ai', 'settings', 'snippets', 'qrcode', 'v2ex', 'magic', 'mdn', 'applescript', 'snippets'];
+  const names = ['clipboard', 'translate', 'launcher', 'calculator', 'transform', 'ai', 'settings', 'snippets', 'qrcode', 'v2ex', 'magic', 'mdn', 'applescript', 'snippets', 'emoji'];
 
   let pluginsPathList: string[] = [];
   if (import.meta.env.DEV) {

@@ -1,0 +1,41 @@
+{
+  "name": "emoji",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup --config ./rollup.config.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "publicPlugin": {
+    "icon": "./assets/emoji.png",
+    "title": "emoji",
+    "subtitle": "查找输入emoji",
+    "template": "listView",
+    "commands": [
+      {
+        "name": "index",
+        "title": "搜索 emoji",
+        "subtitle": "搜索输入 emoji",
+        "mode": "listView",
+        "preload": "./dist/index.js"
+      }
+    ]
+  },
+  "packageManager": "pnpm@10.8.0",
+  "dependencies": {
+    "@public/plugin": "workspace:^",
+    "gemoji": "^8.1.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "catalog:plugin",
+    "@rollup/plugin-json": "catalog:plugin",
+    "@rollup/plugin-node-resolve": "catalog:plugin",
+    "@rollup/plugin-replace": "catalog:plugin",
+    "rollup": "catalog:plugin",
+    "rollup-plugin-esbuild": "catalog:plugin"
+  }
+}
