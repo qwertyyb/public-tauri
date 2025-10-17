@@ -3,12 +3,6 @@ import CommandListView from '@public/plugin/CommandListView.vue';
 import { createPlugin, type IPluginCommandListView } from '@public/plugin';
 import { shallowRef } from 'vue';
 
-declare global {
-  interface Window {
-    $commands: { name: string, url: string }[]
-  }
-}
-
 const commands = shallowRef<{ [x: string]: IPluginCommandListView }>();
 const commandName = shallowRef('');
 const query = shallowRef('');

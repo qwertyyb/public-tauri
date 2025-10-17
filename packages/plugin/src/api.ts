@@ -1,4 +1,4 @@
-import * as api from '@public/api';
+import * as api from '@public/api/core';
 import type { IPluginLifecycle } from '@public/types';
 
 declare global {
@@ -23,9 +23,9 @@ export const utils: typeof api['utils'] = window.$wujie?.props?.utils;
 
 export const screen: typeof api['screen'] = window.$wujie?.props?.screen;
 
-export const invoke: typeof api['invoke'] = window.$wujie?.props?.invoke;
+export const invoke: (name: string, ...args: any[]) => Promise<any> = window.$wujie?.props?.invoke;
 
-export const on: typeof api['on'] = window.$wujie?.props?.on;
+export const on: ReturnType<typeof api['createPluginServerListener']> = window.$wujie?.props?.on;
 
 export const createPlugin: (options: IPluginLifecycle) => void = window.$wujie?.props?.createPlugin;
 

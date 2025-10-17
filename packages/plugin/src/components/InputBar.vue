@@ -2,7 +2,7 @@
   <div
     class="inputBar"
     tabindex="0"
-    @pointerup="inputEl?.value?.focus()"
+    @pointerup="inputEl?.focus()"
   >
     <input
       v-if="!disabled"

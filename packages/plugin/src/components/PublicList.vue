@@ -86,13 +86,15 @@ const calcActionKeyStartIndex = () => {
       visibleIndexList.push(parseInt(item.dataset.resultItemIndex as string, 10));
     }
   });
-  actionKeyStartIndex.value = visibleIndexList[0];
+  actionKeyStartIndex.value = visibleIndexList[0] || 0;
 };
 
 watch(selectedItem, (value) => {
   visibleActionIndex.value = -1;
   virtualList.value?.scrollToIndex(Math.max(0, selectedIndex.value - 4));
-  getPreview(value);
+  if (value) {
+    getPreview(value);
+  }
 }, { immediate: true });
 watch(selectedItem, () => setTimeout(calcActionKeyStartIndex, 600), { flush: 'post' });
 
@@ -101,7 +103,7 @@ watch(() => props.results, () => {
 });
 
 const onResultEnter = (index: number) => {
-  emit('enter', props.results[index], index);
+  emit('enter', props.results[index]!, index);
 };
 
 const highlightAction = (actionName: string) => {
@@ -114,7 +116,7 @@ const highlightAction = (actionName: string) => {
 };
 
 const onResultAction = (action: IActionItem) => {
-  emit('action', selectedItem.value, selectedIndex.value, action);
+  emit('action', selectedItem.value!, selectedIndex.value, action);
   highlightAction(action.name);
 };
 

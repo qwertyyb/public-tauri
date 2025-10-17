@@ -7,7 +7,7 @@ import { listen, type UnlistenFn } from '@tauri-apps/api/event';
 import { open } from '@tauri-apps/plugin-shell';
 import { invoke } from '@tauri-apps/api/core';
 
-import { io } from 'https://unpkg.com/socket.io@4.8.1/client-dist/socket.io.esm.min.js';
+import { io } from 'socket.io-client';
 export * as globalShortcut from '@tauri-apps/plugin-global-shortcut';
 export { invokePluginServerMethod } from './utils';
 export { default as Database } from '@tauri-apps/plugin-sql';
@@ -27,9 +27,7 @@ export const mainWindow = {
     window.dispatchEvent(new CustomEvent('pop-to-root', { detail: { ...options } }));
   },
   pushView: (options: { path: string, params?: any }) => window.dispatchEvent(new CustomEvent('push-view', { detail: { ...options } })),
-  popView: (options: { count: number } = { count: 1 }) => {
-    return window.dispatchEvent(new CustomEvent('pop-view', { detail: { ...options } }))
-  },
+  popView: (options: { count: number } = { count: 1 }) => window.dispatchEvent(new CustomEvent('pop-view', { detail: { ...options } })),
   onShow: async (callback: () => void) => {
     const unlisten = await listen('focus', (event) => {
       if (event.payload) {
@@ -178,3 +176,4 @@ export const createPluginServerListener = (pluginName: string) => {
     socket.on(event, callback);
   };
 };
+
