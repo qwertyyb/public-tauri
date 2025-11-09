@@ -1,4 +1,6 @@
-import { invoke, on } from '@public/api';
+import { createPluginChannel } from '@public/api/core';
+
+const { invoke, on } = createPluginChannel('launcher');
 
 const launcherPlugin = (utils) => {
   on('apps', apps => utils.updateCommands(apps));

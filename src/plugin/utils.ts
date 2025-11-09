@@ -51,7 +51,6 @@ export const formatCommand = (command: IPluginCommandConfig, manifest: IPluginMa
     entry: getLocalPath(command.entry, pluginPath),
     preload: command.preload ? join(pluginPath, command.preload) : command.preload,
   };
-  const keywords: string[] = [item.name, item.title, item.subtitle || '', ...pinyin(item.title), ...pinyin(item.subtitle || '')].filter(Boolean);
   const matches = (command.matches || []).map((match) => {
     if (match.type === 'text') {
       const keywords = (match.keywords || []).map<string[]>(keyword => [keyword, ...pinyin(keyword)]).flat();
@@ -61,7 +60,7 @@ export const formatCommand = (command: IPluginCommandConfig, manifest: IPluginMa
   });
   return {
     ...item,
-    matches: [...matches, { type: 'text', keywords } as ITextPluginCommandMatch],
+    matches: [...matches],
   };
 };
 

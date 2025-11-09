@@ -1,4 +1,7 @@
-import { clipboard, dialog, ICommand, IListViewCommand, invoke, mainWindow, screen, utils } from '@public/api';
+import { clipboard, dialog, ICommand, IListViewCommand, mainWindow, screen, utils } from '@public/api';
+import { createPluginChannel } from '@public/api/core';
+
+const { invoke } = createPluginChannel('qrcode');
 
 const createClipboardItem = (text: string) => {
   const item: ICommand = {

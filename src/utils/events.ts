@@ -33,6 +33,10 @@ export const listenEvents = async () => {
   });
 };
 
+window.addEventListener('beforeunload', () => {
+  unlisten?.();
+});
+
 if (import.meta.hot) {
   if (unlisten) {
     // @ts-ignore

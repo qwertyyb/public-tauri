@@ -1,4 +1,4 @@
-export const invokePluginServerMethod = async (name: string, method: string, args: any[]) => {
+export const invokePluginServerMethod = async <T = any>(name: string, method: string, args: any[]): Promise<T> => {
   const r = await fetch('http://127.0.0.1:2345/api/manager/invoke', {
     method: 'POST',
     headers: {

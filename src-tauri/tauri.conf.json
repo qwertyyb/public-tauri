@@ -17,6 +17,7 @@
       "icons/icon.ico",
       "../plugins/*/dist/**/*",
       "../plugins/*/assets/**/*",
+      "../plugins/*/build/Release/**/*.node",
       "../plugins/*/package.json"
     ],
     "icon": [
@@ -55,7 +56,8 @@
         "enable": true,
         "scope": ["**/*"]
       },
-      "csp": "default-src 'self' https://unpkg.com http://127.0.0.1:2345 ws://127.0.0.1:2345 https://v1.hitokoto.cn/ ipc: http://ipc.localhost; img-src 'self' https: asset: http://asset.localhost; script-src 'self' 'unsafe-eval' ipc: asset: https://unpkg.com",
+      "dangerousDisableAssetCspModification": true,
+      "csp": "default-src * 'self' 'unsafe-eval' 'unsafe-inline' https://unpkg.com http://127.0.0.1:2345 ws://127.0.0.1:2345 https://v1.hitokoto.cn/ ipc: asset: http://ipc.localhost; script-src * 'self' 'unsafe-eval' 'unsafe-inline' ipc: asset: https://unpkg.com; style-src * 'unsafe-inline'; img-src 'self' http: https: asset: http://asset.localhost; connect-src * 'self' https://unpkg.com http://localhost:2345 http://127.0.0.1:2345 ws://127.0.0.1:2345 https://v1.hitokoto.cn/ ipc: asset: http://ipc.localhost 'unsafe-eval' 'unsafe-inline'; frame-src 'self' 'unsafe-eval' 'unsafe-inline' ipc: asset: https://unpkg.com; object-src *",
       "devCsp": "default-src 'self' https://unpkg.com http://127.0.0.1:2345 ws://127.0.0.1:2345 https://v1.hitokoto.cn/ ipc: http://ipc.localhost; img-src 'self' https: asset: http://asset.localhost; script-src 'self' 'unsafe-eval' ipc: asset: https://unpkg.com"
     },
     "macOSPrivateApi": true

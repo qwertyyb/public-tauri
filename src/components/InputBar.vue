@@ -33,7 +33,7 @@ import { onBeforeUnmount, onMounted, ref, useTemplateRef, watch } from 'vue';
 import { router } from '@public/api/core';
 import { createAutoResizeInput } from '@/utils';
 
-const modelValue = defineModel({ default: '' });
+const modelValue = defineModel<string>({ default: '' });
 const props = defineProps<{
   command?: { icon: string } | null,
   disabled?: boolean,
@@ -103,8 +103,8 @@ router.onPageEnter(() => {
 });
 
 router.onPageLeave(() => {
-  inputEl.value?.blur?.()
-})
+  inputEl.value?.blur?.();
+});
 </script>
 
 <style lang="scss" scoped>

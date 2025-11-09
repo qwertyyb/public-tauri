@@ -1,13 +1,14 @@
 import * as clipboardBase from 'tauri-plugin-clipboard-api';
 import { cursorPosition, getCurrentWindow } from '@tauri-apps/api/window';
 import * as autostart from '@tauri-apps/plugin-autostart';
-import { invokeServerUtils } from './utils';
+import { invokePluginServerMethod, invokeServerUtils } from './utils';
 import { useRouter, onPageEnter, onPageLeave, pageEventSymbol, routerSymbol } from './router';
 import { listen, type UnlistenFn } from '@tauri-apps/api/event';
 import { open } from '@tauri-apps/plugin-shell';
 import { invoke } from '@tauri-apps/api/core';
 
-import { io } from 'socket.io-client';
+// @ts-ignore
+import { io } from 'socket.io-client/dist/socket.io.js';
 export * as globalShortcut from '@tauri-apps/plugin-global-shortcut';
 export { invokePluginServerMethod } from './utils';
 export { default as Database } from '@tauri-apps/plugin-sql';
@@ -126,7 +127,7 @@ export const storage = {
 
 const pluginServerHost = 'http://localhost:2345';
 export const registerServerModule = async (name: string, { modulePath, staticPaths }: { modulePath: string, staticPaths: string[] }) => {
-  const r = await fetch(`${pluginServerHost}/api/manager/register`, {
+  const r = await window.fetch(`${pluginServerHost}/api/manager/register`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -135,7 +136,7 @@ export const registerServerModule = async (name: string, { modulePath, staticPat
   });
   const json = await r.json();
   if (json.errCode !== 0) {
-    throw new Error(`注册服务插件失败:${json.errMessage}`);
+    throw new Error(`注册服务插件${name}失败:${json.errMsg}`);
   }
   return json.data;
 };
@@ -176,4 +177,9 @@ export const createPluginServerListener = (pluginName: string) => {
     socket.on(event, callback);
   };
 };
+
+export const createPluginChannel = (pluginName: string) => ({
+  invoke: <T = any>(name: string, ...args: any[]) => invokePluginServerMethod<T>(pluginName, name, args),
+  on: createPluginServerListener(pluginName),
+});
 

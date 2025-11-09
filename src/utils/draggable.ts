@@ -58,7 +58,7 @@ export function isFocusable(element: Element) {
 
 export const createDraggable = () => {
   if (!isTauri()) return;
-  let startDragTimeout: ReturnType<typeof setTimeout> | null = null
+  let startDragTimeout: ReturnType<typeof setTimeout> | null = null;
   const pointerDownHandler = (e: PointerEvent) => {
     if (e.button !== 0) return;
     const dragArea = e.clientY < 48;
@@ -67,13 +67,13 @@ export const createDraggable = () => {
     if (shouldDrag) {
       startDragTimeout = setTimeout(() => {
         getCurrentWindow().startDragging();
-      }, 200)
+      }, 200);
     }
   };
 
   const pointerUpHandler = () => {
-    startDragTimeout && clearTimeout(startDragTimeout)
-  }
+    startDragTimeout && clearTimeout(startDragTimeout);
+  };
 
   window.addEventListener('pointerdown', pointerDownHandler, true);
   window.addEventListener('pointerup', pointerUpHandler, true);

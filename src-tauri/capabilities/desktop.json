@@ -43,14 +43,8 @@
     "sql:allow-load",
     "sql:allow-select",
     "sql:allow-close",
-    {
-      "identifier": "http:default",
-      "allow": [{ "url": "https://*:*/**" }]
-    },
-    "dialog:default",
     "autostart:allow-disable",
     "autostart:allow-enable",
-    "autostart:allow-is-enabled",
-    "process:default"
+    "autostart:allow-is-enabled"
   ]
 }

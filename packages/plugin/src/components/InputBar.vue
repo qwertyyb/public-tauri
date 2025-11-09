@@ -2,7 +2,7 @@
   <div
     class="inputBar"
     tabindex="0"
-    @pointerup="inputEl?.focus()"
+    @pointerup="focusInput"
   >
     <input
       v-if="!disabled"
@@ -64,6 +64,10 @@ const compositionStartHandler = () => {
 
 const compositionEndHandler = () => {
   inputEl.value?.classList.remove('composing');
+};
+
+const focusInput = () => {
+  inputEl.value?.focus();
 };
 
 onMounted(() => {

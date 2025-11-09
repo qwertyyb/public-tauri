@@ -2,7 +2,7 @@ import clipboard from 'tauri-plugin-clipboard-api';
 import Database from '@tauri-apps/plugin-sql';
 import { ContentType, DATABASE_PATH } from './const';
 
-const formatDate = function (date: Date, fmt = 'yyyy-MM-dd hh:mm:ss') {
+const formatDate = function (date: Date, format = 'yyyy-MM-dd hh:mm:ss') {
   const o = {
     'M+': date.getMonth() + 1,                 // 月份
     'd+': date.getDate(),                    // 日
@@ -12,6 +12,7 @@ const formatDate = function (date: Date, fmt = 'yyyy-MM-dd hh:mm:ss') {
     'q+': Math.floor((date.getMonth() + 3) / 3), // 季度
     S: date.getMilliseconds(),             // 毫秒
   };
+  let fmt = format;
   if (/(y+)/.test(fmt)) {
     fmt = fmt.replace(RegExp.$1, (`${date.getFullYear()}`).substr(4 - RegExp.$1.length));
   }
@@ -61,13 +62,12 @@ const insertRecord = async (record: { contentType: number, text: string, content
 
 createDatabase();
 
-const lastHash: string | null = null;
 clipboard.onClipboardUpdate(async () => {
   console.log('Received new text in clipboard: ');
   const [html, text, imgbase64] = await Promise.all([
-    clipboard.readHtml().catch(err => null),
-    clipboard.readText().catch(err => null),
-    clipboard.readImageBase64().catch(err => null),
+    clipboard.readHtml().catch(() => null),
+    clipboard.readText().catch(() => null),
+    clipboard.readImageBase64().catch(() => null),
   ]);
   console.log('clipboard', { html, text, imgbase64 });
 
