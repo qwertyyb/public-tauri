@@ -3,7 +3,8 @@
 <plist version="1.0">
 <dict>
   <!-- 其他默认配置（Tauri 会自动合并，无需重复） -->
-  
+  <key>LSUIElement</key>
+  <true/>
   <!-- 配置 ATS 例外 -->
   <key>NSAppTransportSecurity</key>
   <dict>
