@@ -1,3 +1,4 @@
+import './utils/prepare';
 import Koa from 'koa';
 import koaBody from '@koa/bodyparser';
 import cors from '@koa/cors';

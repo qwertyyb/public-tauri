@@ -12,9 +12,9 @@ let popToRootTimeout: ReturnType<typeof setTimeout> | null;
 
 export const listenEvents = async () => {
   if (!isTauri()) return;
-  if (import.meta.env.PROD) {
-    app.setDockVisibility(false);
-  }
+  // if (import.meta.env.PROD) {
+  //   app.setDockVisibility(false);
+  // }
   unlisten = await listen('focus', (event) => {
     logger.info('onFocusChanged', event);
     if (!event.payload) {
@@ -33,7 +33,7 @@ export const listenEvents = async () => {
   });
 };
 
-window.addEventListener('beforeunload', () => {
+window.addEventListener('unload', () => {
   unlisten?.();
 });
 

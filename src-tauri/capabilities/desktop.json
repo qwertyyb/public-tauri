@@ -23,7 +23,17 @@
     "global-shortcut:allow-register",
     "global-shortcut:allow-unregister",
     "shell:default",
-    "shell:allow-spawn",
+    "shell:allow-kill",
+    {
+      "identifier": "shell:allow-spawn",
+      "allow": [
+        {
+          "name": "binaries/node-v24.5.0",
+          "args": true,
+          "sidecar": true
+        }
+      ]
+    },
     "fs:default",
     "fs:allow-resource-read-recursive",
     {
