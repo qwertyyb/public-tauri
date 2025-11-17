@@ -35,4 +35,7 @@ const httpServer = createServer(app.callback());
 
 startSocketIO(httpServer);
 
-httpServer.listen(2345, () => logger.info(`listen on ${2345}`));
+httpServer.listen(2345, () => {
+  logger.info('public server is ready')
+  logger.info(`listen on ${2345}`);
+});

@@ -21,7 +21,8 @@
       "../plugins/*/package.json",
       "../src-node/dist/**/*",
       "../src-node/build/**/*.node",
-      "../src-node/package.json"
+      "../src-node/package.json",
+      "../packages/template/dist/"
     ],
     "icon": [
       "icons/32x32.png",

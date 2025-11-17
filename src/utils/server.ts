@@ -59,7 +59,13 @@ let process: Child
 export const start = async () => {
   const command = await createCommand()
   return new Promise<void>((resolve, reject) => {
-    command.stdout.once('data', () => resolve())
+    const handler = (data: string) => {
+      if (data.trim() === 'public server is ready') {
+        resolve()
+        command.stdout.off('data', handler)
+      }
+    }
+    command.stdout.on('data', handler)
     command.once('error', () => reject())
     command.spawn().then(result => {
       process = result

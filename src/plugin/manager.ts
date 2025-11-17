@@ -2,13 +2,13 @@ import path, { join } from 'path-browserify';
 import { clipboard, createPluginStorage, dialog, fetch, globalShortcut, mainWindow, registerServerModule, storage, utils, invokePluginServerMethod, createPluginServerListener, Database } from '@public/api/core';
 
 import { readTextFile } from '@tauri-apps/plugin-fs';
-import { formatCommand, getLocalPath, openCommandPreferences, openPluginPreferences, popView, pushView } from './utils';
-import { builtinPluginsPath } from './const';
+import { formatCommand, getLocalPath, openCommandPreferences, openPluginPreferences, popView, pushView, withCache } from './utils';
 import { set } from 'es-toolkit/compat';
 import { resultsMap } from './store';
 import { resolveResource } from '@tauri-apps/api/path';
 import { preloadApp, setupApp, startApp } from 'wujie';
 import { parse as parseManifest, type IPluginManifest } from './schema';
+import logger from '@/utils/logger';
 
 const plugins: Map<string, IRunningPlugin> = new Map();
 let pluginsSettings: IPluginsSettings = {};
@@ -59,6 +59,12 @@ export const createWujie = (name: string, entryUrl: string, options?: {
   };
 };
 
+const getTemplatePath = withCache(async () => {
+  const templatePath = await resolveResource('../packages/template/dist')
+  console.log('templatePath', templatePath)
+  return templatePath
+})
+
 export const registerPlugin = async (pluginPath: string) => {
   console.log('addPlugin', pluginPath);
   if (checkPluginsRegistered(pluginPath)) {
@@ -86,7 +92,7 @@ export const registerPlugin = async (pluginPath: string) => {
       const serverModulePath = manifest.server ? join(pluginPath, manifest.server) : '';
       const staticPaths: string[] = [];
       if (template === 'listView') {
-        staticPaths.push(LIST_VIEW_TEMPLATE_PATH, pluginPath);
+        staticPaths.push(await getTemplatePath(), pluginPath);
       } else {
         staticPaths.push(pluginPath);
       }
@@ -382,16 +388,16 @@ export const updateCommandShortcut = async (pluginName: string, commandName: str
   save();
 };
 
+const getBuiltinPluginsBasePath = async () => {
+  return resolveResource('../plugins')
+}
+
 const initInnerPlugins = async () => {
   const names = ['clipboard', 'translate', 'launcher', 'calculator', 'transform', 'ai', 'settings', 'snippets', 'qrcode', 'v2ex', 'magic', 'mdn', 'applescript', 'snippets', 'emoji'];
 
-  let pluginsPathList: string[] = [];
-  if (import.meta.env.DEV) {
-    pluginsPathList = names.map(name => path.join(builtinPluginsPath, name)!);
-  } else {
-    pluginsPathList = await Promise.all(names.map(name => resolveResource(`../plugins/${name}`)));
-  }
-  return Promise.all(pluginsPathList.map(path => registerPlugin(path).catch((err) => {
+  const basePath = await getBuiltinPluginsBasePath();
+  logger.info('initInnerPlugins', basePath)
+  return Promise.all(names.map(name => registerPlugin(path.join(basePath, name)).catch((err) => {
     console.error(err);
   })));
 };

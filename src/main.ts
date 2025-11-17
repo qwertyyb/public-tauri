@@ -15,9 +15,7 @@ createDraggable();
 registerMainShortcut('Command+Space');
 listenEvents();
 createTray();
-startServer().then(async () => {
-  await new Promise(resolve => setTimeout(resolve, 100))
-  console.log('builtin plugins path', BUILTIN_PLUGINS_PATH);
+startServer().then(() => {
   init();
 })
 
