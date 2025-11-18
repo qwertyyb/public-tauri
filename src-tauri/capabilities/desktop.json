@@ -28,7 +28,7 @@
       "identifier": "shell:allow-spawn",
       "allow": [
         {
-          "name": "binaries/node-v24.5.0",
+          "name": "binaries/node-v24.11.1",
           "args": true,
           "sidecar": true
         }

@@ -32,7 +32,7 @@
       "icons/icon.ico"
     ],
     "externalBin": [
-      "binaries/node-v24.5.0"
+      "binaries/node-v24.11.1"
     ]
   },
   "productName": "tauri-macos-spotlight-app",

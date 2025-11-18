@@ -32,6 +32,8 @@
 import { onBeforeUnmount, onMounted, ref, useTemplateRef, watch } from 'vue';
 import { router } from '@public/api/core';
 import { createAutoResizeInput } from '@/utils';
+import logger from '@/utils/logger';
+import { EVENT_NAME } from '@/const';
 
 const modelValue = defineModel<string>({ default: '' });
 const props = defineProps<{
@@ -87,11 +89,18 @@ const popToRootHandler = (e: any) => {
   }
 };
 
+const focusedHandler = () => {
+  logger.info('focusedHandler');
+  inputEl.value?.focus();
+};
+
 onMounted(() => {
+  document.addEventListener(EVENT_NAME.FOCUSED, focusedHandler);
   window.addEventListener('pop-to-root', popToRootHandler);
 });
 
 onBeforeUnmount(() => {
+  document.removeEventListener(EVENT_NAME.FOCUSED, focusedHandler);
   window.removeEventListener('pop-to-root', popToRootHandler);
 });
 

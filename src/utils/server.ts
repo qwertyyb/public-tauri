@@ -2,7 +2,7 @@ import { resourceDir } from "@tauri-apps/api/path";
 import { Child, Command } from "@tauri-apps/plugin-shell";
 import path from "path-browserify";
 
-const command = Command.sidecar('binaries/node-v24.5.0', ['$RESOURCE/_up_/src-node/dist/index.cjs'])
+const command = Command.sidecar('binaries/node-v24.11.1', ['$RESOURCE/_up_/src-node/dist/index.cjs'])
 
 const logger = {
   info: (...args: any[]) => {
@@ -32,7 +32,7 @@ command.stderr.on('data', (data) => {
 const createCommand = async () => {
   console.log('resourceDir', await resourceDir())
   const entryPath = import.meta.env.DEV ? '../src-node/dist/index.cjs' : path.join(await resourceDir(), '_up_/src-node/dist/index.cjs')
-  const command = Command.sidecar('binaries/node-v24.5.0', [entryPath], {
+  const command = Command.sidecar('binaries/node-v24.11.1', [entryPath], {
     env: { LSUIElement: '1' }
   })
 

@@ -3,9 +3,6 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "engines": {
-    "node": "24.5.0"
-  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -14,7 +11,7 @@
     "lint": "eslint --fix src/ plugins/",
     "plugin:build": "pnpm --filter \"./plugins/*\" run build",
     "prepare-nodejs": "tsx scripts/prepare-nodejs.ts",
-    "preapp:build": "pnpm run prepare-nodejs && pnpm --filter './packages/template' --filter './plugins/*' run build",
+    "preapp:build": "pnpm run prepare-nodejs && pnpm --filter './packages/template' --filter './src-node' --filter './plugins/*' run build",
     "app:build": "pnpm tauri build"
   },
   "dependencies": {

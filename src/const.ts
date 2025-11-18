@@ -121,3 +121,7 @@ export const AI_TOOLS = {
 
 // @ts-ignore
 window.AI_TOOLS = AI_TOOLS;
+
+export const EVENT_NAME = {
+  FOCUSED: 'window:focused'
+} as const;
