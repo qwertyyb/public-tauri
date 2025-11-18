@@ -38,4 +38,5 @@ startSocketIO(httpServer);
 httpServer.listen(2345, () => {
   logger.info('public server is ready')
   logger.info(`listen on ${2345}`);
+  logger.info(`nodeVersion: ${process.version}`)
 });

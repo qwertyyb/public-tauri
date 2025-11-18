@@ -16,8 +16,12 @@
       * Path to tsx binary
       * Assuming locally installed
       */
-      "runtimeExecutable": "tsx",
-      "runtimeVersion": "24.5.0",
+      "runtimeExecutable": "pnpm",
+
+      "runtimeArgs": [
+        "exec",
+        "tsx",
+      ],
 
       "env": {
         "NODE_ENV": "development"
