@@ -1,4 +1,4 @@
-import type { ICommandSettings, IPluginSettings, IRunningPlugin, ISettings } from '@public/types';
+import type { ISettings } from '@public/types';
 import { storage } from '@public/api/core';
 import { getPlugins as getAllPlugins } from '@/plugin/manager';
 

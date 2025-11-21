@@ -1,14 +1,11 @@
 <script setup lang="ts">
 import HomeView from '@/views/HomeView.vue';
-import ListView from '@/views/ListView.vue';
 import PluginPrfsView from '@/views/PluginPrfsView.vue';
-import PluginView from '@/views/PluginView.vue';
 import SettingsView from '@/views/SettingsView.vue';
 import RoutePage from '@/components/RoutePage.vue';
 import { computed, nextTick, onBeforeUnmount, provide, shallowRef, useTemplateRef, type Component } from 'vue';
 import { router } from '@public/api/core';
 import { showAlert, showConfirm, showToast } from '@/utils/feedback';
-import PluginCustomView from '@/views/PluginCustomView.vue';
 import AIChatView from '@/views/AIChatView.vue';
 import PluginWujieView from '@/views/PluginWujieView.vue';
 import { isKeyPressed } from '@/utils/keyboard';
@@ -18,11 +15,8 @@ const hash = location.hash.substring(1);
 const routes: Record<string, Component | undefined> = {
   '/': HomeView,
   '/ai/chat': AIChatView,
-  '/plugin/list-view': ListView,
-  '/plugin/view': PluginView,
   '/plugin/prfs': PluginPrfsView,
   '/settings': SettingsView,
-  '/plugin/view/custom': PluginCustomView,
   '/plugin/view/wujie': PluginWujieView,
 };
 
@@ -40,11 +34,6 @@ const plugin = computed(() => {
   const manifest = last?.props?.plugin?.manifest;
   return manifest ? { icon: manifest.icon, title: manifest.title } : null;
 });
-
-const toPluginView = (e: any) => {
-  console.log('toPluginView', e);
-  history.value = [...history.value, { component: PluginView }];
-};
 
 const pushView = async (options: { path: string, params?: any }) => {
   const { path, params } = options;
@@ -91,7 +80,6 @@ const keydownHandler = (event: KeyboardEvent) => {
   }
 };
 
-window.addEventListener('create-view', toPluginView);
 window.addEventListener('push-view', pushViewHandler);
 window.addEventListener('pop-view', popViewHandler);
 window.addEventListener('pop-to-root', popToRootHandler);
@@ -101,7 +89,6 @@ window.addEventListener('app:showToast', showToastHandler);
 window.addEventListener('keydown', keydownHandler);
 
 onBeforeUnmount(() => {
-  window.removeEventListener('create-view', toPluginView);
   window.removeEventListener('push-view', pushViewHandler);
   window.removeEventListener('pop-view', popViewHandler);
   window.removeEventListener('pop-to-root', popToRootHandler);

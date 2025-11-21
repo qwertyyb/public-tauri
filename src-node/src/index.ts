@@ -30,13 +30,13 @@ app.use(managerRoutes.routes()).use(managerRoutes.allowedMethods());
 app.use(utilsRouter.routes()).use(utilsRouter.allowedMethods());
 
 // app.callback 的类型定义有问题，先 disable 一下
-// eslint-disable-next-line @typescript-eslint/no-misused-promises
+
 const httpServer = createServer(app.callback());
 
 startSocketIO(httpServer);
 
 httpServer.listen(2345, () => {
-  logger.info('public server is ready')
+  logger.info('public server is ready');
   logger.info(`listen on ${2345}`);
-  logger.info(`nodeVersion: ${process.version}`)
+  logger.info(`nodeVersion: ${process.version}`);
 });

@@ -9,8 +9,8 @@ export const registerMainShortcut = (shortcut: string) => {
   last = shortcut;
   return register(shortcut, async () => {
     getCurrentWindow().listen('tauri://close-requested', () => {
-      console.log('close requested')
-    })
+      console.log('close requested');
+    });
     await getCurrentWindow().show();
     await getCurrentWindow().center();
   });
@@ -33,4 +33,4 @@ if (import.meta.hot) {
 
 window.addEventListener('unload', () => {
   unregister('Command+Space');
-})
+});

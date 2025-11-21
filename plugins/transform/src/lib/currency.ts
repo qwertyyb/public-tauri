@@ -1,8 +1,8 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { fetch, type ICommand } from '@public/api';
 
-const formatCurrency = (amount: number) =>
-  // JS 精度有问题, 简单处理一下
-  Math.round(amount * 100) / 100;
+// JS 精度有问题, 简单处理一下
+const formatCurrency = (amount: number) => Math.round(amount * 100) / 100;
 
 
 // 常用的几个汇率 CNY <-> HK <-> US <-> JP
@@ -25,7 +25,7 @@ const fetchExchangeRate = async () => {
   };
 };
 
-const toCurrency = async (amount: number, source: string, to = 'CNY') => {
+const toCurrency = async (amount: number, source: string, _to = 'CNY') => {
   if (!['USD', 'EU', 'JP', 'HK'].includes(source)) {
     return '';
   }
@@ -44,7 +44,7 @@ const toCurrency = async (amount: number, source: string, to = 'CNY') => {
   return '';
 };
 
-const toCurrencies = async (amount: number, source = 'CNY', to: string[] = ['USD', 'EU', 'JP', 'HK']) => {
+const toCurrencies = async (amount: number, _source = 'CNY', to: string[] = ['USD', 'EU', 'JP', 'HK']) => {
   const rates = await fetchExchangeRate();
   if (rates) {
     const results: [string, number][] = [];
@@ -69,13 +69,13 @@ export const transformCurrency = async (keyword: string): Promise<ICommand[]> =>
   // 解析货币输入的几种格式 $100、 100usd、 usd100、 usd 100、 100 usd
   let source = '';
   let amount = 0;
-  let match = keyword.match(/^(USD|EU|JP|HK|CNY|\$)\s?([\d\.]+)/i);
+  let match = keyword.match(/^(USD|EU|JP|HK|CNY|\$)\s?([\d.]+)/i);
   if (match) {
     source = match[1].toUpperCase();
     source = source === '$' ? 'USD' : source;
     amount = Number(match[2]);
-  } else if (keyword.match(/^([\d\.]+)\s?(USD|EU|JP|HK|CNY|\$)/i)) {
-    match = keyword.match(/^([\d\.]+)\s?(USD|EU|JP|HK|CNY|\$)/i)!;
+  } else if (keyword.match(/^([\d.]+)\s?(USD|EU|JP|HK|CNY|\$)/i)) {
+    match = keyword.match(/^([\d.]+)\s?(USD|EU|JP|HK|CNY|\$)/i)!;
     source = match[2].toUpperCase();
     source = source === '$' ? 'USD' : source;
     amount = Number(match[1]);

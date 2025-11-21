@@ -50,9 +50,9 @@ interface Key {
   key: string
 }
 
-const isMac = () => navigator.userAgent.includes('Macintosh') || navigator.userAgent.includes('Mac OS X')
+const isMac = () => navigator.userAgent.includes('Macintosh') || navigator.userAgent.includes('Mac OS X');
 
-const createKeyEventHandler = (onChange: (value: Key) => void, done: (value: Key) => void) => {
+const createKeyEventHandler = (onChange: (_value: Key) => void, done: (_value: Key) => void) => {
   const key: Key = {
     modifiers: [],
     key: '',
@@ -105,17 +105,19 @@ const startRecord = () => {
   stopRecord();
 
   const keyEventHandler = createKeyEventHandler((key) => {
-    recordedKeys.value = [...key.modifiers, key.key].filter(i => i).map(key => {
-      if (isMac() && key === 'Meta') return 'Command'
-      return key
-    }).join('+');
+    recordedKeys.value = [...key.modifiers, key.key].filter(i => i).map((key) => {
+      if (isMac() && key === 'Meta') return 'Command';
+      return key;
+    })
+      .join('+');
     console.log(recordedKeys.value);
   }, (key) => {
     stopRecord();
-    const value = [...key.modifiers, key.key].filter(i => i).map(key => {
-      if (isMac() && key === 'Meta') return 'Command'
-      return key
-    }).join('+');
+    const value = [...key.modifiers, key.key].filter(i => i).map((key) => {
+      if (isMac() && key === 'Meta') return 'Command';
+      return key;
+    })
+      .join('+');
     modelValue.value = value;
   });
   clearListener = () => {

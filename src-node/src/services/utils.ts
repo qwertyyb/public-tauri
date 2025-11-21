@@ -48,9 +48,7 @@ export const getFrontmostApplication = async (): Promise<Application | undefined
 };
 
 const utils = {
-  'toPinyin': async (words: string) => {
-    return hanziToPinyin(words)
-  },
+  toPinyin: async (words: string) => hanziToPinyin(words),
 
   // 按下又抬起
   'keyboard.press': async (...keys: string[]) => {

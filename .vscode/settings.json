@@ -1,5 +1,24 @@
 {
     "rust-analyzer.cargo.extraEnv": {
         "MACOSX_DEPLOYMENT_TARGET": "14.6"
+    },
+    "eslint.probe": [
+        "javascript",
+        "typescript",
+        "html",
+        "vue",
+        "markdown",
+        "json",
+    ],
+    "eslint.validate": [
+        "javascript",
+        "typescript",
+        "html",
+        "vue",
+        "markdown",
+        "json",
+    ],
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "always"
     }
 }

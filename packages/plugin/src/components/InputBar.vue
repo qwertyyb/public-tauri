@@ -31,7 +31,7 @@
 import { onMounted } from 'vue';
 import { useTemplateRef } from 'vue';
 
-const modelValue = defineModel({ default: '' });
+const modelValue = defineModel<string>({ default: '' });
 defineProps<{
   disabled?: boolean,
   placeholder?: string,

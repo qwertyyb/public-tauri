@@ -60,10 +60,10 @@ export const createWujie = (name: string, entryUrl: string, options?: {
 };
 
 const getTemplatePath = withCache(async () => {
-  const templatePath = await resolveResource('../packages/template/dist')
-  console.log('templatePath', templatePath)
-  return templatePath
-})
+  const templatePath = await resolveResource('../packages/template/dist');
+  console.log('templatePath', templatePath);
+  return templatePath;
+});
 
 export const registerPlugin = async (pluginPath: string) => {
   console.log('addPlugin', pluginPath);
@@ -366,6 +366,7 @@ export const getPreferenceValues = (pluginName: string) => pluginsSettings[plugi
 
 // shortcut
 export const updateCommandShortcut = async (pluginName: string, commandName: string, shortcut?: string) => {
+  // eslint-disable-next-line no-param-reassign
   shortcut = shortcut?.split('+').map((key) => {
     if (key === 'Meta') return 'Command';
     return key;
@@ -388,15 +389,13 @@ export const updateCommandShortcut = async (pluginName: string, commandName: str
   save();
 };
 
-const getBuiltinPluginsBasePath = async () => {
-  return resolveResource('../plugins')
-}
+const getBuiltinPluginsBasePath = async () => resolveResource('../plugins');
 
 const initInnerPlugins = async () => {
   const names = ['clipboard', 'translate', 'launcher', 'calculator', 'transform', 'ai', 'settings', 'snippets', 'qrcode', 'v2ex', 'magic', 'mdn', 'applescript', 'snippets', 'emoji'];
 
   const basePath = await getBuiltinPluginsBasePath();
-  logger.info('initInnerPlugins', basePath)
+  logger.info('initInnerPlugins', basePath);
   return Promise.all(names.map(name => registerPlugin(path.join(basePath, name)).catch((err) => {
     console.error(err);
   })));

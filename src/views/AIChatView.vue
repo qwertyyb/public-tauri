@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-v-html -->
 <template>
   <div class="ai-chat-container">
     <div
@@ -46,7 +47,7 @@ import { isKeyPressed } from '@/utils/keyboard';
 import { AI_ASSISTANT_PROMPT, AI_TOOLS_DEFINITIONS, AI_TOOLS } from '@/const';
 import { getPreferenceValues } from '@/plugin/manager';
 import { popToRoot } from '@/plugin/utils';
-import { onPageEnter } from '@public/api/router'
+import { onPageEnter } from '@public/api/router';
 import logger from '@/utils/logger';
 
 const props = defineProps<{ query?: string }>();

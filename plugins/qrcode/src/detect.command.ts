@@ -54,7 +54,7 @@ const detect = async () => {
 };
 
 const detectCommand: IListViewCommand = {
-  // eslint-disable-next-line @typescript-eslint/no-misused-promises
+
   async enter(_query, setList) {
     const list = await detect() || [];
     if (list.length) {

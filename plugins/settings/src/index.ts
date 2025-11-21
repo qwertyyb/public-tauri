@@ -1,10 +1,10 @@
 import { mainWindow, type IPlugin } from '@public/api';
 
 const createSettingsPlugin: IPlugin = () => ({
-  onEnter: async (_item, matchData) => {
+  onEnter: async (_item, query) => {
     mainWindow.pushView({
       path: '/settings',
-      params: { query: matchData.query },
+      params: { query },
     });
   },
 });

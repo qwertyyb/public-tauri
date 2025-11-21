@@ -123,5 +123,5 @@ export const AI_TOOLS = {
 window.AI_TOOLS = AI_TOOLS;
 
 export const EVENT_NAME = {
-  FOCUSED: 'window:focused'
+  FOCUSED: 'window:focused',
 } as const;

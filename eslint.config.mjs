@@ -5,22 +5,29 @@ import { fileURLToPath } from 'node:url';
 import typescriptEslint from 'typescript-eslint';
 
 export default typescriptEslint.config(
-  { ignores: ['*.d.ts', '**/coverage', '**/dist'] },
+  { ignores: ['*.d.ts', '**/coverage', '**/dist', 'src-tauri/**/*'] },
   {
     rules: {
       '@typescript-eslint/no-misused-promises': 0,
     },
   },
-  ...eslintTencent({
-    tsconfigRootDir: fileURLToPath(new URL('./', import.meta.url)),
-    project: [
-      fileURLToPath(new URL('./tsconfig.node.json', import.meta.url)),
-      fileURLToPath(new URL('./tsconfig.app.json', import.meta.url)),
-      fileURLToPath(new URL('./tsconfig.plugins.json', import.meta.url)),
-      fileURLToPath(new URL('./src-node/tsconfig.json', import.meta.url)),
-      fileURLToPath(new URL('./packages/template/tsconfig.node.json', import.meta.url)),
+  {
+    extends: [
+      eslintTencent({
+        tsconfigRootDir: fileURLToPath(new URL('./', import.meta.url)),
+        project: [
+          fileURLToPath(new URL('./tsconfig.node.json', import.meta.url)),
+          fileURLToPath(new URL('./tsconfig.app.json', import.meta.url)),
+          fileURLToPath(new URL('./tsconfig.plugins.json', import.meta.url)),
+          fileURLToPath(new URL('./src-node/tsconfig.json', import.meta.url)),
+          fileURLToPath(new URL('./packages/template/tsconfig.node.json', import.meta.url)),
+        ],
+      }),
     ],
-  }),
+    rules: {
+      '@typescript-eslint/no-misused-promises': 0,
+    },
+  },
   {
     // eslint.config.mjs 的 eslint 配置
     files: ['eslint.config.mjs'],
@@ -34,6 +41,9 @@ export default typescriptEslint.config(
       ...eslintPluginVue.configs['flat/recommended'],
     ],
     files: ['src/**/*.{ts,vue}', 'packages/**/*.{ts,vue}'],
+    rules: {
+      '@typescript-eslint/no-misused-promises': 0,
+    },
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',

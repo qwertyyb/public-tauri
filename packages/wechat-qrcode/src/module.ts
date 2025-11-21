@@ -1,21 +1,19 @@
 export const createOpencvModule = () => {
-  let opencvModule = {
+  const opencvModule = {
     preRun: [],
-    postRun: [] ,
-    onRuntimeInitialized: function() {
+    postRun: [],
+    onRuntimeInitialized() {
     },
-    print: (function() {
-      return function(text: string) {
-        // console.log(text);
-      };
-    })(),
-    printErr: function(text: string) {
-      // console.error(text);
-    },
-    setStatus: function(text: string) {
+    print() {
       // console.log(text);
     },
-    totalDependencies: 0
+    printErr() {
+      // console.error(text);
+    },
+    setStatus() {
+      // console.log(text);
+    },
+    totalDependencies: 0,
   };
-  return opencvModule
-}
+  return opencvModule;
+};

@@ -42,13 +42,13 @@ import ResultItem from '@/components/ResultItem.vue';
 import ActionList, { type IActionItem } from '@/components/ActionList.vue';
 import ResultItemPreview from '@/components/ResultItemPreview.vue';
 import { isKeyPressed } from '@/utils/keyboard';
-import type { IListItem } from '@public/shared';
+import type { IListItem } from '@public/types';
 import { router } from '@public/api/core';
 
 const props = withDefaults(defineProps<{
-  results: T[],
-  preview?: string | HTMLElement
-}>(), { results: () => [] });
+  results?: T[],
+  preview?: string | HTMLElement | null
+}>(), { results: () => [], preview: null });
 
 const emit = defineEmits<{
   enter: [item: T, index: number],
@@ -62,7 +62,7 @@ const actionKeyStartIndex = ref(0);
 
 const selectedItem = computed(() => props.results[selectedIndex.value]);
 
-const virtualList = useTemplateRef<{ scrollToIndex:(index: number) => void }>('virtualList');
+const virtualList = useTemplateRef<{ scrollToIndex:(_index: number) => void }>('virtualList');
 const el = useTemplateRef('el');
 
 const getPreview = async (item: T) => {
@@ -84,6 +84,7 @@ const calcActionKeyStartIndex = () => {
       visibleIndexList.push(parseInt(item.dataset.resultItemIndex as string, 10));
     }
   });
+  // eslint-disable-next-line prefer-destructuring
   actionKeyStartIndex.value = visibleIndexList[0];
 };
 
@@ -140,10 +141,10 @@ const keydownHandler = (e: KeyboardEvent) => {
     onResultEnter(selectedIndex.value);
     e.stopPropagation();
   } else if (selectedItem.value?.actions) {
-    const actions = [...selectedItem.value?.actions ?? []];
-    const action = actions.find(action => isKeyPressed(e, action.shortcuts));
-    if (!action) return;
-    onResultAction(action);
+    // const actions = [...selectedItem.value?.actions ?? []];
+    // const action = actions.find(action => isKeyPressed(e, action.shortcuts));
+    // if (!action) return;
+    // onResultAction(action);
   }
 };
 

@@ -38,7 +38,7 @@ interface IPluginCommandListView<Item extends IResultItem = IResultItem> {
 }
 
 export type IPlugin = (utils: {
-  updateCommands: (commands: IPluginCommandConfig[]) => void,
+  updateCommands: (commands: IPluginCommandConfig[]) => void | Promise<void>,
   showCommands: (commands: IPluginCommandConfig[]) => void,
   getPreferences: () => any,
 }) => IPluginReturn;

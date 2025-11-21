@@ -67,7 +67,6 @@ export default function mdfind({
   directories = [] as string[],
   live = false,
   interpret = false,
-  limit = 1024,
 } = {}) {
   const dirArgs = makeArgs(directories, '-onlyin');
   const nameArgs = makeArgs(names, '-name');

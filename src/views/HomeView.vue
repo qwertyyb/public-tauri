@@ -23,6 +23,7 @@ import * as service from '@/services';
 import type { UnlistenFn } from '@tauri-apps/api/event';
 import { getCurrentWindow } from '@tauri-apps/api/window';
 import { onBeforeUnmount, onMounted, ref, toRaw, watch } from 'vue';
+import type { IPluginCommand, IActionItem } from '@public/types';
 
 const results = ref<IPluginCommand[]>([]);
 const preview = ref<string | HTMLElement | undefined>('');
@@ -42,15 +43,15 @@ const focusInput = () => {
   el?.focus();
 };
 
-const onResultEnter = (item: IPluginCommand | null, itemIndex: number) => {
+const onResultEnter = (_item: IPluginCommand | null, itemIndex: number) => {
   service.enter(toRaw(results.value[itemIndex]), keyword.value);
 };
 
-const onResultSelected = async (item: IPluginCommand | null, itemIndex: number) => {
+const onResultSelected = async (_item: IPluginCommand | null, itemIndex: number) => {
   preview.value = await service.select(toRaw(results.value[itemIndex]), keyword.value);
 };
 
-const onResultAction = async (item: IPluginCommand, itemIndex: number, action: IActionItem) => {
+const onResultAction = async (item: IPluginCommand, _itemIndex: number, action: IActionItem) => {
   service.action(toRaw(item), toRaw(action), keyword.value);
 };
 
@@ -60,6 +61,7 @@ const setPluginResults = (e: CustomEvent<{ commands: IPluginCommand[] }>) => {
 };
 
 declare global {
+  // eslint-disable-next-line no-unused-vars
   interface WindowEventMap {
     'publicApp.mainWindow.show': CustomEvent<{}>;
     'plugin:showCommands': CustomEvent<{ name: string, commands: IPluginCommand[] }>;

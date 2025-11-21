@@ -8,7 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "tauri": "tauri",
-    "lint": "eslint --fix src/ plugins/",
+    "lint": "eslint --fix",
     "plugin:build": "pnpm --filter \"./plugins/*\" run build",
     "prepare-nodejs": "tsx scripts/prepare-nodejs.ts",
     "preapp:build": "pnpm run prepare-nodejs && pnpm --filter './packages/template' --filter './src-node' --filter './plugins/*' run build",

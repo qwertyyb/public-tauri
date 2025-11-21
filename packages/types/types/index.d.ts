@@ -1,4 +1,3 @@
-import { IPublicAppMainAPI } from './api';
 import { IActionItem, ICommandSettings, IPluginCommand, IPluginSettings, IPluginsSettings, IRunningPlugin } from './plugin';
 
 export * from './plugin';

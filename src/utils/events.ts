@@ -14,7 +14,7 @@ export const listenEvents = async () => {
   unlisten = await listen('focus', (event) => {
     logger.info('onFocusChanged', event);
     if (event.payload) {
-      document.dispatchEvent(new CustomEvent(EVENT_NAME.FOCUSED))
+      document.dispatchEvent(new CustomEvent(EVENT_NAME.FOCUSED));
     }
     if (!event.payload) {
       getCurrentWindow().hide();

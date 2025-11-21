@@ -9,7 +9,7 @@ import { registerMainShortcut } from './utils/shortcut';
 import { listenEvents } from './utils/events';
 import { init } from './plugin/manager';
 import { createTray } from './utils/tray';
-import { start as startServer } from './utils/server'
+import { start as startServer } from './utils/server';
 
 createDraggable();
 registerMainShortcut('Command+Space');
@@ -17,7 +17,7 @@ listenEvents();
 createTray();
 startServer().then(() => {
   init();
-})
+});
 
 const app = createApp(App);
 

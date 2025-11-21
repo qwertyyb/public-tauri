@@ -42,13 +42,13 @@ const buildQuery = () => (
   supportedTypes.map(type => `kMDItemContentType=${type}`).join('||')
 );
 
-const createMaxAge = () =>
-  // 为了避免缓存同时失效，随机一下
-  24 * 60 * 60 + Math.round(Math.random() * 24 * 60 * 60);
+
+// 为了避免缓存同时失效，随机一下
+const createMaxAge = () => 24 * 60 * 60 + Math.round(Math.random() * 24 * 60 * 60);
 
 
 const searchAppList = async () => {
-  const { stdout, terminate } = mdfind({
+  const { stdout } = mdfind({
     query: JSON.stringify(buildQuery()),
     directories: macosAppPaths,
   });

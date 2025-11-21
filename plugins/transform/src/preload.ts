@@ -3,7 +3,7 @@ import { hToM, msToDuration, msToLocaleString, mToS, sToLocaleString, sToMs } fr
 import { transformCurrency } from './lib/currency';
 import { decode, encode } from './lib/base64';
 
-const transformPlugin: IPlugin = utils => ({
+const transformPlugin: IPlugin = () => ({
   async onInput(keyword) {
     console.log('keyword', keyword);
     const commands: ICommand[] = [];
@@ -108,7 +108,7 @@ const transformPlugin: IPlugin = utils => ({
   },
   onEnter(command) {
     clipboard.writeText(command.value);
-    dialog.showToast('已复制到剪切板')
+    dialog.showToast('已复制到剪切板');
   },
 });
 

@@ -29,6 +29,7 @@
 </template>
 
 <script setup lang="ts">
+import type { IDialogOptions } from '@/types';
 import { onMounted, onUnmounted, useTemplateRef } from 'vue';
 
 const props = defineProps<{

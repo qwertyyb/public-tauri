@@ -11,6 +11,7 @@
 </template>
 
 <script setup lang="ts">
+import type { IToastOptions } from '@/types';
 import { onMounted, onUnmounted, useTemplateRef } from 'vue';
 
 const props = defineProps<{

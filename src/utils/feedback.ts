@@ -1,10 +1,12 @@
 import ActionDialog from '@/components/ActionDialog.vue';
 import AppToast from '@/components/AppToast.vue';
+import type { IDialogOptions, IToastOptions } from '@/types/index';
 import logger from '@/utils/logger';
 import { createApp } from 'vue';
 
 const createDialog = (options: IDialogOptions) => {
   logger.info('createDialog', options);
+  // eslint-disable-next-line vue/one-component-per-file
   const dialogApp = createApp(ActionDialog, { options });
   const div = document.createElement('div');
   div.classList.add('dialog');
@@ -55,6 +57,7 @@ export const showConfirm = (
 });
 
 const createToast = (options: IToastOptions) => {
+  // eslint-disable-next-line vue/one-component-per-file
   const toast = createApp(AppToast, { options });
   const div = document.createElement('div');
   div.classList.add('dialog');

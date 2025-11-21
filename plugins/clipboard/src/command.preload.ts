@@ -3,7 +3,7 @@ import { ContentType, DATABASE_PATH } from './const';
 
 let db: ReturnType<typeof Database['get']>;
 
-const formatDate = function (date: Date, fmt = 'yyyy-MM-dd hh:mm:ss') {
+const formatDate = function (date: Date, format = 'yyyy-MM-dd hh:mm:ss') {
   const o = {
     'M+': date.getMonth() + 1,                 // 月份
     'd+': date.getDate(),                    // 日
@@ -13,6 +13,7 @@ const formatDate = function (date: Date, fmt = 'yyyy-MM-dd hh:mm:ss') {
     'q+': Math.floor((date.getMonth() + 3) / 3), // 季度
     S: date.getMilliseconds(),             // 毫秒
   };
+  let fmt = format;
   if (/(y+)/.test(fmt)) {
     fmt = fmt.replace(RegExp.$1, (`${date.getFullYear()}`).substr(4 - RegExp.$1.length));
   }
@@ -20,7 +21,7 @@ const formatDate = function (date: Date, fmt = 'yyyy-MM-dd hh:mm:ss') {
   for (const k in o) {
     if (new RegExp(`(${k})`).test(fmt)) {
       // @ts-ignore
-      fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : ((`00${o[k]}`).substr((`${o[k]}`).length)));
+      fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : ((`00${o[k]}`).substr((`${o[k]}`).length)));
     }
   }
   return fmt;
@@ -57,7 +58,7 @@ const insertRecord = async (record: { contentType: number, text: string, content
   ]);
 };
 
-// eslint-disable-next-line @typescript-eslint/no-misused-promises
+
 clipboard.onClipboardUpdate(async () => {
   console.log('Received new text in clipboard: ');
   const [html, text, imgbase64] = await Promise.all([

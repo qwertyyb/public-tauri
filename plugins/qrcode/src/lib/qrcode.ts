@@ -29,7 +29,8 @@ export const detectWithOpencv = (() => {
     let i = 0;
     const arr = [];
     while (i < results.size()) {
-      arr.push(results.get(i++));
+      arr.push(results.get(i));
+      i += 1;
     }
     results.delete();
     return arr;

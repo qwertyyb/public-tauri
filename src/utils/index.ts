@@ -22,8 +22,8 @@ export function createAutoResizeInput(input: HTMLInputElement & { autoResizeInst
 
 
   // 初始参数
-  const minWidth = parseInt(input.getAttribute('data-min') || '30');
-  const maxWidth = parseInt(input.getAttribute('data-max') || '700');
+  const minWidth = parseInt(input.getAttribute('data-min') || '30', 10);
+  const maxWidth = parseInt(input.getAttribute('data-max') || '700', 10);
 
   let resizeObserver: ResizeObserver;
 
@@ -52,6 +52,7 @@ export function createAutoResizeInput(input: HTMLInputElement & { autoResizeInst
 
     // 应用最小和最大限制
     width = Math.min(maxWidth, Math.max(minWidth, width));
+    // eslint-disable-next-line no-param-reassign
     input.style.width = `${width}px`;
   }
 
@@ -69,7 +70,7 @@ export function createAutoResizeInput(input: HTMLInputElement & { autoResizeInst
     }
 
     // 删除测量元素
-    if (span && span.parentNode) {
+    if (span?.parentNode) {
       span.parentNode.removeChild(span);
     }
   }
@@ -98,6 +99,7 @@ export function createAutoResizeInput(input: HTMLInputElement & { autoResizeInst
   // 初始调整尺寸
   resizeInput();
 
+  // eslint-disable-next-line no-param-reassign
   input.autoResizeInstance = instance;
 
   return instance;

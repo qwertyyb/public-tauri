@@ -2,16 +2,11 @@ import { handleQuery, handleSelect, handleEnter, handleAction } from '@/plugin/s
 
 export const query = (keyword: string) => handleQuery(keyword);
 
-export const select = (result: IResultItem, keyword: string) =>
-  // @ts-ignore
-  handleSelect(result, keyword);
+// @ts-ignore
+export const select = (result: IResultItem, keyword: string) => handleSelect(result, keyword);
 
+// @ts-ignore
+export const enter = (result: IResultItem, keyword: string) => handleEnter(result, keyword);
 
-export const enter = (result: IResultItem, keyword: string) =>
-  // @ts-ignore
-  handleEnter(result, keyword);
-
-
-export const action = (result: IResultItem, action: IActionItem, keyword: string) =>
-  // @ts-ignore
-  handleAction(result, action, keyword);
+// @ts-ignore
+export const action = (result: IResultItem, action: IActionItem, keyword: string) => handleAction(result, action, keyword);

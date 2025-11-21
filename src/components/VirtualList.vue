@@ -29,9 +29,9 @@ import { onPageEnter, onPageLeave } from '@/router/hooks';
 import { computed, nextTick, ref, watch } from 'vue';
 
 const props = withDefaults(defineProps<{
-  itemHeight: number,
-  list: any[],
-  keeps: number,
+  itemHeight?: number,
+  list?: any[],
+  keeps?: number,
 }>(), {
   itemHeight: 54,
   keeps: 30,

@@ -76,7 +76,7 @@ const lookupFromDict = (keyword: string) => {
     d.entries.forEach((entry) => {
       const doc = parser.parseFromString(entry.html, 'application/xhtml+xml');
       Array.from(doc.getElementsByTagName('d:entry')).forEach((item) => {
-        const title = item.getAttribute('d:title');
+        // const title = item.getAttribute('d:title');
         results.push({
           subtitle: d.dictionary,
         });

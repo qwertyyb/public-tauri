@@ -1,4 +1,4 @@
-import { ICommandMatchData } from "./plugin"
+import { ICommandMatchData } from './plugin';
 
 interface IApplication {
   bundleIdentifier: string
@@ -6,6 +6,12 @@ interface IApplication {
 }
 
 export interface IPublicAppBaseAPI {
+  storage: {
+    getItem<T extends any>(key: string): Promise<T | undefined>,
+    setItem(key: string, value: any): void,
+    removeItem(key: string): Promise<void>,
+  },
+
   db: {
     run: (sql: string, params?) => Promise<any>,
     all: (sql: string, params?) => Promise<Array<any>>,
@@ -62,21 +68,14 @@ export interface IPublicAppBaseAPI {
 
   showToast(options: {
     title?: string;
-    icon?: "success" | "error" | "loading" | "none";
+    icon?: 'success' | 'error' | 'loading' | 'none';
     image?: string;
     duration?: number;
   }): void
 
   showHUD(title: string, options?: { duration: number }): void,
-
-  storage: {
-    getItem: <T extends any>(key: string) => Promise<T | undefined>,
-    setItem: (key: string, value: any) => void,
-    removeItem: (key: string) => Promise<void>,
-  },
-
-  runAppleScript: (script: string) => Promise<string>,
-  runBashCommand: (command: string) => Promise<string>,
+  runAppleScript(script: string): Promise<string>,
+  runBashCommand(command: string): Promise<string>,
 }
 
 export interface IPublicAppMainAPI extends IPublicAppBaseAPI {
