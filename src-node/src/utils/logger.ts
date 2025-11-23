@@ -10,4 +10,7 @@
 
 // const logger = pino(transport);
 
-export default process.env.NODE_ENV === 'development' ? console : console;
+const logger = process.env.NODE_ENV === 'development' ? console : console;
+
+export default logger;
+export { logger };
