@@ -219,6 +219,24 @@
           </li>
         </ul>
       </div>
+      <div
+        v-else-if="curView==='mcp'"
+        class="settings-panel"
+      >
+        <div class="panel-header">
+          MCP 服务器配置
+          <el-button
+            type="primary"
+            @click="openMCPConfig"
+          >
+            管理服务器
+          </el-button>
+        </div>
+        <div class="mcp-description">
+          <p>Model Context Protocol (MCP) 允许 AI 助手连接到外部工具和服务。</p>
+          <p>您可以在这里配置和管理 MCP 服务器连接。</p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -240,6 +258,7 @@ const views = ref({
   common: '通用',
   plugins: '插件设置',
   links: '快捷链接',
+  mcp: 'MCP 配置',
 });
 const curView = ref('common');
 
@@ -361,6 +380,10 @@ const createLink = () => {
   router?.pushView('/plugin/link/create');
 };
 
+const openMCPConfig = () => {
+  router?.pushView('/mcp/config');
+};
+
 const removeLink = async (index: number) => {
   const preferences = plugins.value.find(i => i.manifest.name === 'links')?.settings?.preferences;
   const newLinks = [...toRaw(links.value.filter((_, i) => i !== index))];
@@ -419,6 +442,16 @@ onPageEnter(() => {
     align-items: center;
     justify-content: space-between;
     padding: 0 16px;
+  }
+
+  .mcp-description {
+    padding: 16px;
+    p {
+      margin: 8px 0;
+      line-height: 1.5;
+      color: #666;
+      font-size: 14px;
+    }
   }
   .plugin-item-self, .command-item {
     display: flex;

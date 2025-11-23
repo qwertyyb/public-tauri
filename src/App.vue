@@ -8,6 +8,7 @@ import { router } from '@public/api/core';
 import { showAlert, showConfirm, showToast } from '@/utils/feedback';
 import AIChatView from '@/views/AIChatView.vue';
 import PluginWujieView from '@/views/PluginWujieView.vue';
+import MCPConfigView from '@/views/MCPConfigView.vue';
 import { isKeyPressed } from '@/utils/keyboard';
 
 const hash = location.hash.substring(1);
@@ -18,6 +19,7 @@ const routes: Record<string, Component | undefined> = {
   '/plugin/prfs': PluginPrfsView,
   '/settings': SettingsView,
   '/plugin/view/wujie': PluginWujieView,
+  '/mcp/config': MCPConfigView,
 };
 
 const pages = useTemplateRef('page');

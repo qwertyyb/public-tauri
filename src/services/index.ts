@@ -1,4 +1,5 @@
 import { handleQuery, handleSelect, handleEnter, handleAction } from '@/plugin/service';
+import { mcpService } from './mcp';
 
 export const query = (keyword: string) => handleQuery(keyword);
 
@@ -10,3 +11,6 @@ export const enter = (result: IResultItem, keyword: string) => handleEnter(resul
 
 // @ts-ignore
 export const action = (result: IResultItem, action: IActionItem, keyword: string) => handleAction(result, action, keyword);
+
+// Export MCP service
+export { mcpService };

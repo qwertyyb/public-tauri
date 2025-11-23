@@ -146,6 +146,23 @@ export class MCPClientManager extends EventEmitter {
     }
   }
 
+  async getServerToolsWithDetails(serverName: string): Promise<any[]> {
+    const client = this.clients.get(serverName);
+
+    if (!client) {
+      throw new Error(`MCP server ${serverName} is not connected`);
+    }
+
+    try {
+      const result = await client.listTools();
+
+      return result.tools || [];
+    } catch (error) {
+      logger.error(`Error getting tools from server ${serverName}:`, error);
+      return [];
+    }
+  }
+
   async getAllServerTools(): Promise<Record<string, string[]>> {
     const result: Record<string, string[]> = {};
 
