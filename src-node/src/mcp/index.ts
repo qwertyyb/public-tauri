@@ -1,9 +1,9 @@
-export { MCPConfigManager, type MCPConfig, type MCPServerConfig } from './config';
-export { MCPClientManager, type MCPServerStatus } from './client';
-
 // 便捷的 MCP 管理器单例
 import { MCPConfigManager } from './config';
 import { MCPClientManager } from './client';
+
+export { MCPConfigManager, type MCPConfig, type MCPServerConfig } from './config';
+export { MCPClientManager, type MCPServerStatus } from './client';
 
 const configManager = new MCPConfigManager();
 const clientManager = new MCPClientManager(configManager);

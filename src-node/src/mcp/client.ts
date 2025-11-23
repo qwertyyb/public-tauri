@@ -1,7 +1,7 @@
 import { spawn, ChildProcess } from 'child_process';
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
-import { MCPServerConfig, MCPConfigManager } from './config';
+import { type MCPServerConfig, MCPConfigManager } from './config';
 import { logger } from '../utils/logger';
 import { EventEmitter } from 'events';
 
@@ -26,13 +26,13 @@ export class MCPClientManager extends EventEmitter {
 
   async connectAll(): Promise<void> {
     const servers = await this.configManager.getAllServers();
-    
+
     for (const [name, config] of Object.entries(servers)) {
       if (config.disabled) {
         logger.info(`Skipping disabled MCP server: ${name}`);
         continue;
       }
-      
+
       try {
         await this.connectServer(name, config);
       } catch (error) {
@@ -53,11 +53,11 @@ export class MCPClientManager extends EventEmitter {
       // 创建子进程
       const args = config.args || [];
       const env = { ...process.env, ...config.env };
-      
+
       const childProcess = spawn(config.command, args, {
         env,
         stdio: ['pipe', 'pipe', 'pipe'],
-        shell: true
+        shell: true,
       });
 
       this.processes.set(name, childProcess);
@@ -76,22 +76,15 @@ export class MCPClientManager extends EventEmitter {
       });
 
       // 创建 MCP 客户端
-      const transport = new StdioClientTransport({
-        reader: childProcess.stdout!,
-        writer: childProcess.stdin!
-      });
+      const transport = new StdioClientTransport(config);
 
       const client = new Client({
         name: `public-tauri-${name}`,
-        version: '1.0.0'
-      }, {
-        capabilities: {
-          tools: {}
-        }
+        version: '1.0.0',
       });
 
       await client.connect(transport);
-      
+
       this.clients.set(name, client);
       this.updateStatus(name, 'connected', undefined, childProcess.pid);
 
@@ -101,7 +94,6 @@ export class MCPClientManager extends EventEmitter {
 
       logger.info(`MCP server ${name} connected successfully`);
       this.emit('serverConnected', { name, tools });
-
     } catch (error) {
       logger.error(`Failed to connect MCP server ${name}:`, error);
       this.updateStatus(name, 'error', (error as Error).message);
@@ -139,20 +131,17 @@ export class MCPClientManager extends EventEmitter {
 
   async callTool(serverName: string, toolName: string, args: any = {}): Promise<any> {
     const client = this.clients.get(serverName);
-    
+
     if (!client) {
       throw new Error(`MCP server ${serverName} is not connected`);
     }
 
     try {
-      const result = await client.request({
-        method: 'tools/call',
-        params: {
-          name: toolName,
-          arguments: args
-        }
+      const result = await client.callTool({
+        name: toolName,
+        arguments: args,
       });
-      
+
       logger.info(`Called tool ${toolName} on server ${serverName}`);
       return result;
     } catch (error) {
@@ -163,16 +152,14 @@ export class MCPClientManager extends EventEmitter {
 
   async getServerTools(serverName: string): Promise<string[]> {
     const client = this.clients.get(serverName);
-    
+
     if (!client) {
       throw new Error(`MCP server ${serverName} is not connected`);
     }
 
     try {
-      const result = await client.request({
-        method: 'tools/list'
-      });
-      
+      const result = await client.listTools();
+
       return result.tools?.map((tool: any) => tool.name) || [];
     } catch (error) {
       logger.error(`Error getting tools from server ${serverName}:`, error);
@@ -182,7 +169,7 @@ export class MCPClientManager extends EventEmitter {
 
   async getAllServerTools(): Promise<Record<string, string[]>> {
     const result: Record<string, string[]> = {};
-    
+
     for (const [serverName] of this.clients) {
       try {
         result[serverName] = await this.getServerTools(serverName);
@@ -191,7 +178,7 @@ export class MCPClientManager extends EventEmitter {
         result[serverName] = [];
       }
     }
-    
+
     return result;
   }
 
@@ -203,27 +190,27 @@ export class MCPClientManager extends EventEmitter {
     return this.statuses.get(serverName) || null;
   }
 
+  async reloadConfig(): Promise<void> {
+    await this.disconnectAll();
+    await this.connectAll();
+  }
+
   private updateStatus(
-    name: string, 
-    status: MCPServerStatus['status'], 
-    error?: string, 
-    pid?: number, 
-    tools?: string[]
+    name: string,
+    status: MCPServerStatus['status'],
+    error?: string,
+    pid?: number,
+    tools?: string[],
   ): void {
     const serverStatus: MCPServerStatus = {
       name,
       status,
       error,
       pid,
-      tools
+      tools,
     };
-    
+
     this.statuses.set(name, serverStatus);
     this.emit('statusChanged', serverStatus);
-  }
-
-  async reloadConfig(): Promise<void> {
-    await this.disconnectAll();
-    await this.connectAll();
   }
 }

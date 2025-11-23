@@ -47,21 +47,6 @@ export class MCPConfigManager {
     }
   }
 
-  private getDefaultConfig(): MCPConfig {
-    return {
-      mcpServers: {
-        // 示例配置，类似 VSCode MCP 扩展的格式
-        // "filesystem": {
-        //   "command": "npx",
-        //   "args": ["-y", "@modelcontextprotocol/server-filesystem", "/path/to/allowed/files"]
-        // },
-        // "git": {
-        //   "command": "npx",
-        //   "args": ["-y", "@modelcontextprotocol/server-git", "--repository", "/path/to/repo"]
-        // }
-      }
-    };
-  }
 
   async addServer(name: string, config: MCPServerConfig): Promise<void> {
     const currentConfig = await this.loadConfig();
@@ -83,5 +68,21 @@ export class MCPConfigManager {
   async getAllServers(): Promise<Record<string, MCPServerConfig>> {
     const config = await this.loadConfig();
     return config.mcpServers;
+  }
+
+  private getDefaultConfig(): MCPConfig {
+    return {
+      mcpServers: {
+        // 示例配置，类似 VSCode MCP 扩展的格式
+        // "filesystem": {
+        //   "command": "npx",
+        //   "args": ["-y", "@modelcontextprotocol/server-filesystem", "/path/to/allowed/files"]
+        // },
+        // "git": {
+        //   "command": "npx",
+        //   "args": ["-y", "@modelcontextprotocol/server-git", "--repository", "/path/to/repo"]
+        // }
+      },
+    };
   }
 }
