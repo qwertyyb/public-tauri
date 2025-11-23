@@ -6,14 +6,51 @@
       class="chat-messages"
     >
       <div
-        v-for="(message, index) in messages"
+        v-for="(message, index) in messages.filter(item => item.role !== 'tool')"
         :key="index"
         :class="['message', message.role]"
       >
-        <div
+        <MarkdownRenderer
+          v-if="message.role === 'system'"
           class="message-content"
-          v-html="renderMessage(message)"
+          :content="getMessageContent(message)"
         />
+        <template v-else-if="message.role === 'assistant'">
+          <!-- 显示工具调用 -->
+          <div
+            v-for="(toolCall, toolIndex) in message.tool_calls || []"
+            :key="toolIndex"
+            class="tool-call"
+          >
+            <CollapsedContainer
+              class="tool-call-container"
+              :title="'工具调用' + (('function' in toolCall) ? toolCall.function.name : toolCall.custom.name)"
+            >
+              <p class="tool-call-arguments">
+                参数: {{ ('function' in toolCall) ? toolCall.function.arguments : toolCall.custom.input }}
+              </p>
+
+              <p
+                v-if="getToolResult(toolCall.id)"
+                class="tool-call-result"
+              >
+                结果: {{ getToolResult(toolCall.id) }}
+              </p>
+            </CollapsedContainer>
+          </div>
+          <!-- 显示消息内容 -->
+          <MarkdownRenderer
+            v-if="message.content"
+            class="message-content"
+            :content="getMessageContent(message)"
+          />
+        </template>
+        <div
+          v-else-if="message.role === 'user'"
+          class="message-content"
+        >
+          {{ message.content }}
+        </div>
       </div>
     </div>
     <div class="chat-input">
@@ -41,51 +78,57 @@
 <script setup lang="ts">
 import { ref, nextTick, toRaw, useTemplateRef } from 'vue';
 import OpenAI from 'openai';
-import MarkdownIt from 'markdown-it';
 import { ElInput, ElButton } from 'element-plus';
 import { isKeyPressed } from '@/utils/keyboard';
 import { AI_ASSISTANT_PROMPT, AI_TOOLS_DEFINITIONS, AI_TOOLS } from '@/const';
 import { getPreferenceValues } from '@/plugin/manager';
 import { popToRoot } from '@/plugin/utils';
 import { onPageEnter } from '@public/api/router';
+import { fetch } from '@public/api/core';
 import logger from '@/utils/logger';
+import MarkdownRenderer from '@/components/MarkdownRenderer.vue';
+import CollapsedContainer from '@/components/CollapsedContainer.vue';
 
 const props = defineProps<{ query?: string }>();
 
-const md = new MarkdownIt();
 const messages = ref<OpenAI.ChatCompletionMessageParam[]>([{
   role: 'system',
   content: AI_ASSISTANT_PROMPT,
 }]);
+
+// const messages = ref<OpenAI.ChatCompletionMessageParam[]>([
+//   {
+//     role: 'system',
+//     content: '你是一个运行在MacOS系统上的AI助手，能够通过提供的工具或直接调用系统资源解决用户问题。',
+//   },
+//   {
+//     role: 'user',
+//     content: '系统信息',
+//   },
+//   {
+//     role: 'assistant',
+//     content: '',
+//     tool_calls: [
+//       {
+//         id: 'call_swafhokjsxtgfdz7r8qlbqga',
+//         function: {
+//           name: 'runBashCommand',
+//           arguments: ' {"command": "sw_vers && system_profiler SPHardwareDataType"}',
+//         },
+//         type: 'function',
+//       },
+//     ],
+//   },
+//   {
+//     role: 'tool',
+//     content: 'ProductName:\t\tmacOS\nProductVersion:\t\t15.4.1\nBuildVersion:\t\t24E263\nHardware:\n\n    Hardware Overview:\n\n      Model Name: MacBook Pro\n      Model Identifier: MacBookPro16,1\n      Processor Name: 6-Core Intel Core i7\n      Processor Speed: 2.6 GHz\n      Number of Processors: 1\n      Total Number of Cores: 6\n      L2 Cache (per Core): 256 KB\n      L3 Cache: 12 MB\n      Hyper-Threading Technology: Enabled\n      Memory: 16 GB\n      System Firmware Version: 2075.101.2.0.0 (iBridge: 22.16.14248.0.0,0)\n      OS Loader Version: 583~900\n      Serial Number (system): C02CQ5Q1MD6P\n      Hardware UUID: 3D2BDC3C-1937-5BE9-BC73-4D3C04B048FB\n      Provisioning UDID: 3D2BDC3C-1937-5BE9-BC73-4D3C04B048FB\n      Activation Lock Status: Disabled\n\n',
+//     tool_call_id: 'call_swafhokjsxtgfdz7r8qlbqga',
+//   },
+// ]);
+
 const userInput = ref<string>(props.query || '');
 const textarea = useTemplateRef('textarea');
 const messagesContainer = ref<HTMLDivElement | null>(null);
-
-const renderedMarkdown = (text: string): string => md.render(text);
-
-const joinContent = (content: string | (OpenAI.Chat.Completions.ChatCompletionContentPartText | OpenAI.ChatCompletionContentPartRefusal)[] | undefined | null) => (Array.isArray(content) ? content.map((item) => {
-  if (item.type === 'text') return item.text;
-  return item.refusal;
-}).join('\n') : content || '');
-
-const renderMessage = (message: OpenAI.ChatCompletionMessageParam) => {
-  if (message.role === 'system') {
-    return renderedMarkdown(joinContent(message.content));
-  }
-  if (message.role === 'tool') {
-    return `<h4>工具调用结果<h4><p>${message.content}</p>`;
-  }
-  if (message.role === 'assistant') {
-    if (message.tool_calls?.length) {
-      return message.tool_calls.map(item => `<h4 class="tool-call">AI调用工具</h4><pre>${item.function.name}(${item.function.arguments})</pre>`).join('<br />');
-    }
-    return renderedMarkdown(joinContent(message.content));
-  }
-  if (message.role === 'user') {
-    return message.content;
-  }
-  return '';
-};
 
 const scrollToBottom = async (): Promise<void> => {
   await nextTick();
@@ -94,39 +137,141 @@ const scrollToBottom = async (): Promise<void> => {
   }
 };
 
+const getMessageContent = (message: any): string => {
+  if (Array.isArray(message.content)) {
+    return message.content.map((item: any) => {
+      if (item.type === 'text') return item.text;
+      return item.refusal || '';
+    }).join('\n');
+  }
+  return message.content || '';
+};
+
 const preferences = getPreferenceValues('ai');
 
-logger.info('preferences', preferences);
 const client = new OpenAI({
   apiKey: preferences.apiKey as string, // 模型APIKey
   baseURL: preferences.baseURL as string, // 模型API地址
   dangerouslyAllowBrowser: true,
 });
 
+// MCP 相关状态
+const mcpServers = ref<Record<string, string[]>>({});
+const mcpTools = ref<OpenAI.ChatCompletionTool[]>([]);
+
+const getToolResult = (toolCallId: string) => messages.value.find(item => item.role === 'tool' && item.tool_call_id === toolCallId);
+
+// 获取 MCP 服务器和工具
+const loadMCPTools = async () => {
+  try {
+    const response = await fetch('http://localhost:2345/api/mcp/tools');
+    const result = await response.json();
+
+    if (result.success) {
+      mcpServers.value = result.data;
+
+      // 直接从返回的数据中构建工具列表
+      const tools: OpenAI.ChatCompletionTool[] = [];
+
+      for (const [serverName, toolList] of Object.entries(result.data)) {
+        if (Array.isArray(toolList)) {
+          for (const toolName of toolList) {
+            tools.push({
+              type: 'function',
+              function: {
+                name: `mcp_${serverName}_${toolName}`,
+                description: `MCP工具: ${toolName} (来自服务器: ${serverName})`,
+                parameters: {
+                  type: 'object',
+                  properties: {},
+                  required: [],
+                },
+              },
+            });
+          }
+        }
+      }
+
+
+      mcpTools.value = tools;
+      logger.info('Loaded MCP tools:', tools.length);
+    }
+  } catch (error) {
+    logger.error('Failed to load MCP tools:', error);
+  }
+};
+
+// 初始化时加载 MCP 工具
+loadMCPTools();
+
+// 定期重新加载 MCP 工具（每30秒）
+setInterval(loadMCPTools, 30000);
+
 const getLastMessage = () => messages.value[messages.value.length - 1];
 
 const runTools = async (toolCall: OpenAI.ChatCompletionMessageToolCall) => {
-  if (toolCall.function.name in AI_TOOLS) {
-    const args = toolCall.function.arguments ? JSON.parse(toolCall.function.arguments) : undefined;
+  if (!('function' in toolCall)) {
+    return '工具调用格式错误';
+  }
+
+  const functionName = toolCall.function.name;
+  const functionArgs = toolCall.function.arguments;
+
+  if (functionName in AI_TOOLS) {
+    const args = functionArgs ? JSON.parse(functionArgs) : undefined;
     try {
-      const result = await AI_TOOLS[toolCall.function.name as keyof typeof AI_TOOLS](args);
+      const result = await AI_TOOLS[functionName as keyof typeof AI_TOOLS](args);
       if (!result) return '';
       if (typeof result === 'string') return result;
       return JSON.stringify(result);
     } catch (err) {
       console.error(err);
-      return `调用${toolCall.function.name}失败，失败信息如下， ${String(err)}`;
+      return `调用${functionName}失败，失败信息如下， ${String(err)}`;
     }
-  } else {
-    return `工具${toolCall.function.name}不存在，无法调用`;
   }
+
+  if (functionName.startsWith('mcp_')) {
+    // 处理 MCP 工具调用
+    try {
+      const args = functionArgs ? JSON.parse(functionArgs) : {};
+
+      // 解析工具名称: mcp_serverName_toolName
+      const [serverName, ...parts] = functionName.split('_').slice(1);
+      const toolName = parts.join('_');
+
+      const response = await fetch(`http://localhost:2345/api/mcp/call/${serverName}/${toolName}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(args),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        if (typeof result.data === 'string') return result.data;
+        return JSON.stringify(result.data, null, 2);
+      }
+
+      return `MCP工具调用失败: ${result.error || '未知错误'}`;
+    } catch (err) {
+      console.error(err);
+      return `调用MCP工具${functionName}失败，失败信息如下， ${String(err)}`;
+    }
+  }
+
+  return `工具${functionName}不存在，无法调用`;
 };
 
 const ask = async () => {
+  // 合并原生工具和 MCP 工具
+  const allTools = [...AI_TOOLS_DEFINITIONS, ...mcpTools.value];
+
   const completion = await client.chat.completions.create({
     model: preferences.model as string,
     messages: toRaw(messages.value),
-    tools: AI_TOOLS_DEFINITIONS,
+    tools: allTools,
     tool_choice: 'auto',
     stream: true,
   }).catch((err) => {
@@ -170,7 +315,10 @@ const ask = async () => {
               type: 'function',
             });
           } else {
-            msg.tool_calls![deltaToolCall.index].function.arguments += deltaToolCall.function!.arguments || '';
+            const existingCall = msg.tool_calls![deltaToolCall.index];
+            if ('function' in existingCall) {
+              existingCall.function.arguments += deltaToolCall.function!.arguments || '';
+            }
           }
         });
         scrollToBottom();
@@ -229,6 +377,9 @@ onPageEnter(async () => {
   width: 100%;
   margin: 0 auto;
   padding-top: 48px;
+  box-sizing: border-box;
+  font-weight: normal;
+  --message-bg: light-dark(rgba(0, 0, 0, 0.2), rgba(255, 255, 255, .1));
 }
 
 .chat-messages {
@@ -246,79 +397,46 @@ onPageEnter(async () => {
   &.user {
     margin-left: auto;
   }
-  :deep(.message-content) {
-    pre {
-      white-space: pre-line;
-      word-break: break-all;
-      font-family:'Courier New', Courier, monospace;
-      font-size: 14px;
-      font-weight: bold;
-    }
-    code {
-      background-color: #f0f0f0;
-      padding: 2px 4px;
-      border-radius: 3px;
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 14px;
-    }
 
-    pre {
-      background-color: #f5f5f5;
-      padding: 10px;
-      border-radius: 5px;
-      overflow-x: auto;
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 14px;
-
-      code {
-        background-color: transparent;
-        padding: 0;
-      }
-    }
-
-    h1, h2, h3, h4, h5, h6 {
-      margin-top: 0.3em;
-      margin-bottom: 0.5em;
-    }
-
-    ul, ol {
-      padding-left: 20px;
-      margin: 10px 0;
-    }
-
-    // Dark mode styles
-    @media (prefers-color-scheme: dark) {
-      code {
-        background-color: #2d2d2d;
-        color: #e0e0e0;
-      }
-
-      pre {
-        background-color: #1e1e1e;
-        color: #dcdcdc;
-
-        code {
-          color: inherit;
-        }
-      }
-
-      h1, h2, h3, h4, h5, h6 {
-        color: #ffffff;
-      }
-
-      ul, ol {
-        color: #dcdcdc;
-      }
-    }
-
-  }
 }
 
 .message-content {
   padding: 10px;
   border-radius: 6px;
-  // background-color: white;
+  background-color: var(--message-bg);
   border: 1px solid light-dark(rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0.2));
+}
+
+.tool-call {
+  margin-bottom: 12px;
+  background-color: var(--message-bg);
+}
+.tool-call-container {
+  font-weight: normal;
+  .tool-call-arguments {
+    word-break: break-all;
+    opacity: 0.8;
+  }
+  .tool-call-result {
+    margin-top: 12px;
+    word-break: break-all;
+    line-height: 1.4;
+    opacity: 0.8;
+  }
+}
+
+// Dark mode styles for tool calls
+@media (prefers-color-scheme: dark) {
+  .tool-call {
+    h4 {
+      color: #64b5f6;
+    }
+
+    pre {
+      background-color: #1e1e1e;
+      color: #dcdcdc;
+    }
+  }
 }
 
 .chat-input {

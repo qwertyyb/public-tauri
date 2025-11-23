@@ -2,14 +2,25 @@ import { readFile, writeFile, access } from 'fs/promises';
 import { join } from 'path';
 import { homedir } from 'os';
 import { logger } from '../utils/logger';
+import { isDev } from '../utils';
 
-export interface MCPServerConfig {
-  name: string;
-  command: string;
-  args?: string[];
+interface MCPStdioServerConfig {
+  type: 'stdio',
+  command: string,
+  args?: string[],
   env?: Record<string, string>;
-  disabled?: boolean;
+  disabled?: boolean
 }
+
+interface MCPStreamableHttpServerConfig {
+  type: 'http',
+  url: string,
+  headers?: Record<string, string>;
+  disabled?: boolean
+}
+
+export type MCPServerConfig = MCPStdioServerConfig | MCPStreamableHttpServerConfig;
+
 
 export interface MCPConfig {
   mcpServers: Record<string, MCPServerConfig>;
@@ -20,7 +31,7 @@ export class MCPConfigManager {
 
   constructor(configPath?: string) {
     // 默认配置路径，类似 VSCode 的 MCP 配置
-    this.configPath = configPath || join(homedir(), '.public-tauri', 'mcp.json');
+    this.configPath = configPath || isDev() ? join(import.meta.dirname, '../../mcp.json') : join(homedir(), '.public-tauri', 'mcp.json');
   }
 
   async loadConfig(): Promise<MCPConfig> {

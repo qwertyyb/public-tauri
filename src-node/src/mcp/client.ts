@@ -1,6 +1,6 @@
-import { spawn, ChildProcess } from 'child_process';
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
+import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
 import { type MCPServerConfig, MCPConfigManager } from './config';
 import { logger } from '../utils/logger';
 import { EventEmitter } from 'events';
@@ -15,7 +15,6 @@ export interface MCPServerStatus {
 
 export class MCPClientManager extends EventEmitter {
   private clients: Map<string, Client> = new Map();
-  private processes: Map<string, ChildProcess> = new Map();
   private configManager: MCPConfigManager;
   private statuses: Map<string, MCPServerStatus> = new Map();
 
@@ -50,33 +49,19 @@ export class MCPClientManager extends EventEmitter {
     this.updateStatus(name, 'connecting');
 
     try {
-      // 创建子进程
-      const args = config.args || [];
-      const env = { ...process.env, ...config.env };
-
-      const childProcess = spawn(config.command, args, {
-        env,
-        stdio: ['pipe', 'pipe', 'pipe'],
-        shell: true,
-      });
-
-      this.processes.set(name, childProcess);
-
-      // 设置错误处理
-      childProcess.on('error', (error) => {
-        logger.error(`MCP server ${name} process error:`, error);
-        this.updateStatus(name, 'error', error.message);
-        this.disconnectServer(name);
-      });
-
-      childProcess.on('exit', (code, signal) => {
-        logger.warn(`MCP server ${name} exited with code ${code}, signal ${signal}`);
-        this.updateStatus(name, 'disconnected');
-        this.disconnectServer(name);
-      });
-
       // 创建 MCP 客户端
-      const transport = new StdioClientTransport(config);
+      let transport: StdioClientTransport | StreamableHTTPClientTransport | null = null;
+      if (config.type === 'stdio') {
+        transport = new StdioClientTransport(config);
+      } else if (config.type === 'http') {
+        transport = new StreamableHTTPClientTransport(new URL(config.url), {
+          requestInit: { headers: config.headers ?? {} },
+        });
+      }
+
+      if (!transport) {
+        throw new Error(`不支持的配置: ${JSON.stringify(config)}`);
+      }
 
       const client = new Client({
         name: `public-tauri-${name}`,
@@ -86,11 +71,11 @@ export class MCPClientManager extends EventEmitter {
       await client.connect(transport);
 
       this.clients.set(name, client);
-      this.updateStatus(name, 'connected', undefined, childProcess.pid);
+      this.updateStatus(name, 'connected', undefined, (transport as StdioClientTransport).pid!);
 
       // 获取可用工具
       const tools = await this.getServerTools(name);
-      this.updateStatus(name, 'connected', undefined, childProcess.pid, tools);
+      this.updateStatus(name, 'connected', undefined, (transport as StdioClientTransport).pid!, tools);
 
       logger.info(`MCP server ${name} connected successfully`);
       this.emit('serverConnected', { name, tools });
@@ -103,7 +88,6 @@ export class MCPClientManager extends EventEmitter {
 
   async disconnectServer(name: string): Promise<void> {
     const client = this.clients.get(name);
-    const process = this.processes.get(name);
 
     if (client) {
       try {
@@ -112,11 +96,6 @@ export class MCPClientManager extends EventEmitter {
         logger.error(`Error closing MCP client ${name}:`, error);
       }
       this.clients.delete(name);
-    }
-
-    if (process) {
-      process.kill('SIGTERM');
-      this.processes.delete(name);
     }
 
     this.updateStatus(name, 'disconnected');
@@ -193,6 +172,10 @@ export class MCPClientManager extends EventEmitter {
   async reloadConfig(): Promise<void> {
     await this.disconnectAll();
     await this.connectAll();
+  }
+
+  async cleanup() {
+    await this.disconnectAll();
   }
 
   private updateStatus(

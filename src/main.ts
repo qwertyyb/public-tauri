@@ -15,9 +15,9 @@ createDraggable();
 registerMainShortcut('Command+Space');
 listenEvents();
 createTray();
-startServer().then(() => {
-  init();
-});
+// startServer().then(() => {
+init();
+// });
 
 const app = createApp(App);
 

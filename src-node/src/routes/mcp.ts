@@ -1,5 +1,5 @@
 import Router from '@koa/router';
-import { MCPConfigManager } from '../mcp/config';
+import { MCPConfigManager, type MCPServerConfig } from '../mcp/config';
 import { MCPClientManager } from '../mcp/client';
 import { logger } from '../utils/logger';
 
@@ -55,27 +55,21 @@ mcpRouter.get('/config', async (ctx) => {
 // 添加服务器配置
 mcpRouter.post('/config', async (ctx) => {
   try {
-    const { name, command, args, env, disabled } = ctx.request.body as any;
+    const { name, config  } = ctx.request.body as { name: string, config: MCPServerConfig };
 
-    if (!name || !command) {
+    if (!name || !config) {
       ctx.status = 400;
       ctx.body = {
         success: false,
-        error: 'Name and command are required',
+        error: 'Name and config are required',
       };
       return;
     }
 
-    await configManager.addServer(name, {
-      name,
-      command,
-      args,
-      env,
-      disabled,
-    });
+    await configManager.addServer(name, config);
 
     // 如果服务器未禁用，尝试连接
-    if (!disabled) {
+    if (!config.disabled) {
       const serverConfig = await configManager.getServerConfig(name);
       if (serverConfig) {
         await clientManager.connectServer(name, serverConfig);

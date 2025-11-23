@@ -11,7 +11,9 @@ export function createAutoResizeInput(input: HTMLInputElement & { autoResizeInst
   const span = document.createElement('span');
   span.className = 'measure-span';
   span.style.cssText = `
-        position: absolute !important;
+        position: fixed !important;
+        right: 0;
+        bottom: 0;
         visibility: hidden !important;
         white-space: pre !important;
         padding: 0 !important;

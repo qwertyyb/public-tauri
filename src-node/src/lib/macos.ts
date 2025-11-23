@@ -1,8 +1,9 @@
 import module from 'module';
+import { isDev } from '../utils';
 
 const require = module.createRequire(import.meta.url);
 
-const addonPath = process.env.NODE_ENV === 'development' ? '../../build/Release/addon.node' : '../build/Release/addon.node';
+const addonPath = isDev() ? '../../build/Release/addon.node' : '../build/Release/addon.node';
 
 const addon = require(addonPath);
 

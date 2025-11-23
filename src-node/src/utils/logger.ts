@@ -1,6 +1,8 @@
 // import { fileURLToPath } from 'node:url';
 // import { pino } from 'pino';
 
+import { isDev } from '.';
+
 // const transport = pino.transport({
 //   target: 'pino/file',
 //   options: {
@@ -10,7 +12,7 @@
 
 // const logger = pino(transport);
 
-const logger = process.env.NODE_ENV === 'development' ? console : console;
+const logger = isDev() ? console : console;
 
 export default logger;
 export { logger };

@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "🔥 Trends Hub": {
+      "timeout": 60,
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-trends-hub@1.6.2"
+      ],
+      "type": "stdio",
+      "disabled": false
+    }
+  }
+}
