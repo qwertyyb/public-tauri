@@ -96,36 +96,6 @@ const messages = ref<OpenAI.ChatCompletionMessageParam[]>([{
   content: AI_ASSISTANT_PROMPT,
 }]);
 
-// const messages = ref<OpenAI.ChatCompletionMessageParam[]>([
-//   {
-//     role: 'system',
-//     content: '你是一个运行在MacOS系统上的AI助手，能够通过提供的工具或直接调用系统资源解决用户问题。',
-//   },
-//   {
-//     role: 'user',
-//     content: '系统信息',
-//   },
-//   {
-//     role: 'assistant',
-//     content: '',
-//     tool_calls: [
-//       {
-//         id: 'call_swafhokjsxtgfdz7r8qlbqga',
-//         function: {
-//           name: 'runBashCommand',
-//           arguments: ' {"command": "sw_vers && system_profiler SPHardwareDataType"}',
-//         },
-//         type: 'function',
-//       },
-//     ],
-//   },
-//   {
-//     role: 'tool',
-//     content: 'ProductName:\t\tmacOS\nProductVersion:\t\t15.4.1\nBuildVersion:\t\t24E263\nHardware:\n\n    Hardware Overview:\n\n      Model Name: MacBook Pro\n      Model Identifier: MacBookPro16,1\n      Processor Name: 6-Core Intel Core i7\n      Processor Speed: 2.6 GHz\n      Number of Processors: 1\n      Total Number of Cores: 6\n      L2 Cache (per Core): 256 KB\n      L3 Cache: 12 MB\n      Hyper-Threading Technology: Enabled\n      Memory: 16 GB\n      System Firmware Version: 2075.101.2.0.0 (iBridge: 22.16.14248.0.0,0)\n      OS Loader Version: 583~900\n      Serial Number (system): C02CQ5Q1MD6P\n      Hardware UUID: 3D2BDC3C-1937-5BE9-BC73-4D3C04B048FB\n      Provisioning UDID: 3D2BDC3C-1937-5BE9-BC73-4D3C04B048FB\n      Activation Lock Status: Disabled\n\n',
-//     tool_call_id: 'call_swafhokjsxtgfdz7r8qlbqga',
-//   },
-// ]);
-
 const userInput = ref<string>(props.query || '');
 const textarea = useTemplateRef('textarea');
 const messagesContainer = ref<HTMLDivElement | null>(null);
