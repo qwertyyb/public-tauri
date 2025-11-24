@@ -82,7 +82,21 @@ export const clipboard = {
   paste: () => invokeServerUtils('keyboard.press', ['LeftCmd', 'V']),
 };
 
-export const fetch = (...args: Parameters<typeof window.fetch>): Promise<Response> => invokeServerUtils('fetch', args, { raw: true });
+export const fetch = async (input: RequestInfo, init?: RequestInit): Promise<Response> => {
+  const { signal, headers: originHeaders, ...rest } = init || {};
+  console.log('fetch', input, init);
+  const headers: Record<string, string> = {};
+  if (originHeaders && (originHeaders instanceof Headers)) {
+    originHeaders.forEach((value, key) => {
+      headers[key] = value;
+    });
+  }
+  const response = await invokeServerUtils('fetch', [input, { ...rest, headers }], { raw: true });
+  if (signal?.aborted) {
+    throw new Error('aborted');
+  }
+  return response;
+};
 
 interface IApplication {
   displayName: string

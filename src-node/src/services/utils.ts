@@ -95,7 +95,7 @@ const utils = {
     await Promise.all(ps);
   },
 
-  fetch: (...args: Parameters<typeof fetch>) => fetch(...args),
+  fetch: (input: RequestInfo, init?: Omit<RequestInit, 'signal' | 'headers'> & { headers?: Record<string, string> }) => fetch(input, init),
 
   'system.getFrontmostApplication': () => getFrontmostApplication(),
   'system.getSelectedPath': async ({ fallbackCurrent = true } = {}) => {

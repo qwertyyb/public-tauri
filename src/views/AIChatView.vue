@@ -123,6 +123,7 @@ const client = new OpenAI({
   apiKey: preferences.apiKey as string, // 模型APIKey
   baseURL: preferences.baseURL as string, // 模型API地址
   dangerouslyAllowBrowser: true,
+  fetch,
 });
 
 // MCP 相关状态
@@ -172,10 +173,10 @@ const loadMCPTools = async () => {
 };
 
 // 初始化时加载 MCP 工具
-loadMCPTools();
+// loadMCPTools();
 
 // 定期重新加载 MCP 工具（每30秒）
-setInterval(loadMCPTools, 30000);
+// setInterval(loadMCPTools, 30000);
 
 const getLastMessage = () => messages.value[messages.value.length - 1];
 
