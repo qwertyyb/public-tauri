@@ -1,31 +1,23 @@
 <template>
-  <div
+  <el-collapse
     class="collapsed-container"
     :class="{ collapsed }"
   >
-    <div
-      class="collapsed-title"
-      @click="collapsed = !collapsed"
+    <el-collapse-item
+      :title="title"
+      name="index"
     >
-      {{ title }}
-      <ElIcon
-        class="arrow-icon"
-        size="14"
+      <div
+        class="collapsed-content"
       >
-        <ArrowRightBold />
-      </ElIcon>
-    </div>
-    <div
-      class="collapsed-content"
-    >
-      <slot />
-    </div>
-  </div>
+        <slot />
+      </div>
+    </el-collapse-item>
+  </el-collapse>
 </template>
 
 <script lang="ts" setup>
-import { ElIcon } from 'element-plus';
-import { ArrowRightBold } from '@element-plus/icons-vue';
+import { ElCollapse, ElCollapseItem } from 'element-plus';
 import { ref } from 'vue';
 
 defineProps<{ title: string }>();
@@ -35,50 +27,19 @@ const collapsed = ref(true);
 
 <style lang="scss" scoped>
 .collapsed-container {
-  padding: 12px;
-  border: 1px solid light-dark(rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.1));
+  --el-collapse-header-bg-color: transparent;
+  --el-collapse-border-color: transparent;
+  --el-collapse-content-bg-color: light-dark(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, .1));
   border-radius: 6px;
-  position: relative;
   overflow: hidden;
-}
-.collapsed-title {
-  cursor: pointer;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  margin-bottom: 8px;
-}
-.arrow-icon {
-  transition: transform .2s;
-  margin-left: 8px;
+  background: light-dark(rgba(225, 225, 225, 0.2), rgba(255, 255, 255, .1));
+  :deep(.el-collapse-item__header) {
+    padding-left: 12px;
+  }
 }
 .collapsed-content {
   transition: max-height .2s;
   max-height: 600px;
-}
-.collapsed {
-  .arrow-icon {
-    transform: rotate(90deg);
-  }
-  .collapsed-content{
-    max-height: 60px;
-    overflow: auto;
-    height: 60px;
-    margin: 0 -12px;
-    padding: 0 12px;
-    &::after {
-      content: " ";
-      display: block;
-      width: 100%;
-      height: 50%;
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(to top, light-dark(#787878, #333), transparent);
-      z-index: 1;
-      pointer-events: none;
-    }
-  }
+  padding: 12px;
 }
 </style>

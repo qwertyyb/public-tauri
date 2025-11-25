@@ -1,5 +1,14 @@
 {
   "mcpServers": {
+    "12306": {
+      "type": "stdio",
+      "disabled": false,
+      "command": "npx",
+      "args": [
+        "-y",
+        "12306-mcp"
+      ]
+    },
     "🔥 Trends Hub": {
       "timeout": 60,
       "command": "npx",
@@ -9,6 +18,15 @@
       ],
       "type": "stdio",
       "disabled": false
+    },
+    "time": {
+      "type": "stdio",
+      "disabled": false,
+      "command": "uvx",
+      "args": [
+        "mcp-server-time",
+        "--local-timezone=Asia/Shanghai"
+      ]
     }
   }
 }

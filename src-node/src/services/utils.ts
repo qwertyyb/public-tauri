@@ -20,6 +20,7 @@ interface Application {
   bundleIdentifier: string
 }
 
+
 export const getFrontmostApplication = async (): Promise<Application | undefined | null> => {
   const { stdout } = await execAsync('lsappinfo visibleProcessList');
   const frontmost = await Promise.all(stdout.split(' ').slice(0, 1)
@@ -95,7 +96,10 @@ const utils = {
     await Promise.all(ps);
   },
 
-  fetch: (input: RequestInfo, init?: Omit<RequestInit, 'signal' | 'headers'> & { headers?: Record<string, string> }) => fetch(input, init),
+  fetch: (input: RequestInfo, init?: Omit<RequestInit, 'signal' | 'headers'> & { headers?: Record<string, string> }) => {
+    console.log('fetch', input);
+    return fetch(input, init);
+  },
 
   'system.getFrontmostApplication': () => getFrontmostApplication(),
   'system.getSelectedPath': async ({ fallbackCurrent = true } = {}) => {

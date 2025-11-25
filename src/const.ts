@@ -45,6 +45,7 @@ export const AI_TOOLS_DEFINITIONS: OpenAI.ChatCompletionTool[] = [
     function: {
       name: 'getFrontmostApplication',
       description: '获取当前最前方的应用',
+      parameters: {},
     },
   },
   {
@@ -52,6 +53,7 @@ export const AI_TOOLS_DEFINITIONS: OpenAI.ChatCompletionTool[] = [
     function: {
       name: 'getCurrentPath',
       description: '获取Finder当前目录的路径',
+      parameters: {},
     },
   },
   {
@@ -59,6 +61,7 @@ export const AI_TOOLS_DEFINITIONS: OpenAI.ChatCompletionTool[] = [
     function: {
       name: 'getSelectedPath',
       description: '获取Finder当前选中的文件或文件夹的路径',
+      parameters: {},
     },
   },
   {

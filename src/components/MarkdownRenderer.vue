@@ -118,7 +118,7 @@ const clickHandler = (event: MouseEvent) => {
     --fgColor-attention: #d29922;
     --fgColor-danger: #f85149;
     --fgColor-done: #ab7df8;
-    --bgColor-default: #0d1117;
+    --bgColor-default: transparent;
     --bgColor-muted: #151b23;
     --bgColor-neutral-muted: #656c7633;
     --bgColor-attention-muted: #bb800926;
@@ -174,7 +174,7 @@ const clickHandler = (event: MouseEvent) => {
     --fgColor-attention: #9a6700;
     --fgColor-danger: #d1242f;
     --fgColor-done: #8250df;
-    --bgColor-default: #ffffff;
+    --bgColor-default: transparent;
     --bgColor-muted: #f6f8fa;
     --bgColor-neutral-muted: #818b981f;
     --bgColor-attention-muted: #fff8c5;
