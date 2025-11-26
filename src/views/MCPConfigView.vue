@@ -70,6 +70,12 @@
                   </el-button>
                   <el-button
                     size="small"
+                    @click="editServer(server.name)"
+                  >
+                    编辑
+                  </el-button>
+                  <el-button
+                    size="small"
                     type="danger"
                     @click="removeServer(server.name)"
                   >
@@ -152,6 +158,22 @@
                       {{ (server.config.args || []).join(' ') }}
                     </el-descriptions-item>
                     <el-descriptions-item
+                      v-if="server.config.type === 'stdio' && server.config.env"
+                      label="环境变量"
+                      :span="2"
+                    >
+                      <div class="env-display">
+                        <el-tag
+                          v-for="(value, key) in server.config.env"
+                          :key="key"
+                          size="small"
+                          class="env-tag"
+                        >
+                          {{ key }}={{ value }}
+                        </el-tag>
+                      </div>
+                    </el-descriptions-item>
+                    <el-descriptions-item
                       v-if="server.config.type === 'http'"
                       label="URL"
                     >
@@ -166,108 +188,13 @@
       </el-card>
     </div>
 
-    <!-- 添加服务器对话框 -->
-    <el-dialog
+    <!-- MCP 服务器编辑器 -->
+    <MCPServerEditor
       v-model="showAddServerDialog"
-      title="添加 MCP 服务器"
-      width="80vw"
-      height="400px"
-    >
-      <el-form
-        ref="serverFormRef"
-        :model="serverForm"
-        :rules="serverFormRules"
-        label-width="100px"
-      >
-        <el-form-item
-          label="服务器名称"
-          prop="name"
-        >
-          <el-input
-            v-model="serverForm.name"
-            placeholder="请输入服务器名称"
-          />
-        </el-form-item>
-
-        <el-form-item
-          label="连接类型"
-          prop="type"
-        >
-          <el-radio-group v-model="serverForm.type">
-            <el-radio value="stdio">
-              Stdio
-            </el-radio>
-            <el-radio value="http">
-              HTTP
-            </el-radio>
-          </el-radio-group>
-        </el-form-item>
-
-        <!-- Stdio 配置 -->
-        <template v-if="serverForm.type === 'stdio'">
-          <el-form-item
-            label="命令"
-            prop="command"
-          >
-            <el-input
-              v-model="serverForm.command"
-              placeholder="例如: npx"
-            />
-          </el-form-item>
-          <el-form-item label="参数">
-            <div class="args-input">
-              <el-input
-                v-for="(_, index) in serverForm.args"
-                :key="index"
-                v-model="serverForm.args[index]"
-                placeholder="参数"
-                class="arg-item"
-              >
-                <template #append>
-                  <el-button
-                    @click="removeArg(index)"
-                  >
-                    删除
-                  </el-button>
-                </template>
-              </el-input>
-              <el-button
-                type="primary"
-                plain
-                @click="addArg"
-              >
-                添加参数
-              </el-button>
-            </div>
-          </el-form-item>
-        </template>
-
-        <!-- HTTP 配置 -->
-        <template v-if="serverForm.type === 'http'">
-          <el-form-item
-            label="URL"
-            prop="url"
-          >
-            <el-input
-              v-model="serverForm.url"
-              placeholder="例如: http://localhost:3000"
-            />
-          </el-form-item>
-        </template>
-      </el-form>
-
-      <template #footer>
-        <el-button @click="showAddServerDialog = false">
-          取消
-        </el-button>
-        <el-button
-          type="primary"
-          @click="addServer"
-        >
-          添加
-        </el-button>
-      </template>
-    </el-dialog>
+      :edit-server-name="editServerName"
+      :server-config="editServerConfig"
+      @success="loadServers"
+    />
 
     <!-- 工具详情对话框 -->
     <el-dialog
@@ -300,9 +227,9 @@
             width="300"
           >
             <template #default="{ row }">
-              <div v-if="row.inputSchema && Object.keys(row.inputSchema).length > 0">
+              <div v-if="row.inputSchema && row.inputSchema.properties && Object.keys(row.inputSchema.properties).length > 0">
                 <el-tag
-                  v-for="(param, key) in row.inputSchema.properties || {}"
+                  v-for="(param, key) in row.inputSchema.properties"
                   :key="key"
                   size="small"
                   class="param-tag"
@@ -339,12 +266,6 @@ import { ref, onMounted } from 'vue';
 import {
   ElButton,
   ElCard,
-  ElDialog,
-  ElForm,
-  ElFormItem,
-  ElInput,
-  ElRadioGroup,
-  ElRadio,
   ElTag,
   ElEmpty,
   ElDescriptions,
@@ -357,9 +278,10 @@ import {
   ElMessage,
   ElSwitch,
 } from 'element-plus';
-import type { FormInstance } from 'element-plus';
 import { mcpService } from '../services/mcp';
-import type { MCPServerConfig, ServerStatus, ToolDetail } from '../services/mcp';
+import type { MCPServerConfig, ServerStatus } from '../services/mcp';
+import { type Tool } from '@modelcontextprotocol/sdk/types.js';
+import MCPServerEditor from '../components/MCPServerEditor.vue';
 
 // 扩展服务器状态接口，添加折叠状态
 interface ExtendedServerStatus extends ServerStatus {
@@ -368,34 +290,12 @@ interface ExtendedServerStatus extends ServerStatus {
 }
 
 const servers = ref<ExtendedServerStatus[]>([]);
-const serverTools = ref<ToolDetail[]>([]);
+const serverTools = ref<Tool[]>([]);
 const showAddServerDialog = ref(false);
 const showToolsDialog = ref(false);
 const currentServerName = ref('');
-
-const serverFormRef = ref<FormInstance>();
-const serverForm = ref({
-  name: '',
-  type: 'stdio' as 'stdio' | 'http',
-  command: '',
-  args: [''] as string[],
-  url: '',
-});
-
-const serverFormRules = {
-  name: [
-    { required: true, message: '请输入服务器名称', trigger: 'blur' },
-  ],
-  type: [
-    { required: true, message: '请选择连接类型', trigger: 'change' },
-  ],
-  command: [
-    { required: true, message: '请输入命令', trigger: 'blur' },
-  ],
-  url: [
-    { required: true, message: '请输入 URL', trigger: 'blur' },
-  ],
-};
+const editServerName = ref<string>();
+const editServerConfig = ref<MCPServerConfig>();
 
 // 加载服务器列表
 const loadServers = async () => {
@@ -417,34 +317,6 @@ const loadServers = async () => {
   }
 };
 
-// 添加服务器
-const addServer = async () => {
-  if (!serverFormRef.value) return;
-
-  try {
-    await serverFormRef.value.validate();
-
-    const config: MCPServerConfig = {
-      type: serverForm.value.type,
-      disabled: false,
-    };
-
-    if (serverForm.value.type === 'stdio') {
-      config.command = serverForm.value.command;
-      config.args = serverForm.value.args.filter(arg => arg.trim() !== '');
-    } else {
-      config.url = serverForm.value.url;
-    }
-
-    await mcpService.addServer(serverForm.value.name, config);
-
-    showAddServerDialog.value = false;
-    resetForm();
-    await loadServers();
-  } catch (error) {
-    console.error('Failed to add server:', error);
-  }
-};
 
 // 删除服务器
 const removeServer = async (name: string) => {
@@ -508,15 +380,16 @@ const loadServerTools = async (name: string) => {
     if (serverIndex === -1) return;
 
     const tools = await mcpService.getServerTools(name);
-    const toolObjects = tools.map(toolName => ({
-      name: toolName,
-      description: `${toolName} 工具`,
-    }));
 
     // 更新服务器数据
-    servers.value[serverIndex].tools = toolObjects;
+    servers.value[serverIndex].tools = tools.map(item => ({ name: item.name, description: item.description }));
   } catch (error) {
     console.error(`Failed to load tools for server ${name}:`, error);
+    // 设置空数组以避免显示加载状态
+    const serverIndex = servers.value.findIndex(s => s.name === name);
+    if (serverIndex !== -1) {
+      servers.value[serverIndex].tools = [];
+    }
   }
 };
 
@@ -541,34 +414,24 @@ const refreshServerTools = async (name: string) => {
 const viewServerTools = async (name: string) => {
   try {
     currentServerName.value = name;
-    serverTools.value = await mcpService.getServerToolsWithDetails(name);
+    serverTools.value = await mcpService.getServerTools(name);
     showToolsDialog.value = true;
   } catch (error) {
     console.error('Failed to get server tools:', error);
   }
 };
 
-// 添加参数
-const addArg = () => {
-  serverForm.value.args.push('');
+
+// 编辑服务器
+const editServer = (name: string) => {
+  const server = servers.value.find(s => s.name === name);
+  if (!server) return;
+
+  editServerName.value = name;
+  editServerConfig.value = server.config;
+  showAddServerDialog.value = true;
 };
 
-// 删除参数
-const removeArg = (index: number) => {
-  serverForm.value.args.splice(index, 1);
-};
-
-// 重置表单
-const resetForm = () => {
-  serverForm.value = {
-    name: '',
-    type: 'stdio',
-    command: '',
-    args: [''],
-    url: '',
-  };
-  serverFormRef.value?.resetFields();
-};
 
 onMounted(() => {
   loadServers();
@@ -739,13 +602,18 @@ onMounted(() => {
   }
 }
 
-.args-input {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
 
-  .arg-item {
-    margin-bottom: 8px;
+.env-display {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+
+  .env-tag {
+    background-color: #fff3e0;
+    color: #e65100;
+    border: 1px solid #ffcc80;
+    font-family: monospace;
+    font-size: 11px;
   }
 }
 

@@ -167,7 +167,7 @@ mcpRouter.post('/disconnect/:name', async (ctx) => {
   }
 });
 
-// 获取服务器工具列表（仅名称）
+// 获取服务器工具列表
 mcpRouter.get('/tools/:name', async (ctx) => {
   try {
     const { name } = ctx.params as { name: string };
@@ -183,26 +183,6 @@ mcpRouter.get('/tools/:name', async (ctx) => {
     ctx.body = {
       success: false,
       error: 'Failed to get server tools',
-    };
-  }
-});
-
-// 获取服务器工具详情（包含描述和参数）
-mcpRouter.get('/tools/:name/details', async (ctx) => {
-  try {
-    const { name } = ctx.params as { name: string };
-    const tools = await clientManager.getServerToolsWithDetails(decodeURIComponent(name));
-
-    ctx.body = {
-      success: true,
-      data: tools,
-    };
-  } catch (error) {
-    logger.error('Error getting MCP server tools details:', error);
-    ctx.status = 500;
-    ctx.body = {
-      success: false,
-      error: 'Failed to get server tools details',
     };
   }
 });

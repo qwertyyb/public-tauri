@@ -94,6 +94,7 @@ import { fetch } from '@public/api/core';
 import logger from '@/utils/logger';
 import MarkdownRenderer from '@/components/MarkdownRenderer.vue';
 import CollapsedContainer from '@/components/CollapsedContainer.vue';
+import { mcpService, convertMCPToolsToOpenAIFormat, parseMCPToolFunctionName, formatMCPToolResult } from '@/services/mcp';
 
 const props = defineProps<{ query?: string }>();
 
@@ -159,45 +160,14 @@ const client = new OpenAI({
   fetch,
 });
 
-// MCP 相关状态
-const mcpServers = ref<Record<string, string[]>>({});
 const mcpTools = ref<OpenAI.ChatCompletionTool[]>([]);
 
 // 获取 MCP 服务器和工具
 const loadMCPTools = async () => {
   try {
-    const response = await fetch('http://localhost:2345/api/mcp/tools');
-    const result = await response.json();
-
-    if (result.success) {
-      mcpServers.value = result.data;
-
-      // 直接从返回的数据中构建工具列表
-      const tools: OpenAI.ChatCompletionTool[] = [];
-
-      for (const [serverName, toolList] of Object.entries(result.data)) {
-        if (Array.isArray(toolList)) {
-          for (const toolName of toolList) {
-            tools.push({
-              type: 'function',
-              function: {
-                name: `mcp_${serverName}_${toolName}`,
-                description: `MCP工具: ${toolName} (来自服务器: ${serverName})`,
-                parameters: {
-                  type: 'object',
-                  properties: {},
-                  required: [],
-                },
-              },
-            });
-          }
-        }
-      }
-
-
-      mcpTools.value = tools;
-      logger.info('Loaded MCP tools:', tools.length);
-    }
+    const tools = convertMCPToolsToOpenAIFormat(await mcpService.getAllServersTools());
+    mcpTools.value = tools;
+    logger.info('Loaded MCP tools:', mcpTools.value.length);
   } catch (error) {
     logger.error('Failed to load MCP tools:', error);
   }
@@ -240,34 +210,15 @@ const runTools = async (toolCall: OpenAI.ChatCompletionMessageToolCall) => {
     try {
       toolCallStatus.value[toolCall.id] = { status: 'running' };
       const args = functionArgs ? JSON.parse(functionArgs) : {};
-
-      // 解析工具名称: mcp_serverName_toolName
-      const [serverName, ...parts] = functionName.split('_').slice(1);
-      const toolName = parts.join('_');
-
-      const response = await fetch(`http://localhost:2345/api/mcp/call/${serverName}/${toolName}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(args),
-      });
-
-      const result = await response.json();
-
-      if (result.success) {
-        const res = typeof result.data === 'string' ? result.data : JSON.stringify(result.data, null, 2);
-
-        toolCallStatus.value[toolCall.id] = { status: 'success', result };
-        return res;
-      }
-
-      toolCallStatus.value[toolCall.id] = { status: 'failed', msg: result.error || '未知错误' };
-      return `MCP工具调用失败: ${result.error || '未知错误'}`;
+      const { serverName, toolName } = parseMCPToolFunctionName(functionName);
+      const result = await mcpService.callMCPTool(serverName, toolName, args);
+      const formattedResult = formatMCPToolResult(result);
+      toolCallStatus.value[toolCall.id] = { status: 'success', result };
+      return formattedResult;
     } catch (err) {
       console.error(err);
       toolCallStatus.value[toolCall.id] = { status: 'failed', msg: String(err) };
-      return `调用MCP工具${functionName}失败，失败信息如下， ${String(err)}`;
+      return String(err);
     }
   }
 

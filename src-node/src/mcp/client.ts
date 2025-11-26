@@ -75,7 +75,7 @@ export class MCPClientManager extends EventEmitter {
 
       // 获取可用工具
       const tools = await this.getServerTools(name);
-      this.updateStatus(name, 'connected', undefined, (transport as StdioClientTransport).pid!, tools);
+      this.updateStatus(name, 'connected', undefined, (transport as StdioClientTransport).pid!);
 
       logger.info(`MCP server ${name} connected successfully`);
       this.emit('serverConnected', { name, tools });
@@ -129,7 +129,7 @@ export class MCPClientManager extends EventEmitter {
     }
   }
 
-  async getServerTools(serverName: string): Promise<string[]> {
+  async getServerTools(serverName: string) {
     const client = this.clients.get(serverName);
 
     if (!client) {
@@ -139,7 +139,7 @@ export class MCPClientManager extends EventEmitter {
     try {
       const result = await client.listTools();
 
-      return result.tools?.map((tool: any) => tool.name) || [];
+      return result.tools || [];
     } catch (error) {
       logger.error(`Error getting tools from server ${serverName}:`, error);
       return [];
@@ -158,7 +158,7 @@ export class MCPClientManager extends EventEmitter {
 
       return result.tools || [];
     } catch (error) {
-      logger.error(`Error getting tools from server ${serverName}:`, error);
+      logger.error(`Error getting tools details from server ${serverName}:`, error);
       return [];
     }
   }
@@ -168,7 +168,7 @@ export class MCPClientManager extends EventEmitter {
 
     for (const [serverName] of this.clients) {
       try {
-        result[serverName] = await this.getServerTools(serverName);
+        result[serverName] = (await this.getServerTools(serverName)).map(item => item.name);
       } catch (error) {
         logger.error(`Error getting tools from server ${serverName}:`, error);
         result[serverName] = [];
@@ -200,14 +200,12 @@ export class MCPClientManager extends EventEmitter {
     status: MCPServerStatus['status'],
     error?: string,
     pid?: number,
-    tools?: string[],
   ): void {
     const serverStatus: MCPServerStatus = {
       name,
       status,
       error,
       pid,
-      tools,
     };
 
     this.statuses.set(name, serverStatus);
