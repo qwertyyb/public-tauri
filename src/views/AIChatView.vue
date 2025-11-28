@@ -35,25 +35,15 @@
               :key="toolIndex"
               class="tool-call"
             >
-              <CollapsedContainer
+              <AIToolCall
                 class="tool-call-container"
-                :title="'工具调用: ' + (('function' in toolCall) ? toolCall.function.name : toolCall.custom.name)"
-              >
-                <p class="tool-call-arguments">
-                  参数: {{ ('function' in toolCall) ? toolCall.function.arguments : toolCall.custom.input }}
-                </p>
-
-                <p class="tool-call-status">
-                  状态: {{ toolCallStatus[toolCall.id]?.status ?? '未开始' }}
-                </p>
-
-                <p
-                  v-if="toolCallStatus[toolCall.id]?.status !== 'running'"
-                  class="tool-call-result"
-                >
-                  结果: {{ (toolCallStatus[toolCall.id] as any)?.result || (toolCallStatus[toolCall.id] as any)?.msg }}
-                </p>
-              </CollapsedContainer>
+                :tool="{
+                  name: ('function' in toolCall) ? toolCall.function.name : toolCall.custom.name,
+                  arguments: ('function' in toolCall) ? toolCall.function.arguments : toolCall.custom.input,
+                }"
+                :status="toolCallState[toolCall.id]?.status"
+                :result="toolCallState[toolCall.id]?.result"
+              />
             </div>
           </template>
         </div>
@@ -93,12 +83,11 @@ import { onPageEnter } from '@public/api/router';
 import { fetch } from '@public/api/core';
 import logger from '@/utils/logger';
 import MarkdownRenderer from '@/components/MarkdownRenderer.vue';
-import CollapsedContainer from '@/components/CollapsedContainer.vue';
 import { mcpService, convertMCPToolsToOpenAIFormat, parseMCPToolFunctionName, formatMCPToolResult } from '@/services/mcp';
+import AIToolCall from '@/components/ai/AIToolCall.vue';
+import type { ToolCallStatus } from '@/components/ai/const';
 
 const props = defineProps<{ query?: string }>();
-
-type ToolCallStatus = { status: 'success', result: any } | { status: 'running' } | { status: 'failed', msg: string }
 
 const messages = ref<OpenAI.ChatCompletionMessageParam[]>([{
   role: 'system',
@@ -130,7 +119,7 @@ const userInput = ref<string>(props.query || '');
 const textarea = useTemplateRef('textarea');
 const messagesContainer = ref<HTMLDivElement | null>(null);
 
-const toolCallStatus: Ref<Record<string, ToolCallStatus>> = ref({});
+const toolCallState: Ref<Record<string, { status: ToolCallStatus, result?: string }>> = ref({});
 
 const scrollToBottom = async (): Promise<void> => {
   await nextTick();
@@ -192,15 +181,15 @@ const runTools = async (toolCall: OpenAI.ChatCompletionMessageToolCall) => {
   if (functionName in AI_TOOLS) {
     const args = functionArgs ? JSON.parse(functionArgs) : undefined;
     try {
-      toolCallStatus.value[toolCall.id] = { status: 'running' };
+      toolCallState.value[toolCall.id] = { status: 'running' };
       const result = await AI_TOOLS[functionName as keyof typeof AI_TOOLS](args);
-      toolCallStatus.value[toolCall.id] = { status: 'success', result };
+      toolCallState.value[toolCall.id] = { status: 'success', result: typeof result === 'string' ? result : JSON.stringify(result) };
       if (!result) return '';
       if (typeof result === 'string') return result;
       return JSON.stringify(result);
     } catch (err) {
       console.error(err);
-      toolCallStatus.value[toolCall.id] = { status: 'failed', msg: String(err) };
+      toolCallState.value[toolCall.id] = { status: 'error', result: String(err) };
       return `调用${functionName}失败，失败信息如下， ${String(err)}`;
     }
   }
@@ -208,16 +197,16 @@ const runTools = async (toolCall: OpenAI.ChatCompletionMessageToolCall) => {
   if (functionName.startsWith('mcp_')) {
     // 处理 MCP 工具调用
     try {
-      toolCallStatus.value[toolCall.id] = { status: 'running' };
+      toolCallState.value[toolCall.id] = { status: 'running' };
       const args = functionArgs ? JSON.parse(functionArgs) : {};
       const { serverName, toolName } = parseMCPToolFunctionName(functionName);
       const result = await mcpService.callMCPTool(serverName, toolName, args);
       const formattedResult = formatMCPToolResult(result);
-      toolCallStatus.value[toolCall.id] = { status: 'success', result };
+      toolCallState.value[toolCall.id] = { status: 'success', result: typeof result === 'string' ? result : JSON.stringify(result) };
       return formattedResult;
     } catch (err) {
       console.error(err);
-      toolCallStatus.value[toolCall.id] = { status: 'failed', msg: String(err) };
+      toolCallState.value[toolCall.id] = { status: 'error', result: String(err) };
       return String(err);
     }
   }

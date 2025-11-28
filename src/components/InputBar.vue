@@ -1,45 +1,72 @@
 <template>
   <div
-    class="inputBar"
+    class="input-bar"
     tabindex="0"
     :class="{'is-main-input': isMainInput}"
     @pointerup="inputEl?.focus()"
   >
-    <input
-      v-if="!disabled"
-      id="main-input"
-      ref="input"
-      v-model="modelValue"
-      autofocus
-      spellcheck="false"
-      autocorrect="off"
-      autocomplete="false"
-      class="input"
-      @keydown="keyDownHandler"
-      @compositionstart="compositionStartHandler"
-      @compositionend="compositionEndHandler"
+    <ul
+      v-if="files.length"
+      class="file-list"
     >
-    <div
-      v-if="!disabled && !modelValue"
-      class="input-placeholder"
-    >
-      {{ placeholder }}
+      <li
+        v-for="(file, index) in files"
+        :key="index"
+        class="file-item"
+      >
+        <ElIcon size="12">
+          <Picture />
+        </ElIcon>
+        <span class="file-name">{{ file.name }}</span>
+        <ElIcon
+          size="12"
+          @click="removeFile(index)"
+        >
+          <CloseBold />
+        </ElIcon>
+      </li>
+    </ul>
+    <div class="text-input-wrapper">
+      <input
+        v-if="!disabled"
+        id="main-input"
+        ref="input"
+        v-model="modelValue"
+        autofocus
+        spellcheck="false"
+        autocorrect="off"
+        autocomplete="false"
+        class="input"
+        @keydown="keyDownHandler"
+        @compositionstart="compositionStartHandler"
+        @compositionend="compositionEndHandler"
+        @paste="pasteHandler"
+      >
+      <div
+        v-if="!disabled && !modelValue"
+        class="input-placeholder"
+      >
+        {{ placeholder }}
+      </div>
     </div>
-    <div class="searchSpace" />
+    <div class="input-suffix" />
   </div>
 </template>
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref, useTemplateRef, watch } from 'vue';
+import { onBeforeUnmount, onMounted, ref, shallowRef, useTemplateRef, watch } from 'vue';
 import { router } from '@public/api/core';
 import { createAutoResizeInput } from '@/utils';
 import logger from '@/utils/logger';
 import { EVENT_NAME } from '@/const';
+import { ElIcon } from 'element-plus';
+import { Picture, CloseBold } from '@element-plus/icons-vue';
 
 const modelValue = defineModel<string>({ default: '' });
 const props = defineProps<{
   command?: { icon: string } | null,
   disabled?: boolean,
   isMainInput?: boolean,
+  supportFiles?: boolean,
 }>();
 const emits = defineEmits<{ escape: [] }>();
 
@@ -62,7 +89,11 @@ const keyDownHandler = (event: KeyboardEvent) => {
     }
   } else if (event.key === 'Backspace' && !modelValue.value && !event.isComposing) {
     event.preventDefault();
-    emits('escape');
+    if (files.value.length > 0) {
+      files.value = [...files.value.slice(0, -1)];
+    } else {
+      emits('escape');
+    }
   }
 };
 
@@ -86,6 +117,22 @@ const compositionEndHandler = () => {
 const popToRootHandler = (e: any) => {
   if (e.detail?.clearInput && props.isMainInput) {
     modelValue.value = '';
+  }
+};
+
+const files = shallowRef<File[]>([]);
+
+const removeFile = (index: number) => {
+  files.value = [...files.value.slice(0, index), ...files.value.slice(index + 1)];
+};
+
+const pasteHandler = (e: ClipboardEvent) => {
+  const originFiles = Array.from(e.clipboardData?.files || []);
+  const images = originFiles.filter(file => file.type.startsWith('image/'));
+  // 获取文件中是否有图片
+  if (images.length && props.supportFiles) {
+    e.preventDefault();
+    files.value = [...files.value, ...images];
   }
 };
 
@@ -117,26 +164,34 @@ router.onPageLeave(() => {
 </script>
 
 <style lang="scss" scoped>
-.inputBar {
-  height: 48px;
-  min-height: 48px;
-  max-height: 48px;
+.input-bar {
+  --bar-height: 48px;
+  --padding-left: calc(var(--nav-width, 0px) + 16px);
+  height: var(--bar-height);
+  min-height: var(--bar-height);
+  max-height: var(--bar-height);
   position: relative;
   z-index: 100;
   border-bottom: 1px solid light-dark(rgba(0, 0, 0, 0.06), rgba(255, 255, 255, 0.06));
   display: flex;
   align-items: center;
-  --padding-left: calc(var(--nav-width, 0px) + 16px);
+  padding-left: 16px;
   &.is-main-input {
     --padding-left: 16px;
   }
+}
+.text-input-wrapper {
+  position: relative;
+  height: var(--bar-height);
+  display: flex;
+  flex: 1;
+  align-items: center;
 }
 .input {
   height: 42px;
   line-height: 42px;
   min-height: 42px;
   font-size: 18px;
-  padding: 0 32px 0 var(--padding-left);
   min-width: 4em;
   box-sizing: border-box;
   outline: none;
@@ -150,7 +205,7 @@ router.onPageLeave(() => {
 .input-placeholder {
   color: light-dark(rgba(0, 0, 0, 0.4), rgba(255, 255, 255, 0.4));
   position: absolute;
-  left: var(--padding-left);
+  left: 0;
   top: 0;
   height: 48px;
   line-height: 48px;
@@ -164,15 +219,24 @@ router.onPageLeave(() => {
 .input.composing + .input-placeholder {
   opacity: 0;
 }
-.searchSpace {
+.input-suffix {
   flex: 1;
   height: 100%;
 }
-.appLogo {
-  width: 36px;
-  height: auto;
+
+.file-list {
+  margin-right: 12px;
+}
+.file-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   cursor: pointer;
-  padding: 6px;
-  margin-left: auto;
+  border-radius: 4px;
+  padding: 6px 8px;
+  border: 1px solid light-dark(rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.1));
+  &:hover {
+    background: light-dark(rgba(0, 0, 0, 0.06), rgba(255, 255, 255, 0.06));
+  }
 }
 </style>

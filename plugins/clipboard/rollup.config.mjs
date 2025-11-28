@@ -23,9 +23,6 @@ const createRollupConfig = input => ({
     }),
   ],
   treeshake: 'smallest',
-  // external: [
-  //   /^\@tauri-apps\/api/,
-  // ]
 });
 
-export default defineConfig([createRollupConfig('./src/index.ts'), createRollupConfig('./src/command.preload.ts')]);
+export default defineConfig([createRollupConfig('./src/command.preload.ts')]);

@@ -2,11 +2,17 @@
   <el-collapse
     class="collapsed-container"
     :class="{ collapsed }"
+    :expand-icon-position="expandIconPosition"
   >
     <el-collapse-item
       :title="title"
       name="index"
     >
+      <template #title>
+        <slot name="title">
+          {{ title }}
+        </slot>
+      </template>
       <div
         class="collapsed-content"
       >
@@ -20,7 +26,7 @@
 import { ElCollapse, ElCollapseItem } from 'element-plus';
 import { ref } from 'vue';
 
-defineProps<{ title: string }>();
+defineProps<{ title?: string, expandIconPosition?: 'left' | 'right' }>();
 
 const collapsed = ref(true);
 </script>
