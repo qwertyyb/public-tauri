@@ -24,6 +24,52 @@ const preferencesSchema = z.object({
     path: ['options'],
   });
 
+const commandTextMatchSchema = z.object({
+  type: z.literal('text'),
+  keywords: z.array(z.string(), '关键词列表，用于模糊搜索匹配。用户输入时会与这些关键词进行模糊匹配'),
+});
+
+const commandTriggerMatchSchema = z.object({
+  type: z.literal('trigger'),
+  triggers: z.array(z.string(), '触发器列表，当用户输入以某个触发器开头并加空格时触发匹配'),
+  title: z.string('匹配成功后显示的标题，支持 $query 变量，$query 会被替换为触发器后面的查询内容').optional(),
+  subtitle: z.string('匹配成功后显示的副标题，支持 $query 变量，$query 会被替换为触发器后面的查询内容').optional(),
+});
+
+const commandFullMatchSchema = z.object({
+  type: z.literal('full'),
+  title: z.string('匹配成功后显示的标题，支持 $query 变量，$query 会被替换为用户的完整输入内容').optional(),
+  subtitle: z.string('匹配成功后显示的副标题，支持 $query 变量，$query 会被替换为用户的完整输入内容').optional(),
+});
+
+const commandRegexpMatchSchema = z.object({
+  type: z.literal('regexp'),
+  regexp: z.string('正则表达式，用于匹配用户输入。支持 JavaScript 正则表达式语法'),
+  title: z.string('匹配成功后显示的标题，支持模板字符串语法，可以使用正则匹配结果中的捕获组变量，如 ${0}, ${1} 等').optional(),
+  subtitle: z.string('匹配成功后显示的副标题，支持模板字符串语法，可以使用正则匹配结果中的捕获组变量，如 ${0}, ${1} 等').optional(),
+});
+
+// 文件匹配 schema
+const commandFileMatchSchema = z.object({
+  type: z.literal('file'),
+  extensions: z.array(z.string(), '允许的文件扩展名列表，如 [".jpg", ".png"]').optional(),
+  mimeTypes: z.array(z.string(), '允许的 MIME 类型列表，如 ["image/jpeg", "image/png"]').optional(),
+  minSize: z.number('文件最小大小限制，单位字节').optional(),
+  maxSize: z.number('文件最大大小限制，单位字节').optional(),
+  nameRegexp: z.string('文件名匹配的正则表达式').optional(),
+  isDirectory: z.boolean('是否只匹配目录').optional(),
+  title: z.string('匹配成功后显示的标题').optional(),
+  subtitle: z.string('匹配成功后显示的副标题').optional(),
+});
+
+const commandMatchSchema = z.union([
+  commandTextMatchSchema,
+  commandTriggerMatchSchema,
+  commandFullMatchSchema,
+  commandRegexpMatchSchema,
+  commandFileMatchSchema,
+]);
+
 const commandSchema = z.object({
   name: z.string('插件内命令的唯一名称'),
   title: z.string('命令标题，用于在应用商店中显示和在偏好设置中显示').max(60),
@@ -32,6 +78,7 @@ const commandSchema = z.object({
   description: z.string('命令描述，用于在应用商店中显示和在偏好设置中显示').optional(),
   icon: z.string('命令的图标，如果不填写，则默认使用外层的 icon 字段').optional(),
   mode: z.enum(['listView', 'none', 'view'], '命令类型, template 为 listView 时，只能为 listView 或 none').default('none'),
+  matches: z.array(commandMatchSchema, '命令匹配规则列表，用于定义该命令如何被用户输入触发。支持多种匹配类型：text（关键词）、trigger（触发器）、full（完全匹配）、regexp（正则表达式）、file（文件匹配）').optional(),
 });
 
 const schema = z.object({
@@ -101,8 +148,20 @@ const schema = z.object({
     }
   });
 
-export type IPluginManifest = z.infer<typeof schema>;
-
 export const parse = (json: any) => schema.parse(json);
 
 export const toJSONSchema = () => z.toJSONSchema(schema);
+
+export type IPluginManifest = z.infer<typeof schema>;
+
+export type ICommandTextMatch = z.infer<typeof commandTextMatchSchema>;
+
+export type ICommandTriggerMatch = z.infer<typeof commandTriggerMatchSchema>;
+
+export type ICommandRegexpMatch = z.infer<typeof commandRegexpMatchSchema>;
+
+export type ICommandFileMatch = z.infer<typeof commandFileMatchSchema>;
+
+export type ICommandMatch = z.infer<typeof commandMatchSchema>;
+
+export type ICommand = z.infer<typeof commandSchema>;
