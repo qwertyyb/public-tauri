@@ -12,8 +12,11 @@
   "license": "ISC",
   "packageManager": "pnpm@10.8.0",
   "devDependencies": {
-    "sharp": "^0.34.3",
     "tsx": "^4.20.3",
     "typescript": "~5.8.3"
+  },
+  "dependencies": {
+    "image-decode": "^1.2.2",
+    "sharp": "^0.34.3"
   }
 }

@@ -6,11 +6,11 @@
     @pointerup="inputEl?.focus()"
   >
     <ul
-      v-if="files.length"
+      v-if="modelValue.files.length"
       class="file-list"
     >
       <li
-        v-for="(file, index) in files"
+        v-for="(file, index) in modelValue.files"
         :key="index"
         class="file-item"
       >
@@ -31,7 +31,7 @@
         v-if="!disabled"
         id="main-input"
         ref="input"
-        v-model="modelValue"
+        v-model="keyword"
         autofocus
         spellcheck="false"
         autocorrect="off"
@@ -53,7 +53,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref, shallowRef, useTemplateRef, watch } from 'vue';
+import { onBeforeUnmount, onMounted, ref, useTemplateRef, watch } from 'vue';
 import { router } from '@public/api/core';
 import { createAutoResizeInput } from '@/utils';
 import logger from '@/utils/logger';
@@ -61,7 +61,7 @@ import { EVENT_NAME } from '@/const';
 import { ElIcon } from 'element-plus';
 import { Picture, CloseBold } from '@element-plus/icons-vue';
 
-const modelValue = defineModel<string>({ default: '' });
+const modelValue = defineModel<{ keyword: string, files: File[] }>({ default: () => ({ keyword: '', files: [] }) });
 const props = defineProps<{
   command?: { icon: string } | null,
   disabled?: boolean,
@@ -72,6 +72,22 @@ const emits = defineEmits<{ escape: [] }>();
 
 const inputEl = useTemplateRef('input');
 const placeholder = ref('search...');
+const keyword = ref('');
+
+watch(keyword, (value) => {
+  if (value !== modelValue.value.keyword) {
+    modelValue.value = {
+      ...modelValue.value,
+      keyword: value,
+    };
+  }
+});
+
+watch(() => modelValue.value.keyword, (value) => {
+  if (value !== keyword.value) {
+    keyword.value = value;
+  }
+});
 
 watch(inputEl, (el) => {
   if (!el) return;
@@ -80,17 +96,20 @@ watch(inputEl, (el) => {
 
 const keyDownHandler = (event: KeyboardEvent) => {
   if (event.key === 'Escape') {
-    if (modelValue.value) {
+    if (modelValue.value.keyword) {
       event.preventDefault();
-      modelValue.value = '';
+      modelValue.value = { keyword: '', files: [] };
     } else {
       event.preventDefault();
       emits('escape');
     }
-  } else if (event.key === 'Backspace' && !modelValue.value && !event.isComposing) {
+  } else if (event.key === 'Backspace' && !modelValue.value.keyword && !event.isComposing) {
     event.preventDefault();
-    if (files.value.length > 0) {
-      files.value = [...files.value.slice(0, -1)];
+    if (modelValue.value.files.length > 0) {
+      modelValue.value = {
+        ...modelValue.value,
+        files: [...modelValue.value.files.slice(0, -1)],
+      };
     } else {
       emits('escape');
     }
@@ -116,23 +135,27 @@ const compositionEndHandler = () => {
 
 const popToRootHandler = (e: any) => {
   if (e.detail?.clearInput && props.isMainInput) {
-    modelValue.value = '';
+    modelValue.value = { keyword: '', files: [] };
   }
 };
 
-const files = shallowRef<File[]>([]);
-
 const removeFile = (index: number) => {
-  files.value = [...files.value.slice(0, index), ...files.value.slice(index + 1)];
+  modelValue.value = {
+    ...modelValue.value,
+    files: [...modelValue.value.files.slice(0, index), ...modelValue.value.files.slice(index + 1)],
+  };
 };
 
 const pasteHandler = (e: ClipboardEvent) => {
   const originFiles = Array.from(e.clipboardData?.files || []);
   const images = originFiles.filter(file => file.type.startsWith('image/'));
   // 获取文件中是否有图片
-  if (images.length && props.supportFiles) {
+  if (images.length) {
     e.preventDefault();
-    files.value = [...files.value, ...images];
+    modelValue.value = {
+      ...modelValue.value,
+      files: [...modelValue.value.files, ...images],
+    };
   }
 };
 
@@ -212,6 +235,8 @@ router.onPageLeave(() => {
   font-size: 16px;
   pointer-events: none;
   opacity: 0;
+  user-select: none;
+  -webkit-user-select: none;
 }
 .input:empty + .input-placeholder {
   opacity: 1;
@@ -220,8 +245,7 @@ router.onPageLeave(() => {
   opacity: 0;
 }
 .input-suffix {
-  flex: 1;
-  height: 100%;
+  width: fit-content;
 }
 
 .file-list {

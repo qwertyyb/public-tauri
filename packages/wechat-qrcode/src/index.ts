@@ -1,7 +1,10 @@
+// @ts-ignore
+import decodeImage from 'image-decode';
 import { createOpencvModule } from './module';
 import { initWechatFile } from './files';
+
+// @ts-ignore
 import createOpencv from './opencv';
-import sharp from 'sharp';
 
 const loadOpencv = async () => {
   const opencvModule = createOpencvModule();
@@ -37,14 +40,32 @@ export const detect = async (image: { width: number, height: number, data: Uint8
   return arr;
 };
 
+/**
+ * Base64 图片转换为 { width, height, data: Buffer }
+ * @param base64Str Base64 图片字符串（支持带 dataURL 前缀）
+ * @returns { width: number, height: number, data: Buffer }
+ */
+function base64ToImageData(base64Str: string): {
+  width: number;
+  height: number;
+  data: Buffer;
+} {
+  // 步骤 1：移除 Base64 前缀（如 data:image/png;base64,）
+  const base64Data = base64Str.replace(/^data:image\/\w+;base64,/, '');
+
+  // 步骤 2：Base64 转 Buffer（原生 API，无依赖）
+  const buffer = Buffer.from(base64Data, 'base64');
+
+  // 步骤 3：解析图片
+  return decodeImage(buffer);
+}
+
 export const detectBase64 = async (imgbase64: string) => {
-  const buffer = Buffer.from(imgbase64, 'base64');
-  const image = sharp(buffer);
-  const metadata = await image.metadata();
+  const { width, height, data } = base64ToImageData(imgbase64);
   return detect({
-    width: metadata.width,
-    height: metadata.height,
-    data: await image.raw().toBuffer(),
+    width,
+    height,
+    data,
   });
 };
 

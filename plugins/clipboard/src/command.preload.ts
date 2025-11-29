@@ -120,10 +120,11 @@ const search = async (keyword?: string) => {
 };
 
 const listView: IListViewCommand = {
-  async enter(query, setList) {
+  async onShow(query, _, setList) {
+    console.log('onShow', query);
     setList(await search());
   },
-  search: async (value: string, setList: (list: any[]) => void) => {
+  onSearch: async (value: string, setList: (list: any[]) => void) => {
     let list = await queryRecordList({ keyword: value });
     list = list.map((item: any) => {
       const subtitle = `最后使用: ${item.lastUseAt}     创建于: ${item.createdAt}`;
@@ -138,7 +139,7 @@ const listView: IListViewCommand = {
     });
     setList(list);
   },
-  async select(item) {
+  async onSelect(item) {
     let el: HTMLElement;
     if (item.contentType === ContentType.image && item.contentValue) {
       const div = document.createElement('div');
@@ -155,7 +156,7 @@ const listView: IListViewCommand = {
     }
     return el;
   },
-  async action(item) {
+  async onAction(item) {
     if (item.contentType === ContentType.text) {
       clipboard.writeText(item.contentValue);
     } else if (item.contentType === ContentType.image) {

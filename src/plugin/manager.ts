@@ -1,5 +1,5 @@
 import path, { join } from 'path-browserify';
-import { clipboard, createPluginStorage, dialog, fetch, globalShortcut, mainWindow, registerServerModule, storage, utils, invokePluginServerMethod, createPluginServerListener, Database } from '@public/api/core';
+import { clipboard, createPluginStorage, dialog, fetch, globalShortcut, mainWindow, registerServerModule, storage, utils, invokePluginServerMethod, createPluginServerListener, Database, screen } from '@public/api/core';
 
 import { readTextFile } from '@tauri-apps/plugin-fs';
 import { formatCommand, getLocalPath, openCommandPreferences, openPluginPreferences, popView, pushView, withCache } from './utils';
@@ -7,8 +7,9 @@ import { set } from 'es-toolkit/compat';
 import { resultsMap } from './store';
 import { resolveResource } from '@tauri-apps/api/path';
 import { preloadApp, setupApp, startApp } from 'wujie';
-import { parse as parseManifest, type IPluginManifest } from './schema';
+import { parsePluginConfig, type IPluginManifest, type ICommand as IPluginCommand, type IPluginLifecycle, type IPreference, type ICommandActionOptions } from '@public/types';
 import logger from '@/utils/logger';
+import type { IRunningPlugin, IPluginsSettings, IPluginSettings, ICommandSettings } from '@/types/plugin';
 
 const plugins: Map<string, IRunningPlugin> = new Map();
 let pluginsSettings: IPluginsSettings = {};
@@ -28,6 +29,12 @@ export const createWujie = (name: string, entryUrl: string, options?: {
     exec: true,
     alive: true,
     fetch(input, init) {
+      const url = input instanceof Request ? input.url : input;
+      const { host } = new URL(url);
+      if (host.endsWith('.localhost:2345') || host === '127.0.0.1:2345' || host === 'localhost:2345') {
+        return window.fetch(input, init);
+      }
+
       return fetch(input, init);
     },
     props: {
@@ -59,14 +66,14 @@ export const createWujie = (name: string, entryUrl: string, options?: {
   };
 };
 
+const getEntryUrl = (name: string, pathname: string) => `http://${name}.plugin.localhost:2345${pathname}`;
+
 const getTemplatePath = withCache(async () => {
   const templatePath = await resolveResource('../packages/template/dist');
-  console.log('templatePath', templatePath);
   return templatePath;
 });
 
 export const registerPlugin = async (pluginPath: string) => {
-  console.log('addPlugin', pluginPath);
   if (checkPluginsRegistered(pluginPath)) {
     console.warn(`插件已注册,请勿重复注册: ${pluginPath}`);
     return;
@@ -75,7 +82,7 @@ export const registerPlugin = async (pluginPath: string) => {
     console.log('pkgPath', getLocalPath('./package.json', pluginPath)!);
     const pkg = JSON.parse(await readTextFile(getLocalPath('./package.json', pluginPath)!));
     const { publicPlugin } = pkg;
-    const manifest: IPluginManifest = parseManifest({ ...publicPlugin, name: pkg.name });
+    const manifest: IPluginManifest = parsePluginConfig({ ...publicPlugin, name: pkg.name });
     manifest.icon = getLocalPath(manifest.icon, pluginPath)!;
     const { name, template, html } = manifest;
     const commands: IPluginCommand[] = (publicPlugin.commands || []).map((item: any) => formatCommand(item, manifest, pluginPath));
@@ -103,16 +110,15 @@ export const registerPlugin = async (pluginPath: string) => {
     }
     if (manifest.main && !pluginsSettings?.[name]?.disabled) {
       const entryPath = getLocalPath(manifest.main, pluginPath)!;
-      console.log('plugin', name);
       const mod = await import(/* @vite-ignore */entryPath);
-      const createPlugin = mod.default || mod as IPluginCreator;
+      const createPlugin = mod.default || mod;
       if (typeof createPlugin === 'function') {
         const pluginReturn = createPlugin({
-          updateCommands: (commands: IPluginCommandConfig[]) => {
+          updateCommands: (commands: IPluginCommand[]) => {
             pluginInstance.commands = commands.map(item => formatCommand(item, manifest, pluginPath));
           },
-          showCommands: (commands: IPluginCommandConfig[]) => {
-            const list: IPluginCommandConfig[] = [];
+          showCommands: (commands: IPluginCommand[]) => {
+            const list: IPluginCommand[] = [];
             commands.forEach((command) => {
               const item = formatCommand(command, manifest, pluginPath);
               list.push(item);
@@ -121,21 +127,20 @@ export const registerPlugin = async (pluginPath: string) => {
             window.dispatchEvent(new CustomEvent('plugin:showCommands', { detail: { name: manifest.name, commands: list } }));
           },
           getPreferences: () => pluginsSettings[name]?.preferences || {},
-        }) as IPluginReturn;
+        }) as IPluginLifecycle;
         pluginInstance.plugin = await pluginReturn;
       }
     }
     if (html) {
-      const u = new URL(`http://${name}.plugin.localhost:2345`);
-      u.pathname = html || '/index.html';
-      const { lifecycle } = createWujie(name, u.href);
+      const entryUrl = getEntryUrl(name, path.join('/', html || '/index.html'));
+      const { lifecycle } = createWujie(name, entryUrl);
       pluginInstance.lifecycle = lifecycle;
+      pluginInstance.entryUrl = entryUrl;
     } else if (template === 'listView') {
-      const host = `${name}.plugin.localhost:2345`;
-      const entryUrl = `http://${host}/index.html`;
+      const entryUrl = getEntryUrl(name, '/index.html');
       const commands = (publicPlugin.commands || []).map((item: any) => {
         if (!item.preload) return null;
-        const url = `http://${path.join(host, item.preload)}`;
+        const url = getEntryUrl(name, path.join('/', item.preload));
         return {
           url,
           name: item.name,
@@ -146,6 +151,7 @@ export const registerPlugin = async (pluginPath: string) => {
         insertScript: { content: scriptContent, module: true },
       });
       pluginInstance.lifecycle = lifecycle;
+      pluginInstance.entryUrl = entryUrl;
     }
     plugins.set(pkg.name, pluginInstance);
     return pluginInstance;
@@ -331,7 +337,7 @@ const checkPreferences = async (owner: IRunningPlugin, command: IPluginCommand) 
   return count;
 };
 
-export const enterCommand = async (owner: IRunningPlugin, command: IPluginCommand, query?: string) => {
+export const enterCommand = async (owner: IRunningPlugin, command: IPluginCommand, query = '', options: ICommandActionOptions) => {
   // 判断一下组件所需的首选项是否都已填写，如果都已填写，则直接执行，否则跳转去配置
   // 首先需要判断插件层级的必须首选项是否已填写，再检查 command 层级的首选项
   const count = await checkPreferences(owner, command);
@@ -339,12 +345,12 @@ export const enterCommand = async (owner: IRunningPlugin, command: IPluginComman
     popView({ count });
   }
   if (command.mode === 'none' || !command.mode) {
-    owner.plugin?.onEnter?.(command, query);
+    owner.plugin?.onEnter?.(command, query, options);
   } else if (command.mode === 'listView' || command.mode === 'view') {
     const wujie = {
       mount(el: HTMLElement) {
-        owner.lifecycle?.onEnter?.(command);
-        startApp({ name: owner.manifest.name, el, url: owner.manifest.entry! });
+        owner.lifecycle?.onEnter?.(command, query, options);
+        startApp({ name: owner.manifest.name, el, url: owner.entryUrl! });
       },
       unmount() {
         owner.lifecycle?.onExit?.(command);
@@ -354,12 +360,12 @@ export const enterCommand = async (owner: IRunningPlugin, command: IPluginComman
   }
 };
 
-export const enterCommandByName = (pluginName: string, commandName: string, query?: string) => {
+export const enterCommandByName = (pluginName: string, commandName: string, query = '', options: ICommandActionOptions) => {
   const plugin = plugins.get(pluginName);
   if (!plugin) return;
   const command = plugin.commands.find(item => item.name === commandName);
   if (!command) return;
-  return enterCommand(plugin, command, query);
+  return enterCommand(plugin, command, query, options);
 };
 
 export const getPreferenceValues = (pluginName: string) => pluginsSettings[pluginName]?.preferences || {};
@@ -383,13 +389,18 @@ export const updateCommandShortcut = async (pluginName: string, commandName: str
     throw new Error(`shortcut ${shortcut} already registered`);
   }
   await globalShortcut.register(shortcut, () => {
-    enterCommandByName(pluginName, commandName);
+    enterCommandByName(pluginName, commandName, '', { from: 'hotkey' });
     mainWindow.show();
   });
   save();
 };
 
-const getBuiltinPluginsBasePath = async () => resolveResource('../plugins');
+const getBuiltinPluginsBasePath = async () => {
+  if (import.meta.env.DEV) {
+    return BUILTIN_PLUGINS_PATH;
+  }
+  return resolveResource('../plugins');
+};
 
 const initInnerPlugins = async () => {
   const names = ['clipboard', 'translate', 'launcher', 'calculator', 'transform', 'ai', 'settings', 'snippets', 'qrcode', 'v2ex', 'magic', 'mdn', 'applescript', 'snippets', 'emoji'];
@@ -418,10 +429,9 @@ const initCommandsShortcut = () => {
       const shortcut = commandSettings?.shortcut;
       if (!shortcut) return;
       const handler = () => {
-        enterCommandByName(pluginName, command.name);
+        enterCommandByName(pluginName, command.name, '', { from: 'hotkey' });
         mainWindow.show();
       };
-      console.log('initCommandsShortcut', shortcut);
       globalShortcut.register(shortcut, handler);
     });
   });

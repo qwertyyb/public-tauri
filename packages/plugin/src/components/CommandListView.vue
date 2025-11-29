@@ -1,7 +1,7 @@
 <template>
   <div class="command-list-view">
     <InputBar
-      v-if="command.search"
+      v-if="command.onSearch"
       v-model="keyword"
       @escape="exitCommand"
     />
@@ -29,24 +29,25 @@ import InputBar from './InputBar.vue';
 import EmptyView from './PublicListEmptyView.vue';
 import { onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import LoadingBar from './LoadingBar.vue';
-import type { IPluginCommandListView, IListItem, IActionItem } from '@public/types';
+import type { IListViewCommand, IResultItem, IActionItem, ICommandActionOptions } from '@public/types';
 import { mainWindow } from '../api';
 
 const props = defineProps<{
-  command: IPluginCommandListView,
-  defaultQuery?: string
+  command: IListViewCommand,
+  defaultQuery?: string,
+  options: ICommandActionOptions
 }>();
 
 const keyword = ref(props.defaultQuery ?? '');
-const results = ref<IListItem[]>([]);
+const results = ref<IResultItem[]>([]);
 const preview = ref<string | HTMLElement | undefined>('');
 
 const loadingCount = ref(0);
 
-if (typeof props.command?.enter === 'function') {
+if (typeof props.command?.onShow === 'function') {
   loadingCount.value += 1;
   const origin = keyword.value ?? '';
-  props.command?.enter?.(keyword.value ?? '', (list) => {
+  props.command?.onShow?.(keyword.value ?? '', { ...props.options }, (list) => {
     loadingCount.value -= 1;
     if (origin !== (keyword.value ?? '')) return;
     results.value = list.map(item => ({
@@ -57,10 +58,10 @@ if (typeof props.command?.enter === 'function') {
 }
 
 watch(keyword, debounce((value: string) => {
-  if (!props.command?.search) return;
+  if (!props.command?.onSearch) return;
   loadingCount.value += 1;
   try {
-    props.command?.search?.(value, (list) => {
+    props.command?.onSearch?.(value, (list) => {
       loadingCount.value -= 1;
       if (value !== keyword.value) return;
       results.value = list.map(item => ({
@@ -73,20 +74,20 @@ watch(keyword, debounce((value: string) => {
   }
 }, 500), { immediate: true });
 
-const onResultEnter = (item: IListItem) => {
-  props.command?.action?.(item);
+const onResultEnter = (item: IResultItem) => {
+  props.command?.onAction?.(item);
 };
 
-const onResultSelected = async (item: IListItem | null) => {
+const onResultSelected = async (item: IResultItem | null) => {
   if (!item) {
     preview.value = '';
     return;
   }
-  preview.value = await props.command?.select?.(item, keyword.value || '');
+  preview.value = await props.command?.onSelect?.(item, keyword.value || '');
 };
 
-const onResultAction = (item: IListItem, _itemIndex: number, action: IActionItem) => {
-  props.command.action?.(item, action);
+const onResultAction = (item: IResultItem, _itemIndex: number, action: IActionItem) => {
+  props.command.onAction?.(item, action);
 };
 
 const exitCommand = () => {
@@ -94,7 +95,7 @@ const exitCommand = () => {
 };
 
 const keyDownHandler = (event: KeyboardEvent) => {
-  if (event.key === 'Escape' && !props.command?.search) {
+  if (event.key === 'Escape' && !props.command?.onSearch) {
     // 没有搜索功能，则退出的实现交由此处
     event.preventDefault();
     exitCommand();
@@ -102,13 +103,13 @@ const keyDownHandler = (event: KeyboardEvent) => {
 };
 
 onMounted(() => {
-  if (!props.command?.search) {
+  if (!props.command?.onSearch) {
     window.addEventListener('keyup', keyDownHandler);
   }
 });
 
 onBeforeUnmount(() => {
-  props.command.leave?.();
+  props.command.onHide?.();
   window.removeEventListener('keyup', keyDownHandler);
 });
 </script>

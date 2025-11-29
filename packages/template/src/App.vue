@@ -1,19 +1,23 @@
 <script setup lang="ts">
 import CommandListView from '@public/plugin/CommandListView.vue';
-import { createPlugin, type IPluginCommandListView } from '@public/plugin';
+import { createPlugin, type IListViewCommand, type ICommandActionOptions } from '@public/plugin';
 import { shallowRef } from 'vue';
 
-const commands = shallowRef<{ [x: string]: IPluginCommandListView }>();
+const commands = shallowRef<{ [x: string]: IListViewCommand }>();
 const commandName = shallowRef('');
 const query = shallowRef('');
+const actionOptions = shallowRef<ICommandActionOptions>();
 
 createPlugin({
-  onEnter(command, keyword?: string) {
+  onEnter(command, keyword: string = '', options: ICommandActionOptions) {
     commandName.value = command.name;
     query.value = keyword ?? '';
+    actionOptions.value = options;
   },
   onExit() {
     commandName.value = '';
+    query.value = '';
+    actionOptions.value = undefined;
   },
 });
 
@@ -33,8 +37,10 @@ loadCommands();
 <template>
   <CommandListView
     v-if="commands?.[commandName]"
+    :key="commandName"
     :command="commands[commandName]!"
     :default-query="query"
+    :options="actionOptions!"
   />
 </template>
 

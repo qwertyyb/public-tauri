@@ -17,6 +17,7 @@
     "icon": "./assets/qrcode.png",
     "main": "./dist/index.js",
     "server": "./dist/server.js",
+    "template": "listView",
     "commands": [
       {
         "name": "generate",
@@ -67,6 +68,14 @@
               "detect qrcode",
               "解析二维码"
             ]
+          },
+          {
+            "type": "file",
+            "extensions": [
+              "png",
+              "jpg",
+              "jpeg"
+            ]
           }
         ]
       }
@@ -74,6 +83,7 @@
   },
   "dependencies": {
     "@public/api": "workspace:^",
+    "@public/plugin": "workspace:^",
     "qrcode": "^1.4.4",
     "sharp": "^0.34.3",
     "wechat-qrcode": "workspace:^"

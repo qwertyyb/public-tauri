@@ -1,4 +1,5 @@
-import { clipboard, dialog, ICommand, IListViewCommand, mainWindow, screen, utils } from '@public/api';
+import { type ICommand, type IListViewCommand, AsyncFile } from '@public/api';
+import { clipboard, dialog, mainWindow, screen, utils } from '@public/plugin';
 import { createPluginChannel } from '@public/api/core';
 
 const { invoke } = createPluginChannel('qrcode');
@@ -19,7 +20,10 @@ const createClipboardItem = (text: string) => {
 
 
 const detectClipboard = async (): Promise<string[]> => {
-  const imgbase64 = await clipboard.readImageBase64().catch(() => null);
+  const imgbase64 = await clipboard.readImageBase64().catch((err) => {
+    console.error('readImageBase64 error', err);
+    return null;
+  });
   if (!imgbase64) return [];
 
   const texts = (await invoke<string[]>('detect', imgbase64)) || [];
@@ -40,8 +44,23 @@ const detectScreen = async (): Promise<string[]> => {
   }
 };
 
-const detect = async () => {
-  const texts = (await Promise.all([detectClipboard(), detectScreen()])).flat();
+const detectFile = (file: AsyncFile) => {
+  console.log('file', file);
+  return [];
+};
+
+const detect = async (input: ('clipboard' | 'screen' | AsyncFile)[]) => {
+  const requests = [];
+  if (input.includes('clipboard')) {
+    requests.push(detectClipboard());
+  }
+  if (input.includes('screen')) {
+    requests.push(detectScreen());
+  }
+  if (input.some(item => item instanceof AsyncFile)) {
+    requests.push(detectFile(input.find(item => item instanceof AsyncFile) as AsyncFile));
+  }
+  const texts = (await Promise.all(requests)).flat();
   console.log('detect', texts);
   if (!texts?.length) {
     mainWindow.show();
@@ -55,15 +74,16 @@ const detect = async () => {
 
 const detectCommand: IListViewCommand = {
 
-  async enter(_query, setList) {
-    const list = await detect() || [];
+  async onShow(_query, options, setList) {
+    const file = options.from === 'search' && 'match' in options && options.match?.type === 'file' && options.result && ('file' in options.result) ? options.result.file : null;
+    const list = await detect(file ? [file] : ['clipboard', 'screen']) || [];
     if (list.length) {
       setList(list);
     } else {
       mainWindow.popToRoot();
     }
   },
-  action(item: any) {
+  onAction(item: any) {
     console.log('detect qrcode enter', item);
     clipboard.writeText(item.text);
     dialog.showToast('已复制到粘贴板');

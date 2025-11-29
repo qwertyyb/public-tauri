@@ -2,6 +2,8 @@ import fuzzysort from 'fuzzysort';
 import { enterCommand, getPlugins } from './manager';
 import { resultsMap } from './store';
 import { getLocalPath, hanziToPinyin, htmlEscape } from './utils';
+import { AsyncFile, type IActionItem, type ICommandFileMatch, type ICommand as IPluginCommand } from '@public/types';
+import type { IRunningPlugin } from '@/types/plugin';
 
 const compileString = (template: string, vars: any) => {
   // eslint-disable-next-line no-new-func
@@ -24,7 +26,9 @@ const pinyinHighlight = (words: string, pinyin: string, indexes: readonly number
     .join('');
 };
 
-export const handleQuery = async (keyword: string) => {
+export const handleQuery = async (input: { keyword: string, files?: File[] }) => {
+  const { keyword } = input;
+  const files = input.files?.map(file => AsyncFile.fromFile(file));
   const results: IPluginCommand[] = [];
 
   let plugins = getPlugins();
@@ -35,7 +39,7 @@ export const handleQuery = async (keyword: string) => {
       if (!Array.isArray(list)) return;
       list.forEach((item) => {
         if (!item.title && !item.subtitle && !item.icon) return;
-        const { icon, score, ...rest } = item;
+        const { icon, ...rest } = item;
         const result = {
           ...rest,
           icon: getLocalPath(item.icon, plugin.path),
@@ -51,7 +55,8 @@ export const handleQuery = async (keyword: string) => {
 
   // 执行 onInput 后，可能会更新 commands，所以需要重新获取一下
   plugins = getPlugins();
-  const commands: { command: IPluginCommand, owner: IRunningPlugin, title: string, subtitle: string, titleZh: string, subtitleZh: string }[] = [];
+
+  let commands: { command: IPluginCommand, owner: IRunningPlugin, title: string, subtitle: string, titleZh: string, subtitleZh: string }[] = [];
   plugins.forEach((plugin) => {
     commands.push(...plugin.commands.map((command) => {
       const title = htmlEscape(command.title);
@@ -62,12 +67,33 @@ export const handleQuery = async (keyword: string) => {
       return { command, owner: plugin, title, titleZh, subtitle, subtitleZh, keywords };
     }));
   });
+
+  // 如果文件存在，先过滤一遍
+  if (files?.length) {
+    const { name } = files[0];
+    const extension = name.split('.').pop();
+    commands = commands.filter((item) => {
+      const match = item.command.matches?.find((match) => {
+        if (match.type === 'file') {
+          if (extension && match.extensions?.length && match.extensions.includes(extension)) return true;
+          if (match.nameRegexp && new RegExp(match.nameRegexp).test(name)) return true;
+          return false;
+        }
+        return false;
+      }) as ICommandFileMatch | undefined | null;
+      if (!match) return false;
+      resultsMap.set(item.command, { owner: item.owner, match, result: { file: files![0] } });
+      results.push(item.command);
+      commandsSet.add(`${item.owner.manifest.name}:${item.command.name}`);
+      return true;
+    });
+  }
+
   const keywordsKey = new Array(20).fill(0)
     .map((_, index) => `keywords.${index}`);
   const queryResults = fuzzysort.go(keyword, commands, {
     keys: ['command.title', 'command.subtitle', 'titleZh', 'subtitleZh', ...keywordsKey],
   });
-  console.log('fuzzyResults', queryResults);
   results.push(...queryResults.map((result) => {
     const command = { ...result.obj.command };
     if (result[0].target) {
@@ -90,7 +116,6 @@ export const handleQuery = async (keyword: string) => {
   }));
   fuzzysort.cleanup();
 
-  console.log('commandsSet', commandsSet);
   // triggers
   results.push(...commands.reduce<IPluginCommand[]>((acc, item) => {
     if (commandsSet.has(`${item.owner.manifest.name}:${item.command.name}`)) return acc;
@@ -100,13 +125,12 @@ export const handleQuery = async (keyword: string) => {
     if (triggerIndex < 0) return acc;
     const trigger = triggerMatch.triggers[triggerIndex];
     const query = keyword.substring(trigger.length + 1);
-    console.log(trigger, query);
     const result = {
       ...item.command,
       title: (query && triggerMatch.title) ? triggerMatch.title.replaceAll('$query', query) : item.command.title,
       subtitle: (query && triggerMatch.subtitle) ? triggerMatch.subtitle.replaceAll('$query', query) : item.command.subtitle,
     };
-    resultsMap.set(result, { owner: item.owner, query });
+    resultsMap.set(result, { owner: item.owner, query, match: triggerMatch, result: { trigger, query } });
     commandsSet.add(`${item.owner.manifest.name}:${item.command.name}`);
     return [...acc, result];
   }, []));
@@ -120,12 +144,13 @@ export const handleQuery = async (keyword: string) => {
     const regMatch = regMatches.find(match => new RegExp(match.regexp).test(keyword));
     if (!regMatch) return acc;
     const matches = keyword.match(new RegExp(regMatch.regexp));
+    if (!matches) return acc;
     const result = {
       ...item.command,
       title: compileString(regMatch.title || item.command.title, matches),
       subtitle: compileString(regMatch.subtitle || item.command.subtitle || '', matches),
     };
-    resultsMap.set(result, { owner: item.owner });
+    resultsMap.set(result, { owner: item.owner, match: regMatch, result: { matches } });
     commandsSet.add(`${item.owner.manifest.name}:${item.command.name}`);
     return [...acc, result];
   }, []));
@@ -141,7 +166,7 @@ export const handleQuery = async (keyword: string) => {
       title: (keyword && fullMatch.title) ? fullMatch.title.replaceAll('$query', keyword) : command.title,
       subtitle: (keyword && fullMatch.subtitle) ? fullMatch.subtitle.replaceAll('$query', keyword) : command.subtitle,
     };
-    resultsMap.set(result, { owner });
+    resultsMap.set(result, { owner, match: fullMatch, result: { query: keyword } });
     commandsSet.add(`${item.owner.manifest.name}:${item.command.name}`);
     return [...acc, result];
   }, []));
@@ -151,13 +176,13 @@ export const handleQuery = async (keyword: string) => {
 
 export const handleSelect = (command: IPluginCommand, keyword: string) => {
   const rp = resultsMap.get(command);
-  return rp?.owner.plugin?.onSelect?.(command, rp.query ?? keyword);
+  return rp?.owner.plugin?.onSelect?.(command, rp.query ?? keyword, { from: 'search', match: rp.match, result: rp.result });
 };
 
 export const handleEnter = (command: IPluginCommand, keyword: string) => {
   const rp = resultsMap.get(command);
   if (!rp) return;
-  enterCommand(rp.owner, command, rp.query ?? keyword);
+  enterCommand(rp.owner, command, rp.query ?? keyword, { from: 'search', match: rp.match, result: rp.result });
 };
 
 export const handleAction = (command: IPluginCommand, action: IActionItem, keyword: string) => {

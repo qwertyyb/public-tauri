@@ -1,5 +1,5 @@
 export const invokePluginServerMethod = async <T = any>(name: string, method: string, args: any[]): Promise<T> => {
-  const r = await fetch('http://127.0.0.1:2345/api/manager/invoke', {
+  const r = await window.fetch('http://127.0.0.1:2345/api/manager/invoke', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -11,7 +11,7 @@ export const invokePluginServerMethod = async <T = any>(name: string, method: st
 };
 
 export const invokeServerUtils = async (method: string, args: any[] = [], options = { raw: false }) => {
-  const r = await fetch('http://127.0.0.1:2345/utils/invoke', {
+  const r = await window.fetch('http://127.0.0.1:2345/utils/invoke', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
