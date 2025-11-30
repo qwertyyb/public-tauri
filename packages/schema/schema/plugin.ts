@@ -82,4 +82,6 @@ export type IPluginLifecycle = {
   onAction?: (command: ICommand, action: IActionItem, keyword: string) => void,
 };
 
-export const definePlugin = (options: () => IPluginLifecycle) => options;
+export const definePlugin = (options: (app: {
+  updateCommands: (commands: ICommand[]) => void
+}) => IPluginLifecycle) => options;

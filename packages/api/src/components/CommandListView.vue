@@ -29,13 +29,13 @@ import InputBar from './InputBar.vue';
 import EmptyView from './PublicListEmptyView.vue';
 import { onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import LoadingBar from './LoadingBar.vue';
-import type { IListViewCommand, IResultItem, IActionItem, ICommandActionOptions } from '@public/types';
-import { mainWindow } from '../api';
+import type { IListViewCommand, IResultItem, IActionItem, ICommandActionOptions } from '@public/schema';
+import { mainWindow } from '../index';
 
 const props = defineProps<{
   command: IListViewCommand,
   defaultQuery?: string,
-  options: ICommandActionOptions
+  options?: ICommandActionOptions
 }>();
 
 const keyword = ref(props.defaultQuery ?? '');
@@ -47,7 +47,7 @@ const loadingCount = ref(0);
 if (typeof props.command?.onShow === 'function') {
   loadingCount.value += 1;
   const origin = keyword.value ?? '';
-  props.command?.onShow?.(keyword.value ?? '', { ...props.options }, (list) => {
+  props.command?.onShow?.(keyword.value ?? '', props.options, (list) => {
     loadingCount.value -= 1;
     if (origin !== (keyword.value ?? '')) return;
     results.value = list.map(item => ({

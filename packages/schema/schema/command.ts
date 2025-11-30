@@ -148,7 +148,7 @@ export type IResultItem = {
 };
 
 export interface IListViewCommand<Item extends IResultItem = IResultItem & Record<string, any>> {
-  onShow?: (query: string, options: ICommandActionOptions, setList: (list: Item[]) => void) => void,
+  onShow?: (query: string, options: ICommandActionOptions | undefined | null, setList: (list: Item[]) => void) => void,
   onHide?: () => void,
   onSearch?: (keyword: string, setList: (list: Item[]) => void) => void | Promise<void>,
   onSelect?: (result: Item, query: string) => string | HTMLElement | Promise<string> | Promise<HTMLElement>,

@@ -67,7 +67,7 @@
 
 <script setup lang="ts">
 import { getPlugin, updateCommandPreferences, updatePluginPreferences } from '@/plugin/manager';
-import type { IPluginManifest } from '@public/types';
+import type { IPluginManifest } from '@public/schema';
 import { ElForm, ElFormItem, ElInput, ElSelect, ElOption, ElButton } from 'element-plus';
 import { computed, nextTick, ref, shallowRef, toRaw, watch } from 'vue';
 

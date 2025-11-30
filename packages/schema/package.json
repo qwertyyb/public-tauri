@@ -1,5 +1,5 @@
 {
-  "name": "@public/types",
+  "name": "@public/schema",
   "version": "1.0.0",
   "description": "",
   "module": "index.ts",

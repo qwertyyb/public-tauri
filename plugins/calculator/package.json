@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@public/api": "workspace:^",
-    "@public/types": "workspace:^",
+    "@public/schema": "workspace:^",
     "mathjs": "^14.6.0",
     "tauri-plugin-clipboard-api": "^2.1.11"
   },

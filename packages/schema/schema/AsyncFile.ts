@@ -13,6 +13,31 @@ export interface AsyncFileOptions {
   path?: string;
 }
 
+const base64Encode = (data: Uint8Array): string => {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+  let result = '';
+  let i = 0;
+
+  while (i < data.length) {
+    const a = data[i];
+    i += 1;
+    const b = i < data.length ? data[i] : 0;
+    i += 1;
+    const c = i < data.length ? data[i] : 0;
+    i += 1;
+
+    const bitmap = (a << 16) | (b << 8) | c;
+
+    result += chars.charAt((bitmap >> 18) & 63);
+    result += chars.charAt((bitmap >> 12) & 63);
+    result += i - 2 < data.length ? chars.charAt((bitmap >> 6) & 63) : '=';
+    result += i - 1 < data.length ? chars.charAt(bitmap & 63) : '=';
+  }
+
+  return result;
+};
+
+
 /**
  * AsyncFile - 支持同步和异步可迭代对象的 File 替代类
  */
@@ -143,6 +168,45 @@ export class AsyncFile {
   async text(): Promise<string> {
     const data = await this.getData();
     return new TextDecoder().decode(data);
+  }
+
+  /**
+   * 返回文件内容的 base64 编码
+   */
+  async base64(): Promise<string> {
+    const data = await this.getData();
+
+    // 使用 FileReader API 进行 base64 编码（推荐方法）
+    return new Promise((resolve, reject) => {
+      try {
+        // 创建一个 Blob 对象
+        // @ts-ignore
+        const blob = new Blob([data]);
+        const reader = new FileReader();
+
+        reader.onload = () => {
+          // FileReader 返回的格式是 "data:application/octet-stream;base64,...."
+          // 我们需要去掉前面的前缀
+          const result = reader.result as string;
+          const base64Data = result.split(',')[1];
+          resolve(base64Data);
+        };
+
+        reader.onerror = () => {
+          reject(new Error('Failed to read file for base64 encoding'));
+        };
+
+        reader.readAsDataURL(blob);
+      } catch (error) {
+        // 如果 FileReader 不可用，回退到手动实现
+        try {
+          const base64String = base64Encode(data);
+          resolve(base64String);
+        } catch (fallbackError) {
+          reject(fallbackError);
+        }
+      }
+    });
   }
 
   stream(): ReadableStream<Uint8Array> {

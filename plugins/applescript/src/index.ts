@@ -1,6 +1,6 @@
-import { type IPlugin, mainWindow, utils } from '@public/api';
+import { definePlugin, mainWindow, utils } from '@public/api';
 
-const createAppleScriptPlugin: IPlugin = (app) => {
+const createAppleScriptPlugin = definePlugin((app) => {
   app.updateCommands([
     {
       name: 'topit',
@@ -19,6 +19,6 @@ const createAppleScriptPlugin: IPlugin = (app) => {
       }
     },
   };
-};
+});
 
 export default createAppleScriptPlugin;

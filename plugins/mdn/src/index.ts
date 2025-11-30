@@ -1,7 +1,7 @@
-import { fetch, utils, type IListViewCommand } from '@public/plugin';
+import { fetch, utils, type IListViewCommand } from '@public/api';
 
 const command: IListViewCommand = {
-  search: async (keyword, setList) => {
+  onSearch: async (keyword, setList) => {
     const url = new URL('https://developer.mozilla.org/api/v1/search');
     url.searchParams.set('q', keyword);
     url.searchParams.set('sort', 'best');
@@ -16,7 +16,7 @@ const command: IListViewCommand = {
     }));
     return setList(docs);
   },
-  action(item: any) {
+  onAction(item: any) {
     utils.open(item.url);
   },
 };

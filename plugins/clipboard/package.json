@@ -42,14 +42,14 @@
       }
     ]
   },
-  "dependencies": {
-    "@public/plugin": "workspace:^"
-  },
   "devDependencies": {
     "@rollup/plugin-commonjs": "catalog:plugin",
     "@rollup/plugin-node-resolve": "catalog:plugin",
     "@rollup/plugin-replace": "catalog:plugin",
     "rollup": "catalog:plugin",
     "rollup-plugin-esbuild": "catalog:plugin"
+  },
+  "dependencies": {
+    "@public/api": "workspace:^"
   }
 }

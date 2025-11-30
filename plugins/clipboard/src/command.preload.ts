@@ -1,4 +1,4 @@
-import { clipboard, mainWindow, Database, type IListViewCommand } from '@public/plugin';
+import { clipboard, mainWindow, Database, type IListViewCommand } from '@public/api';
 import { ContentType, DATABASE_PATH } from './const';
 
 let db: ReturnType<typeof Database['get']>;

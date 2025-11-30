@@ -1,5 +1,5 @@
 
-import type { IPlugin } from '@public/types';
+import type { IPlugin } from '@public/schema';
 import { writeText } from 'tauri-plugin-clipboard-api';
 import { dialog } from '@public/api/core';
 import { create, all } from 'mathjs';

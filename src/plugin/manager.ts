@@ -1,13 +1,14 @@
 import path, { join } from 'path-browserify';
-import { clipboard, createPluginStorage, dialog, fetch, globalShortcut, mainWindow, registerServerModule, storage, utils, invokePluginServerMethod, createPluginServerListener, Database, screen } from '@public/api/core';
-
+import { clipboard, dialog, fetch, globalShortcut, mainWindow, utils, Database, screen } from '@public/api/core';
+import { createPluginStorage, registerServerModule, invokePluginServerMethod, createPluginServerListener } from '@public/api/utils';
+import { storage } from '@public/api/storage';
 import { readTextFile } from '@tauri-apps/plugin-fs';
 import { formatCommand, getLocalPath, openCommandPreferences, openPluginPreferences, popView, pushView, withCache } from './utils';
 import { set } from 'es-toolkit/compat';
 import { resultsMap } from './store';
 import { resolveResource } from '@tauri-apps/api/path';
 import { preloadApp, setupApp, startApp } from 'wujie';
-import { parsePluginConfig, type IPluginManifest, type ICommand as IPluginCommand, type IPluginLifecycle, type IPreference, type ICommandActionOptions } from '@public/types';
+import { parsePluginConfig, type IPluginManifest, type ICommand as IPluginCommand, type IPluginLifecycle, type IPreference, type ICommandActionOptions } from '@public/schema';
 import logger from '@/utils/logger';
 import type { IRunningPlugin, IPluginsSettings, IPluginSettings, ICommandSettings } from '@/types/plugin';
 

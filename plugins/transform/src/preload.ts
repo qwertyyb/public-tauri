@@ -1,9 +1,9 @@
-import { type IPlugin, type ICommand, dialog, clipboard } from '@public/api';
+import { type ICommand, dialog, clipboard, definePlugin } from '@public/api';
 import { hToM, msToDuration, msToLocaleString, mToS, sToLocaleString, sToMs } from './lib/time';
 import { transformCurrency } from './lib/currency';
 import { decode, encode } from './lib/base64';
 
-const transformPlugin: IPlugin = () => ({
+const transformPlugin = definePlugin(() => ({
   async onInput(keyword) {
     console.log('keyword', keyword);
     const commands: ICommand[] = [];
@@ -110,6 +110,6 @@ const transformPlugin: IPlugin = () => ({
     clipboard.writeText(command.value);
     dialog.showToast('已复制到剪切板');
   },
-});
+}));
 
 export default transformPlugin;

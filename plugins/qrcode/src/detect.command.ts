@@ -1,8 +1,4 @@
-import { type ICommand, type IListViewCommand, AsyncFile } from '@public/api';
-import { clipboard, dialog, mainWindow, screen, utils } from '@public/plugin';
-import { createPluginChannel } from '@public/api/core';
-
-const { invoke } = createPluginChannel('qrcode');
+import { type ICommand, type IListViewCommand, AsyncFile, utils, dialog, clipboard, mainWindow, screen, invoke } from '@public/api';
 
 const createClipboardItem = (text: string) => {
   const item: ICommand = {
@@ -44,9 +40,16 @@ const detectScreen = async (): Promise<string[]> => {
   }
 };
 
-const detectFile = (file: AsyncFile) => {
-  console.log('file', file);
-  return [];
+const detectFile = async (file: AsyncFile) => {
+  try {
+    const imgbase64 = await file.base64();
+    console.log('detectFile', file, imgbase64);
+    const texts = (await invoke<string[]>('detect', imgbase64)) || [];
+    return texts;
+  } catch (err) {
+    console.error(err);
+    return [];
+  }
 };
 
 const detect = async (input: ('clipboard' | 'screen' | AsyncFile)[]) => {
@@ -57,9 +60,8 @@ const detect = async (input: ('clipboard' | 'screen' | AsyncFile)[]) => {
   if (input.includes('screen')) {
     requests.push(detectScreen());
   }
-  if (input.some(item => item instanceof AsyncFile)) {
-    requests.push(detectFile(input.find(item => item instanceof AsyncFile) as AsyncFile));
-  }
+  const files = input.filter(item => typeof (item as any).base64 === 'function') as AsyncFile[];
+  requests.push(...files.map(detectFile));
   const texts = (await Promise.all(requests)).flat();
   console.log('detect', texts);
   if (!texts?.length) {
@@ -75,7 +77,7 @@ const detect = async (input: ('clipboard' | 'screen' | AsyncFile)[]) => {
 const detectCommand: IListViewCommand = {
 
   async onShow(_query, options, setList) {
-    const file = options.from === 'search' && 'match' in options && options.match?.type === 'file' && options.result && ('file' in options.result) ? options.result.file : null;
+    const file = options?.from === 'search' && 'match' in options && options.match?.type === 'file' && options.result && ('file' in options.result) ? options.result.file : null;
     const list = await detect(file ? [file] : ['clipboard', 'screen']) || [];
     if (list.length) {
       setList(list);

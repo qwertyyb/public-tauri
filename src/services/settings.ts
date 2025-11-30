@@ -1,6 +1,6 @@
-import type { ISettings } from '@public/types';
-import { storage } from '@public/api/core';
+import { storage } from '@public/api/storage';
 import { getPlugins as getAllPlugins } from '@/plugin/manager';
+import type { ISettings } from '@/types/plugin';
 
 export const getSettings = async (): Promise<ISettings> => {
   const defaultSettings = {

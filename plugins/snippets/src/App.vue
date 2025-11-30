@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { createPlugin } from '@public/plugin'
+import { createPlugin } from '@public/api'
 import CreateSnippetView from '@/views/CreateSnippetView.vue';
 import SnippetsListView from '@/views/SnippetsListView.vue';
 import { ref } from 'vue';

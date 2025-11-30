@@ -42,7 +42,7 @@ import ResultItem from '@/components/ResultItem.vue';
 import ActionList, { type IActionItem } from '@/components/ActionList.vue';
 import ResultItemPreview from '@/components/ResultItemPreview.vue';
 import { isKeyPressed } from '@/utils/keyboard';
-import type { IListItem } from '@public/types';
+import type { IListItem } from '@public/schema';
 import { router } from '@public/api/core';
 
 const props = withDefaults(defineProps<{

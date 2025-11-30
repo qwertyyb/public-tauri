@@ -1,4 +1,4 @@
-import { type IListViewCommand, fetch, utils } from '@public/plugin';
+import { type IListViewCommand, fetch, utils } from '@public/api';
 
 // const withCache = <F extends (...args: any[]) => any>(fn: F) => {
 //   const results = new Map<string, any>();
@@ -27,12 +27,12 @@ const getData = async (type: 'hot' | 'latest' = 'hot') => {
 };
 
 export const createCommand = (name: 'hot' | 'latest'): IListViewCommand => ({
-  enter(query, setList) {
+  onShow(query, _, setList) {
     getData(name).then((list) => {
       setList(list);
     });
   },
-  action(item: any) {
+  onAction(item: any) {
     utils.open(item.url);
   },
 });

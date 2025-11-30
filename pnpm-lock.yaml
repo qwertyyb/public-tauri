@@ -39,9 +39,9 @@ importers:
       '@public/api':
         specifier: workspace:^
         version: link:packages/api
-      '@public/types':
+      '@public/schema':
         specifier: workspace:^
-        version: link:packages/types
+        version: link:packages/schema
       '@tauri-apps/api':
         specifier: ^2
         version: 2.7.0
@@ -169,9 +169,9 @@ importers:
 
   packages/api:
     dependencies:
-      '@public/types':
+      '@public/schema':
         specifier: workspace:^
-        version: link:../types
+        version: link:../schema
       '@tauri-apps/api':
         specifier: ^2
         version: 2.7.0
@@ -187,37 +187,26 @@ importers:
       '@tauri-apps/plugin-sql':
         specifier: ~2
         version: 2.3.0
+      es-toolkit:
+        specifier: ^1.39.8
+        version: 1.39.8
       socket.io-client:
         specifier: ^4.8.1
         version: 4.8.1
       tauri-plugin-clipboard-api:
         specifier: ^2.1.11
         version: 2.1.11(typescript@5.9.2)
-
-  packages/plugin:
-    dependencies:
-      es-toolkit:
-        specifier: ^1.39.8
-        version: 1.39.8
       virtua:
         specifier: ^0.43.6
         version: 0.43.6(vue@3.5.22(typescript@5.9.2))
-      vue:
-        specifier: ^3.5.22
-        version: 3.5.22(typescript@5.9.2)
-    devDependencies:
-      '@public/api':
-        specifier: workspace:^
-        version: link:../api
-      '@public/types':
-        specifier: workspace:^
-        version: link:../types
+
+  packages/schema: {}
 
   packages/template:
     dependencies:
-      '@public/plugin':
+      '@public/api':
         specifier: workspace:^
-        version: link:../plugin
+        version: link:../api
       vue:
         specifier: ^3.5.22
         version: 3.5.22(typescript@5.9.2)
@@ -255,8 +244,6 @@ importers:
       vue-tsc:
         specifier: ^3.1.0
         version: 3.1.0(typescript@5.9.2)
-
-  packages/types: {}
 
   packages/wechat-qrcode:
     dependencies:
@@ -323,9 +310,9 @@ importers:
       '@public/api':
         specifier: workspace:^
         version: link:../../packages/api
-      '@public/types':
+      '@public/schema':
         specifier: workspace:^
-        version: link:../../packages/types
+        version: link:../../packages/schema
       mathjs:
         specifier: ^14.6.0
         version: 14.6.0
@@ -351,9 +338,9 @@ importers:
 
   plugins/clipboard:
     dependencies:
-      '@public/plugin':
+      '@public/api':
         specifier: workspace:^
-        version: link:../../packages/plugin
+        version: link:../../packages/api
     devDependencies:
       '@rollup/plugin-commonjs':
         specifier: catalog:plugin
@@ -373,9 +360,9 @@ importers:
 
   plugins/emoji:
     dependencies:
-      '@public/plugin':
+      '@public/api':
         specifier: workspace:^
-        version: link:../../packages/plugin
+        version: link:../../packages/api
       gemoji:
         specifier: ^8.1.0
         version: 8.1.0
@@ -451,9 +438,9 @@ importers:
 
   plugins/mdn:
     dependencies:
-      '@public/plugin':
+      '@public/api':
         specifier: workspace:^
-        version: link:../../packages/plugin
+        version: link:../../packages/api
     devDependencies:
       '@rollup/plugin-commonjs':
         specifier: catalog:plugin
@@ -479,9 +466,6 @@ importers:
       '@public/api':
         specifier: workspace:^
         version: link:../../packages/api
-      '@public/plugin':
-        specifier: workspace:^
-        version: link:../../packages/plugin
       qrcode:
         specifier: ^1.4.4
         version: 1.5.4
@@ -538,9 +522,9 @@ importers:
 
   plugins/snippets:
     dependencies:
-      '@public/plugin':
+      '@public/api':
         specifier: workspace:^
-        version: link:../../packages/plugin
+        version: link:../../packages/api
       vue:
         specifier: ^3.5.18
         version: 3.5.18(typescript@5.8.3)
@@ -600,9 +584,9 @@ importers:
 
   plugins/translate:
     dependencies:
-      '@public/plugin':
+      '@public/api':
         specifier: workspace:^
-        version: link:../../packages/plugin
+        version: link:../../packages/api
       '@xmldom/xmldom':
         specifier: ^0.9.8
         version: 0.9.8
@@ -640,9 +624,9 @@ importers:
 
   plugins/v2ex:
     dependencies:
-      '@public/plugin':
+      '@public/api':
         specifier: workspace:^
-        version: link:../../packages/plugin
+        version: link:../../packages/api
     devDependencies:
       '@rollup/plugin-commonjs':
         specifier: catalog:plugin
@@ -1548,19 +1532,16 @@ packages:
   '@nut-tree-fork/libnut-darwin@2.7.5':
     resolution: {integrity: sha512-LbqtPtMPTJUcg4XoPP2jsU1wc8flBcGyKTerKsIfK9cD7nBHROnO0QksbrsbSWEpLym8T8fRtuU7XEY83l6Z2Q==}
     engines: {node: '>=10.15.3'}
-    cpu: [x64, arm64]
     os: [darwin, linux, win32]
 
   '@nut-tree-fork/libnut-linux@2.7.5':
     resolution: {integrity: sha512-uxaXEcRKnFObAljsoR6tLOBUU1dJ2sctloG6gFgCBGN7+k6Jdv6jZfOuNjd/fpdq2C5WPMm0rtn9EE7h5J3Jcg==}
     engines: {node: '>=10.15.3'}
-    cpu: [x64, arm64]
     os: [darwin, linux, win32]
 
   '@nut-tree-fork/libnut-win32@2.7.5':
     resolution: {integrity: sha512-yqC87zvmFcDPwFrRU40DYhN0xmEVM3aSkOuyF0IX+y1x+HWSu/i0PNklATpPBhGid3QVb/TOHuVoaraMrUFCNw==}
     engines: {node: '>=10.15.3'}
-    cpu: [x64, arm64]
     os: [darwin, linux, win32]
 
   '@nut-tree-fork/libnut@4.2.6':
@@ -1574,7 +1555,6 @@ packages:
   '@nut-tree-fork/nut-js@4.2.6':
     resolution: {integrity: sha512-aI/WCX7gE1HFGPH3EZP/UWqpNMM1NMoM/EkXqp7pKMgXFCi8e5+o5p+jd/QOYpmALv9bQg7+s69nI7FONbMqDg==}
     engines: {node: '>=16'}
-    cpu: [x64, arm64]
     os: [linux, darwin, win32]
 
   '@nut-tree-fork/provider-interfaces@4.2.6':

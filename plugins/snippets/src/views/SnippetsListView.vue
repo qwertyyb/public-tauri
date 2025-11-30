@@ -5,8 +5,8 @@
 </template>
 
 <script setup lang="ts">
-import { clipboard, mainWindow, storage, type IPluginCommandListView } from '@public/plugin';
-import CommandListView from '@public/plugin/CommandListView.vue'
+import { clipboard, mainWindow, storage, type IListViewCommand } from '@public/api';
+import CommandListView from '@public/api/components/CommandListView.vue'
 import { markRaw } from 'vue';
 import icon from '../assets/snippets.png'
 
@@ -15,8 +15,8 @@ const search = async (keyword: string): Promise<{title: string, content: string}
   return list.filter(i => i.title.includes(keyword))
 }
 
-const searchCommand: IPluginCommandListView = markRaw({
-  async enter(query, setList) {
+const searchCommand: IListViewCommand = markRaw({
+  async onShow(query, _, setList) {
     const snippets = await search(query)
     return setList(snippets.map(snippet => ({
       title: snippet.title,
@@ -25,7 +25,7 @@ const searchCommand: IPluginCommandListView = markRaw({
     })))
   },
 
-  async search(keyword, setList) {
+  async onSearch(keyword, setList) {
     const snippets = await search(keyword);
     return setList(
       snippets.map((snippet) => ({
@@ -36,7 +36,7 @@ const searchCommand: IPluginCommandListView = markRaw({
     );
   },
 
-  select(result, query) {
+  onSelect(result, query) {
     const el = document.createElement("pre");
     el.textContent = result.content;
     el.style.cssText =
@@ -44,7 +44,7 @@ const searchCommand: IPluginCommandListView = markRaw({
     return el
   },
 
-  async action(result, action) {
+  async onAction(result, action) {
     await mainWindow.hide()
     clipboard.writeText(result.content)
     clipboard.paste()

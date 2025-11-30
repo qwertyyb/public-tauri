@@ -43,7 +43,7 @@
         @paste="pasteHandler"
       >
       <div
-        v-if="!disabled && !modelValue"
+        v-if="!disabled && !keyword"
         class="input-placeholder"
       >
         {{ placeholder }}

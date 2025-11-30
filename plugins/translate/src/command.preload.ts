@@ -1,7 +1,7 @@
-import { type IListViewCommand, invoke } from '@public/plugin';
+import { type IListViewCommand, invoke } from '@public/api';
 
 const command: IListViewCommand = {
-  search: async (keyword: string, setList: (list: any[]) => void) => {
+  onSearch: async (keyword: string, setList: (list: any[]) => void) => {
     console.log('search', keyword);
     if (!keyword) return setList([]);
     const results = (await Promise.all([

@@ -1,6 +1,6 @@
-import { utils, type IPlugin, fetch } from '@public/api';
+import { utils, fetch, definePlugin } from '@public/api';
 
-const createMagicPlugin: IPlugin = () => ({
+const createMagicPlugin = definePlugin(() => ({
   async onEnter(command, query) {
     let actId = Number(query);
     if (!actId) {
@@ -29,7 +29,7 @@ const createMagicPlugin: IPlugin = () => ({
       return;
     }
   },
-});
+}));
 
 export default createMagicPlugin;
 

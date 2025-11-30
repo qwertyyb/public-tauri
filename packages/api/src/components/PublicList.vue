@@ -37,15 +37,14 @@
   </div>
 </template>
 
-<script setup lang="ts" generic="T extends IListItem">
+<script setup lang="ts" generic="T extends { title: string, subtitle?: string, icon?: string, [x: string]: any }">
 import { computed, onBeforeMount, onMounted, ref, useTemplateRef, watch } from 'vue';
 import { VList } from 'virtua/vue';
 import ListItem from './PublicListItem.vue';
 // import ActionList, { type IActionItem } from '@/components/ActionList.vue';
-import type { IActionItem } from '@public/types';
+import type { IActionItem } from '@public/schema';
 import ResultItemPreview from './PublicListItemDetail.vue';
 import { isKeyPressed } from '@public/api/utils';
-import type { IListItem } from '@public/types';
 
 const props = defineProps<{
   results: T[],
