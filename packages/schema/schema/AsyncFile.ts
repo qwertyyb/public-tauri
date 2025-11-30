@@ -19,11 +19,11 @@ const base64Encode = (data: Uint8Array): string => {
   let i = 0;
 
   while (i < data.length) {
-    const a = data[i];
+    const a = data[i]!;
     i += 1;
-    const b = i < data.length ? data[i] : 0;
+    const b = i < data.length ? data[i]! : 0;
     i += 1;
-    const c = i < data.length ? data[i] : 0;
+    const c = i < data.length ? data[i]! : 0;
     i += 1;
 
     const bitmap = (a << 16) | (b << 8) | c;
@@ -188,7 +188,7 @@ export class AsyncFile {
           // FileReader 返回的格式是 "data:application/octet-stream;base64,...."
           // 我们需要去掉前面的前缀
           const result = reader.result as string;
-          const base64Data = result.split(',')[1];
+          const base64Data = result.split(',')[1]!;
           resolve(base64Data);
         };
 
@@ -338,7 +338,7 @@ export class AsyncFile {
     }
 
     if (chunks.length === 1) {
-      return chunks[0];
+      return chunks[0]!;
     }
 
     // 计算总长度
