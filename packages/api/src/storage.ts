@@ -1,4 +1,4 @@
-import { invokeServerUtils } from './utils';
+import { invokeServerUtils } from './server';
 
 export const storage = {
   getItem(key: string): Promise<any | undefined> {
