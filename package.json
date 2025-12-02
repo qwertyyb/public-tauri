@@ -17,6 +17,7 @@
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
     "@public/api": "workspace:^",
+    "@public/core": "workspace:^",
     "@public/schema": "workspace:^",
     "@tauri-apps/api": "^2",
     "@tauri-apps/plugin-autostart": "^2.5.0",

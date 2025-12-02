@@ -23,6 +23,7 @@ const createRollupConfig = (input, options = {}) => ({
     replace({
       preventAssignment: true,
       'process.env.PLUGIN_NAME': JSON.stringify('qrcode'),
+      IS_IN_WUJIE_ENV: JSON.stringify(true),
     }),
   ],
   external: [

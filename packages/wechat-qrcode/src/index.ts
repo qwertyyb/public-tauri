@@ -27,9 +27,6 @@ export const detect = async (image: { width: number, height: number, data: Uint8
 
 
   const results = wr.detectAndDecode(opencv.matFromImageData(image));
-  if (results.size() < 1) {
-    throw new Error('未识别到二维码');
-  }
   let i = 0;
   const arr: string[] = [];
   while (i < results.size()) {

@@ -14,6 +14,7 @@ import { startSocketIO } from './socket.io';
 import createCacheMiddleware from './middlewares/cache';
 import logger from './utils/logger';
 import { createPluginMiddleware } from './middlewares/plugin';
+import createResponseMiddleware from './middlewares/api';
 
 const app = new Koa();
 
@@ -22,6 +23,7 @@ app.use(koaBody({
 }));
 app.use(cors());
 
+app.use(createResponseMiddleware());
 app.use(createLoggerMiddleware());
 app.use(createErrorHandler());
 app.use(createCacheMiddleware());

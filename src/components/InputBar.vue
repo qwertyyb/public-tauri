@@ -54,7 +54,7 @@
 </template>
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref, useTemplateRef, watch } from 'vue';
-import { router } from '@public/api/core';
+import { onPageEnter, onPageLeave } from '@/router';
 import { createAutoResizeInput } from '@/utils';
 import logger from '@/utils/logger';
 import { EVENT_NAME } from '@/const';
@@ -174,14 +174,14 @@ onBeforeUnmount(() => {
   window.removeEventListener('pop-to-root', popToRootHandler);
 });
 
-router.onPageEnter(() => {
+onPageEnter(() => {
   inputEl.value?.focus();
   if (props.isMainInput) {
     fetchPlaceholder();
   }
 });
 
-router.onPageLeave(() => {
+onPageLeave(() => {
   inputEl.value?.blur?.();
 });
 </script>

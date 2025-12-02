@@ -1,7 +1,6 @@
 import KoaRouter from '@koa/router';
 import { getFileIcon } from '../lib/macos';
 import utils from '../services/utils';
-import { createResponse } from '../utils/response';
 import Stream from 'stream';
 
 const router = new KoaRouter({
@@ -39,7 +38,7 @@ router.post('/invoke', async (ctx) => {
   }
   if (typeof utils[method as keyof typeof utils] === 'function') {
     // @ts-ignore
-    ctx.body = createResponse(await utils[method as keyof typeof utils](...args));
+    ctx.ok(await utils[method as keyof typeof utils](...args));
     return;
   }
   throw new Error(`方法 ${method} 不存在`);

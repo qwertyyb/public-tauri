@@ -43,7 +43,7 @@ import ActionList, { type IActionItem } from '@/components/ActionList.vue';
 import ResultItemPreview from '@/components/ResultItemPreview.vue';
 import { isKeyPressed } from '@/utils/keyboard';
 import type { IListItem } from '@public/schema';
-import { router } from '@public/api/core';
+import { onPageEnter, onPageLeave } from '@/router';
 
 const props = withDefaults(defineProps<{
   results?: T[],
@@ -154,10 +154,10 @@ const getActionKey = (index: number, indexStart: number) => {
   return '';
 };
 
-router.onPageEnter(() => {
+onPageEnter(() => {
   document.addEventListener('keydown', keydownHandler);
 });
-router.onPageLeave(() => {
+onPageLeave(() => {
   document.removeEventListener('keydown', keydownHandler);
 });
 

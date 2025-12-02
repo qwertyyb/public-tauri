@@ -86,17 +86,3 @@ export const createPluginChannel = logger.wrap(
     on: createPluginServerListener(pluginName),
   }),
 );
-
-export const getPressedKeys = (event: KeyboardEvent) => {
-  const detectKeys = ['Meta', 'Control', 'Alt', 'Shift'];
-  const modifiers = detectKeys.filter(key => event.getModifierState(key));
-  const isModifierKeyDown = detectKeys.includes(event.key); // 当前按下的是否就是修饰键
-  const keys = isModifierKeyDown ? [...modifiers] : [...modifiers, event.key];
-  return keys;
-};
-
-export const isKeyPressed = (event: KeyboardEvent, value: string | string[]) => {
-  const pressedKeys = getPressedKeys(event);
-  const valueKeys = typeof value === 'string' ? value.split('+') : [...value];
-  return pressedKeys.sort().join('+') === valueKeys.sort().join('+');
-};

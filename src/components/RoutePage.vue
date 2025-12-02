@@ -5,12 +5,12 @@
 </template>
 
 <script setup lang="ts">
-import { router } from '@public/api/core';
+import { pageEventSymbol } from '@/router';
 import { onBeforeUnmount, onMounted, provide } from 'vue';
 
 const pageEvent = new EventTarget();
 
-provide(router.pageEventSymbol, pageEvent);
+provide(pageEventSymbol, pageEvent);
 
 const dispatchLeave = () => {
   pageEvent.dispatchEvent(new CustomEvent('pageLeave'));

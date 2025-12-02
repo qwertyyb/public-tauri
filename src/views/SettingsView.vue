@@ -249,11 +249,9 @@ import ShortcutsRecorder from '@/components/HotkeyRecorder.vue';
 import type { ICommand as IPluginCommand } from '@public/schema';
 import type { IRunningPlugin, ICommandSettings } from '@/types/plugin';
 import { getSettings, updateSettings, getPlugins } from '@/services/settings';
-import { router as coreRotuer } from '@public/api/core';
+import { onPageEnter, useRouter } from '@/router';
 import { unregisterPlugin, updateCommandSettings, updateCommandShortcut, updatePluginPreferences, updatePluginSettings } from '@/plugin/manager';
 import { openCommandPreferences, openPluginPreferences } from '@/plugin/utils';
-
-const { useRouter, onPageEnter } = coreRotuer;
 
 const views = ref({
   common: '通用',

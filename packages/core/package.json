@@ -1,0 +1,31 @@
+{
+  "name": "@public/core",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.ts",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": "./src/index.ts",
+    "./core": "./src/core.ts",
+    "./utils": "./src/utils.ts",
+    "./router": "./src/router.ts",
+    "./storage": "./src/storage.ts",
+    "./const": "./src/const.ts"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.8.0",
+  "dependencies": {
+    "@tauri-apps/api": "^2",
+    "@tauri-apps/plugin-autostart": "^2.5.0",
+    "@tauri-apps/plugin-shell": "~2",
+    "@tauri-apps/plugin-sql": "~2",
+    "socket.io-client": "^4.8.1",
+    "tauri-plugin-clipboard-api": "^2.1.11"
+  }
+}

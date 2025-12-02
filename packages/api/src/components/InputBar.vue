@@ -28,8 +28,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { onMounted } from 'vue';
-import { useTemplateRef } from 'vue';
+import { onMounted, useTemplateRef } from 'vue';
 
 const modelValue = defineModel<string>({ default: '' });
 defineProps<{

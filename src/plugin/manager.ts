@@ -1,7 +1,5 @@
 import path, { join } from 'path-browserify';
-import { clipboard, dialog, fetch, globalShortcut, mainWindow, utils, Database, screen } from '@public/api/core';
-import { createPluginStorage, registerServerModule, invokePluginServerMethod, createPluginServerListener } from '@public/api/utils';
-import { storage } from '@public/api/storage';
+import { clipboard, dialog, fetch, globalShortcut, mainWindow, utils, Database, screen, createPluginStorage, registerServerModule, invokePluginServerMethod, createPluginServerListener, storage } from '@public/core';
 import { readTextFile } from '@tauri-apps/plugin-fs';
 import { formatCommand, getLocalPath, openCommandPreferences, openPluginPreferences, popView, pushView, withCache } from './utils';
 import { set } from 'es-toolkit/compat';

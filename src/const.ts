@@ -1,5 +1,5 @@
 import type OpenAI from 'openai';
-import { utils, clipboard, mainWindow } from '@public/api/core';
+import { utils, clipboard, mainWindow } from '@public/core';
 
 export const POP_TO_ROOT_TIMEOUT = 90 * 1000;
 

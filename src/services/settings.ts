@@ -1,4 +1,4 @@
-import { storage } from '@public/api/storage';
+import { storage } from '@public/core';
 import { getPlugins as getAllPlugins } from '@/plugin/manager';
 import type { ISettings } from '@/types/plugin';
 

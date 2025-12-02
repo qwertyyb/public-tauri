@@ -4,7 +4,7 @@ import PluginPrfsView from '@/views/PluginPrfsView.vue';
 import SettingsView from '@/views/SettingsView.vue';
 import RoutePage from '@/components/RoutePage.vue';
 import { computed, nextTick, onBeforeUnmount, provide, shallowRef, useTemplateRef, type Component } from 'vue';
-import { router } from '@public/api/core';
+import { routerSymbol } from './router';
 import { showAlert, showConfirm, showToast } from '@/utils/feedback';
 import AIChatView from '@/views/AIChatView.vue';
 import PluginWujieView from '@/views/PluginWujieView.vue';
@@ -100,7 +100,7 @@ onBeforeUnmount(() => {
   window.removeEventListener('keydown', keydownHandler);
 });
 
-provide(router.routerSymbol, {
+provide(routerSymbol, {
   pushView: (path: string, params: any) => pushView({ path, params }),
   popView: (options?: { count?: number }) => popView(options),
 });

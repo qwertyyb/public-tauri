@@ -44,7 +44,20 @@ import ListItem from './PublicListItem.vue';
 // import ActionList, { type IActionItem } from '@/components/ActionList.vue';
 import type { IActionItem } from '@public/schema';
 import ResultItemPreview from './PublicListItemDetail.vue';
-import { isKeyPressed } from '@public/api/utils';
+
+const getPressedKeys = (event: KeyboardEvent) => {
+  const detectKeys = ['Meta', 'Control', 'Alt', 'Shift'];
+  const modifiers = detectKeys.filter(key => event.getModifierState(key));
+  const isModifierKeyDown = detectKeys.includes(event.key); // 当前按下的是否就是修饰键
+  const keys = isModifierKeyDown ? [...modifiers] : [...modifiers, event.key];
+  return keys;
+};
+
+const isKeyPressed = (event: KeyboardEvent, value: string | string[]) => {
+  const pressedKeys = getPressedKeys(event);
+  const valueKeys = typeof value === 'string' ? value.split('+') : [...value];
+  return pressedKeys.sort().join('+') === valueKeys.sort().join('+');
+};
 
 const props = defineProps<{
   results: T[],
