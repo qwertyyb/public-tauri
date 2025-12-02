@@ -54,10 +54,9 @@ export interface ToolDetail {
 
 // API 响应类型
 export interface ApiResponse<T = any> {
-  success: boolean;
-  data?: T;
-  error?: string;
-  message?: string;
+  errCode: number
+  errMsg: string
+  data?: T
 }
 
 const API_BASE = 'http://localhost:2345/api/mcp';
@@ -70,7 +69,7 @@ class MCPService {
     const response = await fetch(`${API_BASE}/config`);
     const result = await response.json();
 
-    if (result.success) {
+    if (result.errCode === 0) {
       return result.data;
     }
     throw new Error(result.error || 'Failed to get config');
@@ -83,7 +82,7 @@ class MCPService {
     const response = await fetch(`${API_BASE}/servers`);
     const result = await response.json();
 
-    if (result.success) {
+    if (result.errCode === 0) {
       return result.data;
     }
     throw new Error(result.error || 'Failed to get server statuses');
@@ -133,7 +132,7 @@ class MCPService {
 
     const result = await response.json();
 
-    if (result.success) {
+    if (result.errCode === 0) {
       return result.message || '服务器连接成功';
     }
     throw new Error(result.error || 'Failed to connect server');
@@ -149,7 +148,7 @@ class MCPService {
 
     const result = await response.json();
 
-    if (result.success) {
+    if (result.errCode === 0) {
       return result.message || '服务器断开成功';
     }
     throw new Error(result.error || 'Failed to disconnect server');
@@ -162,7 +161,7 @@ class MCPService {
     const response = await fetch(`${API_BASE}/tools/${encodeURIComponent(name)}`);
     const result = await response.json();
 
-    if (result.success) {
+    if (result.errCode === 0) {
       return result.data;
     }
     throw new Error(result.error || 'Failed to get server tools details');
@@ -221,7 +220,7 @@ class MCPService {
     const response = await fetch(`${API_BASE}/tools`);
     const result = await response.json();
 
-    if (result.success) {
+    if (result.errCode === 0) {
       return result.data;
     }
     throw new Error(result.error || 'Failed to get MCP tools');
@@ -254,7 +253,7 @@ class MCPService {
 
     const result = await response.json();
 
-    if (result.success) {
+    if (result.errCode === 0) {
       return result.data;
     }
     throw new Error(result.error || '未知错误');

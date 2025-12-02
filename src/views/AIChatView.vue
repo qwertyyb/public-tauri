@@ -76,7 +76,7 @@ import { ref, nextTick, toRaw, useTemplateRef, computed, type Ref } from 'vue';
 import OpenAI from 'openai';
 import { ElInput, ElButton } from 'element-plus';
 import { isKeyPressed } from '@/utils/keyboard';
-import { AI_ASSISTANT_PROMPT, AI_TOOLS_DEFINITIONS, AI_TOOLS } from '@/const';
+import { AI_ASSISTANT_PROMPT, AI_TOOLS_DEFINITIONS, AI_TOOLS, SUMMARY_PROMPT } from '@/const';
 import { getPreferenceValues } from '@/plugin/manager';
 import { popToRoot } from '@/plugin/utils';
 import { onPageEnter } from '@/router';
@@ -89,10 +89,20 @@ import type { ToolCallStatus } from '@/components/ai/const';
 
 const props = defineProps<{ query?: string }>();
 
-const messages = ref<OpenAI.ChatCompletionMessageParam[]>([{
+type IMessage = OpenAI.ChatCompletionMessageParam | { role: 'ignore', type: 'REMOVE_ALL_MESSAGES' }
+
+const messages = ref<IMessage[]>([{
   role: 'system',
   content: AI_ASSISTANT_PROMPT,
 }]);
+
+const context = {
+  usage: {
+    promptTokens: 0,
+    completionTokens: 0,
+    totalTokens: 0,
+  },
+};
 
 const formattedMessages = computed(() => {
   const list: {
@@ -104,6 +114,7 @@ const formattedMessages = computed(() => {
       list.push({ position: 'right', messages: [item] });
       return;
     }
+    if (item.role === 'ignore') return;
     if (item.role === 'tool') return;
     const last = list[list.length - 1];
     if (last?.position === 'left') {
@@ -214,16 +225,81 @@ const runTools = async (toolCall: OpenAI.ChatCompletionMessageToolCall) => {
   return `工具${functionName}不存在，无法调用`;
 };
 
+interface ISummarizeOptions {
+  trigger: {
+    tokens: number
+  },
+  keeps: {
+    messages: number
+  }
+}
+
+interface IContext {
+  messages: IMessage[],
+  usage: {
+    promptTokens: number
+    completionTokens: number
+    totalTokens: number
+  }
+}
+
+const splitMessages = (messages: IMessage[]) => {
+  // 从后往前遍历消息，找到第一条 system 消息，之前的消息忽略存储在 ignoredMessages 中，之后的消息存储在 keepMessages 中
+  let ignoredMessages: IMessage[] = [];
+  let keepMessages: OpenAI.ChatCompletionMessageParam[] = [];
+  for (let i = messages.length - 1; i >= 0; i--) {
+    if (messages[i].role === 'system') {
+      ignoredMessages = messages.slice(0, i);
+      keepMessages = messages.slice(i) as OpenAI.ChatCompletionMessageParam[];
+      break;
+    }
+  }
+  return { ignoredMessages, keepMessages };
+};
+
+// 总结之前的内容，避免上下文过长
+const summarizeMessages = async (
+  ctx: IContext,
+  options: ISummarizeOptions,
+) => {
+  const shouldSummarize = ctx.usage.totalTokens > options.trigger.tokens;
+  if (!shouldSummarize) return ctx;
+  const { ignoredMessages, keepMessages: messages } = splitMessages(ctx.messages);
+  const keeps = messages.slice(-options.keeps.messages);
+  const needSummarize = messages.slice(0, -options.keeps.messages);
+  const systemMessage = needSummarize[0]?.role === 'system' ? [needSummarize[0]] : [];
+  if (needSummarize.length === 0) return ctx;
+  const summary = await client.chat.completions.create({
+    model: preferences.model as string,
+    messages: [{ role: 'user', content: SUMMARY_PROMPT.replace('{messages}', JSON.stringify(needSummarize, null, 2)) }],
+    stream: false,
+  });
+  ctx.messages = [...ignoredMessages, ...needSummarize, { role: 'ignore', type: 'REMOVE_ALL_MESSAGES' }, ...systemMessage, { role: 'user', content: summary.choices[0].message.content || '' }, ...keeps];
+  return ctx;
+};
+
+const createContext = () => ({
+  messages: toRaw(messages.value),
+  usage: context.usage,
+});
+
 const ask = async () => {
+  const ctx: IContext = createContext();
+  const newCtx = await summarizeMessages(ctx, { trigger: { tokens: 40_000 }, keeps: { messages: 10 } });
+  messages.value = newCtx.messages;
+
   // 合并原生工具和 MCP 工具
   const allTools = [...AI_TOOLS_DEFINITIONS, ...mcpTools.value];
-
+  console.log('tools', allTools);
   const completion = await client.chat.completions.create({
     model: preferences.model as string,
-    messages: toRaw(messages.value),
+    messages: splitMessages(toRaw(messages.value)).keepMessages,
     tools: allTools,
     tool_choice: 'auto',
     stream: true,
+    stream_options: {
+      include_usage: true,
+    },
   }).catch((err) => {
     messages.value.push({ role: 'assistant', content: err.message });
     scrollToBottom();
@@ -234,7 +310,14 @@ const ask = async () => {
     content: '',
   });
   for await (const chunk of completion) {
-    const lastMessage = getLastMessage();
+    const lastMessage = getLastMessage() as OpenAI.ChatCompletionMessageParam;
+    if (chunk.usage) {
+      context.usage = {
+        promptTokens: chunk.usage.prompt_tokens,
+        completionTokens: chunk.usage.completion_tokens,
+        totalTokens: chunk.usage.total_tokens,
+      };
+    }
     if (chunk.choices[0]?.finish_reason === 'tool_calls' && lastMessage.role === 'assistant' && 'tool_calls' in lastMessage) {
       // 工具调用的返回结束，可以开始调用工具了
       const results: OpenAI.ChatCompletionToolMessageParam[] = await Promise.all(lastMessage.tool_calls!.map(async (toolCall) => {

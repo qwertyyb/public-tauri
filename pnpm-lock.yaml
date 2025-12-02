@@ -9,25 +9,6 @@ catalogs:
     typescript:
       specifier: ~5.9.2
       version: 5.9.2
-  plugin:
-    '@rollup/plugin-commonjs':
-      specifier: ^28.0.6
-      version: 28.0.6
-    '@rollup/plugin-json':
-      specifier: ^6.1.0
-      version: 6.1.0
-    '@rollup/plugin-node-resolve':
-      specifier: ^16.0.1
-      version: 16.0.1
-    '@rollup/plugin-replace':
-      specifier: ^6.0.2
-      version: 6.0.2
-    rollup:
-      specifier: ^4.46.2
-      version: 4.46.2
-    rollup-plugin-esbuild:
-      specifier: ^6.2.1
-      version: 6.2.1
 
 importers:
 
@@ -117,7 +98,7 @@ importers:
         version: 9.32.0
       '@modelcontextprotocol/sdk':
         specifier: ^1.22.0
-        version: 1.22.0
+        version: 1.22.0(@cfworker/json-schema@4.1.1)
       '@tauri-apps/cli':
         specifier: ^2
         version: 2.7.1
@@ -666,7 +647,7 @@ importers:
         version: 13.1.1
       '@modelcontextprotocol/sdk':
         specifier: ^1.22.0
-        version: 1.22.0
+        version: 1.22.0(@cfworker/json-schema@4.1.1)
       '@nut-tree-fork/nut-js':
         specifier: ^4.2.6
         version: 4.2.6
@@ -913,6 +894,9 @@ packages:
 
   '@bufbuild/protobuf@2.6.2':
     resolution: {integrity: sha512-vLu7SRY84CV/Dd+NUdgtidn2hS5hSMUC1vDBY0VcviTdgRYkU43vIz3vIFbmx14cX1r+mM7WjzE5Fl1fGEM0RQ==}
+
+  '@cfworker/json-schema@4.1.1':
+    resolution: {integrity: sha512-gAmrUZSGtKc3AiBL71iNWxDsyUC5uMaKKGdvzYsBoTW/xi42JQHl7eKV2OYzCUqvc+D2RCcf7EXY2iCyFIk6og==}
 
   '@ctrl/tinycolor@3.6.1':
     resolution: {integrity: sha512-SITSV6aIXsuVNV3f3O0f2n/cgyEDWoSqtZMYiAmcsYHydcKrOz3gUxB/iXd/Qf08+IZX4KpgNbvUdMBmWz+kcA==}
@@ -5920,6 +5904,9 @@ snapshots:
 
   '@bufbuild/protobuf@2.6.2': {}
 
+  '@cfworker/json-schema@4.1.1':
+    optional: true
+
   '@ctrl/tinycolor@3.6.1': {}
 
   '@electron/get@2.0.3':
@@ -6451,7 +6438,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@modelcontextprotocol/sdk@1.22.0':
+  '@modelcontextprotocol/sdk@1.22.0(@cfworker/json-schema@4.1.1)':
     dependencies:
       ajv: 8.17.1
       ajv-formats: 3.0.1(ajv@8.17.1)
@@ -6466,6 +6453,8 @@ snapshots:
       raw-body: 3.0.2
       zod: 3.25.76
       zod-to-json-schema: 3.25.0(zod@3.25.76)
+    optionalDependencies:
+      '@cfworker/json-schema': 4.1.1
     transitivePeerDependencies:
       - supports-color
 
@@ -7111,7 +7100,7 @@ snapshots:
       globby: 11.1.0
       is-glob: 4.0.3
       minimatch: 9.0.5
-      semver: 7.7.2
+      semver: 7.7.3
       ts-api-utils: 1.4.3(typescript@5.9.2)
     optionalDependencies:
       typescript: 5.9.2

@@ -2,7 +2,7 @@ hoist: true
 
 linkWorkspacePackages: true
 
-ignore-workspace-root-check: true
+ignoreWorkspaceRootCheck: true
 
 useNodeVersion: 24.11.1
 
