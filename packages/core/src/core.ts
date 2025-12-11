@@ -80,11 +80,13 @@ export const clipboard = {
 
 export const fetch = async (input: RequestInfo, init?: RequestInit): Promise<Response> => {
   const { signal, headers: originHeaders, ...rest } = init || {};
-  const headers: Record<string, string> = {};
+  let headers: Record<string, string> = {};
   if (originHeaders && (originHeaders instanceof Headers)) {
     originHeaders.forEach((value, key) => {
       headers[key] = value;
     });
+  } else {
+    headers = originHeaders as Record<string, string>;
   }
   const response = await invokeServerUtils('fetch', [input, { ...rest, headers }], { raw: true });
   if (signal?.aborted) {

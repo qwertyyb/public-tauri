@@ -1,7 +1,6 @@
 
-import type { IPlugin } from '@public/schema';
 import { writeText } from 'tauri-plugin-clipboard-api';
-import { dialog } from '@public/api/core';
+import { dialog, definePlugin } from '@public/api';
 import { create, all } from 'mathjs';
 
 const DECIMAL_SEPARATOR = '.';
@@ -62,7 +61,7 @@ export class Calculator {
   }
 }
 
-const calculatorPlugin: IPlugin = () => ({
+const calculatorPlugin = definePlugin(() => ({
   onInput(keyword: string) {
     if (Calculator.isValidInput(keyword)) {
       const result = Calculator.calculate(keyword);
@@ -85,6 +84,6 @@ const calculatorPlugin: IPlugin = () => ({
     writeText(String(item.text));
     dialog.showToast('结果已复制到剪切板');
   },
-});
+}));
 
 export default calculatorPlugin;

@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/no-v-html -->
 <template>
   <div class="ai-chat-container">
     <div
@@ -89,7 +88,7 @@ import type { ToolCallStatus } from '@/components/ai/const';
 
 const props = defineProps<{ query?: string }>();
 
-type IMessage = OpenAI.ChatCompletionMessageParam | { role: 'ignore', type: 'REMOVE_ALL_MESSAGES' }
+type IMessage = OpenAI.ChatCompletionMessageParam | { role: 'ignore', type: 'REMOVE_ALL_MESSAGES', content: '开始新话题' } | { role: 'ignore', type: 'SUMMARY', content: string }
 
 const messages = ref<IMessage[]>([{
   role: 'system',
@@ -106,15 +105,18 @@ const context = {
 
 const formattedMessages = computed(() => {
   const list: {
-    position: 'left' | 'right',
-    messages: OpenAI.ChatCompletionMessageParam[]
+    position: 'left' | 'center' | 'right',
+    messages: IMessage[]
   }[] = [];
   messages.value.forEach((item) => {
     if (item.role === 'user') {
       list.push({ position: 'right', messages: [item] });
       return;
     }
-    if (item.role === 'ignore') return;
+    if (item.role === 'ignore') {
+      list.push({ position: 'center', messages: [item] });
+      return;
+    }
     if (item.role === 'tool') return;
     const last = list[list.length - 1];
     if (last?.position === 'left') {
@@ -274,7 +276,14 @@ const summarizeMessages = async (
     messages: [{ role: 'user', content: SUMMARY_PROMPT.replace('{messages}', JSON.stringify(needSummarize, null, 2)) }],
     stream: false,
   });
-  ctx.messages = [...ignoredMessages, ...needSummarize, { role: 'ignore', type: 'REMOVE_ALL_MESSAGES' }, ...systemMessage, { role: 'user', content: summary.choices[0].message.content || '' }, ...keeps];
+  ctx.messages = [
+    ...ignoredMessages,
+    ...needSummarize,
+    { role: 'ignore', type: 'REMOVE_ALL_MESSAGES', content: '开始新话题' },
+    ...systemMessage,
+    { role: 'user', content: `前情提要：\n${summary.choices[0].message.content || ''}` },
+    ...keeps,
+  ];
   return ctx;
 };
 

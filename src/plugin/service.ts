@@ -46,7 +46,7 @@ export const handleQuery = async (input: { keyword: string, files?: File[] }) =>
         };
         results.push(result);
         // inputCount += 1;
-        resultsMap.set(result, { owner: plugin });
+        resultsMap.set(result, { owner: plugin, query: '' });
       });
     });
   }));
@@ -82,7 +82,7 @@ export const handleQuery = async (input: { keyword: string, files?: File[] }) =>
         return false;
       }) as ICommandFileMatch | undefined | null;
       if (!match) return false;
-      resultsMap.set(item.command, { owner: item.owner, match, result: { file: files![0] } });
+      resultsMap.set(item.command, { query: '', owner: item.owner, match, result: { file: files![0] } });
       results.push(item.command);
       commandsSet.add(`${item.owner.manifest.name}:${item.command.name}`);
       return true;
@@ -110,7 +110,7 @@ export const handleQuery = async (input: { keyword: string, files?: File[] }) =>
       // 拼音匹配副标题
       command.subtitle = pinyinHighlight(result.obj.subtitle!, result[3].target, result[3].indexes);
     }
-    resultsMap.set(command, { owner: result.obj.owner });
+    resultsMap.set(command, { owner: result.obj.owner, query: '' });
     commandsSet.add(`${result.obj.owner.manifest.name}:${result.obj.command.name}`);
     return command;
   }));
@@ -150,7 +150,7 @@ export const handleQuery = async (input: { keyword: string, files?: File[] }) =>
       title: compileString(regMatch.title || item.command.title, matches),
       subtitle: compileString(regMatch.subtitle || item.command.subtitle || '', matches),
     };
-    resultsMap.set(result, { owner: item.owner, match: regMatch, result: { matches } });
+    resultsMap.set(result, { owner: item.owner, match: regMatch, result: { matches }, query: keyword });
     commandsSet.add(`${item.owner.manifest.name}:${item.command.name}`);
     return [...acc, result];
   }, []));
@@ -166,7 +166,7 @@ export const handleQuery = async (input: { keyword: string, files?: File[] }) =>
       title: (keyword && fullMatch.title) ? fullMatch.title.replaceAll('$query', keyword) : command.title,
       subtitle: (keyword && fullMatch.subtitle) ? fullMatch.subtitle.replaceAll('$query', keyword) : command.subtitle,
     };
-    resultsMap.set(result, { owner, match: fullMatch, result: { query: keyword } });
+    resultsMap.set(result, { owner, match: fullMatch, result: { query: keyword }, query: keyword });
     commandsSet.add(`${item.owner.manifest.name}:${item.command.name}`);
     return [...acc, result];
   }, []));
