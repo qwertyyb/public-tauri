@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
+    "@public-tauri/plugin-double-tap-shortcut": "workspace:^",
     "@public/api": "workspace:^",
     "@public/types": "workspace:^",
     "@tauri-apps/api": "^2",
