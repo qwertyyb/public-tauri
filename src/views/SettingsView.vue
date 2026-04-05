@@ -248,7 +248,7 @@ import { ArrowRightBold, Plus, Delete, Operation } from '@element-plus/icons-vue
 import ShortcutsRecorder from '@/components/HotkeyRecorder.vue';
 import type { ICommand as IPluginCommand } from '@public/schema';
 import type { IRunningPlugin, ICommandSettings } from '@/types/plugin';
-import { getSettings, updateSettings, getPlugins } from '@/services/settings';
+import { getSettings, updateSettings, getPlugins, updateMainShortcut } from '@/services/settings';
 import { onPageEnter, useRouter } from '@/router';
 import { unregisterPlugin, updateCommandSettings, updateCommandShortcut, updatePluginPreferences, updatePluginSettings } from '@/plugin/manager';
 import { openCommandPreferences, openPluginPreferences } from '@/plugin/utils';
@@ -300,6 +300,7 @@ const onLaunchAtLoginChange = async (launchAtLogin: any) => {
   refreshSettings();
 };
 const onShortcutsChange = async (shortcuts: string) => {
+  updateMainShortcut(shortcuts);
   settings.value.shortcuts = shortcuts;
   await updateSettings({ shortcuts: settings.value.shortcuts });
   refreshSettings();

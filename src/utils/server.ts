@@ -2,6 +2,8 @@ import { resourceDir } from '@tauri-apps/api/path';
 import { Child, Command } from '@tauri-apps/plugin-shell';
 import path from 'path-browserify';
 
+const SERVER_PORT = 2345;
+
 const command = Command.sidecar('binaries/node-v24.11.1', ['$RESOURCE/_up_/src-node/dist/index.cjs']);
 
 const logger = {
@@ -50,7 +52,24 @@ const createCommand = async () => {
 
 let process: Child;
 
+export const isRunning = async () => {
+  const timeoutController = new AbortController();
+  setTimeout(() => {
+    timeoutController.abort();
+  }, 1000);
+  try {
+    const r = await fetch(`http://localhost:${SERVER_PORT}/health`, {
+      signal: timeoutController.signal,
+    });
+    return r.status === 200;
+  } catch (err) {
+    console.error('isRunning error', err);
+    return false;
+  }
+};
+
 export const start = async () => {
+  console.log('start NodeJS Server');
   const command = await createCommand();
   return new Promise<void>((resolve, reject) => {
     const handler = (data: string) => {
@@ -62,8 +81,13 @@ export const start = async () => {
     command.stdout.on('data', handler);
     command.once('error', () => reject());
     command.spawn().then((result) => {
+      console.log('NodeJS Server started');
       process = result;
-    });
+    })
+      .catch((err) => {
+        console.error('NodeJS Server error:', err);
+        reject(err);
+      });
   });
 };
 

@@ -17,6 +17,9 @@ export const mainWindow = {
   show() {
     return getCurrentWindow().show();
   },
+  center() {
+    return getCurrentWindow().center();
+  },
   clearInput() {
     window.dispatchEvent(new CustomEvent('clearInput'));
   },

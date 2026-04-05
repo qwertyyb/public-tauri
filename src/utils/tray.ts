@@ -3,6 +3,7 @@ import { Menu } from '@tauri-apps/api/menu';
 import { Image } from '@tauri-apps/api/image';
 import { resolveResource } from '@tauri-apps/api/path';
 import { getCurrentWindow } from '@tauri-apps/api/window';
+import { mainWindow } from '@public/core';
 
 const menu = await Menu.new({
   items: [
@@ -19,12 +20,16 @@ const menu = await Menu.new({
       },
     },
     {
-      text: 'separator-text',
-      item: 'Separator',
-    },
-    {
       id: 'settings',
       text: '设置',
+      action() {
+        mainWindow.pushView({ path: '/settings' });
+        mainWindow.show();
+      },
+    },
+    {
+      text: 'separator-text',
+      item: 'Separator',
     },
     {
       id: 'quit',

@@ -7,23 +7,31 @@ import * as core from '@public/core';
 import App from './App.vue';
 import './style.css';
 import { createDraggable } from './utils/draggable';
-import { registerMainShortcut } from './utils/shortcut';
 import { listenEvents } from './utils/events';
 import { init } from './plugin/manager';
 import { createTray } from './utils/tray';
 import { start as startServer } from './utils/server';
+import { getSettings, registerMainShortcut } from './services/settings';
 
 console.log('register core api');
 
+// @ts-expect-error
 window[CORE_API_KEY] = core;
 
 createDraggable();
-registerMainShortcut('Command+Command');
 listenEvents();
 createTray();
-// startServer().then(() => {
-init();
-// });
+
+if (import.meta.env.DEV) {
+  getSettings().then(settings => registerMainShortcut(settings.shortcuts));
+  init();
+} else {
+  startServer()
+    .then(() => {
+      getSettings().then(settings => registerMainShortcut(settings.shortcuts));
+      init();
+    });
+}
 
 const app = createApp(App);
 
