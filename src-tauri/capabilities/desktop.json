@@ -55,6 +55,8 @@
     "sql:allow-close",
     "autostart:allow-disable",
     "autostart:allow-enable",
-    "autostart:allow-is-enabled"
+    "autostart:allow-is-enabled",
+    "double-tap-shortcut:allow-register",
+    "double-tap-shortcut:allow-unregister"
   ]
 }

@@ -1,4 +1,4 @@
-import { register, unregister } from '@tauri-apps/plugin-global-shortcut';
+import { register, unregister } from '@public-tauri/plugin-double-tap-shortcut';
 import { getCurrentWindow } from '@tauri-apps/api/window';
 import { isTauri } from '@tauri-apps/api/core';
 

@@ -18,7 +18,7 @@ console.log('register core api');
 window[CORE_API_KEY] = core;
 
 createDraggable();
-registerMainShortcut('Command+Space');
+registerMainShortcut('Command+Command');
 listenEvents();
 createTray();
 // startServer().then(() => {

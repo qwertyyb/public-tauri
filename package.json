@@ -11,8 +11,9 @@
     "lint": "eslint --fix",
     "plugin:build": "pnpm --filter \"./plugins/*\" run build",
     "prepare-nodejs": "tsx scripts/prepare-nodejs.ts",
-    "preapp:build": "pnpm run prepare-nodejs && pnpm --filter './packages/template' --filter './src-node' --filter './plugins/*' run build",
-    "app:build": "pnpm tauri build"
+    "preapp:build": "pnpm run prepare-nodejs && pnpm --filter './packages/template' --filter './src-node' --filter './plugins/*' --filter 'wechat-qrcode' run build",
+    "app:build": "pnpm tauri build",
+    "postinstall": "pnpm preapp:build"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",

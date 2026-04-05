@@ -118,24 +118,21 @@ struct DoubleTapRegisteredEntry {
 }
 
 /// Wrapper to share state with the event handler via Arc
+#[derive(Clone)]
 struct SharedState {
-    inner: Mutex<DoubleTapStateInner>,
+    inner: Arc<Mutex<DoubleTapStateInner>>,
 }
-
-// Ensure SharedState can be safely shared across threads
-unsafe impl Send for SharedState {}
-unsafe impl Sync for SharedState {}
 
 // ============================================================================
 // Uiohook EventHandler implementation
 // ============================================================================
 
 struct KeyboardEventHandler {
-    shared: Arc<SharedState>,
+    shared: Arc<Mutex<DoubleTapStateInner>>,
 }
 
 impl KeyboardEventHandler {
-    fn new(shared: Arc<SharedState>) -> Self {
+    fn new(shared: Arc<Mutex<DoubleTapStateInner>>) -> Self {
         Self { shared }
     }
 
@@ -144,7 +141,7 @@ impl KeyboardEventHandler {
 
         // Determine if this is a double-tap and collect matching handlers (under lock)
         let should_fire: bool = {
-            let mut inner = self.shared.inner.lock().unwrap();
+            let mut inner = self.shared.lock().unwrap();
 
             // Find all registered shortcuts that match this key code
             let has_match = inner
@@ -178,7 +175,7 @@ impl KeyboardEventHandler {
 
         // Fire events outside the lock
         let matching_handlers: Vec<(String, Vec<Channel<DoubleTapJsEvent>>)> = {
-            let inner = self.shared.inner.lock().unwrap();
+            let inner = self.shared.lock().unwrap();
             inner
                 .shortcuts
                 .iter()
@@ -302,14 +299,14 @@ pub fn init<R: Runtime>() -> TauriPlugin<R> {
             is_registered,
         ])
         .setup(move |app, _api| {
-            let shared = Arc::new(SharedState {
-                inner: Mutex::new(DoubleTapStateInner {
+            let shared = SharedState {
+                inner: Arc::new(Mutex::new(DoubleTapStateInner {
                     shortcuts: HashMap::new(),
                     press_times: HashMap::new(),
-                }),
-            });
+                })),
+            };
 
-            let handler = KeyboardEventHandler::new(Arc::clone(&shared));
+            let handler = KeyboardEventHandler::new(shared.inner.clone());
             let uiohook = Uiohook::new(handler);
 
             // Start the uiohook (spawns internal thread)

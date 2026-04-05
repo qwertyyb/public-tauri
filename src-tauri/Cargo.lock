@@ -4007,11 +4007,11 @@ dependencies = [
  "tauri-nspanel",
  "tauri-plugin-autostart",
  "tauri-plugin-clipboard",
+ "tauri-plugin-double-tap-shortcut",
  "tauri-plugin-fs",
  "tauri-plugin-global-shortcut",
  "tauri-plugin-shell",
  "tauri-plugin-sql",
- "uiohook-rs",
  "xcap",
 ]
 
@@ -5462,6 +5462,19 @@ dependencies = [
  "tauri",
  "tauri-plugin",
  "thiserror 1.0.69",
+]
+
+[[package]]
+name = "tauri-plugin-double-tap-shortcut"
+version = "0.1.0"
+dependencies = [
+ "log",
+ "serde",
+ "serde_json",
+ "tauri",
+ "tauri-plugin",
+ "thiserror 2.0.16",
+ "uiohook-rs",
 ]
 
 [[package]]

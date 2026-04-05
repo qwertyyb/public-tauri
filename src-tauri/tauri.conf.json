@@ -35,9 +35,9 @@
       "binaries/node-v24.11.1"
     ]
   },
-  "productName": "tauri-macos-spotlight-app",
+  "productName": "Public-Tauri",
   "version": "0.2.0",
-  "identifier": "com.tauri.spotlight",
+  "identifier": "com.qwertyyb.public-tauri",
   "plugins": {},
   "app": {
     "windows": [

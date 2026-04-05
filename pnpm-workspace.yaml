@@ -9,11 +9,6 @@ packages:
   - plugins/*
   - src-tauri/plugins/double-tap-shortcut/guest-js
 
-onlyBuiltDependencies:
-  - better-sqlite3
-  - esbuild
-  - vue-demi
-
 catalog:
   typescript: ~5.9.2
 
