@@ -45,7 +45,6 @@ export const handleQuery = async (input: { keyword: string, files?: File[] }) =>
           icon: getLocalPath(item.icon, plugin.path),
         };
         results.push(result);
-        // inputCount += 1;
         resultsMap.set(result, { owner: plugin, query: '' });
       });
     });
@@ -182,6 +181,8 @@ export const handleSelect = (command: IPluginCommand, keyword: string) => {
 export const handleEnter = (command: IPluginCommand, keyword: string) => {
   const rp = resultsMap.get(command);
   if (!rp) return;
+
+  // 统一处理内置插件和动态插件
   enterCommand(rp.owner, command, rp.query ?? keyword, { from: 'search', match: rp.match, result: rp.result });
 };
 

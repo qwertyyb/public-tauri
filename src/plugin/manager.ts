@@ -9,8 +9,9 @@ import { preloadApp, setupApp, startApp } from 'wujie';
 import { parsePluginConfig, type IPluginManifest, type ICommand as IPluginCommand, type IPluginLifecycle, type IPreference, type ICommandActionOptions } from '@public/schema';
 import logger from '@/utils/logger';
 import type { IRunningPlugin, IPluginsSettings, IPluginSettings, ICommandSettings } from '@/types/plugin';
+import { BUILTIN_PLUGINS } from './builtin';
 
-const plugins: Map<string, IRunningPlugin> = new Map();
+const plugins: Map<string, IRunningPlugin> = new Map(BUILTIN_PLUGINS);
 let pluginsSettings: IPluginsSettings = {};
 
 const save = () => storage.setItem('pluginsSettings', pluginsSettings);
@@ -402,7 +403,7 @@ const getBuiltinPluginsBasePath = async () => {
 };
 
 const initInnerPlugins = async () => {
-  const names = ['clipboard', 'translate', 'launcher', 'calculator', 'transform', 'ai', 'settings', 'snippets', 'qrcode', 'v2ex', 'magic', 'mdn', 'applescript', 'snippets', 'emoji'];
+  const names = ['clipboard', 'translate', 'launcher', 'calculator', 'transform', 'ai', 'snippets', 'qrcode', 'v2ex', 'magic', 'mdn', 'applescript', 'snippets', 'emoji'];
 
   const basePath = await getBuiltinPluginsBasePath();
   logger.info('initInnerPlugins', basePath);
