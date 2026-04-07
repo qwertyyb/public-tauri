@@ -119,7 +119,7 @@ onBeforeUnmount(() => {
   display: flex;
   flex-direction: column;
   height: 100%;
-	color: light-dark(#444, #ccc);
+	color: light-dark(#444, #fff);
   --nav-width: 36px;
   --input-bar-height: 48px;
   .result-view, .empty-view {

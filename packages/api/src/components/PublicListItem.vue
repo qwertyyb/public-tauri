@@ -114,6 +114,7 @@ defineEmits<{
   font-size: 14px;
   font-weight: 500;
   margin-bottom: 4px;
+  margin-top: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -127,6 +128,7 @@ defineEmits<{
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin: 0;
 }
 .item-actions {
   display: flex;

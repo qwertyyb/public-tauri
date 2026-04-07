@@ -27,5 +27,8 @@ body {
   margin: 0;
   padding: 0;
 }
+:root {
+  color-scheme: light dark;
+}
 </style>
 
