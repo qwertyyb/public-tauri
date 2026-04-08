@@ -32,6 +32,7 @@ tauri-plugin-fs = "2"
 tauri-plugin-shell = "2"
 tauri-plugin-sql = { version = "2", features = ["sqlite"] }
 xcap = "0.7.0"
+tokio = { version = "1", features = ["time"] }
 
 # 内建 double-tap-shortcut 插件 (workspace member)
 tauri-plugin-double-tap-shortcut = { path = "plugins/double-tap-shortcut" }

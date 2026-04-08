@@ -4034,6 +4034,7 @@ dependencies = [
  "tauri-plugin-global-shortcut",
  "tauri-plugin-shell",
  "tauri-plugin-sql",
+ "tokio",
  "xcap",
 ]
 
