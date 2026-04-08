@@ -4,4 +4,8 @@ import CreateScriptCommand from './CreateScriptCommand.vue';
 <template>
   <CreateScriptCommand />
 </template>
-<style scoped></style>
+<style>
+:root {
+  color-scheme: light dark;
+}
+</style>

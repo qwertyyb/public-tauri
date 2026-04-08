@@ -34,13 +34,16 @@
         }
       ]
     },
-    "fs:default",
-    "fs:allow-resource-read-recursive",
+    "fs:read-all",
+    "fs:write-all",
     {
       "identifier": "fs:scope",
       "allow": [
         {
           "path": "$HOME/**/*"
+        },
+        {
+          "path": "$RESOURCE/**/*"
         }
       ]
     },

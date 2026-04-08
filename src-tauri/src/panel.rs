@@ -70,8 +70,8 @@ pub fn setup_panel(app: &mut App) {
 
 /// 同步检查当前 Key Window（在子线程中被调用）
 fn check_key_window_now() -> bool {
-    use tauri_nspanel::objc2_app_kit::{NSApplication, NSWindow};
     use tauri_nspanel::objc2::{class, msg_send};
+    use tauri_nspanel::objc2_app_kit::{NSApplication, NSWindow};
 
     unsafe {
         let app: *const NSApplication = msg_send![class!(NSApplication), sharedApplication];
