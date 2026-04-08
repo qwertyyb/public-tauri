@@ -14,9 +14,13 @@ use std::{
 
 use serde::Serialize;
 #[cfg(not(any(target_os = "android", target_os = "ios")))]
-use tauri::{ipc::Channel, plugin::{Builder as PluginBuilder, TauriPlugin}, AppHandle, Manager, Runtime, State};
+use tauri::{
+    ipc::Channel,
+    plugin::{Builder as PluginBuilder, TauriPlugin},
+    AppHandle, Manager, Runtime, State,
+};
 use uiohook_rs::{
-    hook::keyboard::{KeyboardEventType, KeyCode},
+    hook::keyboard::{KeyCode, KeyboardEventType},
     EventHandler, Uiohook, UiohookEvent,
 };
 
@@ -253,17 +257,17 @@ fn unregister<R: Runtime>(
     for shortcut_str in shortcuts {
         let shortcut = parse_shortcut(&shortcut_str)?;
         if inner.shortcuts.remove(&shortcut.display_name).is_some() {
-            log::info!("[double-tap-shortcut] Unregistered: {}", shortcut.display_name);
+            log::info!(
+                "[double-tap-shortcut] Unregistered: {}",
+                shortcut.display_name
+            );
         }
     }
     Ok(())
 }
 
 #[tauri::command]
-fn unregister_all<R: Runtime>(
-    _app: AppHandle<R>,
-    state: State<'_, SharedState>,
-) -> Result<()> {
+fn unregister_all<R: Runtime>(_app: AppHandle<R>, state: State<'_, SharedState>) -> Result<()> {
     let mut inner = state.inner.lock().unwrap();
     let count = inner.shortcuts.len();
     inner.shortcuts.clear();

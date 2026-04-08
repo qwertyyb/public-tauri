@@ -37,7 +37,7 @@
     "fs:default",
     "fs:allow-resource-read-recursive",
     {
-      "identifier": "fs:allow-read-text-file",
+      "identifier": "fs:scope",
       "allow": [
         {
           "path": "$HOME/**/*"
@@ -57,6 +57,7 @@
     "autostart:allow-enable",
     "autostart:allow-is-enabled",
     "double-tap-shortcut:allow-register",
-    "double-tap-shortcut:allow-unregister"
+    "double-tap-shortcut:allow-unregister",
+    "dialog:default"
   ]
 }

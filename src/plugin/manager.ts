@@ -1,5 +1,5 @@
 import path, { join } from 'path-browserify';
-import { clipboard, dialog, fetch, globalShortcut, mainWindow, utils, Database, screen, createPluginStorage, registerServerModule, invokePluginServerMethod, createPluginServerListener, storage } from '@public/core';
+import { clipboard, dialog, fetch, globalShortcut, mainWindow, utils, Database, screen, createPluginStorage, registerServerModule, invokePluginServerMethod, createPluginServerListener, storage, showSaveFilePicker } from '@public/core';
 import { readTextFile } from '@tauri-apps/plugin-fs';
 import { formatCommand, getLocalPath, openCommandPreferences, openPluginPreferences, popView, pushView, withCache } from './utils';
 import { set } from 'es-toolkit/compat';
@@ -51,6 +51,7 @@ export const createWujie = (name: string, entryUrl: string, options?: {
       createPlugin: (options: IPluginLifecycle) => {
         Object.assign(lifecycle, { ...options });
       },
+      showSaveFilePicker,
     },
     plugins: options?.insertScript ? [
       {
@@ -132,7 +133,7 @@ export const registerPlugin = async (pluginPath: string) => {
       }
     }
     if (html) {
-      const entryUrl = getEntryUrl(name, path.join('/', html || '/index.html'));
+      const entryUrl =  /^https?:\/\//.test(html || '') ? html : getEntryUrl(name, path.join('/', html || '/index.html'));
       const { lifecycle } = createWujie(name, entryUrl);
       pluginInstance.lifecycle = lifecycle;
       pluginInstance.entryUrl = entryUrl;
@@ -403,7 +404,7 @@ const getBuiltinPluginsBasePath = async () => {
 };
 
 const initInnerPlugins = async () => {
-  const names = ['clipboard', 'translate', 'launcher', 'calculator', 'transform', 'ai', 'snippets', 'qrcode', 'v2ex', 'magic', 'mdn', 'applescript', 'snippets', 'emoji'];
+  const names = ['clipboard', 'translate', 'launcher', 'calculator', 'transform', 'ai', 'snippets', 'qrcode', 'v2ex', 'magic', 'mdn', 'applescript', 'snippets', 'emoji', 'script-commands'];
 
   const basePath = await getBuiltinPluginsBasePath();
   logger.info('initInnerPlugins', basePath);

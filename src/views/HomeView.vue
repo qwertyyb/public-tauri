@@ -73,6 +73,7 @@ onMounted(async () => {
   window.addEventListener('plugin:showCommands', setPluginResults);
   window.addEventListener('publicApp.mainWindow.show', focusInput);
   unlistenFocusChange = await getCurrentWindow().onFocusChanged(({ payload: focused }) => {
+    console.log('currentWindow onFocusChanged', focused);
     if (focused) {
       focusInput();
     }

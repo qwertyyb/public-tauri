@@ -38,12 +38,10 @@ pub fn setup_panel(app: &mut App) {
 
     panel.set_event_handler(Some(handler.as_protocol_object()));
 
-
     let handle1 = handle.clone();
-    handler.window_did_become_key(move |_notification | {
+    handler.window_did_become_key(move |_notification| {
         let _ = handle1.emit_to("main", "focus", true);
     });
-
 
     let handle1 = handle.clone();
     handler.window_did_resign_key(move |_notification| {

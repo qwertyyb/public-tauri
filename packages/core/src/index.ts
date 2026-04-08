@@ -1,3 +1,5 @@
+export { save as showSaveFilePicker } from '@tauri-apps/plugin-dialog';
+
 export * from './core';
 export * from './storage';
 export * from './utils';
