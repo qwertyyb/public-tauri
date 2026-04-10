@@ -13,17 +13,26 @@
       @enter="onResultEnter"
       @action="onResultAction"
     />
+    <ActionBar
+      :left-action-panel="leftActionPanel"
+      :right-action-panel="rightActionPanel"
+      :main-action="mainAction"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 import InputBar from '@/components/InputBar.vue';
 import ResultView from '@/components/ResultView.vue';
+import ActionBar, { type ActionPanel, type Action } from '@/components/ActionBar.vue';
 import * as service from '@/services';
 import type { UnlistenFn } from '@tauri-apps/api/event';
 import { getCurrentWindow } from '@tauri-apps/api/window';
 import { onBeforeUnmount, onMounted, ref, toRaw, watch } from 'vue';
 import type { ICommand as IPluginCommand, IActionItem } from '@public/schema';
+import { useRouter } from '@/router';
+import { showConfirm } from '@/utils/feedback';
+import { exit } from '@tauri-apps/plugin-process';
 
 const results = ref<IPluginCommand[]>([]);
 const preview = ref<string | HTMLElement | undefined>('');
@@ -47,7 +56,27 @@ const onResultEnter = (_item: IPluginCommand | null, itemIndex: number) => {
 };
 
 const onResultSelected = async (_item: IPluginCommand | null, itemIndex: number) => {
-  preview.value = await service.select(toRaw(results.value[itemIndex]), input.value.keyword);
+  const item = toRaw(results.value[itemIndex]);
+  preview.value = await service.select(item, input.value.keyword);
+  console.log('item', item);
+  // 将 item 的 actions 转换为 ActionPanel 格式
+  if (item?.actions?.length) {
+    const actionItems: Action[] = item.actions.map(a => ({
+      icon: a.icon || 'extension',
+      label: a.title || a.name,
+      action: () => onResultAction(item, itemIndex, { name: a.name, icon: a.icon!, title: a.title || a.name, shortcut: a.shortcut }),
+    }));
+    // 第一个 action 作为 mainAction
+    const [firstAction, ...restActions] = actionItems;
+    mainAction.value = firstAction;
+    // 其余的作为 rightActionPanel
+    rightActionPanel.value = {
+      actions: restActions,
+    };
+  } else {
+    mainAction.value = undefined;
+    rightActionPanel.value = undefined;
+  }
 };
 
 const onResultAction = async (item: IPluginCommand, _itemIndex: number, action: IActionItem) => {
@@ -66,6 +95,29 @@ declare global {
     'plugin:showCommands': CustomEvent<{ name: string, commands: IPluginCommand[] }>;
   }
 }
+
+const router = useRouter();
+
+const quitApp = async () => {
+  try {
+    await showConfirm('Are you sure you want to quit Public?', 'Quit', { type: 'warning', confirmText: 'Quit', cancelText: 'Cancel' });
+    await exit(0);
+  } catch {
+    // user cancelled
+  }
+};
+
+const leftActionPanel: ActionPanel = {
+  title: 'Public V1.0.0',
+  actions: [
+    { icon: 'settings', label: 'Settings', action: () => router?.pushView('/settings') },
+    { icon: 'info', label: 'About Public', action: () => router?.pushView('/about') },
+    { icon: 'exit_to_app', label: 'Quit Public', styleType: 'danger', action: quitApp },
+  ],
+};
+
+const rightActionPanel = ref<ActionPanel | undefined>();
+const mainAction = ref<Action | undefined>();
 
 let unlistenFocusChange: UnlistenFn;
 
