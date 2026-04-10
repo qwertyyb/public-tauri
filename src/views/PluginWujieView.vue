@@ -50,6 +50,7 @@ const leftActionPanel = computed<ActionPanel>(() => ({
 }));
 
 onMounted(() => {
+  console.log('props', props);
   props.wujie.mount(container.value!);
 });
 
@@ -61,9 +62,10 @@ onBeforeUnmount(() => {
 <style lang="scss" scoped>
 .plugin-wujie-view {
   height: 100vh;
+  overflow: hidden;
 }
 .wujie-container {
-  height: calc(100% - 36px);
+  height: calc(100% - var(--action-bar-height));
 }
 .command-icon {
   width: 16px;

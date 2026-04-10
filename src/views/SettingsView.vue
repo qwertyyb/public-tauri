@@ -239,19 +239,26 @@
       </div>
     </div>
   </div>
+  <ActionBar
+    :left-action-panel="leftActionPanel"
+  />
 </template>
 
 <script lang="ts" setup>
 import { computed, ref, toRaw } from 'vue';
 import { ElMessage, ElButton, ElSelect, ElSwitch, ElOption, ElInput, ElForm, ElFormItem, ElIcon } from 'element-plus';
 import { ArrowRightBold, Plus, Delete, Operation } from '@element-plus/icons-vue';
+import ActionBar from '@/components/ActionBar.vue';
 import ShortcutsRecorder from '@/components/HotkeyRecorder.vue';
 import type { ICommand as IPluginCommand } from '@public/schema';
+import { useAppActionBar } from '@/composables/useAppActionBar';
 import type { IRunningPlugin, ICommandSettings } from '@/types/plugin';
 import { getSettings, updateSettings, getPlugins, updateMainShortcut } from '@/services/settings';
 import { onPageEnter, useRouter } from '@/router';
 import { unregisterPlugin, updateCommandSettings, updateCommandShortcut, updatePluginPreferences, updatePluginSettings } from '@/plugin/manager';
 import { openCommandPreferences, openPluginPreferences } from '@/plugin/utils';
+
+const { leftActionPanel } = useAppActionBar();
 
 const views = ref({
   common: '通用',
@@ -403,6 +410,7 @@ onPageEnter(() => {
   --nav-height: 48px;
   height: 100vh;
   padding-top: var(--nav-height);
+  padding-bottom: var(--action-bar-height);
   box-sizing: border-box;
   display: flex;
 }
@@ -412,7 +420,7 @@ onPageEnter(() => {
 .panel-list {
   width: 200px;
   text-align: center;
-  border-right: 1px solid var(--border-color);
+  border-right: 1px solid light-dark(rgba(0, 0, 0, 0.06), rgba(255, 255, 255, 0.06));
   .panel-item {
     height: 42px;
     line-height: 42px;

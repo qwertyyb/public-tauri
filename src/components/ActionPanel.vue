@@ -108,6 +108,10 @@ const handleClick = (item: Action) => {
 <style lang="scss" scoped>
 .action-panel-container {
   display: contents;
+  * {
+    user-select: none;
+    -webkit-user-select: none;
+  }
 }
 
 .action-bar-action {

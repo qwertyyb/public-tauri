@@ -5,7 +5,7 @@
       v-model="keyword"
       @escape="exitCommand"
     />
-    <LoadingBar v-if="loadingCount > 0" />
+    <LoadingBar :loading="loadingCount > 1" />
     <EmptyView
       v-if="!loadingCount && !results.length"
       class="empty-view"
@@ -122,6 +122,7 @@ onBeforeUnmount(() => {
 	color: light-dark(#444, #fff);
   --nav-width: 36px;
   --input-bar-height: 48px;
+  position: relative;
   .result-view, .empty-view {
     padding-top: var(--input-bar-height, 48px);
     box-sizing: border-box;

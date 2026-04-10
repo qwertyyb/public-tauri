@@ -39,6 +39,12 @@
             ],
             "title": "生成二维码“$query”"
           }
+        ],
+        "actions": [
+          {
+            "name": "copy-to-clipboard",
+            "title": "复制到剪切板"
+          }
         ]
       },
       {
@@ -52,6 +58,12 @@
             "keywords": [
               "qrcu"
             ]
+          }
+        ],
+        "actions": [
+          {
+            "name": "copy-to-clipboard",
+            "title": "复制到剪切板"
           }
         ]
       },

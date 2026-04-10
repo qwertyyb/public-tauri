@@ -22,6 +22,7 @@
     <div
       v-if="mainAction"
       class="main-action"
+      @click="mainAction.action?.()"
     >
       <span class="main-action-label">{{ mainAction.label }}</span>
       <span class="main-action-key">↵</span>
@@ -92,11 +93,15 @@ const togglePanel = (panel: 'left' | 'right') => {
   border-top: 1px solid light-dark(rgba(0, 0, 0, 0.06), rgba(255, 255, 255, 0.06));
   align-items: center;
   padding: 0 8px;
-  position: sticky;
+  position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   z-index: 100;
+  * {
+    user-select: none;
+    -webkit-user-select: none;
+  }
 
   .logo {
     width: 18px;

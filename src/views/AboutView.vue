@@ -22,6 +22,9 @@
         View on GitHub
       </a>
     </div>
+    <ActionBar
+      :left-action-panel="leftActionPanel"
+    />
   </div>
 </template>
 
@@ -30,6 +33,8 @@ import { ref, onMounted } from 'vue';
 import { getName, getVersion, getTauriVersion } from '@tauri-apps/api/app';
 import { open } from '@tauri-apps/plugin-shell';
 import logoUrl from '@/assets/logo.png';
+import ActionBar from '@/components/ActionBar.vue';
+import { useAppActionBar } from '@/composables/useAppActionBar';
 
 const repoUrl = 'https://github.com/qwertyyb/public-tauri';
 
@@ -40,6 +45,8 @@ const openRepo = async () => {
 const name = ref('');
 const version = ref('');
 const tauriVersion = ref('');
+
+const { leftActionPanel } = useAppActionBar();
 
 onMounted(async () => {
   const [appName, appVersion, frameworkVersion] = await Promise.all([
@@ -56,13 +63,20 @@ onMounted(async () => {
 
 <style lang="scss" scoped>
 .about-view {
-  height: 100vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+  padding-bottom: var(--action-bar-height);
+  padding-top: var(--nav-height);
+  overflow: auto;
 }
 
 .about-content {
+  height: calc(100vh - var(--action-bar-height) - var(--nav-height));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
 }
 
