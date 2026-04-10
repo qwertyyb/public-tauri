@@ -124,7 +124,7 @@ export const registerPlugin = async (pluginPath: string) => {
             commands.forEach((command) => {
               const item = formatCommand(command, manifest, pluginPath);
               list.push(item);
-              resultsMap.set(item, { owner: pluginInstance });
+              resultsMap.set(item, { owner: pluginInstance, command: item });
             });
             window.dispatchEvent(new CustomEvent('plugin:showCommands', { detail: { name: manifest.name, commands: list } }));
           },
@@ -405,7 +405,7 @@ const getBuiltinPluginsBasePath = async () => {
 };
 
 const initInnerPlugins = async () => {
-  const names = ['clipboard', 'translate', 'launcher', 'calculator', 'transform', 'ai', 'snippets', 'qrcode', 'v2ex', 'magic', 'mdn', 'applescript', 'snippets', 'emoji', 'script-commands'];
+  const names = ['clipboard', 'translate', 'launcher', 'calculator', 'transform', 'snippets', 'qrcode', 'v2ex', 'magic', 'mdn', 'applescript', 'snippets', 'emoji', 'script-commands'];
 
   const basePath = await getBuiltinPluginsBasePath();
   logger.info('initInnerPlugins', basePath);

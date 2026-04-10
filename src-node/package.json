@@ -23,7 +23,6 @@
     "@koa/bodyparser": "^6.0.0",
     "@koa/cors": "^5.0.0",
     "@koa/router": "^13.1.1",
-    "@modelcontextprotocol/sdk": "^1.22.0",
     "@nut-tree-fork/nut-js": "^4.2.6",
     "better-sqlite3": "^12.2.0",
     "fs-extra": "^11.3.1",

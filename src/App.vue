@@ -7,21 +7,17 @@ import RoutePage from '@/components/RoutePage.vue';
 import { computed, nextTick, onBeforeUnmount, provide, shallowRef, useTemplateRef, type Component } from 'vue';
 import { routerSymbol } from './router';
 import { showAlert, showConfirm, showToast } from '@/utils/feedback';
-import AIChatView from '@/views/AIChatView.vue';
 import PluginWujieView from '@/views/PluginWujieView.vue';
-import MCPConfigView from '@/views/MCPConfigView.vue';
 import { isKeyPressed } from '@/utils/keyboard';
 
 const hash = location.hash.substring(1);
 
 const routes: Record<string, Component | undefined> = {
   '/': HomeView,
-  '/ai/chat': AIChatView,
   '/plugin/prfs': PluginPrfsView,
   '/settings': SettingsView,
   '/about': AboutView,
   '/plugin/view/wujie': PluginWujieView,
-  '/mcp/config': MCPConfigView,
 };
 
 const pages = useTemplateRef('page');

@@ -6,7 +6,6 @@ import { createServer } from 'http';
 
 import managerRoutes from './routes/manager';
 import utilsRouter from './routes/utils';
-import mcpRouter from './routes/mcp';
 import healthRouter from './routes/health';
 
 import createLoggerMiddleware from './middlewares/log';
@@ -32,7 +31,6 @@ app.use(createPluginMiddleware());
 
 app.use(managerRoutes.routes()).use(managerRoutes.allowedMethods());
 app.use(utilsRouter.routes()).use(utilsRouter.allowedMethods());
-app.use(mcpRouter.routes()).use(mcpRouter.allowedMethods());
 app.use(healthRouter.routes()).use(healthRouter.allowedMethods());
 
 // app.callback 的类型定义有问题，先 disable 一下
