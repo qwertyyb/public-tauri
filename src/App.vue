@@ -285,5 +285,12 @@ dialog {
   --item-height: 54px;
   --action-bar-height: 42px;
   --divider-color: light-dark(rgba(0, 0, 0, 0.06), rgba(255, 255, 255, 0.06));
+  --action-panel-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --action-panel-shadow: 0 0 16px rgba(0, 0, 0, 0.4);
+  }
 }
 </style>

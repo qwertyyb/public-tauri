@@ -1,6 +1,9 @@
 <template>
   <div class="public-layout">
-    <div class="layout-top">
+    <div
+      v-if="!noTop"
+      class="layout-top"
+    >
       <slot name="top" />
     </div>
     <div class="layout-divider" />
@@ -36,6 +39,7 @@ defineProps<{
   leftActionPanel?: ActionPanel;
   rightActionPanel?: ActionPanel;
   mainAction?: Action;
+  noTop?: boolean;
 }>();
 </script>
 
@@ -60,9 +64,6 @@ defineProps<{
 .layout-top {
   flex-shrink: 0;
   height: var(--nav-height);
-  &:empty {
-    display: none;
-  }
 }
 .layout-divider {
   flex-shrink: 0;

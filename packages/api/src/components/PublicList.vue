@@ -25,11 +25,6 @@
         />
       </VList>
     </div>
-    <!-- <ActionList
-      v-if="visibleActionIndex === selectedIndex && (selectedItem?.actions?.length || 0) > 0"
-      :actions="selectedItem.actions!"
-      @action="onResultAction"
-    /> -->
     <ResultItemPreview
       v-if="results.length && preview"
       :html="preview"
@@ -41,7 +36,6 @@
 import { computed, onBeforeMount, onMounted, ref, useTemplateRef, watch } from 'vue';
 import { VList } from 'virtua/vue';
 import ListItem from './PublicListItem.vue';
-// import ActionList, { type IActionItem } from '@/components/ActionList.vue';
 import type { IActionItem } from '@public/schema';
 import ResultItemPreview from './PublicListItemDetail.vue';
 

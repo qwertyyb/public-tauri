@@ -1,5 +1,8 @@
 <template>
-  <PublicLayout :left-action-panel="leftActionPanel">
+  <PublicLayout
+    :left-action-panel="leftActionPanel"
+    no-top
+  >
     <template #action-left-trigger>
       <img
         :src="command.icon || plugin.manifest.icon"
