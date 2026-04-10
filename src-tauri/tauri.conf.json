@@ -43,7 +43,7 @@
     "windows": [
       {
         "fullscreen": false,
-        "height": 580,
+        "height": 576,
         "width": 760,
         "resizable": false,
         "decorations": false,

@@ -48,6 +48,13 @@ export const commandMatchSchema = z.union([
   commandFileMatchSchema,
 ]);
 
+const actionSchema = z.object({
+  name: z.string('Action的名字，作为唯一标识'),
+  title: z.string('Action的标题，用于在用户界面上显示，不填写时默认使用name').optional(),
+  icon: z.string('Action的图标，用于在用户界面上显示').optional(),
+  shortcut: z.string('Action的快捷键，用于在用户界面上显示').optional(),
+});
+
 export const commandSchema = z.object({
   name: z.string('插件内命令的唯一名称'),
   title: z.string('命令标题，用于在应用商店中显示和在偏好设置中显示').max(60),
@@ -58,6 +65,7 @@ export const commandSchema = z.object({
   mode: z.enum(['listView', 'none', 'view'], '命令类型, template 为 listView 时，只能为 listView 或 none').default('none')
     .optional(),
   preferences: z.array(preferenceSchema, '命令的偏好设置').optional(),
+  actions: z.array(actionSchema, '命令的动作列表').optional(),
   matches: z.array(commandMatchSchema, '命令匹配规则列表，用于定义该命令如何被用户输入触发。支持多种匹配类型：text（关键词）、trigger（触发器）、full（完全匹配）、regexp（正则表达式）、file（文件匹配）').optional(),
 });
 

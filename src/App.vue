@@ -2,6 +2,7 @@
 import HomeView from '@/views/HomeView.vue';
 import PluginPrfsView from '@/views/PluginPrfsView.vue';
 import SettingsView from '@/views/SettingsView.vue';
+import AboutView from '@/views/AboutView.vue';
 import RoutePage from '@/components/RoutePage.vue';
 import { computed, nextTick, onBeforeUnmount, provide, shallowRef, useTemplateRef, type Component } from 'vue';
 import { routerSymbol } from './router';
@@ -18,6 +19,7 @@ const routes: Record<string, Component | undefined> = {
   '/ai/chat': AIChatView,
   '/plugin/prfs': PluginPrfsView,
   '/settings': SettingsView,
+  '/about': AboutView,
   '/plugin/view/wujie': PluginWujieView,
   '/mcp/config': MCPConfigView,
 };
@@ -278,4 +280,12 @@ dialog {
   border-color: light-dark(#ececec, #464646);
 }
 
+</style>
+
+<style>
+:root {
+  --nav-height: 48px;
+  --item-height: 54px;
+  --action-bar-height: 42px;
+}
 </style>

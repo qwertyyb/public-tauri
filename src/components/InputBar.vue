@@ -188,7 +188,7 @@ onPageLeave(() => {
 
 <style lang="scss" scoped>
 .input-bar {
-  --bar-height: 48px;
+  --bar-height: var(--nav-height);
   --padding-left: calc(var(--nav-width, 0px) + 16px);
   height: var(--bar-height);
   min-height: var(--bar-height);

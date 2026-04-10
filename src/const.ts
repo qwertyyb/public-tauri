@@ -155,4 +155,5 @@ window.AI_TOOLS = AI_TOOLS;
 
 export const EVENT_NAME = {
   FOCUSED: 'window:focused',
+  BLURRED: 'window:blurred',
 } as const;

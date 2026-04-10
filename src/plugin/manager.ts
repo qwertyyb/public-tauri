@@ -358,7 +358,7 @@ export const enterCommand = async (owner: IRunningPlugin, command: IPluginComman
         owner.lifecycle?.onExit?.(command);
       },
     };
-    pushView({ path: '/plugin/view/wujie', params: { wujie } });
+    pushView({ path: '/plugin/view/wujie', params: { wujie, plugin: owner, command } });
   }
 };
 

@@ -71,10 +71,10 @@ defineEmits<{
   scroll-snap-align: start;
   display: flex;
   align-items: center;
-  height: 54px;
+  height: var(--item-height);
   max-width: 100%;
   content-visibility: auto;
-  contain-intrinsic-size: 54px;
+  contain-intrinsic-size: var(--item-height);
   transition: all .1s;
   padding: 0 16px;
   box-sizing: border-box;
