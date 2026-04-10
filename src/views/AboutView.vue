@@ -73,6 +73,9 @@ onMounted(async () => {
   height: 80px;
   border-radius: 18px;
   margin-bottom: 20px;
+  @media (prefers-color-scheme: dark) {
+    filter: brightness(0) invert(1);
+  }
 }
 
 .app-name {
