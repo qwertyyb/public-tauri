@@ -195,7 +195,6 @@ onPageLeave(() => {
   max-height: var(--bar-height);
   position: relative;
   z-index: 100;
-  border-bottom: 1px solid light-dark(rgba(0, 0, 0, 0.06), rgba(255, 255, 255, 0.06));
   display: flex;
   align-items: center;
   padding-left: 16px;

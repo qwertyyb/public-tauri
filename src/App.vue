@@ -280,8 +280,10 @@ dialog {
 
 <style>
 :root {
+  --page-height: 578px;
   --nav-height: 48px;
   --item-height: 54px;
   --action-bar-height: 42px;
+  --divider-color: light-dark(rgba(0, 0, 0, 0.06), rgba(255, 255, 255, 0.06));
 }
 </style>

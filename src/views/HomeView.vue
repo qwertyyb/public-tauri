@@ -1,10 +1,16 @@
 <template>
-  <div class="home-view">
-    <InputBar
-      v-model="input"
-      class="input-bar"
-      is-main-input
-    />
+  <PublicLayout
+    :left-action-panel="leftActionPanel"
+    :right-action-panel="rightActionPanel"
+    :main-action="mainAction"
+  >
+    <template #top>
+      <InputBar
+        v-model="input"
+        class="input-bar"
+        is-main-input
+      />
+    </template>
     <ResultView
       :results="results"
       :preview="preview"
@@ -13,18 +19,13 @@
       @enter="onResultEnter"
       @action="onResultAction"
     />
-    <ActionBar
-      :left-action-panel="leftActionPanel"
-      :right-action-panel="rightActionPanel"
-      :main-action="mainAction"
-    />
-  </div>
+  </PublicLayout>
 </template>
 
 <script setup lang="ts">
 import InputBar from '@/components/InputBar.vue';
 import ResultView from '@/components/ResultView.vue';
-import ActionBar from '@/components/ActionBar.vue';
+import PublicLayout from '@/components/PublicLayout.vue';
 import { type ActionPanel, type Action } from '@/components/ActionBar.vue';
 import * as service from '@/services';
 import type { UnlistenFn } from '@tauri-apps/api/event';
@@ -138,17 +139,3 @@ onBeforeUnmount(() => {
   unlistenFocusChange?.();
 });
 </script>
-
-<style lang="scss" scoped>
-.home-view {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  padding-bottom: var(--action-bar-height);
-	color: light-dark(#444, #ccc);
-  // background-color: light-dark(#e5e8e8, #161616);
-}
-.home-view > :deep(*) {
-  width: 100%;
-}
-</style>

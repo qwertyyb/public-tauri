@@ -90,7 +90,6 @@ const togglePanel = (panel: 'left' | 'right') => {
   height: var(--bar-height);
   min-height: var(--bar-height);
   justify-content: space-between;
-  border-top: 1px solid light-dark(rgba(0, 0, 0, 0.06), rgba(255, 255, 255, 0.06));
   align-items: center;
   padding: 0 8px;
   position: fixed;

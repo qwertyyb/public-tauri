@@ -1,24 +1,23 @@
 <template>
-  <div class="plugin-wujie-view">
+  <PublicLayout :left-action-panel="leftActionPanel">
+    <template #action-left-trigger>
+      <img
+        :src="command.icon || plugin.manifest.icon"
+        alt=""
+        class="command-icon"
+      >
+      <span class="command-title">{{ command.title }}</span>
+    </template>
     <div
       ref="wujie"
       class="wujie-container"
     />
-    <ActionBar :left-action-panel="leftActionPanel">
-      <template #left-trigger>
-        <img
-          :src="command.icon || plugin.manifest.icon"
-          alt=""
-          class="command-icon"
-        >
-        <span class="command-title">{{ command.title }}</span>
-      </template>
-    </ActionBar>
-  </div>
+  </PublicLayout>
 </template>
 
 <script setup lang="ts">
-import ActionBar, { type ActionPanel } from '@/components/ActionBar.vue';
+import PublicLayout from '@/components/PublicLayout.vue';
+import type { ActionPanel } from '@/components/ActionBar.vue';
 import type { IRunningPlugin } from '@/types/plugin';
 import type { ICommand } from '@public/schema';
 import { computed, onBeforeUnmount, onMounted, useTemplateRef } from 'vue';
@@ -60,12 +59,8 @@ onBeforeUnmount(() => {
 </script>
 
 <style lang="scss" scoped>
-.plugin-wujie-view {
-  height: 100vh;
-  overflow: hidden;
-}
 .wujie-container {
-  height: calc(100% - var(--action-bar-height));
+  height: 100%;
 }
 .command-icon {
   width: 16px;

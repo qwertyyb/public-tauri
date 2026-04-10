@@ -1,236 +1,235 @@
 <template>
-  <div class="settings-view">
-    <ul class="panel-list">
-      <li
-        v-for="(label, keyName) in views"
-        :key="keyName"
-        class="panel-item"
-        :class="{
-          'active': curView === keyName,
-        }"
-        @click="curView=keyName"
-      >
-        {{ label }}
-      </li>
-    </ul>
-    <div class="settings-view-main flex-1 h-full overflow-auto">
-      <div
-        v-if="curView === 'common'"
-        class="settings-panel"
-      >
-        <el-form label-width="180px">
-          <el-form-item label="开机启动">
-            <el-switch
-              v-model="settings.launchAtLogin"
-              :active-value="true"
-              :inactive-value="false"
-              @change="onLaunchAtLoginChange"
-            />
-          </el-form-item>
-          <el-form-item label="快捷键">
-            <ShortcutsRecorder
-              v-model="settings.shortcuts"
-              size="large"
-              class="main-shortcuts"
-              @update:model-value="onShortcutsChange"
-            />
-          </el-form-item>
-          <el-form-item label="清除超时">
-            <div class="w-64">
-              <el-select
-                v-model="settings.clearTimeout"
-                style="width:200px"
-                @change="onClearTimeoutChange"
-              >
-                <el-option
-                  :value="0"
-                  label="即时"
-                />
-                <el-option
-                  :value="5"
-                  label="5 秒后"
-                />
-                <el-option
-                  :value="30"
-                  label="30 秒后"
-                />
-                <el-option
-                  :value="90"
-                  label="90 秒后"
-                />
-                <el-option
-                  :value="180"
-                  label="3 分钟后"
-                />
-                <el-option
-                  :value="600"
-                  label="10 分钟后"
-                />
-                <el-option
-                  :value="-1"
-                  label="永不"
-                />
-              </el-select>
-            </div>
-          </el-form-item>
-        </el-form>
-      </div>
-      <div
-        v-else-if="curView==='plugins'"
-        class="settings-panel"
-      >
-        <div class="panel-header">
-          插件管理
-          <el-button
-            :icon="Plus"
-            circle
-            size="small"
-            @click="onAddPluginClick"
-          />
-        </div>
-        <ul class="plugin-list">
-          <li
-            v-for="(plugin, index) in plugins"
-            :key="plugin.path"
-            class="plugin-item"
-          >
-            <div class="plugin-item-self">
-              <el-icon
-                class="plugin-expand-icon"
-                :size="14"
-                :class="{ expanded: expand[plugin.manifest.name], hidden: plugin.commands.length <= 0 }"
-                @click="onExpandPluginClick(plugin)"
-              >
-                <ArrowRightBold />
-              </el-icon>
-              <img
-                :src="plugin.manifest.icon"
-                alt=""
-                class="plugin-icon"
-              >
-              <div class="plugin-info">
-                <h3 class="plugin-title">
-                  {{ plugin.manifest.title }}
-                </h3>
-                <p class="plugin-subtitle">
-                  {{ plugin.manifest.subtitle }}
-                </p>
-              </div>
-              <el-button
-                v-if="plugin.manifest.preferences?.length"
-                :icon="Operation"
-                circle
-                class="action-item"
-                size="small"
-                @click="openPrfsView(plugin.manifest.name)"
+  <PublicLayout :left-action-panel="leftActionPanel">
+    <div class="settings-body">
+      <ul class="panel-list">
+        <li
+          v-for="(label, keyName) in views"
+          :key="keyName"
+          class="panel-item"
+          :class="{
+            'active': curView === keyName,
+          }"
+          @click="curView=keyName"
+        >
+          {{ label }}
+        </li>
+      </ul>
+      <div class="settings-view-main">
+        <div
+          v-if="curView === 'common'"
+          class="settings-panel"
+        >
+          <el-form label-width="180px">
+            <el-form-item label="开机启动">
+              <el-switch
+                v-model="settings.launchAtLogin"
+                :active-value="true"
+                :inactive-value="false"
+                @change="onLaunchAtLoginChange"
               />
+            </el-form-item>
+            <el-form-item label="快捷键">
+              <ShortcutsRecorder
+                v-model="settings.shortcuts"
+                size="large"
+                class="main-shortcuts"
+                @update:model-value="onShortcutsChange"
+              />
+            </el-form-item>
+            <el-form-item label="清除超时">
+              <div class="w-64">
+                <el-select
+                  v-model="settings.clearTimeout"
+                  style="width:200px"
+                  @change="onClearTimeoutChange"
+                >
+                  <el-option
+                    :value="0"
+                    label="即时"
+                  />
+                  <el-option
+                    :value="5"
+                    label="5 秒后"
+                  />
+                  <el-option
+                    :value="30"
+                    label="30 秒后"
+                  />
+                  <el-option
+                    :value="90"
+                    label="90 秒后"
+                  />
+                  <el-option
+                    :value="180"
+                    label="3 分钟后"
+                  />
+                  <el-option
+                    :value="600"
+                    label="10 分钟后"
+                  />
+                  <el-option
+                    :value="-1"
+                    label="永不"
+                  />
+                </el-select>
+              </div>
+            </el-form-item>
+          </el-form>
+        </div>
+        <div
+          v-else-if="curView==='plugins'"
+          class="settings-panel"
+        >
+          <div class="panel-header">
+            插件管理
+            <el-button
+              :icon="Plus"
+              circle
+              size="small"
+              @click="onAddPluginClick"
+            />
+          </div>
+          <ul class="plugin-list">
+            <li
+              v-for="(plugin, index) in plugins"
+              :key="plugin.path"
+              class="plugin-item"
+            >
+              <div class="plugin-item-self">
+                <el-icon
+                  class="plugin-expand-icon"
+                  :size="14"
+                  :class="{ expanded: expand[plugin.manifest.name], hidden: plugin.commands.length <= 0 }"
+                  @click="onExpandPluginClick(plugin)"
+                >
+                  <ArrowRightBold />
+                </el-icon>
+                <img
+                  :src="plugin.manifest.icon"
+                  alt=""
+                  class="plugin-icon"
+                >
+                <div class="plugin-info">
+                  <h3 class="plugin-title">
+                    {{ plugin.manifest.title }}
+                  </h3>
+                  <p class="plugin-subtitle">
+                    {{ plugin.manifest.subtitle }}
+                  </p>
+                </div>
+                <el-button
+                  v-if="plugin.manifest.preferences?.length"
+                  :icon="Operation"
+                  circle
+                  class="action-item"
+                  size="small"
+                  @click="openPrfsView(plugin.manifest.name)"
+                />
+                <el-button
+                  type="danger"
+                  :icon="Delete"
+                  size="small"
+                  class="action-item"
+                  circle
+                  @click="onRemovePluginClick(index, plugin)"
+                />
+                <el-switch
+                  class="action-item"
+                  :model-value="plugin.settings?.disabled !== true"
+                  @update:model-value="onPluginDisabledChange($event as boolean, plugin)"
+                />
+              </div>
+              <ul
+                v-if="expand[plugin.manifest.name]"
+                class="command-list"
+              >
+                <li
+                  v-for="command in plugin.commands"
+                  :key="command.name"
+                  class="command-item"
+                >
+                  <img
+                    :src="command.icon"
+                    alt=""
+                    class="command-icon"
+                  >
+                  <div class="command-info">
+                    <h3 class="command-title">
+                      {{ command.title }}
+                    </h3>
+                    <h5 class="command-subtitle">
+                      {{ command.subtitle }}
+                    </h5>
+                  </div>
+                  <div class="action-item">
+                    <el-input
+                      size="small"
+                      placeholder="别名"
+                      :model-value="plugin.settings?.commands?.[command.name]?.alias ?? ''"
+                      @update:model-value="onCommandChange({ alias: $event }, plugin, command)"
+                    />
+                  </div>
+                  <div class="action-item">
+                    <ShortcutsRecorder
+                      :model-value="plugin.settings?.commands?.[command.name]?.shortcut ?? ''"
+                      @update:model-value="onCommandChange({ shortcut: $event }, plugin, command)"
+                    />
+                  </div>
+                  <div class="action-item">
+                    <el-switch
+                      :model-value="!plugin.settings?.commands?.[command.name]?.disabled"
+                      size="small"
+                      @update:model-value="onCommandChange({ disabled: !$event }, plugin, command)"
+                    />
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div
+          v-else-if="curView==='links'"
+          class="settings-panel"
+        >
+          <div class="panel-header">
+            快捷链接
+            <el-button
+              :icon="Plus"
+              circle
+              size="small"
+              @click="createLink"
+            />
+          </div>
+          <ul class="link-list">
+            <li
+              v-for="(item, index) in links"
+              :key="index"
+              class="link-item flex justify-between items-center"
+            >
+              <h3 class="link-title">
+                {{ item.title }}
+              </h3>
               <el-button
                 type="danger"
                 :icon="Delete"
                 size="small"
                 class="action-item"
                 circle
-                @click="onRemovePluginClick(index, plugin)"
+                @click="removeLink(index)"
               />
-              <el-switch
-                class="action-item"
-                :model-value="plugin.settings?.disabled !== true"
-                @update:model-value="onPluginDisabledChange($event as boolean, plugin)"
-              />
-            </div>
-            <ul
-              v-if="expand[plugin.manifest.name]"
-              class="command-list"
-            >
-              <li
-                v-for="command in plugin.commands"
-                :key="command.name"
-                class="command-item"
-              >
-                <img
-                  :src="command.icon"
-                  alt=""
-                  class="command-icon"
-                >
-                <div class="command-info">
-                  <h3 class="command-title">
-                    {{ command.title }}
-                  </h3>
-                  <h5 class="command-subtitle">
-                    {{ command.subtitle }}
-                  </h5>
-                </div>
-                <div class="action-item">
-                  <el-input
-                    size="small"
-                    placeholder="别名"
-                    :model-value="plugin.settings?.commands?.[command.name]?.alias ?? ''"
-                    @update:model-value="onCommandChange({ alias: $event }, plugin, command)"
-                  />
-                </div>
-                <div class="action-item">
-                  <ShortcutsRecorder
-                    :model-value="plugin.settings?.commands?.[command.name]?.shortcut ?? ''"
-                    @update:model-value="onCommandChange({ shortcut: $event }, plugin, command)"
-                  />
-                </div>
-                <div class="action-item">
-                  <el-switch
-                    :model-value="!plugin.settings?.commands?.[command.name]?.disabled"
-                    size="small"
-                    @update:model-value="onCommandChange({ disabled: !$event }, plugin, command)"
-                  />
-                </div>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-      <div
-        v-else-if="curView==='links'"
-        class="settings-panel"
-      >
-        <div class="panel-header">
-          快捷链接
-          <el-button
-            :icon="Plus"
-            circle
-            size="small"
-            @click="createLink"
-          />
+            </li>
+          </ul>
         </div>
-        <ul class="link-list">
-          <li
-            v-for="(item, index) in links"
-            :key="index"
-            class="link-item flex justify-between items-center"
-          >
-            <h3 class="link-title">
-              {{ item.title }}
-            </h3>
-            <el-button
-              type="danger"
-              :icon="Delete"
-              size="small"
-              class="action-item"
-              circle
-              @click="removeLink(index)"
-            />
-          </li>
-        </ul>
       </div>
     </div>
-  </div>
-  <ActionBar
-    :left-action-panel="leftActionPanel"
-  />
+  </PublicLayout>
 </template>
 
 <script lang="ts" setup>
 import { computed, ref, toRaw } from 'vue';
 import { ElMessage, ElButton, ElSelect, ElSwitch, ElOption, ElInput, ElForm, ElFormItem, ElIcon } from 'element-plus';
 import { ArrowRightBold, Plus, Delete, Operation } from '@element-plus/icons-vue';
-import ActionBar from '@/components/ActionBar.vue';
+import PublicLayout from '@/components/PublicLayout.vue';
 import ShortcutsRecorder from '@/components/HotkeyRecorder.vue';
 import type { ICommand as IPluginCommand } from '@public/schema';
 import { useAppActionBar } from '@/composables/useAppActionBar';
@@ -383,25 +382,19 @@ onPageEnter(() => {
 </script>
 
 <style lang="scss" scoped>
-.settings-view {
-  --nav-width: 36px;
-  --nav-height: 48px;
-  height: 100vh;
-  padding-top: var(--nav-height);
-  padding-bottom: var(--action-bar-height);
-  box-sizing: border-box;
+.settings-body {
   display: flex;
-}
-.panel-list, .settings-view-main {
   height: 100%;
 }
 .panel-list {
+  flex-shrink: 0;
   width: 200px;
-  text-align: center;
-  border-right: 1px solid light-dark(rgba(0, 0, 0, 0.06), rgba(255, 255, 255, 0.06));
+  border-right: 1px solid var(--divider-color);
   .panel-item {
+    padding: 0 16px;
     height: 42px;
     line-height: 42px;
+    text-align: center;
     transition: background-color .2s;
     cursor: pointer;
     &.active {
@@ -410,10 +403,10 @@ onPageEnter(() => {
   }
 }
 .settings-view-main {
+  flex: 1;
   overflow: auto;
 }
 .settings-panel {
-  height: 100%;
   .main-shortcuts {
     background: rgba(0, 0, 0, 0.15);
     &:deep(.keyboard-key) {

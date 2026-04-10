@@ -1,5 +1,5 @@
 <template>
-  <div class="about-view">
+  <PublicLayout :left-action-panel="leftActionPanel">
     <div class="about-content">
       <img
         :src="logoUrl"
@@ -22,10 +22,7 @@
         View on GitHub
       </a>
     </div>
-    <ActionBar
-      :left-action-panel="leftActionPanel"
-    />
-  </div>
+  </PublicLayout>
 </template>
 
 <script lang="ts" setup>
@@ -33,7 +30,7 @@ import { ref, onMounted } from 'vue';
 import { getName, getVersion, getTauriVersion } from '@tauri-apps/api/app';
 import { open } from '@tauri-apps/plugin-shell';
 import logoUrl from '@/assets/logo.png';
-import ActionBar from '@/components/ActionBar.vue';
+import PublicLayout from '@/components/PublicLayout.vue';
 import { useAppActionBar } from '@/composables/useAppActionBar';
 
 const repoUrl = 'https://github.com/qwertyyb/public-tauri';
@@ -62,22 +59,13 @@ onMounted(async () => {
 </script>
 
 <style lang="scss" scoped>
-.about-view {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  padding-bottom: var(--action-bar-height);
-  padding-top: var(--nav-height);
-  overflow: auto;
-}
-
 .about-content {
-  height: calc(100vh - var(--action-bar-height) - var(--nav-height));
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
+  height: 100%;
 }
 
 .app-icon {
