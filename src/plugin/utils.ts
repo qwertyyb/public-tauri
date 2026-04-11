@@ -1,7 +1,8 @@
 import { convertFileSrc } from '@tauri-apps/api/core';
 import { pinyin as proPinyin } from 'pinyin-pro';
 import { join } from 'path-browserify';
-import type { IPluginManifest } from './schema';
+import type { IPluginManifest, ICommand } from '@public/schema';
+import { resolveLocalPath } from '@public/icon';
 
 export const getLocalPath = (
   urlOrPath: string | undefined,
@@ -19,6 +20,13 @@ export const getLocalPath = (
     path = join(basePath, urlOrPath);
   }
   return convertFileSrc(path);
+};
+
+export const resolveIconUrl = (urlOrPath: string, basePath: string) => {
+  if (urlOrPath.startsWith('./')) {
+    return resolveLocalPath(urlOrPath, { basePath });
+  }
+  return urlOrPath;
 };
 
 export const hanziToPinyin = (hanzi: string) => proPinyin(hanzi, { toneType: 'none' }); // 获取不带音调格式拼音 pinyin("汉语拼音", { toneType: "none" }); // "han yu pin yin"
@@ -40,13 +48,14 @@ const pinyin = (text: string) => {
   return [];
 };
 
-export const formatCommand = (command: IPluginCommandConfig, manifest: IPluginManifest, pluginPath: string): IPluginCommand => {
+export const formatCommand = (command: ICommand, manifest: IPluginManifest, pluginPath: string): ICommand => {
+  const icon = command.icon ?? manifest.icon;
   const item = {
     ...command,
     name: command.name,
     title: command.title,
     subtitle: command.subtitle,
-    icon: getLocalPath(command.icon ?? manifest.icon, pluginPath)!,
+    icon: resolveIconUrl(icon, pluginPath),
     mode: command.mode ?? 'none',
     entry: getLocalPath(command.entry, pluginPath),
     preload: command.preload ? join(pluginPath, command.preload) : command.preload,

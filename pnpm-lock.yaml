@@ -45,6 +45,9 @@ importers:
       '@public/core':
         specifier: workspace:^
         version: link:packages/core
+      '@public/icon':
+        specifier: workspace:^
+        version: link:packages/icon
       '@public/schema':
         specifier: workspace:^
         version: link:packages/schema
@@ -193,6 +196,9 @@ importers:
 
   packages/core:
     dependencies:
+      '@public/icon':
+        specifier: workspace:^
+        version: link:../icon
       '@tauri-apps/api':
         specifier: ^2
         version: 2.7.0
@@ -214,6 +220,12 @@ importers:
       tauri-plugin-clipboard-api:
         specifier: ^2.1.11
         version: 2.1.11(typescript@6.0.2)
+
+  packages/icon:
+    dependencies:
+      '@tauri-apps/api':
+        specifier: ^2
+        version: 2.10.1
 
   packages/schema: {}
 

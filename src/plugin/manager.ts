@@ -1,7 +1,7 @@
 import path, { join } from 'path-browserify';
-import { clipboard, dialog, fetch, globalShortcut, mainWindow, utils, Database, screen, createPluginStorage, registerServerModule, invokePluginServerMethod, createPluginServerListener, storage, showSaveFilePicker, fs } from '@public/core';
+import { resolveFileIcon, resolveLocalPath, clipboard, dialog, fetch, globalShortcut, mainWindow, utils, Database, screen, createPluginStorage, registerServerModule, invokePluginServerMethod, createPluginServerListener, storage, showSaveFilePicker, fs } from '@public/core';
 import { readTextFile } from '@tauri-apps/plugin-fs';
-import { formatCommand, getLocalPath, openCommandPreferences, openPluginPreferences, popView, pushView, withCache } from './utils';
+import { formatCommand, getLocalPath, openCommandPreferences, openPluginPreferences, popView, pushView, resolveIconUrl, withCache } from './utils';
 import { set } from 'es-toolkit/compat';
 import { resultsMap } from './store';
 import { resolveResource } from '@tauri-apps/api/path';
@@ -53,6 +53,8 @@ export const createWujie = (name: string, entryUrl: string, options?: {
       },
       showSaveFilePicker,
       fs,
+      resolveFileIcon,
+      resolveLocalPath,
     },
     plugins: options?.insertScript ? [
       {
@@ -85,7 +87,7 @@ export const registerPlugin = async (pluginPath: string) => {
     const pkg = JSON.parse(await readTextFile(getLocalPath('./package.json', pluginPath)!));
     const { publicPlugin } = pkg;
     const manifest: IPluginManifest = parsePluginConfig({ ...publicPlugin, name: pkg.name });
-    manifest.icon = getLocalPath(manifest.icon, pluginPath)!;
+    manifest.icon = resolveIconUrl(manifest.icon, pluginPath);
     const { name, template, html } = manifest;
     const commands: IPluginCommand[] = (publicPlugin.commands || []).map((item: any) => formatCommand(item, manifest, pluginPath));
     if (!pluginsSettings[name]) {

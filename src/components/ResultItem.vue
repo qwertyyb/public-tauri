@@ -7,16 +7,12 @@
     @click="$emit('select')"
     @dblclick="$emit('enter')"
   >
-    <div
+    <AppIcon
       v-if="icon"
-      class="itemImageWrapper flex-h-v"
-    >
-      <img
-        :src="icon"
-        alt=""
-        loading="lazy"
-      >
-    </div>
+      :icon="icon"
+      :size="36"
+      class="item-image"
+    />
     <div class="itemInfo flex-1 flex-col-center">
       <h3
         class="itemTitle text-single-line"
@@ -45,6 +41,7 @@
 
 <script setup lang="ts">
 import ShortcutsKey from '@/components/ShortcutsKey.vue';
+import { AppIcon } from '@public/icon';
 interface IResultItem {
   icon?: string,
   title: string,
@@ -91,18 +88,11 @@ defineEmits<{
 .resultItem.selected {
   background-color: light-dark(rgba(0, 0, 0, 0.15), rgba(184, 184, 184, 0.3));
 }
-.itemImageWrapper {
+.item-image {
   width: 36px;
   height: 36px;
-  margin-right: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   min-width: 36px;
-}
-.itemImageWrapper img {
-  width: 100%;
-  height: 100%;
+  margin-right: 6px;
 }
 .itemInfo {
   width: 0;

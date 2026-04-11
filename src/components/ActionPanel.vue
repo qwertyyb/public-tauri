@@ -27,7 +27,11 @@
           :class="item.styleType"
           @click="handleClick(item)"
         >
-          <span class="menu-item-icon material-symbols-outlined">{{ item.icon }}</span>
+          <AppIcon
+            :icon="item.icon"
+            :size="18"
+            class="menu-item-icon"
+          />
           <span class="menu-item-label">{{ item.label }}</span>
         </li>
       </ul>
@@ -39,6 +43,7 @@
 import { onBeforeUnmount, onMounted, useTemplateRef, watch } from 'vue';
 import { onClickOutside } from '@vueuse/core';
 import { EVENT_NAME } from '@/const';
+import { AppIcon } from '@public/icon';
 
 export interface Action {
   icon: string;
