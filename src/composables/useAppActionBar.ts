@@ -18,9 +18,9 @@ export const useAppActionBar = () => {
   const leftActionPanel: ActionPanel = {
     title: 'Public V1.0.0',
     actions: [
-      { icon: 'settings', label: 'Settings', action: () => router?.pushView('/settings') },
-      { icon: 'info', label: 'About Public', action: () => router?.pushView('/about') },
-      { icon: 'exit_to_app', label: 'Quit Public', styleType: 'danger', action: quitApp },
+      { name: 'settings', icon: 'settings', title: 'Settings', action: () => router?.pushView('/settings') },
+      { name: 'about', icon: 'info', title: 'About Public', action: () => router?.pushView('/about') },
+      { name: 'exit', icon: 'exit_to_app', title: 'Quit Public', styleType: 'danger', action: quitApp },
     ],
   };
 

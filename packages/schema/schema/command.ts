@@ -1,5 +1,5 @@
 import * as z from 'zod';
-import { preferenceSchema, type IActionItem } from './common';
+import { preferenceSchema } from './common';
 import type { AsyncFile } from './AsyncFile';
 
 export const commandTextMatchSchema = z.object({
@@ -52,7 +52,7 @@ const actionSchema = z.object({
   name: z.string('Action的名字，作为唯一标识'),
   title: z.string('Action的标题，用于在用户界面上显示，不填写时默认使用name').optional(),
   icon: z.string('Action的图标，用于在用户界面上显示').optional(),
-  shortcut: z.string('Action的快捷键，用于在用户界面上显示').optional(),
+  styleType: z.enum(['default', 'warning', 'danger'], '样式').optional(),
 });
 
 export const commandSchema = z.object({
@@ -160,5 +160,7 @@ export interface IListViewCommand<Item extends IResultItem = IResultItem & Recor
   onHide?: () => void,
   onSearch?: (keyword: string, setList: (list: Item[]) => void) => void | Promise<void>,
   onSelect?: (result: Item, query: string) => string | HTMLElement | Promise<string> | Promise<HTMLElement>,
-  onAction?: (result: Item, action?: IActionItem) => void | Promise<void>
+  onAction?: (result: Item, action?: IAction) => void | Promise<void>
 }
+
+export type IAction = z.infer<typeof actionSchema>;

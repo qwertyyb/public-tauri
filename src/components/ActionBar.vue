@@ -24,7 +24,7 @@
       class="main-action"
       @click="mainAction.action?.()"
     >
-      <span class="main-action-label">{{ mainAction.label }}</span>
+      <span class="main-action-label">{{ mainAction.title || mainAction.name }}</span>
       <span class="main-action-key">↵</span>
     </div>
     <div
@@ -50,19 +50,17 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import ActionPanel from './ActionPanel.vue';
-import type { Action } from './ActionPanel.vue';
-
-export type { Action };
+import type { ActionPanelAction } from '@/types/plugin';
 
 export interface ActionPanel {
   title?: string;
-  actions: Action[];
+  actions: ActionPanelAction[];
 }
 
 defineProps<{
   leftActionPanel?: ActionPanel;
   rightActionPanel?: ActionPanel;
-  mainAction?: Action;
+  mainAction?: ActionPanelAction;
 }>();
 
 const visiblePanel = ref<'left' | 'right' | ''>();

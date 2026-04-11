@@ -4,7 +4,7 @@ import PluginPrfsView from '@/views/PluginPrfsView.vue';
 import SettingsView from '@/views/SettingsView.vue';
 import AboutView from '@/views/AboutView.vue';
 import RoutePage from '@/components/RoutePage.vue';
-import { computed, nextTick, onBeforeUnmount, provide, shallowRef, useTemplateRef, type Component } from 'vue';
+import { nextTick, onBeforeUnmount, provide, shallowRef, useTemplateRef, type Component } from 'vue';
 import { routerSymbol } from './router';
 import { showAlert, showConfirm, showToast } from '@/utils/feedback';
 import PluginWujieView from '@/views/PluginWujieView.vue';
@@ -28,12 +28,6 @@ const history = shallowRef<{
 }[]>([
   { component: routes[hash] || HomeView },
 ]);
-
-const plugin = computed(() => {
-  const last = history.value[history.value.length - 1];
-  const manifest = last?.props?.plugin?.manifest;
-  return manifest ? { icon: manifest.icon, title: manifest.title } : null;
-});
 
 const pushView = async (options: { path: string, params?: any }) => {
   const { path, params } = options;
@@ -118,19 +112,6 @@ provide(routerSymbol, {
         arrow_back
       </div>
       <div class="space" />
-      <div
-        v-if="plugin"
-        class="cur-plugin"
-      >
-        <div class="plugin-title">
-          {{ plugin.title }}
-        </div>
-        <img
-          :src="plugin.icon"
-          alt=""
-          class="plugin-icon"
-        >
-      </div>
     </header>
     <ul class="history-list">
       <route-page
@@ -150,7 +131,7 @@ provide(routerSymbol, {
 
 <style lang="scss" scoped>
 .app-header {
-  height: 48px;
+  height: var(--nav-height);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -190,40 +171,6 @@ provide(routerSymbol, {
 </style>
 
 <style>
-:root {
-  color-scheme: light dark;
-  --nav-height: 48px;
-}
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  font-weight: 500;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  /* background-color: blue; */
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-body {
-	margin: 0;
-	box-sizing: border-box;
-}
-
-*:not(dialog) {
-	padding: 0;
-	margin: 0;
-  outline: none;
-}
-
 .flex {
   display: flex;
 }
@@ -255,42 +202,5 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-::-webkit-scrollbar {
-  width: 0;
-}
 
-/* @media (prefers-color-scheme: dark) {
-  body {
-    background: #000;
-    color: #fff;
-  }
-} */
-
-
-dialog::backdrop {
-  background: rgba(0, 0, 0, .85);
-}
-dialog {
-  border-radius: 6px;
-  background-color: light-dark(#f4f4f4, #373737);
-  border-color: light-dark(#ececec, #464646);
-}
-
-</style>
-
-<style>
-:root {
-  --page-height: 578px;
-  --nav-height: 48px;
-  --item-height: 54px;
-  --action-bar-height: 42px;
-  --divider-color: light-dark(rgba(0, 0, 0, 0.06), rgba(255, 255, 255, 0.06));
-  --action-panel-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --action-panel-shadow: 0 0 16px rgba(0, 0, 0, 0.4);
-  }
-}
 </style>

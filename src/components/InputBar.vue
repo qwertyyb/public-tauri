@@ -197,10 +197,7 @@ onPageLeave(() => {
   z-index: 100;
   display: flex;
   align-items: center;
-  padding-left: 16px;
-  &.is-main-input {
-    --padding-left: 16px;
-  }
+  padding-left: var(--padding-left);
 }
 .text-input-wrapper {
   position: relative;

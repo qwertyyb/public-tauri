@@ -33,12 +33,13 @@
 </template>
 
 <script setup lang="ts">
-import ActionBar, { type ActionPanel, type Action } from '@/components/ActionBar.vue';
+import ActionBar, { type ActionPanel } from '@/components/ActionBar.vue';
+import type { ActionPanelAction } from '@/types/plugin';
 
 defineProps<{
   leftActionPanel?: ActionPanel;
   rightActionPanel?: ActionPanel;
-  mainAction?: Action;
+  mainAction?: ActionPanelAction;
   noTop?: boolean;
 }>();
 </script>

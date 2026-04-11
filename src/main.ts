@@ -3,7 +3,6 @@ import VirtualList from 'vue-virtual-list-v3';
 import ElementPlus from 'element-plus';
 import { CORE_API_KEY } from '@public/core/const';
 import * as core from '@public/core';
-// import 'element-plus/dist/index.css'
 import App from './App.vue';
 import './style.css';
 import { createDraggable } from './utils/draggable';
@@ -12,8 +11,6 @@ import { init } from './plugin/manager';
 import { createTray } from './utils/tray';
 import { start as startServer } from './utils/server';
 import { getSettings, registerMainShortcut } from './services/settings';
-
-console.log('register core api');
 
 // @ts-expect-error
 window[CORE_API_KEY] = core;

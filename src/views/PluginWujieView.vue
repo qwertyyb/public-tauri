@@ -1,8 +1,14 @@
 <template>
   <PublicLayout
     :left-action-panel="leftActionPanel"
-    no-top
+    class="plugin-view"
   >
+    <template #top>
+      <InputBar
+        v-model="input"
+        class="input-bar"
+      />
+    </template>
     <template #action-left-trigger>
       <img
         :src="command.icon || plugin.manifest.icon"
@@ -20,10 +26,12 @@
 
 <script setup lang="ts">
 import PublicLayout from '@/components/PublicLayout.vue';
+import InputBar from '@/components/InputBar.vue';
 import type { ActionPanel } from '@/components/ActionBar.vue';
-import type { IRunningPlugin } from '@/types/plugin';
+import type { ActionPanelAction, IRunningPlugin } from '@/types/plugin';
 import type { ICommand } from '@public/schema';
-import { computed, onBeforeUnmount, onMounted, useTemplateRef } from 'vue';
+import { computed, onBeforeUnmount, onMounted, ref, useTemplateRef } from 'vue';
+import { onPageEnter, onPageLeave } from '@/router';
 
 const props = defineProps<{
   wujie: {
@@ -33,27 +41,57 @@ const props = defineProps<{
   },
   plugin: IRunningPlugin,
   command: ICommand,
+  events: EventTarget
 }>();
 
 const container = useTemplateRef('wujie');
+
+const input = ref<{ keyword: string, files: File[] }>({ keyword: '', files: [] });
 
 const leftActionPanel = computed<ActionPanel>(() => ({
   title: props.plugin.manifest.title,
   actions: [
     {
-      label: '配置命令',
+      name: 'config-command',
+      title: '配置命令',
       icon: 'settings',
     },
     {
-      label: '配置插件',
+      name: 'config-plugin',
+      title: '配置插件',
       icon: 'settings',
     },
   ],
 }));
 
+const mainAction = ref<ActionPanelAction>();
+
+const rightActionPanel = ref<ActionPanel>();
+
+
+const actionsUpdateHandler = (event: CustomEvent<{ actions: ActionPanelAction[], plugin: string }>) => {
+  if (event.detail.plugin !== props.plugin.manifest.name) return;
+  const [firstAction, ...restActions] = event.detail.actions;
+  mainAction.value = firstAction;
+  rightActionPanel.value = {
+    title: '更多操作',
+    actions: restActions,
+  };
+};
+
 onMounted(() => {
   console.log('props', props);
   props.wujie.mount(container.value!);
+});
+
+onPageEnter(() => {
+  // @ts-ignore
+  props.events.addEventListener('updateActions', actionsUpdateHandler);
+});
+
+onPageLeave(() => {
+  // @ts-ignore
+  props.events.removeEventListener('updateActions', actionsUpdateHandler);
 });
 
 onBeforeUnmount(() => {
@@ -62,6 +100,9 @@ onBeforeUnmount(() => {
 </script>
 
 <style lang="scss" scoped>
+.plugin-view {
+  --nav-width: 36px;
+}
 .wujie-container {
   height: 100%;
 }

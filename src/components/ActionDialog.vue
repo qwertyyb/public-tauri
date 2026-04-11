@@ -60,7 +60,6 @@ onUnmounted(() => {
 <style lang="scss" scoped>
 dialog {
   width: 300px;
-  // height: 200px;
   display: flex;
   flex-direction: column;
   position: fixed;
@@ -68,6 +67,10 @@ dialog {
   top: 50%;
   transform: translate(-50%, -50%);
   border: none;
+  outline: none;
+  border-radius: 6px;
+  background-color: light-dark(#f4f4f4, #373737);
+  border-color: light-dark(#ececec, #464646);
   &::backdrop {
     background-color: rgba(0, 0, 0, 0.65);
   }

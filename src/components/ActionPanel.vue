@@ -32,7 +32,7 @@
             :size="18"
             class="menu-item-icon"
           />
-          <span class="menu-item-label">{{ item.label }}</span>
+          <span class="menu-item-label">{{ item.title || item.name }}</span>
         </li>
       </ul>
     </div>
@@ -46,8 +46,9 @@ import { EVENT_NAME } from '@/const';
 import { AppIcon } from '@public/icon';
 
 export interface Action {
-  icon: string;
-  label: string;
+  name: string;
+  icon?: string;
+  title?: string;
   styleType?: 'default' | 'warning' | 'danger';
   action?: () => void;
 }

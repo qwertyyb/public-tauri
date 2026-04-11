@@ -43,6 +43,10 @@ const menu = await Menu.new({
     {
       id: 'about',
       text: '关于...',
+      action() {
+        mainWindow.pushView({ path: '/about' });
+        mainWindow.show();
+      },
     },
   ],
 });

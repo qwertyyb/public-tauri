@@ -26,13 +26,14 @@
 import InputBar from '@/components/InputBar.vue';
 import ResultView from '@/components/ResultView.vue';
 import PublicLayout from '@/components/PublicLayout.vue';
-import { type ActionPanel, type Action } from '@/components/ActionBar.vue';
+import { type ActionPanel } from '@/components/ActionBar.vue';
 import * as service from '@/services';
 import type { UnlistenFn } from '@tauri-apps/api/event';
 import { getCurrentWindow } from '@tauri-apps/api/window';
 import { onBeforeUnmount, onMounted, ref, toRaw, watch } from 'vue';
-import type { ICommand as IPluginCommand, IActionItem } from '@public/schema';
+import type { IAction, ICommand as IPluginCommand } from '@public/schema';
 import { useAppActionBar } from '@/composables/useAppActionBar';
+import type { ActionPanelAction } from '@/types/plugin';
 
 const results = ref<IPluginCommand[]>([]);
 const preview = ref<string | HTMLElement | undefined>('');
@@ -61,10 +62,9 @@ const onResultSelected = async (_item: IPluginCommand | null, itemIndex: number)
 
   if (item?.mode === 'none' || !item?.mode) {
     if (item?.actions?.length) {
-      const actionItems: Action[] = item.actions.map(a => ({
-        icon: a.icon || 'extension',
-        label: a.title || a.name,
-        action: () => onResultAction(item, itemIndex, { name: a.name, icon: a.icon!, title: a.title || a.name, shortcut: a.shortcut }),
+      const actionItems: ActionPanelAction[] = item.actions.map(a => ({
+        ...a,
+        action: () => onResultAction(item, itemIndex, { name: a.name, icon: a.icon!, title: a.title || a.name }),
       }));
       const [firstAction, ...restActions] = actionItems;
       mainAction.value = firstAction;
@@ -78,17 +78,17 @@ const onResultSelected = async (_item: IPluginCommand | null, itemIndex: number)
     }
   } else {
     mainAction.value = {
+      name: 'open-command',
       icon: 'open_in_new',
-      label: 'Open Command',
+      title: 'Open Command',
       action: () => service.enter(item, input.value.keyword),
     };
     if (item?.actions?.length) {
       rightActionPanel.value = {
         title: item.title,
         actions: item.actions.map(a => ({
-          icon: a.icon || 'extension',
-          label: a.title || a.name,
-          action: () => onResultAction(item, itemIndex, { name: a.name, icon: a.icon!, title: a.title || a.name, shortcut: a.shortcut }),
+          ...a,
+          action: () => onResultAction(item, itemIndex, a),
         })),
       };
     } else {
@@ -97,7 +97,7 @@ const onResultSelected = async (_item: IPluginCommand | null, itemIndex: number)
   }
 };
 
-const onResultAction = async (item: IPluginCommand, _itemIndex: number, action: IActionItem) => {
+const onResultAction = async (item: IPluginCommand, _itemIndex: number, action: IAction) => {
   console.log('onResultActon', item);
   service.action(toRaw(item), toRaw(action), input.value.keyword);
 };
@@ -118,7 +118,7 @@ declare global {
 // ActionBar composable
 const { leftActionPanel } = useAppActionBar();
 const rightActionPanel = ref<ActionPanel | undefined>();
-const mainAction = ref<Action | undefined>();
+const mainAction = ref<ActionPanelAction | undefined>();
 
 let unlistenFocusChange: UnlistenFn;
 

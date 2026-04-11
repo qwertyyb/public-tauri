@@ -2,7 +2,7 @@ import fuzzysort from 'fuzzysort';
 import { enterCommand, getPlugins } from './manager';
 import { resultsMap } from './store';
 import { getLocalPath, hanziToPinyin, htmlEscape } from './utils';
-import { AsyncFile, type IActionItem, type ICommandFileMatch, type ICommand as IPluginCommand } from '@public/schema';
+import { AsyncFile, type IAction, type ICommandFileMatch, type ICommand as IPluginCommand } from '@public/schema';
 import type { IRunningPlugin } from '@/types/plugin';
 
 const compileString = (template: string, vars: any) => {
@@ -186,7 +186,7 @@ export const handleEnter = (command: IPluginCommand, keyword: string) => {
   enterCommand(rp.owner, rp.command, rp.query ?? keyword, { from: 'search', match: rp.match, result: rp.result });
 };
 
-export const handleAction = (command: IPluginCommand, action: IActionItem, keyword: string) => {
+export const handleAction = (command: IPluginCommand, action: IAction, keyword: string) => {
   const rp = resultsMap.get(command);
   if (!rp) return;
   rp.owner.plugin?.onAction?.(rp.command, action, keyword);

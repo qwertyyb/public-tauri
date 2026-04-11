@@ -5,8 +5,8 @@ import { formatCommand, getLocalPath, openCommandPreferences, openPluginPreferen
 import { set } from 'es-toolkit/compat';
 import { resultsMap } from './store';
 import { resolveResource } from '@tauri-apps/api/path';
-import { preloadApp, setupApp, startApp } from 'wujie';
-import { parsePluginConfig, type IPluginManifest, type ICommand as IPluginCommand, type IPluginLifecycle, type IPreference, type ICommandActionOptions } from '@public/schema';
+import { preloadApp, setupApp, startApp, bus } from 'wujie';
+import { parsePluginConfig, type IPluginManifest, type ICommand as IPluginCommand, type IPluginLifecycle, type IPreference, type ICommandActionOptions, type IAction } from '@public/schema';
 import logger from '@/utils/logger';
 import type { IRunningPlugin, IPluginsSettings, IPluginSettings, ICommandSettings } from '@/types/plugin';
 import { BUILTIN_PLUGINS } from './builtin';
@@ -22,12 +22,14 @@ export const createWujie = (name: string, entryUrl: string, options?: {
   insertScript: { content: string, module?: boolean }
 }) => {
   const lifecycle: IPluginLifecycle = {};
+  const events = new EventTarget();
 
   setupApp({
     name,
     url: entryUrl,
     exec: true,
     alive: true,
+    // degrade: true,
     fetch(input, init) {
       const url = input instanceof Request ? input.url : input;
       const { host } = new URL(url);
@@ -43,18 +45,22 @@ export const createWujie = (name: string, entryUrl: string, options?: {
       clipboard,
       fetch,
       screen,
-      storage: createPluginStorage(name),
       mainWindow,
       Database,
+      showSaveFilePicker,
+      fs,
+      resolveFileIcon,
+      resolveLocalPath,
+
+      storage: createPluginStorage(name),
       invoke: (method: string, ...args: any[]) => invokePluginServerMethod(name, method, args),
       on: createPluginServerListener(name),
       createPlugin: (options: IPluginLifecycle) => {
         Object.assign(lifecycle, { ...options });
       },
-      showSaveFilePicker,
-      fs,
-      resolveFileIcon,
-      resolveLocalPath,
+      updateActions: (actions?: IAction[]) => {
+        events.dispatchEvent(new CustomEvent('updateActions', { detail: { actions, plugin: name } }));
+      },
     },
     plugins: options?.insertScript ? [
       {
@@ -67,6 +73,7 @@ export const createWujie = (name: string, entryUrl: string, options?: {
   preloadApp({ name });
   return {
     lifecycle,
+    events,
   };
 };
 
@@ -136,10 +143,11 @@ export const registerPlugin = async (pluginPath: string) => {
       }
     }
     if (html) {
-      const entryUrl =  /^https?:\/\//.test(html || '') ? html : getEntryUrl(name, path.join('/', html || '/index.html'));
-      const { lifecycle } = createWujie(name, entryUrl);
+      const entryUrl = /^https?:\/\//.test(html || '') ? html : getEntryUrl(name, path.join('/', html || '/index.html'));
+      const { lifecycle, events } = createWujie(name, entryUrl);
       pluginInstance.lifecycle = lifecycle;
       pluginInstance.entryUrl = entryUrl;
+      pluginInstance.events = events;
     } else if (template === 'listView') {
       const entryUrl = getEntryUrl(name, '/index.html');
       const commands = (publicPlugin.commands || []).map((item: any) => {
@@ -360,7 +368,7 @@ export const enterCommand = async (owner: IRunningPlugin, command: IPluginComman
         owner.lifecycle?.onExit?.(command);
       },
     };
-    pushView({ path: '/plugin/view/wujie', params: { wujie, plugin: owner, command } });
+    pushView({ path: '/plugin/view/wujie', params: { wujie, plugin: owner, command, events: owner.events } });
   }
 };
 

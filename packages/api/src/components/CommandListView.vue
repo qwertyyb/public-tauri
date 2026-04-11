@@ -1,10 +1,10 @@
 <template>
   <div class="command-list-view">
-    <InputBar
+    <!-- <InputBar
       v-if="command.onSearch"
       v-model="keyword"
       @escape="exitCommand"
-    />
+    /> -->
     <LoadingBar :loading="loadingCount > 1" />
     <EmptyView
       v-if="!loadingCount && !results.length"
@@ -25,11 +25,11 @@
 <script setup lang="ts">
 import { debounce } from 'es-toolkit';
 import ResultView from './PublicList.vue';
-import InputBar from './InputBar.vue';
+// import InputBar from './InputBar.vue';
 import EmptyView from './PublicListEmptyView.vue';
 import { onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import LoadingBar from './LoadingBar.vue';
-import type { IListViewCommand, IResultItem, IActionItem, ICommandActionOptions } from '@public/schema';
+import type { IListViewCommand, IResultItem, IAction, ICommandActionOptions } from '@public/schema';
 import { mainWindow } from '../index';
 
 const props = defineProps<{
@@ -86,7 +86,7 @@ const onResultSelected = async (item: IResultItem | null) => {
   preview.value = await props.command?.onSelect?.(item, keyword.value || '');
 };
 
-const onResultAction = (item: IResultItem, _itemIndex: number, action: IActionItem) => {
+const onResultAction = (item: IResultItem, _itemIndex: number, action: IAction) => {
   props.command.onAction?.(item, action);
 };
 
