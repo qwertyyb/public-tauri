@@ -3,6 +3,8 @@ import HomeView from '@/views/HomeView.vue';
 import PluginPrfsView from '@/views/PluginPrfsView.vue';
 import SettingsView from '@/views/SettingsView.vue';
 import AboutView from '@/views/AboutView.vue';
+import StoreView from '@/views/StoreView.vue';
+import StoreDetailView from '@/views/StoreDetailView.vue';
 import RoutePage from '@/components/RoutePage.vue';
 import { nextTick, onBeforeUnmount, provide, shallowRef, useTemplateRef, type Component } from 'vue';
 import { routerSymbol } from './router';
@@ -17,6 +19,8 @@ const routes: Record<string, Component | undefined> = {
   '/plugin/prfs': PluginPrfsView,
   '/settings': SettingsView,
   '/about': AboutView,
+  '/plugin/store': StoreView,
+  '/plugin/store/detail': StoreDetailView,
   '/plugin/view/wujie': PluginWujieView,
 };
 

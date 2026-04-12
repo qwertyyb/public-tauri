@@ -50,4 +50,41 @@ export const BUILTIN_PLUGINS = new Map<string, IRunningPlugin>([
       },
     },
   ],
+  [
+    'store',
+    {
+      path: '',
+      manifest: {
+        name: 'store',
+        title: '插件商店',
+        subtitle: '浏览和安装插件',
+        icon: 'store',
+      },
+      commands: [
+        {
+          name: 'store',
+          title: '插件商店',
+          subtitle: '浏览和安装插件',
+          icon: 'store',
+          matches: [
+            {
+              type: 'text',
+              keywords: [
+                'plugin store',
+                '插件商店',
+              ],
+            },
+          ],
+          mode: 'none',
+        },
+      ],
+      plugin: {
+        onEnter: async () => {
+          mainWindow.pushView({
+            path: '/plugin/store',
+          });
+        },
+      },
+    },
+  ],
 ]);
