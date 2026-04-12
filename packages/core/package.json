@@ -14,7 +14,8 @@
     "./const": "./src/const.ts"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsdown"
   },
   "keywords": [],
   "author": "",
@@ -29,5 +30,8 @@
     "@tauri-apps/plugin-sql": "~2",
     "socket.io-client": "^4.8.1",
     "tauri-plugin-clipboard-api": "^2.1.11"
+  },
+  "devDependencies": {
+    "tsdown": "^0.21.7"
   }
 }

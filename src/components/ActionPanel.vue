@@ -43,7 +43,7 @@
 import { onBeforeUnmount, onMounted, useTemplateRef, watch } from 'vue';
 import { onClickOutside } from '@vueuse/core';
 import { EVENT_NAME } from '@/const';
-import { AppIcon } from '@public/icon';
+import AppIcon from '@public/icon/AppIcon.vue';
 
 export interface Action {
   name: string;

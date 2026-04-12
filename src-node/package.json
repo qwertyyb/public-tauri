@@ -39,7 +39,7 @@
     "@types/koa__cors": "^5.0.0",
     "@types/koa__router": "^12.0.4",
     "node-addon-api": "^8.5.0",
-    "tsdown": "^0.16.4",
+    "tsdown": "^0.21.7",
     "tsx": "^4.20.3",
     "typescript": "^5.9.2"
   }

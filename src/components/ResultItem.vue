@@ -41,7 +41,7 @@
 
 <script setup lang="ts">
 import ShortcutsKey from '@/components/ShortcutsKey.vue';
-import { AppIcon } from '@public/icon';
+import AppIcon from '@public/icon/AppIcon.vue';
 interface IResultItem {
   icon?: string,
   title: string,
