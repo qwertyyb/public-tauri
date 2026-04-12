@@ -17,7 +17,7 @@ defineProps<{ loading: boolean }>();
 .loading-bar {
   width: 100%;
   position: absolute;
-  top: var(--input-bar-height);
+  top: 0;
   left: 0;
   right: 0;
   &.loading .loading-bar-inner {

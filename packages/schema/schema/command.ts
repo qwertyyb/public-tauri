@@ -152,6 +152,7 @@ export type IResultItem = {
   title: string;
   subtitle?: string;
   icon?: string;
+  actions?: IAction[];
   [x: string]: any;
 };
 
@@ -160,7 +161,7 @@ export interface IListViewCommand<Item extends IResultItem = IResultItem & Recor
   onHide?: () => void,
   onSearch?: (keyword: string, setList: (list: Item[]) => void) => void | Promise<void>,
   onSelect?: (result: Item, query: string) => string | HTMLElement | Promise<string> | Promise<HTMLElement>,
-  onAction?: (result: Item, action?: IAction) => void | Promise<void>
+  onAction?: (result: Item, action: IAction, query: string) => void | Promise<void>
 }
 
 export type IAction = z.infer<typeof actionSchema>;

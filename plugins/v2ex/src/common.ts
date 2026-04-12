@@ -22,6 +22,12 @@ const getData = async (type: 'hot' | 'latest' = 'hot') => {
     subtitle: `${item.replies}/${item.node.title}/${item.content}`,
     icon: item.member.avatar_large,
     url: item.url,
+    actions: [
+      {
+        name: 'open',
+        title: '在浏览器中打开',
+      },
+    ],
   }));
   return list;
 };

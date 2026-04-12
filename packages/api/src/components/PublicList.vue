@@ -112,18 +112,8 @@ const onResultEnter = (index: number) => {
   emit('enter', props.results[index]!, index);
 };
 
-const highlightAction = (actionName: string) => {
-  const actionEl = document.querySelector(`[data-action-name=${JSON.stringify(actionName)}]`);
-  if (!actionEl) return;
-  actionEl.classList.add('flash');
-  setTimeout(() => {
-    actionEl.classList.remove('flash');
-  }, 400);
-};
-
 const onResultAction = (action: IAction) => {
   emit('action', selectedItem.value!, selectedIndex.value, action);
-  highlightAction(action.name);
 };
 
 const keydownHandler = (e: KeyboardEvent) => {

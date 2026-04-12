@@ -1,10 +1,5 @@
 <template>
   <div class="command-list-view">
-    <!-- <InputBar
-      v-if="command.onSearch"
-      v-model="keyword"
-      @escape="exitCommand"
-    /> -->
     <LoadingBar :loading="loadingCount > 1" />
     <EmptyView
       v-if="!loadingCount && !results.length"
@@ -27,7 +22,7 @@ import { debounce } from 'es-toolkit';
 import ResultView from './PublicList.vue';
 // import InputBar from './InputBar.vue';
 import EmptyView from './PublicListEmptyView.vue';
-import { onBeforeUnmount, onMounted, ref, watch } from 'vue';
+import { onBeforeUnmount, onMounted, ref, toRaw, watch } from 'vue';
 import LoadingBar from './LoadingBar.vue';
 import type { IListViewCommand, IResultItem, IAction, ICommandActionOptions } from '@public/schema';
 import { mainWindow } from '../index';
@@ -75,19 +70,27 @@ watch(keyword, debounce((value: string) => {
 }, 500), { immediate: true });
 
 const onResultEnter = (item: IResultItem) => {
-  props.command?.onAction?.(item);
+  props.command?.onAction?.(item, item.actions![0], keyword.value || '');
 };
 
 const onResultSelected = async (item: IResultItem | null) => {
   if (!item) {
     preview.value = '';
+    window.$wujie?.props?.events.dispatchEvent(new CustomEvent('updateActions', { detail: { actions: [] } }));
     return;
   }
+
+  const actions = (toRaw(item.actions) || []).map(a => ({
+    ...a,
+    action: () => props.command?.onAction?.(item, a, keyword.value || ''),
+  }));
+
+  window.$wujie?.props?.events.dispatchEvent(new CustomEvent('updateActions', { detail: { actions } }));
   preview.value = await props.command?.onSelect?.(item, keyword.value || '');
 };
 
 const onResultAction = (item: IResultItem, _itemIndex: number, action: IAction) => {
-  props.command.onAction?.(item, action);
+  props.command.onAction?.(item, action, keyword.value || '');
 };
 
 const exitCommand = () => {
@@ -102,7 +105,13 @@ const keyDownHandler = (event: KeyboardEvent) => {
   }
 };
 
+const searchHandler = (event: CustomEvent<{ keyword: string }>) => {
+  keyword.value = event.detail.keyword;
+};
+
 onMounted(() => {
+  window.$wujie?.props?.events.addEventListener('search', searchHandler);
+  window.$wujie?.props?.events.dispatchEvent(new CustomEvent('search-bar', { detail: { visible: typeof props.command.onSearch === 'function' } }));
   if (!props.command?.onSearch) {
     window.addEventListener('keyup', keyDownHandler);
   }
@@ -111,6 +120,7 @@ onMounted(() => {
 onBeforeUnmount(() => {
   props.command.onHide?.();
   window.removeEventListener('keyup', keyDownHandler);
+  window.$wujie?.props?.events.removeEventListener('search', searchHandler);
 });
 </script>
 
@@ -121,10 +131,8 @@ onBeforeUnmount(() => {
   height: 100%;
 	color: light-dark(#444, #fff);
   --nav-width: 36px;
-  --input-bar-height: 48px;
   position: relative;
   .result-view, .empty-view {
-    padding-top: var(--input-bar-height, 48px);
     box-sizing: border-box;
   }
   // background-color: light-dark(#e5e8e8, #161616);

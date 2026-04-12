@@ -2,11 +2,14 @@
   <PublicLayout
     :left-action-panel="leftActionPanel"
     class="plugin-view"
+    :main-action="mainAction"
   >
     <template #top>
       <InputBar
+        v-if="searchBarVisible"
         v-model="input"
         class="input-bar"
+        @escape="escapeHandler"
       />
     </template>
     <template #action-left-trigger>
@@ -30,8 +33,9 @@ import InputBar from '@/components/InputBar.vue';
 import type { ActionPanel } from '@/components/ActionBar.vue';
 import type { ActionPanelAction, IRunningPlugin } from '@/types/plugin';
 import type { ICommand } from '@public/schema';
-import { computed, onBeforeUnmount, onMounted, ref, useTemplateRef } from 'vue';
+import { computed, onBeforeUnmount, onMounted, ref, useTemplateRef, watch } from 'vue';
 import { onPageEnter, onPageLeave } from '@/router';
+import { popView } from '@/plugin/utils';
 
 const props = defineProps<{
   wujie: {
@@ -46,8 +50,11 @@ const props = defineProps<{
 
 const container = useTemplateRef('wujie');
 
+const searchBarVisible = ref(false);
 const input = ref<{ keyword: string, files: File[] }>({ keyword: '', files: [] });
-
+watch(() => input.value.keyword, (val) => {
+  props.events.dispatchEvent(new CustomEvent('search', { detail: { keyword: val } }));
+});
 const leftActionPanel = computed<ActionPanel>(() => ({
   title: props.plugin.manifest.title,
   actions: [
@@ -70,13 +77,20 @@ const rightActionPanel = ref<ActionPanel>();
 
 
 const actionsUpdateHandler = (event: CustomEvent<{ actions: ActionPanelAction[], plugin: string }>) => {
-  if (event.detail.plugin !== props.plugin.manifest.name) return;
   const [firstAction, ...restActions] = event.detail.actions;
   mainAction.value = firstAction;
   rightActionPanel.value = {
     title: '更多操作',
     actions: restActions,
   };
+};
+
+const searchBarHandler = (event: CustomEvent<{ visible: boolean }>) => {
+  searchBarVisible.value = event.detail.visible;
+};
+
+const escapeHandler = () => {
+  popView();
 };
 
 onMounted(() => {
@@ -87,11 +101,15 @@ onMounted(() => {
 onPageEnter(() => {
   // @ts-ignore
   props.events.addEventListener('updateActions', actionsUpdateHandler);
+  // @ts-ignore
+  props.events.addEventListener('search-bar', searchBarHandler);
 });
 
 onPageLeave(() => {
   // @ts-ignore
   props.events.removeEventListener('updateActions', actionsUpdateHandler);
+  // @ts-ignore
+  props.events.removeEventListener('search-bar', searchBarHandler);
 });
 
 onBeforeUnmount(() => {

@@ -5,7 +5,7 @@ import { formatCommand, getLocalPath, openCommandPreferences, openPluginPreferen
 import { set } from 'es-toolkit/compat';
 import { resultsMap } from './store';
 import { resolveResource } from '@tauri-apps/api/path';
-import { preloadApp, setupApp, startApp, bus } from 'wujie';
+import { preloadApp, setupApp, startApp } from 'wujie';
 import { parsePluginConfig, type IPluginManifest, type ICommand as IPluginCommand, type IPluginLifecycle, type IPreference, type ICommandActionOptions, type IAction } from '@public/schema';
 import logger from '@/utils/logger';
 import type { IRunningPlugin, IPluginsSettings, IPluginSettings, ICommandSettings } from '@/types/plugin';
@@ -61,6 +61,7 @@ export const createWujie = (name: string, entryUrl: string, options?: {
       updateActions: (actions?: IAction[]) => {
         events.dispatchEvent(new CustomEvent('updateActions', { detail: { actions, plugin: name } }));
       },
+      events,
     },
     plugins: options?.insertScript ? [
       {
@@ -159,11 +160,12 @@ export const registerPlugin = async (pluginPath: string) => {
         };
       }).filter(Boolean);
       const scriptContent = `window.$commands = ${JSON.stringify(commands)}`;
-      const { lifecycle } = createWujie(name, entryUrl, {
+      const { lifecycle, events } = createWujie(name, entryUrl, {
         insertScript: { content: scriptContent, module: true },
       });
       pluginInstance.lifecycle = lifecycle;
       pluginInstance.entryUrl = entryUrl;
+      pluginInstance.events = events;
     }
     plugins.set(pkg.name, pluginInstance);
     return pluginInstance;

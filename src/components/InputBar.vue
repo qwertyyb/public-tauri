@@ -167,6 +167,7 @@ const focusedHandler = () => {
 onMounted(() => {
   document.addEventListener(EVENT_NAME.FOCUSED, focusedHandler);
   window.addEventListener('pop-to-root', popToRootHandler);
+  focusedHandler();
 });
 
 onBeforeUnmount(() => {
