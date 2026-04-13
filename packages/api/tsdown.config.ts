@@ -5,5 +5,7 @@ export default defineConfig({
   deps: {
     alwaysBundle: () => true,
   },
-  dts: true,
+  dts: {
+    eager: true,
+  },
 });

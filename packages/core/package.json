@@ -22,6 +22,7 @@
   "license": "ISC",
   "packageManager": "pnpm@10.8.0",
   "dependencies": {
+    "@public/schema": "workspace:^",
     "@public/icon": "workspace:^",
     "@tauri-apps/api": "^2",
     "@tauri-apps/plugin-autostart": "^2.5.0",
