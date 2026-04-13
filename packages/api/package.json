@@ -2,7 +2,6 @@
   "name": "@public/api",
   "version": "1.0.0",
   "description": "",
-  "main": "src/plugin.ts",
   "type": "module",
   "sideEffects": false,
   "exports": {
@@ -25,5 +24,11 @@
   },
   "devDependencies": {
     "tsdown": "^0.21.7"
+  },
+  "publishConfig": {
+    "exports": {
+      ".": "./dist/index.mjs",
+      "./package.json": "./package.json"
+    }
   }
 }
