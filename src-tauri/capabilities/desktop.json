@@ -22,10 +22,19 @@
     "global-shortcut:allow-is-registered",
     "global-shortcut:allow-register",
     "global-shortcut:allow-unregister",
-    "shell:default",
-    "shell:allow-kill",
+    "opener:default",
     {
-      "identifier": "shell:allow-spawn",
+      "identifier": "opener:allow-open-path",
+      "allow": [
+        {
+          "path": "**/*"
+        }
+      ]
+    },
+    "shellx:allow-execute",
+    "shellx:allow-kill",
+    {
+      "identifier": "shellx:allow-spawn",
       "allow": [
         {
           "name": "binaries/node-v24.11.1",

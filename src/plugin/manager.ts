@@ -1,5 +1,5 @@
 import path, { join } from 'path-browserify';
-import { clipboard, dialog, fetch, globalShortcut, mainWindow, utils, Database, screen, createPluginStorage, registerServerModule, invokePluginServerMethod, createPluginServerListener, storage, showSaveFilePicker, fs } from '@public/core';
+import { clipboard, dialog, fetch, globalShortcut, mainWindow, utils, Database, screen, createPluginStorage, registerServerModule, invokePluginServerMethod, createPluginServerListener, storage, showSaveFilePicker, fs, shell, opener } from '@public/core';
 import { readTextFile } from '@tauri-apps/plugin-fs';
 import { formatCommand, getLocalPath, openCommandPreferences, openPluginPreferences, popView, pushView, withCache } from './utils';
 import { set } from 'es-toolkit/compat';
@@ -53,6 +53,8 @@ export const createWujie = (name: string, entryUrl: string, options?: {
       },
       showSaveFilePicker,
       fs,
+      shell,
+      opener,
     },
     plugins: options?.insertScript ? [
       {

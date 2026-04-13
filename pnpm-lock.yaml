@@ -63,9 +63,6 @@ importers:
       '@tauri-apps/plugin-global-shortcut':
         specifier: ~2.3.0
         version: 2.3.0
-      '@tauri-apps/plugin-shell':
-        specifier: ~2
-        version: 2.3.0
       element-plus:
         specifier: ^2.10.4
         version: 2.10.4(vue@3.5.18(typescript@5.9.2))
@@ -105,6 +102,9 @@ importers:
       pinyin-pro:
         specifier: ^3.27.0
         version: 3.27.0
+      tauri-plugin-shellx-api:
+        specifier: ^2.0.16
+        version: 2.0.16
       vue:
         specifier: ^3.5.13
         version: 3.5.18(typescript@5.9.2)
@@ -202,9 +202,9 @@ importers:
       '@tauri-apps/plugin-dialog':
         specifier: ~2.7.0
         version: 2.7.0
-      '@tauri-apps/plugin-shell':
-        specifier: ~2
-        version: 2.3.0
+      '@tauri-apps/plugin-opener':
+        specifier: ^2.5.3
+        version: 2.5.3
       '@tauri-apps/plugin-sql':
         specifier: ~2
         version: 2.3.0
@@ -214,6 +214,9 @@ importers:
       tauri-plugin-clipboard-api:
         specifier: ^2.1.11
         version: 2.1.11(typescript@6.0.2)
+      tauri-plugin-shellx-api:
+        specifier: ^2.0.16
+        version: 2.0.16
 
   packages/schema: {}
 
@@ -2225,8 +2228,8 @@ packages:
   '@tauri-apps/plugin-global-shortcut@2.3.0':
     resolution: {integrity: sha512-WbAz0ElhpP+0kzQZRScdCC7UQ7OPH8PAn//fsBNu7+ywihsnVSVOg1L9YhieAtLNtAlnmFI69Yl5AGaA3ge5IQ==}
 
-  '@tauri-apps/plugin-shell@2.3.0':
-    resolution: {integrity: sha512-6GIRxO2z64uxPX4CCTuhQzefvCC0ew7HjdBhMALiGw74vFBDY95VWueAHOHgNOMV4UOUAFupyidN9YulTe5xlA==}
+  '@tauri-apps/plugin-opener@2.5.3':
+    resolution: {integrity: sha512-CCcUltXMOfUEArbf3db3kCE7Ggy1ExBEBl51Ko2ODJ6GDYHRp1nSNlQm5uNCFY5k7/ufaK5Ib3Du/Zir19IYQQ==}
 
   '@tauri-apps/plugin-sql@2.3.0':
     resolution: {integrity: sha512-JYwIocfsLaDWa41LMiZWuzts7yCJR+EpZPRmgpO7Gd7XiAS9S67dKz306j/k/d9XntB0YopMRBol2OIWMschuA==}
@@ -5477,6 +5480,9 @@ packages:
   tauri-plugin-clipboard-api@2.1.11:
     resolution: {integrity: sha512-VNkGaVPPfRoHg7/rJBcWqsvLvn4/kNEOOlzqwyI9Qdf6g54B3mc31GLZdnq/HWtX0vZskw3J8b/EF9YkASDCBQ==}
 
+  tauri-plugin-shellx-api@2.0.16:
+    resolution: {integrity: sha512-I6o/+IoG6++x4L5d20ciOooOeUEn0bOKvMiYhQxlv1Q3zAZPdpJKjAHJxRpZZwpR6yUY788qiQny7IbTywqLFw==}
+
   thread-stream@3.1.0:
     resolution: {integrity: sha512-OqyPZ9u96VohAyMfJykzmivOrY2wfMSf3C5TtFJVgN+Hm6aj+voFhlK+kZEIv2FBh1X6Xp3DlnCOfEQ3B2J86A==}
 
@@ -6204,10 +6210,10 @@ snapshots:
       '@babel/helper-compilation-targets': 7.27.2
       '@babel/helper-module-transforms': 7.28.3(@babel/core@7.28.3)
       '@babel/helpers': 7.28.3
-      '@babel/parser': 7.28.5
+      '@babel/parser': 7.29.2
       '@babel/template': 7.27.2
       '@babel/traverse': 7.28.3
-      '@babel/types': 7.28.5
+      '@babel/types': 7.29.0
       convert-source-map: 2.0.0
       debug: 4.4.3
       gensync: 1.0.0-beta.2
@@ -6234,8 +6240,8 @@ snapshots:
 
   '@babel/generator@7.28.5':
     dependencies:
-      '@babel/parser': 7.28.5
-      '@babel/types': 7.28.5
+      '@babel/parser': 7.29.2
+      '@babel/types': 7.29.0
       '@jridgewell/gen-mapping': 0.3.13
       '@jridgewell/trace-mapping': 0.3.30
       jsesc: 3.1.0
@@ -6290,7 +6296,7 @@ snapshots:
   '@babel/helper-module-imports@7.27.1':
     dependencies:
       '@babel/traverse': 7.28.3
-      '@babel/types': 7.28.5
+      '@babel/types': 7.29.0
     transitivePeerDependencies:
       - supports-color
 
@@ -6359,7 +6365,7 @@ snapshots:
   '@babel/helpers@7.28.3':
     dependencies:
       '@babel/template': 7.27.2
-      '@babel/types': 7.28.5
+      '@babel/types': 7.29.0
 
   '@babel/parser@7.28.0':
     dependencies:
@@ -6448,17 +6454,17 @@ snapshots:
   '@babel/template@7.27.2':
     dependencies:
       '@babel/code-frame': 7.27.1
-      '@babel/parser': 7.28.5
-      '@babel/types': 7.28.5
+      '@babel/parser': 7.29.2
+      '@babel/types': 7.29.0
 
   '@babel/traverse@7.28.3':
     dependencies:
       '@babel/code-frame': 7.27.1
       '@babel/generator': 7.28.5
       '@babel/helper-globals': 7.28.0
-      '@babel/parser': 7.28.5
+      '@babel/parser': 7.29.2
       '@babel/template': 7.27.2
-      '@babel/types': 7.28.5
+      '@babel/types': 7.29.0
       debug: 4.4.3
     transitivePeerDependencies:
       - supports-color
@@ -7340,10 +7346,10 @@ snapshots:
       '@rollup/pluginutils': 5.2.0(rollup@4.46.2)
       commondir: 1.0.1
       estree-walker: 2.0.2
-      fdir: 6.5.0(picomatch@4.0.3)
+      fdir: 6.5.0(picomatch@4.0.4)
       is-reference: 1.2.1
       magic-string: 0.30.21
-      picomatch: 4.0.3
+      picomatch: 4.0.4
     optionalDependencies:
       rollup: 4.46.2
 
@@ -7374,7 +7380,7 @@ snapshots:
     dependencies:
       '@types/estree': 1.0.8
       estree-walker: 2.0.2
-      picomatch: 4.0.3
+      picomatch: 4.0.4
     optionalDependencies:
       rollup: 4.46.2
 
@@ -7517,9 +7523,9 @@ snapshots:
     dependencies:
       '@tauri-apps/api': 2.7.0
 
-  '@tauri-apps/plugin-shell@2.3.0':
+  '@tauri-apps/plugin-opener@2.5.3':
     dependencies:
-      '@tauri-apps/api': 2.7.0
+      '@tauri-apps/api': 2.10.1
 
   '@tauri-apps/plugin-sql@2.3.0':
     dependencies:
@@ -9554,6 +9560,10 @@ snapshots:
     optionalDependencies:
       picomatch: 4.0.3
 
+  fdir@6.5.0(picomatch@4.0.4):
+    optionalDependencies:
+      picomatch: 4.0.4
+
   figures@6.1.0:
     dependencies:
       is-unicode-supported: 2.1.0
@@ -11381,6 +11391,10 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
+  tauri-plugin-shellx-api@2.0.16:
+    dependencies:
+      '@tauri-apps/api': 2.10.1
+
   thread-stream@3.1.0:
     dependencies:
       real-require: 0.2.0
@@ -11619,7 +11633,7 @@ snapshots:
   unplugin-utils@0.3.0:
     dependencies:
       pathe: 2.0.3
-      picomatch: 4.0.3
+      picomatch: 4.0.4
 
   unplugin@2.3.5:
     dependencies:

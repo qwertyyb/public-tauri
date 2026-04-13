@@ -14,12 +14,17 @@
         "name": "create-script-command",
         "title": "create script command",
         "mode": "view"
+      },
+      {
+        "name": "search-script-command",
+        "title": "search script command",
+        "mode": "view"
       }
     ]
   },
   "scripts": {
     "dev": "vite",
-    "build": "run-p type-check \"build-only {@}\" --",
+    "build": "vite build",
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --build",

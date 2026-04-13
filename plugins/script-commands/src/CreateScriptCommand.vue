@@ -12,8 +12,12 @@
         </select>
       </div>
       <div class="form-item">
-        <label class="form-item-label">Name</label>
-        <input class="form-item-input" type="text" placeholder="Name" v-model.trim="formValue.name" />
+        <label class="form-item-label">Title</label>
+        <input class="form-item-input" type="text" placeholder="Name" v-model.trim="formValue.title" />
+      </div>
+      <div class="form-item">
+        <label class="form-item-label">Icon</label>
+        <input class="form-item-input" type="text" placeholder="Icon URL" v-model.trim="formValue.icon" />
       </div>
       <div class="form-item">
         <label class="form-item-label">Description</label>
@@ -26,7 +30,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { showSaveFilePicker, dialog, fs } from '@public/api'
+import { showSaveFilePicker, dialog, fs, opener, storage, mainWindow } from '@public/api'
 import { ref } from 'vue';
 
 const suffix = {
@@ -37,45 +41,54 @@ const suffix = {
 }
 
 interface IScriptCommandOptions {
-  name: string;
+  template: 'Node.JS' | 'Bash' | 'Python' | 'AppleScript',
   title: string;
   description?: string;
   icon?: string;
+  path: string;
 }
 
-const formValue = ref<{
-  template: 'Node.JS' | 'Bash' | 'Python' | 'AppleScript',
-  name: string,
-  title: string,
-  description: string,
-}>({
+const formValue = ref<IScriptCommandOptions>({
   template: 'Bash',
-  name: '',
   title: '',
+  icon: '',
   description: '',
+  path: '',
 })
 
 const generateNodeJS = (options: IScriptCommandOptions) => {
   return `#!/usr/bin/env node
-// ${options.title || options.name}
+// ${options.title}
 // Description: ${options.description || ''}
 
 const args = process.argv.slice(2);
 console.log('arguments: ', args);
 `
 }
+
+const addScriptCommand = async (options: IScriptCommandOptions) => {
+  const list: IScriptCommandOptions[] = (await storage.getItem('scriptCommands')) || []
+  list.unshift(options)
+  await storage.setItem('scriptCommands', list)
+}
+
 const submitHandler = async () => {
-  if (!formValue.value.name) {
-    dialog.showToast('Name is required')
+  if (!formValue.value.title) {
+    dialog.showToast('Title is required')
     return;
   }
   const filePath = await showSaveFilePicker({
     canCreateDirectories: true,
-    defaultPath: `${formValue.value.name}.${suffix[formValue.value.template]}`
+    defaultPath: `${formValue.value.title}.${suffix[formValue.value.template]}`
   })
   if (!filePath) return;
   dialog.showToast(filePath || 'none')
-  await fs.writeTextFile(filePath, generateNodeJS(formValue.value))
+  const options = { ...formValue.value, path: filePath }
+  await fs.writeTextFile(filePath, generateNodeJS(options))
+  await addScriptCommand(options)
+  opener.openPath(filePath)
+  mainWindow.popToRoot()
+  mainWindow.hide()
 }
 
 </script>

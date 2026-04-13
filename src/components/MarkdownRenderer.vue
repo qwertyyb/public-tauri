@@ -39,7 +39,7 @@ import 'markdown-it-code-block/styles/dark-theme-token-media.css';
 // Base style
 import 'markdown-it-code-block/styles/base.css';
 import 'markdown-it-code-block/styles/base-token.css';
-import { open } from '@tauri-apps/plugin-shell';
+import { shell } from '@public/core';
 
 interface Props {
   content?: string;
@@ -67,7 +67,7 @@ const html = computed(() => md.render(props.content));
 const clickHandler = (event: MouseEvent) => {
   if (event.target instanceof HTMLAnchorElement) {
     event.preventDefault();
-    open(event.target.href);
+    shell.open(event.target.href);
   }
 };
 

@@ -3,7 +3,6 @@ import { cursorPosition, getCurrentWindow } from '@tauri-apps/api/window';
 import * as autostart from '@tauri-apps/plugin-autostart';
 import { invokeServerUtils } from './server';
 import { listen, type UnlistenFn } from '@tauri-apps/api/event';
-import { open } from '@tauri-apps/plugin-shell';
 import { invoke } from '@tauri-apps/api/core';
 
 export * as globalShortcut from '@tauri-apps/plugin-global-shortcut';
@@ -110,7 +109,6 @@ export const utils = {
   getFrontmostApplication: (): Promise<IApplication | null> => invokeServerUtils('system.getFrontmostApplication'),
   runCommand: (command: string): Promise<string> => invokeServerUtils('system.runCommand', [command]),
   runAppleScript: (script: string): Promise<string> => invokeServerUtils('system.runAppleScript', [script]),
-  open,
   getMousePosition: async () => {
     const [position, scaleFactor] = await Promise.all([cursorPosition(), getCurrentWindow().scaleFactor()]);
     return position.toLogical(scaleFactor);

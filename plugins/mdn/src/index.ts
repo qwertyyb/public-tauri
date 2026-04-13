@@ -1,4 +1,4 @@
-import { fetch, utils, type IListViewCommand } from '@public/api';
+import { fetch, type IListViewCommand, opener } from '@public/api';
 
 const command: IListViewCommand = {
   onSearch: async (keyword, setList) => {
@@ -17,7 +17,7 @@ const command: IListViewCommand = {
     return setList(docs);
   },
   onAction(item: any) {
-    utils.open(item.url);
+    opener.openUrl(item.url);
   },
 };
 

@@ -1,5 +1,5 @@
 import { resourceDir } from '@tauri-apps/api/path';
-import { Child, Command } from '@tauri-apps/plugin-shell';
+import { Child, Command } from 'tauri-plugin-shellx-api';
 import path from 'path-browserify';
 
 const SERVER_PORT = 2345;

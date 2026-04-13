@@ -1,4 +1,4 @@
-import { type IListViewCommand, fetch, utils } from '@public/api';
+import { type IListViewCommand, fetch, opener } from '@public/api';
 
 // const withCache = <F extends (...args: any[]) => any>(fn: F) => {
 //   const results = new Map<string, any>();
@@ -33,6 +33,6 @@ export const createCommand = (name: 'hot' | 'latest'): IListViewCommand => ({
     });
   },
   onAction(item: any) {
-    utils.open(item.url);
+    opener.openUrl(item.url);
   },
 });
