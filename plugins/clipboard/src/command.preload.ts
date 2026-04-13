@@ -115,6 +115,12 @@ const search = async (keyword?: string) => {
       icon: item.content ? item.content : './assets/text.png',
       contentValue: item.content ? item.content : item.text,
       contentType: item.contentType,
+      actions: [
+        {
+          name: 'paste',
+          title: '粘贴',
+        },
+      ],
     };
   });
 };
@@ -135,6 +141,12 @@ const listView: IListViewCommand = {
         icon: item.content ? item.content : './assets/text.png',
         contentValue: item.content ? item.content : item.text,
         contentType: item.contentType,
+        actions: [
+          {
+            name: 'paste',
+            title: '粘贴',
+          },
+        ],
       };
     });
     setList(list);

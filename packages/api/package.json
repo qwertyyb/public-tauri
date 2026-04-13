@@ -10,7 +10,8 @@
     "./components/*": "./src/components/*"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsdown"
   },
   "keywords": [],
   "author": "",
@@ -21,5 +22,8 @@
     "@public/schema": "workspace:^",
     "es-toolkit": "^1.39.8",
     "virtua": "^0.43.6"
+  },
+  "devDependencies": {
+    "tsdown": "^0.21.7"
   }
 }

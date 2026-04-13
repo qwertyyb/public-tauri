@@ -1,6 +1,6 @@
 
 import { writeText } from 'tauri-plugin-clipboard-api';
-import { dialog, definePlugin } from '@public/api';
+import { dialog, definePlugin, type ICommand } from '@public/api';
 import { create, all } from 'mathjs';
 
 const DECIMAL_SEPARATOR = '.';
@@ -62,7 +62,7 @@ export class Calculator {
 }
 
 const calculatorPlugin = definePlugin(() => ({
-  onInput(keyword: string) {
+  onInput(keyword: string): ICommand[] {
     if (Calculator.isValidInput(keyword)) {
       const result = Calculator.calculate(keyword);
       console.log('keyword', result);
@@ -76,13 +76,23 @@ const calculatorPlugin = definePlugin(() => ({
           matches: [
             { type: 'text', keywords: [keyword] },
           ],
+          actions: [
+            { name: 'copy', title: '复制到剪切板' },
+          ],
         },
       ];
     }
+    return [];
   },
   onEnter(item) {
     writeText(String(item.text));
     dialog.showToast('结果已复制到剪切板');
+  },
+  onAction(command, action) {
+    if (action.name === 'copy') {
+      writeText(String(command.text));
+      dialog.showToast('结果已复制到剪切板');
+    }
   },
 }));
 

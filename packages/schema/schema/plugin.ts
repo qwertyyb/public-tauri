@@ -1,6 +1,6 @@
 import * as z from 'zod';
-import { preferenceSchema, type IActionItem } from './common';
-import { commandSchema, type ICommand, type ICommandActionOptions } from './command';
+import { preferenceSchema } from './common';
+import { commandSchema, type IAction, type ICommand, type ICommandActionOptions } from './command';
 
 export const pluginSchema = z.object({
   $schema: z.string().optional(),
@@ -79,5 +79,5 @@ export type IPluginLifecycle = {
   onSelect?: (command: ICommand, query: string, options: ICommandActionOptions) => string | undefined | HTMLElement | Promise<string | HTMLElement | undefined>,
   onEnter?: (command: ICommand, query: string, options: ICommandActionOptions) => void,
   onExit?: (command: ICommand) => void,
-  onAction?: (command: ICommand, action: IActionItem, keyword: string) => void,
+  onAction?: (command: ICommand, action: IAction, keyword: string) => void,
 };

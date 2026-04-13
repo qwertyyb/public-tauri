@@ -42,11 +42,6 @@ const buildQuery = () => (
   supportedTypes.map(type => `kMDItemContentType=${type}`).join('||')
 );
 
-
-// 为了避免缓存同时失效，随机一下
-const createMaxAge = () => 24 * 60 * 60 + Math.round(Math.random() * 24 * 60 * 60);
-
-
 const searchAppList = async () => {
   const { stdout } = mdfind({
     query: JSON.stringify(buildQuery()),
@@ -59,7 +54,6 @@ const searchAppList = async () => {
       name: `app:${app.path}`,
       subtitle: app.path,
       title,
-      icon: `http://localhost:2345/utils/file-icon?path=${encodeURIComponent(app.path)}&size=48&max_age=${createMaxAge()}`,
       path: app.path,
       matches: [
         {

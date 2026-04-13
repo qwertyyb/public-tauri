@@ -17,6 +17,7 @@ export const listenEvents = async () => {
       document.dispatchEvent(new CustomEvent(EVENT_NAME.FOCUSED));
     }
     if (!event.payload) {
+      document.dispatchEvent(new CustomEvent(EVENT_NAME.BLURRED));
       getCurrentWindow().hide();
       popToRootTimeout = setTimeout(() => {
         logger.info('popToTimeout callback');

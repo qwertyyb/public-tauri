@@ -1,0 +1,272 @@
+{
+  "updateTime": 1776177600000,
+  "plugins": [
+    {
+      "name": "applescript",
+      "icon": "https://github.com/qwertyyb/public-tauri/blob/v2/plugins/applescript/assets/applescript.png?raw=true",
+      "version": "1.0.0",
+      "author": "",
+      "manifest": {
+        "name": "applescript",
+        "title": "AppleScript",
+        "subtitle": "执行 AppleScript 命令",
+        "icon": "https://github.com/qwertyyb/public-tauri/blob/v2/plugins/applescript/assets/applescript.png?raw=true",
+        "main": "./dist/index.js"
+      }
+    },
+    {
+      "name": "calculator",
+      "icon": "https://github.com/qwertyyb/public-tauri/blob/v2/plugins/calculator/assets/icon.png?raw=true",
+      "version": "1.0.0",
+      "author": "",
+      "manifest": {
+        "name": "calculator",
+        "title": "计算器",
+        "subtitle": "快捷计算表达式",
+        "icon": "https://github.com/qwertyyb/public-tauri/blob/v2/plugins/calculator/assets/icon.png?raw=true",
+        "main": "./dist/index.js"
+      }
+    },
+    {
+      "name": "clipboard",
+      "icon": "https://github.com/qwertyyb/public-tauri/blob/v2/plugins/clipboard/assets/logo.png?raw=true",
+      "version": "1.0.0",
+      "author": "",
+      "manifest": {
+        "name": "clipboard",
+        "title": "剪切板",
+        "subtitle": "剪切板历史",
+        "icon": "https://github.com/qwertyyb/public-tauri/blob/v2/plugins/clipboard/assets/logo.png?raw=true",
+        "template": "listView",
+        "commands": [
+          {
+            "name": "clipboard",
+            "title": "剪切板",
+            "matches": [
+              { "type": "text", "keywords": ["剪切板", "clipboard", "cp"] },
+              { "type": "trigger", "triggers": ["cp"], "title": "搜索剪切板\"$query\"..." }
+            ],
+            "mode": "listView",
+            "preload": "./dist/command.preload.js"
+          }
+        ]
+      }
+    },
+    {
+      "name": "emoji",
+      "icon": "https://github.com/qwertyyb/public-tauri/blob/v2/plugins/emoji/assets/emoji.png?raw=true",
+      "version": "1.0.0",
+      "author": "",
+      "manifest": {
+        "name": "emoji",
+        "title": "emoji",
+        "subtitle": "查找输入emoji",
+        "icon": "https://github.com/qwertyyb/public-tauri/blob/v2/plugins/emoji/assets/emoji.png?raw=true",
+        "template": "listView",
+        "commands": [
+          {
+            "name": "index",
+            "title": "搜索 emoji",
+            "subtitle": "搜索输入 emoji",
+            "mode": "listView",
+            "preload": "./dist/index.js"
+          }
+        ]
+      }
+    },
+    {
+      "name": "launcher",
+      "icon": "https://github.com/qwertyyb/public-tauri/blob/v2/plugins/launcher/assets/icon.png?raw=true",
+      "version": "1.0.0",
+      "author": "",
+      "manifest": {
+        "name": "launcher",
+        "title": "应用启动器",
+        "subtitle": "快速启动应用",
+        "icon": "https://github.com/qwertyyb/public-tauri/blob/v2/plugins/launcher/assets/icon.png?raw=true",
+        "main": "./dist/preload.js",
+        "server": "./dist/server.js"
+      }
+    },
+    {
+      "name": "magic",
+      "icon": "https://img.icons8.com/?size=100&id=ZXnn88azBI7W&format=png&color=000000",
+      "version": "1.0.0",
+      "author": "",
+      "manifest": {
+        "name": "magic",
+        "title": "魔方平台",
+        "subtitle": "魔方平台快捷操作",
+        "icon": "https://img.icons8.com/?size=100&id=ZXnn88azBI7W&format=png&color=000000",
+        "main": "./dist/index.js",
+        "commands": [
+          {
+            "name": "editor",
+            "title": "魔方H5编辑页",
+            "subtitle": "打开魔方H5编辑页",
+            "mode": "none",
+            "matches": [
+              { "type": "text", "keywords": ["magic"] },
+              { "type": "trigger", "triggers": ["magic", "mact"], "title": "打开魔方H5编辑页\"$query\"" },
+              { "type": "regexp", "regexp": "https://.*/magic-act(-beta|-dev)?/([0-9a-zA-Z]+)/", "title": "打开魔方H5编辑页\"${matches[2]}\"" }
+            ],
+            "actions": [{ "name": "openUrl", "title": "打开页面" }]
+          },
+          {
+            "name": "mod",
+            "title": "魔方模块编辑页",
+            "subtitle": "打开魔方模块编辑页",
+            "mode": "none",
+            "matches": [
+              { "type": "text", "keywords": ["magic"] },
+              { "type": "trigger", "triggers": ["magic", "mmod"], "title": "打开魔方模块编辑页\"$query\"" }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "mdn",
+      "icon": "https://github.com/qwertyyb/public-tauri/blob/v2/plugins/mdn/assets/mdn.png?raw=true",
+      "version": "1.0.0",
+      "author": "",
+      "manifest": {
+        "name": "mdn",
+        "title": "MDN文档",
+        "subtitle": "搜索 MDN 文档",
+        "icon": "https://github.com/qwertyyb/public-tauri/blob/v2/plugins/mdn/assets/mdn.png?raw=true",
+        "template": "listView",
+        "commands": [
+          {
+            "name": "search-mdn",
+            "title": "搜索 MDN 文档",
+            "subtitle": "搜索 MDN 文档",
+            "mode": "listView",
+            "matches": [
+              { "type": "text", "keywords": ["MDN", "docs", "mdn docs"] },
+              { "type": "trigger", "triggers": ["mdn"], "title": "搜索 MDN 文档\"$query\"..." }
+            ],
+            "preload": "./dist/index.js"
+          }
+        ]
+      }
+    },
+    {
+      "name": "qrcode",
+      "icon": "https://github.com/qwertyyb/public-tauri/blob/v2/plugins/qrcode/assets/qrcode.png?raw=true",
+      "version": "1.0.0",
+      "author": "",
+      "manifest": {
+        "name": "qrcode",
+        "title": "二维码",
+        "subtitle": "生成、解析二维码",
+        "icon": "https://github.com/qwertyyb/public-tauri/blob/v2/plugins/qrcode/assets/qrcode.png?raw=true",
+        "main": "./dist/index.js",
+        "server": "./dist/server.js",
+        "template": "listView",
+        "commands": [
+          {
+            "name": "generate",
+            "title": "生成二维码",
+            "subtitle": "生成二维码",
+            "mode": "none",
+            "matches": [
+              { "type": "text", "keywords": ["qrcode", "生成二维码"] },
+              { "type": "trigger", "triggers": ["qr"], "title": "生成二维码\"$query\"" }
+            ],
+            "actions": [{ "name": "copy-to-clipboard", "title": "复制到剪切板" }]
+          },
+          {
+            "name": "generate-for-current-url",
+            "title": "分享当前页面",
+            "subtitle": "生成当前页面的分享二维码",
+            "mode": "none",
+            "matches": [
+              { "type": "text", "keywords": ["qrcu"] }
+            ],
+            "actions": [{ "name": "copy-to-clipboard", "title": "复制到剪切板" }]
+          },
+          {
+            "name": "detect",
+            "title": "解析二维码",
+            "subtitle": "解析二维码",
+            "mode": "listView",
+            "preload": "./dist/detect.command.js",
+            "matches": [
+              { "type": "text", "keywords": ["detect qrcode", "解析二维码"] },
+              { "type": "file", "extensions": ["png", "jpg", "jpeg"] }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "transform",
+      "icon": "https://github.com/qwertyyb/public-tauri/blob/v2/plugins/transform/assets/icon.png?raw=true",
+      "version": "1.0.0",
+      "author": "",
+      "manifest": {
+        "name": "transform",
+        "title": "转换",
+        "subtitle": "单位、金额、时间转换",
+        "icon": "https://github.com/qwertyyb/public-tauri/blob/v2/plugins/transform/assets/icon.png?raw=true",
+        "main": "dist/preload.js"
+      }
+    },
+    {
+      "name": "translate",
+      "icon": "https://github.com/qwertyyb/public-tauri/blob/v2/plugins/translate/assets/google-translate.png?raw=true",
+      "version": "1.0.0",
+      "author": "",
+      "manifest": {
+        "name": "translate",
+        "title": "翻译",
+        "subtitle": "翻译输入内容",
+        "icon": "https://github.com/qwertyyb/public-tauri/blob/v2/plugins/translate/assets/google-translate.png?raw=true",
+        "server": "./dist/server.js",
+        "template": "listView",
+        "commands": [
+          {
+            "name": "youdao",
+            "title": "翻译",
+            "matches": [
+              { "type": "text", "keywords": ["翻译", "translate", "ts"] },
+              { "type": "trigger", "triggers": ["fy", "ts"], "title": "翻译\"$query\"..." }
+            ],
+            "mode": "listView",
+            "preload": "./dist/command.preload.js"
+          }
+        ]
+      }
+    },
+    {
+      "name": "v2ex",
+      "icon": "https://github.com/qwertyyb/public-tauri/blob/v2/plugins/v2ex/assets/v2ex.png?raw=true",
+      "version": "1.0.0",
+      "author": "",
+      "manifest": {
+        "name": "v2ex",
+        "title": "v2ex",
+        "subtitle": "查看v2ex热贴和新贴",
+        "icon": "https://github.com/qwertyyb/public-tauri/blob/v2/plugins/v2ex/assets/v2ex.png?raw=true",
+        "template": "listView",
+        "commands": [
+          {
+            "name": "hot",
+            "title": "v2ex热贴",
+            "subtitle": "查看v2ex热贴",
+            "mode": "listView",
+            "preload": "./dist/command-hot.js"
+          },
+          {
+            "name": "latest",
+            "title": "v2ex新贴",
+            "subtitle": "查看v2ex新贴",
+            "mode": "listView",
+            "preload": "./dist/command-latest.js"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,12 +1,12 @@
 import path, { join } from 'path-browserify';
-import { clipboard, dialog, fetch, globalShortcut, mainWindow, utils, Database, screen, createPluginStorage, registerServerModule, invokePluginServerMethod, createPluginServerListener, storage, showSaveFilePicker, fs, shell, opener } from '@public/core';
+import { resolveFileIcon, resolveLocalPath, clipboard, dialog, fetch, globalShortcut, mainWindow, utils, Database, screen, createPluginStorage, registerServerModule, invokePluginServerMethod, createPluginServerListener, storage, showSaveFilePicker, fs, shell, opener } from '@public/core';
 import { readTextFile } from '@tauri-apps/plugin-fs';
-import { formatCommand, getLocalPath, openCommandPreferences, openPluginPreferences, popView, pushView, withCache } from './utils';
+import { formatCommand, getLocalPath, openCommandPreferences, openPluginPreferences, popView, pushView, resolveIconUrl, withCache } from './utils';
 import { set } from 'es-toolkit/compat';
 import { resultsMap } from './store';
 import { resolveResource } from '@tauri-apps/api/path';
 import { preloadApp, setupApp, startApp } from 'wujie';
-import { parsePluginConfig, type IPluginManifest, type ICommand as IPluginCommand, type IPluginLifecycle, type IPreference, type ICommandActionOptions } from '@public/schema';
+import { parsePluginConfig, type IPluginManifest, type ICommand as IPluginCommand, type IPluginLifecycle, type IPreference, type ICommandActionOptions, type IAction } from '@public/schema';
 import logger from '@/utils/logger';
 import type { IRunningPlugin, IPluginsSettings, IPluginSettings, ICommandSettings } from '@/types/plugin';
 import { BUILTIN_PLUGINS } from './builtin';
@@ -22,12 +22,14 @@ export const createWujie = (name: string, entryUrl: string, options?: {
   insertScript: { content: string, module?: boolean }
 }) => {
   const lifecycle: IPluginLifecycle = {};
+  const events = new EventTarget();
 
   setupApp({
     name,
     url: entryUrl,
     exec: true,
     alive: true,
+    // degrade: true,
     fetch(input, init) {
       const url = input instanceof Request ? input.url : input;
       const { host } = new URL(url);
@@ -43,18 +45,25 @@ export const createWujie = (name: string, entryUrl: string, options?: {
       clipboard,
       fetch,
       screen,
-      storage: createPluginStorage(name),
       mainWindow,
       Database,
+      showSaveFilePicker,
+      fs,
+      resolveFileIcon,
+      resolveLocalPath,
+      shell,
+      opener,
+
+      storage: createPluginStorage(name),
       invoke: (method: string, ...args: any[]) => invokePluginServerMethod(name, method, args),
       on: createPluginServerListener(name),
       createPlugin: (options: IPluginLifecycle) => {
         Object.assign(lifecycle, { ...options });
       },
-      showSaveFilePicker,
-      fs,
-      shell,
-      opener,
+      updateActions: (actions?: IAction[]) => {
+        events.dispatchEvent(new CustomEvent('updateActions', { detail: { actions, plugin: name } }));
+      },
+      events,
     },
     plugins: options?.insertScript ? [
       {
@@ -67,6 +76,7 @@ export const createWujie = (name: string, entryUrl: string, options?: {
   preloadApp({ name });
   return {
     lifecycle,
+    events,
   };
 };
 
@@ -87,7 +97,7 @@ export const registerPlugin = async (pluginPath: string) => {
     const pkg = JSON.parse(await readTextFile(getLocalPath('./package.json', pluginPath)!));
     const { publicPlugin } = pkg;
     const manifest: IPluginManifest = parsePluginConfig({ ...publicPlugin, name: pkg.name });
-    manifest.icon = getLocalPath(manifest.icon, pluginPath)!;
+    manifest.icon = resolveIconUrl(manifest.icon, pluginPath);
     const { name, template, html } = manifest;
     const commands: IPluginCommand[] = (publicPlugin.commands || []).map((item: any) => formatCommand(item, manifest, pluginPath));
     if (!pluginsSettings[name]) {
@@ -126,7 +136,7 @@ export const registerPlugin = async (pluginPath: string) => {
             commands.forEach((command) => {
               const item = formatCommand(command, manifest, pluginPath);
               list.push(item);
-              resultsMap.set(item, { owner: pluginInstance });
+              resultsMap.set(item, { owner: pluginInstance, command: item });
             });
             window.dispatchEvent(new CustomEvent('plugin:showCommands', { detail: { name: manifest.name, commands: list } }));
           },
@@ -136,10 +146,11 @@ export const registerPlugin = async (pluginPath: string) => {
       }
     }
     if (html) {
-      const entryUrl =  /^https?:\/\//.test(html || '') ? html : getEntryUrl(name, path.join('/', html || '/index.html'));
-      const { lifecycle } = createWujie(name, entryUrl);
+      const entryUrl = /^https?:\/\//.test(html || '') ? html : getEntryUrl(name, path.join('/', html || '/index.html'));
+      const { lifecycle, events } = createWujie(name, entryUrl);
       pluginInstance.lifecycle = lifecycle;
       pluginInstance.entryUrl = entryUrl;
+      pluginInstance.events = events;
     } else if (template === 'listView') {
       const entryUrl = getEntryUrl(name, '/index.html');
       const commands = (publicPlugin.commands || []).map((item: any) => {
@@ -151,11 +162,12 @@ export const registerPlugin = async (pluginPath: string) => {
         };
       }).filter(Boolean);
       const scriptContent = `window.$commands = ${JSON.stringify(commands)}`;
-      const { lifecycle } = createWujie(name, entryUrl, {
+      const { lifecycle, events } = createWujie(name, entryUrl, {
         insertScript: { content: scriptContent, module: true },
       });
       pluginInstance.lifecycle = lifecycle;
       pluginInstance.entryUrl = entryUrl;
+      pluginInstance.events = events;
     }
     plugins.set(pkg.name, pluginInstance);
     return pluginInstance;
@@ -360,7 +372,7 @@ export const enterCommand = async (owner: IRunningPlugin, command: IPluginComman
         owner.lifecycle?.onExit?.(command);
       },
     };
-    pushView({ path: '/plugin/view/wujie', params: { wujie } });
+    pushView({ path: '/plugin/view/wujie', params: { wujie, plugin: owner, command, events: owner.events } });
   }
 };
 
@@ -407,7 +419,7 @@ const getBuiltinPluginsBasePath = async () => {
 };
 
 const initInnerPlugins = async () => {
-  const names = ['clipboard', 'translate', 'launcher', 'calculator', 'transform', 'ai', 'snippets', 'qrcode', 'v2ex', 'magic', 'mdn', 'applescript', 'snippets', 'emoji', 'script-commands'];
+  const names = ['clipboard', 'translate', 'launcher', 'calculator', 'transform', 'snippets', 'qrcode', 'v2ex', 'magic', 'mdn', 'applescript', 'snippets', 'emoji', 'script-commands'];
 
   const basePath = await getBuiltinPluginsBasePath();
   logger.info('initInnerPlugins', basePath);

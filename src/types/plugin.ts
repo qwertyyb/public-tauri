@@ -8,6 +8,7 @@ export interface IRunningPlugin {
   settings?: IPluginSettings
   lifecycle?: IPluginLifecycle
   entryUrl?: string
+  events?: EventTarget
 }
 
 export interface ISettings {
@@ -30,3 +31,11 @@ export interface IPluginSettings {
 }
 
 export type IPluginsSettings = Record<string, IPluginSettings | undefined>;
+
+export interface ActionPanelAction {
+  name: string;
+  icon?: string;
+  title?: string;
+  styleType?: 'default' | 'warning' | 'danger';
+  action?: () => void;
+}

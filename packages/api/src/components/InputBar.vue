@@ -87,9 +87,9 @@ onMounted(() => {
   left: 0;
   right: 0;
   z-index: 100;
-  border-bottom: 1px solid light-dark(rgba(0, 0, 0, 0.06), rgba(255, 255, 255, 0.06));
   display: flex;
   align-items: center;
+  box-sizing: border-box;
   --padding-left: calc(var(--nav-width, 36px) + 16px);
 }
 .input {

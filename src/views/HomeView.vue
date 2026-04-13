@@ -1,10 +1,16 @@
 <template>
-  <div class="home-view">
-    <InputBar
-      v-model="input"
-      class="input-bar"
-      is-main-input
-    />
+  <PublicLayout
+    :left-action-panel="leftActionPanel"
+    :right-action-panel="rightActionPanel"
+    :main-action="mainAction"
+  >
+    <template #top>
+      <InputBar
+        v-model="input"
+        class="input-bar"
+        is-main-input
+      />
+    </template>
     <ResultView
       :results="results"
       :preview="preview"
@@ -13,17 +19,21 @@
       @enter="onResultEnter"
       @action="onResultAction"
     />
-  </div>
+  </PublicLayout>
 </template>
 
 <script setup lang="ts">
 import InputBar from '@/components/InputBar.vue';
 import ResultView from '@/components/ResultView.vue';
+import PublicLayout from '@/components/PublicLayout.vue';
+import { type ActionPanel } from '@/components/ActionBar.vue';
 import * as service from '@/services';
 import type { UnlistenFn } from '@tauri-apps/api/event';
 import { getCurrentWindow } from '@tauri-apps/api/window';
 import { onBeforeUnmount, onMounted, ref, toRaw, watch } from 'vue';
-import type { ICommand as IPluginCommand, IActionItem } from '@public/schema';
+import type { IAction, ICommand as IPluginCommand } from '@public/schema';
+import { useAppActionBar } from '@/composables/useAppActionBar';
+import type { ActionPanelAction } from '@/types/plugin';
 
 const results = ref<IPluginCommand[]>([]);
 const preview = ref<string | HTMLElement | undefined>('');
@@ -47,10 +57,48 @@ const onResultEnter = (_item: IPluginCommand | null, itemIndex: number) => {
 };
 
 const onResultSelected = async (_item: IPluginCommand | null, itemIndex: number) => {
-  preview.value = await service.select(toRaw(results.value[itemIndex]), input.value.keyword);
+  const item = toRaw(results.value[itemIndex]);
+  preview.value = await service.select(item, input.value.keyword);
+
+  if (item?.mode === 'none' || !item?.mode) {
+    if (item?.actions?.length) {
+      const actionItems: ActionPanelAction[] = item.actions.map(a => ({
+        ...a,
+        action: () => onResultAction(item, itemIndex, { name: a.name, icon: a.icon!, title: a.title || a.name }),
+      }));
+      const [firstAction, ...restActions] = actionItems;
+      mainAction.value = firstAction;
+      rightActionPanel.value = {
+        title: item.title,
+        actions: restActions,
+      };
+    } else {
+      mainAction.value = undefined;
+      rightActionPanel.value = undefined;
+    }
+  } else {
+    mainAction.value = {
+      name: 'open-command',
+      icon: 'open_in_new',
+      title: 'Open Command',
+      action: () => service.enter(item, input.value.keyword),
+    };
+    if (item?.actions?.length) {
+      rightActionPanel.value = {
+        title: item.title,
+        actions: item.actions.map(a => ({
+          ...a,
+          action: () => onResultAction(item, itemIndex, a),
+        })),
+      };
+    } else {
+      rightActionPanel.value = undefined;
+    }
+  }
 };
 
-const onResultAction = async (item: IPluginCommand, _itemIndex: number, action: IActionItem) => {
+const onResultAction = async (item: IPluginCommand, _itemIndex: number, action: IAction) => {
+  console.log('onResultActon', item);
   service.action(toRaw(item), toRaw(action), input.value.keyword);
 };
 
@@ -66,6 +114,11 @@ declare global {
     'plugin:showCommands': CustomEvent<{ name: string, commands: IPluginCommand[] }>;
   }
 }
+
+// ActionBar composable
+const { leftActionPanel } = useAppActionBar();
+const rightActionPanel = ref<ActionPanel | undefined>();
+const mainAction = ref<ActionPanelAction | undefined>();
 
 let unlistenFocusChange: UnlistenFn;
 
@@ -86,16 +139,3 @@ onBeforeUnmount(() => {
   unlistenFocusChange?.();
 });
 </script>
-
-<style lang="scss" scoped>
-.home-view {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-	color: light-dark(#444, #ccc);
-  // background-color: light-dark(#e5e8e8, #161616);
-}
-.home-view > :deep(*) {
-  width: 100%;
-}
-</style>

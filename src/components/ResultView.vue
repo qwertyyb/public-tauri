@@ -11,6 +11,7 @@
       :keeps="30"
       :estimate-size="54"
       :data-key="'title'"
+      @scroll="scrollHandler"
     >
       <ResultItem
         :key="index"
@@ -24,11 +25,6 @@
         @enter="selectedIndex = index;$emit('enter', item, index)"
       />
     </VirtualList>
-    <ActionList
-      v-if="visibleActionIndex === selectedIndex && (selectedItem?.actions?.length || 0) > 0"
-      :actions="selectedItem.actions!"
-      @action="onResultAction"
-    />
     <ResultItemPreview
       v-if="results.length && preview"
       :html="preview"
@@ -36,14 +32,14 @@
   </div>
 </template>
 
-<script setup lang="ts" generic="T extends IListItem">
-import { computed, ref, useTemplateRef, watch } from 'vue';
+<script setup lang="ts" generic="T extends IResultItem">
+import { computed, nextTick, ref, useTemplateRef, watch } from 'vue';
 import ResultItem from '@/components/ResultItem.vue';
-import ActionList, { type IActionItem } from '@/components/ActionList.vue';
 import ResultItemPreview from '@/components/ResultItemPreview.vue';
 import { isKeyPressed } from '@/utils/keyboard';
-import type { IListItem } from '@public/schema';
+import type { IResultItem } from '@public/schema';
 import { onPageEnter, onPageLeave } from '@/router';
+import { ACTION_BAR_HEIGHT, DIVIDER_WIDTH, NAV_HEIGHT } from '@/const';
 
 const props = withDefaults(defineProps<{
   results?: T[],
@@ -53,16 +49,18 @@ const props = withDefaults(defineProps<{
 const emit = defineEmits<{
   enter: [item: T, index: number],
   select: [item: T | null, index: number],
-  action: [item: T, index: number, action: IActionItem]
 }>();
 
 const selectedIndex = ref(0);
-const visibleActionIndex = ref(-1);
 const actionKeyStartIndex = ref(0);
 
 const selectedItem = computed(() => props.results[selectedIndex.value]);
 
-const virtualList = useTemplateRef<{ scrollToIndex:(_index: number) => void }>('virtualList');
+const virtualList = useTemplateRef<{
+  scrollToIndex:(_index: number) => void,
+  scrollToOffset: (_offset: number) => void,
+  getOffset: () => number,
+    }>('virtualList');
 const el = useTemplateRef('el');
 
 const getPreview = async (item: T) => {
@@ -73,7 +71,7 @@ const getPreview = async (item: T) => {
 // selectedIndex 变化时，滚动到选择位置，调用preview
 const calcActionKeyStartIndex = () => {
   if (!el.value) return;
-  (el.value.querySelector<HTMLElement>(`.result-item[data-result-item-index="${selectedIndex.value}"]`) as any)?.scrollIntoView({ inline: 'center', block: 'center', behavior: 'smooth' });
+  // (el.value.querySelector<HTMLElement>(`.result-item[data-result-item-index="${selectedIndex.value}"]`) as any)?.scrollIntoViewIfNeeded(false);
   const parentRect = el.value.querySelector('div.result-list')!.getBoundingClientRect();
   const els = el.value.querySelectorAll<HTMLElement>('.result-item[data-result-item-index]');
   const visibleIndexList: number[] = [];
@@ -84,53 +82,56 @@ const calcActionKeyStartIndex = () => {
       visibleIndexList.push(parseInt(item.dataset.resultItemIndex as string, 10));
     }
   });
+  if (!visibleIndexList.includes(selectedIndex.value)) {
+    selectedIndex.value = visibleIndexList[0] || 0;
+  }
   // eslint-disable-next-line prefer-destructuring
   actionKeyStartIndex.value = visibleIndexList[0];
 };
 
 watch(selectedItem, (value) => {
-  visibleActionIndex.value = -1;
-  // virtualList.value?.scrollToIndex(Math.max(0, selectedIndex.value - 4))
   getPreview(value);
 }, { immediate: true });
-watch(selectedItem, () => setTimeout(calcActionKeyStartIndex, 600), { flush: 'post' });
 
 watch(() => props.results, () => {
-  console.log('result'); selectedIndex.value = 0;
+  selectedIndex.value = 0;
 });
+
+const scrollHandler = async () => {
+  console.log('scrollHandler');
+  await nextTick();
+  calcActionKeyStartIndex();
+};
 
 const onResultEnter = (index: number) => {
   emit('enter', props.results[index], index);
 };
 
-const highlightAction = (actionName: string) => {
-  const actionEl = document.querySelector(`[data-action-name=${JSON.stringify(actionName)}]`);
-  if (!actionEl) return;
-  actionEl.classList.add('flash');
-  setTimeout(() => {
-    actionEl.classList.remove('flash');
-  }, 400);
-};
-
-const onResultAction = (action: IActionItem) => {
-  emit('action', selectedItem.value, selectedIndex.value, action);
-  highlightAction(action.name);
-};
-
 const keydownHandler = (e: KeyboardEvent) => {
   if (isKeyPressed(e, 'ArrowUp')) {
     selectedIndex.value = (Math.max(0, selectedIndex.value - 1));
+    nextTick(() => {
+      const selectedDOM = el.value?.querySelector<HTMLElement>(`.result-item[data-result-item-index="${selectedIndex.value}"]`);
+      if (!selectedDOM) return;
+      const rect = selectedDOM.getBoundingClientRect();
+      if (rect.top < NAV_HEIGHT + DIVIDER_WIDTH) {
+        virtualList.value?.scrollToOffset(virtualList.value?.getOffset() + rect.top - NAV_HEIGHT - DIVIDER_WIDTH);
+      }
+    });
     e.stopPropagation();
     e.preventDefault();
   } else if (isKeyPressed(e, 'ArrowDown')) {
     selectedIndex.value = (Math.min(selectedIndex.value + 1, props.results.length - 1));
-    console.log('selectedIndex', selectedIndex.value);
+    nextTick(() => {
+      const selectedDOM = el.value?.querySelector<HTMLElement>(`.result-item[data-result-item-index="${selectedIndex.value}"]`);
+      if (!selectedDOM) return;
+      const rect = selectedDOM.getBoundingClientRect();
+      if (rect.bottom > window.innerHeight - ACTION_BAR_HEIGHT - DIVIDER_WIDTH) {
+        virtualList.value?.scrollToOffset(virtualList.value?.getOffset() + rect.bottom - window.innerHeight + ACTION_BAR_HEIGHT + DIVIDER_WIDTH);
+      }
+    });
     e.stopPropagation();
     e.preventDefault();
-  } else if (isKeyPressed(e, 'Shift+Enter')) {
-    e.stopPropagation();
-    e.preventDefault();
-    visibleActionIndex.value = selectedIndex.value;
   } else if (isKeyPressed(e, 'Enter')) {
     e.stopPropagation();
     e.preventDefault();
@@ -140,11 +141,6 @@ const keydownHandler = (e: KeyboardEvent) => {
     selectedIndex.value = actionKeyStartIndex.value + key - 1;
     onResultEnter(selectedIndex.value);
     e.stopPropagation();
-  } else if (selectedItem.value?.actions) {
-    // const actions = [...selectedItem.value?.actions ?? []];
-    // const action = actions.find(action => isKeyPressed(e, action.shortcuts));
-    // if (!action) return;
-    // onResultAction(action);
   }
 };
 

@@ -10,7 +10,7 @@
         {{ manifest?.title }}
       </h2>
       <p class="prfs-desc">
-        {{ manifest?.descript }}
+        {{ manifest?.description }}
       </p>
       <p class="fill-desc">
         为保障功能正常使用，请先填写配置信息

@@ -3,5 +3,5 @@ import { type ICommand, type ICommandMatchPair } from '@public/schema';
 
 export const plugins: Map<string, IRunningPlugin> = new Map();
 
-export const resultsMap = new WeakMap<ICommand, { owner: IRunningPlugin, query?: string } & Partial<ICommandMatchPair>>();
+export const resultsMap = new WeakMap<ICommand, { owner: IRunningPlugin, query?: string, command: ICommand } & Partial<ICommandMatchPair>>();
 

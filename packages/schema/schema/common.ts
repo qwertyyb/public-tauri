@@ -27,10 +27,3 @@ export type IPreference = z.infer<typeof preferenceSchema>;
 
 export type IPreferences = IPreference[];
 
-export type IActionItem = {
-  name: string
-  icon: string
-  title: string
-  shortcut?: string
-};
-

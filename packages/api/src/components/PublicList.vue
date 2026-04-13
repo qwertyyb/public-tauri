@@ -25,11 +25,6 @@
         />
       </VList>
     </div>
-    <!-- <ActionList
-      v-if="visibleActionIndex === selectedIndex && (selectedItem?.actions?.length || 0) > 0"
-      :actions="selectedItem.actions!"
-      @action="onResultAction"
-    /> -->
     <ResultItemPreview
       v-if="results.length && preview"
       :html="preview"
@@ -41,8 +36,7 @@
 import { computed, onBeforeMount, onMounted, ref, useTemplateRef, watch } from 'vue';
 import { VList } from 'virtua/vue';
 import ListItem from './PublicListItem.vue';
-// import ActionList, { type IActionItem } from '@/components/ActionList.vue';
-import type { IActionItem } from '@public/schema';
+import type { IAction } from '@public/schema';
 import ResultItemPreview from './PublicListItemDetail.vue';
 
 const getPressedKeys = (event: KeyboardEvent) => {
@@ -67,7 +61,7 @@ const props = defineProps<{
 const emit = defineEmits<{
   enter: [item: T, index: number],
   select: [item: T | null, index: number],
-  action: [item: T, index: number, action: IActionItem]
+  action: [item: T, index: number, action: IAction]
 }>();
 
 const selectedIndex = ref(0);
@@ -118,18 +112,8 @@ const onResultEnter = (index: number) => {
   emit('enter', props.results[index]!, index);
 };
 
-const highlightAction = (actionName: string) => {
-  const actionEl = document.querySelector(`[data-action-name=${JSON.stringify(actionName)}]`);
-  if (!actionEl) return;
-  actionEl.classList.add('flash');
-  setTimeout(() => {
-    actionEl.classList.remove('flash');
-  }, 400);
-};
-
-const onResultAction = (action: IActionItem) => {
+const onResultAction = (action: IAction) => {
   emit('action', selectedItem.value!, selectedIndex.value, action);
-  highlightAction(action.name);
 };
 
 const keydownHandler = (e: KeyboardEvent) => {

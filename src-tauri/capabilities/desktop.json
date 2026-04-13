@@ -19,6 +19,7 @@
     "core:window:allow-hide",
     "core:window:allow-close",
     "core:app:allow-set-dock-visibility",
+    "core:app:allow-default-window-icon",
     "global-shortcut:allow-is-registered",
     "global-shortcut:allow-register",
     "global-shortcut:allow-unregister",
@@ -70,6 +71,7 @@
     "autostart:allow-is-enabled",
     "double-tap-shortcut:allow-register",
     "double-tap-shortcut:allow-unregister",
-    "dialog:default"
+    "dialog:default",
+    "process:allow-exit"
   ]
 }

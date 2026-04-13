@@ -7,16 +7,12 @@
     @click="$emit('select')"
     @dblclick="$emit('enter')"
   >
-    <div
+    <AppIcon
       v-if="icon"
-      class="itemImageWrapper flex-h-v"
-    >
-      <img
-        :src="icon"
-        alt=""
-        loading="lazy"
-      >
-    </div>
+      :icon="icon"
+      :size="36"
+      class="item-image"
+    />
     <div class="itemInfo flex-1 flex-col-center">
       <h3
         class="itemTitle text-single-line"
@@ -45,6 +41,7 @@
 
 <script setup lang="ts">
 import ShortcutsKey from '@/components/ShortcutsKey.vue';
+import AppIcon from '@public/icon/AppIcon.vue';
 interface IResultItem {
   icon?: string,
   title: string,
@@ -71,10 +68,10 @@ defineEmits<{
   scroll-snap-align: start;
   display: flex;
   align-items: center;
-  height: 54px;
+  height: var(--item-height);
   max-width: 100%;
   content-visibility: auto;
-  contain-intrinsic-size: 54px;
+  contain-intrinsic-size: var(--item-height);
   transition: all .1s;
   padding: 0 16px;
   box-sizing: border-box;
@@ -91,18 +88,11 @@ defineEmits<{
 .resultItem.selected {
   background-color: light-dark(rgba(0, 0, 0, 0.15), rgba(184, 184, 184, 0.3));
 }
-.itemImageWrapper {
+.item-image {
   width: 36px;
   height: 36px;
-  margin-right: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   min-width: 36px;
-}
-.itemImageWrapper img {
-  width: 100%;
-  height: 100%;
+  margin-right: 6px;
 }
 .itemInfo {
   width: 0;

@@ -1,0 +1,22 @@
+{
+  "name": "@public/icon",
+  "version": "1.0.0",
+  "description": "Unified icon protocol system for Public app",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": "./index.ts",
+    "./AppIcon.vue": "./src/AppIcon.vue",
+    "./resolver": "./src/resolver.ts",
+    "./types": "./src/types.ts"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@tauri-apps/api": "^2"
+  }
+}

@@ -2,7 +2,7 @@ import fuzzysort from 'fuzzysort';
 import { enterCommand, getPlugins } from './manager';
 import { resultsMap } from './store';
 import { getLocalPath, hanziToPinyin, htmlEscape } from './utils';
-import { AsyncFile, type IActionItem, type ICommandFileMatch, type ICommand as IPluginCommand } from '@public/schema';
+import { AsyncFile, type IAction, type ICommandFileMatch, type ICommand as IPluginCommand } from '@public/schema';
 import type { IRunningPlugin } from '@/types/plugin';
 
 const compileString = (template: string, vars: any) => {
@@ -45,7 +45,7 @@ export const handleQuery = async (input: { keyword: string, files?: File[] }) =>
           icon: getLocalPath(item.icon, plugin.path),
         };
         results.push(result);
-        resultsMap.set(result, { owner: plugin, query: '' });
+        resultsMap.set(result, { owner: plugin, query: '', command: result });
       });
     });
   }));
@@ -81,7 +81,7 @@ export const handleQuery = async (input: { keyword: string, files?: File[] }) =>
         return false;
       }) as ICommandFileMatch | undefined | null;
       if (!match) return false;
-      resultsMap.set(item.command, { query: '', owner: item.owner, match, result: { file: files![0] } });
+      resultsMap.set(item.command, { query: '', owner: item.owner, command: item.command, match, result: { file: files![0] } });
       results.push(item.command);
       commandsSet.add(`${item.owner.manifest.name}:${item.command.name}`);
       return true;
@@ -109,7 +109,7 @@ export const handleQuery = async (input: { keyword: string, files?: File[] }) =>
       // 拼音匹配副标题
       command.subtitle = pinyinHighlight(result.obj.subtitle!, result[3].target, result[3].indexes);
     }
-    resultsMap.set(command, { owner: result.obj.owner, query: '' });
+    resultsMap.set(command, { owner: result.obj.owner, query: '', command: result.obj.command });
     commandsSet.add(`${result.obj.owner.manifest.name}:${result.obj.command.name}`);
     return command;
   }));
@@ -129,7 +129,7 @@ export const handleQuery = async (input: { keyword: string, files?: File[] }) =>
       title: (query && triggerMatch.title) ? triggerMatch.title.replaceAll('$query', query) : item.command.title,
       subtitle: (query && triggerMatch.subtitle) ? triggerMatch.subtitle.replaceAll('$query', query) : item.command.subtitle,
     };
-    resultsMap.set(result, { owner: item.owner, query, match: triggerMatch, result: { trigger, query } });
+    resultsMap.set(result, { owner: item.owner, query, command: result, match: triggerMatch, result: { trigger, query } });
     commandsSet.add(`${item.owner.manifest.name}:${item.command.name}`);
     return [...acc, result];
   }, []));
@@ -149,7 +149,7 @@ export const handleQuery = async (input: { keyword: string, files?: File[] }) =>
       title: compileString(regMatch.title || item.command.title, matches),
       subtitle: compileString(regMatch.subtitle || item.command.subtitle || '', matches),
     };
-    resultsMap.set(result, { owner: item.owner, match: regMatch, result: { matches }, query: keyword });
+    resultsMap.set(result, { owner: item.owner, command: item.command, match: regMatch, result: { matches }, query: keyword });
     commandsSet.add(`${item.owner.manifest.name}:${item.command.name}`);
     return [...acc, result];
   }, []));
@@ -165,7 +165,7 @@ export const handleQuery = async (input: { keyword: string, files?: File[] }) =>
       title: (keyword && fullMatch.title) ? fullMatch.title.replaceAll('$query', keyword) : command.title,
       subtitle: (keyword && fullMatch.subtitle) ? fullMatch.subtitle.replaceAll('$query', keyword) : command.subtitle,
     };
-    resultsMap.set(result, { owner, match: fullMatch, result: { query: keyword }, query: keyword });
+    resultsMap.set(result, { owner, command: result, match: fullMatch, result: { query: keyword }, query: keyword });
     commandsSet.add(`${item.owner.manifest.name}:${item.command.name}`);
     return [...acc, result];
   }, []));
@@ -175,7 +175,7 @@ export const handleQuery = async (input: { keyword: string, files?: File[] }) =>
 
 export const handleSelect = (command: IPluginCommand, keyword: string) => {
   const rp = resultsMap.get(command);
-  return rp?.owner.plugin?.onSelect?.(command, rp.query ?? keyword, { from: 'search', match: rp.match, result: rp.result });
+  return rp?.owner.plugin?.onSelect?.(rp.command, rp.query ?? keyword, { from: 'search', match: rp.match, result: rp.result });
 };
 
 export const handleEnter = (command: IPluginCommand, keyword: string) => {
@@ -183,11 +183,11 @@ export const handleEnter = (command: IPluginCommand, keyword: string) => {
   if (!rp) return;
 
   // 统一处理内置插件和动态插件
-  enterCommand(rp.owner, command, rp.query ?? keyword, { from: 'search', match: rp.match, result: rp.result });
+  enterCommand(rp.owner, rp.command, rp.query ?? keyword, { from: 'search', match: rp.match, result: rp.result });
 };
 
-export const handleAction = (command: IPluginCommand, action: IActionItem, keyword: string) => {
+export const handleAction = (command: IPluginCommand, action: IAction, keyword: string) => {
   const rp = resultsMap.get(command);
   if (!rp) return;
-  rp.owner.plugin?.onAction?.(command, action, keyword);
+  rp.owner.plugin?.onAction?.(rp.command, action, keyword);
 };

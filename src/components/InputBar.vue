@@ -167,6 +167,7 @@ const focusedHandler = () => {
 onMounted(() => {
   document.addEventListener(EVENT_NAME.FOCUSED, focusedHandler);
   window.addEventListener('pop-to-root', popToRootHandler);
+  focusedHandler();
 });
 
 onBeforeUnmount(() => {
@@ -188,20 +189,16 @@ onPageLeave(() => {
 
 <style lang="scss" scoped>
 .input-bar {
-  --bar-height: 48px;
+  --bar-height: var(--nav-height);
   --padding-left: calc(var(--nav-width, 0px) + 16px);
   height: var(--bar-height);
   min-height: var(--bar-height);
   max-height: var(--bar-height);
   position: relative;
   z-index: 100;
-  border-bottom: 1px solid light-dark(rgba(0, 0, 0, 0.06), rgba(255, 255, 255, 0.06));
   display: flex;
   align-items: center;
-  padding-left: 16px;
-  &.is-main-input {
-    --padding-left: 16px;
-  }
+  padding-left: var(--padding-left);
 }
 .text-input-wrapper {
   position: relative;

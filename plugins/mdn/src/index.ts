@@ -13,6 +13,12 @@ const command: IListViewCommand = {
       icon: './assets/mdn.png',
       url: `https://developer.mozilla.org${doc.mdn_url}`,
       mdn_url: doc.mdn_url,
+      actions: [
+        {
+          name: '在浏览器中打开',
+          title: '打开',
+        },
+      ],
     }));
     return setList(docs);
   },

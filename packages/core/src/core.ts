@@ -7,6 +7,7 @@ import { invoke } from '@tauri-apps/api/core';
 
 export * as globalShortcut from '@tauri-apps/plugin-global-shortcut';
 export { default as Database } from '@tauri-apps/plugin-sql';
+export type { UnlistenFn } from '@tauri-apps/api/event';
 
 const listenMap = new WeakMap<Function, UnlistenFn>();
 export const mainWindow = {
@@ -40,7 +41,7 @@ export const mainWindow = {
   },
 };
 
-interface ScreenDetail {
+export interface ScreenDetail {
   id: number
   name: number
   width: number
@@ -75,7 +76,11 @@ export const dialog = {
   },
 };
 
-export const clipboard = {
+export type ClipboardApi = typeof clipboardBase & {
+  paste: () => ReturnType<typeof invokeServerUtils>;
+};
+
+export const clipboard: ClipboardApi = {
   ...clipboardBase,
   paste: () => invokeServerUtils('keyboard.press', ['LeftCmd', 'V']),
 };
@@ -97,7 +102,7 @@ export const fetch = async (input: RequestInfo, init?: RequestInit): Promise<Res
   return response;
 };
 
-interface IApplication {
+export interface IApplication {
   displayName: string
   executablePath: string
   bundleIdentifier: string
