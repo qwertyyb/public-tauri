@@ -419,7 +419,7 @@ const getBuiltinPluginsBasePath = async () => {
 };
 
 const initInnerPlugins = async () => {
-  const names = ['clipboard', 'translate', 'launcher', 'calculator', 'transform', 'snippets', 'qrcode', 'v2ex', 'magic', 'mdn', 'applescript', 'snippets', 'emoji', 'script-commands'];
+  const names = ['clipboard', 'translate', 'launcher', 'calculator', 'transform', 'snippets', 'qrcode', 'mdn', 'applescript', 'snippets', 'emoji', 'script-commands'];
 
   const basePath = await getBuiltinPluginsBasePath();
   logger.info('initInnerPlugins', basePath);

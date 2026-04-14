@@ -1,6 +1,6 @@
 import type { IPluginManifest } from '@public/schema';
 
-export interface IStorePlugin extends Record<string, any> {
+export interface IStorePlugin {
   name: string;
   icon: string;
   version: string; // npm version

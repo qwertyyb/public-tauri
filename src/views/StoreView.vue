@@ -28,6 +28,7 @@ import { useRouter } from '@/router';
 import { fetchStorePlugins, searchPlugins, isPluginInstalled, refreshInstalledPlugins } from '@/services/store';
 import type { IStorePlugin } from '@/types/store';
 import { popView } from '@/plugin/utils';
+import { showToast } from '@/utils/feedback';
 
 const { leftActionPanel } = useAppActionBar();
 const router = useRouter();
@@ -39,9 +40,9 @@ let allPlugins: IStorePlugin[] = [];
 
 const toResult = (plugin: IStorePlugin): ICommand => ({
   icon: plugin.icon,
-  title: plugin.title,
-  subtitle: isPluginInstalled(plugin.name) ? '已安装' : plugin.subtitle || '',
-  name: plugin.id,
+  title: plugin.manifest.title,
+  subtitle: plugin.manifest.subtitle && isPluginInstalled(plugin.manifest.subtitle) ? '已安装' : plugin.manifest.subtitle || '',
+  name: plugin.name,
   mode: 'none',
 });
 
@@ -61,7 +62,11 @@ watch(input, async (value) => {
 });
 
 onMounted(async () => {
-  allPlugins = await fetchStorePlugins();
+  allPlugins = await fetchStorePlugins()
+    .catch((err) => {
+      showToast('获取插件 Store 失败');
+      throw err;
+    });
   await refreshInstalledPlugins();
   updateResults(input.value.keyword);
 });
