@@ -4,11 +4,11 @@
       <div class="detail-header">
         <img
           :src="plugin?.icon"
-          :alt="plugin?.title"
+          :alt="plugin?.manifest.title"
           class="detail-icon"
         >
         <h2 class="detail-title">
-          {{ plugin?.title }}
+          {{ plugin?.manifest.title }}
         </h2>
         <p class="detail-meta">
           <span class="meta-version">v{{ plugin?.version }}</span>
@@ -20,11 +20,11 @@
       <div class="detail-divider" />
 
       <p class="detail-description">
-        {{ plugin?.description }}
+        {{ plugin?.manifest.description }}
       </p>
 
       <div
-        v-if="plugin?.commands?.length"
+        v-if="plugin?.manifest.commands?.length"
         class="commands-section"
       >
         <h4 class="section-title">
@@ -32,7 +32,7 @@
         </h4>
         <ul class="commands-list">
           <li
-            v-for="cmd in plugin.commands"
+            v-for="cmd in plugin.manifest.commands"
             :key="cmd.name"
             class="command-item"
           >
@@ -81,15 +81,15 @@ import type { IStorePlugin } from '@/types/store';
 import type { ActionPanelAction } from '@/types/plugin';
 
 const props = defineProps<{
-  pluginId?: string;
+  name?: string;
 }>();
 
 const router = useRouter();
 const plugin = ref<IStorePlugin | undefined>();
 const installed = ref(false);
 
-const mainAction = computed<ActionPanelAction>(() => {
-  if (!plugin.value) return {};
+const mainAction = computed<ActionPanelAction | undefined>(() => {
+  if (!plugin.value) return undefined;
   if (installed.value) {
     return {
       name: 'uninstall',
@@ -111,10 +111,10 @@ const mainAction = computed<ActionPanelAction>(() => {
 });
 
 const loadPlugin = async () => {
-  if (!props.pluginId) return;
+  if (!props.name) return;
   await refreshInstalledPlugins();
   const plugins = await fetchStorePlugins();
-  plugin.value = plugins.find(p => p.id === props.pluginId);
+  plugin.value = plugins.find(p => p.name === props.name);
   installed.value = plugin.value ? isPluginInstalled(plugin.value.name) : false;
 };
 

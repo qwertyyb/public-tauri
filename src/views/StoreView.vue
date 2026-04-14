@@ -22,7 +22,7 @@ import InputBar from '@/components/InputBar.vue';
 import ResultView from '@/components/ResultView.vue';
 import PublicLayout from '@/components/PublicLayout.vue';
 import { ref, watch, onMounted } from 'vue';
-import type { ICommand } from '@public/schema';
+import type { IResultItem } from '@public/schema';
 import { useAppActionBar } from '@/composables/useAppActionBar';
 import { useRouter } from '@/router';
 import { fetchStorePlugins, searchPlugins, isPluginInstalled, refreshInstalledPlugins } from '@/services/store';
@@ -33,17 +33,16 @@ import { showToast } from '@/utils/feedback';
 const { leftActionPanel } = useAppActionBar();
 const router = useRouter();
 
-const results = ref<ICommand[]>([]);
+const results = ref<IResultItem[]>([]);
 const input = ref<{ keyword: string, files: File[] }>({ keyword: '', files: [] });
 
 let allPlugins: IStorePlugin[] = [];
 
-const toResult = (plugin: IStorePlugin): ICommand => ({
+const toResult = (plugin: IStorePlugin): IResultItem => ({
   icon: plugin.icon,
   title: plugin.manifest.title,
   subtitle: plugin.manifest.subtitle && isPluginInstalled(plugin.manifest.subtitle) ? '已安装' : plugin.manifest.subtitle || '',
   name: plugin.name,
-  mode: 'none',
 });
 
 const updateResults = (keyword: string) => {
@@ -71,9 +70,9 @@ onMounted(async () => {
   updateResults(input.value.keyword);
 });
 
-const onResultEnter = (item: ICommand | null) => {
+const onResultEnter = (item: IResultItem | null) => {
   if (!item) return;
-  router?.pushView('/plugin/store/detail', { pluginId: item.name });
+  router?.pushView('/plugin/store/detail', { name: item.name });
 };
 
 const escapeHandler = () => {
