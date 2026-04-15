@@ -1,5 +1,5 @@
 {
-  "name": "v2ex",
+  "name": "@public-tauri-ext/v2ex",
   "version": "1.0.0",
   "description": "",
   "scripts": {

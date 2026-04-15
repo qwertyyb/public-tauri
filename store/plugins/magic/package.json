@@ -1,5 +1,5 @@
 {
-  "name": "magic",
+  "name": "@public-tauri-ext/magic",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",

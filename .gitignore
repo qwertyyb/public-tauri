@@ -25,3 +25,5 @@ dist-ssr
 .direnv/*
 src-tauri/binaries/*
 !src-tauri/binaries/.gitkeep
+
+.codebuddy
