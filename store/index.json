@@ -1,13 +1,13 @@
 {
-  "updateTime": 1776142409930,
+  "updateTime": 1776258726446,
   "plugins": [
     {
-      "name": "magic",
+      "name": "@public-tauri-ext/magic",
       "icon": "https://img.icons8.com/?size=100&id=ZXnn88azBI7W&format=png&color=000000",
       "version": "1.0.0",
       "author": "",
       "manifest": {
-        "name": "magic",
+        "name": "@public-tauri-ext/magic",
         "icon": "https://img.icons8.com/?size=100&id=ZXnn88azBI7W&format=png&color=000000",
         "title": "魔方平台",
         "subtitle": "魔方平台快捷操作",
@@ -72,13 +72,13 @@
       }
     },
     {
-      "name": "v2ex",
-      "icon": "https://github.com/qwertyyb/public-tauri/blob/v2/plugins/v2ex/assets/v2ex.png?raw=true",
+      "name": "@public-tauri-ext/v2ex",
+      "icon": "https://github.com/qwertyyb/public-tauri/blob/master/store/plugins/@public-tauri-ext/v2ex/assets/v2ex.png?raw=true",
       "version": "1.0.0",
       "author": "",
       "manifest": {
-        "name": "v2ex",
-        "icon": "https://github.com/qwertyyb/public-tauri/blob/v2/plugins/v2ex/assets/v2ex.png?raw=true",
+        "name": "@public-tauri-ext/v2ex",
+        "icon": "https://github.com/qwertyyb/public-tauri/blob/master/store/plugins/@public-tauri-ext/v2ex/assets/v2ex.png?raw=true",
         "title": "v2ex",
         "subtitle": "查看v2ex热贴和新贴",
         "template": "listView",
