@@ -1,5 +1,5 @@
 <template>
-  <PublicLayout :left-action-panel="leftActionPanel">
+  <PublicLayout>
     <div class="about-content">
       <img
         :src="logoUrl"
@@ -31,7 +31,6 @@ import { getName, getVersion, getTauriVersion } from '@tauri-apps/api/app';
 import { open } from 'tauri-plugin-shellx-api';
 import logoUrl from '@/assets/logo.png';
 import PublicLayout from '@/components/PublicLayout.vue';
-import { useAppActionBar } from '@/composables/useAppActionBar';
 
 const repoUrl = 'https://github.com/qwertyyb/public-tauri';
 
@@ -42,8 +41,6 @@ const openRepo = async () => {
 const name = ref('');
 const version = ref('');
 const tauriVersion = ref('');
-
-const { leftActionPanel } = useAppActionBar();
 
 onMounted(async () => {
   const [appName, appVersion, frameworkVersion] = await Promise.all([

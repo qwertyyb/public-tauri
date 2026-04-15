@@ -1,5 +1,5 @@
 <template>
-  <PublicLayout :left-action-panel="leftActionPanel">
+  <PublicLayout>
     <template #top>
       <InputBar
         v-model="input"
@@ -23,14 +23,12 @@ import ResultView from '@/components/ResultView.vue';
 import PublicLayout from '@/components/PublicLayout.vue';
 import { ref, watch, onMounted } from 'vue';
 import type { IResultItem } from '@public/schema';
-import { useAppActionBar } from '@/composables/useAppActionBar';
 import { useRouter } from '@/router';
 import { fetchStorePlugins, searchPlugins, isPluginInstalled, refreshInstalledPlugins } from '@/services/store';
 import type { IStorePlugin } from '@/types/store';
 import { popView } from '@/plugin/utils';
 import { showToast } from '@/utils/feedback';
 
-const { leftActionPanel } = useAppActionBar();
 const router = useRouter();
 
 const results = ref<IResultItem[]>([]);

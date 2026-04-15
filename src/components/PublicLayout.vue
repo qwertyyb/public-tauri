@@ -34,14 +34,20 @@
 
 <script setup lang="ts">
 import ActionBar, { type ActionPanel } from '@/components/ActionBar.vue';
+import { leftActionPanel } from '@/utils/app-action-bar';
 import type { ActionPanelAction } from '@/types/plugin';
 
-defineProps<{
+withDefaults(defineProps<{
   leftActionPanel?: ActionPanel;
   rightActionPanel?: ActionPanel;
   mainAction?: ActionPanelAction;
   noTop?: boolean;
-}>();
+}>(), {
+  leftActionPanel: () => leftActionPanel,
+  rightActionPanel: undefined,
+  mainAction: undefined,
+  noTop: false,
+});
 </script>
 
 <style lang="scss" scoped>

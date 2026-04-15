@@ -12,8 +12,10 @@
         </h2>
         <p class="detail-meta">
           <span class="meta-version">v{{ plugin?.version }}</span>
-          <span class="meta-sep">·</span>
-          <span class="meta-author">{{ plugin?.author }}</span>
+          <template v-if="plugin?.author">
+            <span class="meta-sep">·</span>
+            <span class="meta-author">{{ plugin?.author }}</span>
+          </template>
         </p>
       </div>
 
@@ -53,7 +55,10 @@
       </div>
 
       <div class="detail-footer-info">
-        <span class="footer-stat">
+        <span
+          v-if="plugin?.downloadCount"
+          class="footer-stat"
+        >
           <span class="material-symbols-outlined stat-icon">download</span>
           {{ plugin?.downloadCount }} 次下载
         </span>
@@ -76,7 +81,7 @@
 import { computed, onMounted, ref } from 'vue';
 import PublicLayout from '@/components/PublicLayout.vue';
 import { useRouter, onPageEnter } from '@/router';
-import { fetchStorePlugins, isPluginInstalled, refreshInstalledPlugins } from '@/services/store';
+import { fetchStorePlugins, isPluginInstalled, refreshInstalledPlugins, installStorePlugin, isPluginInstalling } from '@/services/store';
 import type { IStorePlugin } from '@/types/store';
 import type { ActionPanelAction } from '@/types/plugin';
 
@@ -86,7 +91,18 @@ const props = defineProps<{
 
 const router = useRouter();
 const plugin = ref<IStorePlugin | undefined>();
-const installed = ref(false);
+
+const installed = computed(() => (plugin.value ? isPluginInstalled(plugin.value.name) : false));
+const installing = computed(() => (plugin.value ? isPluginInstalling(plugin.value.name) : false));
+
+const installPlugin = async () => {
+  if (!plugin.value || installing.value) return;
+  try {
+    await installStorePlugin(plugin.value);
+  } catch (err) {
+    console.error('安装插件失败:', err);
+  }
+};
 
 const mainAction = computed<ActionPanelAction | undefined>(() => {
   if (!plugin.value) return undefined;
@@ -102,11 +118,9 @@ const mainAction = computed<ActionPanelAction | undefined>(() => {
   }
   return {
     name: 'install',
-    title: '安装',
+    title: installing.value ? '安装中...' : '安装',
     icon: 'download',
-    action: () => {
-      installed.value = true;
-    },
+    action: installPlugin,
   };
 });
 
@@ -115,7 +129,6 @@ const loadPlugin = async () => {
   await refreshInstalledPlugins();
   const plugins = await fetchStorePlugins();
   plugin.value = plugins.find(p => p.name === props.name);
-  installed.value = plugin.value ? isPluginInstalled(plugin.value.name) : false;
 };
 
 onPageEnter(loadPlugin);
@@ -153,6 +166,9 @@ onMounted(loadPlugin);
   color: var(--text-secondary-color);
   .meta-sep {
     margin: 0 6px;
+  }
+  .meta-version {
+    opacity: 0.6;
   }
 }
 

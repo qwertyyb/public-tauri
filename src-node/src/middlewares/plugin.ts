@@ -4,8 +4,6 @@ import type { Middleware } from 'koa';
 import { plugins } from '../plugin/manager';
 import path from 'node:path';
 
-const hostReg = /^(\w+).plugin.localhost$/;
-
 const findFilePath = async (staticPaths: string[], expect: string) => {
   for (const item of staticPaths) {
     try {
@@ -19,10 +17,17 @@ const findFilePath = async (staticPaths: string[], expect: string) => {
 };
 
 export const createPluginMiddleware = (): Middleware => async (ctx, next) => {
-  const plugin = ctx.hostname.match(hostReg)?.[1];
-  if (plugin && plugins.get(plugin)) {
+  const [localhost, plugin, scope, name] = ctx.hostname.split('.').toReversed();
+  if (localhost !== 'localhost' && plugin !== 'plugin') {
+    return await next();
+  }
+  let pluginName = scope;
+  if (name) {
+    pluginName = `@${scope}/${name}`;
+  }
+  if (pluginName && plugins.get(pluginName)) {
     // 来自插件的请求，从插件的 staticPath 中读取数据
-    const { staticPaths } = plugins.get(plugin)!;
+    const { staticPaths } = plugins.get(pluginName)!;
     if (!staticPaths?.length) {
       await next();
       return;

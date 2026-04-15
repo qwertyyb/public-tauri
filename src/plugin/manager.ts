@@ -80,7 +80,14 @@ export const createWujie = (name: string, entryUrl: string, options?: {
   };
 };
 
-const getEntryUrl = (name: string, pathname: string) => `http://${name}.plugin.localhost:2345${pathname}`;
+const getEntryUrl = (name: string, pathname: string) => {
+  // 如果 name 是 @xxxx/yyy 格式，则路径是 http://yyy.xxxx.plugin.localhost
+  if (/^@[^/]+\/[^/]+/.test(name)) {
+    const [scope, pluginName] = name.split('/');
+    return `http://${pluginName}.${scope.replace('@', '')}.plugin.localhost:2345${pathname}`;
+  }
+  return `http://${name}.plugin.localhost:2345${pathname}`;
+};
 
 const getTemplatePath = withCache(async () => {
   const templatePath = await resolveResource('../packages/template/dist');
@@ -117,7 +124,7 @@ export const registerPlugin = async (pluginPath: string) => {
       } else {
         staticPaths.push(pluginPath);
       }
-      registerServerModule(name, {
+      await registerServerModule(name, {
         modulePath: serverModulePath,
         staticPaths,
       });

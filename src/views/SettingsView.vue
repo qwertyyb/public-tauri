@@ -1,5 +1,5 @@
 <template>
-  <PublicLayout :left-action-panel="leftActionPanel">
+  <PublicLayout>
     <div class="settings-body">
       <ul class="panel-list">
         <li
@@ -227,19 +227,18 @@
 
 <script lang="ts" setup>
 import { computed, ref, toRaw } from 'vue';
-import { ElMessage, ElButton, ElSelect, ElSwitch, ElOption, ElInput, ElForm, ElFormItem, ElIcon } from 'element-plus';
+import { ElButton, ElSelect, ElSwitch, ElOption, ElInput, ElForm, ElFormItem, ElIcon } from 'element-plus';
 import { ArrowRightBold, Plus, Delete, Operation } from '@element-plus/icons-vue';
 import PublicLayout from '@/components/PublicLayout.vue';
 import ShortcutsRecorder from '@/components/HotkeyRecorder.vue';
 import type { ICommand as IPluginCommand } from '@public/schema';
-import { useAppActionBar } from '@/composables/useAppActionBar';
 import type { IRunningPlugin, ICommandSettings } from '@/types/plugin';
 import { getSettings, updateSettings, getPlugins, updateMainShortcut } from '@/services/settings';
 import { onPageEnter, useRouter } from '@/router';
-import { unregisterPlugin, updateCommandSettings, updateCommandShortcut, updatePluginPreferences, updatePluginSettings } from '@/plugin/manager';
+import { updateCommandSettings, updateCommandShortcut, updatePluginPreferences, updatePluginSettings } from '@/plugin/manager';
 import { openCommandPreferences, openPluginPreferences } from '@/plugin/utils';
-
-const { leftActionPanel } = useAppActionBar();
+import { uninstallStorePlugin } from '@/services/store';
+import { showToast } from '@/utils/feedback';
 
 const views = ref({
   common: '通用',
@@ -335,20 +334,20 @@ const onAddPluginClick = async () => {
 
   const validateFile = (_file: File) => {
     // @todo
-    ElMessage.error('待实现');
+    showToast('待实现');
     throw new Error('未实现');
   };
 
   validateFile(file);
 
   // await window.window.PublicAppBridge.invoke('registerPlugin', { path: file.path })
-  ElMessage.success('插件添加成功');
+  showToast('插件添加成功');
   refreshSettings();
 };
 
 const onRemovePluginClick = async (_index: number, plugin: IRunningPlugin) => {
-  await unregisterPlugin(plugin.manifest.name);
-  ElMessage.success('插件移除成功');
+  await uninstallStorePlugin(plugin.manifest.name);
+  showToast('插件移除成功');
   refreshSettings();
 };
 

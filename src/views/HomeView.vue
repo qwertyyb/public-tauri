@@ -1,6 +1,5 @@
 <template>
   <PublicLayout
-    :left-action-panel="leftActionPanel"
     :right-action-panel="rightActionPanel"
     :main-action="mainAction"
   >
@@ -32,7 +31,6 @@ import type { UnlistenFn } from '@tauri-apps/api/event';
 import { getCurrentWindow } from '@tauri-apps/api/window';
 import { onBeforeUnmount, onMounted, ref, toRaw, watch } from 'vue';
 import type { IAction, ICommand as IPluginCommand } from '@public/schema';
-import { useAppActionBar } from '@/composables/useAppActionBar';
 import type { ActionPanelAction } from '@/types/plugin';
 
 const results = ref<IPluginCommand[]>([]);
@@ -115,8 +113,6 @@ declare global {
   }
 }
 
-// ActionBar composable
-const { leftActionPanel } = useAppActionBar();
 const rightActionPanel = ref<ActionPanel | undefined>();
 const mainAction = ref<ActionPanelAction | undefined>();
 
