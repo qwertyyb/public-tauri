@@ -1,5 +1,5 @@
 {
-  "updateTime": 1776258726446,
+  "updateTime": 1776259181271,
   "plugins": [
     {
       "name": "@public-tauri-ext/magic",
@@ -73,12 +73,12 @@
     },
     {
       "name": "@public-tauri-ext/v2ex",
-      "icon": "https://github.com/qwertyyb/public-tauri/blob/master/store/plugins/@public-tauri-ext/v2ex/assets/v2ex.png?raw=true",
+      "icon": "https://github.com/qwertyyb/public-tauri/blob/master/store/plugins/v2ex/assets/v2ex.png?raw=true",
       "version": "1.0.0",
       "author": "",
       "manifest": {
         "name": "@public-tauri-ext/v2ex",
-        "icon": "https://github.com/qwertyyb/public-tauri/blob/master/store/plugins/@public-tauri-ext/v2ex/assets/v2ex.png?raw=true",
+        "icon": "https://github.com/qwertyyb/public-tauri/blob/master/store/plugins/v2ex/assets/v2ex.png?raw=true",
         "title": "v2ex",
         "subtitle": "查看v2ex热贴和新贴",
         "template": "listView",

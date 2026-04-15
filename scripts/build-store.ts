@@ -56,7 +56,7 @@ interface PluginInfo {
 }
 
 /** 从插件目录的 package.json 中提取 publicPlugin 信息 */
-function loadPlugin(pluginDir: string): PluginInfo {
+function loadPlugin(pluginDir: string, dirName: string): PluginInfo {
   const pkgPath = join(pluginDir, 'package.json');
   const pkg = JSON.parse(readFileSync(pkgPath, 'utf-8'));
   const publicPlugin = { ...(pkg.publicPlugin || {}) };
@@ -64,7 +64,7 @@ function loadPlugin(pluginDir: string): PluginInfo {
 
   // 转换 icon 相对路径为 GitHub 绝对 URL
   const rawIcon = publicPlugin.icon || '';
-  const resolvedIcon = resolveIconUrl(rawIcon, pluginName);
+  const resolvedIcon = resolveIconUrl(rawIcon, dirName);
   publicPlugin.icon = resolvedIcon;
 
   return {
@@ -87,7 +87,7 @@ function build() {
     .map(entry => join(PLUGINS_DIR, entry.name))
     .sort();
 
-  const plugins = entries.map(loadPlugin);
+  const plugins = entries.map(pluginDir => loadPlugin(pluginDir, pluginDir.split('/').pop()!));
 
   const index = {
     updateTime: Date.now(),
