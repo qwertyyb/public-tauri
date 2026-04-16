@@ -411,9 +411,11 @@ export const updateCommandShortcut = async (pluginName: string, commandName: str
   if (await globalShortcut.isRegistered(shortcut)) {
     throw new Error(`shortcut ${shortcut} already registered`);
   }
-  await globalShortcut.register(shortcut, () => {
-    enterCommandByName(pluginName, commandName, '', { from: 'hotkey' });
-    mainWindow.show();
+  await globalShortcut.register(shortcut, (event) => {
+    if (event.state === 'Pressed') {
+      enterCommandByName(pluginName, commandName, '', { from: 'hotkey' });
+      mainWindow.show();
+    }
   });
   save();
 };
@@ -451,11 +453,12 @@ const initCommandsShortcut = () => {
       if (commandSettings?.disabled) return;
       const shortcut = commandSettings?.shortcut;
       if (!shortcut) return;
-      const handler = () => {
-        enterCommandByName(pluginName, command.name, '', { from: 'hotkey' });
-        mainWindow.show();
-      };
-      globalShortcut.register(shortcut, handler);
+      globalShortcut.register(shortcut, (event) => {
+        if (event.state === 'Pressed') {
+          enterCommandByName(pluginName, command.name, '', { from: 'hotkey' });
+          mainWindow.show();
+        }
+      });
     });
   });
 };
