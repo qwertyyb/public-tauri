@@ -17,12 +17,12 @@
   "license": "ISC",
   "packageManager": "pnpm@10.8.0",
   "dependencies": {
-    "@public/core": "workspace:^",
-    "@public/schema": "workspace:^",
     "es-toolkit": "^1.39.8",
     "virtua": "^0.43.6"
   },
   "devDependencies": {
+    "@public/core": "workspace:^",
+    "@public/schema": "workspace:^",
     "tsdown": "^0.21.7"
   },
   "publishConfig": {
