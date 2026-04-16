@@ -25,6 +25,6 @@
     "@rollup/plugin-replace": "catalog:plugin"
   },
   "dependencies": {
-    "@public/api": "workspace:^"
+    "@public-tauri/api": "workspace:^"
   }
 }

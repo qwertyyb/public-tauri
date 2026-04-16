@@ -1,4 +1,4 @@
-import { clipboard, definePlugin, dialog } from '@public/api';
+import { clipboard, definePlugin, dialog } from '@public-tauri/api';
 import { getChromeCurrentUrl, getSafariCurrentUrl } from './utils';
 import QRCode from 'qrcode';
 

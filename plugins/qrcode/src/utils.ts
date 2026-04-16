@@ -1,4 +1,4 @@
-import { utils } from '@public/api';
+import { utils } from '@public-tauri/api';
 
 export const getChromeCurrentUrl = async () => {
   const script = `

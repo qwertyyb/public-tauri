@@ -18,6 +18,6 @@
         "@tauri-apps/api": "^2"
     },
     "peerDependencies": {
-        "@public/api": "workspace:^"
+        "@public-tauri/api": "workspace:^"
     }
 }

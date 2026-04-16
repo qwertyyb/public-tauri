@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import CreateScriptCommand from './CreateScriptCommand.vue';
 import ScriptCommandListView from './ScriptCommandListView.vue';
-import { createPlugin } from '@public/api'
+import { createPlugin } from '@public-tauri/api'
 import { ref } from 'vue';
 
 const command = ref('')

@@ -1,4 +1,4 @@
-import { type ICommand, type IListViewCommand, AsyncFile, utils, dialog, clipboard, mainWindow, screen, invoke } from '@public/api';
+import { type ICommand, type IListViewCommand, AsyncFile, utils, dialog, clipboard, mainWindow, screen, invoke } from '@public-tauri/api';
 
 const createClipboardItem = (text: string) => {
   const item: ICommand = {

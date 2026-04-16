@@ -18,7 +18,7 @@
 <script setup lang="ts">
 import { onMounted, ref, toRaw, useTemplateRef } from 'vue'
 import { ElInput, ElForm, ElFormItem, ElButton } from 'element-plus'
-import { dialog, mainWindow, storage } from '@public/api'
+import { dialog, mainWindow, storage } from '@public-tauri/api'
 
 const formValue = ref({
   title: '',

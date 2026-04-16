@@ -44,7 +44,7 @@
     ]
   },
   "dependencies": {
-    "@public/api": "workspace:^",
+    "@public-tauri/api": "workspace:^",
     "@xmldom/xmldom": "^0.9.8",
     "md5": "^2.3.0"
   },

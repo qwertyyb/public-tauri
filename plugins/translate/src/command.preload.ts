@@ -1,4 +1,4 @@
-import { type IListViewCommand, invoke } from '@public/api';
+import { type IListViewCommand, invoke } from '@public-tauri/api';
 
 const command: IListViewCommand = {
   onSearch: async (keyword: string, setList: (list: any[]) => void) => {

@@ -5,8 +5,8 @@
 </template>
 
 <script setup lang="ts">
-import { clipboard, mainWindow, storage, type IListViewCommand, shell, dialog } from '@public/api';
-import CommandListView from '@public/api/components/CommandListView.vue'
+import { clipboard, mainWindow, storage, type IListViewCommand, shell, dialog } from '@public-tauri/api';
+import CommandListView from '@public-tauri/api/components/CommandListView.vue'
 import { markRaw } from 'vue';
 import icon from '../assets/icon.png'
 

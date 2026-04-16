@@ -94,7 +94,7 @@
     ]
   },
   "dependencies": {
-    "@public/api": "workspace:^",
+    "@public-tauri/api": "workspace:^",
     "qrcode": "^1.4.4",
     "sharp": "^0.34.3",
     "wechat-qrcode": "workspace:^"

@@ -1,4 +1,4 @@
-import { type ICommand, dialog, clipboard, definePlugin } from '@public/api';
+import { type ICommand, dialog, clipboard, definePlugin } from '@public-tauri/api';
 import { hToM, msToDuration, msToLocaleString, mToS, sToLocaleString, sToMs } from './lib/time';
 import { transformCurrency } from './lib/currency';
 import { decode, encode } from './lib/base64';

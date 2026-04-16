@@ -1,6 +1,6 @@
 
 import { writeText } from 'tauri-plugin-clipboard-api';
-import { dialog, definePlugin, type ICommand } from '@public/api';
+import { dialog, definePlugin, type ICommand } from '@public-tauri/api';
 import { create, all } from 'mathjs';
 
 const DECIMAL_SEPARATOR = '.';

@@ -1,4 +1,4 @@
-import { definePlugin, mainWindow, utils } from '@public/api';
+import { definePlugin, mainWindow, utils } from '@public-tauri/api';
 
 const createAppleScriptPlugin = definePlugin((app) => {
   app.updateCommands([

@@ -36,12 +36,12 @@ importers:
       '@element-plus/icons-vue':
         specifier: ^2.3.1
         version: 2.3.1(vue@3.5.18(typescript@5.9.2))
+      '@public-tauri/api':
+        specifier: workspace:^
+        version: link:packages/api
       '@public-tauri/plugin-double-tap-shortcut':
         specifier: workspace:^
         version: link:src-tauri/plugins/double-tap-shortcut/guest-js
-      '@public/api':
-        specifier: workspace:^
-        version: link:packages/api
       '@public/core':
         specifier: workspace:^
         version: link:packages/core
@@ -248,7 +248,7 @@ importers:
 
   packages/template:
     dependencies:
-      '@public/api':
+      '@public-tauri/api':
         specifier: workspace:^
         version: link:../api
       vue:
@@ -307,7 +307,7 @@ importers:
 
   plugins/applescript:
     dependencies:
-      '@public/api':
+      '@public-tauri/api':
         specifier: workspace:^
         version: link:../../packages/api
     devDependencies:
@@ -329,7 +329,7 @@ importers:
 
   plugins/calculator:
     dependencies:
-      '@public/api':
+      '@public-tauri/api':
         specifier: workspace:^
         version: link:../../packages/api
       '@public/schema':
@@ -360,7 +360,7 @@ importers:
 
   plugins/clipboard:
     dependencies:
-      '@public/api':
+      '@public-tauri/api':
         specifier: workspace:^
         version: link:../../packages/api
     devDependencies:
@@ -382,7 +382,7 @@ importers:
 
   plugins/emoji:
     dependencies:
-      '@public/api':
+      '@public-tauri/api':
         specifier: workspace:^
         version: link:../../packages/api
       gemoji:
@@ -410,7 +410,7 @@ importers:
 
   plugins/launcher:
     dependencies:
-      '@public/api':
+      '@public-tauri/api':
         specifier: workspace:^
         version: link:../../packages/api
       socket.io-client:
@@ -435,7 +435,7 @@ importers:
 
   plugins/mdn:
     dependencies:
-      '@public/api':
+      '@public-tauri/api':
         specifier: workspace:^
         version: link:../../packages/api
     devDependencies:
@@ -460,7 +460,7 @@ importers:
 
   plugins/qrcode:
     dependencies:
-      '@public/api':
+      '@public-tauri/api':
         specifier: workspace:^
         version: link:../../packages/api
       qrcode:
@@ -494,7 +494,7 @@ importers:
 
   plugins/script-commands:
     dependencies:
-      '@public/api':
+      '@public-tauri/api':
         specifier: workspace:^
         version: link:../../packages/api
       vue:
@@ -549,7 +549,7 @@ importers:
 
   plugins/snippets:
     dependencies:
-      '@public/api':
+      '@public-tauri/api':
         specifier: workspace:^
         version: link:../../packages/api
       vue:
@@ -589,7 +589,7 @@ importers:
 
   plugins/transform:
     dependencies:
-      '@public/api':
+      '@public-tauri/api':
         specifier: workspace:^
         version: link:../../packages/api
     devDependencies:
@@ -611,7 +611,7 @@ importers:
 
   plugins/translate:
     dependencies:
-      '@public/api':
+      '@public-tauri/api':
         specifier: workspace:^
         version: link:../../packages/api
       '@xmldom/xmldom':
@@ -715,7 +715,7 @@ importers:
 
   src-tauri/plugins/double-tap-shortcut/guest-js:
     dependencies:
-      '@public/api':
+      '@public-tauri/api':
         specifier: workspace:^
         version: link:../../../../packages/api
       '@tauri-apps/api':
@@ -724,7 +724,7 @@ importers:
 
   store/plugins/magic:
     dependencies:
-      '@public/api':
+      '@public-tauri/api':
         specifier: workspace:^
         version: link:../../../packages/api
     devDependencies:
@@ -749,7 +749,7 @@ importers:
 
   store/plugins/v2ex:
     devDependencies:
-      '@public/api':
+      '@public-tauri/api':
         specifier: workspace:^
         version: link:../../../packages/api
       '@rollup/plugin-commonjs':

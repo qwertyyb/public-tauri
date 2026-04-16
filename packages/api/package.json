@@ -1,5 +1,5 @@
 {
-  "name": "@public/api",
+  "name": "@public-tauri/api",
   "version": "1.0.0",
   "description": "",
   "type": "module",

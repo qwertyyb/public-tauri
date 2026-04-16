@@ -1,4 +1,4 @@
-import type { ICommand } from '@public/api';
+import type { ICommand } from '@public-tauri/api';
 
 // 编码 Unicode 字符串到 Base64
 function encodeUnicodeToBase64(str: string) {

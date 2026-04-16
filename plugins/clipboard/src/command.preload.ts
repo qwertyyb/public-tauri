@@ -1,4 +1,4 @@
-import { clipboard, mainWindow, Database, type IListViewCommand } from '@public/api';
+import { clipboard, mainWindow, Database, type IListViewCommand } from '@public-tauri/api';
 import { ContentType, DATABASE_PATH } from './const';
 
 let db: ReturnType<typeof Database['get']>;

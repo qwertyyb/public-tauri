@@ -1,4 +1,4 @@
-import { type IListViewCommand, clipboard } from '@public/api';
+import { type IListViewCommand, clipboard } from '@public-tauri/api';
 import { gemoji } from 'gemoji';
 
 const searchCommand: IListViewCommand = {

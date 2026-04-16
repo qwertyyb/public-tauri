@@ -74,7 +74,7 @@
     ]
   },
   "dependencies": {
-    "@public/api": "workspace:^"
+    "@public-tauri/api": "workspace:^"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "catalog:plugin",

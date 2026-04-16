@@ -1,4 +1,4 @@
-import { fetch, definePlugin, opener } from '@public/api';
+import { fetch, definePlugin, opener } from '@public-tauri/api';
 
 const openPage = async (input: string, page: string) => {
   const query = input.trim();

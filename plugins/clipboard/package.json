@@ -50,6 +50,6 @@
     "rollup-plugin-esbuild": "catalog:plugin"
   },
   "dependencies": {
-    "@public/api": "workspace:^"
+    "@public-tauri/api": "workspace:^"
   }
 }

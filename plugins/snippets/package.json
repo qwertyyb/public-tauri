@@ -48,7 +48,7 @@
     "type-check": "vue-tsc --build"
   },
   "dependencies": {
-    "@public/api": "workspace:^",
+    "@public-tauri/api": "workspace:^",
     "vue": "^3.5.18"
   },
   "devDependencies": {

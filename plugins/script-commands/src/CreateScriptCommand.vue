@@ -30,7 +30,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { showSaveFilePicker, dialog, fs, opener, storage, mainWindow } from '@public/api'
+import { showSaveFilePicker, dialog, fs, opener, storage, mainWindow } from '@public-tauri/api'
 import { ref } from 'vue';
 
 const suffix = {

@@ -1,4 +1,4 @@
-import { type IListViewCommand, fetch, opener } from '@public/api';
+import { type IListViewCommand, fetch, opener } from '@public-tauri/api';
 
 // const withCache = <F extends (...args: any[]) => any>(fn: F) => {
 //   const results = new Map<string, any>();

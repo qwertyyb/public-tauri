@@ -1,4 +1,4 @@
-import { fetch, type IListViewCommand, opener } from '@public/api';
+import { fetch, type IListViewCommand, opener } from '@public-tauri/api';
 
 const command: IListViewCommand = {
   onSearch: async (keyword, setList) => {

@@ -27,7 +27,7 @@
   },
   "packageManager": "pnpm@10.8.0",
   "dependencies": {
-    "@public/api": "workspace:^",
+    "@public-tauri/api": "workspace:^",
     "gemoji": "^8.1.0"
   },
   "devDependencies": {

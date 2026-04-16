@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { fetch, type ICommand } from '@public/api';
+import { fetch, type ICommand } from '@public-tauri/api';
 
 // JS 精度有问题, 简单处理一下
 const formatCurrency = (amount: number) => Math.round(amount * 100) / 100;

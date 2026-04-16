@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import CommandListView from '@public/api/components/CommandListView.vue';
-import { type IListViewCommand, type ICommandActionOptions, createPlugin } from '@public/api';
+import CommandListView from '@public-tauri/api/components/CommandListView.vue';
+import { type IListViewCommand, type ICommandActionOptions, createPlugin } from '@public-tauri/api';
 import { shallowRef } from 'vue';
 
 const commands = shallowRef<{ [x: string]: IListViewCommand }>();

@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "socket.io-client": "^4.8.1",
-    "@public/api": "workspace:^"
+    "@public-tauri/api": "workspace:^"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "catalog:plugin",
