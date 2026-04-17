@@ -14,3 +14,4 @@
 - [偏好设置](./preferences.md) - 为插件和命令添加用户可配置的偏好设置
 - [服务端插件](./server-side.md) - 使用 Node.js 编写服务端逻辑
 - [构建与发布](./build-and-publish.md) - 构建插件并发布到应用商店
+- [WebDriver E2E 测试](./webdriver-e2e-input.md) - 本地 WebDriver 脚本、环境变量与输入/按键注意事项

@@ -1,6 +1,7 @@
 /**
- * Smoke test: connect to Choochmeque tauri-plugin-webdriver (W3C) on 127.0.0.1:4445.
- * Run with: pnpm test:webdriver (after `pnpm tauri:dev` is up).
+ * 冒烟：连接本机 `tauri-plugin-webdriver`（W3C，默认 http://127.0.0.1:4445）。
+ * 运行：`pnpm test:webdriver`（需已启动 `pnpm tauri:dev`，含 webdriver）。
+ * 覆盖 `TAURI_WEBDRIVER_URL`、`TAURI_DEV_URL` 可改端点与页面（`TAURI_DEV_URL` 应对齐 `build.devUrl`）。
  */
 import { Builder, By, Browser, until } from 'selenium-webdriver';
 
@@ -10,6 +11,7 @@ const APP_URL = process.env.TAURI_DEV_URL ?? 'http://localhost:1420/';
 const READY_TIMEOUT_MS = 180_000;
 const POLL_MS = 1500;
 
+/** 轮询 `/status`：HTTP 成功且 JSON 中 `value.ready` 不为 `false` 即视为就绪。 */
 async function waitForWebDriverReady(baseUrl: string, timeoutMs: number): Promise<void> {
   const start = Date.now();
   let lastErr: unknown;
