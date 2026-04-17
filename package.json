@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:node": "pnpm --filter './src-node' run dev",
     "build": "vite build",
     "preview": "vite preview",
     "tauri": "tauri",

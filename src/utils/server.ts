@@ -27,12 +27,16 @@ command.stderr.on('data', (data) => {
 
 const createCommand = async () => {
   console.log('resourceDir', await resourceDir());
-  const entryPath = import.meta.env.DEV ? '../src-node/dist/index.cjs' : path.join(await resourceDir(), '_up_/src-node/dist/index.cjs');
-  const command = Command.sidecar('binaries/node-v24.11.1', [entryPath], {
-    env: { LSUIElement: '1' },
-  });
+  // const entryPath = import.meta.env.DEV ? '../src-node/dist/index.cjs' : path.join(await resourceDir(), '_up_/src-node/dist/index.cjs');
+  // const entryPath = path.join(await resourceDir(), '_up_/src-node/dist/index.cjs');
+  // console.log('entryPath', entryPath);
+  // const command = Command.sidecar('binaries/node-v24.11.1', [entryPath], {
+  //   env: { LSUIElement: '1' },
+  // });
+  let command: Command<string>;
 
   if (import.meta.env.DEV) {
+    command = Command.create('pnpm', ['dev:node']);
     command.stdout.on('data', (data) => {
       logger.info('stdout', data.toString());
     });
@@ -44,6 +48,12 @@ const createCommand = async () => {
     });
     command.stderr.on('data', (data) => {
       logger.error('stderr', data.toString());
+    });
+  } else {
+    const entryPath = path.join(await resourceDir(), '_up_/src-node/dist/index.cjs');
+    console.log('entryPath', entryPath);
+    command = Command.sidecar('binaries/node-v24.11.1', [entryPath], {
+      env: { LSUIElement: '1' },
     });
   }
 
