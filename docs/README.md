@@ -1,6 +1,14 @@
-# Public Tauri 插件开发文档
+# Public Tauri 文档
 
-欢迎使用 Public Tauri 插件开发文档。本文档将帮助你了解如何为 Public Tauri 开发插件。
+## 本仓库应用开发
+
+若你参与的是 **Public Tauri 桌面应用** 本体的运行、调试与 **WebDriver** 自动化（例如 `pnpm tauri:dev`、`pnpm test:webdriver`），请参阅 **[应用开发](./development.md)**。该文档与下方「插件开发」体系分开，避免与插件作者文档混读。
+
+---
+
+## 插件开发
+
+欢迎使用 Public Tauri **插件**开发文档。以下内容面向 **插件作者**（扩展能力、发布到商店等），不替代应用仓库的构建与 E2E 说明。
 
 ## 目录
 

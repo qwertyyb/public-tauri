@@ -12,6 +12,8 @@
 
 ### 开发步骤
 
+应用开发（含 WebDriver 与自动化）的说明见 **[docs/development.md](./docs/development.md)**。
+
 相关命令
 
 ```shell
@@ -21,8 +23,8 @@ pnpm install
 # 运行 Nodejs Server
 cd src-node && pnpm dev
 
-# 开发调试
-pnpm tauri dev
+# 开发调试（含 webdriver feature，供 E2E / 冒烟脚本连接）
+pnpm tauri:dev
 
 # 构建插件 
 pnpm plugin:build
