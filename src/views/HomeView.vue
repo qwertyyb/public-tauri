@@ -15,7 +15,6 @@
       :preview="preview"
       class="result-view"
       @select="onResultSelected"
-      @enter="onResultEnter"
       @action="onResultAction"
     />
   </PublicLayout>
@@ -50,14 +49,16 @@ const focusInput = () => {
   el?.focus();
 };
 
-const onResultEnter = (_item: IPluginCommand | null, itemIndex: number) => {
-  service.enter(toRaw(results.value[itemIndex]), input.value.keyword);
-};
-
 const onResultSelected = async (_item: IPluginCommand | null, itemIndex: number) => {
   const item = toRaw(results.value[itemIndex]);
   preview.value = await service.select(item, input.value.keyword);
+  if (!item) {
+    mainAction.value = undefined;
+    rightActionPanel.value = undefined;
+    return;
+  }
 
+  console.log('selected', item);
   if (item?.mode === 'none' || !item?.mode) {
     if (item?.actions?.length) {
       const actionItems: ActionPanelAction[] = item.actions.map(a => ({
@@ -71,6 +72,12 @@ const onResultSelected = async (_item: IPluginCommand | null, itemIndex: number)
         actions: restActions,
       };
     } else {
+      // mainAction.value = {
+      //   name: 'open-command',
+      //   icon: 'open_in_new',
+      //   title: 'Open Command',
+      //   action: () => service.enter(item, input.value.keyword),
+      // };
       mainAction.value = undefined;
       rightActionPanel.value = undefined;
     }

@@ -75,7 +75,6 @@ const mainAction = ref<ActionPanelAction>();
 
 const rightActionPanel = ref<ActionPanel>();
 
-
 const actionsUpdateHandler = (event: CustomEvent<{ actions: ActionPanelAction[], plugin: string }>) => {
   const [firstAction, ...restActions] = event.detail.actions;
   mainAction.value = firstAction;

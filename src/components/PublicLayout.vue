@@ -34,19 +34,44 @@
 
 <script setup lang="ts">
 import ActionBar, { type ActionPanel } from '@/components/ActionBar.vue';
-import { leftActionPanel } from '@/utils/app-action-bar';
+import { leftActionPanel as appLeftActionPanel } from '@/utils/app-action-bar';
 import type { ActionPanelAction } from '@/types/plugin';
+import { onPageEnter, onPageLeave } from '@/router';
 
-withDefaults(defineProps<{
+const props = withDefaults(defineProps<{
   leftActionPanel?: ActionPanel;
   rightActionPanel?: ActionPanel;
   mainAction?: ActionPanelAction;
   noTop?: boolean;
 }>(), {
-  leftActionPanel: () => leftActionPanel,
+  leftActionPanel: () => appLeftActionPanel,
   rightActionPanel: undefined,
   mainAction: undefined,
   noTop: false,
+});
+
+/** 仅无修饰键的 Enter：与 ActionBar ↵ 一致，统一触发 mainAction（含 wujie 子应用经 manager 转发的合成事件） */
+const onMainActionKeydown = (e: KeyboardEvent) => {
+  if (e.key !== 'Enter') return;
+  if (e.shiftKey || e.altKey || e.ctrlKey || e.metaKey) return;
+  if (e.repeat) return;
+  const t = e.target;
+  if (t instanceof HTMLElement) {
+    if (t.closest('textarea')) return;
+    if (t.isContentEditable) return;
+  }
+  const run = props.mainAction?.action;
+  if (!run) return;
+  e.preventDefault();
+  e.stopPropagation();
+  run();
+};
+
+onPageEnter(() => {
+  window.addEventListener('keydown', onMainActionKeydown, true);
+});
+onPageLeave(() => {
+  window.removeEventListener('keydown', onMainActionKeydown, true);
 });
 </script>
 

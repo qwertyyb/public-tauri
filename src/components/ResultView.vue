@@ -132,10 +132,6 @@ const keydownHandler = (e: KeyboardEvent) => {
     });
     e.stopPropagation();
     e.preventDefault();
-  } else if (isKeyPressed(e, 'Enter')) {
-    e.stopPropagation();
-    e.preventDefault();
-    onResultEnter(selectedIndex.value);
   } else if (e.metaKey && /^\d$/.test(e.key)) {
     const key = parseInt(e.key, 10);
     selectedIndex.value = actionKeyStartIndex.value + key - 1;
