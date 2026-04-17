@@ -11,6 +11,7 @@
     "tauri:dev": "tauri dev --features webdriver",
     "test:webdriver": "tsx scripts/webdriver-smoke.ts",
     "test:webdriver:search": "tsx scripts/webdriver-search-plugin.ts",
+    "test:webdriver:shell": "tsx scripts/webdriver-shell-plugin.ts",
     "lint": "eslint --fix",
     "plugin:build": "pnpm --filter \"./plugins/*\" run build",
     "prepare-nodejs": "tsx scripts/prepare-nodejs.ts",

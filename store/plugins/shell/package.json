@@ -1,0 +1,63 @@
+{
+  "name": "@public-tauri-ext/shell",
+  "version": "1.0.0",
+  "description": "使用 > 触发词在系统终端中执行命令",
+  "main": "dist/index.js",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "build": "rollup --config ./rollup.config.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "publicPlugin": {
+    "icon": "https://img.icons8.com/?size=100&id=7457&format=png&color=000000",
+    "title": "Shell 命令",
+    "subtitle": "用 > 触发并在系统终端中执行命令",
+    "description": "输入 > + 空格 + 命令，回车后会拉起 Terminal 并执行该命令。",
+    "main": "./dist/index.js",
+    "commands": [
+      {
+        "name": "run",
+        "title": "在终端执行命令",
+        "subtitle": "触发词 >，回车在 Terminal 执行",
+        "mode": "none",
+        "matches": [
+          {
+            "type": "regexp",
+            "regexp": "^>\\s*(.+)$",
+            "title": "在终端执行 \"${matches[1]}\"",
+            "subtitle": "回车后拉起 Terminal 执行命令"
+          },
+          {
+            "type": "text",
+            "keywords": [
+              "shell",
+              "terminal",
+              "命令行",
+              "终端"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "dependencies": {
+    "@public-tauri/api": "workspace:^"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "catalog:plugin",
+    "@rollup/plugin-json": "catalog:plugin",
+    "@rollup/plugin-node-resolve": "catalog:plugin",
+    "@rollup/plugin-replace": "catalog:plugin",
+    "rollup": "catalog:plugin",
+    "rollup-plugin-esbuild": "catalog:plugin"
+  }
+}
