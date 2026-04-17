@@ -75,8 +75,8 @@ const mainAction = ref<ActionPanelAction>();
 
 const rightActionPanel = ref<ActionPanel>();
 
-const actionsUpdateHandler = (event: CustomEvent<{ actions: ActionPanelAction[], plugin: string }>) => {
-  const [firstAction, ...restActions] = event.detail.actions;
+const actionsUpdateHandler = (event: CustomEvent<{ actions: ActionPanelAction[] | undefined, plugin: string }>) => {
+  const [firstAction, ...restActions] = event.detail.actions ?? [];
   mainAction.value = firstAction;
   rightActionPanel.value = {
     title: '更多操作',

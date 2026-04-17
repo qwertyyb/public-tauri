@@ -1,7 +1,10 @@
 import type * as coreApi from '@public/core';
 import { CORE_API_KEY } from '@public/core/const';
-import type { IPluginLifecycle, ICommand } from '@public/schema';
+import type { IPluginLifecycle, ICommand, IAction } from '@public/schema';
 export type * from '@public/schema';
+
+/** Actions for the host ActionBar in view-mode plugins: first entry is main (↵), the rest go to “more”. */
+export type PluginShellAction = IAction & { action?: () => void };
 
 /** 判断是否在插件内，如果在插件内，就通过 wujie 调用，否则就从 core 调用 */
 
@@ -42,6 +45,14 @@ export const createPlugin: (options: IPluginLifecycle) => void = (options) => {
     return window.$wujie?.props?.createPlugin(options);
   }
   throw new Error('createPlugin is not supported in current environment');
+};
+
+export const setActions = (actions: PluginShellAction[]): void => {
+  if (isInWujie) {
+    window.$wujie?.props?.updateActions?.(actions);
+    return;
+  }
+  throw new Error('setActions is not supported in current environment');
 };
 
 export const createPluginChannel: typeof coreApi.createPluginChannel = (pluginName) => {
