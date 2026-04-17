@@ -4,6 +4,13 @@
   "description": "使用触发词在默认浏览器中打开网页搜索（Google / 必应 / 百度）",
   "main": "dist/index.js",
   "type": "module",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "scripts": {
     "build": "rollup --config ./rollup.config.mjs"
   },
