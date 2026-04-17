@@ -23,29 +23,30 @@ async function waitForWebDriverReady(baseUrl: string, timeoutMs: number): Promis
     } catch (e) {
       lastErr = e;
     }
-    await new Promise((r) => setTimeout(r, POLL_MS));
+    await new Promise(r => setTimeout(r, POLL_MS));
   }
-  throw new Error(
-    `WebDriver at ${baseUrl} did not become ready within ${timeoutMs}ms. Last error: ${String(lastErr)}`,
-  );
+  throw new Error(`WebDriver at ${baseUrl} did not become ready within ${timeoutMs}ms. Last error: ${String(lastErr)}`);
 }
 
 async function main(): Promise<void> {
   console.log(`Waiting for WebDriver at ${WD_URL} …`);
   await waitForWebDriverReady(WD_URL, READY_TIMEOUT_MS);
 
-  const driver = await new Builder().usingServer(WD_URL).forBrowser(Browser.CHROME).build();
+  const driver = await new Builder().usingServer(WD_URL)
+    .forBrowser(Browser.CHROME)
+    .build();
 
   try {
     // Dev server URL (Vite); `tauri://localhost` is for bundled assets, not `tauri dev`
     await driver.get(APP_URL);
+    await driver.sleep(800);
     await driver.wait(until.elementLocated(By.css('body')), 30_000);
     const title = await driver.getTitle();
     console.log('Page title:', title);
 
     const input = await driver.wait(until.elementLocated(By.css('#main-input')), 60_000);
     await input.clear();
-    await input.sendKeys('webdriver');
+    await input.sendKeys('好好学习，天天向上');
     console.log('Typed into #main-input');
 
     const url = await driver.getCurrentUrl();

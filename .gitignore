@@ -27,3 +27,6 @@ src-tauri/binaries/*
 !src-tauri/binaries/.gitkeep
 
 .codebuddy
+
+# E2E run output (local only)
+reports/

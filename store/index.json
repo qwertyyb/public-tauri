@@ -74,31 +74,55 @@
     {
       "name": "@public-tauri-ext/search",
       "icon": "https://img.icons8.com/?size=100&id=63775&format=png&color=000000",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "author": "",
       "manifest": {
         "name": "@public-tauri-ext/search",
         "icon": "https://img.icons8.com/?size=100&id=63775&format=png&color=000000",
         "title": "网页搜索",
         "subtitle": "触发词 + 关键词，在浏览器中打开搜索结果",
-        "description": "输入触发词（如 g ）和空格后的关键词，选择对应条目后回车即可。后续版本可切换不同搜索服务。",
+        "description": "输入触发词与空格后的关键词，回车打开对应搜索引擎：g/google/gg→Google，b/bing/必应→必应，bd/baidu/百度→百度。",
         "main": "./dist/index.js",
         "commands": [
           {
-            "name": "search",
+            "name": "google",
             "title": "谷歌搜索",
             "subtitle": "在浏览器中打开 Google 搜索结果",
             "mode": "none",
             "matches": [
               {
                 "type": "trigger",
-                "triggers": [
-                  "g",
-                  "google",
-                  "gg"
-                ],
+                "triggers": ["g", "google", "gg"],
                 "title": "谷歌搜索\"$query\"",
                 "subtitle": "在浏览器中打开 Google 搜索结果"
+              }
+            ]
+          },
+          {
+            "name": "bing",
+            "title": "必应搜索",
+            "subtitle": "在浏览器中打开必应搜索结果",
+            "mode": "none",
+            "matches": [
+              {
+                "type": "trigger",
+                "triggers": ["b", "bing", "必应"],
+                "title": "必应搜索\"$query\"",
+                "subtitle": "在浏览器中打开必应搜索结果"
+              }
+            ]
+          },
+          {
+            "name": "baidu",
+            "title": "百度搜索",
+            "subtitle": "在浏览器中打开百度搜索结果",
+            "mode": "none",
+            "matches": [
+              {
+                "type": "trigger",
+                "triggers": ["bd", "baidu", "百度"],
+                "title": "百度搜索\"$query\"",
+                "subtitle": "在浏览器中打开百度搜索结果"
               }
             ]
           }

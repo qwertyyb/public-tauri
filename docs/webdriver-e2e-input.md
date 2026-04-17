@@ -7,15 +7,17 @@
 1. **等待插件就绪**  
    应用会在 `init()` 结束后设置 `window.__PUBLIC_APP_PLUGINS_READY__ === true`，并派发 `public-app:plugins-ready`。E2E 应先轮询就绪再操作输入框，而不是固定 `sleep`（除非仅作短延迟）。
 
-2. **先点击输入框，再 `clear()`，再 `sendKeys(...)`**  
-   确保焦点在真实的 `<input>` 上，与真实用户操作一致。若在 `wait(#main-input)` 之后还有较长 `sleep`（等待插件注册），**sleep 后应重新 `findElement(#main-input)`**，否则 Vue 可能重建节点，旧 WebElement 的 `click()` 会抛 `JavascriptError`。
+2. **先点击输入框，再写入内容**  
+   确保焦点在真实的 `<input>` 上。若在 `wait(#main-input)` 之后还有较长 `sleep`（等待插件注册），**sleep 后应重新 `findElement(#main-input)`**，否则 Vue 可能重建节点，旧 WebElement 的 `click()` 会抛 `JavascriptError`。
 
-3. **使用 Selenium 的真实键盘路径（`sendKeys`）**  
-   对使用 `v-model` 的原生 `<input>`，Chrome + WebDriver 的 `sendKeys` 会触发浏览器原生事件链，Vue 能正常更新。  
-   **不要依赖** 仅用脚本设置 `el.value` 再 `dispatchEvent`——在本项目中曾出现 **DOM 有字但 Vue ref 仍为空**、占位符仍显示、搜索结果列表为空的情况。
+3. **`sendKeys` 与 WebKit（Tauri 面板）**  
+   在 **macOS + WKWebView + Tauri WebDriver** 下，`sendKeys` 偶发 **最后一个字符乱码**（IME/合成与 WebDriver 注入时机问题）。  
+   此时应使用 **`HTMLInputElement.prototype` 上的原生 `value` setter**，再派发 **`InputEvent('input', …)`**（与 `insertFromPaste` 语义接近），使 Vue 的 `v-model` 与 `watch(input)` 一致更新；并在脚本里读回 `input.value` 做断言。  
+   参考：`scripts/webdriver-search-plugin.ts` 中的 `setMainInputValue`。
 
-4. **不要用 `HTMLInputElement.prototype.value` 的 setter 随意模拟**  
-   若使用不当，曾出现读回 `value` 为空或与预期不符；优先回到 `sendKeys`。
+4. **为何曾不推荐「只设 `el.value`」**  
+   若**直接**写 `el.value = '…'` 再随便 `dispatchEvent(new Event('input'))`，在部分 Vue 版本/组合下曾出现 **DOM 有字但 ref 未同步**。  
+   若采用 **原生 `value` setter**（`Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set`）+ **`InputEvent`**，则与 Vue 3 对 `<input>` 的更新路径一致，可放心用于 E2E。
 
 ## 应用侧约定
 
