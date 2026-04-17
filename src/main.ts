@@ -19,16 +19,12 @@ createDraggable();
 listenEvents();
 createTray();
 
-if (import.meta.env.DEV) {
-  getSettings().then(settings => registerMainShortcut(settings.shortcuts));
-  init();
-} else {
-  startServer()
-    .then(() => {
-      getSettings().then(settings => registerMainShortcut(settings.shortcuts));
-      init();
-    });
-}
+// registerServerModule / 插件静态资源依赖 Node 服务（127.0.0.1:2345），DEV 与生产均先 startServer 再 init
+startServer()
+  .then(() => {
+    getSettings().then(settings => registerMainShortcut(settings.shortcuts));
+    init();
+  });
 
 const app = createApp(App);
 

@@ -53,17 +53,85 @@ const getCustomPluginsDir = async () => {
   return join(appDir, 'plugins');
 };
 
-const addCustomPluginPath = async (pluginPath: string) => {
-  const list: string[] = await storage.getItem('customPluginPathList') || [];
+/** 商店下载并解压到的插件目录列表（Node storage key） */
+export const STORE_PLUGIN_PATH_LIST_KEY = 'storePluginPathList';
+/** 开发中「从本地目录加载」的插件路径列表（与商店分离，便于管理） */
+export const DEV_PLUGIN_PATH_LIST_KEY = 'devPluginPathList';
+/** 旧版单一列表，启动时迁移到上两者后删除 */
+const LEGACY_CUSTOM_PLUGIN_PATH_LIST_KEY = 'customPluginPathList';
+
+function normalizePathForPrefix(p: string): string {
+  return p.replace(/\\/g, '/').replace(/\/+$/, '');
+}
+
+/** 将旧版 customPluginPathList 拆到商店 / 开发两个 key（按路径是否在应用 plugins 目录下区分） */
+export const migratePluginPathListsFromLegacy = async (): Promise<void> => {
+  const legacy: string[] | undefined = await storage.getItem(LEGACY_CUSTOM_PLUGIN_PATH_LIST_KEY);
+  if (!legacy?.length) return;
+
+  const customDir = await getCustomPluginsDir();
+  const base = normalizePathForPrefix(customDir);
+
+  const storePaths: string[] = (await storage.getItem(STORE_PLUGIN_PATH_LIST_KEY)) || [];
+  const devPaths: string[] = (await storage.getItem(DEV_PLUGIN_PATH_LIST_KEY)) || [];
+
+  for (const p of legacy) {
+    const np = normalizePathForPrefix(p);
+    const underStoreDir = np === base || np.startsWith(`${base}/`);
+    if (underStoreDir) {
+      if (!storePaths.includes(p)) storePaths.push(p);
+    } else if (!devPaths.includes(p)) {
+      devPaths.push(p);
+    }
+  }
+
+  await storage.setItem(STORE_PLUGIN_PATH_LIST_KEY, storePaths);
+  await storage.setItem(DEV_PLUGIN_PATH_LIST_KEY, devPaths);
+  await storage.removeItem(LEGACY_CUSTOM_PLUGIN_PATH_LIST_KEY);
+};
+
+const addStorePluginPath = async (pluginPath: string) => {
+  const list: string[] = await storage.getItem(STORE_PLUGIN_PATH_LIST_KEY) || [];
   if (!list.includes(pluginPath)) {
     list.push(pluginPath);
-    await storage.setItem('customPluginPathList', list);
+    await storage.setItem(STORE_PLUGIN_PATH_LIST_KEY, list);
   }
 };
 
-const removeCustomPluginPath = async (pluginPath: string) => {
-  const list: string[] = await storage.getItem('customPluginPathList') || [];
-  await storage.setItem('customPluginPathList', list.filter(p => p !== pluginPath));
+const removeStorePluginPath = async (pluginPath: string) => {
+  const list: string[] = await storage.getItem(STORE_PLUGIN_PATH_LIST_KEY) || [];
+  await storage.setItem(STORE_PLUGIN_PATH_LIST_KEY, list.filter(p => p !== pluginPath));
+};
+
+const addDevPluginPath = async (pluginPath: string) => {
+  const list: string[] = await storage.getItem(DEV_PLUGIN_PATH_LIST_KEY) || [];
+  if (!list.includes(pluginPath)) {
+    list.push(pluginPath);
+    await storage.setItem(DEV_PLUGIN_PATH_LIST_KEY, list);
+  }
+};
+
+const removeDevPluginPath = async (pluginPath: string) => {
+  const list: string[] = await storage.getItem(DEV_PLUGIN_PATH_LIST_KEY) || [];
+  await storage.setItem(DEV_PLUGIN_PATH_LIST_KEY, list.filter(p => p !== pluginPath));
+};
+
+/**
+ * 从任意本地目录加载插件（写入 devPluginPathList，与商店安装的 storePluginPathList 分开）
+ */
+export const registerPluginFromLocalPath = async (pluginPath: string): Promise<void> => {
+  const { registerPlugin, isPluginPathRegistered } = await import('@/plugin/manager');
+  if (isPluginPathRegistered(pluginPath)) {
+    throw new Error('该目录对应插件已加载');
+  }
+  await addDevPluginPath(pluginPath);
+  try {
+    await registerPlugin(pluginPath);
+  } catch (e) {
+    await removeDevPluginPath(pluginPath);
+    throw e;
+  }
+  await refreshInstalledPlugins();
 };
 
 export const installStorePlugin = async (plugin: IStorePlugin): Promise<void> => {
@@ -77,41 +145,41 @@ export const installStorePlugin = async (plugin: IStorePlugin): Promise<void> =>
     const pluginDir = await join(customDir, dirName);
     const tgzPath = await join(customDir, `${dirName}.tgz`);
 
-  // 如果已经存在，先删除
-  if (await exists(pluginDir)) {
-    await remove(pluginDir, { recursive: true });
-  }
-  await mkdir(pluginDir, { recursive: true });
+    // 如果已经存在，先删除
+    if (await exists(pluginDir)) {
+      await remove(pluginDir, { recursive: true });
+    }
+    await mkdir(pluginDir, { recursive: true });
 
-  // 获取 npm tarball 信息
-  const metadataUrl = `${NPM_REGISTRY}/${encodeURIComponent(npmPkg)}`;
-  const metadataRes = await fetch(metadataUrl);
-  const metadata = await metadataRes.json();
-  const dist = metadata.versions?.[metadata['dist-tags']?.latest || plugin.version]?.dist;
-  if (!dist?.tarball) {
-    throw new Error(`找不到 ${npmPkg} 的 tarball 地址`);
-  }
+    // 获取 npm tarball 信息
+    const metadataUrl = `${NPM_REGISTRY}/${encodeURIComponent(npmPkg)}`;
+    const metadataRes = await fetch(metadataUrl);
+    const metadata = await metadataRes.json();
+    const dist = metadata.versions?.[metadata['dist-tags']?.latest || plugin.version]?.dist;
+    if (!dist?.tarball) {
+      throw new Error(`找不到 ${npmPkg} 的 tarball 地址`);
+    }
 
-  // 使用 plugin-upload 下载 tarball 到本地
-  await download(dist.tarball, tgzPath);
+    // 使用 plugin-upload 下载 tarball 到本地
+    await download(dist.tarball, tgzPath);
 
-  // 使用 tar 命令解压到插件目录（--strip-components=1 去掉 npm 的 package/ 前缀）
-  const tarCommand = shell.Command.create('tar', ['-xzf', tgzPath, '-C', pluginDir, '--strip-components=1']);
-  await tarCommand.execute();
+    // 使用 tar 命令解压到插件目录（--strip-components=1 去掉 npm 的 package/ 前缀）
+    const tarCommand = shell.Command.create('tar', ['-xzf', tgzPath, '-C', pluginDir, '--strip-components=1']);
+    await tarCommand.execute();
 
-  // 清理 tgz 文件
-  if (await exists(tgzPath)) {
-    await remove(tgzPath);
-  }
+    // 清理 tgz 文件
+    if (await exists(tgzPath)) {
+      await remove(tgzPath);
+    }
 
-  // 记录插件路径
-  await addCustomPluginPath(pluginDir);
+    // 记录插件路径（商店安装）
+    await addStorePluginPath(pluginDir);
 
-  // 注册插件
-  const { registerPlugin } = await import('@/plugin/manager');
-  await registerPlugin(pluginDir);
+    // 注册插件
+    const { registerPlugin } = await import('@/plugin/manager');
+    await registerPlugin(pluginDir);
 
-  installedPluginNames.value.add(npmPkg);
+    installedPluginNames.value.add(npmPkg);
   } finally {
     installingPluginNames.value.delete(npmPkg);
   }
@@ -124,7 +192,7 @@ export const uninstallStorePlugin = async (pluginName: string): Promise<void> =>
   if (await exists(pluginDir)) {
     await remove(pluginDir, { recursive: true });
   }
-  await removeCustomPluginPath(pluginDir);
+  await removeStorePluginPath(pluginDir);
 
   const { unregisterPlugin } = await import('@/plugin/manager');
   unregisterPlugin(pluginName);

@@ -1,0 +1,47 @@
+{
+  "name": "@public-tauri-ext/search",
+  "version": "1.0.0",
+  "description": "使用触发词在默认浏览器中打开网页搜索（当前默认 Google，后续可扩展更多搜索服务）",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "rollup --config ./rollup.config.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "publicPlugin": {
+    "icon": "https://img.icons8.com/?size=100&id=63775&format=png&color=000000",
+    "title": "网页搜索",
+    "subtitle": "触发词 + 关键词，在浏览器中打开搜索结果",
+    "description": "输入触发词（如 g ）和空格后的关键词，选择对应条目后回车即可。后续版本可切换不同搜索服务。",
+    "main": "./dist/index.js",
+    "commands": [
+      {
+        "name": "search",
+        "title": "谷歌搜索",
+        "subtitle": "在浏览器中打开 Google 搜索结果",
+        "mode": "none",
+        "matches": [
+          {
+            "type": "trigger",
+            "triggers": ["g", "google", "gg"],
+            "title": "谷歌搜索\"$query\"",
+            "subtitle": "在浏览器中打开 Google 搜索结果"
+          }
+        ]
+      }
+    ]
+  },
+  "dependencies": {
+    "@public-tauri/api": "workspace:^"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "catalog:plugin",
+    "@rollup/plugin-json": "catalog:plugin",
+    "@rollup/plugin-node-resolve": "catalog:plugin",
+    "@rollup/plugin-replace": "catalog:plugin",
+    "rollup": "catalog:plugin",
+    "rollup-plugin-esbuild": "catalog:plugin"
+  }
+}

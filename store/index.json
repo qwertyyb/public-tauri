@@ -1,5 +1,5 @@
 {
-  "updateTime": 1776259181271,
+  "updateTime": 1776403848359,
   "plugins": [
     {
       "name": "@public-tauri-ext/magic",
@@ -65,6 +65,40 @@
                   "mmod"
                 ],
                 "title": "打开魔方模块编辑页“$query”"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "@public-tauri-ext/search",
+      "icon": "https://img.icons8.com/?size=100&id=63775&format=png&color=000000",
+      "version": "1.0.0",
+      "author": "",
+      "manifest": {
+        "name": "@public-tauri-ext/search",
+        "icon": "https://img.icons8.com/?size=100&id=63775&format=png&color=000000",
+        "title": "网页搜索",
+        "subtitle": "触发词 + 关键词，在浏览器中打开搜索结果",
+        "description": "输入触发词（如 g ）和空格后的关键词，选择对应条目后回车即可。后续版本可切换不同搜索服务。",
+        "main": "./dist/index.js",
+        "commands": [
+          {
+            "name": "search",
+            "title": "谷歌搜索",
+            "subtitle": "在浏览器中打开 Google 搜索结果",
+            "mode": "none",
+            "matches": [
+              {
+                "type": "trigger",
+                "triggers": [
+                  "g",
+                  "google",
+                  "gg"
+                ],
+                "title": "谷歌搜索\"$query\"",
+                "subtitle": "在浏览器中打开 Google 搜索结果"
               }
             ]
           }

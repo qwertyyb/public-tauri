@@ -69,6 +69,10 @@ export const isRunning = async () => {
 };
 
 export const start = async () => {
+  if (await isRunning()) {
+    console.log('NodeJS Server already running, skip spawn');
+    return;
+  }
   console.log('start NodeJS Server');
   const command = await createCommand();
   return new Promise<void>((resolve, reject) => {

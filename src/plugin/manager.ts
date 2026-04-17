@@ -10,13 +10,23 @@ import { parsePluginConfig, type IPluginManifest, type ICommand as IPluginComman
 import logger from '@/utils/logger';
 import type { IRunningPlugin, IPluginsSettings, IPluginSettings, ICommandSettings } from '@/types/plugin';
 import { BUILTIN_PLUGINS } from './builtin';
+import { DEV_PLUGIN_PATH_LIST_KEY, migratePluginPathListsFromLegacy, STORE_PLUGIN_PATH_LIST_KEY } from '@/services/store';
 
 const plugins: Map<string, IRunningPlugin> = new Map(BUILTIN_PLUGINS);
 let pluginsSettings: IPluginsSettings = {};
 
+let resolvePluginsReady: (() => void) | undefined;
+/** 全部内置 / 开发 / 用户自定义插件注册流程结束后 resolve（无论单个插件是否报错） */
+export const whenPluginsReady = new Promise<void>((resolve) => {
+  resolvePluginsReady = resolve;
+});
+
 const save = () => storage.setItem('pluginsSettings', pluginsSettings);
 
 const checkPluginsRegistered = (path: string) => Array.from(plugins.values()).some(item => item.path === path);
+
+/** 是否已有插件实例使用该磁盘路径（用于避免重复加载） */
+export const isPluginPathRegistered = (pluginPath: string) => checkPluginsRegistered(pluginPath);
 
 export const createWujie = (name: string, entryUrl: string, options?: {
   insertScript: { content: string, module?: boolean }
@@ -124,10 +134,16 @@ export const registerPlugin = async (pluginPath: string) => {
       } else {
         staticPaths.push(pluginPath);
       }
-      await registerServerModule(name, {
-        modulePath: serverModulePath,
-        staticPaths,
-      });
+      // 纯前端 main（无 server、无 wujie html、非 listView）不依赖 Node 侧 register；避免 WKWebView 对 localhost:2345 的 fetch 在部分环境下失败导致整插件加载中断
+      const needsNodeSidecar = Boolean(serverModulePath) || template === 'listView' || Boolean(html);
+      if (needsNodeSidecar) {
+        await registerServerModule(name, {
+          modulePath: serverModulePath,
+          staticPaths,
+        });
+      } else {
+        logger.info('registerPlugin: skip registerServerModule (pure main)', name);
+      }
     }
     if (manifest.main && !pluginsSettings?.[name]?.disabled) {
       const entryPath = getLocalPath(manifest.main, pluginPath)!;
@@ -438,8 +454,11 @@ const initInnerPlugins = async () => {
 };
 
 const initCustomPlugins = async () => {
-  const pluginPathList: string[] | undefined = await storage.getItem('customPluginPathList');
-  if (!pluginPathList) return;
+  await migratePluginPathListsFromLegacy();
+  const storePaths: string[] = (await storage.getItem(STORE_PLUGIN_PATH_LIST_KEY)) || [];
+  const devPaths: string[] = (await storage.getItem(DEV_PLUGIN_PATH_LIST_KEY)) || [];
+  const pluginPathList = [...storePaths, ...devPaths];
+  if (!pluginPathList.length) return;
   return Promise.all(pluginPathList.map(pluginPath => registerPlugin(pluginPath).catch((err) => {
     console.error('register plugin error: ', pluginPath, err);
   })));
@@ -464,13 +483,26 @@ const initCommandsShortcut = () => {
 };
 
 export const init = async () => {
-  const result: IPluginsSettings = await storage.getItem('pluginsSettings');
-  console.log('pluginsSettings', result);
-  pluginsSettings = result || {};
+  try {
+    const result: IPluginsSettings = await storage.getItem('pluginsSettings');
+    console.log('pluginsSettings', result);
+    pluginsSettings = result || {};
 
-  await initInnerPlugins();
-  await initCustomPlugins();
+    await initInnerPlugins();
+    await initCustomPlugins();
 
-  initCommandsShortcut();
+    initCommandsShortcut();
+  } finally {
+    // 用 !PROD：个别环境（如自动化 WebView）下 import.meta.env.DEV 可能为 false，仍需要 E2E 钩子
+    if (!import.meta.env.PROD && typeof window !== 'undefined') {
+      const { registerPluginFromLocalPath } = await import('@/services/store');
+      (window as Window & { __PUBLIC_DEV_REGISTER_PLUGIN_PATH__?: (pluginPath: string) => Promise<void> }).__PUBLIC_DEV_REGISTER_PLUGIN_PATH__ = registerPluginFromLocalPath;
+    }
+    resolvePluginsReady?.();
+    if (typeof window !== 'undefined') {
+      (window as Window & { __PUBLIC_APP_PLUGINS_READY__?: boolean }).__PUBLIC_APP_PLUGINS_READY__ = true;
+      window.dispatchEvent(new CustomEvent('public-app:plugins-ready', { bubbles: true }));
+    }
+  }
 };
 
