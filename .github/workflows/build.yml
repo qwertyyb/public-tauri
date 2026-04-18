@@ -2,9 +2,9 @@ name: Build
 
 on:
   push:
-    branches: [ wujie ]
+    branches: [ master ]
   pull_request:
-    branches: [ wujie ]
+    branches: [ master ]
 
 env:
   CARGO_TERM_COLOR: always
