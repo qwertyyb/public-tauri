@@ -5,17 +5,26 @@ pub const SPOTLIGHT_LABEL: &str = "main";
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
-    let builder = tauri::Builder::default()
-        .plugin(tauri_plugin_upload::init());
+    let mut builder = tauri::Builder::default();
+
+    #[cfg(desktop)]
+    {
+        builder = builder.plugin(tauri_plugin_single_instance::init(|_app, _argv, _cwd| {}));
+    }
+
+    builder = builder.plugin(tauri_plugin_upload::init());
     // W3C WebDriver on http://127.0.0.1:4445 — enable with `pnpm tauri:dev` (see package.json)
     #[cfg(all(
         debug_assertions,
         feature = "webdriver",
         any(target_os = "macos", target_os = "windows", target_os = "linux")
     ))]
-    let builder = builder.plugin(tauri_plugin_webdriver::init());
+    {
+        builder = builder.plugin(tauri_plugin_webdriver::init());
+    }
 
     builder
+        .plugin(tauri_plugin_deep_link::init())
         .plugin(tauri_plugin_fs::init())
         .plugin(tauri_plugin_persisted_scope::init())
         .plugin(tauri_plugin_dialog::init())
@@ -33,6 +42,12 @@ pub fn run() {
             commands::monitor_from_point
         ])
         .setup(move |app| {
+            #[cfg(any(target_os = "windows", target_os = "linux"))]
+            {
+                use tauri_plugin_deep_link::DeepLinkExt;
+                let _ = app.deep_link().register_all();
+            }
+
             #[cfg(desktop)]
             let _ = app.handle().plugin(tauri_plugin_autostart::init(
                 tauri_plugin_autostart::MacosLauncher::LaunchAgent,

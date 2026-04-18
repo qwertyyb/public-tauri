@@ -132,6 +132,11 @@ function selectPlugin(name: string) {
 function clearSelection() {
   setPluginInUrl(null);
 }
+
+/** 在已安装的 Public 桌面客户端中打开该插件的商店详情页（伪协议 deep-link） */
+function installHref(name: string) {
+  return `public://store/${encodeURIComponent(name)}`;
+}
 </script>
 
 <template>
@@ -200,14 +205,15 @@ function clearSelection() {
               >
                 查看详情
               </button>
-              <button
-                type="button"
-                class="plugin-store__install plugin-store__install--row"
-                disabled
-                title="将在客户端版本中支持"
+              <a
+                class="plugin-store__install plugin-store__install--row plugin-store__install--action"
+                :href="installHref(p.name)"
+                :title="'在 Public 客户端中打开安装页（需已安装桌面版）'"
+                :aria-label="`在 Public 客户端一键安装：${p.manifest.title ?? p.name}`"
+                @click.stop
               >
-                一键安装（即将推出）
-              </button>
+                一键安装
+              </a>
             </div>
           </article>
         </li>
@@ -279,9 +285,16 @@ function clearSelection() {
               </ul>
             </section>
 
-            <button type="button" class="plugin-store__install" disabled title="将在客户端版本中支持">
-              一键安装（即将推出）
-            </button>
+            <div class="plugin-store__modal-footer">
+              <a
+                class="plugin-store__install plugin-store__install--action"
+                :href="installHref(selectedPlugin.name)"
+                title="在 Public 客户端中打开安装页（需已安装桌面版）"
+                :aria-label="`在 Public 客户端一键安装：${selectedPlugin.manifest.title ?? selectedPlugin.name}`"
+              >
+                一键安装
+              </a>
+            </div>
           </div>
         </div>
       </Transition>
@@ -430,7 +443,7 @@ function clearSelection() {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   /* 固定行高，保证同一行与跨行卡片外框高度一致 */
-  grid-auto-rows: 220px;
+  grid-auto-rows: minmax(224px, auto);
   gap: 0.875rem;
   align-items: stretch;
 }
@@ -495,6 +508,7 @@ function clearSelection() {
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
+  gap: 0.45rem;
   margin-top: auto;
 }
 
@@ -577,16 +591,75 @@ function clearSelection() {
   overflow: hidden;
 }
 
+/* 安装按钮：与 VitePress 主按钮一致（--vp-button-brand-bg），勿用 --vp-c-brand-1（暗色下过亮、对比不足） */
+.plugin-store__install {
+  width: 100%;
+  margin: 0;
+  box-sizing: border-box;
+  border: none;
+  font: inherit;
+}
+
 .plugin-store__install--row {
   position: relative;
   z-index: 2;
   flex-shrink: 0;
   width: 100%;
-  margin: 0;
-  border-radius: 0;
+  padding: 0.5rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.35;
   border-top: 1px solid var(--vp-c-divider);
-  padding: 0.4rem 0.6rem;
-  font-size: 0.72rem;
+  /* 卡片 border-radius 14px − 边框，与底部圆角对齐 */
+  border-radius: 0 0 13px 13px;
+}
+
+a.plugin-store__install--action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--vp-button-brand-bg);
+  color: var(--vp-button-brand-text);
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: filter 0.15s ease;
+}
+
+a.plugin-store__install--action:hover {
+  filter: brightness(1.08);
+}
+
+a.plugin-store__install--action:active {
+  filter: brightness(0.94);
+}
+
+a.plugin-store__install--action:focus-visible {
+  outline: 2px solid var(--vp-c-brand-2);
+  outline-offset: 2px;
+}
+
+/* 列表卡片底部：触控目标略抬高（DevTools 实测约 33px → ≥36px） */
+.plugin-store__install--row.plugin-store__install--action {
+  min-height: 2.25rem;
+  box-sizing: border-box;
+}
+
+.plugin-store__modal-footer {
+  flex-shrink: 0;
+  margin: 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--vp-c-divider);
+}
+
+.plugin-store__modal-footer .plugin-store__install--action {
+  padding: 0.65rem 1rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  min-height: 2.75rem;
+  box-sizing: border-box;
+  box-shadow: var(--vp-shadow-1);
 }
 
 .plugin-store__backdrop {
@@ -684,17 +757,6 @@ function clearSelection() {
   margin: 0;
   color: var(--vp-c-text-1);
   word-break: break-all;
-}
-
-.plugin-store__install {
-  width: 100%;
-  padding: 0.65rem 1rem;
-  border-radius: 10px;
-  border: none;
-  background: var(--vp-c-bg-mute);
-  color: var(--vp-c-text-3);
-  font-size: 0.9rem;
-  cursor: not-allowed;
 }
 
 .plugin-store-dlg-enter-active,

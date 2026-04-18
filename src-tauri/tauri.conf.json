@@ -38,7 +38,13 @@
   "productName": "Public-Tauri",
   "version": "0.2.0",
   "identifier": "com.qwertyyb.public-tauri",
-  "plugins": {},
+  "plugins": {
+    "deep-link": {
+      "desktop": {
+        "schemes": ["public"]
+      }
+    }
+  },
   "app": {
     "windows": [
       {

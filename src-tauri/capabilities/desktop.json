@@ -11,6 +11,8 @@
   ],
   "permissions": [
     "core:default",
+    "core:event:default",
+    "deep-link:default",
     "global-shortcut:default",
     "core:window:allow-show",
     "core:window:allow-set-focus",

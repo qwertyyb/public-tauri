@@ -7,6 +7,7 @@ import App from './App.vue';
 import './style.css';
 import { createDraggable } from './utils/draggable';
 import { listenEvents } from './utils/events';
+import { initDeepLinks } from './utils/deep-link';
 import { init } from './plugin/manager';
 import { createTray } from './utils/tray';
 import { start as startServer } from './utils/server';
@@ -23,8 +24,9 @@ createTray();
 startServer()
   .then(() => {
     getSettings().then(settings => registerMainShortcut(settings.shortcuts));
-    init();
-  });
+    return init();
+  })
+  .then(() => initDeepLinks());
 
 const app = createApp(App);
 
