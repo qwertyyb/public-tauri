@@ -30,3 +30,8 @@ src-tauri/binaries/*
 
 # E2E run output (local only)
 reports/
+test-results/
+
+# VitePress local cache and build output
+docs/.vitepress/cache
+docs/.vitepress/dist
