@@ -7,6 +7,7 @@ export default defineConfig({
   base: '/public-tauri/',
   cleanUrls: true,
   themeConfig: {
+    outline: [2, 4],
     nav: [
       { text: '首页', link: '/' },
       { text: '文档', link: '/plugin-index' },
@@ -18,7 +19,7 @@ export default defineConfig({
         items: [
           { text: '文档索引', link: '/plugin-index' },
           { text: '快速开始', link: '/getting-started' },
-          { text: '本地开发插件', link: '/dev-plugins' },
+          { text: '加载插件', link: '/dev-plugins' },
           { text: '插件配置清单', link: '/manifest' },
           { text: '命令与匹配规则', link: '/commands' },
           { text: '插件模式', link: '/modes' },

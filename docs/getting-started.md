@@ -124,6 +124,10 @@ pnpm rollup --config rollup.config.mjs
 
 构建产物输出到 `dist/command.preload.js`，在命令配置中添加 `"preload": "./dist/command.preload.js"`。
 
+## 在应用中加载本地插件
+
+完成构建并确保 `package.json` 能解析到入口后，在 **Public Tauri** 主窗口用内置命令即可加载正在开发的插件目录进行调试，**无需**改应用配置或了解主工程实现。步骤与说明见 **[加载本地开发插件](./dev-plugins.md)**。
+
 ### 5. 准备图标
 
 在 `assets/` 目录下放置插件图标：

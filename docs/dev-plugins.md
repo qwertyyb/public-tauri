@@ -1,30 +1,16 @@
-# 开发插件（本地目录动态加载）
+# 加载本地开发中的插件
 
-无需修改配置文件或重启应用来「声明」开发插件路径。
+插件作者只需在本地 **构建好入口产物**（例如 `dist/` 下的 `main` / `html` / `preload` 等），再在应用里通过一条内置命令选中插件根目录即可调试，**不需要**关注桌面应用本身的启动方式、内部 API 或 WebDriver 等自动化测试（后者仅面向主应用仓库贡献者，说明在仓库的 `docs-app/` 中，不在本文档站）。
 
-## 内置命令：加载开发插件
+## 使用命令：加载开发插件
 
-与「插件商店」类似，应用内置 **`load-dev-plugin`** 插件：
+应用内置 **load-dev-plugin**，在搜索框里即可调用：
 
-1. 在搜索框输入 **「加载开发插件」**（或 `load dev plugin` / `dev plugin` / `本地插件` 等关键词）。
-2. 回车执行 **「加载开发插件」** 命令。
-3. 在系统文件夹选择器中选中插件根目录（需包含 **`package.json`**，且已按该包脚本构建出 **`dist`** 等入口）。
-4. 成功后会出现 Toast，插件立即注册；路径写入 **`devPluginPathList`**（与商店安装的 **`storePluginPathList`** 分开存储），下次启动仍会加载。
+1. 在搜索框输入 **「加载开发插件」**（也可尝试 `load dev plugin`、`dev plugin`、`本地插件` 等与内置匹配规则相近的关键词）。
+2. 回车执行 **「加载开发插件」**。
+3. 在系统文件夹选择器中选中插件的**根目录**（须包含 **`package.json`**，且 manifest 中的入口路径能指向你已构建的产物）。
+4. 成功后会提示 Toast，插件立即注册；路径写入本机的 **开发插件列表**，**下次启动应用仍会加载**。
 
-## 与商店安装的关系
+## 验证
 
-- 商店下载安装的目录记录在 **`storePluginPathList`**；从本地目录加载的开发插件记录在 **`devPluginPathList`**，便于分别管理。卸载商店插件时只从商店列表中移除对应路径。
-
-## 网页搜索示例 `@public-tauri-ext/search`
-
-1. 在仓库内执行：`pnpm --filter @public-tauri-ext/search run build`。
-2. 在应用中选择目录：`<仓库根>/store/plugins/search`。
-3. 在搜索框输入 `g 关键词` / `b 关键词` / `bd 关键词` 应分别出现谷歌 / 必应 / 百度搜索条目；回车在默认浏览器打开对应结果。
-
-## 插件就绪
-
-`init()` 结束后会设置 `window.__PUBLIC_APP_PLUGINS_READY__` 并派发 `public-app:plugins-ready`；前端可 `import { whenPluginsReady } from '@/plugin/manager'`。
-
-## 自动化（WebDriver）
-
-在另一终端运行 `pnpm tauri:dev`（含 `webdriver` feature）后，可执行 `pnpm test:webdriver:search`：脚本会构建该插件、通过开发环境 API 注册 `store/plugins/search`（或用 `E2E_SEARCH_PLUGIN_PATH` 指定目录），并跑检索与回车用例。详见仓库内 **`docs-app/webdriver-e2e-input.md`**（应用主体开发与自动化，不在文档站内）。
+加载成功后，在搜索框输入你在 `publicPlugin.commands` 里配置的 **匹配关键词** 或命令名，应能进入对应命令并执行插件逻辑。

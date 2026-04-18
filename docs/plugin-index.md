@@ -7,7 +7,7 @@
 ## 目录
 
 - [快速开始](./getting-started.md) - 从零开始创建你的第一个插件
-- [本地开发插件](./dev-plugins.md) - 在应用内加载本地插件目录进行调试
+- [加载本地开发插件](./dev-plugins.md) - 通过内置命令加载本地构建中的插件目录
 - [插件配置清单](./manifest.md) - `package.json` 中 `publicPlugin` 字段的完整说明
 - [命令与匹配规则](./commands.md) - 定义命令及其触发匹配规则
 - [插件模式](./modes.md) - 三种插件运行模式（none / listView / view）
