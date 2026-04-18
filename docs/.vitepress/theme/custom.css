@@ -1,0 +1,39 @@
+/**
+ * 文档内嵌组件与 VitePress 默认主题的视觉对齐
+ */
+.vp-doc .plugin-store {
+  margin-top: 0.5rem;
+}
+
+/*
+ * 插件商店专属布局：
+ * VitePress 默认在 ≥960px 给 .VPDoc .content 设了 max-width 752px / 688px，
+ * 在 ≥1280px 又放宽到 784px，导致放置 grid 时出现“宽屏 3 列 → 中屏 2 列 → 更宽屏 3 列”的反弹。
+ * 这里用 :has(.plugin-store) 命中包含商店组件的页面，去掉 vp-doc 的内宽限制，
+ * 让插件商店在宽屏上占满可用宽度。
+ */
+.VPContent .VPDoc:has(.plugin-store) > .container > .content {
+  max-width: none;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+.VPContent .VPDoc:has(.plugin-store) > .container {
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 768px) {
+  .VPContent .VPDoc:has(.plugin-store) > .container > .content {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+.plugin-store__tile:focus-visible,
+.plugin-store__retry:focus-visible,
+.plugin-store__modal-close:focus-visible {
+  outline: 2px solid var(--vp-c-brand-1);
+  outline-offset: 2px;
+}

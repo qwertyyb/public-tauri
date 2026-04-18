@@ -27,4 +27,4 @@
 
 ## 自动化（WebDriver）
 
-在另一终端运行 `pnpm tauri:dev`（含 `webdriver` feature）后，可执行 `pnpm test:webdriver:search`：脚本会构建该插件、通过开发环境 API 注册 `store/plugins/search`（或用 `E2E_SEARCH_PLUGIN_PATH` 指定目录），并跑检索与回车用例。详见 [WebDriver E2E 测试](./webdriver-e2e-input.md)。
+在另一终端运行 `pnpm tauri:dev`（含 `webdriver` feature）后，可执行 `pnpm test:webdriver:search`：脚本会构建该插件、通过开发环境 API 注册 `store/plugins/search`（或用 `E2E_SEARCH_PLUGIN_PATH` 指定目录），并跑检索与回车用例。详见仓库内 **`docs-app/webdriver-e2e-input.md`**（应用主体开发与自动化，不在文档站内）。

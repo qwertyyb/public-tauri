@@ -3,7 +3,7 @@
  *
  * 前置：`pnpm tauri:dev`（`--features webdriver`）；DEV 下存在 `__PUBLIC_DEV_REGISTER_PLUGIN_PATH__`。
  * 环境变量：`TAURI_WEBDRIVER_URL`、`TAURI_DEV_URL`、可选 `E2E_SEARCH_PLUGIN_PATH`（默认仓库内 `store/plugins/search`）。
- * 输入与按键说明见 docs/webdriver-e2e-input.md；报告写入 reports/search-plugin-e2e-report.md（每次运行覆盖）。
+ * 输入与按键说明见 docs-app/webdriver-e2e-input.md；报告写入 reports/search-plugin-e2e-report.md（每次运行覆盖）。
  */
 import { execSync } from 'node:child_process';
 import fs from 'node:fs';
@@ -68,7 +68,7 @@ function ensureSearchPluginBuilt(): void {
 
 /**
  * 使用 `clear` + `sendKeys` 写入 `#main-input`；调用方应用脚本读 DOM 校验 `input.value`。
- * 若遇 WebKit 下 `sendKeys` 末尾乱码，可改为页面内原生 `value` setter + `InputEvent`（见 docs/webdriver-e2e-input.md）。
+ * 若遇 WebKit 下 `sendKeys` 末尾乱码，可改为页面内原生 `value` setter + `InputEvent`（见 docs-app/webdriver-e2e-input.md）。
  */
 async function setMainInputValue(driver: WebDriver, text: string): Promise<void> {
   const input = await driver.wait(until.elementLocated(By.css('#main-input')), 60_000);

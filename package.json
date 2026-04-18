@@ -20,7 +20,11 @@
     "preapp:build": "pnpm run prepare-nodejs && pnpm --filter './packages/template' --filter './src-node' --filter './plugins/*' --filter 'wechat-qrcode' run build",
     "app:build": "pnpm tauri build",
     "postinstall": "pnpm preapp:build",
-    "store:build": "tsx scripts/build-store.ts"
+    "store:build": "tsx scripts/build-store.ts",
+    "site:dev": "vitepress dev docs",
+    "site:build": "vitepress build docs",
+    "site:preview": "vitepress preview docs",
+    "site:verify": "node scripts/verify-site.mjs"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
@@ -75,6 +79,7 @@
     "typescript-eslint": "^8.47.0",
     "unplugin-element-plus": "^0.10.0",
     "vite": "^7.0.6",
+    "vitepress": "^1.6.4",
     "vue-tsc": "^2.1.10"
   }
 }

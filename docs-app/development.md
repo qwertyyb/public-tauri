@@ -2,7 +2,7 @@
 
 本文档说明如何在本仓库中 **运行与调试 Public Tauri 桌面应用**，以及如何用 **WebDriver** 对前端做自动化操作。
 
-> **与插件文档的区别**：若你要编写或发布 **用户插件**（`publicPlugin`、`definePlugin`、商店包等），请参阅 [插件开发文档索引](./README.md) 与 [本地开发插件加载](./dev-plugins.md)。本文不替代插件清单、命令匹配或 `@public-tauri/api` 的说明。
+> **与插件文档的区别**：若你要编写或发布 **用户插件**（`publicPlugin`、`definePlugin`、商店包等），请参阅 [插件开发文档索引](../docs/plugin-index.md) 与 [本地开发插件加载](../docs/dev-plugins.md)。本文不替代插件清单、命令匹配或 `@public-tauri/api` 的说明。
 
 ## 环境要求
 
@@ -41,7 +41,7 @@ pnpm tauri:dev
 实现要点简述：
 
 - **冒烟**（`webdriver-smoke.ts`）：轮询 WebDriver `/status`，解析 JSON，仅当 **`value.ready !== false`** 时继续；`driver.get(TAURI_DEV_URL)` 后对 `#main-input` 执行 `clear` + `sendKeys`。
-- **Search 插件 E2E**（`webdriver-search-plugin.ts`）：先构建 `@public-tauri-ext/search`；轮询 `/status`（仅要求 HTTP 成功）；等待 `window.__PUBLIC_APP_PLUGINS_READY__` 与 `__PUBLIC_DEV_REGISTER_PLUGIN_PATH__`；通过开发钩子注册本地插件目录后再跑用例。该脚本面向 **插件行为的回归**，属于「带插件场景的 E2E」，与纯应用冒烟不同；插件作者能力说明仍以 [插件文档](./README.md) 为准。
+- **Search 插件 E2E**（`webdriver-search-plugin.ts`）：先构建 `@public-tauri-ext/search`；轮询 `/status`（仅要求 HTTP 成功）；等待 `window.__PUBLIC_APP_PLUGINS_READY__` 与 `__PUBLIC_DEV_REGISTER_PLUGIN_PATH__`；通过开发钩子注册本地插件目录后再跑用例。该脚本面向 **插件行为的回归**，属于「带插件场景的 E2E」，与纯应用冒烟不同；插件作者能力说明仍以 [插件文档](../docs/plugin-index.md) 为准。
 
 ### 环境变量
 
@@ -67,6 +67,6 @@ pnpm tauri:dev
 | 文档 | 内容 |
 |------|------|
 | 本文 | 本仓库应用运行、WebDriver 冒烟与 E2E 入口 |
-| [插件开发文档索引](./README.md) | 插件清单、命令、模式、API、构建与发布 |
+| [插件开发文档索引](../docs/plugin-index.md) | 插件清单、命令、模式、API、构建与发布 |
 | [WebDriver E2E 测试](./webdriver-e2e-input.md) | WebDriver 环境变量、脚本行为细节与输入注意事项 |
-| [本地开发插件](./dev-plugins.md) | 在应用内加载本地插件目录（与 E2E 注册钩子相关，但是 **插件使用/开发** 视角） |
+| [本地开发插件](../docs/dev-plugins.md) | 在应用内加载本地插件目录（与 E2E 注册钩子相关，但是 **插件使用/开发** 视角） |

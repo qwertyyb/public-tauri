@@ -12,7 +12,7 @@
 
 ### 开发步骤
 
-应用开发（含 WebDriver 与自动化）的说明见 **[docs/development.md](./docs/development.md)**。
+应用开发（含 WebDriver 与自动化）的说明见 **[docs-app/development.md](./docs-app/development.md)**。
 
 相关命令
 

@@ -5,12 +5,12 @@ description: >-
   Use when starting local development, authoring or running Selenium WebDriver scripts against
   the dev UI (including wujie view plugins via wujie-app shadowRoot), WebDriver smoke or plugin
   E2E, CI-style frontend checks, or when the user asks how to run or test this repository.
-  Does not cover plugin authoring; for plugins see docs/README.md and docs/dev-plugins.md.
+  Does not cover plugin authoring; for plugins see docs/plugin-index.md and docs/dev-plugins.md.
 ---
 
 # public-tauri：运行与测试（应用仓库）
 
-基于仓库内 **[docs/development.md](../../../docs/development.md)**。**插件开发**（`publicPlugin`、`definePlugin`、商店包）见 **[docs/README.md](../../../docs/README.md)**，勿与本 skill 混用。
+基于仓库内 **[docs-app/development.md](../../../docs-app/development.md)**。**插件开发**（`publicPlugin`、`definePlugin`、商店包）见 **[docs/plugin-index.md](../../../docs/plugin-index.md)**，勿与本 skill 混用。
 
 ## 运行开发环境
 
@@ -32,7 +32,7 @@ pnpm tauri:dev
 
 ## 自动化测试（WebDriver）
 
-使用 **Selenium 4**（`selenium-webdriver`）连本机 W3C WebDriver，在 **Vite 开发页** 驱动 **WKWebView**。细则与排障见 **[docs/webdriver-e2e-input.md](../../../docs/webdriver-e2e-input.md)**。
+使用 **Selenium 4**（`selenium-webdriver`）连本机 W3C WebDriver，在 **Vite 开发页** 驱动 **WKWebView**。细则与排障见 **[docs-app/webdriver-e2e-input.md](../../../docs-app/webdriver-e2e-input.md)**。
 
 ### 必须的两步
 
@@ -69,7 +69,7 @@ pnpm tauri:dev
 
 **接入 npm**：在根目录 **`package.json`** 的 **`scripts`** 中增加一项，例如 `"test:webdriver:foo": "tsx scripts/webdriver-foo.ts"`，与现有 **`test:webdriver*`** 命名一致；用 **`pnpm exec tsx`** 或 **`pnpm test:webdriver:foo`** 运行。
 
-**输入框、Vue `v-model`、回车与 WebKit 注意点**：见 **[docs/webdriver-e2e-input.md](../../../docs/webdriver-e2e-input.md)**。
+**输入框、Vue `v-model`、回车与 WebKit 注意点**：见 **[docs-app/webdriver-e2e-input.md](../../../docs-app/webdriver-e2e-input.md)**。
 
 ### WebDriver：view 模式插件、wujie 与 Shadow DOM（必读）
 
@@ -121,10 +121,10 @@ pnpm tauri:dev
 - **启动开发（Agent）**：在仓库根目录执行 **`unset CARGO_TARGET_DIR && pnpm tauri:dev`**，且 **必须在后台运行**（阻塞式前景会话会一直占用 shell，无法在同一工作流里再执行测试命令）。使用 IDE/Agent 提供的 **后台任务**、或等价「非阻塞启动」方式；待 `http://127.0.0.1:4445/status`（及需要时 `1420`）可用后，再在**另一命令**中执行 `pnpm test:webdriver` / `pnpm test:webdriver:search` / `pnpm test:webdriver:shell` / `pnpm test:webdriver:snippets`（或你新增的 `test:webdriver:*`）。
 - **需要验证前端自动化**：顺序为 **后台 `unset CARGO_TARGET_DIR && pnpm tauri:dev` → 再跑测试脚本**；超时或连不上时查 4445/1420 是否监听、是否启用了带 `webdriver` 的 dev 命令。
 - **停止应用**：人工在前景终端跑 `tauri:dev` 时用 **Ctrl+C**。Agent 用后台任务启动时，通过 **结束该后台任务** 或对 `public-tauri` / `tauri` dev 父进程发 **SIGTERM**（避免误杀无关 Node 进程）。
-- **插件 API、manifest、商店**：读 **docs/README.md**，不要用本 skill 代替插件文档。
+- **插件 API、manifest、商店**：读 **docs/plugin-index.md**，不要用本 skill 代替插件文档。
 
 ## 延伸阅读（一层）
 
-- [docs/development.md](../../../docs/development.md) — 应用开发总览
-- [docs/webdriver-e2e-input.md](../../../docs/webdriver-e2e-input.md) — WebDriver 细节与输入注意事项
+- [docs-app/development.md](../../../docs-app/development.md) — 应用开发总览
+- [docs-app/webdriver-e2e-input.md](../../../docs-app/webdriver-e2e-input.md) — WebDriver 细节与输入注意事项
 - [scripts/webdriver-snippets-plugin.ts](../../../scripts/webdriver-snippets-plugin.ts) — view 插件 + `wujie-app` / Shadow DOM 的完整示例

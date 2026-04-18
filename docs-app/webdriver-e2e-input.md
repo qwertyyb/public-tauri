@@ -73,7 +73,7 @@
 
 - **先出现 `#main-input` 再执行 `executeScript`**：过早读 `window` 在部分阶段可能抛 `JavascriptError`。
 - **`Element.clear()`**：部分驱动/元素上会失败；若首屏为空可直接 `sendKeys`，或视情况用全选+退格。
-- **开发插件手动加载**：见 [开发插件](./dev-plugins.md)。E2E 则通过 `__PUBLIC_DEV_REGISTER_PLUGIN_PATH__` 注册目录，无需手动点选文件夹。
+- **开发插件手动加载**：见 [开发插件](../docs/dev-plugins.md)。E2E 则通过 `__PUBLIC_DEV_REGISTER_PLUGIN_PATH__` 注册目录，无需手动点选文件夹。
 
 ## 冒烟脚本（`webdriver-smoke.ts`）
 
