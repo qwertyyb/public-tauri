@@ -73,7 +73,7 @@ jobs:
         cache: pnpm
 
     - name: Install frontend dependencies
-      run: pnpm install --frozen-lockfile
+      run: pnpm install --frozen-lockfile --ignore-scripts
 
     - name: Build the app
       run: pnpm run app:build
