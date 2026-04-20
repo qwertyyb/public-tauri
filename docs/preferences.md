@@ -112,7 +112,7 @@ import { definePlugin } from '@public-tauri/api'
 
 export default definePlugin(({ getPreferences }) => {
   return {
-    onEnter(command, query, options) {
+    onAction(command, action, keyword, options) {
       const prefs = getPreferences()
       // prefs 包含插件级别和当前命令的所有偏好设置值
       const apiKey = prefs.api_key

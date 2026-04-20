@@ -65,7 +65,7 @@
 - **类型**：`string`
 - **必填**：否
 - **说明**：入口 JavaScript 文件路径，此文件会在主进程中执行。
-- **用途**：适用于内置插件模式，用于定义 `onInput`、`onEnter` 等生命周期钩子。
+- **用途**：适用于内置插件模式，用于定义 `onInput`、`onAction`、`onSelect` 等生命周期钩子（进入命令与主操作均走 `onAction`，详见 [生命周期](./lifecycle.md)）。
 
 ### `server`
 

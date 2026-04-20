@@ -54,8 +54,8 @@ import { dialog } from '@public-tauri/api'
 
 export default definePlugin(({ updateCommands }) => {
   return {
-    onEnter(command, query, options) {
-      dialog.showToast(`Hello! 你输入了: ${query}`)
+    onAction(command, action, keyword, options) {
+      dialog.showToast(`Hello! 你输入了: ${keyword}`)
     }
   }
 })
