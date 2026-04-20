@@ -106,7 +106,7 @@ const transformPlugin = definePlugin(() => ({
     // utils.updateCommands(commands)
     return commands;
   },
-  onEnter(command) {
+  onAction(command) {
     clipboard.writeText(command.value);
     dialog.showToast('已复制到剪切板');
   },

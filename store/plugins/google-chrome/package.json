@@ -1,0 +1,79 @@
+{
+  "name": "@public-tauri-ext/google-chrome",
+  "version": "1.0.0",
+  "description": "在 Google Chrome 中打开网址或 Google 搜索（参考 Raycast Google Chrome 扩展能力）",
+  "main": "dist/index.js",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "build": "rollup --config ./rollup.config.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "publicPlugin": {
+    "icon": "https://img.icons8.com/?size=100&id=9R1OGVgF3YjD&format=png&color=000000",
+    "title": "Google Chrome",
+    "subtitle": "在 Chrome 中打开链接或搜索",
+    "description": "触发词 gc + 空格 + 关键词：在 Google Chrome 中打开 Google 搜索；若输入以 http(s):// 开头则直接打开该地址。另支持通过关键词发现「新建 Chrome 窗口」命令。",
+    "main": "./dist/index.js",
+    "commands": [
+      {
+        "name": "open",
+        "title": "在 Chrome 中打开",
+        "subtitle": "触发词 gc，在 Google Chrome 中打开",
+        "mode": "none",
+        "matches": [
+          {
+            "type": "regexp",
+            "regexp": "^gc\\s+(.+)$",
+            "title": "在 Chrome 打开 \"${matches[1]}\"",
+            "subtitle": "Google 搜索或打开网址（Google Chrome）"
+          },
+          {
+            "type": "text",
+            "keywords": [
+              "google chrome",
+              "chrome",
+              "谷歌浏览器"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "new-window",
+        "title": "新建 Chrome 窗口",
+        "subtitle": "打开新的 Google Chrome 窗口",
+        "mode": "none",
+        "matches": [
+          {
+            "type": "text",
+            "keywords": [
+              "chrome new window",
+              "chrome 新窗口",
+              "新建 chrome 窗口",
+              "google chrome new window"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "dependencies": {
+    "@public-tauri/api": "workspace:^"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "catalog:plugin",
+    "@rollup/plugin-json": "catalog:plugin",
+    "@rollup/plugin-node-resolve": "catalog:plugin",
+    "@rollup/plugin-replace": "catalog:plugin",
+    "rollup": "catalog:plugin",
+    "rollup-plugin-esbuild": "catalog:plugin"
+  }
+}

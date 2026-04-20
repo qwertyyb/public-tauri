@@ -114,9 +114,14 @@ async function main(): Promise<void> {
     );
     await enterPluginViewFromHome(driver);
 
+    // 子应用异步挂载：先等 wujie iframe，再等 CreateSnippetView onMounted → setActions（主操作「创建」）
+    await driver.wait(
+      until.elementLocated(By.css('.plugin-view .wujie-container wujie-app')),
+      60_000,
+    );
     const createLabel = await driver.wait(
       until.elementLocated(By.css('.plugin-view .main-action .main-action-label')),
-      20_000,
+      60_000,
     ).then(el => el.getText());
     if (!createLabel.includes('创建')) {
       throw new Error(`Expected main action label to include 创建, got: ${createLabel}`);
@@ -156,7 +161,7 @@ async function main(): Promise<void> {
 
     const pasteLabel = await driver.wait(
       until.elementLocated(By.css('.plugin-view .main-action .main-action-label')),
-      15_000,
+      60_000,
     ).then(el => el.getText());
     if (!pasteLabel.includes('粘贴')) {
       throw new Error(`Expected main action 粘贴, got: ${pasteLabel}`);

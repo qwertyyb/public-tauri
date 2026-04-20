@@ -77,7 +77,6 @@ export type IPluginManifest = z.infer<typeof pluginSchema>;
 export type IPluginLifecycle = {
   onInput?: (keyword: string) => void | ICommand[] | Promise<void> | Promise<ICommand[]>,
   onSelect?: (command: ICommand, query: string, options: ICommandActionOptions) => string | undefined | HTMLElement | Promise<string | HTMLElement | undefined>,
-  onEnter?: (command: ICommand, query: string, options: ICommandActionOptions) => void,
   onExit?: (command: ICommand) => void,
-  onAction?: (command: ICommand, action: IAction, keyword: string) => void,
+  onAction?: (command: ICommand, action: IAction, keyword: string, options?: ICommandActionOptions) => void | Promise<void>,
 };

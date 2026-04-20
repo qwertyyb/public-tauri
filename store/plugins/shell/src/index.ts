@@ -32,7 +32,7 @@ async function runInTerminal(raw: string): Promise<void> {
 }
 
 export default definePlugin(() => ({
-  async onEnter(_command, query) {
+  async onAction(_command, _action, query) {
     await runInTerminal(query);
   },
 }));

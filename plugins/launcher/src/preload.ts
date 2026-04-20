@@ -15,9 +15,6 @@ const launcherPlugin = definePlugin((utils) => {
     utils.updateCommands(commands);
   });
   return ({
-    onEnter(app) {
-      invoke('openApp', app.path);
-    },
     onAction(command, action) {
       console.log('onAction', command, action);
       if (action.name === 'open') {

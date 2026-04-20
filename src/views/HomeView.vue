@@ -72,13 +72,13 @@ const onResultSelected = async (_item: IPluginCommand | null, itemIndex: number)
         actions: restActions,
       };
     } else {
-      // mainAction.value = {
-      //   name: 'open-command',
-      //   icon: 'open_in_new',
-      //   title: 'Open Command',
-      //   action: () => service.enter(item, input.value.keyword),
-      // };
-      mainAction.value = undefined;
+      // mode「none」且无 actions：回车仍应走 manager.enterCommand → onAction（主操作，与 ActionBar ↵ 一致）
+      mainAction.value = {
+        name: 'open-command',
+        icon: 'open_in_new',
+        title: 'Open Command',
+        action: () => service.enter(item, input.value.keyword),
+      };
       rightActionPanel.value = undefined;
     }
   } else {

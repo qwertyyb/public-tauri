@@ -33,7 +33,7 @@ pnpm plugin:build
 pnpm tauri build
 ```
 
-快捷键 <kbd>Cmd</kbd> + <kbd>Space</kbd> 显示/隐藏窗口
+快捷键 <kbd>Cmd</kbd> + <kbd>Cmd</kbd> 显示/隐藏窗口
 
 # License
 

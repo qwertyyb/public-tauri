@@ -13,7 +13,6 @@ interface IPlugin {
   description: string
   onQuery?: (query: string) => Promise<void | IListItem[]>,
   onSelect?: (result: IListItem) => Promise<void>,
-  onEnter?: (result: IListItem) => Promise<void> | void,
 }
 
 export const loadPlugin = (entry: string): Promise<IPlugin> => new Promise((resolve, reject) => {

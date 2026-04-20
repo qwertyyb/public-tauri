@@ -7,7 +7,7 @@ import { ref } from 'vue';
 const command = ref('')
 
 createPlugin({
-  onEnter(params: { name: string }) {
+  onAction(params: { name: string }) {
     command.value = params.name
   },
   onExit() {

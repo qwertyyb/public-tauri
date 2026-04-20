@@ -84,10 +84,6 @@ const calculatorPlugin = definePlugin(() => ({
     }
     return [];
   },
-  onEnter(item) {
-    writeText(String(item.text));
-    dialog.showToast('结果已复制到剪切板');
-  },
   onAction(command, action) {
     if (action.name === 'copy') {
       writeText(String(command.text));

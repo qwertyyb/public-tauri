@@ -26,17 +26,6 @@ const createQrcodePlugin = definePlugin(() => ({
       return res.html;
     }
   },
-  onEnter: async (command, query) => {
-    if (command.name === 'detect' && command.text) {
-      clipboard.writeText(command.text);
-      dialog.showToast('已写入到剪切板');
-    } else if (['generate', 'generate-for-current-url'].includes(command.name)) {
-      const base64 = await QRCode.toDataURL(query);
-      await clipboard.writeImageBase64(base64.split(',')[1]);
-      dialog.showToast('已写入到剪切板');
-    }
-  },
-
   async onAction(command, action, query) {
     if (action.name === 'copy-to-clipboard' && ['generate', 'generate-for-current-url'].includes(command.name)) {
       const base64 = await QRCode.toDataURL(query);

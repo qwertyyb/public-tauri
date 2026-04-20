@@ -147,7 +147,7 @@ export const registerPlugin = async (pluginPath: string) => {
     }
     if (manifest.main && !pluginsSettings?.[name]?.disabled) {
       const entryPath = getLocalPath(manifest.main, pluginPath)!;
-      const mod = await import(/* @vite-ignore */entryPath);
+      const mod = await import(/* @vite-ignore */ entryPath);
       const createPlugin = mod.default || mod;
       if (typeof createPlugin === 'function') {
         const pluginReturn = createPlugin({
@@ -159,7 +159,7 @@ export const registerPlugin = async (pluginPath: string) => {
             commands.forEach((command) => {
               const item = formatCommand(command, manifest, pluginPath);
               list.push(item);
-              resultsMap.set(item, { owner: pluginInstance, command: item });
+              resultsMap.set(item, { owner: pluginInstance, command: item, query: '' });
             });
             window.dispatchEvent(new CustomEvent('plugin:showCommands', { detail: { name: manifest.name, commands: list } }));
           },
@@ -202,6 +202,18 @@ export const registerPlugin = async (pluginPath: string) => {
 
 export const unregisterPlugin = (name: string) => {
   plugins.delete(name);
+};
+
+/**
+ * DEV/WebDriver：先卸载再重新 registerPlugin。
+ * 注意：部分环境下动态 import 会缓存同一 URL 的模块，若热重载后仍跑旧插件代码，请重启 `pnpm tauri:dev`。
+ */
+export const reloadPluginFromLocalPath = async (pluginPath: string): Promise<void> => {
+  const pkg = JSON.parse(await readTextFile(getLocalPath('./package.json', pluginPath)!));
+  unregisterPlugin(pkg.name);
+  await registerPlugin(pluginPath);
+  const { refreshInstalledPlugins } = await import('@/services/store');
+  await refreshInstalledPlugins();
 };
 
 export const getPlugins = (options?: { includeDisabledPlugins?: boolean, includeDisabledCommands?: boolean }) => {
@@ -362,6 +374,27 @@ const checkRequired = (preferences: IPreference[], values: Record<string, any>) 
   return requiredFields.every(item => values[item.name] || values[item.name] === 0);
 };
 
+/** manifest 未声明 actions 时，用命令自身作为默认主操作 */
+export function getPrimaryAction(command: IPluginCommand): IAction {
+  const first = command.actions?.[0];
+  if (first) return first;
+  return { name: command.name, title: command.title, icon: command.icon };
+}
+
+export const dispatchPluginAction = async (
+  owner: IRunningPlugin,
+  command: IPluginCommand,
+  action: IAction,
+  query: string,
+  options: ICommandActionOptions,
+): Promise<void> => {
+  const count = await checkPreferences(owner, command);
+  if (count) {
+    popView({ count });
+  }
+  await Promise.resolve(owner.plugin?.onAction?.(command, action, query, options));
+};
+
 const checkPreferences = async (owner: IRunningPlugin, command: IPluginCommand) => {
   // 首先需要判断插件层级的必须首选项是否已填写，再检查 command 层级的首选项
   let count = 0;
@@ -383,12 +416,13 @@ export const enterCommand = async (owner: IRunningPlugin, command: IPluginComman
   if (count) {
     popView({ count });
   }
+  const primary = getPrimaryAction(command);
   if (command.mode === 'none' || !command.mode) {
-    owner.plugin?.onEnter?.(command, query, options);
+    await Promise.resolve(owner.plugin?.onAction?.(command, primary, query, options));
   } else if (command.mode === 'listView' || command.mode === 'view') {
     const wujie = {
       mount(el: HTMLElement) {
-        owner.lifecycle?.onEnter?.(command, query, options);
+        owner.lifecycle?.onAction?.(command, primary, query, options);
         startApp({ name: owner.manifest.name, el, url: owner.entryUrl! });
       },
       unmount() {
@@ -497,6 +531,7 @@ export const init = async () => {
     if (!import.meta.env.PROD && typeof window !== 'undefined') {
       const { registerPluginFromLocalPath } = await import('@/services/store');
       (window as Window & { __PUBLIC_DEV_REGISTER_PLUGIN_PATH__?: (pluginPath: string) => Promise<void> }).__PUBLIC_DEV_REGISTER_PLUGIN_PATH__ = registerPluginFromLocalPath;
+      (window as Window & { __PUBLIC_DEV_RELOAD_PLUGIN_FROM_PATH__?: (pluginPath: string) => Promise<void> }).__PUBLIC_DEV_RELOAD_PLUGIN_FROM_PATH__ = reloadPluginFromLocalPath;
     }
     resolvePluginsReady?.();
     if (typeof window !== 'undefined') {
