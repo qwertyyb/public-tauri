@@ -1,7 +1,7 @@
 import { clipboard, mainWindow, Database, type IListViewCommand } from '@public-tauri/api';
 import { ContentType, DATABASE_PATH } from './const';
 
-let db: ReturnType<typeof Database['get']>;
+let db: ReturnType<typeof Database['get']> | null = null;
 
 const formatDate = function (date: Date, format = 'yyyy-MM-dd hh:mm:ss') {
   const o = {
@@ -49,6 +49,7 @@ const createDatabase = async () => {
 };
 
 const insertRecord = async (record: { contentType: number, text: string, content: Buffer | null, hash: string }) => {
+  if (!db) return;
   const sql = 'INSERT INTO clipboardHistory(contentType, text, content, createdAt, lastUseAt, hash) values ($1, $2, $3, $4, $5, $6)';
   console.log(record);
   return db.execute(sql, [
@@ -58,6 +59,19 @@ const insertRecord = async (record: { contentType: number, text: string, content
   ]);
 };
 
+
+const dbReady = createDatabase()
+  .then(() => {
+    clipboard.startListening();
+  })
+  .catch((err) => {
+    console.error('Failed to init clipboard database', err);
+  });
+
+const ensureDbReady = async () => {
+  await dbReady;
+  return db;
+};
 
 clipboard.onClipboardUpdate(async () => {
   console.log('Received new text in clipboard: ');
@@ -84,19 +98,18 @@ clipboard.onClipboardUpdate(async () => {
     //   contentType: 'html',
     //   content: text,
     // });
+    await ensureDbReady();
     insertRecord({ contentType: ContentType.text, text, content: null, hash: '' });
   }
 });
 
-createDatabase().then(() => {
-  clipboard.startListening();
-});
-
 const queryRecordList = async ({ keyword = '' } = {}, { strict = false } = {}) => {
+  const database = await ensureDbReady();
+  if (!database) return [];
   const sql = keyword ? 'SELECT * FROM clipboardHistory where text like $1 order by lastUseAt DESC limit 30' : 'SELECT * FROM clipboardHistory order by lastUseAt DESC limit 30';
   const query = strict ? keyword : `%${keyword}%`;
   console.time('query');
-  const results = await db.select<IClipboardItem[]>(sql, [query]);
+  const results = await database.select<IClipboardItem[]>(sql, [query]);
   console.timeEnd('query');
   return results.map((item: any) => ({
     ...item,
@@ -128,10 +141,22 @@ const search = async (keyword?: string) => {
 const listView: IListViewCommand = {
   async onShow(query, _, setList) {
     console.log('onShow', query);
-    setList(await search());
+    try {
+      setList(await search());
+    } catch (err) {
+      console.error('clipboard onShow failed', err);
+      setList([]);
+    }
   },
   onSearch: async (value: string, setList: (list: any[]) => void) => {
-    let list = await queryRecordList({ keyword: value });
+    let list: any[] = [];
+    try {
+      list = await queryRecordList({ keyword: value });
+    } catch (err) {
+      console.error('clipboard onSearch failed', err);
+      setList([]);
+      return;
+    }
     list = list.map((item: any) => {
       const subtitle = `最后使用: ${item.lastUseAt}     创建于: ${item.createdAt}`;
       return {

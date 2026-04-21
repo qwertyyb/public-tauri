@@ -2,6 +2,7 @@
   <PublicLayout
     :right-action-panel="rightActionPanel"
     :main-action="mainAction"
+    @panel-closed="focusInput"
   >
     <template #top>
       <InputBar
@@ -45,9 +46,11 @@ watch(input, async (value) => {
 });
 
 const focusInput = () => {
+  console.log('focusInput');
   const el = document.querySelector<HTMLInputElement>('#main-input');
   el?.focus();
 };
+
 
 const onResultSelected = async (_item: IPluginCommand | null, itemIndex: number) => {
   const item = toRaw(results.value[itemIndex]);

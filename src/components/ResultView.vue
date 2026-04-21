@@ -40,6 +40,11 @@ import { isKeyPressed } from '@/utils/keyboard';
 import type { IResultItem } from '@public/schema';
 import { onPageEnter, onPageLeave } from '@/router';
 import { ACTION_BAR_HEIGHT, DIVIDER_WIDTH, NAV_HEIGHT } from '@/const';
+import {
+  KEYBOARD_LAYER_PRIORITY_RESULT_LIST,
+  type KeyboardLayerHandle,
+  registerKeyboardLayer,
+} from '@/keyboard/keyboardLayer';
 
 const props = withDefaults(defineProps<{
   results?: T[],
@@ -107,7 +112,12 @@ const onResultEnter = (index: number) => {
   emit('enter', props.results[index], index);
 };
 
+let keyboardLayerHandle: KeyboardLayerHandle | null = null;
+
 const keydownHandler = (e: KeyboardEvent) => {
+  if (e.isComposing) return false;
+  if (props.results.length === 0) return false;
+
   if (isKeyPressed(e, 'ArrowUp')) {
     selectedIndex.value = (Math.max(0, selectedIndex.value - 1));
     nextTick(() => {
@@ -118,9 +128,9 @@ const keydownHandler = (e: KeyboardEvent) => {
         virtualList.value?.scrollToOffset(virtualList.value?.getOffset() + rect.top - NAV_HEIGHT - DIVIDER_WIDTH);
       }
     });
-    e.stopPropagation();
-    e.preventDefault();
-  } else if (isKeyPressed(e, 'ArrowDown')) {
+    return true;
+  }
+  if (isKeyPressed(e, 'ArrowDown')) {
     selectedIndex.value = (Math.min(selectedIndex.value + 1, props.results.length - 1));
     nextTick(() => {
       const selectedDOM = el.value?.querySelector<HTMLElement>(`.result-item[data-result-item-index="${selectedIndex.value}"]`);
@@ -130,14 +140,15 @@ const keydownHandler = (e: KeyboardEvent) => {
         virtualList.value?.scrollToOffset(virtualList.value?.getOffset() + rect.bottom - window.innerHeight + ACTION_BAR_HEIGHT + DIVIDER_WIDTH);
       }
     });
-    e.stopPropagation();
-    e.preventDefault();
-  } else if (e.metaKey && /^\d$/.test(e.key)) {
+    return true;
+  }
+  if (e.metaKey && /^\d$/.test(e.key)) {
     const key = parseInt(e.key, 10);
     selectedIndex.value = actionKeyStartIndex.value + key - 1;
     onResultEnter(selectedIndex.value);
-    e.stopPropagation();
+    return true;
   }
+  return false;
 };
 
 const getActionKey = (index: number, indexStart: number) => {
@@ -147,10 +158,16 @@ const getActionKey = (index: number, indexStart: number) => {
 };
 
 onPageEnter(() => {
-  document.addEventListener('keydown', keydownHandler);
+  keyboardLayerHandle?.dispose();
+  keyboardLayerHandle = registerKeyboardLayer({
+    id: 'result-list',
+    priority: KEYBOARD_LAYER_PRIORITY_RESULT_LIST,
+    handler: keydownHandler,
+  });
 });
 onPageLeave(() => {
-  document.removeEventListener('keydown', keydownHandler);
+  keyboardLayerHandle?.dispose();
+  keyboardLayerHandle = null;
 });
 
 </script>

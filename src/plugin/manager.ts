@@ -100,6 +100,9 @@ const getEntryUrl = (name: string, pathname: string) => {
 };
 
 const getTemplatePath = withCache(async () => {
+  if (import.meta.env.DEV) {
+    return join(BUILTIN_PLUGINS_PATH, '..', 'packages', 'template', 'dist');
+  }
   const templatePath = await resolveResource('../packages/template/dist');
   return templatePath;
 });
