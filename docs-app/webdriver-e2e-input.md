@@ -1,6 +1,6 @@
 # WebDriver E2E 测试
 
-应用通过 **`tauri-plugin-webdriver`** 在本地暴露 **W3C WebDriver**（默认 `http://127.0.0.1:4445`）。`scripts/` 下的脚本使用 **Selenium 4**（`selenium-webdriver`）连接该端点，在 **Vite 开发页**（默认 `http://localhost:1420/`）里驱动 **WKWebView** 做自动化。
+应用通过 **`tauri-plugin-webdriver`** 在本地暴露 **W3C WebDriver**（默认 `http://127.0.0.1:4445`）。根目录 **`e2e/`** 下的脚本使用 **Selenium 4**（`selenium-webdriver`）连接该端点，在 **Vite 开发页**（默认 `http://localhost:1420/`）里驱动 **WKWebView** 做自动化。
 
 ## 前置条件
 
@@ -20,8 +20,11 @@
 
 | 脚本 | npm 命令 | 作用 |
 |------|-----------|------|
-| `scripts/webdriver-smoke.ts` | `pnpm test:webdriver` | 冒烟：打开页面、等待 `#main-input`、输入一段中文、打印标题与 URL |
-| `scripts/webdriver-search-plugin.ts` | `pnpm test:webdriver:search` | E2E：构建 `@public-tauri-ext/search`，通过开发环境钩子注册本地插件目录，依次跑 Google / 必应 / 百度三条用例（触发词 `g` / `b` / `bd`），断言结果行后模拟回车 |
+| `e2e/webdriver-smoke.ts` | `pnpm test:webdriver` | 冒烟：打开页面、等待 `#main-input`、输入一段中文、打印标题与 URL |
+| `e2e/webdriver-search-plugin.ts` | `pnpm test:webdriver:search` | E2E：构建 `@public-tauri-ext/search`，通过开发环境钩子注册本地插件目录，依次跑 Google / 必应 / 百度三条用例（触发词 `g` / `b` / `bd`），断言结果行后模拟回车 |
+| `e2e/webdriver-shell-plugin.ts` | `pnpm test:webdriver:shell` | E2E：构建并注册 Shell 插件等（报告 `reports/shell-plugin-e2e-report.md`） |
+| `e2e/webdriver-google-chrome-plugin.ts` | `pnpm test:webdriver:google-chrome` | E2E：商店 Google Chrome 插件（报告 `reports/google-chrome-plugin-e2e-report.md`） |
+| `e2e/webdriver-snippets-plugin.ts` | `pnpm test:webdriver:snippets` | E2E：内置 snippets 插件（wujie / Shadow DOM） |
 
 **典型用法**：一个终端跑 `pnpm tauri:dev`，另一个终端再执行 `pnpm test:webdriver` 或 `pnpm test:webdriver:search`。
 

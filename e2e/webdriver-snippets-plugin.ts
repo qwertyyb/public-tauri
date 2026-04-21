@@ -3,7 +3,7 @@
  *
  * 前置：`pnpm tauri:dev`（`--features webdriver`）。环境：`TAURI_WEBDRIVER_URL`、`TAURI_DEV_URL`。
  */
-import { Builder, Browser, By, Key, until, type WebDriver } from 'selenium-webdriver';
+import { Builder, Browser, By, until, type WebDriver } from 'selenium-webdriver';
 
 const WD_URL = process.env.TAURI_WEBDRIVER_URL ?? 'http://127.0.0.1:4445';
 const APP_URL = process.env.TAURI_DEV_URL ?? 'http://localhost:1420/';
@@ -32,14 +32,6 @@ async function setMainInputValue(driver: WebDriver, text: string): Promise<void>
   const input = await driver.wait(until.elementLocated(By.css('#main-input')), 60_000);
   await input.clear();
   await input.sendKeys(text);
-}
-
-async function pressEnterViaActions(driver: WebDriver): Promise<void> {
-  await driver
-    .actions()
-    .keyDown(Key.ENTER)
-    .keyUp(Key.ENTER)
-    .perform();
 }
 
 async function waitForPluginsReady(driver: WebDriver, timeoutMs: number): Promise<void> {

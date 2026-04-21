@@ -43,10 +43,11 @@ pnpm tauri:dev
 
 | 场景 | 命令 | 脚本 |
 |------|------|------|
-| 应用冒烟：打开页、`#main-input` 输入 | `pnpm test:webdriver` | `scripts/webdriver-smoke.ts` |
-| Search 插件 E2E（构建插件 + DEV 注册钩子 + 三条检索） | `pnpm test:webdriver:search` | `scripts/webdriver-search-plugin.ts` |
-| Shell 插件 E2E（`>` 触发等） | `pnpm test:webdriver:shell` | `scripts/webdriver-shell-plugin.ts` |
-| 内置 snippets（create / search、`wujie-app` + Shadow DOM） | `pnpm test:webdriver:snippets` | `scripts/webdriver-snippets-plugin.ts` |
+| 应用冒烟：打开页、`#main-input` 输入 | `pnpm test:webdriver` | `e2e/webdriver-smoke.ts` |
+| Search 插件 E2E（构建插件 + DEV 注册钩子 + 三条检索） | `pnpm test:webdriver:search` | `e2e/webdriver-search-plugin.ts` |
+| Shell 插件 E2E（`>` 触发等） | `pnpm test:webdriver:shell` | `e2e/webdriver-shell-plugin.ts` |
+| Google Chrome 插件 E2E（系统 Chrome + 查询串） | `pnpm test:webdriver:google-chrome` | `e2e/webdriver-google-chrome-plugin.ts` |
+| 内置 snippets（create / search、`wujie-app` + Shadow DOM） | `pnpm test:webdriver:snippets` | `e2e/webdriver-snippets-plugin.ts` |
 
 **区别简述**：
 
@@ -57,17 +58,17 @@ pnpm tauri:dev
 
 ### 新建 WebDriver 脚本（驱动前端页面）
 
-新增自动化时，在 **`scripts/`** 下添加 **`*.ts`**，用 **Selenium 4**（`selenium-webdriver`）连接本机 **`tauri-plugin-webdriver`**（W3C，默认 `http://127.0.0.1:4445`），通过 **`driver.get(TAURI_DEV_URL)`** 打开与 `tauri dev` 一致的 **Vite 开发页**，在 **WKWebView** 里对页面做等待元素、输入、点击、断言等操作。
+新增自动化时，在 **`e2e/`** 下添加 **`*.ts`**，用 **Selenium 4**（`selenium-webdriver`）连接本机 **`tauri-plugin-webdriver`**（W3C，默认 `http://127.0.0.1:4445`），通过 **`driver.get(TAURI_DEV_URL)`** 打开与 `tauri dev` 一致的 **Vite 开发页**，在 **WKWebView** 里对页面做等待元素、输入、点击、断言等操作。
 
 **建议结构（与现有脚本对齐）**：
 
-1. **等待 WebDriver 就绪**：轮询 `GET {TAURI_WEBDRIVER_URL}/status` 至 HTTP 成功；若需与冒烟一致，再解析 JSON，仅当 **`value.ready !== false`** 时继续（可复制 `scripts/webdriver-smoke.ts` 中的 `waitForWebDriverReady`）。
+1. **等待 WebDriver 就绪**：轮询 `GET {TAURI_WEBDRIVER_URL}/status` 至 HTTP 成功；若需与冒烟一致，再解析 JSON，仅当 **`value.ready !== false`** 时继续（可复制 `e2e/webdriver-smoke.ts` 中的 `waitForWebDriverReady`）。
 2. **创建会话**：`new Builder().usingServer(WD_URL).forBrowser(Browser.CHROME).build()`。
 3. **打开应用页**：`await driver.get(APP_URL)`，`APP_URL` 取自 **`TAURI_DEV_URL`**（默认 `http://localhost:1420/`），须与 **`src-tauri/tauri.conf.json`** 的 **`build.devUrl`** 一致。
 4. **操作 DOM**：使用 `By` / `until.elementLocated`、`findElement`、`sendKeys`、`executeScript` 等；涉及插件加载时，可参考 **`webdriver-search-plugin.ts`** / **`webdriver-shell-plugin.ts`**（等待 `__PUBLIC_APP_PLUGINS_READY__`、`__PUBLIC_DEV_REGISTER_PLUGIN_PATH__` 等）。
 5. **退出**：`try { … } finally { await driver.quit(); }`，失败路径 **`process.exit(1)`**。
 
-**接入 npm**：在根目录 **`package.json`** 的 **`scripts`** 中增加一项，例如 `"test:webdriver:foo": "tsx scripts/webdriver-foo.ts"`，与现有 **`test:webdriver*`** 命名一致；用 **`pnpm exec tsx`** 或 **`pnpm test:webdriver:foo`** 运行。
+**接入 npm**：在根目录 **`package.json`** 的 **`scripts`** 中增加一项，例如 `"test:webdriver:foo": "tsx e2e/webdriver-foo.ts"`，与现有 **`test:webdriver*`** 命名一致；用 **`pnpm exec tsx`** 或 **`pnpm test:webdriver:foo`** 运行。
 
 **输入框、Vue `v-model`、回车与 WebKit 注意点**：见 **[docs-app/webdriver-e2e-input.md](../../../docs-app/webdriver-e2e-input.md)**。
 
@@ -75,7 +76,7 @@ pnpm tauri:dev
 
 宿主 **`src/views/PluginWujieView.vue`** 用 **wujie** 加载插件 HTML；子应用挂在 **`<wujie-app>`** 上，真实 UI（Vue 根、表单、列表）在 **`wujie-app` 的 Shadow Root** 里，而不是普通 `document` 下的可穿透子树。自动化时 **不能用「宿主页 + iframe」思路去 `switchTo().frame(iframe)` 再找 `.el-input__inner`**——应 **定位 `wujie-app` → `getShadowRoot()` → 在 shadow 内查找**。
 
-**参考实现**：**[scripts/webdriver-snippets-plugin.ts](../../../scripts/webdriver-snippets-plugin.ts)**（当前 snippets E2E 脚本）。
+**参考实现**：**[e2e/webdriver-snippets-plugin.ts](../../../e2e/webdriver-snippets-plugin.ts)**（当前 snippets E2E 脚本）。
 
 **1. 首页进入 view 命令（`mode: "view"`）**
 
@@ -118,8 +119,8 @@ pnpm tauri:dev
 
 ## Agent 执行建议
 
-- **启动开发（Agent）**：在仓库根目录执行 **`unset CARGO_TARGET_DIR && pnpm tauri:dev`**，且 **必须在后台运行**（阻塞式前景会话会一直占用 shell，无法在同一工作流里再执行测试命令）。使用 IDE/Agent 提供的 **后台任务**、或等价「非阻塞启动」方式；待 `http://127.0.0.1:4445/status`（及需要时 `1420`）可用后，再在**另一命令**中执行 `pnpm test:webdriver` / `pnpm test:webdriver:search` / `pnpm test:webdriver:shell` / `pnpm test:webdriver:snippets`（或你新增的 `test:webdriver:*`）。
-- **需要验证前端自动化**：顺序为 **后台 `unset CARGO_TARGET_DIR && pnpm tauri:dev` → 再跑测试脚本**；超时或连不上时查 4445/1420 是否监听、是否启用了带 `webdriver` 的 dev 命令。
+- **启动开发（Agent）**：在仓库根目录执行 **`unset CARGO_TARGET_DIR && pnpm tauri:dev`**，且 **必须在后台运行**（阻塞式前景会话会一直占用 shell，无法在同一工作流里再执行测试命令）。使用 IDE/Agent 提供的 **后台任务**、或等价「非阻塞启动」方式；待 `http://127.0.0.1:4445/status`（及需要时 `1420`）可用后，再在**另一命令**中执行 `pnpm test:webdriver` / `pnpm test:webdriver:search` / `pnpm test:webdriver:shell` / `pnpm test:webdriver:google-chrome` / `pnpm test:webdriver:snippets`（或你新增的 `test:webdriver:*`）。
+- **需要验证前端自动化**：顺序为 **后台 `unset CARGO_TARGET_DIR && pnpm tauri:dev` → 再跑上列 `pnpm test:webdriver*`**；超时或连不上时查 4445/1420 是否监听、是否启用了带 `webdriver` 的 dev 命令。
 - **停止应用**：人工在前景终端跑 `tauri:dev` 时用 **Ctrl+C**。Agent 用后台任务启动时，通过 **结束该后台任务** 或对 `public-tauri` / `tauri` dev 父进程发 **SIGTERM**（避免误杀无关 Node 进程）。
 - **插件 API、manifest、商店**：读 **docs/plugin-index.md**，不要用本 skill 代替插件文档。
 
@@ -127,4 +128,4 @@ pnpm tauri:dev
 
 - [docs-app/development.md](../../../docs-app/development.md) — 应用开发总览
 - [docs-app/webdriver-e2e-input.md](../../../docs-app/webdriver-e2e-input.md) — WebDriver 细节与输入注意事项
-- [scripts/webdriver-snippets-plugin.ts](../../../scripts/webdriver-snippets-plugin.ts) — view 插件 + `wujie-app` / Shadow DOM 的完整示例
+- [e2e/webdriver-snippets-plugin.ts](../../../e2e/webdriver-snippets-plugin.ts) — view 插件 + `wujie-app` / Shadow DOM 的完整示例
