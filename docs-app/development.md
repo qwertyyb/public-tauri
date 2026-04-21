@@ -73,6 +73,7 @@ pnpm tauri:dev
 | 文档 | 内容 |
 |------|------|
 | 本文 | 本仓库应用运行、WebDriver 冒烟与 E2E 入口 |
+| [开发日志](../docs/dev-log.md) | 壳应用疑难记录（如 ActionPanel 与 WKWebView 合成闪现等） |
 | [插件开发文档索引](../docs/plugin-index.md) | 插件清单、命令、模式、API、构建与发布 |
 | [WebDriver E2E 测试](./webdriver-e2e-input.md) | WebDriver 环境变量、脚本行为细节与输入注意事项 |
 | [本地开发插件](../docs/dev-plugins.md) | 在应用内加载本地插件目录（与 E2E 注册钩子相关，但是 **插件使用/开发** 视角） |

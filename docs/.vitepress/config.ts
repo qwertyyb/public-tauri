@@ -15,6 +15,10 @@ export default defineConfig({
     ],
     sidebar: [
       {
+        text: '仓库与应用',
+        items: [{ text: '开发日志', link: '/dev-log' }],
+      },
+      {
         text: '插件开发',
         items: [
           { text: '文档索引', link: '/plugin-index' },
