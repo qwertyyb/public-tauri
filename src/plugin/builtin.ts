@@ -42,7 +42,7 @@ export const BUILTIN_PLUGINS = new Map<string, IRunningPlugin>([
         },
       ],
       plugin: {
-        onEnter: async (_command, query) => {
+        async onAction(_command, _action, query) {
           mainWindow.pushView({
             path: '/settings',
             params: { query },
@@ -80,7 +80,7 @@ export const BUILTIN_PLUGINS = new Map<string, IRunningPlugin>([
         },
       ],
       plugin: {
-        onEnter: async () => {
+        async onAction() {
           mainWindow.pushView({
             path: '/plugin/store',
           });
@@ -119,7 +119,7 @@ export const BUILTIN_PLUGINS = new Map<string, IRunningPlugin>([
         },
       ],
       plugin: {
-        onEnter: async () => {
+        async onAction() {
           const { open } = await import('@tauri-apps/plugin-dialog');
           const selected = await open({
             directory: true,

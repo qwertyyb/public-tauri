@@ -9,7 +9,7 @@ const query = shallowRef('');
 const actionOptions = shallowRef<ICommandActionOptions>();
 
 createPlugin({
-  onEnter(command, keyword: string = '', options: ICommandActionOptions) {
+  onAction(command, _action, keyword: string = '', options?: ICommandActionOptions) {
     commandName.value = command.name;
     query.value = keyword ?? '';
     actionOptions.value = options;

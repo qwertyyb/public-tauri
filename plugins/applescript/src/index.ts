@@ -10,7 +10,7 @@ const createAppleScriptPlugin = definePlugin((app) => {
   ]);
 
   return {
-    async onEnter(command) {
+    async onAction(command) {
       if (command.name === 'topit') {
         await mainWindow.hide();
         setTimeout(() => {

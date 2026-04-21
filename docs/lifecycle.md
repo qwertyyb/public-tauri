@@ -8,9 +8,8 @@
 interface IPluginLifecycle {
   onInput?(keyword: string): void | ICommand[] | Promise<void> | Promise<ICommand[]>
   onSelect?(command: ICommand, query: string, options: ICommandActionOptions): string | undefined | HTMLElement | Promise<string | HTMLElement | undefined>
-  onEnter?(command: ICommand, query: string, options: ICommandActionOptions): void
   onExit?(command: ICommand): void
-  onAction?(command: ICommand, action: IAction, keyword: string): void
+  onAction?(command: ICommand, action: IAction, keyword: string, options?: ICommandActionOptions): void | Promise<void>
 }
 ```
 
@@ -35,20 +34,22 @@ onInput(keyword) {
 }
 ```
 
-### `onEnter(command, query, options)`
+### `onAction(command, action, keyword, options?)`
 
-当用户选中并确认（按 Enter）某个命令时触发。
+用户确认执行命令时统一走此钩子：搜索框按 Enter、ActionBar 主操作、以及具名次要操作均调用 `onAction`，通过 `action` 区分。
 
 - **参数**：
   - `command: ICommand` - 被触发的命令对象
-  - `query: string` - 用户输入的查询文本
-  - `options: ICommandActionOptions` - 匹配选项，包含匹配类型和匹配结果
+  - `action: IAction` - 当前执行的操作（manifest 中 `commands[].actions[]` 的一项；若无 `actions`，宿主会使用命令自身合成的默认操作）
+  - `keyword: string` - 与本次结果关联的查询串（含义与匹配方式一致，见 `onSelect`）
+  - `options?: ICommandActionOptions` - 匹配来源与结果（搜索命中时通常有；快捷键等场景可能较简）
 - **可用模式**：所有模式
 
+单操作插件可不解析 `action.name`，多操作插件按 `action.name` 分支即可。
+
 ```ts
-onEnter(command, query, options) {
-  // 处理命令执行逻辑
-  dialog.showToast(`执行命令: ${command.name}`)
+onAction(command, action, keyword, options) {
+  dialog.showToast(`执行: ${command.name} / ${action.name}`)
 }
 ```
 
@@ -56,7 +57,7 @@ onEnter(command, query, options) {
 
 当用户选中（非确认）某个命令时触发。
 
-- **参数**：同 `onEnter`
+- **参数**：与 `onAction` 中 `command` / `query` / `options` 语义一致（仅无 `action`）
 - **返回值**：
   - `string` - HTML 字符串作为预览内容
   - `HTMLElement` - DOM 元素作为预览内容
@@ -85,19 +86,9 @@ createPlugin({
 })
 ```
 
-### `onAction(command, action, keyword)`
-
-当用户对某个搜索结果执行操作时触发（listView 模式下的 `onAction`）。
-
-- **参数**：
-  - `command: ICommand` - 当前命令
-  - `action: IAction` - 被执行的操作
-  - `keyword: string` - 当前的搜索关键词
-- **可用模式**：none 模式（`main` 入口）
-
 ## ICommandActionOptions
 
-`onEnter` 和 `onSelect` 的 `options` 参数描述了命令的触发来源和匹配结果。
+`onAction` 与 `onSelect` 的 `options` 参数描述了命令的触发来源和匹配结果。
 
 ```ts
 type ICommandActionOptions =
@@ -126,7 +117,7 @@ import type { ICommand } from '@public-tauri/api'
 
 export default definePlugin(({ updateCommands, showCommands, getPreferences }) => {
   return {
-    onEnter(command: ICommand, query: string, options: any) {
+    onAction(command: ICommand, action, keyword: string, options?: any) {
       const prefs = getPreferences()
       dialog.showToast(`Hello, ${prefs.name || 'World'}!`)
     }
@@ -150,7 +141,7 @@ export default definePlugin(({ updateCommands, showCommands, getPreferences }) =
 import { createPlugin } from '@public-tauri/api'
 
 createPlugin({
-  onEnter(command, query, options) {
+  onAction(command, action, keyword, options) {
     // 命令进入时
   },
   onExit(command) {

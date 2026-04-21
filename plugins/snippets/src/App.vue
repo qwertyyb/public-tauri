@@ -21,7 +21,7 @@ provide('snippetsUi', {
 })
 
 createPlugin({
-  onEnter(params: any) {
+  onAction(params: any) {
     command.value = params.name
     editSnippet.value = null
   },

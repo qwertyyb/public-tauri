@@ -14,7 +14,7 @@ function buildSearchUrl(commandName: string, q: string): string {
 }
 
 export default definePlugin(() => ({
-  async onEnter(command: { name: string }, query: string) {
+  async onAction(command: { name: string }, _action, query: string) {
     const q = (query ?? '').trim();
     if (!q) {
       dialog.showToast('请先输入搜索关键词（触发词后的内容）');

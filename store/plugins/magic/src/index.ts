@@ -40,10 +40,7 @@ const openPage = async (input: string, page: string) => {
 };
 
 const createMagicPlugin = definePlugin(() => ({
-  async onEnter(command, query) {
-    return openPage(query, command.name);
-  },
-  async onAction(command, action, keyword) {
+  async onAction(command, _action, keyword) {
     return openPage(keyword, command.name);
   },
 }));
