@@ -48,6 +48,7 @@
     },
     "fs:read-all",
     "fs:write-all",
+    "fs:allow-watch",
     {
       "identifier": "fs:scope",
       "allow": [

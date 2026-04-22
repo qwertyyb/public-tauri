@@ -536,6 +536,10 @@ export const init = async () => {
       (window as Window & { __PUBLIC_DEV_REGISTER_PLUGIN_PATH__?: (pluginPath: string) => Promise<void> }).__PUBLIC_DEV_REGISTER_PLUGIN_PATH__ = registerPluginFromLocalPath;
       (window as Window & { __PUBLIC_DEV_RELOAD_PLUGIN_FROM_PATH__?: (pluginPath: string) => Promise<void> }).__PUBLIC_DEV_RELOAD_PLUGIN_FROM_PATH__ = reloadPluginFromLocalPath;
     }
+    if (typeof window !== 'undefined') {
+      const { syncDevPluginFileWatchers } = await import('./devPluginHotReload');
+      void syncDevPluginFileWatchers();
+    }
     resolvePluginsReady?.();
     if (typeof window !== 'undefined') {
       (window as Window & { __PUBLIC_APP_PLUGINS_READY__?: boolean }).__PUBLIC_APP_PLUGINS_READY__ = true;
