@@ -86,13 +86,14 @@
               :icon="Plus"
               circle
               size="small"
-              @click="onAddPluginClick"
+              title="从本地目录加载开发插件"
+              @click="onImportDevPlugin"
             />
           </div>
           <ul class="plugin-list">
             <li
               v-for="(plugin, index) in plugins"
-              :key="plugin.path"
+              :key="plugin.path + plugin.manifest.name"
               class="plugin-item"
             >
               <div class="plugin-item-self">
@@ -112,6 +113,14 @@
                 <div class="plugin-info">
                   <h3 class="plugin-title">
                     {{ plugin.manifest.title }}
+                    <el-tag
+                      v-if="isPathInDevList(plugin.path)"
+                      size="small"
+                      type="warning"
+                      class="dev-plugin-tag"
+                    >
+                      开发
+                    </el-tag>
                   </h3>
                   <p class="plugin-subtitle">
                     {{ plugin.manifest.subtitle }}
@@ -126,6 +135,7 @@
                   @click="openPrfsView(plugin.manifest.name)"
                 />
                 <el-button
+                  v-if="canRemovePlugin(plugin)"
                   type="danger"
                   :icon="Delete"
                   size="small"
@@ -227,7 +237,7 @@
 
 <script lang="ts" setup>
 import { computed, ref, toRaw } from 'vue';
-import { ElButton, ElSelect, ElSwitch, ElOption, ElInput, ElForm, ElFormItem, ElIcon } from 'element-plus';
+import { ElButton, ElSelect, ElSwitch, ElOption, ElInput, ElForm, ElFormItem, ElIcon, ElTag } from 'element-plus';
 import { ArrowRightBold, Plus, Delete, Operation } from '@element-plus/icons-vue';
 import PublicLayout from '@/components/PublicLayout.vue';
 import ShortcutsRecorder from '@/components/HotkeyRecorder.vue';
@@ -237,8 +247,18 @@ import { getSettings, updateSettings, getPlugins, updateMainShortcut } from '@/s
 import { onPageEnter, useRouter } from '@/router';
 import { updateCommandSettings, updateCommandShortcut, updatePluginPreferences, updatePluginSettings } from '@/plugin/manager';
 import { openCommandPreferences, openPluginPreferences } from '@/plugin/utils';
-import { uninstallStorePlugin } from '@/services/store';
+import {
+  getDevPluginPathList,
+  getStorePluginPathList,
+  isPluginPathInDevList,
+  isPluginPathInStoreList,
+  registerPluginFromLocalPath,
+  uninstallStorePlugin,
+  unregisterDevPluginFromLocalPath,
+} from '@/services/store';
 import { showToast } from '@/utils/feedback';
+
+const normalizePath = (p: string) => p.replace(/\\/g, '/').replace(/\/+$/, '');
 
 const views = ref({
   common: '通用',
@@ -248,6 +268,12 @@ const views = ref({
 const curView = ref('common');
 
 const plugins = ref<IRunningPlugin[]>([]);
+const devPluginPathList = ref<string[]>([]);
+const storePluginPathList = ref<string[]>([]);
+
+const isPathInDevList = (p: string) => Boolean(p) && devPluginPathList.value.some(d => normalizePath(d) === normalizePath(p));
+const isPathInStoreList = (p: string) => Boolean(p) && storePluginPathList.value.some(s => normalizePath(s) === normalizePath(p));
+const canRemovePlugin = (plugin: IRunningPlugin) => isPathInDevList(plugin.path) || isPathInStoreList(plugin.path);
 
 const settings = ref<{
   launchAtLogin: boolean,
@@ -268,7 +294,25 @@ interface ILink {
 
 const links = computed(() => plugins.value.find(i => i.manifest.name === 'links')?.settings?.preferences?.links as unknown as ILink[] || []);
 
-const refreshSettings = async () => {
+const refreshPathLists = async () => {
+  const [dev, st] = await Promise.all([getDevPluginPathList(), getStorePluginPathList()]);
+  devPluginPathList.value = dev;
+  storePluginPathList.value = st;
+};
+
+/** 开发中插件排最前，同组内按 name 字母序 */
+const sortPluginsWithDevFirst = (list: IRunningPlugin[], devPaths: string[]) => {
+  const devNorm = new Set(devPaths.map(p => normalizePath(p)));
+  const isDev = (pl: IRunningPlugin) => Boolean(pl.path) && devNorm.has(normalizePath(pl.path));
+  return [...list].sort((a, b) => {
+    const da = isDev(a) ? 0 : 1;
+    const db = isDev(b) ? 0 : 1;
+    if (da !== db) return da - db;
+    return a.manifest.name.localeCompare(b.manifest.name);
+  });
+};
+
+const refreshSettings = () => {
   getSettings()?.then((data: any) => {
     settings.value = {
       ...settings.value,
@@ -276,9 +320,11 @@ const refreshSettings = async () => {
     };
     console.log('settings.value', settings.value);
   });
-  getPlugins()?.then((data: IRunningPlugin[]) => {
-    plugins.value = data;
-  });
+  void (async () => {
+    await refreshPathLists();
+    const data = await getPlugins();
+    plugins.value = sortPluginsWithDevFirst(data, devPluginPathList.value);
+  })();
 };
 const onLaunchAtLoginChange = async (launchAtLogin: any) => {
   settings.value.launchAtLogin = !!launchAtLogin;
@@ -319,36 +365,39 @@ const onExpandPluginClick = (plugin: IRunningPlugin) => {
     [plugin.manifest.name]: !expand.value[plugin.manifest.name],
   };
 };
-const onAddPluginClick = async () => {
-  const file = await new Promise<File>((resolve, reject) => {
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.accept = '.js';
-    input.onchange = (e) => {
-      const file = (e.target as HTMLInputElement).files?.[0];
-      if (!file) reject(new Error('no file selected'));
-      resolve(file!);
-    };
-    input.click();
+const onImportDevPlugin = async () => {
+  const { open } = await import('@tauri-apps/plugin-dialog');
+  const selected = await open({
+    directory: true,
+    multiple: false,
+    recursive: true,
+    title: '选择插件根目录（需含 package.json 与构建产物）',
   });
-
-  const validateFile = (_file: File) => {
-    // @todo
-    showToast('待实现');
-    throw new Error('未实现');
-  };
-
-  validateFile(file);
-
-  // await window.window.PublicAppBridge.invoke('registerPlugin', { path: file.path })
-  showToast('插件添加成功');
-  refreshSettings();
+  if (selected === null) return;
+  const dir = Array.isArray(selected) ? selected[0] : selected;
+  try {
+    await registerPluginFromLocalPath(dir);
+    showToast(`已加载: ${dir}`);
+    refreshSettings();
+  } catch (e) {
+    showToast(e instanceof Error ? e.message : String(e));
+  }
 };
 
 const onRemovePluginClick = async (_index: number, plugin: IRunningPlugin) => {
-  await uninstallStorePlugin(plugin.manifest.name);
-  showToast('插件移除成功');
-  refreshSettings();
+  if (await isPluginPathInDevList(plugin.path)) {
+    await unregisterDevPluginFromLocalPath(plugin.path);
+    showToast('已移除开发插件');
+    refreshSettings();
+    return;
+  }
+  if (await isPluginPathInStoreList(plugin.path)) {
+    await uninstallStorePlugin(plugin.manifest.name);
+    showToast('插件移除成功');
+    refreshSettings();
+    return;
+  }
+  showToast('内置插件无法从此处移除');
 };
 
 const openPrfsView = async (plugin: string, command?: string) => {
@@ -356,7 +405,11 @@ const openPrfsView = async (plugin: string, command?: string) => {
     curView.value = 'links';
     return;
   }
-  command ? openCommandPreferences(plugin, command) : openPluginPreferences(plugin);
+  if (command) {
+    await openCommandPreferences(plugin, command);
+  } else {
+    openPluginPreferences(plugin);
+  }
 };
 
 const router = useRouter();
@@ -420,6 +473,11 @@ onPageEnter(() => {
     align-items: center;
     justify-content: space-between;
     padding: 0 16px;
+  }
+
+  .dev-plugin-tag {
+    margin-left: 8px;
+    vertical-align: middle;
   }
 
   .plugin-item-self, .command-item {
