@@ -152,7 +152,14 @@ const handleToggle = () => {
 };
 
 const handleBlur = () => {
-  if (props.visible) emit('close');
+  if (props.visible) {
+    // 这种场景下，动画会有残留，直接先把 ActionPanel 隐藏掉
+    panelRef.value && (panelRef.value.style.display = 'none');
+    emit('close');
+    setTimeout(() => {
+      panelRef.value?.style.removeProperty('display');
+    }, 150);
+  }
 };
 
 onMounted(() => {
