@@ -10,6 +10,7 @@ import { nextTick, onBeforeUnmount, provide, shallowRef, useTemplateRef, type Co
 import { routerSymbol } from './router';
 import { showAlert, showConfirm, showToast } from '@/utils/feedback';
 import PluginWujieView from '@/views/PluginWujieView.vue';
+import TransitionResidualTestView from '@/views/TransitionResidualTestView.vue';
 import { isKeyPressed } from '@/utils/keyboard';
 
 const hash = location.hash.substring(1);
@@ -22,6 +23,7 @@ const routes: Record<string, Component | undefined> = {
   '/plugin/store': StoreView,
   '/plugin/store/detail': StoreDetailView,
   '/plugin/view/wujie': PluginWujieView,
+  '/dev/transition-residual-test': TransitionResidualTestView,
 };
 
 const pages = useTemplateRef('page');
