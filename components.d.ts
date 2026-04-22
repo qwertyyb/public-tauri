@@ -27,6 +27,7 @@ declare module 'vue' {
     RoutePage: typeof import('./src/components/RoutePage.vue')['default']
     ShortcutsKey: typeof import('./src/components/ShortcutsKey.vue')['default']
     UApp: typeof import('./node_modules/.pnpm/@nuxt+ui@4.6.1_@tiptap+extensions@3.22.4_@tiptap+core@3.22.4_@tiptap+pm@3.22.4__@tiptap_dcb37bfa4d18d5120c3b1bcf83d10be6/node_modules/@nuxt/ui/dist/runtime/components/App.vue')['default']
+    UBadge: typeof import('./node_modules/.pnpm/@nuxt+ui@4.6.1_@tiptap+extensions@3.22.4_@tiptap+core@3.22.4_@tiptap+pm@3.22.4__@tiptap_dcb37bfa4d18d5120c3b1bcf83d10be6/node_modules/@nuxt/ui/dist/runtime/components/Badge.vue')['default']
     UButton: typeof import('./node_modules/.pnpm/@nuxt+ui@4.6.1_@tiptap+extensions@3.22.4_@tiptap+core@3.22.4_@tiptap+pm@3.22.4__@tiptap_dcb37bfa4d18d5120c3b1bcf83d10be6/node_modules/@nuxt/ui/dist/runtime/components/Button.vue')['default']
     UFormField: typeof import('./node_modules/.pnpm/@nuxt+ui@4.6.1_@tiptap+extensions@3.22.4_@tiptap+core@3.22.4_@tiptap+pm@3.22.4__@tiptap_dcb37bfa4d18d5120c3b1bcf83d10be6/node_modules/@nuxt/ui/dist/runtime/components/FormField.vue')['default']
     UIcon: typeof import('./node_modules/.pnpm/@nuxt+ui@4.6.1_@tiptap+extensions@3.22.4_@tiptap+core@3.22.4_@tiptap+pm@3.22.4__@tiptap_dcb37bfa4d18d5120c3b1bcf83d10be6/node_modules/@nuxt/ui/dist/runtime/vue/components/Icon.vue')['default']
