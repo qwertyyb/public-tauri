@@ -12,6 +12,7 @@ import { showAlert, showConfirm, showToast } from '@/utils/feedback';
 import PluginWujieView from '@/views/PluginWujieView.vue';
 import CreatePluginView from '@/views/CreatePluginView.vue';
 import DevPluginsView from '@/views/DevPluginsView.vue';
+import TransitionResidualTestView from '@/views/TransitionResidualTestView.vue';
 import { isKeyPressed } from '@/utils/keyboard';
 
 const hash = location.hash.substring(1);
@@ -26,6 +27,7 @@ const routes: Record<string, Component | undefined> = {
   '/plugin/view/wujie': PluginWujieView,
   '/developer/create': CreatePluginView,
   '/developer/plugins': DevPluginsView,
+  '/dev/transition-residual-test': TransitionResidualTestView,
 };
 
 const pages = useTemplateRef('page');

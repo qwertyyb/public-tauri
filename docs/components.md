@@ -217,8 +217,8 @@ import CommandListView from '@public-tauri/api/components/CommandListView.vue'
 const initialQuery = ref('')
 
 createPlugin({
-  onEnter(command, query) {
-    initialQuery.value = query || ''
+  onAction(command, action, keyword) {
+    initialQuery.value = keyword || ''
   }
 })
 

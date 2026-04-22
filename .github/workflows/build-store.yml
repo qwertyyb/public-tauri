@@ -9,13 +9,18 @@ on:
 jobs:
   build-store:
     runs-on: ubuntu-latest
+    # 无此项时 GITHUB_TOKEN 往往只有 read，git push 会 403
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          # 在分支上检出有名称的分支，便于 commit 后 push；不要用默认的纯 SHA  detached HEAD
+          ref: ${{ github.ref_name }}
           fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -41,7 +46,7 @@ jobs:
           git add store/index.json
           if ! git diff --cached --quiet; then
             git commit -m "chore(store): auto-update index.json"
-            git push
+            git push origin "HEAD:${{ github.ref_name }}"
           else
             echo "No changes to commit, store/index.json is up to date"
           fi

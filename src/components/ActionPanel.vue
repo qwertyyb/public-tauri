@@ -10,8 +10,11 @@
     </div>
     <div
       ref="panelRef"
+      tabindex="-1"
       class="action-panel"
       :class="[position, { visible }]"
+      role="menu"
+      :aria-hidden="!visible"
     >
       <div
         v-if="title"
@@ -24,7 +27,8 @@
           v-for="(item, index) in actions"
           :key="index"
           class="menu-item"
-          :class="item.styleType"
+          :class="[item.styleType, { 'keyboard-selected': visible && selectedIndex === index }]"
+          role="menuitem"
           @click="handleClick(item)"
         >
           <AppIcon
@@ -40,10 +44,16 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, useTemplateRef, watch } from 'vue';
+import { nextTick, onBeforeUnmount, onMounted, ref, useTemplateRef, watch } from 'vue';
 import { onClickOutside } from '@vueuse/core';
 import { EVENT_NAME } from '@/const';
 import AppIcon from '@public/icon/AppIcon.vue';
+import {
+  KEYBOARD_LAYER_PRIORITY_ACTION_PANEL,
+  type KeyboardLayerHandle,
+  registerKeyboardLayer,
+} from '@/keyboard/keyboardLayer';
+import { isKeyPressed } from '@/utils/keyboard';
 
 export interface Action {
   name: string;
@@ -68,7 +78,43 @@ const emit = defineEmits<{
 }>();
 
 const panelRef = useTemplateRef<HTMLElement>('panelRef');
+const selectedIndex = ref(0);
 let stopClickOutside: (() => void) | null = null;
+
+let layerHandle: KeyboardLayerHandle | null = null;
+
+const syncLayerEnabled = () => {
+  layerHandle?.setEnabled(props.visible && props.actions.length > 0);
+};
+
+const panelKeyboardHandler = (e: KeyboardEvent) => {
+  if (e.isComposing) return false;
+  if (!props.visible || props.actions.length === 0) return false;
+
+  if (isKeyPressed(e, 'Escape')) {
+    emit('close');
+    return true;
+  }
+
+  if (isKeyPressed(e, 'ArrowUp')) {
+    selectedIndex.value = Math.max(0, selectedIndex.value - 1);
+    return true;
+  }
+
+  if (isKeyPressed(e, 'ArrowDown')) {
+    selectedIndex.value = Math.min(props.actions.length - 1, selectedIndex.value + 1);
+    return true;
+  }
+
+  if (e.key === 'Enter' && !e.shiftKey && !e.altKey && !e.ctrlKey && !e.metaKey && !e.repeat) {
+    const item = props.actions[selectedIndex.value];
+    item?.action?.();
+    emit('close');
+    return true;
+  }
+
+  return false;
+};
 
 watch(
   () => props.visible,
@@ -81,6 +127,19 @@ watch(
         ignore: [triggerRef.value],
       });
     }
+
+    if (val) selectedIndex.value = 0;
+    syncLayerEnabled();
+  },
+);
+
+watch(
+  () => props.actions.length,
+  () => {
+    if (selectedIndex.value >= props.actions.length) {
+      selectedIndex.value = Math.max(0, props.actions.length - 1);
+    }
+    syncLayerEnabled();
   },
 );
 
@@ -95,7 +154,7 @@ const handleToggle = () => {
 const handleBlur = () => {
   if (props.visible) {
     // 这种场景下，动画会有残留，直接先把 ActionPanel 隐藏掉
-    panelRef.value && (panelRef.value.style.display = 'none');
+    panelRef.value?.style.setProperty('display', 'none');
     emit('close');
     setTimeout(() => {
       panelRef.value?.style.removeProperty('display');
@@ -105,11 +164,24 @@ const handleBlur = () => {
 
 onMounted(() => {
   document.addEventListener(EVENT_NAME.BLURRED, handleBlur);
+  layerHandle = registerKeyboardLayer({
+    id: `action-panel-${props.position}`,
+    priority: KEYBOARD_LAYER_PRIORITY_ACTION_PANEL,
+    enabled: false,
+    handler: panelKeyboardHandler,
+    activated: () => {
+      selectedIndex.value = 0;
+      nextTick(() => panelRef.value?.focus());
+    },
+  });
+  syncLayerEnabled();
 });
 
 onBeforeUnmount(() => {
   stopClickOutside?.();
   document.removeEventListener(EVENT_NAME.BLURRED, handleBlur);
+  layerHandle?.dispose();
+  layerHandle = null;
 });
 
 const handleClick = (item: Action) => {
@@ -153,6 +225,7 @@ const handleClick = (item: Action) => {
   opacity: 0;
   transform: translateY(8px);
   transition: visibility 0.15s ease, opacity 0.15s ease, transform 0.15s ease;
+  outline: none;
   &.left {
     left: 8px;
   }

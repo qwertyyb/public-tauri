@@ -1,9 +1,9 @@
 /**
- * E2E: @public-tauri-ext/shell（trigger: >）
+ * E2E: @public-tauri-ext/search（Google / 必应 / 百度）
  *
  * 前置：`pnpm tauri:dev`（`--features webdriver`）；DEV 下存在 `__PUBLIC_DEV_REGISTER_PLUGIN_PATH__`。
- * 环境变量：`TAURI_WEBDRIVER_URL`、`TAURI_DEV_URL`、可选 `E2E_SHELL_PLUGIN_PATH`（默认仓库内 `store/plugins/shell`）。
- * 报告写入 reports/shell-plugin-e2e-report.md（每次运行覆盖）。
+ * 环境变量：`TAURI_WEBDRIVER_URL`、`TAURI_DEV_URL`、可选 `E2E_SEARCH_PLUGIN_PATH`（默认仓库内 `store/plugins/search`）。
+ * 输入与按键说明见 docs-app/webdriver-e2e-input.md；报告写入 reports/search-plugin-e2e-report.md（每次运行覆盖）。
  */
 import { execSync } from 'node:child_process';
 import fs from 'node:fs';
@@ -17,17 +17,32 @@ const READY_TIMEOUT_MS = 180_000;
 const POLL_MS = 1500;
 
 const PROJECT_ROOT = fileURLToPath(new URL('..', import.meta.url));
-const DEFAULT_SHELL_PLUGIN_DIR = path.join(PROJECT_ROOT, 'store/plugins/shell');
-const REPORT_PATH = path.join(PROJECT_ROOT, 'reports/shell-plugin-e2e-report.md');
+const DEFAULT_SEARCH_PLUGIN_DIR = path.join(PROJECT_ROOT, 'store/plugins/search');
+const REPORT_PATH = path.join(PROJECT_ROOT, 'reports/search-plugin-e2e-report.md');
+
+interface SearchE2ECase {
+  id: string;
+  trigger: string;
+  /** 结果列表行中应出现的文案片段 */
+  resultLabel: string;
+}
+
+const SEARCH_CASES: SearchE2ECase[] = [
+  { id: 'google', trigger: 'g', resultLabel: '谷歌搜索' },
+  { id: 'bing', trigger: 'b', resultLabel: '必应搜索' },
+  { id: 'baidu', trigger: 'bd', resultLabel: '百度搜索' },
+];
 
 interface CaseResult {
   caseId: string;
-  command: string;
+  trigger: string;
+  query: string;
   passed: boolean;
   durationMs: number;
   error?: string;
 }
 
+/** 轮询 `/status` 直至 HTTP 成功（与 smoke 脚本不同，此处不解析 `value.ready`）。 */
 async function waitForWebDriverReady(baseUrl: string, timeoutMs: number): Promise<void> {
   const start = Date.now();
   let lastErr: unknown;
@@ -43,20 +58,28 @@ async function waitForWebDriverReady(baseUrl: string, timeoutMs: number): Promis
   throw new Error(`WebDriver not ready: ${String(lastErr)}`);
 }
 
-function ensureShellPluginBuilt(): void {
-  console.log('[e2e] Building @public-tauri-ext/shell...');
-  execSync('pnpm --filter @public-tauri-ext/shell run build', {
+function ensureSearchPluginBuilt(): void {
+  console.log('[e2e] Building @public-tauri-ext/search…');
+  execSync('pnpm --filter @public-tauri-ext/search run build', {
     cwd: PROJECT_ROOT,
     stdio: 'inherit',
   });
 }
 
+/**
+ * 使用 `clear` + `sendKeys` 写入 `#main-input`；调用方应用脚本读 DOM 校验 `input.value`。
+ * 若遇 WebKit 下 `sendKeys` 末尾乱码，可改为页面内原生 `value` setter + `InputEvent`（见 docs-app/webdriver-e2e-input.md）。
+ */
 async function setMainInputValue(driver: WebDriver, text: string): Promise<void> {
   const input = await driver.wait(until.elementLocated(By.css('#main-input')), 60_000);
   await input.clear();
   await input.sendKeys(text);
 }
 
+/**
+ * 对**元素** `sendKeys(Key.ENTER)` 会走 `sendKeysToElement`，在 WebKit 下容易在输入框末尾多出乱码。
+ * 使用 W3C Actions（`performActions`）发送键盘事件，与真实按键路径一致且不经由该 API。
+ */
 async function pressEnterViaActions(driver: WebDriver): Promise<void> {
   await driver
     .actions()
@@ -79,7 +102,10 @@ async function waitForPluginsReady(driver: WebDriver, timeoutMs: number): Promis
   throw new Error('Timeout waiting for __PUBLIC_APP_PLUGINS_READY__');
 }
 
-async function registerPluginViaDevHook(driver: WebDriver, pluginDir: string): Promise<void> {
+async function registerSearchPluginViaDevHook(
+  driver: WebDriver,
+  pluginDir: string,
+): Promise<void> {
   const pathJson = JSON.stringify(pluginDir);
   await driver.executeScript(`
     var p = ${pathJson};
@@ -94,7 +120,7 @@ async function registerPluginViaDevHook(driver: WebDriver, pluginDir: string): P
       if (e && e.stack) { msg = msg + ' | ' + e.stack; }
       window.__e2eRegisterPluginResult = msg;
     });
-  `);
+    `);
   const deadline = Date.now() + 120_000;
   while (Date.now() < deadline) {
     const result = await driver.executeScript<string | null>('return window.__e2eRegisterPluginResult;');
@@ -115,61 +141,24 @@ async function registerPluginViaDevHook(driver: WebDriver, pluginDir: string): P
   throw new Error('Timeout waiting for registerPluginFromLocalPath');
 }
 
-async function ensureHookAndRegisterPlugin(driver: WebDriver, pluginDir: string, timeoutMs: number): Promise<void> {
-  const deadline = Date.now() + timeoutMs;
-  let lastErr: unknown;
-  while (Date.now() < deadline) {
-    const hasHook = await driver.executeScript<boolean>('return typeof window.__PUBLIC_DEV_REGISTER_PLUGIN_PATH__ === "function";');
-    if (!hasHook) {
-      await driver.sleep(200);
-      continue;
-    }
-    try {
-      await registerPluginViaDevHook(driver, pluginDir);
-      return;
-    } catch (e) {
-      lastErr = e;
-      const msg = e instanceof Error ? e.message : String(e);
-      // DEV 热重载窗口中，hook 可能短暂失效，或首次 import 失败；重试可恢复。
-      if (msg.includes('not a function') || msg.includes('Load failed')) {
-        await driver.sleep(500);
-        continue;
-      }
-      throw e;
-    }
-  }
-  throw new Error(`注册 shell 插件超时: ${String(lastErr)}`);
-}
-
-async function waitForPathExists(targetPath: string, timeoutMs: number): Promise<void> {
-  const deadline = Date.now() + timeoutMs;
-  while (Date.now() < deadline) {
-    if (fs.existsSync(targetPath)) return;
-    await new Promise(r => setTimeout(r, 300));
-  }
-  throw new Error(`命令未生效，超时未找到文件: ${targetPath}`);
-}
-
 function writeReportMarkdown(opts: {
   startedAt: string;
   finishedAt: string;
   appUrl: string;
   wdUrl: string;
-  pluginDir: string;
   results: CaseResult[];
   setupError?: string;
 }): void {
-  const { startedAt, finishedAt, appUrl, wdUrl, pluginDir, results, setupError } = opts;
+  const { startedAt, finishedAt, appUrl, wdUrl, results, setupError } = opts;
   const passed = results.filter(r => r.passed).length;
   const failed = results.length - passed;
   const lines: string[] = [
-    '# Shell 插件 E2E 测试报告',
+    '# Search 插件 E2E 测试报告',
     '',
     `- **开始时间**: ${startedAt}`,
     `- **结束时间**: ${finishedAt}`,
     `- **应用 URL**: \`${appUrl}\``,
     `- **WebDriver**: \`${wdUrl}\``,
-    `- **插件目录**: \`${pluginDir}\``,
     `- **用例**: ${results.length} 条（通过 ${passed}，失败 ${failed}）`,
     '',
   ];
@@ -181,34 +170,34 @@ function writeReportMarkdown(opts: {
   lines.push('## 用例明细', '');
   for (const r of results) {
     const icon = r.passed ? '✅' : '❌';
-    lines.push(`### ${icon} ${r.caseId}`, '');
+    lines.push(`### ${icon} ${r.caseId}（触发词 \`${r.trigger}\`）`, '');
     lines.push(`- **状态**: ${r.passed ? '通过' : '失败'}`);
     lines.push(`- **耗时**: ${r.durationMs} ms`);
-    lines.push(`- **命令**: \`${r.command}\``);
+    lines.push(`- **查询串**: \`${r.trigger} ${r.query}\``);
     if (r.error) {
       lines.push(`- **错误**: ${r.error}`);
     }
     lines.push('');
   }
-  lines.push('---', '', '*由 `scripts/webdriver-shell-plugin.ts` 生成*', '');
+  lines.push('---', '', '*由 `e2e/webdriver-search-plugin.ts` 生成*', '');
   fs.mkdirSync(path.dirname(REPORT_PATH), { recursive: true });
   fs.writeFileSync(REPORT_PATH, lines.join('\n'), 'utf8');
 }
 
 function printConsoleSummary(results: CaseResult[], setupError?: string): void {
   console.log('');
-  console.log('========== Shell 插件 E2E 汇总 ==========');
+  console.log('========== Search 插件 E2E 汇总 ==========');
   if (setupError) {
     console.log('[e2e] 前置失败:', setupError);
   }
   for (const r of results) {
     const tag = r.passed ? 'PASS' : 'FAIL';
-    console.log(`[e2e] [${tag}] ${r.caseId} ${r.durationMs}ms${r.error ? ` — ${r.error}` : ''}`);
+    console.log(`[e2e] [${tag}] ${r.caseId} (${r.trigger}) ${r.durationMs}ms${r.error ? ` — ${r.error}` : ''}`);
   }
   const passed = results.filter(r => r.passed).length;
   console.log(`[e2e] 合计: ${passed}/${results.length} 通过`);
   console.log(`[e2e] 报告: ${REPORT_PATH}`);
-  console.log('=========================================');
+  console.log('==========================================');
 }
 
 async function main(): Promise<void> {
@@ -217,20 +206,13 @@ async function main(): Promise<void> {
   let setupError: string | undefined;
   let driver: WebDriver | null = null;
 
-  if (process.env.E2E_SKIP_PLUGIN_BUILD !== '1') {
-    ensureShellPluginBuilt();
-  } else {
-    console.log('[e2e] Skip plugin build (E2E_SKIP_PLUGIN_BUILD=1)');
-  }
+  ensureSearchPluginBuilt();
 
-  const pluginDir = process.env.E2E_SHELL_PLUGIN_PATH
-    ? path.resolve(process.env.E2E_SHELL_PLUGIN_PATH)
-    : DEFAULT_SHELL_PLUGIN_DIR;
+  const pluginDir = process.env.E2E_SEARCH_PLUGIN_PATH
+    ? path.resolve(process.env.E2E_SEARCH_PLUGIN_PATH)
+    : DEFAULT_SEARCH_PLUGIN_DIR;
 
-  const markerFile = `/tmp/public-tauri-shell-e2e-${Date.now()}.ok`;
-  const command = `touch ${markerFile}`;
-
-  console.log('[e2e] Waiting for WebDriver...');
+  console.log('[e2e] Waiting for WebDriver…');
   await waitForWebDriverReady(WD_URL, READY_TIMEOUT_MS);
 
   try {
@@ -241,72 +223,78 @@ async function main(): Promise<void> {
     await driver.get(APP_URL);
     await waitForPluginsReady(driver, 120_000);
 
-    await ensureHookAndRegisterPlugin(driver, pluginDir, 90_000);
-    await driver.sleep(600);
-
-    const t0 = Date.now();
-    let caseResult: CaseResult = {
-      caseId: 'run-command-via-trigger',
-      command,
-      passed: false,
-      durationMs: 0,
-    };
-
-    try {
-      const fullText = `> ${command}`;
-      await setMainInputValue(driver, fullText);
-      const echoed = await driver.executeScript<string>('return document.querySelector("#main-input")?.value || "";');
-      if (echoed !== fullText) {
-        throw new Error(`输入与 DOM 不一致: expected ${JSON.stringify(fullText)}, got ${JSON.stringify(echoed)}`);
-      }
-      await driver.sleep(800);
-
-      const xpath = '//div[contains(@class,"result-item")][contains(.,"在终端执行")]';
-      try {
-        await driver.wait(until.elementLocated(By.xpath(xpath)), 30_000);
-      } catch (waitErr) {
-        const dump = await driver.executeScript<{ input: string, items: string[] }>(`
-          return {
-            input: document.querySelector('#main-input')?.value || '',
-            items: Array.from(document.querySelectorAll('.result-item')).map((el) => (el.textContent || '').trim()),
-          };
-        `);
-        throw new Error(`未命中 shell 结果行: ${JSON.stringify(dump)}; waitErr=${String(waitErr)}`);
-      }
-
-      await pressEnterViaActions(driver);
-      await waitForPathExists(markerFile, 20_000);
-      caseResult = { ...caseResult, passed: true, durationMs: Date.now() - t0 };
-      console.log(`[e2e] OK: ${command}`);
-    } catch (e) {
-      const msg = e instanceof Error ? e.message : String(e);
-      caseResult = {
-        ...caseResult,
-        passed: false,
-        durationMs: Date.now() - t0,
-        error: msg,
-      };
-      console.error('[e2e] FAIL:', msg);
+    const hookDeadline = Date.now() + 60_000;
+    while (Date.now() < hookDeadline) {
+      const has = await driver.executeScript('return typeof window.__PUBLIC_DEV_REGISTER_PLUGIN_PATH__ === "function";');
+      if (has) break;
+      await driver.sleep(200);
     }
 
-    results.push(caseResult);
-    if (!caseResult.passed) {
-      throw new Error(`Shell 用例失败: ${caseResult.caseId}`);
+    await registerSearchPluginViaDevHook(driver, pluginDir);
+    await driver.sleep(600);
+
+    const runId = Date.now();
+
+    for (const c of SEARCH_CASES) {
+      const t0 = Date.now();
+      const q = `e2e-${runId}-${c.id}`;
+      let caseResult: CaseResult = {
+        caseId: c.id,
+        trigger: c.trigger,
+        query: q,
+        passed: false,
+        durationMs: 0,
+      };
+
+      try {
+        const fullText = `${c.trigger} ${q}`;
+        await setMainInputValue(driver, fullText);
+        const echoed = await driver.executeScript<string>('return document.querySelector("#main-input")?.value || "";');
+        if (echoed !== fullText) {
+          throw new Error(`输入与 DOM 不一致: expected ${JSON.stringify(fullText)}, got ${JSON.stringify(echoed)}`);
+        }
+        await driver.sleep(800);
+
+        const xpath = `//div[contains(@class,"result-item")][contains(.,"${c.resultLabel}")]`;
+        const row = await driver.wait(until.elementLocated(By.xpath(xpath)), 30_000);
+        const text = await driver.executeScript<string>(
+          'return (arguments[0] && arguments[0].innerText) || \'\';',
+          row,
+        );
+        if (!text.includes(c.resultLabel) || !text.includes(q)) {
+          throw new Error(`行文案不符合预期: ${text.slice(0, 200)}`);
+        }
+        await pressEnterViaActions(driver);
+        await driver.sleep(500);
+        caseResult = { ...caseResult, passed: true, durationMs: Date.now() - t0 };
+        console.log(`[e2e] OK ${c.id}: ${c.trigger} ${q}`);
+      } catch (e) {
+        const msg = e instanceof Error ? e.message : String(e);
+        caseResult = {
+          ...caseResult,
+          passed: false,
+          durationMs: Date.now() - t0,
+          error: msg,
+        };
+        console.error(`[e2e] FAIL ${c.id}:`, msg);
+      }
+      results.push(caseResult);
+    }
+
+    const failed = results.filter(r => !r.passed);
+    if (failed.length > 0) {
+      throw new Error(`${failed.length} 个用例失败: ${failed.map(f => f.caseId).join(', ')}`);
     }
   } catch (e) {
     setupError = e instanceof Error ? (e.stack || e.message) : String(e);
     throw e;
   } finally {
-    if (fs.existsSync(markerFile)) {
-      fs.rmSync(markerFile, { force: true });
-    }
     const finishedAt = new Date().toISOString();
     writeReportMarkdown({
       startedAt,
       finishedAt,
       appUrl: APP_URL,
       wdUrl: WD_URL,
-      pluginDir,
       results,
       setupError,
     });

@@ -12,12 +12,24 @@ const quitApp = async () => {
   }
 };
 
+const leftActionsBase: ActionPanel['actions'] = [
+  { name: 'store', icon: 'storefront', title: '插件商店', action: () => pushView({ path: '/plugin/store' }) },
+  { name: 'settings', icon: 'settings', title: 'Settings', action: () => pushView({ path: '/settings' }) },
+  { name: 'about', icon: 'info', title: 'About Public', action: () => pushView({ path: '/about' }) },
+];
+
+if (import.meta.env.DEV) {
+  leftActionsBase.push({
+    name: '__dev_transition_residual_test',
+    icon: 'science',
+    title: '过渡残影测试',
+    action: () => pushView({ path: '/dev/transition-residual-test' }),
+  });
+}
+
+leftActionsBase.push({ name: 'exit', icon: 'exit_to_app', title: 'Quit Public', styleType: 'danger', action: quitApp });
+
 export const leftActionPanel: ActionPanel = {
   title: 'Public V1.0.0',
-  actions: [
-    { name: 'store', icon: 'storefront', title: '插件商店', action: () => pushView({ path: '/plugin/store' }) },
-    { name: 'settings', icon: 'settings', title: 'Settings', action: () => pushView({ path: '/settings' }) },
-    { name: 'about', icon: 'info', title: 'About Public', action: () => pushView({ path: '/about' }) },
-    { name: 'exit', icon: 'exit_to_app', title: 'Quit Public', styleType: 'danger', action: quitApp },
-  ],
+  actions: leftActionsBase,
 };

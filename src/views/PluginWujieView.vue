@@ -3,6 +3,7 @@
     :left-action-panel="leftActionPanel"
     class="plugin-view"
     :main-action="mainAction"
+    :right-action-panel="rightActionPanel"
   >
     <template #top>
       <InputBar

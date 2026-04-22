@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# TypeScript incremental (when not redirected under node_modules/.tmp)
+*.tsbuildinfo
+
 # Editor directories and files
 !.vscode/extensions.json
 .idea

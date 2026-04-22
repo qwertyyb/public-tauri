@@ -24,7 +24,7 @@ pnpm tauri:dev
 
 ## 使用 WebDriver 模拟前端操作
 
-自动化脚本位于 `scripts/`，使用 **Selenium 4**（`selenium-webdriver`）连接本机 WebDriver，在 **Vite 开发页** 中驱动 **WKWebView**。
+端到端（WebDriver）脚本位于仓库根目录 **`e2e/`**，使用 **Selenium 4**（`selenium-webdriver`）连接本机 WebDriver，在 **Vite 开发页** 中驱动 **WKWebView**。
 
 ### 前置
 
@@ -35,8 +35,11 @@ pnpm tauri:dev
 
 | 目的 | 命令 | 实现文件 |
 |------|------|----------|
-| 冒烟：打开页面、等待 `#main-input`、输入一段文案、打印标题与 URL | `pnpm test:webdriver` | [`scripts/webdriver-smoke.ts`](../scripts/webdriver-smoke.ts) |
-| E2E（依赖 Search 插件构建与开发环境注册钩子）：Google / 必应 / 百度 三条检索用例 | `pnpm test:webdriver:search` | [`scripts/webdriver-search-plugin.ts`](../scripts/webdriver-search-plugin.ts) |
+| 冒烟：打开页面、等待 `#main-input`、输入一段文案、打印标题与 URL | `pnpm test:webdriver` | [`e2e/webdriver-smoke.ts`](../e2e/webdriver-smoke.ts) |
+| E2E（依赖 Search 插件构建与开发环境注册钩子）：Google / 必应 / 百度 三条检索用例 | `pnpm test:webdriver:search` | [`e2e/webdriver-search-plugin.ts`](../e2e/webdriver-search-plugin.ts) |
+| E2E：Shell 插件（`>` 触发等） | `pnpm test:webdriver:shell` | [`e2e/webdriver-shell-plugin.ts`](../e2e/webdriver-shell-plugin.ts) |
+| E2E：Google Chrome 插件（打开系统 Chrome 并带查询串） | `pnpm test:webdriver:google-chrome` | [`e2e/webdriver-google-chrome-plugin.ts`](../e2e/webdriver-google-chrome-plugin.ts) |
+| E2E：内置 snippets（create / search、wujie + Shadow DOM） | `pnpm test:webdriver:snippets` | [`e2e/webdriver-snippets-plugin.ts`](../e2e/webdriver-snippets-plugin.ts) |
 
 实现要点简述：
 
@@ -50,6 +53,9 @@ pnpm tauri:dev
 | `TAURI_WEBDRIVER_URL` | `http://127.0.0.1:4445` | WebDriver 服务基址 |
 | `TAURI_DEV_URL` | `http://localhost:1420/` | 应对齐 `build.devUrl` |
 | `E2E_SEARCH_PLUGIN_PATH` | 仓库内 `store/plugins/search` | 仅 **Search 插件 E2E** 使用 |
+| `E2E_SHELL_PLUGIN_PATH` | 仓库内 `store/plugins/shell` | 仅 **Shell 插件 E2E** 使用 |
+| `E2E_GOOGLE_CHROME_PLUGIN_PATH` | 仓库内 `store/plugins/google-chrome` | 仅 **Google Chrome 插件 E2E** 使用 |
+| `E2E_SKIP_PLUGIN_BUILD` | 未设置 | 设为 `1` 时跳过部分 E2E 中的预先 `pnpm build`（若 dist 已就绪） |
 
 ### 更细的说明
 
@@ -67,6 +73,7 @@ pnpm tauri:dev
 | 文档 | 内容 |
 |------|------|
 | 本文 | 本仓库应用运行、WebDriver 冒烟与 E2E 入口 |
+| [开发日志](../docs/dev-log.md) | 壳应用疑难记录（如 ActionPanel 与 WKWebView 合成闪现等） |
 | [插件开发文档索引](../docs/plugin-index.md) | 插件清单、命令、模式、API、构建与发布 |
 | [WebDriver E2E 测试](./webdriver-e2e-input.md) | WebDriver 环境变量、脚本行为细节与输入注意事项 |
 | [本地开发插件](../docs/dev-plugins.md) | 在应用内加载本地插件目录（与 E2E 注册钩子相关，但是 **插件使用/开发** 视角） |

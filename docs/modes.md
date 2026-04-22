@@ -36,14 +36,14 @@ Public Tauri 支持三种插件运行模式，每种模式有不同的 UI 表现
 
 ### 实现
 
-在 `main` 入口文件中，通过 `onEnter` 钩子实现逻辑：
+在 `main` 入口文件中，通过 `onAction` 实现逻辑：用户从搜索结果确认命令时（回车或 ActionBar 主操作）会调用 `onAction`，`action` 为 manifest 中声明的主操作或宿主合成的默认操作。详见 [生命周期 API](./lifecycle.md)。
 
 ```ts
 import { definePlugin } from '@public-tauri/api'
 
 export default definePlugin(() => {
   return {
-    onEnter(command, query, options) {
+    onAction(command, action, keyword, options) {
       // 直接执行操作，例如写入剪贴板
       clipboard.writeText('Hello World!')
       dialog.showToast('已复制到剪贴板')
@@ -195,9 +195,9 @@ listView 模式内置了以下用户交互行为，无需额外处理：
 import { createPlugin } from '@public-tauri/api'
 
 createPlugin({
-  onEnter(command, query, options) {
-    // 命令被触发时调用
-    console.log('进入命令:', command.name)
+  onAction(command, action, keyword, options) {
+    // 进入该 view 命令时由宿主调用（与主应用 enter / ActionBar 一致）
+    console.log('进入命令:', command.name, action.name, keyword)
   },
   onExit(command) {
     // 命令退出时调用

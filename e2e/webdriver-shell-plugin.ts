@@ -1,15 +1,15 @@
 /**
- * E2E: @public-tauri-ext/google-chrome（触发词 gc）
+ * E2E: @public-tauri-ext/shell（trigger: >）
  *
- * 前置：`pnpm tauri:dev`（`--features webdriver`）；本机需安装 Google Chrome。
- * 环境变量：`TAURI_WEBDRIVER_URL`、`TAURI_DEV_URL`、可选 `E2E_GOOGLE_CHROME_PLUGIN_PATH`（默认 `store/plugins/google-chrome`）。
- * 报告：`reports/google-chrome-plugin-e2e-report.md`
+ * 前置：`pnpm tauri:dev`（`--features webdriver`）；DEV 下存在 `__PUBLIC_DEV_REGISTER_PLUGIN_PATH__`。
+ * 环境变量：`TAURI_WEBDRIVER_URL`、`TAURI_DEV_URL`、可选 `E2E_SHELL_PLUGIN_PATH`（默认仓库内 `store/plugins/shell`）。
+ * 报告写入 reports/shell-plugin-e2e-report.md（每次运行覆盖）。
  */
-import { execSync, spawnSync } from 'node:child_process';
+import { execSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { Builder, Browser, By, Key, until, type WebDriver, type WebElement } from 'selenium-webdriver';
+import { Builder, Browser, By, Key, until, type WebDriver } from 'selenium-webdriver';
 
 const WD_URL = process.env.TAURI_WEBDRIVER_URL ?? 'http://127.0.0.1:4445';
 const APP_URL = process.env.TAURI_DEV_URL ?? 'http://localhost:1420/';
@@ -17,16 +17,15 @@ const READY_TIMEOUT_MS = 180_000;
 const POLL_MS = 1500;
 
 const PROJECT_ROOT = fileURLToPath(new URL('..', import.meta.url));
-const DEFAULT_PLUGIN_DIR = path.join(PROJECT_ROOT, 'store/plugins/google-chrome');
-const REPORT_PATH = path.join(PROJECT_ROOT, 'reports/google-chrome-plugin-e2e-report.md');
+const DEFAULT_SHELL_PLUGIN_DIR = path.join(PROJECT_ROOT, 'store/plugins/shell');
+const REPORT_PATH = path.join(PROJECT_ROOT, 'reports/shell-plugin-e2e-report.md');
 
 interface CaseResult {
   caseId: string;
-  inputLine: string;
+  command: string;
   passed: boolean;
   durationMs: number;
   error?: string;
-  chromeUrl?: string;
 }
 
 async function waitForWebDriverReady(baseUrl: string, timeoutMs: number): Promise<void> {
@@ -44,9 +43,9 @@ async function waitForWebDriverReady(baseUrl: string, timeoutMs: number): Promis
   throw new Error(`WebDriver not ready: ${String(lastErr)}`);
 }
 
-function ensurePluginBuilt(): void {
-  console.log('[e2e] Building @public-tauri-ext/google-chrome...');
-  execSync('pnpm --filter @public-tauri-ext/google-chrome run build', {
+function ensureShellPluginBuilt(): void {
+  console.log('[e2e] Building @public-tauri-ext/shell...');
+  execSync('pnpm --filter @public-tauri-ext/shell run build', {
     cwd: PROJECT_ROOT,
     stdio: 'inherit',
   });
@@ -108,7 +107,7 @@ async function registerPluginViaDevHook(driver: WebDriver, pluginDir: string): P
       return;
     }
     if (result.includes('已加载') || result.includes('已注册')) {
-      console.log('[e2e] Plugin already registered — 若刚改过插件 dist，请重启 pnpm tauri:dev 后再跑 E2E');
+      console.log('[e2e] Plugin already registered, continuing');
       return;
     }
     throw new Error(result);
@@ -131,6 +130,7 @@ async function ensureHookAndRegisterPlugin(driver: WebDriver, pluginDir: string,
     } catch (e) {
       lastErr = e;
       const msg = e instanceof Error ? e.message : String(e);
+      // DEV 热重载窗口中，hook 可能短暂失效，或首次 import 失败；重试可恢复。
       if (msg.includes('not a function') || msg.includes('Load failed')) {
         await driver.sleep(500);
         continue;
@@ -138,51 +138,16 @@ async function ensureHookAndRegisterPlugin(driver: WebDriver, pluginDir: string,
       throw e;
     }
   }
-  throw new Error(`注册 google-chrome 插件超时: ${String(lastErr)}`);
+  throw new Error(`注册 shell 插件超时: ${String(lastErr)}`);
 }
 
-/**
- * 在所有窗口的标签页中查找 URL 包含片段的标签（避免「前台标签仍是用户其它网页」导致误判）。
- * 注意：勿在 `tell application "Google Chrome"` 内使用 `return u`，易触发 osascript 语法错误。
- */
-function findChromeTabUrlContaining(substr: string): string | null {
-  const needle = substr.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
-  const script = `set needle to "${needle}"
-set resultURL to ""
-tell application "Google Chrome"
-  try
-    repeat with w in windows
-      repeat with t in tabs of w
-        set u to URL of t
-        if u contains needle then set resultURL to u
-      end repeat
-    end repeat
-  end try
-end tell
-return resultURL`;
-  const r = spawnSync('osascript', ['-'], { input: script, encoding: 'utf8' });
-  if (r.status !== 0) {
-    throw new Error(r.stderr || String(r.error));
-  }
-  const out = (r.stdout || '').trim();
-  return out.length > 0 ? out : null;
-}
-
-async function waitForChromeAnyTabUrlContains(substr: string, timeoutMs: number): Promise<string> {
+async function waitForPathExists(targetPath: string, timeoutMs: number): Promise<void> {
   const deadline = Date.now() + timeoutMs;
-  let lastProbe = '';
   while (Date.now() < deadline) {
-    try {
-      const hit = findChromeTabUrlContaining(substr);
-      if (hit) return hit;
-      const probe = findChromeTabUrlContaining('google.com/search');
-      if (probe) lastProbe = probe;
-    } catch {
-      // Chrome 未安装或未响应
-    }
-    await new Promise(r => setTimeout(r, 400));
+    if (fs.existsSync(targetPath)) return;
+    await new Promise(r => setTimeout(r, 300));
   }
-  throw new Error(`Chrome 所有标签中未找到 URL 包含: ${JSON.stringify(substr)}；曾探测到含 google.com/search 的 URL: ${JSON.stringify(lastProbe)}`);
+  throw new Error(`命令未生效，超时未找到文件: ${targetPath}`);
 }
 
 function writeReportMarkdown(opts: {
@@ -198,7 +163,7 @@ function writeReportMarkdown(opts: {
   const passed = results.filter(r => r.passed).length;
   const failed = results.length - passed;
   const lines: string[] = [
-    '# Google Chrome 插件 E2E 测试报告',
+    '# Shell 插件 E2E 测试报告',
     '',
     `- **开始时间**: ${startedAt}`,
     `- **结束时间**: ${finishedAt}`,
@@ -219,23 +184,20 @@ function writeReportMarkdown(opts: {
     lines.push(`### ${icon} ${r.caseId}`, '');
     lines.push(`- **状态**: ${r.passed ? '通过' : '失败'}`);
     lines.push(`- **耗时**: ${r.durationMs} ms`);
-    lines.push(`- **输入**: \`${r.inputLine}\``);
-    if (r.chromeUrl) {
-      lines.push(`- **Chrome URL**: \`${r.chromeUrl}\``);
-    }
+    lines.push(`- **命令**: \`${r.command}\``);
     if (r.error) {
       lines.push(`- **错误**: ${r.error}`);
     }
     lines.push('');
   }
-  lines.push('---', '', '*由 `scripts/webdriver-google-chrome-plugin.ts` 生成*', '');
+  lines.push('---', '', '*由 `e2e/webdriver-shell-plugin.ts` 生成*', '');
   fs.mkdirSync(path.dirname(REPORT_PATH), { recursive: true });
   fs.writeFileSync(REPORT_PATH, lines.join('\n'), 'utf8');
 }
 
 function printConsoleSummary(results: CaseResult[], setupError?: string): void {
   console.log('');
-  console.log('========== Google Chrome 插件 E2E 汇总 ==========');
+  console.log('========== Shell 插件 E2E 汇总 ==========');
   if (setupError) {
     console.log('[e2e] 前置失败:', setupError);
   }
@@ -246,7 +208,7 @@ function printConsoleSummary(results: CaseResult[], setupError?: string): void {
   const passed = results.filter(r => r.passed).length;
   console.log(`[e2e] 合计: ${passed}/${results.length} 通过`);
   console.log(`[e2e] 报告: ${REPORT_PATH}`);
-  console.log('===============================================');
+  console.log('=========================================');
 }
 
 async function main(): Promise<void> {
@@ -256,19 +218,17 @@ async function main(): Promise<void> {
   let driver: WebDriver | null = null;
 
   if (process.env.E2E_SKIP_PLUGIN_BUILD !== '1') {
-    ensurePluginBuilt();
+    ensureShellPluginBuilt();
   } else {
     console.log('[e2e] Skip plugin build (E2E_SKIP_PLUGIN_BUILD=1)');
   }
 
-  const pluginDir = process.env.E2E_GOOGLE_CHROME_PLUGIN_PATH
-    ? path.resolve(process.env.E2E_GOOGLE_CHROME_PLUGIN_PATH)
-    : DEFAULT_PLUGIN_DIR;
+  const pluginDir = process.env.E2E_SHELL_PLUGIN_PATH
+    ? path.resolve(process.env.E2E_SHELL_PLUGIN_PATH)
+    : DEFAULT_SHELL_PLUGIN_DIR;
 
-  const runId = Date.now();
-  const query = `e2e-gchrome-${runId}`;
-  const fullText = `gc ${query}`;
-  const expectInUrl = encodeURIComponent(query);
+  const markerFile = `/tmp/public-tauri-shell-e2e-${Date.now()}.ok`;
+  const command = `touch ${markerFile}`;
 
   console.log('[e2e] Waiting for WebDriver...');
   await waitForWebDriverReady(WD_URL, READY_TIMEOUT_MS);
@@ -278,8 +238,7 @@ async function main(): Promise<void> {
       .usingServer(WD_URL)
       .forBrowser(Browser.CHROME)
       .build();
-    const appUrl = `${APP_URL.replace(/\/?$/, '/')}?e2e=${Date.now()}`;
-    await driver.get(appUrl);
+    await driver.get(APP_URL);
     await waitForPluginsReady(driver, 120_000);
 
     await ensureHookAndRegisterPlugin(driver, pluginDir, 90_000);
@@ -287,13 +246,14 @@ async function main(): Promise<void> {
 
     const t0 = Date.now();
     let caseResult: CaseResult = {
-      caseId: 'open-google-search-in-chrome',
-      inputLine: fullText,
+      caseId: 'run-command-via-trigger',
+      command,
       passed: false,
       durationMs: 0,
     };
 
     try {
+      const fullText = `> ${command}`;
       await setMainInputValue(driver, fullText);
       const echoed = await driver.executeScript<string>('return document.querySelector("#main-input")?.value || "";');
       if (echoed !== fullText) {
@@ -301,34 +261,23 @@ async function main(): Promise<void> {
       }
       await driver.sleep(800);
 
-      const xpath = '//div[contains(@class,"result-item")][contains(.,"在 Chrome")]';
-      let row: WebElement;
+      const xpath = '//div[contains(@class,"result-item")][contains(.,"在终端执行")]';
       try {
-        row = await driver.wait(until.elementLocated(By.xpath(xpath)), 30_000);
+        await driver.wait(until.elementLocated(By.xpath(xpath)), 30_000);
       } catch (waitErr) {
-        const dump = await driver.executeScript<{ input: string; items: string[] }>(`
+        const dump = await driver.executeScript<{ input: string, items: string[] }>(`
           return {
             input: document.querySelector('#main-input')?.value || '',
             items: Array.from(document.querySelectorAll('.result-item')).map((el) => (el.textContent || '').trim()),
           };
         `);
-        throw new Error(`未命中 Chrome 结果行: ${JSON.stringify(dump)}; waitErr=${String(waitErr)}`);
+        throw new Error(`未命中 shell 结果行: ${JSON.stringify(dump)}; waitErr=${String(waitErr)}`);
       }
 
-      // 必须选中该行再回车：默认 selectedIndex 为 0，第一条不一定是本插件
-      await row.click();
-      await driver.sleep(200);
-
       await pressEnterViaActions(driver);
-      await driver.sleep(1500);
-      const chromeUrl = await waitForChromeAnyTabUrlContains(expectInUrl, 25_000);
-      caseResult = {
-        ...caseResult,
-        passed: true,
-        durationMs: Date.now() - t0,
-        chromeUrl,
-      };
-      console.log('[e2e] OK, Chrome URL contains query:', expectInUrl);
+      await waitForPathExists(markerFile, 20_000);
+      caseResult = { ...caseResult, passed: true, durationMs: Date.now() - t0 };
+      console.log(`[e2e] OK: ${command}`);
     } catch (e) {
       const msg = e instanceof Error ? e.message : String(e);
       caseResult = {
@@ -342,12 +291,15 @@ async function main(): Promise<void> {
 
     results.push(caseResult);
     if (!caseResult.passed) {
-      throw new Error(`Google Chrome 用例失败: ${caseResult.caseId}`);
+      throw new Error(`Shell 用例失败: ${caseResult.caseId}`);
     }
   } catch (e) {
     setupError = e instanceof Error ? (e.stack || e.message) : String(e);
     throw e;
   } finally {
+    if (fs.existsSync(markerFile)) {
+      fs.rmSync(markerFile, { force: true });
+    }
     const finishedAt = new Date().toISOString();
     writeReportMarkdown({
       startedAt,
