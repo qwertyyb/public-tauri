@@ -14,16 +14,16 @@
         :key="index"
         class="file-item"
       >
-        <ElIcon size="12">
-          <Picture />
-        </ElIcon>
+        <UIcon
+          name="i-lucide-image"
+          class="size-3"
+        />
         <span class="file-name">{{ file.name }}</span>
-        <ElIcon
-          size="12"
+        <UIcon
+          name="i-lucide-x"
+          class="size-3 cursor-pointer"
           @click="removeFile(index)"
-        >
-          <CloseBold />
-        </ElIcon>
+        />
       </li>
     </ul>
     <div class="text-input-wrapper">
@@ -58,8 +58,6 @@ import { onPageEnter, onPageLeave } from '@/router';
 import { createAutoResizeInput } from '@/utils';
 import logger from '@/utils/logger';
 import { EVENT_NAME } from '@/const';
-import { ElIcon } from 'element-plus';
-import { Picture, CloseBold } from '@element-plus/icons-vue';
 
 const modelValue = defineModel<{ keyword: string, files: File[] }>({ default: () => ({ keyword: '', files: [] }) });
 const props = defineProps<{
@@ -223,7 +221,10 @@ onPageLeave(() => {
   min-width: 42px;
 }
 .input-placeholder {
-  color: light-dark(rgba(0, 0, 0, 0.4), rgba(255, 255, 255, 0.4));
+  color: rgba(0, 0, 0, 0.38);
+  .dark & {
+    color: rgba(255, 255, 255, 0.38);
+  }
   position: absolute;
   left: 0;
   top: 0;
@@ -255,9 +256,9 @@ onPageLeave(() => {
   cursor: pointer;
   border-radius: 4px;
   padding: 6px 8px;
-  border: 1px solid light-dark(rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.1));
+  border: 1px solid var(--ui-border-color);
   &:hover {
-    background: light-dark(rgba(0, 0, 0, 0.06), rgba(255, 255, 255, 0.06));
+    background: var(--ui-bg-muted);
   }
 }
 </style>

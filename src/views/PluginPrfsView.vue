@@ -16,59 +16,51 @@
         为保障功能正常使用，请先填写配置信息
       </p>
     </header>
-    <el-form
-      class="prfs-form"
-      label-position="top"
-    >
-      <el-form-item
+    <div class="prfs-form">
+      <UFormField
         v-for="item in preferences"
         :key="item.name"
         class="prfs-form-item"
         :label="item.title"
         :required="item.required"
       >
-        <el-input
+        <UInput
           v-if="item.type === 'text' || item.type === 'textarea'"
           v-model="formValue[item.name]"
           :placeholder="item.placeholder"
+          class="w-full"
         />
-        <el-select
+        <USelect
           v-if="item.type === 'select'"
           v-model="formValue[item.name]"
           :placeholder="item.placeholder"
-        >
-          <el-option
-            v-for="option in item.options || []"
-            :key="option.value"
-            :value="option.value"
-            :label="option.label"
-          />
-        </el-select>
+          :items="(item.options || []).map(o => ({ value: o.value, label: o.label }))"
+          class="w-full"
+        />
         <p class="form-item-desc">
           {{ item.description }}
         </p>
-      </el-form-item>
-      <el-form-item
+      </UFormField>
+      <div
         v-if="done"
         class="btn-item"
       >
-        <el-button
-          type="primary"
-          style="margin: 0 auto"
+        <UButton
+          color="primary"
+          class="mx-auto"
           :disabled="btnDisabled"
           @click="confirm"
         >
           继续
-        </el-button>
-      </el-form-item>
-    </el-form>
+        </UButton>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { getPlugin, updateCommandPreferences, updatePluginPreferences } from '@/plugin/manager';
 import type { IPluginManifest } from '@public/schema';
-import { ElForm, ElFormItem, ElInput, ElSelect, ElOption, ElButton } from 'element-plus';
 import { computed, nextTick, ref, shallowRef, toRaw, watch } from 'vue';
 
 const props = defineProps<{ plugin: string, command?: string, done?:() => void }>();
@@ -147,12 +139,21 @@ const confirm = () => {
     font-size: 14px;
   }
 
+  .prfs-form {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
   .form-item-desc {
     opacity: 0.6;
     font-size: 13px;
+    margin-top: 4px;
   }
-  :deep(.prfs-form-item) {
-    --el-fill-color-blank: none;
+  .btn-item {
+    display: flex;
+    justify-content: center;
+    margin-top: 8px;
   }
 }
 </style>

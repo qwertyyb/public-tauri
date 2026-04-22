@@ -3,28 +3,36 @@
     ref="dialog"
     class="confirm-dialog"
   >
-    <h1 class="dialog-title">
-      {{ options.title }}
-    </h1>
-    <div class="dialog-icon" />
-    <div class="dialog-message">
-      {{ options.message }}
+    <div class="dialog-body">
+      <h1
+        v-if="options.title"
+        class="dialog-title"
+      >
+        {{ options.title }}
+      </h1>
+      <div class="dialog-message">
+        {{ options.message }}
+      </div>
     </div>
-    <ul class="dialog-action-btns">
-      <li
+    <div class="dialog-actions">
+      <UButton
         v-if="options.showCancel"
-        class="dialog-action-btn cancel-btn"
+        variant="ghost"
+        color="neutral"
+        class="flex-1"
         @click="onCancel"
       >
         {{ options.cancelText || '取消' }}
-      </li>
-      <li
-        class="dialog-action-btn confirm-btn"
+      </UButton>
+      <UButton
+        variant="ghost"
+        color="primary"
+        class="flex-1"
         @click="onConfirm"
       >
         {{ options.confirmText || '确认' }}
-      </li>
-    </ul>
+      </UButton>
+    </div>
   </dialog>
 </template>
 
@@ -68,48 +76,37 @@ dialog {
   transform: translate(-50%, -50%);
   border: none;
   outline: none;
-  border-radius: 6px;
-  background-color: light-dark(#f4f4f4, #373737);
-  border-color: light-dark(#ececec, #464646);
+  border-radius: var(--ui-radius, 0.375rem);
+  background-color: var(--ui-bg-elevated, #f4f4f4);
+  padding: 0;
+  overflow: hidden;
   &::backdrop {
     background-color: rgba(0, 0, 0, 0.65);
   }
-  & > * {
-    width: 100%;
-    text-align: center;
-  }
-  .dialog-title, .dialog-message {
+
+  .dialog-body {
     padding: 20px;
+    text-align: center;
   }
   .dialog-title {
     font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
   }
   .dialog-message {
-    padding-top: 0;
     font-size: 14px;
+    opacity: 0.8;
+    white-space: pre-line;
   }
-  .dialog-action-btns {
+  .dialog-actions {
     display: flex;
-    margin-top: auto;
-    border-top: 1px solid #d7d7d7;
-    .dialog-action-btn {
-      flex: 1;
-      padding: 16px;
-      transition: background .2s;
-      &:hover {
-        cursor: pointer;
-        background: rgba(0, 0, 0, 0.1);
-      }
-      &.cancel-btn {
-        opacity: 0.7;
-      }
-      &.confirm-btn {
-        color: var(--theme-color);
-      }
-      & + .dialog-action-btn {
-        border-left: 1px solid #d7d7d7;
-      }
-    }
+    border-top: 1px solid var(--divider-color);
   }
+}
+</style>
+
+<style>
+.dark dialog.confirm-dialog {
+  background-color: #27272a;
 }
 </style>

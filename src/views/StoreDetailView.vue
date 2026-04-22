@@ -153,7 +153,7 @@ onMounted(loadPlugin);
   width: 64px;
   height: 64px;
   border-radius: 14px;
-  background: light-dark(#f0f0f0, #2a2a2a);
+  background: var(--ui-bg-muted);
 }
 .detail-title {
   margin: 12px 0 4px;
@@ -211,7 +211,7 @@ onMounted(loadPlugin);
     height: 28px;
     border-radius: 6px;
     flex-shrink: 0;
-    background: light-dark(#f0f0f0, #2a2a2a);
+    background: var(--ui-bg-muted);
   }
   .command-info {
     margin-left: 10px;
@@ -247,7 +247,7 @@ onMounted(loadPlugin);
     font-size: 16px;
   }
   .footer-link {
-    color: light-dark(#007AFF, #0a84ff);
+    color: var(--ui-primary);
     text-decoration: none;
     cursor: pointer;
   }

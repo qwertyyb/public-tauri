@@ -25,7 +25,7 @@
       @click="mainAction.action?.()"
     >
       <span class="main-action-label">{{ mainAction.title || mainAction.name }}</span>
-      <span class="main-action-key">↵</span>
+      <UKbd value="enter" />
     </div>
     <div
       v-if="mainAction && rightActionPanel?.actions?.length"
@@ -41,7 +41,15 @@
       @close="closePanel"
     >
       <template #trigger>
-        <slot name="right-trigger" />
+        <slot name="right-trigger">
+          <!-- 更多操作 -->
+          <span class="more-action-label">更多操作</span>
+          <UKbd
+            value="command"
+            style="margin-right: 2px;"
+          />
+          <UKbd value="K" />
+        </slot>
       </template>
     </ActionPanel>
   </div>
@@ -105,7 +113,7 @@ const togglePanel = (panel: 'left' | 'right') => {
     height: 18px;
     box-sizing: content-box;
     opacity: 0.6;
-    @media (prefers-color-scheme: dark) {
+    .dark & {
       filter: brightness(0) invert(1);
     }
   }
@@ -120,30 +128,24 @@ const togglePanel = (panel: 'left' | 'right') => {
     transition: background-color 0.1s ease;
     margin-left: auto;
     &:hover {
-      background-color: rgba(0, 0, 0, 0.08);
+      background: var(--ui-bg-accented);
     }
     .main-action-label {
-      font-size: 13px;
+      font-size: 12px;
       opacity: 0.8;
     }
-    .main-action-key {
-      font-size: 12px;
-      width: 22px;
-      height: 22px;
-      line-height: 22px;
-      border-radius: 4px;
-      text-align: center;
-      background-color: light-dark(rgba(0, 0, 0, 0.08), rgba(255, 255, 255, 0.12));
-      border: 1px solid light-dark(rgba(0, 0, 0, 0.15), rgba(255, 255, 255, 0.2));
-      box-sizing: border-box;
-      margin-left: 4px;
-    }
+  }
+
+  .more-action-label {
+    font-size: 12px;
+    opacity: 0.6;
+    margin-right: 4px;
   }
 
   .divider {
     width: 1px;
     height: 18px;
-    background-color: light-dark(rgba(0, 0, 0, 0.15), rgba(255, 255, 255, 0.15));
+    background-color: var(--ui-border-color);
     margin: 0 4px;
   }
 }

@@ -27,7 +27,7 @@ const keyValue = computed(() => {
 
 <style lang="scss" scoped>
 .keyboard-key {
-  background: light-dark(#e0e0e0, #3e3e3e);
+  background: var(--ui-bg-accented, #e0e0e0);
   height: 20px;
   min-width: 20px;
   text-align: center;

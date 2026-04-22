@@ -24,23 +24,23 @@
         v-html="subtitle"
       />
     </div>
-    <div class="actions cursor-pointer">
-      <ShortcutsKey
+    <div
+      class="actions cursor-pointer"
+      @click="$emit('enter')"
+    >
+      <UKbd
         v-if="selected"
-        shortcuts="Enter"
-        @click="$emit('enter')"
+        value="enter"
       />
-      <ShortcutsKey
-        v-else-if="actionKey"
-        :shortcuts="['Meta', actionKey]"
-        @click="$emit('enter')"
-      />
+      <template v-else-if="actionKey">
+        <UKbd value="meta" />
+        <UKbd :value="actionKey" />
+      </template>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import ShortcutsKey from '@/components/ShortcutsKey.vue';
 import AppIcon from '@public/icon/AppIcon.vue';
 interface IResultItem {
   icon?: string,
@@ -83,10 +83,16 @@ defineEmits<{
   }
 }
 .resultItem:hover {
-  background-color: light-dark(rgba(0, 0, 0, 0.1), rgba(184, 184, 184, 0.2));
+  background: rgba(0, 0, 0, 0.06);
+  .dark & {
+    background: rgba(255, 255, 255, 0.08);
+  }
 }
 .resultItem.selected {
-  background-color: light-dark(rgba(0, 0, 0, 0.15), rgba(184, 184, 184, 0.3));
+  background: rgba(0, 0, 0, 0.1);
+  .dark & {
+    background: rgba(255, 255, 255, 0.12);
+  }
 }
 .item-image {
   width: 36px;

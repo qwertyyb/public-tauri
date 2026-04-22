@@ -7,28 +7,29 @@
       v-if="!isRecording && modelValue"
       class="prefix"
     />
-    <ShortcutsKey
-      :shortcuts="keys"
+    <div
+      class="kbd-group"
       tabindex="0"
       @focus="startRecord"
       @blur="stopRecord"
-    />
-    <el-icon
-      v-if="!isRecording && modelValue"
-      :size="13"
-      class="close-icon cursor-pointer"
-      @click.stop.prevent="clear"
     >
-      <Close />
-    </el-icon>
+      <UKbd
+        v-for="(k, i) in keyList"
+        :key="i"
+        :value="k"
+      />
+    </div>
+    <UIcon
+      v-if="!isRecording && modelValue"
+      name="i-lucide-x"
+      class="close-icon size-3.5 cursor-pointer"
+      @click.stop.prevent="clear"
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
 import { computed, ref } from 'vue';
-import ShortcutsKey from './ShortcutsKey.vue';
-import { ElIcon } from 'element-plus';
-import { Close } from '@element-plus/icons-vue';
 
 const modelValue = defineModel<string>({ required: true });
 
@@ -44,6 +45,22 @@ const keys = computed(() => {
   }
   return modelValue.value?.length ? modelValue.value : '-+-';
 });
+
+const keyLabelMap: Record<string, string> = {
+  Command: '⌘',
+  Meta: '⌘',
+  Control: '⌃',
+  Alt: '⌥',
+  Option: '⌥',
+  Shift: '⇧',
+  Enter: '↵',
+  Backspace: '←',
+  Space: '␣',
+};
+
+const keyList = computed(() =>
+  keys.value.split('+').map(k => keyLabelMap[k] ?? k),
+);
 
 interface Key {
   modifiers: string[],
@@ -145,6 +162,12 @@ const clear = () => {
 </script>
 
 <style lang="scss" scoped>
+.kbd-group {
+  display: flex;
+  flex-shrink: 0;
+  gap: 2px;
+  outline: none;
+}
 .hotkey-recorder {
   border-radius: 4px;
   &.large {

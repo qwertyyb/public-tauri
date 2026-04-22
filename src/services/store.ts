@@ -111,9 +111,20 @@ const addDevPluginPath = async (pluginPath: string) => {
   }
 };
 
-const removeDevPluginPath = async (pluginPath: string) => {
+export const removeDevPluginPath = async (pluginPath: string) => {
   const list: string[] = await storage.getItem(DEV_PLUGIN_PATH_LIST_KEY) || [];
   await storage.setItem(DEV_PLUGIN_PATH_LIST_KEY, list.filter(p => p !== pluginPath));
+};
+
+export const getDevPluginPaths = async (): Promise<string[]> => {
+  return (await storage.getItem(DEV_PLUGIN_PATH_LIST_KEY)) || [];
+};
+
+export const unloadDevPlugin = async (pluginPath: string, pluginName: string): Promise<void> => {
+  const { unregisterPlugin } = await import('@/plugin/manager');
+  unregisterPlugin(pluginName);
+  await removeDevPluginPath(pluginPath);
+  await refreshInstalledPlugins();
 };
 
 /**

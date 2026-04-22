@@ -38,7 +38,7 @@ onMounted(() => {
 .resultItemPreview {
   box-sizing: border-box;
   flex: 5;
-  border-left: 1px solid light-dark(#c0c0c0, #333);
+  border-left: 1px solid var(--ui-border-color);
   height: 486px;
   min-height: 486px;
   max-width: 64%;

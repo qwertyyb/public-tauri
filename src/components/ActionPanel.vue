@@ -135,7 +135,7 @@ const handleClick = (item: Action) => {
   cursor: pointer;
   transition: background-color 0.1s ease;
   &:hover, &.active {
-    background-color: light-dark(rgba(0, 0, 0, 0.08), rgba(255, 255, 255, 0.08));
+    background: var(--ui-bg-accented);
   }
 }
 
@@ -143,11 +143,10 @@ const handleClick = (item: Action) => {
   position: fixed;
   bottom: calc(var(--action-bar-height) + 8px);
   width: 200px;
-  background-color: light-dark(rgba(255, 255, 255, 0.7), rgba(39, 40, 50, 0.85));
+  background-color: var(--ui-bg-elevated);
   backdrop-filter: blur(10px);
   border-radius: 8px;
   box-shadow: var(--action-panel-shadow);
-  color: light-dark(#333, #ddd);
   padding: 8px;
   z-index: 100;
   visibility: hidden;
@@ -183,13 +182,13 @@ const handleClick = (item: Action) => {
     display: flex;
     align-items: center;
     &:hover {
-      background-color: light-dark(rgba(0, 0, 0, 0.08), rgba(255, 255, 255, 0.08));
+      background: var(--ui-bg-accented);
     }
     &.warning {
-      color: #d97706;
+      color: var(--ui-warning);
     }
     &.danger {
-      color: #e53e3e;
+      color: var(--ui-error);
     }
     .menu-item-icon {
       margin-right: 8px;

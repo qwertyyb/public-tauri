@@ -1,6 +1,7 @@
 import { fileURLToPath, URL } from 'node:url';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
+import ui from '@nuxt/ui/vite';
 
 const host = process.env.TAURI_DEV_HOST;
 
@@ -9,11 +10,19 @@ export default defineConfig(async () => ({
   build: {
     sourcemap: true,
     rollupOptions: {
-      external: ['vue', 'element-plus'],
+      external: ['vue'],
     },
   },
   plugins: [
     vue(),
+    ui({
+      ui: {
+        colors: {
+          primary: 'green',
+          neutral: 'zinc',
+        },
+      },
+    }),
   ],
   define: {
     BUILTIN_PLUGINS_PATH: JSON.stringify(fileURLToPath(new URL('./plugins', import.meta.url))),

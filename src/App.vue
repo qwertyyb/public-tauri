@@ -10,6 +10,8 @@ import { nextTick, onBeforeUnmount, provide, shallowRef, useTemplateRef, type Co
 import { routerSymbol } from './router';
 import { showAlert, showConfirm, showToast } from '@/utils/feedback';
 import PluginWujieView from '@/views/PluginWujieView.vue';
+import CreatePluginView from '@/views/CreatePluginView.vue';
+import DevPluginsView from '@/views/DevPluginsView.vue';
 import { isKeyPressed } from '@/utils/keyboard';
 
 const hash = location.hash.substring(1);
@@ -22,6 +24,8 @@ const routes: Record<string, Component | undefined> = {
   '/plugin/store': StoreView,
   '/plugin/store/detail': StoreDetailView,
   '/plugin/view/wujie': PluginWujieView,
+  '/developer/create': CreatePluginView,
+  '/developer/plugins': DevPluginsView,
 };
 
 const pages = useTemplateRef('page');
@@ -104,33 +108,38 @@ provide(routerSymbol, {
 </script>
 
 <template>
-  <div class="app">
-    <header
-      v-if="history.length > 1"
-      class="app-header"
-    >
-      <div
-        class="nav-back material-symbols-outlined cursor-pointer"
-        @pointerdown="popView()"
+  <UApp>
+    <div class="app">
+      <header
+        v-if="history.length > 1"
+        class="app-header"
       >
-        arrow_back
-      </div>
-      <div class="space" />
-    </header>
-    <ul class="history-list">
-      <route-page
-        v-for="(item, index) in history"
-        :key="index"
-        ref="page"
-        class="history-item"
-      >
-        <component
-          :is="item.component"
-          v-bind="item.props"
-        />
-      </route-page>
-    </ul>
-  </div>
+        <div class="nav-back">
+          <UButton
+            icon="i-lucide-arrow-left"
+            variant="ghost"
+            color="neutral"
+            size="sm"
+            @click="popView()"
+          />
+        </div>
+        <div class="space" />
+      </header>
+      <ul class="history-list">
+        <route-page
+          v-for="(item, index) in history"
+          :key="index"
+          ref="page"
+          class="history-item"
+        >
+          <component
+            :is="item.component"
+            v-bind="item.props"
+          />
+        </route-page>
+      </ul>
+    </div>
+  </UApp>
 </template>
 
 <style lang="scss" scoped>
@@ -149,23 +158,6 @@ provide(routerSymbol, {
   .nav-back {
     pointer-events: auto;
   }
-
-  .cur-plugin {
-    display: flex;
-    width: fit-content;
-    align-items: center;
-    border-top-right-radius: 8px;
-    pointer-events: auto;
-    font-size: 14px;
-    .plugin-title {
-      opacity: 0.6;
-    }
-    .plugin-icon {
-      width: 20px;
-      height: 20px;
-      margin-left: 8px;
-    }
-  }
 }
 .history-list {
   .history-item:not(:last-child) {
@@ -175,36 +167,9 @@ provide(routerSymbol, {
 </style>
 
 <style>
-.flex {
-  display: flex;
-}
-.flex-col {
-  flex-direction: column;
-}
-.items-center {
-  align-items: center;
-}
-.items-stretch {
-  align-items: stretch;
-}
-.justify-center {
-  justify-content: center;
-}
-.justify-between {
-  justify-content: space-between;
-}
-.flex-1 {
-  flex: 1;
-}
-
-.cursor-pointer {
-  cursor: pointer;
-}
-
 .text-single-line {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
 </style>

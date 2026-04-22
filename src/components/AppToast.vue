@@ -3,7 +3,6 @@
     ref="dialog"
     class="app-toast"
   >
-    <div class="toast-icon" />
     <div class="toast-message">
       {{ options.message }}
     </div>
@@ -43,13 +42,14 @@ onUnmounted(() => {
   left: 50%;
   bottom: 60px;
   transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.85);
-  color: #fff;
+  background: var(--ui-bg-inverted, rgba(0, 0, 0, 0.85));
+  color: var(--ui-text-inverted, #fff);
   padding: 8px 16px;
   font-size: 14px;
   pointer-events: none;
   outline: none;
   border: none;
+  border-radius: var(--ui-radius, 0.375rem);
   box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.3);
   animation: fade-in-up .3s ease-out forwards;
   @keyframes fade-in-up {

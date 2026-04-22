@@ -1,9 +1,10 @@
 import { createApp } from 'vue';
 import VirtualList from 'vue-virtual-list-v3';
-import ElementPlus from 'element-plus';
+import ui from '@nuxt/ui/vue-plugin';
 import { CORE_API_KEY } from '@public/core/const';
 import * as core from '@public/core';
 import App from './App.vue';
+import './assets/css/main.css';
 import './style.css';
 import { createDraggable } from './utils/draggable';
 import { listenEvents } from './utils/events';
@@ -31,6 +32,6 @@ startServer()
 const app = createApp(App);
 
 app.use(VirtualList);
-app.use(ElementPlus);
+app.use(ui);
 
 app.mount('#app');

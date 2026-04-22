@@ -19,62 +19,41 @@
           v-if="curView === 'common'"
           class="settings-panel"
         >
-          <el-form label-width="180px">
-            <el-form-item label="开机启动">
-              <el-switch
-                v-model="settings.launchAtLogin"
-                :active-value="true"
-                :inactive-value="false"
-                @change="onLaunchAtLoginChange"
+          <div class="form-section">
+            <div class="form-row">
+              <span class="form-label">外观模式</span>
+              <USelect
+                v-model="colorMode"
+                :items="colorModeOptions"
+                class="w-48"
               />
-            </el-form-item>
-            <el-form-item label="快捷键">
+            </div>
+            <div class="form-row">
+              <span class="form-label">开机启动</span>
+              <USwitch
+                v-model="settings.launchAtLogin"
+                @update:model-value="onLaunchAtLoginChange"
+              />
+            </div>
+            <div class="form-row">
+              <span class="form-label">快捷键</span>
               <ShortcutsRecorder
                 v-model="settings.shortcuts"
                 size="large"
                 class="main-shortcuts"
                 @update:model-value="onShortcutsChange"
               />
-            </el-form-item>
-            <el-form-item label="清除超时">
-              <div class="w-64">
-                <el-select
-                  v-model="settings.clearTimeout"
-                  style="width:200px"
-                  @change="onClearTimeoutChange"
-                >
-                  <el-option
-                    :value="0"
-                    label="即时"
-                  />
-                  <el-option
-                    :value="5"
-                    label="5 秒后"
-                  />
-                  <el-option
-                    :value="30"
-                    label="30 秒后"
-                  />
-                  <el-option
-                    :value="90"
-                    label="90 秒后"
-                  />
-                  <el-option
-                    :value="180"
-                    label="3 分钟后"
-                  />
-                  <el-option
-                    :value="600"
-                    label="10 分钟后"
-                  />
-                  <el-option
-                    :value="-1"
-                    label="永不"
-                  />
-                </el-select>
-              </div>
-            </el-form-item>
-          </el-form>
+            </div>
+            <div class="form-row">
+              <span class="form-label">清除超时</span>
+              <USelect
+                v-model="settings.clearTimeout"
+                :items="clearTimeoutOptions"
+                class="w-48"
+                @update:model-value="onClearTimeoutChange"
+              />
+            </div>
+          </div>
         </div>
         <div
           v-else-if="curView==='plugins'"
@@ -82,10 +61,11 @@
         >
           <div class="panel-header">
             插件管理
-            <el-button
-              :icon="Plus"
-              circle
-              size="small"
+            <UButton
+              icon="i-lucide-plus"
+              variant="ghost"
+              color="neutral"
+              size="xs"
               @click="onAddPluginClick"
             />
           </div>
@@ -96,14 +76,12 @@
               class="plugin-item"
             >
               <div class="plugin-item-self">
-                <el-icon
+                <UIcon
+                  :name="expand[plugin.manifest.name] ? 'i-lucide-chevron-down' : 'i-lucide-chevron-right'"
                   class="plugin-expand-icon"
-                  :size="14"
-                  :class="{ expanded: expand[plugin.manifest.name], hidden: plugin.commands.length <= 0 }"
+                  :class="{ hidden: plugin.commands.length <= 0 }"
                   @click="onExpandPluginClick(plugin)"
-                >
-                  <ArrowRightBold />
-                </el-icon>
+                />
                 <img
                   :src="plugin.manifest.icon"
                   alt=""
@@ -117,23 +95,24 @@
                     {{ plugin.manifest.subtitle }}
                   </p>
                 </div>
-                <el-button
+                <UButton
                   v-if="plugin.manifest.preferences?.length"
-                  :icon="Operation"
-                  circle
+                  icon="i-lucide-settings"
+                  variant="ghost"
+                  color="neutral"
+                  size="xs"
                   class="action-item"
-                  size="small"
                   @click="openPrfsView(plugin.manifest.name)"
                 />
-                <el-button
-                  type="danger"
-                  :icon="Delete"
-                  size="small"
+                <UButton
+                  icon="i-lucide-trash-2"
+                  variant="ghost"
+                  color="error"
+                  size="xs"
                   class="action-item"
-                  circle
                   @click="onRemovePluginClick(index, plugin)"
                 />
-                <el-switch
+                <USwitch
                   class="action-item"
                   :model-value="plugin.settings?.disabled !== true"
                   @update:model-value="onPluginDisabledChange($event as boolean, plugin)"
@@ -162,8 +141,8 @@
                     </h5>
                   </div>
                   <div class="action-item">
-                    <el-input
-                      size="small"
+                    <UInput
+                      size="sm"
                       placeholder="别名"
                       :model-value="plugin.settings?.commands?.[command.name]?.alias ?? ''"
                       @update:model-value="onCommandChange({ alias: $event }, plugin, command)"
@@ -176,9 +155,8 @@
                     />
                   </div>
                   <div class="action-item">
-                    <el-switch
+                    <USwitch
                       :model-value="!plugin.settings?.commands?.[command.name]?.disabled"
-                      size="small"
                       @update:model-value="onCommandChange({ disabled: !$event }, plugin, command)"
                     />
                   </div>
@@ -193,10 +171,11 @@
         >
           <div class="panel-header">
             快捷链接
-            <el-button
-              :icon="Plus"
-              circle
-              size="small"
+            <UButton
+              icon="i-lucide-plus"
+              variant="ghost"
+              color="neutral"
+              size="xs"
               @click="createLink"
             />
           </div>
@@ -209,12 +188,12 @@
               <h3 class="link-title">
                 {{ item.title }}
               </h3>
-              <el-button
-                type="danger"
-                :icon="Delete"
-                size="small"
+              <UButton
+                icon="i-lucide-trash-2"
+                variant="ghost"
+                color="error"
+                size="xs"
                 class="action-item"
-                circle
                 @click="removeLink(index)"
               />
             </li>
@@ -226,9 +205,8 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, toRaw } from 'vue';
-import { ElButton, ElSelect, ElSwitch, ElOption, ElInput, ElForm, ElFormItem, ElIcon } from 'element-plus';
-import { ArrowRightBold, Plus, Delete, Operation } from '@element-plus/icons-vue';
+import { computed, ref, toRaw, watch } from 'vue';
+import { useColorMode } from '@vueuse/core';
 import PublicLayout from '@/components/PublicLayout.vue';
 import ShortcutsRecorder from '@/components/HotkeyRecorder.vue';
 import type { ICommand as IPluginCommand } from '@public/schema';
@@ -240,12 +218,40 @@ import { openCommandPreferences, openPluginPreferences } from '@/plugin/utils';
 import { uninstallStorePlugin } from '@/services/store';
 import { showToast } from '@/utils/feedback';
 
+const colorModeState = useColorMode({
+  attribute: 'class',
+  modes: {
+    dark: 'dark',
+    light: 'light',
+  },
+});
+const colorMode = ref(colorModeState.store.value);
+const colorModeOptions = [
+  { value: 'auto', label: '跟随系统' },
+  { value: 'light', label: '浅色模式' },
+  { value: 'dark', label: '深色模式' },
+];
+
+watch(colorMode, (val) => {
+  colorModeState.store.value = val;
+});
+
 const views = ref({
   common: '通用',
   plugins: '插件设置',
   links: '快捷链接',
 });
 const curView = ref('common');
+
+const clearTimeoutOptions = [
+  { value: 0, label: '即时' },
+  { value: 5, label: '5 秒后' },
+  { value: 30, label: '30 秒后' },
+  { value: 90, label: '90 秒后' },
+  { value: 180, label: '3 分钟后' },
+  { value: 600, label: '10 分钟后' },
+  { value: -1, label: '永不' },
+];
 
 const plugins = ref<IRunningPlugin[]>([]);
 
@@ -406,6 +412,22 @@ onPageEnter(() => {
   overflow: auto;
 }
 .settings-panel {
+  .form-section {
+    padding: 16px 24px;
+  }
+  .form-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 42px;
+    padding: 8px 0;
+  }
+  .form-label {
+    font-size: 14px;
+    font-weight: 500;
+    flex-shrink: 0;
+    min-width: 100px;
+  }
   .main-shortcuts {
     background: rgba(0, 0, 0, 0.15);
     &:deep(.keyboard-key) {
@@ -415,7 +437,7 @@ onPageEnter(() => {
   }
   .panel-header {
     height: 42px;
-    background: rgba(0, 128, 0, 0.3);
+    background: color-mix(in srgb, var(--ui-primary) 20%, transparent);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -429,12 +451,11 @@ onPageEnter(() => {
   }
   .plugin-expand-icon {
     transition: transform .2s;
+    cursor: pointer;
+    flex-shrink: 0;
     &.hidden {
       visibility: hidden;
     }
-  }
-  .plugin-expand-icon.expanded {
-    transform: rotate(90deg);
   }
   .plugin-icon, .command-icon {
     width: 32px;
