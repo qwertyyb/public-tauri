@@ -216,7 +216,7 @@ const handleClick = (item: Action) => {
   bottom: calc(var(--action-bar-height) + 8px);
   width: 200px;
   background-color: var(--ui-bg-elevated);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(24px);
   border-radius: 8px;
   box-shadow: var(--action-panel-shadow);
   padding: 8px;

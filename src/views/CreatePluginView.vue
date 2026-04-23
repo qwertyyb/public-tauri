@@ -3,145 +3,150 @@
     :main-action="mainAction"
   >
     <div class="create-plugin">
-      <h3 class="section-title">
-        插件信息
-      </h3>
-      <UFormField
-        label="插件名称"
-        required
-        class="form-group"
-      >
-        <UInput
-          v-model="form.name"
-          class="w-full"
-          placeholder="my-plugin (合法 npm 包名)"
-        />
-      </UFormField>
-      <UFormField
-        label="插件标题"
-        required
-        class="form-group"
-      >
-        <UInput
-          v-model="form.title"
-          class="w-full"
-          placeholder="我的插件"
-        />
-      </UFormField>
-      <UFormField
-        label="插件描述"
-        class="form-group"
-      >
-        <UInput
-          v-model="form.subtitle"
-          class="w-full"
-          placeholder="插件功能简要描述"
-        />
-      </UFormField>
-
-      <h3 class="section-title">
-        模板选择 <span class="text-error">*</span>
-      </h3>
-      <div class="mode-selector">
-        <div
-          v-for="opt in modeOptions"
-          :key="opt.value"
-          class="mode-option"
-          :class="{ active: form.mode === opt.value }"
-          @click="form.mode = opt.value"
+      <div class="create-plugin-inner">
+        <h3 class="section-title">
+          插件信息
+        </h3>
+        <div class="form-row">
+          <UFormField
+            label="插件名称"
+            required
+            class="form-group"
+          >
+            <UInput
+              v-model="form.name"
+              autofocus
+              class="w-full"
+              placeholder="@public-tauri-ext/name"
+            />
+          </UFormField>
+          <UFormField
+            label="插件标题"
+            required
+            class="form-group"
+          >
+            <UInput
+              v-model="form.title"
+              class="w-full"
+              placeholder="我的插件"
+            />
+          </UFormField>
+        </div>
+        <UFormField
+          label="插件描述"
+          class="form-group"
         >
-          <UIcon
-            :name="opt.icon"
-            class="size-5 text-primary"
+          <UInput
+            v-model="form.subtitle"
+            class="w-full"
+            placeholder="插件功能简要描述"
           />
-          <div class="mode-info">
+        </UFormField>
+
+        <h3 class="section-title">
+          模板选择 <span class="text-error">*</span>
+        </h3>
+        <div class="mode-selector">
+          <div
+            v-for="opt in modeOptions"
+            :key="opt.value"
+            class="mode-option"
+            :class="{ active: form.mode === opt.value }"
+            @click="form.mode = opt.value"
+          >
+            <UIcon
+              :name="opt.icon"
+              class="size-5 text-primary mode-icon"
+            />
             <span class="mode-name">{{ opt.label }}</span>
             <span class="mode-desc">{{ opt.desc }}</span>
           </div>
         </div>
-      </div>
 
-      <h3 class="section-title">
-        命令配置
-      </h3>
-      <div
-        v-for="(cmd, index) in form.commands"
-        :key="index"
-        class="command-card"
-      >
-        <div class="command-header">
-          <span class="command-index">命令 {{ index + 1 }}</span>
-          <UButton
-            v-if="form.commands.length > 1"
-            icon="i-lucide-x"
-            variant="ghost"
-            color="neutral"
-            size="xs"
-            @click="removeCommand(index)"
-          />
+        <h3 class="section-title">
+          命令配置
+        </h3>
+        <div
+          v-for="(cmd, index) in form.commands"
+          :key="index"
+          class="command-card"
+        >
+          <div class="command-header">
+            <span class="command-index">命令 {{ index + 1 }}</span>
+            <UButton
+              v-if="form.commands.length > 1"
+              icon="i-lucide-x"
+              variant="ghost"
+              color="neutral"
+              size="xs"
+              @click="removeCommand(index)"
+            />
+          </div>
+          <div class="form-row">
+            <UFormField
+              label="命令名称"
+              required
+              class="form-group"
+            >
+              <UInput
+                v-model="cmd.name"
+                class="w-full"
+                placeholder="hello"
+              />
+            </UFormField>
+            <UFormField
+              label="命令标题"
+              required
+              class="form-group"
+            >
+              <UInput
+                v-model="cmd.title"
+                class="w-full"
+                placeholder="Hello World"
+              />
+            </UFormField>
+          </div>
+          <UFormField
+            label="匹配关键词"
+            class="form-group"
+          >
+            <UInput
+              v-model="cmd.keywordsStr"
+              class="w-full"
+              placeholder="用逗号分隔，如: hello, 你好"
+            />
+          </UFormField>
         </div>
-        <UFormField
-          label="命令名称"
-          required
-          class="form-group"
+        <UButton
+          icon="i-lucide-plus"
+          variant="outline"
+          color="neutral"
+          block
+          @click="addCommand"
         >
-          <UInput
-            v-model="cmd.name"
-            class="w-full"
-            placeholder="hello"
-          />
-        </UFormField>
-        <UFormField
-          label="命令标题"
-          required
-          class="form-group"
-        >
-          <UInput
-            v-model="cmd.title"
-            class="w-full"
-            placeholder="Hello World"
-          />
-        </UFormField>
-        <UFormField
-          label="匹配关键词"
-          class="form-group"
-        >
-          <UInput
-            v-model="cmd.keywordsStr"
-            class="w-full"
-            placeholder="用逗号分隔，如: hello, 你好"
-          />
-        </UFormField>
-      </div>
-      <UButton
-        icon="i-lucide-plus"
-        variant="outline"
-        color="neutral"
-        block
-        @click="addCommand"
-      >
-        添加命令
-      </UButton>
+          添加命令
+        </UButton>
 
-      <h3 class="section-title">
-        创建目录 <span class="text-error">*</span>
-      </h3>
-      <div
-        class="dir-picker"
-        @click="pickDirectory"
-      >
-        <UIcon
-          name="i-lucide-folder-open"
-          class="size-5 text-primary"
-        />
-        <span class="dir-path">{{ form.parentDir || '点击选择父目录...' }}</span>
+        <h3 class="section-title">
+          创建目录 <span class="text-error">*</span>
+        </h3>
+        <div
+          class="dir-picker"
+          @click="pickDirectory"
+        >
+          <UIcon
+            name="i-lucide-folder-open"
+            class="size-5 text-primary"
+          />
+          <span class="dir-path">{{ form.parentDir || '点击选择父目录...' }}</span>
+        </div>
+        <p
+          v-if="form.parentDir && form.name"
+          class="dir-preview"
+        >
+          将创建: {{ form.parentDir }}/{{ form.name }}
+        </p>
       </div>
-      <p
-        v-if="form.parentDir && form.name"
-        class="dir-preview"
-      >
-        将创建: {{ form.parentDir }}/{{ form.name }}
-      </p>
     </div>
   </PublicLayout>
 </template>
@@ -258,6 +263,15 @@ const mainAction = computed<ActionPanelAction>(() => ({
   box-sizing: border-box;
 }
 
+/*
+ * 主窗口宽度 760px，给表单一个收紧的最大宽度并居中，
+ * 避免短字段（如「插件名称」/「命令名称」）拉满 720px 显得空旷。
+ */
+.create-plugin-inner {
+  max-width: 560px;
+  margin: 0 auto;
+}
+
 .section-title {
   font-size: 13px;
   font-weight: 600;
@@ -272,17 +286,29 @@ const mainAction = computed<ActionPanelAction>(() => ({
   margin-bottom: 10px;
 }
 
+/* 短字段按 1:1 配对成两列，长字段（描述 / 关键词）保持整行 */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  .form-group {
+    margin-bottom: 10px;
+  }
+}
+
 .mode-selector {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
 }
 
 .mode-option {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 12px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 8px;
+  row-gap: 2px;
+  padding: 10px 12px;
   border: 1px solid var(--ui-border-color, rgba(0, 0, 0, 0.1));
   border-radius: 8px;
   cursor: pointer;
@@ -296,20 +322,21 @@ const mainAction = computed<ActionPanelAction>(() => ({
   }
 }
 
-.mode-info {
-  display: flex;
-  flex-direction: column;
+.mode-icon {
+  grid-row: 1 / span 2;
+  align-self: center;
 }
 
 .mode-name {
   font-size: 13px;
   font-weight: 500;
+  line-height: 1.2;
 }
 
 .mode-desc {
   font-size: 11px;
   color: var(--text-secondary-color);
-  margin-top: 1px;
+  line-height: 1.3;
 }
 
 .command-card {

@@ -1,0 +1,83 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+@theme {
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+:root {
+  --ui-radius: 0.375rem;
+}
+
+/*
+ * Glass / popover 适配：宿主窗口已开启 macOS popover vibrancy，
+ * Nuxt UI 默认的 --ui-bg / --ui-bg-* 是不透明色，会盖掉毛玻璃。
+ * 这里把表单类组件依赖的表面与边框 token 改成半透明，
+ * 让 UInput / UTextarea / UCard / UBadge 等自动透出底部模糊。
+ */
+.light,
+:host,
+:root {
+  --ui-bg: rgba(255, 255, 255, 0);
+  --ui-bg-muted: rgba(0, 0, 0, 0.04);
+  --ui-bg-elevated: rgba(255, 255, 255, 0.5);
+  --ui-bg-accented: rgba(0, 0, 0, 0.06);
+  --ui-border: rgba(0, 0, 0, 0.1);
+  --ui-border-muted: rgba(0, 0, 0, 0.06);
+  --ui-border-accented: rgba(0, 0, 0, 0.16);
+
+  /*
+   * 玻璃背景下的对比度补偿（仅 light 模式）：
+   * - placeholder 走 --ui-text-dimmed，原本是 neutral-400，在 vibrancy 上太淡
+   * - 输入框 focus ring 走 --ui-primary，原本是 primary-500，在透明底上偏荧光
+   */
+  --ui-text-dimmed: var(--ui-color-neutral-500);
+  --ui-primary: var(--ui-color-primary-600);
+}
+
+.dark {
+  --ui-bg: rgba(255, 255, 255, 0);
+  --ui-bg-muted: rgba(255, 255, 255, 0.04);
+  --ui-bg-elevated: rgba(255, 255, 255, 0.08);
+  --ui-bg-accented: rgba(255, 255, 255, 0.12);
+  --ui-border: rgba(255, 255, 255, 0.1);
+  --ui-border-muted: rgba(255, 255, 255, 0.06);
+  --ui-border-accented: rgba(255, 255, 255, 0.18);
+}
+
+/*
+ * 浮层（菜单 / 弹窗 / Toast）：
+ * --ui-bg-elevated 在 page 级被压成接近透明，是为了让 UInput/UCard 透出 vibrancy；
+ * 但浮层正好相反，需要厚到能浮出来。这里在浮层 scope 里把 token 拉回，
+ * 同时附一层 backdrop-blur 兜底。
+ */
+[data-reka-popper-content-wrapper] > *,
+[role="dialog"],
+[role="menu"],
+[role="listbox"],
+[role="tooltip"] {
+  --ui-bg: rgba(255, 255, 255, 0.85);
+  --ui-bg-elevated: rgba(255, 255, 255, 0.85);
+  --ui-bg-accented: rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+}
+.dark :is(
+  [data-reka-popper-content-wrapper] > *,
+  [role="dialog"],
+  [role="menu"],
+  [role="listbox"],
+  [role="tooltip"]
+) {
+  --ui-bg: rgba(40, 40, 45, 0.85);
+  --ui-bg-elevated: rgba(40, 40, 45, 0.85);
+  --ui-bg-accented: rgba(255, 255, 255, 0.14);
+}
+
+/* 让所有原生表单控件继承透明背景，避免 UA 默认的灰白色块 */
+input,
+textarea,
+select {
+  background-color: transparent;
+}

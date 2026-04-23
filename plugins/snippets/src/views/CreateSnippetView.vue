@@ -1,20 +1,45 @@
 <template>
   <div class="create-snippet-view">
     <h1>Create Snippet</h1>
-    <el-form @submit.prevent="createSnippet" label-position="top">
-      <el-form-item label="Title">
-        <el-input @keydown="keyDownHandler($event, 'title')" ref="title" autofocus type="text" v-model="formValue.title" placeholder="Title" autocorrect="off" autocomplete="off" />
-      </el-form-item>
-      <el-form-item label="Content">
-        <el-input @keydown="keyDownHandler($event, 'content')" type="textarea" v-model="formValue.content" placeholder="Content" />
-      </el-form-item>
-    </el-form>
+    <form
+      class="space-y-4"
+      @submit.prevent="createSnippet"
+    >
+      <UFormField
+        label="Title"
+        name="title"
+      >
+        <UInput
+          ref="title"
+          v-model="formValue.title"
+          type="text"
+          placeholder="Title"
+          :autocorrect="false"
+          autocomplete="off"
+          :autofocus="true"
+          :autofocus-delay="200"
+          class="w-full"
+          @keydown="keyDownHandler($event, 'title')"
+        />
+      </UFormField>
+      <UFormField
+        label="Content"
+        name="content"
+      >
+        <UTextarea
+          v-model="formValue.content"
+          placeholder="Content"
+          :rows="6"
+          class="w-full"
+          @keydown="keyDownHandler($event, 'content')"
+        />
+      </UFormField>
+    </form>
   </div>
 </template>
 
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref, toRaw, useTemplateRef } from 'vue'
-import { ElInput, ElForm, ElFormItem } from 'element-plus'
 import { dialog, mainWindow, setActions, storage } from '@public-tauri/api'
 
 const formValue = ref({
@@ -22,7 +47,10 @@ const formValue = ref({
   content: ''
 })
 
-const titleInput = useTemplateRef('title')
+const titleInput = useTemplateRef<{
+  $el?: HTMLElement
+  inputRef?: HTMLInputElement
+}>('title')
 
 const createSnippet = async () => {
   const list: { title: string, content: string }[] = (await storage.getItem('snippets')) || []
@@ -49,7 +77,9 @@ onMounted(() => {
     { name: 'save', title: '创建', action: createSnippet },
   ])
   setTimeout(() => {
-    titleInput.value?.focus()
+    const el = titleInput.value?.inputRef
+      ?? titleInput.value?.$el?.querySelector?.('input')
+    el?.focus()
   }, 200)
 })
 
