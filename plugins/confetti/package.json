@@ -15,7 +15,7 @@
       {
         "name": "confetti",
         "title": "彩带庆祝",
-        "subtitle": "全屏释放五彩纸带（类 Raycast confetti，点击穿透）",
+        "subtitle": "全屏释放五彩纸带",
         "mode": "none",
         "matches": [
           {

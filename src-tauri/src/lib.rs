@@ -54,7 +54,7 @@ pub fn run() {
                 Some(vec![]), /* arbitrary number of args to pass to your app */
             ));
             // Set activation poicy to Accessory to prevent the app icon from showing on the dock
-            app.set_activation_policy(tauri::ActivationPolicy::Accessory);
+            app.set_activation_policy(tauri::ActivationPolicy::Prohibited);
 
             panel::setup_panel(app);
 
