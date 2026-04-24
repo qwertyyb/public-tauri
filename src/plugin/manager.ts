@@ -5,7 +5,7 @@ import { formatCommand, getLocalPath, openCommandPreferences, openPluginPreferen
 import { set } from 'es-toolkit/compat';
 import { resultsMap } from './store';
 import { resolveResource } from '@tauri-apps/api/path';
-import { preloadApp, setupApp, startApp } from 'wujie';
+import { destroyApp, preloadApp, setupApp, startApp } from 'wujie';
 import { parsePluginConfig, type IPluginManifest, type ICommand as IPluginCommand, type IPluginLifecycle, type IPreference, type ICommandActionOptions, type IAction } from '@public/schema';
 import logger from '@/utils/logger';
 import type { IRunningPlugin, IPluginsSettings, IPluginSettings, ICommandSettings } from '@/types/plugin';
@@ -75,6 +75,13 @@ export const createWujie = (name: string, entryUrl: string, options?: {
       },
       updateActions: (actions?: IAction[]) => {
         events.dispatchEvent(new CustomEvent('updateActions', { detail: { actions, plugin: name } }));
+      },
+      updateSearchBarValue: (value: string) => {
+        console.log('updateSearchBarValue', value);
+        events.dispatchEvent(new CustomEvent('updateSearchBarValue', { detail: { value } }));
+      },
+      updateSearchBarVisible: (visible: boolean) => {
+        events.dispatchEvent(new CustomEvent('updateSearchBarVisible', { detail: { visible } }));
       },
       events,
     },
@@ -204,6 +211,7 @@ export const registerPlugin = async (pluginPath: string) => {
 
 export const unregisterPlugin = (name: string) => {
   plugins.delete(name);
+  destroyApp(name);
 };
 
 /**
@@ -255,6 +263,7 @@ export const disablePlugin = (name: string, disabled: boolean) => {
   }
   pluginsSettings[name]!.disabled = disabled;
   save();
+  destroyApp(name);
 };
 
 export const disablePluginCommand = (name: string, commandName: string, disabled: boolean) => {

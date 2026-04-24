@@ -85,8 +85,12 @@ const actionsUpdateHandler = (event: CustomEvent<{ actions: ActionPanelAction[] 
   };
 };
 
-const searchBarHandler = (event: CustomEvent<{ visible: boolean }>) => {
+const searchBarVisibleHandler = (event: CustomEvent<{ visible: boolean }>) => {
   searchBarVisible.value = event.detail.visible;
+};
+
+const searchBarValueHandler = (event: CustomEvent<{ value: string }>) => {
+  input.value.keyword = event.detail.value;
 };
 
 const escapeHandler = () => {
@@ -102,14 +106,18 @@ onPageEnter(() => {
   // @ts-ignore
   props.events.addEventListener('updateActions', actionsUpdateHandler);
   // @ts-ignore
-  props.events.addEventListener('search-bar', searchBarHandler);
+  props.events.addEventListener('updateSearchBarVisible', searchBarVisibleHandler);
+  // @ts-ignore
+  props.events.addEventListener('updateSearchBarValue', searchBarValueHandler);
 });
 
 onPageLeave(() => {
   // @ts-ignore
   props.events.removeEventListener('updateActions', actionsUpdateHandler);
   // @ts-ignore
-  props.events.removeEventListener('search-bar', searchBarHandler);
+  props.events.removeEventListener('updateSearchBarVisible', searchBarVisibleHandler);
+  // @ts-ignore
+  props.events.removeEventListener('updateSearchBarValue', searchBarValueHandler);
 });
 
 onBeforeUnmount(() => {

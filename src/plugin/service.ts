@@ -102,7 +102,7 @@ export const handleQuery = async (input: { keyword: string, files?: File[] }) =>
       title: compileString(regMatch.title || item.command.title, matches),
       subtitle: compileString(regMatch.subtitle || item.command.subtitle || '', matches),
     };
-    resultsMap.set(result, { owner: item.owner, command: item.command, match: regMatch, result: { matches }, query: keyword });
+    resultsMap.set(result, { owner: item.owner, command: item.command, match: regMatch, result: { matches }, query: matches[1] ?? '' });
     commandsSet.add(`${item.owner.manifest.name}:${item.command.name}`);
     return [...acc, result];
   }, []));
@@ -121,7 +121,7 @@ export const handleQuery = async (input: { keyword: string, files?: File[] }) =>
       title: (query && triggerMatch.title) ? triggerMatch.title.replaceAll('$query', query) : item.command.title,
       subtitle: (query && triggerMatch.subtitle) ? triggerMatch.subtitle.replaceAll('$query', query) : item.command.subtitle,
     };
-    resultsMap.set(result, { owner: item.owner, query, command: result, match: triggerMatch, result: { trigger, query } });
+    resultsMap.set(result, { owner: item.owner, query, command: item.command, match: triggerMatch, result: { trigger, query } });
     commandsSet.add(`${item.owner.manifest.name}:${item.command.name}`);
     return [...acc, result];
   }, []));
@@ -148,7 +148,7 @@ export const handleQuery = async (input: { keyword: string, files?: File[] }) =>
       // 拼音匹配副标题
       command.subtitle = pinyinHighlight(result.obj.subtitle!, result[3].target, result[3].indexes);
     }
-    resultsMap.set(command, { owner: result.obj.owner, query: keyword, command: result.obj.command });
+    resultsMap.set(command, { owner: result.obj.owner, query: '', command: result.obj.command });
     commandsSet.add(`${result.obj.owner.manifest.name}:${result.obj.command.name}`);
     return command;
   }));

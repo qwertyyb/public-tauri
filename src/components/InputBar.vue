@@ -70,7 +70,7 @@ const emits = defineEmits<{ escape: [] }>();
 
 const inputEl = useTemplateRef('input');
 const placeholder = ref('search...');
-const keyword = ref('');
+const keyword = ref(modelValue.value.keyword || '');
 
 watch(keyword, (value) => {
   if (value !== modelValue.value.keyword) {

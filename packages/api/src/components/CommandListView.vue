@@ -20,12 +20,11 @@
 <script setup lang="ts">
 import { debounce } from 'es-toolkit';
 import ResultView from './PublicList.vue';
-// import InputBar from './InputBar.vue';
 import EmptyView from './PublicListEmptyView.vue';
 import { onBeforeUnmount, onMounted, ref, toRaw, watch } from 'vue';
 import LoadingBar from './LoadingBar.vue';
 import type { IListViewCommand, IResultItem, IAction, ICommandActionOptions } from '@public/schema';
-import { mainWindow } from '../index';
+import { mainWindow, updateActions, updateSearchBarValue, updateSearchBarVisible } from '../index';
 
 const props = defineProps<{
   command: IListViewCommand,
@@ -76,7 +75,7 @@ const onResultEnter = (item: IResultItem) => {
 const onResultSelected = async (item: IResultItem | null) => {
   if (!item) {
     preview.value = '';
-    window.$wujie?.props?.events.dispatchEvent(new CustomEvent('updateActions', { detail: { actions: [] } }));
+    updateActions([]);
     return;
   }
 
@@ -85,7 +84,7 @@ const onResultSelected = async (item: IResultItem | null) => {
     action: () => props.command?.onAction?.(item, a, keyword.value || ''),
   }));
 
-  window.$wujie?.props?.events.dispatchEvent(new CustomEvent('updateActions', { detail: { actions } }));
+  updateActions(actions);
   preview.value = await props.command?.onSelect?.(item, keyword.value || '');
 };
 
@@ -111,7 +110,10 @@ const searchHandler = (event: CustomEvent<{ keyword: string }>) => {
 
 onMounted(() => {
   window.$wujie?.props?.events.addEventListener('search', searchHandler);
-  window.$wujie?.props?.events.dispatchEvent(new CustomEvent('search-bar', { detail: { visible: typeof props.command.onSearch === 'function' } }));
+  updateSearchBarVisible(typeof props.command.onSearch === 'function');
+  if (props.defaultQuery) {
+    updateSearchBarValue(props.defaultQuery);
+  }
   if (!props.command?.onSearch) {
     window.addEventListener('keyup', keyDownHandler);
   }

@@ -45,7 +45,7 @@ export const createPlugin: (options: IPluginLifecycle) => void = (options) => {
   throw new Error('createPlugin is not supported in current environment');
 };
 
-export const setActions = (actions: PluginShellAction[]): void => {
+export const updateActions = (actions: PluginShellAction[]): void => {
   if (isInWujie) {
     window.$wujie?.props?.updateActions?.(actions);
     return;
@@ -63,3 +63,19 @@ export const createPluginChannel: typeof coreApi.createPluginChannel = (pluginNa
 export const definePlugin = (options: (app: {
   updateCommands: (commands: ICommand[]) => void
 }) => IPluginLifecycle) => options;
+
+export const updateSearchBarValue = (value: string): void => {
+  if (isInWujie) {
+    window.$wujie?.props?.updateSearchBarValue?.(value);
+    return;
+  }
+  throw new Error('updateSearchBarValue is not supported in current environment');
+};
+
+export const updateSearchBarVisible = (visible: boolean): void => {
+  if (isInWujie) {
+    window.$wujie?.props?.updateSearchBarVisible?.(visible);
+    return;
+  }
+  throw new Error('updateSearchBarVisible is not supported in current environment');
+};
