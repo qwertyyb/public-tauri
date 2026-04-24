@@ -55,8 +55,8 @@ importers:
         specifier: workspace:^
         version: link:packages/schema
       '@tauri-apps/api':
-        specifier: ^2
-        version: 2.7.0
+        specifier: ^2.10.1
+        version: 2.10.1
       '@tauri-apps/plugin-autostart':
         specifier: ^2.5.0
         version: 2.5.0
@@ -222,8 +222,8 @@ importers:
         specifier: workspace:^
         version: link:../schema
       '@tauri-apps/api':
-        specifier: ^2
-        version: 2.7.0
+        specifier: ^2.10.1
+        version: 2.10.1
       '@tauri-apps/plugin-autostart':
         specifier: ^2.5.0
         version: 2.5.0
@@ -253,7 +253,7 @@ importers:
   packages/icon:
     dependencies:
       '@tauri-apps/api':
-        specifier: ^2
+        specifier: ^2.10.1
         version: 2.10.1
 
   packages/schema: {}
@@ -385,6 +385,25 @@ importers:
       '@rollup/plugin-replace':
         specifier: catalog:plugin
         version: 6.0.2(rollup@4.46.2)
+      rollup:
+        specifier: catalog:plugin
+        version: 4.46.2
+      rollup-plugin-esbuild:
+        specifier: catalog:plugin
+        version: 6.2.1(esbuild@0.27.7)(rollup@4.46.2)
+
+  plugins/confetti:
+    dependencies:
+      '@public-tauri/api':
+        specifier: workspace:^
+        version: link:../../packages/api
+    devDependencies:
+      '@rollup/plugin-commonjs':
+        specifier: catalog:plugin
+        version: 28.0.6(rollup@4.46.2)
+      '@rollup/plugin-node-resolve':
+        specifier: catalog:plugin
+        version: 16.0.1(rollup@4.46.2)
       rollup:
         specifier: catalog:plugin
         version: 4.46.2
@@ -734,8 +753,8 @@ importers:
         specifier: workspace:^
         version: link:../../../../packages/api
       '@tauri-apps/api':
-        specifier: ^2
-        version: 2.7.0
+        specifier: ^2.10.1
+        version: 2.10.1
 
   store/plugins/google-chrome:
     dependencies:
@@ -2857,9 +2876,6 @@ packages:
 
   '@tauri-apps/api@2.10.1':
     resolution: {integrity: sha512-hKL/jWf293UDSUN09rR69hrToyIXBb8CjGaWC7gfinvnQrBVvnLr08FeFi38gxtugAVyVcTa5/FD/Xnkb1siBw==}
-
-  '@tauri-apps/api@2.7.0':
-    resolution: {integrity: sha512-v7fVE8jqBl8xJFOcBafDzXFc8FnicoH3j8o8DNNs0tHuEBmXUDqrCOAzMRX0UkfpwqZLqvrvK0GNQ45DfnoVDg==}
 
   '@tauri-apps/cli-darwin-arm64@2.7.1':
     resolution: {integrity: sha512-j2NXQN6+08G03xYiyKDKqbCV2Txt+hUKg0a8hYr92AmoCU8fgCjHyva/p16lGFGUG3P2Yu0xiNe1hXL9ZuRMzA==}
@@ -10037,8 +10053,6 @@ snapshots:
 
   '@tauri-apps/api@2.10.1': {}
 
-  '@tauri-apps/api@2.7.0': {}
-
   '@tauri-apps/cli-darwin-arm64@2.7.1':
     optional: true
 
@@ -10088,7 +10102,7 @@ snapshots:
 
   '@tauri-apps/plugin-autostart@2.5.0':
     dependencies:
-      '@tauri-apps/api': 2.7.0
+      '@tauri-apps/api': 2.10.1
 
   '@tauri-apps/plugin-deep-link@2.4.8':
     dependencies:
@@ -10100,11 +10114,11 @@ snapshots:
 
   '@tauri-apps/plugin-fs@2.4.1':
     dependencies:
-      '@tauri-apps/api': 2.7.0
+      '@tauri-apps/api': 2.10.1
 
   '@tauri-apps/plugin-global-shortcut@2.3.0':
     dependencies:
-      '@tauri-apps/api': 2.7.0
+      '@tauri-apps/api': 2.10.1
 
   '@tauri-apps/plugin-opener@2.5.3':
     dependencies:

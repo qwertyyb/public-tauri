@@ -27,7 +27,15 @@ startServer()
     getSettings().then(settings => registerMainShortcut(settings.shortcuts));
     return init();
   })
-  .then(() => initDeepLinks());
+  .then(() => {
+    if (!import.meta.env.PROD && typeof window !== 'undefined') {
+      void import('@tauri-apps/api/core').then((m) => {
+        (window as unknown as { __E2E_INVOKE?: typeof m.invoke })
+          .__E2E_INVOKE = m.invoke;
+      });
+    }
+    return initDeepLinks();
+  });
 
 const app = createApp(App);
 

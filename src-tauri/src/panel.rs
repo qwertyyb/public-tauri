@@ -36,7 +36,7 @@ pub fn setup_panel(app: &mut App) {
 
     panel.show();
 
-    panel.set_event_handler(Some(handler.as_protocol_object()));
+    panel.set_event_handler(Some(handler.as_ref()));
 
     let handle1 = handle.clone();
     handler.window_did_become_key(move |_notification| {

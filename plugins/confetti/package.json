@@ -1,0 +1,46 @@
+{
+  "name": "confetti",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "publicPlugin": {
+    "title": "Confetti",
+    "subtitle": "全屏彩带庆祝",
+    "icon": "./assets/confetti.png",
+    "main": "./dist/index.js",
+    "commands": [
+      {
+        "name": "confetti",
+        "title": "彩带庆祝",
+        "subtitle": "全屏释放五彩纸带（类 Raycast confetti，点击穿透）",
+        "mode": "none",
+        "matches": [
+          {
+            "type": "text",
+            "keywords": [
+              "confetti",
+              "彩带",
+              "庆祝",
+              "五彩纸带"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "scripts": {
+    "build": "rollup -c rollup.config.mjs"
+  },
+  "dependencies": {
+    "@public-tauri/api": "workspace:^"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "catalog:plugin",
+    "@rollup/plugin-node-resolve": "catalog:plugin",
+    "rollup": "catalog:plugin",
+    "rollup-plugin-esbuild": "catalog:plugin"
+  }
+}

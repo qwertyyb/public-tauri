@@ -1,5 +1,5 @@
 import path, { join } from 'path-browserify';
-import { resolveFileIcon, resolveLocalPath, clipboard, dialog, fetch, globalShortcut, mainWindow, utils, Database, screen, createPluginStorage, registerServerModule, invokePluginServerMethod, createPluginServerListener, storage, showSaveFilePicker, fs, shell, opener } from '@public/core';
+import { resolveFileIcon, resolveLocalPath, clipboard, dialog, fetch, globalShortcut, mainWindow, utils, Database, screen, createPluginStorage, registerServerModule, invokePluginServerMethod, createPluginServerListener, storage, showSaveFilePicker, fs, shell, opener, WebviewWindow, Webview, NativeWindow } from '@public/core';
 import { readTextFile } from '@tauri-apps/plugin-fs';
 import { formatCommand, getLocalPath, openCommandPreferences, openPluginPreferences, popView, pushView, resolveIconUrl, withCache } from './utils';
 import { set } from 'es-toolkit/compat';
@@ -63,6 +63,9 @@ export const createWujie = (name: string, entryUrl: string, options?: {
       resolveLocalPath,
       shell,
       opener,
+      WebviewWindow,
+      Webview,
+      NativeWindow,
 
       storage: createPluginStorage(name),
       invoke: (method: string, ...args: any[]) => invokePluginServerMethod(name, method, args),
@@ -138,15 +141,11 @@ export const registerPlugin = async (pluginPath: string) => {
         staticPaths.push(pluginPath);
       }
       // 纯前端 main（无 server、无 wujie html、非 listView）不依赖 Node 侧 register；避免 WKWebView 对 localhost:2345 的 fetch 在部分环境下失败导致整插件加载中断
-      const needsNodeSidecar = Boolean(serverModulePath) || template === 'listView' || Boolean(html);
-      if (needsNodeSidecar) {
-        await registerServerModule(name, {
-          modulePath: serverModulePath,
-          staticPaths,
-        });
-      } else {
-        logger.info('registerPlugin: skip registerServerModule (pure main)', name);
-      }
+      // const needsNodeSidecar = Boolean(serverModulePath) || template === 'listView' || Boolean(html);
+      await registerServerModule(name, {
+        modulePath: serverModulePath,
+        staticPaths,
+      });
     }
     if (manifest.main && !pluginsSettings?.[name]?.disabled) {
       const entryPath = getLocalPath(manifest.main, pluginPath)!;
@@ -481,7 +480,7 @@ const getBuiltinPluginsBasePath = async () => {
 };
 
 const initInnerPlugins = async () => {
-  const names = ['clipboard', 'translate', 'launcher', 'calculator', 'transform', 'snippets', 'qrcode', 'mdn', 'applescript', 'snippets', 'emoji', 'script-commands'];
+  const names = ['clipboard', 'translate', 'launcher', 'calculator', 'transform', 'snippets', 'qrcode', 'mdn', 'applescript', 'snippets', 'emoji', 'confetti', 'script-commands'];
 
   const basePath = await getBuiltinPluginsBasePath();
   logger.info('initInnerPlugins', basePath);

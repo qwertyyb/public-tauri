@@ -31,6 +31,11 @@ src-tauri/binaries/*
 
 .codebuddy
 
+# Local agent / editor / tool lock (do not commit)
+.agents/
+.cursor/
+skills-lock.json
+
 # E2E run output (local only)
 reports/
 test-results/

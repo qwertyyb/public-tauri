@@ -8,6 +8,9 @@ import { invoke } from '@tauri-apps/api/core';
 export * as globalShortcut from '@tauri-apps/plugin-global-shortcut';
 export { default as Database } from '@tauri-apps/plugin-sql';
 export type { UnlistenFn } from '@tauri-apps/api/event';
+export { WebviewWindow } from '@tauri-apps/api/webviewWindow';
+export { Window as NativeWindow } from '@tauri-apps/api/window';
+export { Webview } from '@tauri-apps/api/webview';
 
 const listenMap = new WeakMap<Function, UnlistenFn>();
 export const mainWindow = {

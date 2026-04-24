@@ -22,9 +22,7 @@ const isInWujie = !!window.$wujie;
 
 const api: typeof coreApi = window.$wujie?.props as typeof coreApi || window[CORE_API_KEY];
 
-console.log('api', api, window);
-
-export const { clipboard, dialog, mainWindow, fetch, utils, screen, Database, storage, showSaveFilePicker, fs, shell, opener, resolveFileIcon, resolveLocalPath } = api;
+export const { clipboard, dialog, mainWindow, fetch, utils, screen, WebviewWindow, Database, storage, showSaveFilePicker, fs, shell, opener, resolveFileIcon, resolveLocalPath, Webview, NativeWindow } = api;
 
 export const invoke: <R extends any>(name: string, ...args: any[]) => Promise<R> = (name, ...args) => {
   if (isInWujie) {
