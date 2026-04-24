@@ -1,39 +1,45 @@
 // 五彩纸带颜色集合 - 每条纸带有正反两面颜色
 const COLORS = [
-  { front: '#FF6B6B', back: '#CC4444' },
-  { front: '#FFE66D', back: '#CCB830' },
-  { front: '#4ECDC4', back: '#2E9E96' },
-  { front: '#45B7D1', back: '#2D8FA6' },
-  { front: '#96CEB4', back: '#6BA88A' },
-  { front: '#DDA0DD', back: '#AA70AA' },
-  { front: '#FF69B4', back: '#CC4488' },
-  { front: '#00CED1', back: '#009A9E' },
-  { front: '#FFA07A', back: '#CC7050' },
-  { front: '#F7DC6F', back: '#C4A830' },
-  { front: '#BB8FCE', back: '#8860A0' },
-  { front: '#85C1E9', back: '#5090B8' },
-  { front: '#82E0AA', back: '#50B078' },
-  { front: '#FF5252', back: '#CC2020' },
-  { front: '#FFAB40', back: '#CC8020' },
-  { front: '#69F0AE', back: '#40C080' },
-  { front: '#40C4FF', back: '#2090CC' },
-  { front: '#E040FB', back: '#A020C0' },
-  { front: '#B2FF59', back: '#80CC30' },
-  { front: '#7C4DFF', back: '#5030CC' },
+  { front: '#FF0040', back: '#CC0030' },
+  { front: '#FFD600', back: '#CCB000' },
+  { front: '#00E5A0', back: '#00B880' },
+  { front: '#00AAFF', back: '#0088DD' },
+  { front: '#FF00DD', back: '#CC00B0' },
+  { front: '#FF6600', back: '#DD5500' },
+  { front: '#00FF88', back: '#00DD70' },
+  { front: '#4400FF', back: '#3300CC' },
+  { front: '#FF2D87', back: '#DD1870' },
+  { front: '#FFEA00', back: '#DDCC00' },
+  { front: '#00FFD5', back: '#00DDC0' },
+  { front: '#FF4400', back: '#DD3300' },
+  { front: '#AA00FF', back: '#8800DD' },
+  { front: '#00FF40', back: '#00DD30' },
+  { front: '#FF0066', back: '#DD0055' },
+  { front: '#00DDFF', back: '#00BBDD' },
+  { front: '#FF8800', back: '#DD7000' },
+  { front: '#66FF00', back: '#55DD00' },
+  { front: '#FF00AA', back: '#DD0090' },
+  { front: '#0066FF', back: '#0055DD' },
 ];
 
-// 纸带形状类型 - 以真实纸带条为主，搭配少量纸片
 const SHAPES = [
-  'ribbon',     // 经典飘带
-  'ribbon',     // 增加权重
-  'ribbon',     // 增加权重
-  'twistedRibbon', // 扭转飘带
-  'twistedRibbon', // 增加权重
-  'curlyRibbon',   // 卷曲飘带
-  'curlyRibbon',   // 增加权重
-  'waveRibbon',    // 波浪飘带
-  'confettiPiece', // 方形纸片
-  'confettiPiece', // 方形纸片
+  'ribbon',
+  'ribbon',
+  'ribbon',
+  'twistedRibbon',
+  'twistedRibbon',
+  'curlyRibbon',
+  'curlyRibbon',
+  'waveRibbon',
+  'confettiPiece',
+  'confettiPiece',
+  'triangle',
+  'triangle',
+  'circle',
+  'circle',
+  'star',
+  'diamond',
+  'heart',
 ];
 
 /**
@@ -58,7 +64,7 @@ export class ConfettiParticle {
     this.frontColor = colorPair.front;
     this.backColor = colorPair.back;
     this.shape = SHAPES[Math.floor(Math.random() * SHAPES.length)];
-    this.size = 10 + Math.random() * 14;
+    this.size = (15 + Math.random() * 9) * 0.96;
     this.opacity = 1;
 
     // 纸带的随机弯曲程度（每条纸带独有）
@@ -159,6 +165,21 @@ export class ConfettiParticle {
         break;
       case 'confettiPiece':
         this.drawConfettiPiece(ctx, flipScale);
+        break;
+      case 'triangle':
+        this.drawTriangle(ctx, flipScale);
+        break;
+      case 'circle':
+        this.drawCircle(ctx, flipScale);
+        break;
+      case 'star':
+        this.drawStar(ctx, flipScale);
+        break;
+      case 'diamond':
+        this.drawDiamond(ctx, flipScale);
+        break;
+      case 'heart':
+        this.drawHeart(ctx, flipScale);
         break;
     }
 
@@ -349,6 +370,107 @@ export class ConfettiParticle {
       ctx.closePath();
       ctx.fill();
     }
+  }
+
+  drawTriangle(ctx, _flipScale) {
+    const s = this.size * 0.7;
+    const h = s * Math.sqrt(3) / 2;
+    ctx.beginPath();
+    ctx.moveTo(0, -h * 0.6);
+    ctx.lineTo(s / 2, h * 0.4);
+    ctx.lineTo(-s / 2, h * 0.4);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.fillStyle = this.backColor;
+    ctx.globalAlpha *= 0.4;
+    ctx.beginPath();
+    ctx.moveTo(0, -h * 0.6);
+    ctx.lineTo(s / 2, h * 0.4);
+    ctx.lineTo(0, h * 0.1);
+    ctx.closePath();
+    ctx.fill();
+  }
+
+  drawCircle(ctx, _flipScale) {
+    const r = this.size * 0.35;
+    ctx.beginPath();
+    ctx.arc(0, 0, r, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillStyle = '#ffffff';
+    ctx.globalAlpha *= 0.25;
+    ctx.beginPath();
+    ctx.arc(-r * 0.25, -r * 0.25, r * 0.4, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  drawStar(ctx, _flipScale) {
+    const outerR = this.size * 0.4;
+    const innerR = outerR * 0.4;
+    const points = 5;
+    ctx.beginPath();
+    for (let i = 0; i < points * 2; i++) {
+      const r = i % 2 === 0 ? outerR : innerR;
+      const angle = (i * Math.PI) / points - Math.PI / 2;
+      const x = Math.cos(angle) * r;
+      const y = Math.sin(angle) * r;
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.fillStyle = this.backColor;
+    ctx.globalAlpha *= 0.3;
+    ctx.beginPath();
+    for (let i = 0; i < points * 2; i++) {
+      const r = i % 2 === 0 ? outerR * 0.85 : innerR * 0.6;
+      const angle = (i * Math.PI) / points - Math.PI / 2 + 0.15;
+      const x = Math.cos(angle) * r;
+      const y = Math.sin(angle) * r;
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.fill();
+  }
+
+  drawDiamond(ctx, _flipScale) {
+    const w = this.size * 0.4;
+    const h = this.size * 0.6;
+    ctx.beginPath();
+    ctx.moveTo(0, -h / 2);
+    ctx.lineTo(w / 2, 0);
+    ctx.lineTo(0, h / 2);
+    ctx.lineTo(-w / 2, 0);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.fillStyle = this.backColor;
+    ctx.globalAlpha *= 0.35;
+    ctx.beginPath();
+    ctx.moveTo(0, -h / 2);
+    ctx.lineTo(w / 2, 0);
+    ctx.lineTo(0, h * 0.1);
+    ctx.closePath();
+    ctx.fill();
+  }
+
+  drawHeart(ctx, _flipScale) {
+    const s = this.size * 0.35;
+    ctx.beginPath();
+    ctx.moveTo(0, s * 0.4);
+    ctx.bezierCurveTo(-s * 0.1, s * 0.1, -s, -s * 0.4, 0, -s * 0.8);
+    ctx.bezierCurveTo(s, -s * 0.4, s * 0.1, s * 0.1, 0, s * 0.4);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.fillStyle = '#ffffff';
+    ctx.globalAlpha *= 0.2;
+    ctx.beginPath();
+    ctx.arc(-s * 0.3, -s * 0.35, s * 0.2, 0, Math.PI * 2);
+    ctx.fill();
   }
 
   // 绘制高光条纹（增加立体感）
