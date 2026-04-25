@@ -55,10 +55,13 @@ export interface ScreenDetail {
   y: number
 }
 
+// tauri 自带的 monitor 方法没有返回 ID，截屏无法指定截哪个屏
 export const screen = {
-  getDetails: () => invoke<ScreenDetail[]>('get_monitors'),
-  capture: (id: number) => invoke<string>('screenshot', { id }),
-  screenFromPoint: (x: number, y: number) => invoke<ScreenDetail>('monitor_from_point', { x: Math.round(x), y: Math.round(y) }),
+  getAllMonitors: () => invoke<ScreenDetail[]>('get_all_monitors'),
+  capture: (monitorId?: number) => invoke<string>('capture', { monitorId }),
+  monitorFromPoint: (x: number, y: number) => invoke<ScreenDetail>('monitor_from_point', { x: Math.round(x), y: Math.round(y) }),
+  cursorMonitor: () => invoke<ScreenDetail>('cursor_monitor'),
+  currentMonitor: () => invoke<ScreenDetail | null>('current_monitor'),
 };
 
 export const dialog = {
@@ -111,10 +114,17 @@ export interface IApplication {
   bundleIdentifier: string
 }
 
+export interface IFrontmostApplication extends IApplication {
+  pid: number
+}
+
 export const utils = {
   getCurrentPath: (): Promise<string> => invokeServerUtils('system.getCurrentPath'),
   getSelectedPath: (): Promise<string[]> => invokeServerUtils('system.getSelectedPath'),
-  getFrontmostApplication: (): Promise<IApplication | null> => invokeServerUtils('system.getFrontmostApplication'),
+  getSelectedText: (): Promise<string> => invokeServerUtils('system.getSelectedText'),
+  getFrontmostApplication: (): Promise<IFrontmostApplication | null> => invoke('get_frontmost_application'),
+  getDefaultApplication: (fileOrUrl: string): Promise<IApplication | null> => invoke('get_default_application', { fileOrUrl }),
+  getApplications: (fileOrUrl: string): Promise<IApplication[]> => invoke('get_application', { fileOrUrl }),
   runCommand: (command: string): Promise<string> => invokeServerUtils('system.runCommand', [command]),
   runAppleScript: (script: string): Promise<string> => invokeServerUtils('system.runAppleScript', [script]),
   getMousePosition: async () => {

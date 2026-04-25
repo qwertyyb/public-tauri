@@ -79,7 +79,7 @@ const onResultSelected = async (_item: IPluginCommand | null, itemIndex: number)
       mainAction.value = {
         name: 'open-command',
         icon: 'open_in_new',
-        title: 'Open Command',
+        title: '启动命令',
         action: () => service.enter(item, input.value.keyword),
       };
       rightActionPanel.value = undefined;
@@ -88,7 +88,7 @@ const onResultSelected = async (_item: IPluginCommand | null, itemIndex: number)
     mainAction.value = {
       name: 'open-command',
       icon: 'open_in_new',
-      title: 'Open Command',
+      title: '启动命令',
       action: () => service.enter(item, input.value.keyword),
     };
     if (item?.actions?.length) {

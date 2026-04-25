@@ -9,7 +9,7 @@ const launcherPlugin = definePlugin((utils) => {
       ...app,
       icon: resolveFileIcon(app.path),
       actions: [
-        { name: 'open', icon: 'open_in_new', title: 'Open Application' },
+        { name: 'open', icon: 'open_in_new', title: '启动应用' },
       ],
     }));
     utils.updateCommands(commands);

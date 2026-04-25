@@ -30,7 +30,7 @@ const detectScreen = async (): Promise<string[]> => {
   try {
     await mainWindow.hide();
     const cursorPosition = await utils.getMousePosition();
-    const monitor = await screen.screenFromPoint(cursorPosition.x, cursorPosition.y);
+    const monitor = await screen.monitorFromPoint(cursorPosition.x, cursorPosition.y);
     const imgbase64 = await screen.capture(monitor.id);
     const texts = (await invoke<string[]>('detect', imgbase64)) || [];
     return texts;

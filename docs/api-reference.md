@@ -327,7 +327,7 @@ interface ScreenDetail {
 ```
 
 ```ts
-screen.getDetails(): Promise<ScreenDetail[]>
+screen.getAllMonitors(): Promise<ScreenDetail[]>
 ```
 
 获取所有屏幕信息。
@@ -339,7 +339,7 @@ screen.capture(id: number): Promise<string>
 截取指定屏幕的画面，返回 Base64 图片。
 
 ```ts
-screen.screenFromPoint(x: number, y: number): Promise<ScreenDetail>
+screen.monitorFromPoint(x: number, y: number): Promise<ScreenDetail>
 ```
 
 根据坐标获取所在屏幕。

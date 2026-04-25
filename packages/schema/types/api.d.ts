@@ -51,6 +51,7 @@ export interface IPublicAppBaseAPI {
     debounce: <F extends ((...args: any[]) => any)>(fn: F, delay?: number) => (...args: Parameters<F>) => void,
     getFrontmostApplication: () => Promise<IApplication | undefined | null>,
     getSelectedPath: ({ fallbackCurrent }?: { fallbackCurrent?: boolean | undefined }) => Promise<string[]>,
+    getSelectedText: () => Promise<string>,
     getCurrentPath: () => Promise<string | undefined | null>,
     hanziToPinyin: (hanzi: string) => string,
   },

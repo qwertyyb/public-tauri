@@ -1,5 +1,8 @@
 <template>
-  <div class="action-panel-container">
+  <div
+    class="action-panel-container"
+    :class="position"
+  >
     <div
       ref="trigger"
       class="action-bar-action"
@@ -12,7 +15,7 @@
       ref="panelRef"
       tabindex="-1"
       class="action-panel"
-      :class="[position, { visible }]"
+      :class="{ visible }"
       role="menu"
       :aria-hidden="!visible"
     >
@@ -193,6 +196,17 @@ const handleClick = (item: Action) => {
 <style lang="scss" scoped>
 .action-panel-container {
   display: contents;
+  &.left {
+    .action-panel {
+      left: 8px;
+    }
+    .action-bar-action{
+      color: var(--text-primary-color);
+    }
+  }
+  &.right .action-panel {
+    right: 8px;
+  }
   * {
     user-select: none;
     -webkit-user-select: none;
@@ -226,12 +240,6 @@ const handleClick = (item: Action) => {
   transform: translateY(8px);
   transition: visibility 0.15s ease, opacity 0.15s ease, transform 0.15s ease;
   outline: none;
-  &.left {
-    left: 8px;
-  }
-  &.right {
-    right: 8px;
-  }
   &.visible {
     visibility: visible;
     opacity: 1;

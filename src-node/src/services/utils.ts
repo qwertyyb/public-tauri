@@ -140,6 +140,31 @@ const utils = {
       return null;
     }
   },
+  'system.getSelectedText': async (): Promise<string> => {
+    const script = `
+    set oldClipboard to the clipboard
+    set selectedText to ""
+
+    try
+      tell application "System Events"
+        keystroke "c" using command down
+      end tell
+      delay 0.08
+      set selectedText to the clipboard
+    end try
+
+    try
+      set the clipboard to oldClipboard
+    end try
+
+    return selectedText
+    `;
+    try {
+      return await runAppleScript(script);
+    } catch (err) {
+      return '';
+    }
+  },
   'system.runAppleScript': (script: string) => runAppleScript(script),
   'system.runCommand': (command: string) => new Promise((resolve, reject) => exec(command, { encoding: 'utf8' }, (error, stdout) => {
     if (error) {

@@ -147,6 +147,7 @@ defineExpose({
     cursor: pointer;
     transition: background-color 0.1s ease;
     margin-left: auto;
+    font-weight: 500;
     &:hover {
       background: var(--ui-bg-accented);
     }

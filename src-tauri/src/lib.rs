@@ -1,5 +1,8 @@
-mod commands;
+#[path = "commands/monitor.rs"]
+mod monitor;
 mod panel;
+#[path = "commands/system_utils.rs"]
+mod system_utils;
 
 pub const SPOTLIGHT_LABEL: &str = "main";
 
@@ -37,9 +40,14 @@ pub fn run() {
         .plugin(tauri_plugin_double_tap_shortcut::init())
         .plugin(tauri_nspanel::init())
         .invoke_handler(tauri::generate_handler![
-            commands::get_monitors,
-            commands::screenshot,
-            commands::monitor_from_point
+            monitor::get_all_monitors,
+            monitor::capture,
+            monitor::monitor_from_point,
+            monitor::cursor_monitor,
+            monitor::current_monitor,
+            system_utils::get_frontmost_application,
+            system_utils::get_default_application,
+            system_utils::get_application
         ])
         .setup(move |app| {
             #[cfg(any(target_os = "windows", target_os = "linux"))]

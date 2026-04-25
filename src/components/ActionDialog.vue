@@ -15,23 +15,19 @@
       </div>
     </div>
     <div class="dialog-actions">
-      <UButton
+      <div
         v-if="options.showCancel"
-        variant="ghost"
-        color="neutral"
-        class="flex-1"
+        class="dialog-action-btn cancel-btn"
         @click="onCancel"
       >
         {{ options.cancelText || '取消' }}
-      </UButton>
-      <UButton
-        variant="ghost"
-        color="primary"
-        class="flex-1"
+      </div>
+      <div
+        class="dialog-action-btn confirm-btn"
         @click="onConfirm"
       >
         {{ options.confirmText || '确认' }}
-      </UButton>
+      </div>
     </div>
   </dialog>
 </template>
@@ -81,7 +77,7 @@ dialog {
   padding: 0;
   overflow: hidden;
   &::backdrop {
-    background-color: rgba(0, 0, 0, 0.65);
+    background-color: rgba(0, 0, 0, 0.8);
   }
 
   .dialog-body {
@@ -101,6 +97,25 @@ dialog {
   .dialog-actions {
     display: flex;
     border-top: 1px solid var(--divider-color);
+  }
+  .dialog-action-btn {
+    flex: 1;
+    padding: 8px 16px;
+    transition: background .2s;
+    text-align: center;
+    &:hover {
+      cursor: pointer;
+      background: rgba(0, 0, 0, 0.1);
+    }
+    &.cancel-btn {
+      opacity: 0.7;
+    }
+    &.confirm-btn {
+      color: var(--theme-color);
+    }
+    & + .dialog-action-btn {
+      border-left: 1px solid var(--divider-color);
+    }
   }
 }
 </style>
