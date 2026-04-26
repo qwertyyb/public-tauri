@@ -103,7 +103,6 @@ const transformPlugin = definePlugin(() => ({
         ],
       }, ...decode(value));
     }
-    // utils.updateCommands(commands)
     return commands;
   },
   onAction(command) {

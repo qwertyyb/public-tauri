@@ -65,7 +65,7 @@ export const commandSchema = z.object({
   mode: z.enum(['listView', 'none', 'view'], '命令类型, template 为 listView 时，只能为 listView 或 none').default('none')
     .optional(),
   preferences: z.array(preferenceSchema, '命令的偏好设置').optional(),
-  actions: z.array(actionSchema, '命令的动作列表').optional(),
+  action: actionSchema.optional(),
   matches: z.array(commandMatchSchema, '命令匹配规则列表，用于定义该命令如何被用户输入触发。支持多种匹配类型：text（关键词）、trigger（触发器）、full（完全匹配）、regexp（正则表达式）、file（文件匹配）').optional(),
 });
 

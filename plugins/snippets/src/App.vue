@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { createPlugin } from '@public-tauri/api'
 import CreateSnippetView from '@/views/CreateSnippetView.vue';
 import EditSnippetView from '@/views/EditSnippetView.vue';
 import SnippetsListView from '@/views/SnippetsListView.vue';
@@ -20,16 +19,18 @@ provide('snippetsUi', {
   },
 })
 
-createPlugin({
-  onAction(params: any) {
-    command.value = params.name
-    editSnippet.value = null
-  },
-  onExit() {
-    command.value = ''
-    editSnippet.value = null
-  }
-})
+const events = window.$wujie?.props?.events as EventTarget | undefined
+
+events?.addEventListener('plugin:action', ((event: Event) => {
+  const { command: params } = (event as CustomEvent).detail || {}
+  command.value = params.name
+  editSnippet.value = null
+}) as EventListener)
+
+events?.addEventListener('plugin:exit', (() => {
+  command.value = ''
+  editSnippet.value = null
+}) as EventListener)
 
 </script>
 

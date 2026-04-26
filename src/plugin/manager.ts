@@ -1,16 +1,18 @@
 import path, { join } from 'path-browserify';
-import { resolveFileIcon, resolveLocalPath, clipboard, dialog, fetch, globalShortcut, mainWindow, utils, Database, screen, createPluginStorage, registerServerModule, invokePluginServerMethod, createPluginServerListener, storage, showSaveFilePicker, fs, shell, opener, WebviewWindow, Webview, NativeWindow } from '@public/core';
+import { globalShortcut, mainWindow, registerServerModule, storage } from '@public/core';
 import { readTextFile } from '@tauri-apps/plugin-fs';
-import { formatCommand, getLocalPath, openCommandPreferences, openPluginPreferences, popView, pushView, resolveIconUrl, withCache } from './utils';
+import { formatCommand, getLocalPath, openCommandPreferences, openPluginPreferences, popView, pushView, resolveIconUrl } from './utils';
 import { set } from 'es-toolkit/compat';
-import { resultsMap } from './store';
 import { resolveResource } from '@tauri-apps/api/path';
-import { destroyApp, preloadApp, setupApp, startApp } from 'wujie';
+import { startApp } from 'wujie';
 import { parsePluginConfig, type IPluginManifest, type ICommand as IPluginCommand, type IPluginLifecycle, type IPreference, type ICommandActionOptions, type IAction } from '@public/schema';
 import logger from '@/utils/logger';
 import type { IRunningPlugin, IPluginsSettings, IPluginSettings, ICommandSettings } from '@/types/plugin';
 import { BUILTIN_PLUGINS } from './builtin';
 import { DEV_PLUGIN_PATH_LIST_KEY, migratePluginPathListsFromLegacy, STORE_PLUGIN_PATH_LIST_KEY } from '@/services/store';
+import { wujiePool } from './wujie-pool';
+import { createWujieApp, getEntryUrl, getTemplatePath } from './wujie-creator';
+import { INNER_PLUGIN_NAMES } from './constants';
 
 const plugins: Map<string, IRunningPlugin> = new Map(BUILTIN_PLUGINS);
 let pluginsSettings: IPluginsSettings = {};
@@ -28,95 +30,6 @@ const checkPluginsRegistered = (path: string) => Array.from(plugins.values()).so
 /** 是否已有插件实例使用该磁盘路径（用于避免重复加载） */
 export const isPluginPathRegistered = (pluginPath: string) => checkPluginsRegistered(pluginPath);
 
-export const createWujie = (name: string, entryUrl: string, options?: {
-  insertScript: { content: string, module?: boolean }
-}) => {
-  const lifecycle: IPluginLifecycle = {};
-  const events = new EventTarget();
-
-  setupApp({
-    name,
-    url: entryUrl,
-    exec: true,
-    alive: true,
-    // degrade: true,
-    fetch(input, init) {
-      const url = input instanceof Request ? input.url : input;
-      const { host } = new URL(url);
-      if (host.endsWith('.localhost:2345') || host === '127.0.0.1:2345' || host === 'localhost:2345') {
-        return window.fetch(input, init);
-      }
-
-      return fetch(input, init);
-    },
-    props: {
-      dialog,
-      utils,
-      clipboard,
-      fetch,
-      screen,
-      mainWindow,
-      Database,
-      showSaveFilePicker,
-      fs,
-      resolveFileIcon,
-      resolveLocalPath,
-      shell,
-      opener,
-      WebviewWindow,
-      Webview,
-      NativeWindow,
-
-      storage: createPluginStorage(name),
-      invoke: (method: string, ...args: any[]) => invokePluginServerMethod(name, method, args),
-      on: createPluginServerListener(name),
-      createPlugin: (options: IPluginLifecycle) => {
-        Object.assign(lifecycle, { ...options });
-      },
-      updateActions: (actions?: IAction[]) => {
-        events.dispatchEvent(new CustomEvent('updateActions', { detail: { actions, plugin: name } }));
-      },
-      updateSearchBarValue: (value: string) => {
-        console.log('updateSearchBarValue', value);
-        events.dispatchEvent(new CustomEvent('updateSearchBarValue', { detail: { value } }));
-      },
-      updateSearchBarVisible: (visible: boolean) => {
-        events.dispatchEvent(new CustomEvent('updateSearchBarVisible', { detail: { visible } }));
-      },
-      events,
-    },
-    plugins: options?.insertScript ? [
-      {
-        jsBeforeLoaders: [
-          options.insertScript,
-        ],
-      },
-    ] : [],
-  });
-  preloadApp({ name });
-  return {
-    lifecycle,
-    events,
-  };
-};
-
-const getEntryUrl = (name: string, pathname: string) => {
-  // 如果 name 是 @xxxx/yyy 格式，则路径是 http://yyy.xxxx.plugin.localhost
-  if (/^@[^/]+\/[^/]+/.test(name)) {
-    const [scope, pluginName] = name.split('/');
-    return `http://${pluginName}.${scope.replace('@', '')}.plugin.localhost:2345${pathname}`;
-  }
-  return `http://${name}.plugin.localhost:2345${pathname}`;
-};
-
-const getTemplatePath = withCache(async () => {
-  if (import.meta.env.DEV) {
-    return join(BUILTIN_PLUGINS_PATH, '..', 'packages', 'template', 'dist');
-  }
-  const templatePath = await resolveResource('../packages/template/dist');
-  return templatePath;
-});
-
 export const registerPlugin = async (pluginPath: string) => {
   if (checkPluginsRegistered(pluginPath)) {
     console.warn(`插件已注册,请勿重复注册: ${pluginPath}`);
@@ -129,6 +42,7 @@ export const registerPlugin = async (pluginPath: string) => {
     const manifest: IPluginManifest = parsePluginConfig({ ...publicPlugin, name: pkg.name });
     manifest.icon = resolveIconUrl(manifest.icon, pluginPath);
     const { name, template, html } = manifest;
+    const isDisabled = Boolean(pluginsSettings?.[name]?.disabled);
     const commands: IPluginCommand[] = (publicPlugin.commands || []).map((item: any) => formatCommand(item, manifest, pluginPath));
     if (!pluginsSettings[name]) {
       pluginsSettings[name] = { disabled: false, commands: {}, preferences: {} };
@@ -139,10 +53,10 @@ export const registerPlugin = async (pluginPath: string) => {
       commands,
       settings: pluginsSettings[name],
     };
-    if (!pluginsSettings?.[name]?.disabled) {
+    if (!isDisabled) {
       const serverModulePath = manifest.server ? join(pluginPath, manifest.server) : '';
       const staticPaths: string[] = [];
-      if (template === 'listView') {
+      if (template === 'listView' || (manifest.main && !html)) {
         staticPaths.push(await getTemplatePath(), pluginPath);
       } else {
         staticPaths.push(pluginPath);
@@ -154,52 +68,46 @@ export const registerPlugin = async (pluginPath: string) => {
         staticPaths,
       });
     }
-    if (manifest.main && !pluginsSettings?.[name]?.disabled) {
-      const entryPath = getLocalPath(manifest.main, pluginPath)!;
-      const mod = await import(/* @vite-ignore */ entryPath);
-      const createPlugin = mod.default || mod;
-      if (typeof createPlugin === 'function') {
-        const pluginReturn = createPlugin({
+    if (!isDisabled && (html || template === 'listView' || manifest.main)) {
+      let entryUrl = getEntryUrl(name, '/index.html');
+      if (html) {
+        entryUrl = /^https?:\/\//.test(html) ? html : getEntryUrl(name, path.join('/', html));
+      }
+      const listViewScript = template === 'listView'
+        ? {
+          content: `window.$commands = ${JSON.stringify((publicPlugin.commands || []).map((item: any) => {
+            if (!item.preload) return null;
+            const url = getEntryUrl(name, path.join('/', item.preload));
+            return {
+              url,
+              name: item.name,
+            };
+          }).filter(Boolean))}`,
+          module: true,
+        }
+        : undefined;
+      const mainPlugin: IPluginLifecycle = {};
+      if (manifest.main) {
+        pluginInstance.plugin = mainPlugin;
+      }
+      const { events, mainReady } = createWujieApp({
+        name,
+        entryUrl,
+        insertScript: listViewScript,
+        mainScript: manifest.main ? {
+          url: getEntryUrl(name, path.join('/', manifest.main)),
           updateCommands: (commands: IPluginCommand[]) => {
             pluginInstance.commands = commands.map(item => formatCommand(item, manifest, pluginPath));
           },
-          showCommands: (commands: IPluginCommand[]) => {
-            const list: IPluginCommand[] = [];
-            commands.forEach((command) => {
-              const item = formatCommand(command, manifest, pluginPath);
-              list.push(item);
-              resultsMap.set(item, { owner: pluginInstance, command: item, query: '' });
-            });
-            window.dispatchEvent(new CustomEvent('plugin:showCommands', { detail: { name: manifest.name, commands: list } }));
-          },
           getPreferences: () => pluginsSettings[name]?.preferences || {},
-        }) as IPluginLifecycle;
-        pluginInstance.plugin = await pluginReturn;
-      }
-    }
-    if (html) {
-      const entryUrl = /^https?:\/\//.test(html || '') ? html : getEntryUrl(name, path.join('/', html || '/index.html'));
-      const { lifecycle, events } = createWujie(name, entryUrl);
-      pluginInstance.lifecycle = lifecycle;
-      pluginInstance.entryUrl = entryUrl;
-      pluginInstance.events = events;
-    } else if (template === 'listView') {
-      const entryUrl = getEntryUrl(name, '/index.html');
-      const commands = (publicPlugin.commands || []).map((item: any) => {
-        if (!item.preload) return null;
-        const url = getEntryUrl(name, path.join('/', item.preload));
-        return {
-          url,
-          name: item.name,
-        };
-      }).filter(Boolean);
-      const scriptContent = `window.$commands = ${JSON.stringify(commands)}`;
-      const { lifecycle, events } = createWujie(name, entryUrl, {
-        insertScript: { content: scriptContent, module: true },
+          onPlugin: plugin => Object.assign(mainPlugin, plugin),
+        } : undefined,
       });
-      pluginInstance.lifecycle = lifecycle;
       pluginInstance.entryUrl = entryUrl;
       pluginInstance.events = events;
+      if (manifest.main) {
+        await mainReady;
+      }
     }
     plugins.set(pkg.name, pluginInstance);
     return pluginInstance;
@@ -211,7 +119,7 @@ export const registerPlugin = async (pluginPath: string) => {
 
 export const unregisterPlugin = (name: string) => {
   plugins.delete(name);
-  destroyApp(name);
+  wujiePool.destroy(name);
 };
 
 /**
@@ -263,7 +171,7 @@ export const disablePlugin = (name: string, disabled: boolean) => {
   }
   pluginsSettings[name]!.disabled = disabled;
   save();
-  destroyApp(name);
+  wujiePool.destroy(name);
 };
 
 export const disablePluginCommand = (name: string, commandName: string, disabled: boolean) => {
@@ -385,10 +293,9 @@ const checkRequired = (preferences: IPreference[], values: Record<string, any>) 
   return requiredFields.every(item => values[item.name] || values[item.name] === 0);
 };
 
-/** manifest 未声明 actions 时，用命令自身作为默认主操作 */
+/** manifest 未声明 action 时，用命令自身作为默认主操作 */
 export function getPrimaryAction(command: IPluginCommand): IAction {
-  const first = command.actions?.[0];
-  if (first) return first;
+  if (command.action) return command.action;
   return { name: command.name, title: command.title, icon: command.icon };
 }
 
@@ -432,12 +339,16 @@ export const enterCommand = async (owner: IRunningPlugin, command: IPluginComman
     await Promise.resolve(owner.plugin?.onAction?.(command, primary, query, options));
   } else if (command.mode === 'listView' || command.mode === 'view') {
     const wujie = {
-      mount(el: HTMLElement) {
-        owner.lifecycle?.onAction?.(command, primary, query, options);
-        startApp({ name: owner.manifest.name, el, url: owner.entryUrl! });
+      async mount(el: HTMLElement) {
+        await startApp({ name: owner.manifest.name, el, url: owner.entryUrl! });
+        owner.events?.dispatchEvent(new CustomEvent('plugin:action', {
+          detail: { command, action: primary, query, options },
+        }));
       },
       unmount() {
-        owner.lifecycle?.onExit?.(command);
+        owner.events?.dispatchEvent(new CustomEvent('plugin:exit', {
+          detail: { command },
+        }));
       },
     };
     pushView({ path: '/plugin/view/wujie', params: { wujie, plugin: owner, command, events: owner.events } });
@@ -489,11 +400,9 @@ const getBuiltinPluginsBasePath = async () => {
 };
 
 const initInnerPlugins = async () => {
-  const names = ['clipboard', 'translate', 'launcher', 'calculator', 'transform', 'snippets', 'qrcode', 'mdn', 'applescript', 'snippets', 'emoji', 'confetti', 'script-commands'];
-
   const basePath = await getBuiltinPluginsBasePath();
   logger.info('initInnerPlugins', basePath);
-  return Promise.all(names.map(name => registerPlugin(path.join(basePath, name)).catch((err) => {
+  return Promise.all(INNER_PLUGIN_NAMES.map(name => registerPlugin(path.join(basePath, name)).catch((err) => {
     console.error(err);
   })));
 };
@@ -533,7 +442,15 @@ export const init = async () => {
     console.log('pluginsSettings', result);
     pluginsSettings = result || {};
 
+    // 1. 先初始化内置插件（plugins/ 目录）
     await initInnerPlugins();
+
+    // 2. 标记内置插件为受保护，不会被 LRU 驱逐
+    for (const name of INNER_PLUGIN_NAMES) {
+      wujiePool.protect(name);
+    }
+
+    // 3. 再初始化其他插件（store + dev）
     await initCustomPlugins();
 
     initCommandsShortcut();

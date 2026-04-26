@@ -37,7 +37,6 @@
 
 // export type IPlugin = (utils: {
 //   updateCommands: (commands: IPluginCommandConfig[]) => void | Promise<void>,
-//   showCommands: (commands: IPluginCommandConfig[]) => void,
 //   getPreferences: () => any,
 // }) => IPluginReturn;
 

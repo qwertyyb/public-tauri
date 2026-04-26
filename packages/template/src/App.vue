@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import CommandListView from '@public-tauri/api/components/CommandListView.vue';
-import { type IListViewCommand, type ICommandActionOptions, createPlugin, fetch as appFetch } from '@public-tauri/api';
+import { type IListViewCommand, type ICommandActionOptions, fetch as appFetch } from '@public-tauri/api';
 import { shallowRef } from 'vue';
 
 const commands = shallowRef<{ [x: string]: IListViewCommand }>();
@@ -8,18 +8,24 @@ const commandName = shallowRef('');
 const query = shallowRef('');
 const actionOptions = shallowRef<ICommandActionOptions>();
 
-createPlugin({
-  onAction(command, _action, keyword: string = '', options?: ICommandActionOptions) {
-    commandName.value = command.name;
-    query.value = keyword ?? '';
-    actionOptions.value = options;
-  },
-  onExit() {
-    commandName.value = '';
-    query.value = '';
-    actionOptions.value = undefined;
-  },
-});
+const events = window.$wujie?.props?.events as EventTarget | undefined;
+
+events?.addEventListener('plugin:action', ((event: Event) => {
+  const {
+    command,
+    query: keyword = '',
+    options,
+  } = (event as CustomEvent).detail || {};
+  commandName.value = command.name;
+  query.value = keyword ?? '';
+  actionOptions.value = options;
+}));
+
+events?.addEventListener('plugin:exit', (() => {
+  commandName.value = '';
+  query.value = '';
+  actionOptions.value = undefined;
+}));
 
 const loadOneCommandModule = async (url: string) => {
   // 先尝试浏览器原生动态导入；失败后降级为宿主 fetch + blob import（兼容某些 WebView 下跨域 module 限制）。
@@ -39,7 +45,7 @@ const loadOneCommandModule = async (url: string) => {
 
 const loadCommands = async () => {
   try {
-    const results = await Promise.all(window.$commands.map(async (item) => {
+    const results = await Promise.all((window.$commands || []).map(async (item) => {
       const module = await loadOneCommandModule(item.url);
       return { ...item, command: module.default };
     }));

@@ -38,11 +38,19 @@ export const on: ReturnType<typeof coreApi.createPluginServerListener> = (event,
   throw new Error('on is not supported in current environment');
 };
 
-export const createPlugin: (options: IPluginLifecycle) => void = (options) => {
+export const updateCommands = (commands: ICommand[]): void => {
   if (isInWujie) {
-    return window.$wujie?.props?.createPlugin(options);
+    window.$wujie?.props?.updateCommands?.(commands);
+    return;
   }
-  throw new Error('createPlugin is not supported in current environment');
+  throw new Error('updateCommands is not supported in current environment');
+};
+
+export const getPreferences = <T extends Record<string, any> = Record<string, any>>(): T => {
+  if (isInWujie) {
+    return (window.$wujie?.props?.getPreferences?.() || {}) as T;
+  }
+  throw new Error('getPreferences is not supported in current environment');
 };
 
 export const updateActions = (actions: PluginShellAction[]): void => {
@@ -54,6 +62,12 @@ export const updateActions = (actions: PluginShellAction[]): void => {
 };
 
 export const createPluginChannel: typeof coreApi.createPluginChannel = (pluginName) => {
+  if (isInWujie) {
+    return {
+      invoke: <T = any>(name: string, ...args: any[]) => window.$wujie?.props?.invoke(name, ...args) as Promise<T>,
+      on: window.$wujie?.props?.on,
+    };
+  }
   if (!isInWujie) {
     return api.createPluginChannel(pluginName);
   }
@@ -62,6 +76,7 @@ export const createPluginChannel: typeof coreApi.createPluginChannel = (pluginNa
 
 export const definePlugin = (options: (app: {
   updateCommands: (commands: ICommand[]) => void
+  getPreferences: typeof getPreferences
 }) => IPluginLifecycle) => options;
 
 export const updateSearchBarValue = (value: string): void => {

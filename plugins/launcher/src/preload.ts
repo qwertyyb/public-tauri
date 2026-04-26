@@ -1,18 +1,16 @@
-import { createPluginChannel, definePlugin, resolveFileIcon } from '@public-tauri/api';
+import { createPluginChannel, definePlugin, resolveFileIcon, updateCommands } from '@public-tauri/api';
 
 const { invoke, on } = createPluginChannel('launcher');
 
-const launcherPlugin = definePlugin((utils) => {
+const launcherPlugin = definePlugin(() => {
   on('apps', (apps) => {
     console.log('apps', apps);
     const commands = apps.map(app => ({
       ...app,
       icon: resolveFileIcon(app.path),
-      actions: [
-        { name: 'open', icon: 'open_in_new', title: '启动应用' },
-      ],
+      action: { name: 'open', icon: 'open_in_new', title: '启动应用' },
     }));
-    utils.updateCommands(commands);
+    updateCommands(commands);
   });
   return ({
     onAction(command, action) {

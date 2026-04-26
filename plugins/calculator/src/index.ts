@@ -15,7 +15,7 @@ interface HistoryItem {
 }
 
 async function getHistory(): Promise<HistoryItem[]> {
-  const history = await storage.getItem<HistoryItem[]>(HISTORY_KEY);
+  const history = await storage.getItem(HISTORY_KEY) as HistoryItem[] | null;
   return history || [];
 }
 
@@ -103,9 +103,7 @@ const calculatorPlugin = definePlugin(() => ({
           matches: [
             { type: 'text', keywords: [keyword] },
           ],
-          actions: [
-            { name: 'copy', title: '复制到剪切板' },
-          ],
+          action: { name: 'copy', title: '复制到剪切板' },
         },
       ];
     }

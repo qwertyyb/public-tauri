@@ -62,28 +62,20 @@ const onResultSelected = async (_item: IPluginCommand | null, itemIndex: number)
   }
 
   console.log('selected', item);
+  const { action } = item;
   if (item?.mode === 'none' || !item?.mode) {
-    if (item?.actions?.length) {
-      const actionItems: ActionPanelAction[] = item.actions.map(a => ({
-        ...a,
-        action: () => onResultAction(item, itemIndex, { name: a.name, icon: a.icon!, title: a.title || a.name }),
-      }));
-      const [firstAction, ...restActions] = actionItems;
-      mainAction.value = firstAction;
-      rightActionPanel.value = {
-        title: item.title,
-        actions: restActions,
-      };
-    } else {
-      // mode「none」且无 actions：回车仍应走 manager.enterCommand → onAction（主操作，与 ActionBar ↵ 一致）
-      mainAction.value = {
+    mainAction.value = action
+      ? {
+        ...action,
+        action: () => onResultAction(item, itemIndex, action),
+      }
+      : {
         name: 'open-command',
         icon: 'open_in_new',
         title: '启动命令',
         action: () => service.enter(item, input.value.keyword),
       };
-      rightActionPanel.value = undefined;
-    }
+    rightActionPanel.value = undefined;
   } else {
     mainAction.value = {
       name: 'open-command',
@@ -91,17 +83,15 @@ const onResultSelected = async (_item: IPluginCommand | null, itemIndex: number)
       title: '启动命令',
       action: () => service.enter(item, input.value.keyword),
     };
-    if (item?.actions?.length) {
-      rightActionPanel.value = {
+    rightActionPanel.value = action
+      ? {
         title: item.title,
-        actions: item.actions.map(a => ({
-          ...a,
-          action: () => onResultAction(item, itemIndex, a),
-        })),
-      };
-    } else {
-      rightActionPanel.value = undefined;
-    }
+        actions: [{
+          ...action,
+          action: () => onResultAction(item, itemIndex, action),
+        }],
+      }
+      : undefined;
   }
 };
 
@@ -110,16 +100,10 @@ const onResultAction = async (item: IPluginCommand, _itemIndex: number, action: 
   service.action(toRaw(item), toRaw(action), input.value.keyword);
 };
 
-const setPluginResults = (e: CustomEvent<{ commands: IPluginCommand[] }>) => {
-  const { commands } = e.detail || {};
-  results.value = commands;
-};
-
 declare global {
   // eslint-disable-next-line no-unused-vars
   interface WindowEventMap {
     'publicApp.mainWindow.show': CustomEvent<{}>;
-    'plugin:showCommands': CustomEvent<{ name: string, commands: IPluginCommand[] }>;
   }
 }
 
@@ -129,7 +113,6 @@ const mainAction = ref<ActionPanelAction | undefined>();
 let unlistenFocusChange: UnlistenFn;
 
 onMounted(async () => {
-  window.addEventListener('plugin:showCommands', setPluginResults);
   window.addEventListener('publicApp.mainWindow.show', focusInput);
   unlistenFocusChange = await getCurrentWindow().onFocusChanged(({ payload: focused }) => {
     console.log('currentWindow onFocusChanged', focused);
@@ -140,7 +123,6 @@ onMounted(async () => {
 });
 
 onBeforeUnmount(() => {
-  window.removeEventListener('plugin:showCommands', setPluginResults);
   window.removeEventListener('publicApp.mainWindow.show', focusInput);
   unlistenFocusChange?.();
 });

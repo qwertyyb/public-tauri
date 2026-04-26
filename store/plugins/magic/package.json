@@ -42,12 +42,10 @@
             "title": "打开魔方H5编辑页“${matches[2]}”"
           }
         ],
-        "actions": [
-          {
-            "name": "openUrl",
-            "title": "打开页面"
-          }
-        ]
+        "action": {
+          "name": "openUrl",
+          "title": "打开页面"
+        }
       },
       {
         "name": "mod",

@@ -2,7 +2,6 @@
 import CreateScriptCommand from './CreateScriptCommand.vue';
 import EditScriptCommand from './EditScriptCommand.vue';
 import ScriptCommandListView from './ScriptCommandListView.vue';
-import { createPlugin } from '@public-tauri/api'
 import { provide, ref } from 'vue';
 import type { ScriptCommandOptions } from './scriptCommand'
 
@@ -20,16 +19,18 @@ provide('scriptCommandsUi', {
   },
 })
 
-createPlugin({
-  onAction(params: { name: string }) {
-    command.value = params.name
-    editScriptCommand.value = null
-  },
-  onExit() {
-    command.value = ''
-    editScriptCommand.value = null
-  }
-})
+const events = window.$wujie?.props?.events as EventTarget | undefined
+
+events?.addEventListener('plugin:action', ((event: Event) => {
+  const { command: params } = (event as CustomEvent).detail || {}
+  command.value = params.name
+  editScriptCommand.value = null
+}) as EventListener)
+
+events?.addEventListener('plugin:exit', (() => {
+  command.value = ''
+  editScriptCommand.value = null
+}) as EventListener)
 </script>
 <template>
   <UApp>

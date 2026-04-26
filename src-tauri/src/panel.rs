@@ -19,7 +19,7 @@ tauri_panel! {
 }
 
 pub fn setup_panel(app: &mut App) {
-    app.set_activation_policy(tauri::ActivationPolicy::Prohibited);
+    app.set_activation_policy(tauri::ActivationPolicy::Accessory);
 
     let handle = app.app_handle();
 

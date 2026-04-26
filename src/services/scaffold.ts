@@ -207,10 +207,7 @@ function generateIndexHtml(options: ScaffoldOptions): string {
 
 function generateViewMainTs(): string {
   return `import { createApp } from 'vue'
-import { createPlugin } from '@public-tauri/api'
 import App from './App.vue'
-
-createPlugin({})
 
 createApp(App).mount('#app')
 `;

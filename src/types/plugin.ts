@@ -6,7 +6,6 @@ export interface IRunningPlugin {
   manifest: IPluginManifest
   commands: ICommand[]
   settings?: IPluginSettings
-  lifecycle?: IPluginLifecycle
   entryUrl?: string
   events?: EventTarget
 }

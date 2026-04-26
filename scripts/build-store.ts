@@ -43,7 +43,7 @@ interface PluginManifest {
       extensions?: string[];
       title?: string;
     }>;
-    actions?: Array<{ name: string; title: string }>;
+    action?: { name: string; title: string };
   }>;
 }
 

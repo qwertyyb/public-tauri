@@ -16,6 +16,7 @@
     "subtitle": "快捷计算表达式",
     "icon": "./assets/icon.png",
     "main": "./dist/index.js",
+    "template": "listView",
     "commands": [
       {
         "name": "calc_history",
