@@ -139,7 +139,7 @@ onBeforeUnmount(() => {
   }
   // background-color: light-dark(#e5e8e8, #161616);
 }
-.command-list-view > :v-deep(*) {
+.command-list-view::v-deep(*){
   width: 100%;
 }
 </style>

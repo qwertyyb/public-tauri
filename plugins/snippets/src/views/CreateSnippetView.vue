@@ -40,7 +40,7 @@
 
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref, toRaw, useTemplateRef } from 'vue'
-import { dialog, mainWindow, setActions, storage } from '@public-tauri/api'
+import { dialog, mainWindow, updateActions as setActions, storage } from '@public-tauri/api'
 
 const formValue = ref({
   title: '',

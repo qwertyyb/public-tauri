@@ -40,7 +40,7 @@
 
 <script setup lang="ts">
 import { inject, onMounted, onUnmounted, ref, toRaw, useTemplateRef, watch } from 'vue'
-import { dialog, setActions, storage } from '@public-tauri/api'
+import { dialog, updateActions as setActions, storage } from '@public-tauri/api'
 
 const props = defineProps<{
   payload: { index: number; title: string; content: string }

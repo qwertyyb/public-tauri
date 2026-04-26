@@ -1,9 +1,9 @@
 <template>
-  <div class="create-script-command-view">
-    <h1>Create Script Command</h1>
+  <div class="edit-script-command-view">
+    <h1>Edit Script Command</h1>
     <form
       class="space-y-4"
-      @submit.prevent="submitHandler"
+      @submit.prevent="saveScriptCommand"
     >
       <UFormField
         label="Template"
@@ -47,6 +47,20 @@
         />
       </UFormField>
       <UFormField
+        label="Path"
+        name="path"
+      >
+        <UInput
+          v-model.trim="formValue.path"
+          type="text"
+          placeholder="Script path"
+          :autocorrect="false"
+          autocomplete="off"
+          class="w-full"
+          @keydown="keyDownHandler($event, 'path')"
+        />
+      </UFormField>
+      <UFormField
         label="Description"
         name="description"
       >
@@ -61,16 +75,21 @@
     </form>
   </div>
 </template>
+
 <script setup lang="ts">
-import { showSaveFilePicker, dialog, fs, opener, storage, mainWindow, updateActions as setActions } from '@public-tauri/api'
-import { onMounted, onUnmounted, ref, toRaw, useTemplateRef } from 'vue'
+import { dialog, opener, storage, updateActions as setActions } from '@public-tauri/api'
+import { inject, onMounted, onUnmounted, ref, toRaw, useTemplateRef, watch } from 'vue'
 import {
-  generateScript,
-  getScriptSuffix,
+  normalizeTemplate,
   SCRIPT_TEMPLATES,
   type ScriptCommandOptions,
 } from './scriptCommand'
 
+const props = defineProps<{
+  payload: ScriptCommandOptions & { index: number }
+}>()
+
+const scriptCommandsUi = inject<{ finishEdit: () => void }>('scriptCommandsUi')
 const templateItems = [...SCRIPT_TEMPLATES]
 
 const formValue = ref<ScriptCommandOptions>({
@@ -86,46 +105,61 @@ const titleInput = useTemplateRef<{
   inputRef?: HTMLInputElement
 }>('title')
 
-const addScriptCommand = async (options: ScriptCommandOptions) => {
-  const list: ScriptCommandOptions[] = (await storage.getItem('scriptCommands')) || []
-  list.unshift(options)
-  await storage.setItem('scriptCommands', list)
-}
+watch(() => props.payload, (p) => {
+  formValue.value = {
+    template: normalizeTemplate(p.template),
+    title: p.title,
+    icon: p.icon || '',
+    description: p.description || '',
+    path: p.path,
+  }
+}, { immediate: true })
 
-const submitHandler = async () => {
+const saveScriptCommand = async () => {
   if (!formValue.value.title) {
     dialog.showToast('Title is required')
-    return;
+    return
   }
-  const filePath = await showSaveFilePicker({
-    canCreateDirectories: true,
-    defaultPath: `${formValue.value.title}.${getScriptSuffix(formValue.value.template)}`,
-  })
-  if (!filePath) return;
-  const options = { ...toRaw(formValue.value), path: filePath }
-  await fs.writeTextFile(filePath, generateScript(options))
-  await addScriptCommand(options)
-  dialog.showToast('创建成功')
-  opener.openPath(filePath)
+  if (!formValue.value.path) {
+    dialog.showToast('Path is required')
+    return
+  }
+
+  const list: ScriptCommandOptions[] = (await storage.getItem('scriptCommands')) || []
+  const i = props.payload.index
+  if (i < 0 || i >= list.length) {
+    dialog.showToast('命令不存在')
+    return
+  }
+  list[i] = { ...toRaw(formValue.value) }
+  await storage.setItem('scriptCommands', list)
+  dialog.showToast('保存成功')
   setActions([])
-  mainWindow.popToRoot()
-  mainWindow.hide()
+  scriptCommandsUi?.finishEdit()
 }
 
-const keyDownHandler = (event: KeyboardEvent | Event, name: keyof Pick<ScriptCommandOptions, 'title' | 'icon' | 'description'>) => {
+const openScript = async () => {
+  if (formValue.value.path) {
+    opener.openPath(formValue.value.path)
+  }
+}
+
+const keyDownHandler = (event: KeyboardEvent | Event, name: keyof ScriptCommandOptions) => {
   if (event instanceof KeyboardEvent && event.key === 'Escape') {
+    if (name === 'template') return
     if (formValue.value[name]) {
       formValue.value[name] = ''
       return
     }
     setActions([])
-    mainWindow.popToRoot()
+    scriptCommandsUi?.finishEdit()
   }
 }
 
 onMounted(() => {
   setActions([
-    { name: 'save', title: '创建', action: submitHandler },
+    { name: 'save', title: '保存', action: saveScriptCommand },
+    { name: 'open', title: '打开脚本', action: openScript },
   ])
   setTimeout(() => {
     const el = titleInput.value?.inputRef
@@ -138,8 +172,9 @@ onUnmounted(() => {
   setActions([])
 })
 </script>
+
 <style scoped>
-.create-script-command-view {
+.edit-script-command-view {
   padding: 16px;
 }
 </style>

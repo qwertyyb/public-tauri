@@ -1,4 +1,8 @@
 import { createApp } from 'vue'
+import ui from '@nuxt/ui/vue-plugin'
 import App from './App.vue'
+import './assets/css/main.css'
 
-createApp(App).mount('#app')
+const app = createApp(App)
+app.use(ui as never)
+app.mount('#app')
