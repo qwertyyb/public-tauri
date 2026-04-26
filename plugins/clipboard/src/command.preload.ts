@@ -1,17 +1,17 @@
 import { clipboard, mainWindow, Database, type IListViewCommand } from '@public-tauri/api';
-import { ContentType, DATABASE_PATH } from './const';
+import { ContentType, DATABASE_PATH, getHash, isSensitiveContent } from './const';
 
 let db: ReturnType<typeof Database['get']> | null = null;
 
-const formatDate = function (date: Date, format = 'yyyy-MM-dd hh:mm:ss') {
+const formatDate = (date: Date, format = 'yyyy-MM-dd hh:mm:ss') => {
   const o = {
-    'M+': date.getMonth() + 1,                 // 月份
-    'd+': date.getDate(),                    // 日
-    'h+': date.getHours(),                   // 小时
-    'm+': date.getMinutes(),                 // 分
-    's+': date.getSeconds(),                 // 秒
-    'q+': Math.floor((date.getMonth() + 3) / 3), // 季度
-    S: date.getMilliseconds(),             // 毫秒
+    'M+': date.getMonth() + 1,
+    'd+': date.getDate(),
+    'h+': date.getHours(),
+    'm+': date.getMinutes(),
+    's+': date.getSeconds(),
+    'q+': Math.floor((date.getMonth() + 3) / 3),
+    S: date.getMilliseconds(),
   };
   let fmt = format;
   if (/(y+)/.test(fmt)) {
@@ -36,33 +36,70 @@ const createDatabase = async () => {
     lastUseAt TEXT NOT NULL,
     content BLOB NULL DEFAULT NULL,
     application TEXT NULL DEFAULT NULL,
-    hash TEXT NULL DEFAULT NULL
+    hash TEXT NULL UNIQUE
   );`;
-  console.log('createDatabase');
   db = await Database.load(DATABASE_PATH).catch((err) => {
     console.error('Error creating Database', err);
     throw err;
   });
-  console.log('createDatabase', db);
   await db.execute(sql);
-  return db.execute('CREATE INDEX IF NOT EXISTS hashIndex on clipboardHistory(hash)');
+  await db.execute('CREATE INDEX IF NOT EXISTS hashIndex on clipboardHistory(hash)');
 };
 
-const insertRecord = async (record: { contentType: number, text: string, content: Buffer | null, hash: string }) => {
+const checkDuplicate = async (hash: string): Promise<boolean> => {
+  if (!db) return false;
+  const result = await db.select<{ id: number }[]>(
+    'SELECT id FROM clipboardHistory WHERE hash = $1 LIMIT 1',
+    [hash],
+  );
+  return result.length > 0;
+};
+
+const insertRecord = async (record: {
+  contentType: number;
+  text: string;
+  content: Uint8Array | null;
+  hash: string;
+}) => {
   if (!db) return;
-  const sql = 'INSERT INTO clipboardHistory(contentType, text, content, createdAt, lastUseAt, hash) values ($1, $2, $3, $4, $5, $6)';
-  console.log(record);
+  const sql = `INSERT INTO clipboardHistory(contentType, text, content, createdAt, lastUseAt, hash)
+               values ($1, $2, $3, $4, $5, $6)`;
   return db.execute(sql, [
-    record.contentType || ContentType.text,
+    record.contentType,
     record.text,
-    record.content || null, formatDate(new Date()), formatDate(new Date()), record.hash,
+    record.content,
+    formatDate(new Date()),
+    formatDate(new Date()),
+    record.hash,
   ]);
 };
 
+// 截断文本用于显示
+const truncateText = (text: string, maxLen = 100): string => {
+  if (text.length <= maxLen) return text;
+  return `${text.slice(0, maxLen)}...`;
+};
+
+// 清理过期记录（保留 30 天）
+const cleanupExpired = async () => {
+  if (!db) return;
+  const cutoffDate = new Date();
+  cutoffDate.setDate(cutoffDate.getDate() - 30);
+  const cutoffStr = formatDate(cutoffDate);
+  await db.execute(
+    'DELETE FROM clipboardHistory WHERE createdAt < $1',
+    [cutoffStr],
+  );
+  console.log('Cleaned up expired clipboard records');
+};
 
 const dbReady = createDatabase()
-  .then(() => {
+  .then(async () => {
     clipboard.startListening();
+    // 启动时清理过期记录
+    await cleanupExpired();
+    // 每小时清理一次
+    setInterval(cleanupExpired, 60 * 60 * 1000);
   })
   .catch((err) => {
     console.error('Failed to init clipboard database', err);
@@ -74,115 +111,125 @@ const ensureDbReady = async () => {
 };
 
 clipboard.onClipboardUpdate(async () => {
-  console.log('Received new text in clipboard: ');
-  const [html, text, imgbase64] = await Promise.all([
-    clipboard.readHtml().catch(() => null),
+  const [text, imgbase64] = await Promise.all([
     clipboard.readText().catch(() => null),
     clipboard.readImageBase64().catch(() => null),
   ]);
-  console.log('clipboard', { html, text, imgbase64 });
 
+  await ensureDbReady();
+
+  // 处理图片
   if (imgbase64) {
-    console.log('base64 image received: ', imgbase64);
-    // list.push({
-    //   createdAt: new Date(),
-    //   text,
-    //   contentType: 'image',
-    //   content: imgbase64,
-    // });
+    const hash = await getHash(imgbase64);
+
+    // 去重检查
+    if (await checkDuplicate(hash)) {
+      console.log('Duplicate image, skipping');
+      return;
+    }
+
+    // 图片的 text 字段存储简短描述
+    const text = `[图片] ${formatDate(new Date())}`;
+    await insertRecord({
+      contentType: ContentType.image,
+      text,
+      content: imgbase64,
+      hash,
+    });
+    console.log('Saved image to clipboard history');
   } else if (text) {
-    console.log('text received: ', text);
-    // list.push({
-    //   createdAt: new Date(),
-    //   text,
-    //   contentType: 'html',
-    //   content: text,
-    // });
-    await ensureDbReady();
-    insertRecord({ contentType: ContentType.text, text, content: null, hash: '' });
+    // 敏感内容过滤
+    if (isSensitiveContent(text)) {
+      console.log('Sensitive content detected, skipping');
+      return;
+    }
+
+    const hash = await getHash(text);
+
+    // 去重检查
+    if (await checkDuplicate(hash)) {
+      console.log('Duplicate text, skipping');
+      return;
+    }
+
+    await insertRecord({
+      contentType: ContentType.text,
+      text,
+      content: null,
+      hash,
+    });
+    console.log('Saved text to clipboard history:', truncateText(text));
   }
 });
 
 const queryRecordList = async ({ keyword = '' } = {}, { strict = false } = {}) => {
   const database = await ensureDbReady();
   if (!database) return [];
-  const sql = keyword ? 'SELECT * FROM clipboardHistory where text like $1 order by lastUseAt DESC limit 30' : 'SELECT * FROM clipboardHistory order by lastUseAt DESC limit 30';
+
+  // 图片类型不参与搜索
+  const sql = keyword
+    ? 'SELECT * FROM clipboardHistory WHERE contentType = 0 AND text LIKE $1 ORDER BY lastUseAt DESC LIMIT 30'
+    : 'SELECT * FROM clipboardHistory ORDER BY lastUseAt DESC LIMIT 30';
+
   const query = strict ? keyword : `%${keyword}%`;
-  console.time('query');
-  const results = await database.select<IClipboardItem[]>(sql, [query]);
-  console.timeEnd('query');
-  return results.map((item: any) => ({
-    ...item,
-    content: item.content instanceof Uint8Array ? `data:image/png;base64,${Buffer.from(item.content as Uint8Array).toString('base64')}` : null,
-  }));
+  const results = await database.select<any[]>(sql, keyword ? [query] : []);
+
+  return results;
+};
+
+const buildListItem = (item: any) => {
+  const subtitle = `创建于: ${item.createdAt}`;
+  const isImage = item.contentType === ContentType.image;
+
+  return {
+    key: `plugin:clipboard:${item.id}`,
+    title: item.text,
+    subtitle,
+    icon: isImage ? `data:image/png;base64,${item.content}` : './assets/text.png',
+    contentValue: item.text,
+    contentType: item.contentType,
+    actions: [
+      {
+        name: 'paste',
+        title: '粘贴',
+      },
+    ],
+  };
 };
 
 const search = async (keyword?: string) => {
   const list = await queryRecordList({ keyword });
-  return list.map((item: any) => {
-    const subtitle = `最后使用: ${item.lastUseAt}     创建于: ${item.createdAt}`;
-    return {
-      key: `plugin:clipboard:${item.text}`,
-      title: item.text,
-      subtitle,
-      icon: item.content ? item.content : './assets/text.png',
-      contentValue: item.content ? item.content : item.text,
-      contentType: item.contentType,
-      actions: [
-        {
-          name: 'paste',
-          title: '粘贴',
-        },
-      ],
-    };
-  });
+  return list.map(buildListItem);
 };
 
 const listView: IListViewCommand = {
-  async onShow(query, _, setList) {
-    console.log('onShow', query);
+  async onShow(_query, _action, setList) {
     try {
-      setList(await search());
+      const list = await search();
+      console.log('list', list);
+      setList(list);
     } catch (err) {
       console.error('clipboard onShow failed', err);
       setList([]);
     }
   },
   onSearch: async (value: string, setList: (list: any[]) => void) => {
-    let list: any[] = [];
     try {
-      list = await queryRecordList({ keyword: value });
+      const list = await search(value);
+      console.log('list', list);
+      setList(list);
     } catch (err) {
       console.error('clipboard onSearch failed', err);
       setList([]);
-      return;
     }
-    list = list.map((item: any) => {
-      const subtitle = `最后使用: ${item.lastUseAt}     创建于: ${item.createdAt}`;
-      return {
-        key: `plugin:clipboard:${item.text}`,
-        title: item.text,
-        subtitle,
-        icon: item.content ? item.content : './assets/text.png',
-        contentValue: item.content ? item.content : item.text,
-        contentType: item.contentType,
-        actions: [
-          {
-            name: 'paste',
-            title: '粘贴',
-          },
-        ],
-      };
-    });
-    setList(list);
   },
   async onSelect(item) {
     let el: HTMLElement;
-    if (item.contentType === ContentType.image && item.contentValue) {
+    if (item.contentType === ContentType.image) {
       const div = document.createElement('div');
       div.style.cssText = 'width:100%;height:var(--preview-height);display:flex;justify-content:center;align-items:center;';
       const img = document.createElement('img');
-      img.src = item.contentValue;
+      img.src = item.icon;
       img.style.cssText = 'max-width:100%;max-height:100%';
       div.appendChild(img);
       el = div;
