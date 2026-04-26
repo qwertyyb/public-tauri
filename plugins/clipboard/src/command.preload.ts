@@ -1,5 +1,5 @@
 import { clipboard, mainWindow, Database, type IListViewCommand } from '@public-tauri/api';
-import { ContentType, DATABASE_PATH, getHash, isSensitiveContent } from './const';
+import { ContentType, DATABASE_PATH, getHash } from './const';
 
 let db: ReturnType<typeof Database['get']> | null = null;
 
@@ -138,12 +138,6 @@ clipboard.onClipboardUpdate(async () => {
     });
     console.log('Saved image to clipboard history');
   } else if (text) {
-    // 敏感内容过滤
-    if (isSensitiveContent(text)) {
-      console.log('Sensitive content detected, skipping');
-      return;
-    }
-
     const hash = await getHash(text);
 
     // 去重检查
