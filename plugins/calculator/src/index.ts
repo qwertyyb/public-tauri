@@ -1,10 +1,37 @@
 
 import { writeText } from 'tauri-plugin-clipboard-api';
-import { dialog, definePlugin, type ICommand } from '@public-tauri/api';
+import { dialog, definePlugin, storage, type ICommand } from '@public-tauri/api';
 import { create, all } from 'mathjs';
 
 const DECIMAL_SEPARATOR = '.';
 const ARG_SEPARATOR = ',';
+const HISTORY_KEY = 'calculator_history';
+const MAX_HISTORY_SIZE = 100;
+
+interface HistoryItem {
+  expression: string;
+  result: string;
+  timestamp: number;
+}
+
+async function getHistory(): Promise<HistoryItem[]> {
+  const history = await storage.getItem<HistoryItem[]>(HISTORY_KEY);
+  return history || [];
+}
+
+async function addToHistory(expression: string, result: string): Promise<void> {
+  const history = await getHistory();
+  history.unshift({
+    expression,
+    result,
+    timestamp: Date.now(),
+  });
+  // 限制历史记录数量
+  if (history.length > MAX_HISTORY_SIZE) {
+    history.pop();
+  }
+  await storage.setItem(HISTORY_KEY, history);
+}
 
 const mathjs = create(all, {
   relTol: 1e-12,
@@ -65,7 +92,6 @@ const calculatorPlugin = definePlugin(() => ({
   onInput(keyword: string): ICommand[] {
     if (Calculator.isValidInput(keyword)) {
       const result = Calculator.calculate(keyword);
-      console.log('keyword', result);
       return [
         {
           name: 'calculator',
@@ -73,6 +99,7 @@ const calculatorPlugin = definePlugin(() => ({
           subtitle: '点击复制到剪切板',
           icon: './assets/icon.png',
           text: `${result}`,
+          extra: { expression: keyword },
           matches: [
             { type: 'text', keywords: [keyword] },
           ],
@@ -86,6 +113,11 @@ const calculatorPlugin = definePlugin(() => ({
   },
   onAction(command, action) {
     if (action.name === 'copy') {
+      const extra = (command as any).extra;
+      // 保存到历史
+      if (extra?.expression) {
+        addToHistory(extra.expression, String(command.text));
+      }
       writeText(String(command.text));
       dialog.showToast('结果已复制到剪切板');
     }

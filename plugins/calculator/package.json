@@ -15,7 +15,31 @@
     "title": "计算器",
     "subtitle": "快捷计算表达式",
     "icon": "./assets/icon.png",
-    "main": "./dist/index.js"
+    "main": "./dist/index.js",
+    "commands": [
+      {
+        "name": "calc_history",
+        "title": "计算历史",
+        "matches": [
+          {
+            "type": "trigger",
+            "triggers": [
+              "calc"
+            ],
+            "title": "搜索计算历史“$query”..."
+          },
+          {
+            "type": "text",
+            "keywords": [
+              "计算历史",
+              "calc history"
+            ]
+          }
+        ],
+        "mode": "listView",
+        "preload": "./dist/command.history.js"
+      }
+    ]
   },
   "dependencies": {
     "@public-tauri/api": "workspace:^",

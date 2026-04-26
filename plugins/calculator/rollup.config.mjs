@@ -25,4 +25,7 @@ const createRollupConfig = input => ({
   treeshake: 'smallest',
 });
 
-export default defineConfig([createRollupConfig('./src/index.ts')]);
+export default defineConfig([
+  createRollupConfig('./src/index.ts'),
+  createRollupConfig('./src/command.history.ts'),
+]);
