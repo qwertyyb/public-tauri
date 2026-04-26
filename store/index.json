@@ -1,14 +1,14 @@
 {
-  "updateTime": 1776662820064,
+  "updateTime": 1777215940994,
   "plugins": [
     {
       "name": "@public-tauri-ext/google-chrome",
-      "icon": "https://img.icons8.com/?size=100&id=9R1OGVgF3YjD&format=png&color=000000",
+      "icon": "https://www.google.com/chrome/static/images/chrome-logo.svg",
       "version": "1.0.0",
       "author": "",
       "manifest": {
         "name": "@public-tauri-ext/google-chrome",
-        "icon": "https://img.icons8.com/?size=100&id=9R1OGVgF3YjD&format=png&color=000000",
+        "icon": "https://www.google.com/chrome/static/images/chrome-logo.svg",
         "title": "Google Chrome",
         "subtitle": "在 Chrome 中打开链接或搜索",
         "description": "触发词 gc + 空格 + 关键词：在 Google Chrome 中打开 Google 搜索；若输入以 http(s):// 开头则直接打开该地址。另支持通过关键词发现「新建 Chrome 窗口」命令。",
