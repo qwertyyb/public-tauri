@@ -59,9 +59,15 @@ import {
   // 服务端通信（main 模式）
   createPluginChannel,
 
-  // 插件注册
-  createPlugin,
+  // main 插件
   definePlugin,
+  updateCommands,
+  getPreferences,
+
+  // view 插件宿主 UI
+  updateActions,
+  updateSearchBarValue,
+  updateSearchBarVisible,
 
   // 类型导出
   type ICommand,
@@ -518,9 +524,9 @@ on('my-event', (data) => {
 
 ---
 
-## createPluginChannel（main 模式）
+## createPluginChannel
 
-在 main 模式下，创建与服务端的通信通道。
+创建与插件服务端的通信通道。
 
 ```ts
 createPluginChannel(pluginName: string): {
@@ -529,23 +535,108 @@ createPluginChannel(pluginName: string): {
 }
 ```
 
-> **注意**：仅在 main 模式下可用。
+在 wujie 插件环境内调用时，会自动使用当前插件的服务端通道；在主应用环境调用时需要传入插件名。
 
 ---
 
-## createPlugin / definePlugin
+## definePlugin
 
-插件注册辅助函数。详见 [生命周期 API](./lifecycle.md)。
+main 插件入口辅助函数。`manifest.main` 会在 wujie 环境中执行，不再由主应用直接 `import`。
 
 ```ts
-// view 模式使用
-createPlugin(options: IPluginLifecycle): void
-
-// main 模式使用
 definePlugin(options: (app: {
   updateCommands: (commands: ICommand[]) => void
+  getPreferences: <T extends Record<string, any> = Record<string, any>>() => T
 }) => IPluginLifecycle
 ): (app: any) => IPluginLifecycle
+```
+
+示例：
+
+```ts
+import { definePlugin } from '@public-tauri/api'
+
+export default definePlugin((app) => {
+  const preferences = app.getPreferences()
+
+  app.updateCommands([
+    {
+      name: 'open',
+      title: 'Open',
+      action: { name: 'open', title: '打开' },
+    },
+  ])
+
+  return {
+    onAction(command, action, query) {
+      console.log(command, action, query, preferences)
+    },
+  }
+})
+```
+
+---
+
+## updateCommands / getPreferences
+
+main 插件可直接导入这些 API，也可通过 `definePlugin((app) => ...)` 的 `app` 参数使用。
+
+```ts
+updateCommands(commands: ICommand[]): void
+```
+
+动态更新插件命令列表。命令级操作使用单个 `action` 字段：
+
+```ts
+updateCommands([
+  {
+    name: 'copy',
+    title: 'Copy Result',
+    mode: 'none',
+    action: { name: 'copy', title: '复制' },
+  },
+])
+```
+
+```ts
+getPreferences<T extends Record<string, any> = Record<string, any>>(): T
+```
+
+读取当前插件的偏好设置。
+
+---
+
+## updateActions / updateSearchBar
+
+view 插件可使用这些 API 控制宿主 UI。
+
+```ts
+updateActions(actions: Array<IAction & { action?: () => void }>): void
+```
+
+更新宿主 ActionBar。第一个 action 会成为主操作，其余 action 会放入更多操作面板。
+
+```ts
+updateSearchBarValue(value: string): void
+updateSearchBarVisible(visible: boolean): void
+```
+
+更新宿主搜索框的值或显示状态。
+
+view 插件不再使用 `createPlugin` 注册生命周期。需要响应宿主命令进入/退出时，直接监听 wujie 注入的事件：
+
+```ts
+const events = window.$wujie?.props?.events as EventTarget | undefined
+
+events?.addEventListener('plugin:action', ((event: Event) => {
+  const { command, action, query, options } = (event as CustomEvent).detail
+  console.log(command, action, query, options)
+}) as EventListener)
+
+events?.addEventListener('plugin:exit', ((event: Event) => {
+  const { command } = (event as CustomEvent).detail
+  console.log('exit', command)
+}) as EventListener)
 ```
 
 ---
