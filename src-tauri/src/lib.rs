@@ -3,6 +3,8 @@ mod monitor;
 mod panel;
 #[path = "commands/system_utils.rs"]
 mod system_utils;
+#[path = "commands/permissions.rs"]
+mod permissions;
 
 pub const SPOTLIGHT_LABEL: &str = "main";
 
@@ -47,7 +49,14 @@ pub fn run() {
             monitor::current_monitor,
             system_utils::get_frontmost_application,
             system_utils::get_default_application,
-            system_utils::get_application
+            system_utils::get_application,
+            permissions::check_permissions,
+            permissions::check_accessibility_permission,
+            permissions::check_applescript_permission,
+            permissions::check_screen_recording_permission,
+            permissions::open_accessibility_settings,
+            permissions::open_screen_recording_settings,
+            permissions::open_automation_settings,
         ])
         .setup(move |app| {
             #[cfg(any(target_os = "windows", target_os = "linux"))]
@@ -61,8 +70,6 @@ pub fn run() {
                 tauri_plugin_autostart::MacosLauncher::LaunchAgent,
                 Some(vec![]), /* arbitrary number of args to pass to your app */
             ));
-            // Set activation poicy to Accessory to prevent the app icon from showing on the dock
-            app.set_activation_policy(tauri::ActivationPolicy::Prohibited);
 
             panel::setup_panel(app);
 

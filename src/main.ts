@@ -17,6 +17,12 @@ import { getSettings, registerMainShortcut } from './services/settings';
 // @ts-expect-error
 window[CORE_API_KEY] = core;
 
+// In development, expose core API directly on window for WebDriver E2E testing
+if (!import.meta.env.PROD && typeof window !== 'undefined') {
+  // @ts-expect-error
+  window.__PUBLIC_CORE__ = core;
+}
+
 createDraggable();
 listenEvents();
 createTray();
@@ -24,7 +30,13 @@ createTray();
 // registerServerModule / 插件静态资源依赖 Node 服务（127.0.0.1:2345），DEV 与生产均先 startServer 再 init
 startServer()
   .then(() => {
-    getSettings().then(settings => registerMainShortcut(settings.shortcuts));
+    getSettings().then(settings => {
+      registerMainShortcut(settings.shortcuts).then(result => {
+        if (!result.registered) {
+          console.warn('[Permissions] Failed to register main shortcut');
+        }
+      });
+    });
     return init();
   })
   .then(() => {

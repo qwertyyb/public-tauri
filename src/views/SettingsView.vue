@@ -209,6 +209,71 @@
             </li>
           </ul>
         </div>
+        <div
+          v-else-if="curView==='permissions'"
+          class="settings-panel"
+        >
+          <div class="panel-header">
+            系统权限
+          </div>
+          <div class="permissions-list">
+            <div
+              v-for="perm in permissionsList"
+              :key="perm.key"
+              class="permission-item"
+            >
+              <div class="permission-info">
+                <UIcon
+                  :name="perm.icon"
+                  class="permission-icon"
+                />
+                <div class="permission-text">
+                  <h3 class="permission-title">
+                    {{ perm.title }}
+                  </h3>
+                  <p class="permission-desc">
+                    {{ perm.description }}
+                  </p>
+                </div>
+              </div>
+              <div class="permission-action">
+                <UBadge
+                  v-if="perm.status === 'granted'"
+                  color="success"
+                  variant="subtle"
+                >
+                  已授权
+                </UBadge>
+                <UBadge
+                  v-else-if="perm.status === 'denied'"
+                  color="error"
+                  variant="subtle"
+                >
+                  未授权
+                </UBadge>
+                <UBadge
+                  v-else
+                  color="warning"
+                  variant="subtle"
+                >
+                  未知
+                </UBadge>
+                <UButton
+                  v-if="perm.status !== 'granted'"
+                  size="sm"
+                  variant="outline"
+                  @click="perm.onOpenSettings"
+                >
+                  打开设置
+                </UButton>
+              </div>
+            </div>
+          </div>
+          <div class="permissions-tip">
+            <p>如果功能无法正常使用，请检查对应的系统权限是否已授权。</p>
+            <p>授予权限后可能需要重启应用才能生效。</p>
+          </div>
+        </div>
       </div>
     </div>
   </PublicLayout>
@@ -221,7 +286,7 @@ import PublicLayout from '@/components/PublicLayout.vue';
 import ShortcutsRecorder from '@/components/HotkeyRecorder.vue';
 import type { ICommand as IPluginCommand } from '@public/schema';
 import type { IRunningPlugin, ICommandSettings } from '@/types/plugin';
-import { getSettings, updateSettings, getPlugins, updateMainShortcut } from '@/services/settings';
+import { getSettings, updateSettings, getPlugins, updateMainShortcut, checkAllPermissions, type PermissionCheckResult } from '@/services/settings';
 import { onPageEnter, useRouter } from '@/router';
 import { updateCommandSettings, updateCommandShortcut, updatePluginPreferences, updatePluginSettings } from '@/plugin/manager';
 import { openCommandPreferences, openPluginPreferences } from '@/plugin/utils';
@@ -259,6 +324,7 @@ const views = ref({
   common: '通用',
   plugins: '插件设置',
   links: '快捷链接',
+  permissions: '权限',
 });
 const curView = ref('common');
 
@@ -298,6 +364,47 @@ interface ILink {
 }
 
 const links = computed(() => plugins.value.find(i => i.manifest.name === 'links')?.settings?.preferences?.links as unknown as ILink[] || []);
+
+interface PermissionItem {
+  key: string
+  title: string
+  description: string
+  icon: string
+  status: 'granted' | 'denied' | 'unknown'
+  onOpenSettings: () => Promise<void>
+}
+
+const permissionsList = ref<PermissionItem[]>([]);
+
+const refreshPermissions = async () => {
+  const result = await checkAllPermissions();
+  permissionsList.value = [
+    {
+      key: 'accessibility',
+      title: '辅助功能',
+      description: '用于双击 Command 快捷键呼出应用窗口',
+      icon: 'i-lucide-keyboard',
+      status: result.accessibility.permissionStatus,
+      onOpenSettings: result.accessibility.openSettings,
+    },
+    {
+      key: 'appleScript',
+      title: 'AppleScript 自动化',
+      description: '用于控制其他应用（如 Google Chrome）',
+      icon: 'i-lucide-terminal',
+      status: result.appleScript.permissionStatus,
+      onOpenSettings: result.appleScript.openSettings,
+    },
+    {
+      key: 'screenRecording',
+      title: '屏幕录制',
+      description: '用于截图和屏幕捕获功能',
+      icon: 'i-lucide-monitor',
+      status: result.screenRecording.permissionStatus,
+      onOpenSettings: result.screenRecording.openSettings,
+    },
+  ];
+};
 
 const refreshPathLists = async () => {
   const [dev, st] = await Promise.all([getDevPluginPathList(), getStorePluginPathList()]);
@@ -434,6 +541,15 @@ const removeLink = async (index: number) => {
 
 onPageEnter(() => {
   refreshSettings();
+  if (curView.value === 'permissions') {
+    refreshPermissions();
+  }
+});
+
+watch(curView, (view) => {
+  if (view === 'permissions') {
+    refreshPermissions();
+  }
 });
 
 </script>
@@ -550,6 +666,65 @@ onPageEnter(() => {
   .link-title {
     font-size: 14px;
     font-weight: 500;
+  }
+}
+
+.permissions-list {
+  padding: 16px 24px;
+}
+.permission-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, .03);
+  margin-bottom: 12px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+.permission-info {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+.permission-icon {
+  font-size: 24px;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+.permission-text {
+  margin-left: 16px;
+}
+.permission-title {
+  font-size: 14px;
+  font-weight: 500;
+}
+.permission-desc {
+  margin-top: 4px;
+  font-size: 12px;
+  opacity: 0.5;
+  font-weight: 500;
+}
+.permission-action {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.permissions-tip {
+  padding: 16px 24px;
+  font-size: 12px;
+  opacity: 0.5;
+  line-height: 1.6;
+  p {
+    margin: 0;
+  }
+  p + p {
+    margin-top: 4px;
   }
 }
 </style>

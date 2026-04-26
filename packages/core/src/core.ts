@@ -137,3 +137,36 @@ export const system = {
   autostart,
 };
 
+/// Permission status types
+export type PermissionStatus = 'granted' | 'denied' | 'unknown';
+
+export interface PermissionsStatus {
+  accessibility: PermissionStatus;
+  appleScript: PermissionStatus;
+  screenRecording: PermissionStatus;
+}
+
+/// Permission checking utilities
+export const permissions = {
+  /// Check all permissions status at once
+  checkAll: (): Promise<PermissionsStatus> => invoke('check_permissions'),
+
+  /// Check accessibility permission (for double-tap shortcut)
+  checkAccessibility: (): Promise<PermissionStatus> => invoke('check_accessibility_permission'),
+
+  /// Check AppleScript permission (for controlling other apps)
+  checkAppleScript: (): Promise<PermissionStatus> => invoke('check_applescript_permission'),
+
+  /// Check screen recording permission (for screen capture)
+  checkScreenRecording: (): Promise<PermissionStatus> => invoke('check_screen_recording_permission'),
+
+  /// Open Accessibility settings in System Preferences
+  openAccessibilitySettings: (): Promise<void> => invoke('open_accessibility_settings'),
+
+  /// Open Screen Recording settings in System Preferences
+  openScreenRecordingSettings: (): Promise<void> => invoke('open_screen_recording_settings'),
+
+  /// Open Automation settings in System Preferences
+  openAutomationSettings: (): Promise<void> => invoke('open_automation_settings'),
+};
+
