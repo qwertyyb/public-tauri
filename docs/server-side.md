@@ -1,6 +1,10 @@
 # 服务端插件
 
-当插件需要在服务端（Node.js 环境）执行逻辑时，可以使用服务端插件功能。服务端代码运行在本地 HTTP 服务器上，拥有完整的 Node.js 能力。
+当插件需要在服务端（Node.js 环境）执行逻辑时，可以使用服务端插件功能。服务端代码在本地 **Node 侧载**（`src-node`）中通过 **Worker 线程** 执行，与 Koa 主进程隔离，单个插件未捕获异常不会拖垮整个 Node 服务。
+
+在插件 **server** 入口中如需使用与主应用一致的 API，请从 **`@public-tauri/api/node`** 引入：与 `localhost:2345` 上已有能力一致的（如 `utils` 中走 `invokeServerUtils` 的路径）在 Node 内直接完成；仅当需要 Tauri、WebView 或 `window` 事件时，才经主窗体上的 Socket 回桥执行。主应用启动后会自动建立 `__public_tauri_host__` 的 Socket 连接用于该回桥。
+
+`pnpm --filter src-node run build` 会生成 `dist/public-plugin-worker.cjs`，主进程用 `new Worker(fileUrl)` 加载。协议字段见 `src-node/src/plugin/worker-protocol.ts`（`kind: m2w:*` / `w2m:*` 前缀，避免与旧版单字母字段混淆）。
 
 ## 配置
 
@@ -70,19 +74,14 @@ on('file-changed', (data) => {
 
 ### main 模式
 
-在 main 模式下，使用 `createPluginChannel` 创建通信通道：
+在 main 模式下同样使用 `invoke` / `on`。插件名称由宿主注入，插件代码不需要也不应该直接接触 `createPluginChannel`、`invokePluginServerMethod` 等宿主内部接口：
 
 ```ts
-import { createPluginChannel } from '@public-tauri/api'
+import { invoke, on } from '@public-tauri/api'
 
-// createPluginChannel 需要传入插件名称
-const channel = createPluginChannel('my-plugin')
+const result = await invoke('readFile', '/path/to/file.txt')
 
-// 调用服务端方法
-const result = await channel.invoke('readFile', '/path/to/file.txt')
-
-// 监听服务端事件
-channel.on('my-event', (data) => {
+on('my-event', (data) => {
   console.log('收到事件:', data)
 })
 ```
@@ -137,10 +136,21 @@ export default defineConfig([
 ])
 ```
 
+## 在 server 中使用 `@public-tauri/api`
+
+构建 server 产物时，将 `@public-tauri/api` 解析到 Node 实现，例如 Rollup `alias`：`@public-tauri/api` → `@public-tauri/api/node`（或在你的构建里将 `server` 入口单独配置 `resolve.alias`）。在 server 源码中：
+
+```ts
+import { utils, fetch, dialog } from '@public-tauri/api/node'
+```
+
+`mainWindow.on` 等需要回调的 API 无法经回桥序列化，请在 server 中避免使用；需要时改由前端完成。
+`invoke` 仍然是前端调用 server 的入口，不支持在一个 server Worker 中反向调用自身或其它插件 Worker。`createPluginStorage`、`createPluginChannel`、`invokePluginServerMethod` 是宿主内部能力，不从 `@public-tauri/api` 暴露给插件。
+
 ## 注意事项
 
 1. **服务端模块可选**：如果不需要服务端能力，无需配置 `server` 字段。
 2. **安全性**：服务端代码拥有完整的系统访问权限，请注意安全。
 3. **生命周期**：服务端模块在插件注册时加载，在插件卸载时销毁。
 4. **调用约定**：`invoke` 的第一个参数是服务端导出的函数名，后续参数依次传递。
-5. **ListView 模式**：`template: "listView"` 的插件，其 preload 脚本也运行在服务端环境中。
+5. **ListView / preload**：`command.preload` 等由 HTTP 静态资源在 **WebView** 中加载；本页所述为 `publicPlugin.server` 指向的 **Node** 模块。

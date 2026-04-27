@@ -61,19 +61,6 @@ export const updateActions = (actions: PluginShellAction[]): void => {
   throw new Error('setActions is not supported in current environment');
 };
 
-export const createPluginChannel: typeof coreApi.createPluginChannel = (pluginName) => {
-  if (isInWujie) {
-    return {
-      invoke: <T = any>(name: string, ...args: any[]) => window.$wujie?.props?.invoke(name, ...args) as Promise<T>,
-      on: window.$wujie?.props?.on,
-    };
-  }
-  if (!isInWujie) {
-    return api.createPluginChannel(pluginName);
-  }
-  throw new Error('createPluginChannel is not supported in current environment');
-};
-
 export const definePlugin = (options: (app: {
   updateCommands: (commands: ICommand[]) => void
   getPreferences: typeof getPreferences

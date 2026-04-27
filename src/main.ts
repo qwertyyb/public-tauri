@@ -13,6 +13,7 @@ import { init } from './plugin/manager';
 import { createTray } from './utils/tray';
 import { start as startServer } from './utils/server';
 import { getSettings, registerMainShortcut } from './services/settings';
+import { connectTauriNodeHostSocket } from './bridge/node-tauri-rpc';
 
 // @ts-expect-error
 window[CORE_API_KEY] = core;
@@ -30,6 +31,7 @@ createTray();
 // registerServerModule / 插件静态资源依赖 Node 服务（127.0.0.1:2345），DEV 与生产均先 startServer 再 init
 startServer()
   .then(() => {
+    connectTauriNodeHostSocket();
     getSettings().then(settings => {
       registerMainShortcut(settings.shortcuts).then(result => {
         if (!result.registered) {

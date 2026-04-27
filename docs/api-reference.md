@@ -56,9 +56,6 @@ import {
   invoke,
   on,
 
-  // 服务端通信（main 模式）
-  createPluginChannel,
-
   // main 插件
   definePlugin,
   updateCommands,
@@ -521,23 +518,6 @@ on('my-event', (data) => {
 ```
 
 > **注意**：仅在 view 模式下可用。
-
----
-
-## createPluginChannel
-
-创建与插件服务端的通信通道。
-
-```ts
-createPluginChannel(pluginName: string): {
-  invoke: <T = any>(name: string, ...args: any[]) => Promise<T>
-  on: (event: string, callback: (data: any) => void) => void
-}
-```
-
-在 wujie 插件环境内调用时，会自动使用当前插件的服务端通道；在主应用环境调用时需要传入插件名。
-
----
 
 ## definePlugin
 

@@ -229,7 +229,7 @@ createPlugin({
 - `invoke` - 调用服务端方法
 - `on` - 监听服务端事件
 
-> **不可用**：`createPluginChannel` 在 view 模式下不可用，请使用 `invoke` 和 `on` 替代。
+> **内部接口不暴露**：`createPluginChannel`、`createPluginStorage`、`invokePluginServerMethod` 属于宿主内部能力，插件请使用 `invoke` 和 `on`。
 
 ### 也可使用内置 Vue 组件
 

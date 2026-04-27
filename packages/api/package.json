@@ -6,6 +6,7 @@
   "sideEffects": false,
   "exports": {
     ".": "./src/index.ts",
+    "./node": "./src/node.ts",
     "./components/*": "./src/components/*"
   },
   "scripts": {
@@ -23,6 +24,7 @@
   "devDependencies": {
     "@public/core": "workspace:^",
     "@public/schema": "workspace:^",
+    "@types/node": "^24.0.0",
     "tsdown": "^0.21.7"
   },
   "publishConfig": {

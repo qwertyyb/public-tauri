@@ -12,13 +12,16 @@ router.post('/register', async (ctx) => {
 });
 
 router.post('/unregister', (ctx) => {
-  unregisterPlugin(ctx.request.body.modulePath);
+  const { name, modulePath } = ctx.request.body;
+  if (name || modulePath) {
+    unregisterPlugin(name || modulePath);
+  }
   ctx.ok();
 });
 
-router.post('/updatePlugin', (ctx) => {
+router.post('/updatePlugin', async (ctx) => {
   const { name, modulePath, staticPaths } = ctx.request.body;
-  updatePlugin(name, { modulePath, staticPaths });
+  await updatePlugin(name, { modulePath, staticPaths });
   ctx.ok();
 });
 

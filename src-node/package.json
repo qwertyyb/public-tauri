@@ -33,6 +33,7 @@
     "socket.io": "^4.8.1"
   },
   "devDependencies": {
+    "@types/node": "^24.0.0",
     "@types/better-sqlite3": "^7.6.13",
     "@types/fs-extra": "^11.0.4",
     "@types/koa": "^3.0.0",

@@ -1,6 +1,4 @@
-import { createPluginChannel, definePlugin, resolveFileIcon, updateCommands } from '@public-tauri/api';
-
-const { invoke, on } = createPluginChannel('launcher');
+import { definePlugin, invoke, on, resolveFileIcon, updateCommands } from '@public-tauri/api';
 
 const launcherPlugin = definePlugin(() => {
   on('apps', (apps) => {

@@ -4,6 +4,8 @@ const sockets = new Map<string, Socket>();
 
 const waitPromises = new Map<string, { promise: Promise<void>, resolve: () => void }>();
 
+export const getSocket = (name: string): Socket | undefined => sockets.get(name);
+
 export const addSocket = (name: string, socket: Socket) => {
   sockets.set(name, socket);
   waitPromises.get(name)?.resolve();
