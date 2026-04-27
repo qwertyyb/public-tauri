@@ -6,6 +6,19 @@ import createLogger from './logger';
 import { storage } from './storage';
 
 const logger = createLogger('api.utils');
+const CHANNEL_INVOKE_EVENT = '__public_tauri_channel_invoke__';
+const CHANNEL_EVENT = '__public_tauri_channel_event__';
+
+export type PluginChannelHandler = (...args: any[]) => any;
+
+export type PluginChannel = {
+  invoke: <T = any>(name: string, ...args: any[]) => Promise<T>
+  handle: (name: string, callback: PluginChannelHandler) => () => void
+  emit: (event: string, ...args: any[]) => void
+  on: (event: string, callback: (...args: any[]) => void) => () => void
+  once: (event: string, callback: (...args: any[]) => void) => () => void
+  off: (event: string, callback: (...args: any[]) => void) => void
+};
 
 export const invokePluginServerMethod: <T extends any>(name: string, method: string, args: any[]) => Promise<T> = logger.wrap(
   'invokePluginServerMethod',
@@ -81,8 +94,60 @@ export const createPluginServerListener = logger.wrap(
 
 export const createPluginChannel = logger.wrap(
   'createPluginChannel',
-  (pluginName: string) => ({
-    invoke: <T = any>(name: string, ...args: any[]) => invokePluginServerMethod<T>(pluginName, name, args),
-    on: createPluginServerListener(pluginName),
-  }),
+  (pluginName: string): PluginChannel => {
+    const socket = io(SERVER, {
+      path: '/socket.io',
+      query: {
+        name: pluginName,
+      },
+    });
+    const handlers = new Map<string, PluginChannelHandler>();
+
+    socket.on(CHANNEL_INVOKE_EVENT, async (
+      payload: { name?: string, args?: any[] },
+      ack?: (response: { ok: true, data: unknown } | { ok: false, message: string }) => void,
+    ) => {
+      if (!ack) {
+        return;
+      }
+      const name = payload?.name;
+      const handler = name ? handlers.get(name) : undefined;
+      if (!name || !handler) {
+        ack({ ok: false, message: `frontend handler not found: ${name || '<empty>'}` });
+        return;
+      }
+      try {
+        const data = await handler(...(payload.args || []));
+        ack({ ok: true, data });
+      } catch (e) {
+        ack({ ok: false, message: e instanceof Error ? e.message : String(e) });
+      }
+    });
+
+    return {
+      invoke: <T = any>(name: string, ...args: any[]) => invokePluginServerMethod<T>(pluginName, name, args),
+      handle: (name: string, callback: PluginChannelHandler) => {
+        handlers.set(name, callback);
+        return () => {
+          if (handlers.get(name) === callback) {
+            handlers.delete(name);
+          }
+        };
+      },
+      emit: (event: string, ...args: any[]) => {
+        socket.emit(CHANNEL_EVENT, { event, args });
+      },
+      on: (event: string, callback: (...args: any[]) => void) => {
+        socket.on(event, callback);
+        return () => socket.off(event, callback);
+      },
+      once: (event: string, callback: (...args: any[]) => void) => {
+        socket.once(event, callback);
+        return () => socket.off(event, callback);
+      },
+      off: (event: string, callback: (...args: any[]) => void) => {
+        socket.off(event, callback);
+      },
+    };
+  },
 );

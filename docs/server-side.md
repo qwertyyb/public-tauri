@@ -21,7 +21,7 @@
 
 ## 服务端入口文件
 
-服务端入口文件是一个标准的 Node.js ESM 模块。你可以导出函数供前端通过 `invoke` 调用：
+服务端入口文件是一个标准的 Node.js ESM 模块。你可以导出函数供前端通过 `channel.invoke` 调用：
 
 ```ts
 // src/server.ts
@@ -57,38 +57,56 @@ export async function runScript(script: string) {
 
 ### view 模式
 
-在 view 模式下，使用 `invoke` 调用服务端方法：
+在 view 模式下，使用 `channel.invoke` 调用服务端方法，并通过 `channel.on` 接收 server 事件：
 
 ```ts
-import { invoke, on } from '@public-tauri/api'
+import { channel } from '@public-tauri/api'
 
 // 调用服务端方法
-const content = await invoke<string>('readFile', '/path/to/file.txt')
-const files = await invoke<Array<{name: string, isDirectory: boolean}>>('listFiles', '/path/to/dir')
+const content = await channel.invoke<string>('readFile', '/path/to/file.txt')
+const files = await channel.invoke<Array<{name: string, isDirectory: boolean}>>('listFiles', '/path/to/dir')
 
 // 监听服务端事件
-on('file-changed', (data) => {
+channel.on('file-changed', (data) => {
   console.log('文件变化:', data)
 })
 ```
 
 ### main 模式
 
-在 main 模式下同样使用 `invoke` / `on`。插件名称由宿主注入，插件代码不需要也不应该直接接触 `createPluginChannel`、`invokePluginServerMethod` 等宿主内部接口：
+在 main 模式下同样使用 `channel`。插件名称由宿主注入，插件代码不需要也不应该直接接触 `createPluginChannel`、`invokePluginServerMethod` 等宿主内部接口：
 
 ```ts
-import { invoke, on } from '@public-tauri/api'
+import { channel } from '@public-tauri/api'
 
-const result = await invoke('readFile', '/path/to/file.txt')
+const result = await channel.invoke('readFile', '/path/to/file.txt')
 
-on('my-event', (data) => {
+channel.on('my-event', (data) => {
   console.log('收到事件:', data)
 })
 ```
 
-## 服务端推送事件
+## 服务端通信
 
-服务端可以通过 `registerPlugin` 提供的上下文向前端推送事件。服务端模块在被加载时，会收到插件名称等信息。
+服务端可以从 `@public-tauri/api/node` 导入 `channel`，与前端使用同一组方法：
+
+```ts
+import { channel } from '@public-tauri/api/node'
+
+channel.emit('file-changed', { path: '/tmp/example.txt' })
+
+channel.on('frontend-event', (payload) => {
+  console.log('收到前端事件:', payload)
+})
+
+channel.handle('serverMethod', async (input) => {
+  return `server handled: ${input}`
+})
+
+const value = await channel.invoke('frontendMethod', 'from server')
+```
+
+服务端模块的命名函数导出会自动注册为 handler；如果同名 `channel.handle()` 被调用，则以后注册的 handler 会覆盖之前的同名 handler。
 
 ## 静态资源
 
@@ -141,16 +159,16 @@ export default defineConfig([
 构建 server 产物时，将 `@public-tauri/api` 解析到 Node 实现，例如 Rollup `alias`：`@public-tauri/api` → `@public-tauri/api/node`（或在你的构建里将 `server` 入口单独配置 `resolve.alias`）。在 server 源码中：
 
 ```ts
-import { utils, fetch, dialog } from '@public-tauri/api/node'
+import { utils, fetch, dialog, channel } from '@public-tauri/api/node'
 ```
 
 `mainWindow.on` 等需要回调的 API 无法经回桥序列化，请在 server 中避免使用；需要时改由前端完成。
-`invoke` 仍然是前端调用 server 的入口，不支持在一个 server Worker 中反向调用自身或其它插件 Worker。`createPluginStorage`、`createPluginChannel`、`invokePluginServerMethod` 是宿主内部能力，不从 `@public-tauri/api` 暴露给插件。
+`channel.invoke` 是双向 RPC：前端可调用 server 导出函数或 `channel.handle`，server 也可调用前端 `channel.handle`。`createPluginStorage`、`createPluginChannel`、`invokePluginServerMethod` 是宿主内部能力，不从 `@public-tauri/api` 暴露给插件。
 
 ## 注意事项
 
 1. **服务端模块可选**：如果不需要服务端能力，无需配置 `server` 字段。
 2. **安全性**：服务端代码拥有完整的系统访问权限，请注意安全。
 3. **生命周期**：服务端模块在插件注册时加载，在插件卸载时销毁。
-4. **调用约定**：`invoke` 的第一个参数是服务端导出的函数名，后续参数依次传递。
+4. **调用约定**：`channel.invoke` 的第一个参数是对端 handler 名称，后续参数依次传递。
 5. **ListView / preload**：`command.preload` 等由 HTTP 静态资源在 **WebView** 中加载；本页所述为 `publicPlugin.server` 指向的 **Node** 模块。

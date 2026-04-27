@@ -52,9 +52,8 @@ import {
   // 文件保存对话框
   showSaveFilePicker,
 
-  // 服务端通信（view 模式）
-  invoke,
-  on,
+  // 插件通信（view/main 模式）
+  channel,
 
   // main 插件
   definePlugin,
@@ -486,38 +485,39 @@ const filePath = await showSaveFilePicker({
 
 ---
 
-## invoke（view 模式）
+## channel（view/main 模式）
 
-在 view 模式下，调用服务端插件方法。
+插件前端与 server 端的统一通信入口。`invoke` / `handle` 用于双向 RPC，`emit` / `on` / `once` / `off` 用于双向事件。
 
 ```ts
-invoke<R>(name: string, ...args: any[]): Promise<R>
+channel.invoke<R>(name: string, ...args: any[]): Promise<R>
+channel.handle(name: string, callback: (...args: any[]) => any): () => void
+channel.emit(event: string, ...args: any[]): void
+channel.on(event: string, callback: (...args: any[]) => void): () => void
+channel.once(event: string, callback: (...args: any[]) => void): () => void
+channel.off(event: string, callback: (...args: any[]) => void): void
 ```
 
-- `name` - 服务端方法名
-- `args` - 传递给服务端方法的参数
+- `invoke` - 调用对端通过 `handle` 注册的方法；前端也可以调用 server 模块直接 `export` 的函数。
+- `handle` - 注册可被对端 `invoke` 调用的方法，返回取消注册函数。
+- `emit` - 向对端发送事件，不等待返回值。
+- `on` / `once` / `off` - 监听或取消监听对端事件。
 
 ```ts
-const result = await invoke<string>('myMethod', 'arg1', 'arg2')
-```
+import { channel } from '@public-tauri/api'
 
-> **注意**：仅在 view 模式下可用。
+const result = await channel.invoke<string>('myMethod', 'arg1', 'arg2')
 
-## on（view 模式）
+channel.handle('frontendMethod', async (input) => {
+  return `handled: ${input}`
+})
 
-在 view 模式下，监听服务端事件。
-
-```ts
-on(event: string, callback: (data: any) => void): void
-```
-
-```ts
-on('my-event', (data) => {
+channel.on('my-event', (data) => {
   console.log('收到事件:', data)
 })
 ```
 
-> **注意**：仅在 view 模式下可用。
+> **注意**：插件 server 入口中请从 `@public-tauri/api/node` 导入 `channel`。
 
 ## definePlugin
 

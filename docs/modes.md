@@ -226,10 +226,9 @@ createPlugin({
 - `opener` - 打开外部链接/文件
 - `resolveFileIcon` - 获取文件图标
 - `resolveLocalPath` - 解析本地路径
-- `invoke` - 调用服务端方法
-- `on` - 监听服务端事件
+- `channel` - 插件前端与 server 端通信，包括 `invoke` / `handle` / `emit` / `on` / `once` / `off`
 
-> **内部接口不暴露**：`createPluginChannel`、`createPluginStorage`、`invokePluginServerMethod` 属于宿主内部能力，插件请使用 `invoke` 和 `on`。
+> **内部接口不暴露**：`createPluginChannel`、`createPluginStorage`、`invokePluginServerMethod` 属于宿主内部能力，插件请使用 `channel`。
 
 ### 也可使用内置 Vue 组件
 

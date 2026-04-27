@@ -4,10 +4,9 @@ const HOST_NAME = '__public_tauri_host__';
 
 export type HostInvokePayload = {
   pluginName: string
-} & (
-  | { op: 'core-apply', objectPath: string[], args: unknown[] }
-  | { op: 'tauri:invoke', cmd: string, invokeArgs?: Record<string, unknown> }
-);
+  name: string
+  args?: unknown[]
+};
 
 type Ack = { ok: true, data: unknown } | { ok: false, message: string };
 

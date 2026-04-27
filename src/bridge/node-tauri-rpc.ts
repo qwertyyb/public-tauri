@@ -35,6 +35,48 @@ async function runCoreApply(objectPath: string[], args: unknown[]) {
   return await fn.apply(parent, args);
 }
 
+const TAURI_API_COMMANDS: Record<string, ((args: unknown[]) => { cmd: string, invokeArgs?: Record<string, unknown> }) | undefined> = {
+  'utils.getFrontmostApplication': () => ({ cmd: 'get_frontmost_application', invokeArgs: {} }),
+  'utils.getDefaultApplication': args => ({ cmd: 'get_default_application', invokeArgs: { fileOrUrl: args[0] } }),
+  'utils.getApplications': args => ({ cmd: 'get_application', invokeArgs: { fileOrUrl: args[0] } }),
+  'permissions.checkAll': () => ({ cmd: 'check_permissions', invokeArgs: {} }),
+  'permissions.checkAccessibility': () => ({ cmd: 'check_accessibility_permission', invokeArgs: {} }),
+  'permissions.checkAppleScript': () => ({ cmd: 'check_applescript_permission', invokeArgs: {} }),
+  'permissions.checkScreenRecording': () => ({ cmd: 'check_screen_recording_permission', invokeArgs: {} }),
+  'permissions.openAccessibilitySettings': () => ({ cmd: 'open_accessibility_settings', invokeArgs: {} }),
+  'permissions.openScreenRecordingSettings': () => ({ cmd: 'open_screen_recording_settings', invokeArgs: {} }),
+  'permissions.openAutomationSettings': () => ({ cmd: 'open_automation_settings', invokeArgs: {} }),
+};
+
+function corePathForApiName(name: string) {
+  const [scope, method] = name.split('.');
+  if (!scope || !method) {
+    return null;
+  }
+  if (['mainWindow', 'screen', 'dialog', 'clipboard'].includes(scope)) {
+    return [scope, method];
+  }
+  if (name === 'utils.getMousePosition') {
+    return ['utils', 'getMousePosition'];
+  }
+  return null;
+}
+
+async function runPluginApi(name: string, args: unknown[]) {
+  const tauriCommand = TAURI_API_COMMANDS[name]?.(args);
+  if (tauriCommand) {
+    const { cmd, invokeArgs } = tauriCommand;
+    return invokeArgs && Object.keys(invokeArgs).length
+      ? await invoke(cmd, invokeArgs)
+      : await (invoke as (c: string) => Promise<unknown>)(cmd);
+  }
+  const corePath = corePathForApiName(name);
+  if (corePath) {
+    return await runCoreApply(corePath, args);
+  }
+  throw new Error(`unsupported plugin API: ${name}`);
+}
+
 let socket: ReturnType<typeof io> | null = null;
 
 /**
@@ -51,26 +93,15 @@ export function connectTauriNodeHostSocket() {
   socket.on(
     'tauri:host:invoke',
     async (payload: {
-      op: 'core-apply' | 'tauri:invoke'
-      objectPath?: string[]
+      name?: string
       args?: unknown[]
-      cmd?: string
-      invokeArgs?: Record<string, unknown>
     }, ack?: (r: { ok: true, data: unknown } | { ok: false, message: string }) => void) => {
       if (!ack) {
         return;
       }
       try {
-        if (payload?.op === 'tauri:invoke' && payload.cmd) {
-          const { cmd, invokeArgs } = payload;
-          const data = invokeArgs && Object.keys(invokeArgs).length
-            ? await invoke(cmd, invokeArgs)
-            : await (invoke as (c: string) => Promise<unknown>)(cmd);
-          ack({ ok: true, data });
-          return;
-        }
-        if (payload?.op === 'core-apply' && payload.objectPath) {
-          const data = await runCoreApply(payload.objectPath, payload.args || []);
+        if (payload?.name) {
+          const data = await runPluginApi(payload.name, payload.args || []);
           ack({ ok: true, data });
           return;
         }

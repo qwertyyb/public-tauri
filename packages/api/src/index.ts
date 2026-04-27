@@ -21,21 +21,22 @@ declare global {
 const isInWujie = !!window.$wujie;
 
 const api: typeof coreApi = window.$wujie?.props as typeof coreApi || window[CORE_API_KEY];
+const getChannel = (): coreApi.PluginChannel => {
+  if (isInWujie && window.$wujie?.props?.channel) {
+    return window.$wujie.props.channel;
+  }
+  throw new Error('channel is not supported in current environment');
+};
 
 export const { clipboard, dialog, mainWindow, fetch, utils, screen, WebviewWindow, Database, storage, showSaveFilePicker, fs, shell, opener, resolveFileIcon, resolveLocalPath, Webview, NativeWindow } = api;
 
-export const invoke: <R extends any>(name: string, ...args: any[]) => Promise<R> = (name, ...args) => {
-  if (isInWujie) {
-    return window.$wujie?.props?.invoke(name, ...args);
-  }
-  throw new Error('invoke is not supported in current environment');
-};
-
-export const on: ReturnType<typeof coreApi.createPluginServerListener> = (event, callback) => {
-  if (isInWujie) {
-    return window.$wujie?.props?.on(event, callback);
-  }
-  throw new Error('on is not supported in current environment');
+export const channel: coreApi.PluginChannel = {
+  invoke: (name, ...args) => getChannel().invoke(name, ...args),
+  handle: (name, callback) => getChannel().handle(name, callback),
+  emit: (event, ...args) => getChannel().emit(event, ...args),
+  on: (event, callback) => getChannel().on(event, callback),
+  once: (event, callback) => getChannel().once(event, callback),
+  off: (event, callback) => getChannel().off(event, callback),
 };
 
 export const updateCommands = (commands: ICommand[]): void => {

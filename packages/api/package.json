@@ -30,6 +30,7 @@
   "publishConfig": {
     "exports": {
       ".": "./dist/index.mjs",
+      "./node": "./dist/node.mjs",
       "./package.json": "./package.json"
     }
   }

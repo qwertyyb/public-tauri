@@ -1,4 +1,4 @@
-import { type ICommand, type IListViewCommand, AsyncFile, utils, dialog, clipboard, mainWindow, screen, invoke } from '@public-tauri/api';
+import { type ICommand, type IListViewCommand, AsyncFile, utils, dialog, clipboard, mainWindow, screen, channel } from '@public-tauri/api';
 
 const createClipboardItem = (text: string) => {
   const item: ICommand = {
@@ -22,7 +22,7 @@ const detectClipboard = async (): Promise<string[]> => {
   });
   if (!imgbase64) return [];
 
-  const texts = (await invoke<string[]>('detect', imgbase64)) || [];
+  const texts = (await channel.invoke<string[]>('detect', imgbase64)) || [];
   return texts;
 };
 
@@ -32,7 +32,7 @@ const detectScreen = async (): Promise<string[]> => {
     const cursorPosition = await utils.getMousePosition();
     const monitor = await screen.monitorFromPoint(cursorPosition.x, cursorPosition.y);
     const imgbase64 = await screen.capture(monitor.id);
-    const texts = (await invoke<string[]>('detect', imgbase64)) || [];
+    const texts = (await channel.invoke<string[]>('detect', imgbase64)) || [];
     return texts;
   } catch (err) {
     console.error(err);
@@ -44,7 +44,7 @@ const detectFile = async (file: AsyncFile) => {
   try {
     const imgbase64 = await file.base64();
     console.log('detectFile', file, imgbase64);
-    const texts = (await invoke<string[]>('detect', imgbase64)) || [];
+    const texts = (await channel.invoke<string[]>('detect', imgbase64)) || [];
     return texts;
   } catch (err) {
     console.error(err);

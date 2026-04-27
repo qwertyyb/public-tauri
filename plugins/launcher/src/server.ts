@@ -1,16 +1,13 @@
 import searchAppList from './lib/loadApplications';
 import { exec } from 'child_process';
+import { channel } from '@public-tauri/api/node';
 
-const createPlugin = (context) => {
-  searchAppList().then((apps) => {
-    context.emit('apps', apps);
-  });
-  return {
-    searchAppList,
-    openApp(appPath: string) {
-      exec(`open -a "${appPath}"`);
-    },
-  };
-};
+searchAppList().then((apps) => {
+  channel.emit('apps', apps);
+});
 
-export default createPlugin;
+channel.handle('searchAppList', searchAppList);
+
+channel.handle('openApp', (appPath: string) => {
+  exec(`open -a "${appPath}"`);
+});

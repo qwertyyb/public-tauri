@@ -1,133 +1,289 @@
-import type { ICommand, IAction, IPluginLifecycle } from '@public/schema';
+import type { ICommand, IAction } from '@public/schema';
 import type * as coreApi from '@public/core';
+import { parentPort, workerData } from 'node:worker_threads';
 
-type Bridge = {
-  getPluginName: () => string
-  nodeInvoke: (method: string, args?: any[], options?: { raw?: boolean }) => Promise<unknown>
-  host: (body: Record<string, unknown>) => Promise<unknown>
-};
+const MainToWorker = {
+  BRIDGE_RESPONSE: 'm2w:bridgeResponse',
+  CHANNEL_INVOKE: 'm2w:channelInvoke',
+  CHANNEL_EVENT: 'm2w:channelEvent',
+} as const;
 
-const getB = (): Bridge => {
-  const b = (globalThis as { __publicTauriNodeBridge?: Bridge }).__publicTauriNodeBridge;
-  if (!b) {
+const WorkerToMain = {
+  INVOKE_BRIDGE: 'w2m:invokeBridge',
+  CHANNEL_INVOKE: 'w2m:channelInvoke',
+  CHANNEL_EMIT: 'w2m:channelEmit',
+  CHANNEL_INVOKE_DONE: 'w2m:channelInvokeDone',
+} as const;
+
+type PendingCall = { resolve: (v: unknown) => void, reject: (e: Error) => void };
+
+const pluginName = String((workerData as { name?: string } | undefined)?.name || '');
+const pending = new Map<number, PendingCall>();
+const channelHandlers = new Map<string, (...args: any[]) => any>();
+const eventListeners = new Map<string, Set<(...args: any[]) => void>>();
+let idSeq = 0;
+
+const getParentPort = () => {
+  if (!parentPort) {
     throw new Error('[public-tauri] 未在 Node 插件 Worker 中建立桥接');
   }
-  return b;
+  return parentPort;
 };
 
-const ni = (method: string, args: any[] = [], options: { raw?: boolean } = {}) => getB().nodeInvoke(method, args, options);
-
-const hostTauri = (cmd: string, invokeArgs?: Record<string, unknown>) =>
-  getB().host({ op: 'tauri:invoke', pluginName: getB().getPluginName(), cmd, invokeArgs });
-
-const hostCore = (objectPath: string[], args: unknown[]) =>
-  getB().host({ op: 'core-apply', pluginName: getB().getPluginName(), objectPath, args });
-
-/** 与 /utils/invoke 同源（A 类，不经 WebView） */
-export const fetch = async (input: RequestInfo, init?: RequestInit): Promise<Response> => {
-  const { signal, ...rest0 } = init || {};
-  let rest = rest0;
-  if (init?.headers && init.headers instanceof Headers) {
-    const headers: Record<string, string> = {};
-    (init.headers as Headers).forEach((v, k) => { headers[k] = v; });
-    rest = { ...rest, headers } as any;
-  }
-  const v = await ni('fetch', [input, { ...rest, headers: (rest as any).headers }], { raw: false });
-  if (v && typeof v === 'object' && (v as { __fetchResult?: boolean }).__fetchResult) {
-    const f = v as { bodyBase64: string, status: number, statusText: string, headers: Record<string, string> };
-    const buf = Buffer.from(f.bodyBase64, 'base64');
-    return new Response(Uint8Array.from(buf), { status: f.status, statusText: f.statusText, headers: f.headers });
-  }
-  throw new Error('[public-tauri] fetch: unexpected result');
+const makeBridgeRequest = <T = unknown>() => {
+  idSeq += 1;
+  const id = idSeq;
+  const promise = new Promise<T>((resolve, reject) => {
+    pending.set(id, { resolve: resolve as (v: unknown) => void, reject });
+  });
+  return { id, promise };
 };
+
+const invokeBridge = (name: string, args: unknown[] = []) => {
+  const { id, promise } = makeBridgeRequest<unknown>();
+  getParentPort().postMessage({
+    kind: WorkerToMain.INVOKE_BRIDGE,
+    id,
+    bridgePayload: { name, args, pluginName },
+  });
+  return promise;
+};
+
+function registerChannelHandler(method: string, handler: (...args: any[]) => any) {
+  channelHandlers.set(method, handler);
+  return () => {
+    if (channelHandlers.get(method) === handler) {
+      channelHandlers.delete(method);
+    }
+  };
+}
+
+function registerChannelListener(event: string, callback: (...args: any[]) => void) {
+  let listeners = eventListeners.get(event);
+  if (!listeners) {
+    listeners = new Set();
+    eventListeners.set(event, listeners);
+  }
+  listeners.add(callback);
+  return () => {
+    listeners.delete(callback);
+    if (listeners.size === 0) {
+      eventListeners.delete(event);
+    }
+  };
+}
+
+function finishBridgeResponse(msg: { id: number, data?: unknown, err?: string }) {
+  const pendingCall = pending.get(msg.id);
+  if (!pendingCall) return;
+  pending.delete(msg.id);
+  if (msg.err) pendingCall.reject(new Error(msg.err));
+  else pendingCall.resolve(msg.data);
+}
+
+async function invokeChannelHandler(method: string, args: any[] = []) {
+  const handler = channelHandlers.get(method);
+  if (!handler) {
+    throw new Error(`无 ${String(method)}`);
+  }
+  return await handler(...args);
+}
+
+function emitChannelEvent(event: string, args: any[] = []) {
+  const listeners = eventListeners.get(event);
+  if (!listeners) {
+    return;
+  }
+  for (const listener of [...listeners]) {
+    listener(...args);
+  }
+}
+
+const activeParentPort = parentPort;
+if (activeParentPort) {
+  activeParentPort.on('message', async (msg: any) => {
+    if (msg === null || msg === undefined) return;
+    if (msg.kind === MainToWorker.BRIDGE_RESPONSE) {
+      finishBridgeResponse({ id: msg.id, data: msg.data, err: msg.err });
+      return;
+    }
+    if (msg.kind === MainToWorker.CHANNEL_INVOKE) {
+      try {
+        const data = await invokeChannelHandler(msg.method, msg.args || []);
+        activeParentPort.postMessage({ kind: WorkerToMain.CHANNEL_INVOKE_DONE, id: msg.id, data });
+      } catch (e) {
+        const err = e instanceof Error ? e : new Error(String(e));
+        activeParentPort.postMessage({ kind: WorkerToMain.CHANNEL_INVOKE_DONE, id: msg.id, err: err.message });
+      }
+      return;
+    }
+    if (msg.kind === MainToWorker.CHANNEL_EVENT) {
+      emitChannelEvent(msg.event, msg.args || []);
+    }
+  });
+}
+
+export const fetch = globalThis.fetch.bind(globalThis);
 
 export const utils: typeof coreApi['utils'] = {
-  getCurrentPath: () => ni('system.getCurrentPath', []) as Promise<string>,
-  getSelectedPath: () => ni('system.getSelectedPath', []) as Promise<string[]>,
-  getSelectedText: () => ni('system.getSelectedText', []) as Promise<string>,
-  getFrontmostApplication: () => hostTauri('get_frontmost_application', {}) as Promise<unknown>,
-  getDefaultApplication: (fileOrUrl: string) => hostTauri('get_default_application', { fileOrUrl }) as Promise<unknown>,
-  getApplications: (fileOrUrl: string) => hostTauri('get_application', { fileOrUrl }) as Promise<unknown>,
-  runCommand: (c: string) => ni('system.runCommand', [c]) as Promise<string>,
-  runAppleScript: (s: string) => ni('system.runAppleScript', [s]) as Promise<string>,
-  getMousePosition: () => hostCore(['utils', 'getMousePosition'], []),
+  getCurrentPath: () => invokeBridge('utils.getCurrentPath') as Promise<string>,
+  getSelectedPath: () => invokeBridge('utils.getSelectedPath') as Promise<string[]>,
+  getSelectedText: () => invokeBridge('utils.getSelectedText') as Promise<string>,
+  getFrontmostApplication: () => invokeBridge('utils.getFrontmostApplication') as Promise<unknown>,
+  getDefaultApplication: (fileOrUrl: string) => invokeBridge('utils.getDefaultApplication', [fileOrUrl]) as Promise<unknown>,
+  getApplications: (fileOrUrl: string) => invokeBridge('utils.getApplications', [fileOrUrl]) as Promise<unknown>,
+  runCommand: (c: string) => invokeBridge('utils.runCommand', [c]) as Promise<string>,
+  runAppleScript: (s: string) => invokeBridge('utils.runAppleScript', [s]) as Promise<string>,
+  getMousePosition: () => invokeBridge('utils.getMousePosition'),
 } as any;
 
 export const mainWindow: typeof coreApi['mainWindow'] = {
-  hide: () => hostCore(['mainWindow', 'hide'], []),
-  show: () => hostCore(['mainWindow', 'show'], []),
-  center: () => hostCore(['mainWindow', 'center'], []),
-  clearInput: () => { hostCore(['mainWindow', 'clearInput'], []); return Promise.resolve(); },
-  popToRoot: (o?: { clearInput?: boolean }) => {
-    void hostCore(['mainWindow', 'popToRoot'], o ? [o] : [undefined]);
+  hide: () => invokeBridge('mainWindow.hide'),
+  show: () => invokeBridge('mainWindow.show'),
+  center: () => invokeBridge('mainWindow.center'),
+  clearInput: () => {
+    invokeBridge('mainWindow.clearInput');
     return Promise.resolve();
   },
-  pushView: o => { void hostCore(['mainWindow', 'pushView'], [o]); return undefined as any; },
-  popView: o => { void hostCore(['mainWindow', 'popView'], [o]); return undefined as any; },
-  onShow: () => { throw new Error('mainWindow.onShow 无法在 Node 插件中序列化回调，请用前端'); },
-  offShow: () => { throw new Error('mainWindow.offShow 无法在 Node 插件中序列化回调，请用前端'); },
+  popToRoot: (o?: { clearInput?: boolean }) => {
+    void invokeBridge('mainWindow.popToRoot', o ? [o] : [undefined]);
+    return Promise.resolve();
+  },
+  pushView: (o: { path: string, params?: any }) => {
+    void invokeBridge('mainWindow.pushView', [o]);
+    return undefined as any;
+  },
+  popView: (o?: { count: number }) => {
+    void invokeBridge('mainWindow.popView', [o]);
+    return undefined as any;
+  },
+  onShow: () => {
+    throw new Error('mainWindow.onShow 无法在 Node 插件中序列化回调，请用前端');
+  },
+  offShow: () => {
+    throw new Error('mainWindow.offShow 无法在 Node 插件中序列化回调，请用前端');
+  },
 } as any;
 
 export const screen: typeof coreApi['screen'] = {
-  getAllMonitors: () => hostCore(['screen', 'getAllMonitors'], []),
-  capture: m => hostCore(['screen', 'capture'], m !== undefined ? [m] : []),
-  monitorFromPoint: (x, y) => hostCore(['screen', 'monitorFromPoint'], [x, y]),
-  cursorMonitor: () => hostCore(['screen', 'cursorMonitor'], []),
-  currentMonitor: () => hostCore(['screen', 'currentMonitor'], []),
+  getAllMonitors: () => invokeBridge('screen.getAllMonitors'),
+  capture: (m?: any) => invokeBridge('screen.capture', m !== undefined ? [m] : []),
+  monitorFromPoint: (x: number, y: number) => invokeBridge('screen.monitorFromPoint', [x, y]),
+  cursorMonitor: () => invokeBridge('screen.cursorMonitor'),
+  currentMonitor: () => invokeBridge('screen.currentMonitor'),
 } as any;
 
+const optionalArgs = (a: any, t?: any, o?: any) => {
+  if (o) {
+    return [a, t, o];
+  }
+  if (t) {
+    return [a, t];
+  }
+  return [a];
+};
+
 export const dialog: typeof coreApi['dialog'] = {
-  showAlert: (a, t, o) => hostCore(['dialog', 'showAlert'], o ? [a, t, o] : t ? [a, t] : [a]) as any,
-  showConfirm: (a, t, o) => hostCore(['dialog', 'showConfirm'], o ? [a, t, o] : t ? [a, t] : [a]) as any,
-  showToast: (a, o) => hostCore(['dialog', 'showToast'], o ? [a, o] : [a]) as any,
+  showAlert: (a: any, t?: any, o?: any) => invokeBridge('dialog.showAlert', optionalArgs(a, t, o)) as any,
+  showConfirm: (a: any, t?: any, o?: any) => invokeBridge('dialog.showConfirm', optionalArgs(a, t, o)) as any,
+  showToast: (a: any, o?: any) => invokeBridge('dialog.showToast', o ? [a, o] : [a]) as any,
 } as any;
 
 export const permissions: typeof coreApi['permissions'] = {
-  checkAll: () => hostTauri('check_permissions', {}),
-  checkAccessibility: () => hostTauri('check_accessibility_permission', {}),
-  checkAppleScript: () => hostTauri('check_applescript_permission', {}),
-  checkScreenRecording: () => hostTauri('check_screen_recording_permission', {}),
-  openAccessibilitySettings: () => hostTauri('open_accessibility_settings', {}),
-  openScreenRecordingSettings: () => hostTauri('open_screen_recording_settings', {}),
-  openAutomationSettings: () => hostTauri('open_automation_settings', {}),
+  checkAll: () => invokeBridge('permissions.checkAll'),
+  checkAccessibility: () => invokeBridge('permissions.checkAccessibility'),
+  checkAppleScript: () => invokeBridge('permissions.checkAppleScript'),
+  checkScreenRecording: () => invokeBridge('permissions.checkScreenRecording'),
+  openAccessibilitySettings: () => invokeBridge('permissions.openAccessibilitySettings'),
+  openScreenRecordingSettings: () => invokeBridge('permissions.openScreenRecordingSettings'),
+  openAutomationSettings: () => invokeBridge('permissions.openAutomationSettings'),
 } as any;
 
-const clipboardB = (m: string, a: any[] = []) => hostCore(['clipboard', m], a);
-
 export const clipboard: any = {
-  readText: () => clipboardB('readText', []),
-  writeText: (s: string) => clipboardB('writeText', [s]),
-  paste: () => ni('keyboard.press', ['LeftCmd', 'V']),
-  writeImage: (b: any) => clipboardB('writeImage', [b]),
+  readText: () => invokeBridge('clipboard.readText'),
+  writeText: (s: string) => invokeBridge('clipboard.writeText', [s]),
+  paste: () => invokeBridge('clipboard.paste'),
+  writeImage: (b: any) => invokeBridge('clipboard.writeImage', [b]),
 } as any;
 
 export const system = { autostart: {} } as any;
 
-export const showSaveFilePicker: typeof coreApi['showSaveFilePicker'] = (() => { throw new Error('showSaveFilePicker: use host 渠道'); }) as any;
+export const showSaveFilePicker: typeof coreApi['showSaveFilePicker'] = (() => {
+  throw new Error('showSaveFilePicker: use host 渠道');
+}) as any;
 export const Database = {} as any;
-export const storage: any = { get: () => { throw new Error('未实现'); } };
+export const storage: any = {
+  get: () => {
+    throw new Error('未实现');
+  },
+};
 export const WebviewWindow = {} as any;
 export const Webview = {} as any;
 export const NativeWindow = {} as any;
-export const resolveFileIcon = (() => { throw new Error('在 server 中请使用 Node 或 fetch'); }) as any;
-export const resolveLocalPath = (() => { throw new Error('在 server 中未实现'); }) as any;
+export const resolveFileIcon = (() => {
+  throw new Error('在 server 中请使用 Node 或 fetch');
+}) as any;
+export const resolveLocalPath = (() => {
+  throw new Error('在 server 中未实现');
+}) as any;
 export const fs: any = {};
 export const shell: any = {};
 export const opener: any = {};
 
-export const invoke: <R = any>(n: string, ...a: any[]) => Promise<R> = () => {
-  throw new Error('invoke: Node server 中不支持从 Worker 反向调用插件导出方法，请从前端调用 server invoke');
+export const channel: coreApi.PluginChannel = {
+  invoke: <T = any>(name: string, ...args: any[]) => {
+    const { id, promise } = makeBridgeRequest<T>();
+    getParentPort().postMessage({
+      kind: WorkerToMain.CHANNEL_INVOKE,
+      id,
+      name: pluginName,
+      method: name,
+      args,
+    });
+    return promise;
+  },
+  handle: registerChannelHandler,
+  emit: (event: string, ...args: any[]) => {
+    getParentPort().postMessage({
+      kind: WorkerToMain.CHANNEL_EMIT,
+      name: pluginName,
+      event,
+      args,
+    });
+  },
+  on: registerChannelListener,
+  once: (event: string, callback: (...args: any[]) => void) => {
+    let off = () => {};
+    off = registerChannelListener(event, (...args: any[]) => {
+      off();
+      callback(...args);
+    });
+    return off;
+  },
+  off: (event: string, callback: (...args: any[]) => void) => {
+    const listeners = eventListeners.get(event);
+    listeners?.delete(callback);
+    if (listeners?.size === 0) {
+      eventListeners.delete(event);
+    }
+  },
 };
 
-export const on = () => { throw new Error('on: Node server 中不支持监听插件前端 socket 事件'); };
+export const updateCommands = (_commands: ICommand[]) => {
+  throw new Error('updateCommands: 在 server 中无 UI');
+};
 
-export const updateCommands = (commands: ICommand[]) => { throw new Error('updateCommands: 在 server 中无 UI'); };
+export const getPreferences = <T = Record<string, any>>(): T => Object.create(null) as T;
 
-export const getPreferences = <T = Record<string, any>>(): T => ({} as T);
-
-export const updateActions = (_: IAction[]) => { throw new Error('setActions: 在 server 中无 UI'); };
+export const updateActions = (_actions: IAction[]) => {
+  throw new Error('setActions: 在 server 中无 UI');
+};
 
 export const definePlugin: typeof import('./index').definePlugin = (f: any) => f;
 
-export const updateSearchBarValue = () => { throw new Error('在 server 中无搜索栏'); };
-export const updateSearchBarVisible = () => { throw new Error('在 server 中无搜索栏'); };
+export const updateSearchBarValue = () => {
+  throw new Error('在 server 中无搜索栏');
+};
+export const updateSearchBarVisible = () => {
+  throw new Error('在 server 中无搜索栏');
+};

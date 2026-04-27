@@ -2,6 +2,7 @@ import md5 from 'md5';
 import { DOMParser } from '@xmldom/xmldom';
 import lib from './lib';
 import { exec } from 'child_process';
+import { channel } from '@public-tauri/api/node';
 
 export const lookupIciba = async (keyword: string) => {
   const rawWord = keyword;
@@ -117,7 +118,7 @@ const translateUseApple = (keyword: string) => new Promise<any[]>((resolve, reje
   });
 });
 
-export const translate = async (keyword: string) => {
+const translate = async (keyword: string) => {
   const results = await Promise.all([
     lookupIciba(keyword),
     lookupFromDict(keyword),
@@ -126,8 +127,4 @@ export const translate = async (keyword: string) => {
   return results.flat();
 };
 
-const createPlugin = () => ({
-  translate,
-});
-
-export default createPlugin;
+channel.handle('translate', translate);

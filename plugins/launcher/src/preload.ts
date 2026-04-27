@@ -1,7 +1,7 @@
-import { definePlugin, invoke, on, resolveFileIcon, updateCommands } from '@public-tauri/api';
+import { channel, definePlugin, resolveFileIcon, updateCommands } from '@public-tauri/api';
 
 const launcherPlugin = definePlugin(() => {
-  on('apps', (apps) => {
+  channel.on('apps', (apps) => {
     console.log('apps', apps);
     const commands = apps.map(app => ({
       ...app,
@@ -14,7 +14,7 @@ const launcherPlugin = definePlugin(() => {
     onAction(command, action) {
       console.log('onAction', command, action);
       if (action.name === 'open') {
-        invoke('openApp', command.path);
+        channel.invoke('openApp', command.path);
       }
     },
   });

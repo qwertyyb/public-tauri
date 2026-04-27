@@ -1,7 +1,4 @@
 import { detectBase64 } from 'wechat-qrcode';
+import { channel } from '@public-tauri/api/node';
 
-const createQrcode = () => ({
-  detect: detectBase64,
-});
-
-export default createQrcode;
+channel.handle('detect', detectBase64);

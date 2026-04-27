@@ -9,10 +9,12 @@
 export const MainToWorker = {
   /** 加载/重载 `modulePath` 上的插件模块 */
   LOAD: 'm2w:load',
-  /** 调用 `instance[method](...args)`，对应 HTTP `/api/manager/invoke` */
-  INVOKE_EXPORTED: 'm2w:invokeExported',
+  /** 调用 Worker 中注册的 channel handler */
+  CHANNEL_INVOKE: 'm2w:channelInvoke',
+  /** 向 Worker 中注册的 channel event listener 投递事件 */
+  CHANNEL_EVENT: 'm2w:channelEvent',
   /**
-   * 回应 Worker 的 bridge 请求：执行完 runNodeUtilsInvoke 或 requestHostInvoke 后的结果/错误
+   * 回应 Worker 的 bridge 请求：父进程分派完成后的结果/错误
    * 与 WorkerToMain 中带 requestId 的 *请求* 成对出现
    */
   BRIDGE_RESPONSE: 'm2w:bridgeResponse',
@@ -24,22 +26,14 @@ export type MainToWorkerKind = (typeof MainToWorker)[keyof typeof MainToWorker];
 export const WorkerToMain = {
   /** LOAD 成功或失败 */
   LOAD_DONE: 'w2m:loadDone',
-  /**
-   * 在父进程跑与 `POST /utils/invoke` 等价的逻辑 (runNodeUtilsInvoke)，不经过 Tauri
-   * 见 packages/api 的 A 类 API
-   */
-  INVOKE_NODE_UTILS: 'w2m:invokeNodeUtils',
-  /**
-   * 在父进程经 Socket 调 Tauri 主窗 (requestHostInvoke)，B 类 API
-   */
-  INVOKE_HOST: 'w2m:invokeHost',
-  /**
-   * 子线程 context.emit，父进程里转发到 socket.io
-   * payload: { name, event, args } 在消息顶层或嵌套
-   */
-  SOCKET_EMIT: 'w2m:socketEmit',
-  /** 对 `INVOKE_EXPORTED` 的完成（一个 HTTP invoke 的回应） */
-  INVOKE_EXPORTED_DONE: 'w2m:invokeExportedDone',
+  /** Worker 发起宿主能力调用，由父进程决定走 Node utils 还是 Host 窗口 */
+  INVOKE_BRIDGE: 'w2m:invokeBridge',
+  /** Worker 调用前端 `channel.handle` 注册的方法 */
+  CHANNEL_INVOKE: 'w2m:channelInvoke',
+  /** Worker 发事件给前端 `channel.on` / `once` */
+  CHANNEL_EMIT: 'w2m:channelEmit',
+  /** 对 `CHANNEL_INVOKE` 的完成（一个 channel invoke 的回应） */
+  CHANNEL_INVOKE_DONE: 'w2m:channelInvokeDone',
 } as const;
 
 export type WorkerToMainKind = (typeof WorkerToMain)[keyof typeof WorkerToMain];

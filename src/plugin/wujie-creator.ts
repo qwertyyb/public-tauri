@@ -24,8 +24,7 @@ import {
   WebviewWindow,
   Webview,
   NativeWindow,
-  invokePluginServerMethod,
-  createPluginServerListener,
+  createPluginChannel,
   createPluginStorage,
 } from '@public/core';
 import type { IPluginLifecycle, IAction, ICommand } from '@public/schema';
@@ -163,8 +162,7 @@ export const createWujieApp = (options: CreateWujieOptions): {
       NativeWindow,
 
       storage: createPluginStorage(name),
-      invoke: (method: string, ...args: any[]) => invokePluginServerMethod(name, method, args),
-      on: createPluginServerListener(name),
+      channel: createPluginChannel(name),
       createMainPlugin: (opts: IPluginLifecycle) => {
         mainScript?.onPlugin(opts);
       },
