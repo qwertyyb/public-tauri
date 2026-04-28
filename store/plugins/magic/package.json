@@ -1,11 +1,12 @@
 {
   "name": "@public-tauri-ext/magic",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rollup --config ./rollup.config.mjs"
+    "build": "tsdown"
   },
   "keywords": [],
   "author": "",
@@ -71,15 +72,8 @@
       }
     ]
   },
-  "dependencies": {
-    "@public-tauri/api": "workspace:^"
-  },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "catalog:plugin",
-    "@rollup/plugin-json": "catalog:plugin",
-    "@rollup/plugin-node-resolve": "catalog:plugin",
-    "@rollup/plugin-replace": "catalog:plugin",
-    "rollup": "catalog:plugin",
-    "rollup-plugin-esbuild": "catalog:plugin"
+    "@public-tauri/api": "workspace:^",
+    "tsdown": "catalog:plugin"
   }
 }

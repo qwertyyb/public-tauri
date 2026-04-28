@@ -17,56 +17,39 @@ my-plugin/
 │   └── command.preload.ts    # listView preload（可选）
 ├── dist/                     # 构建产物
 ├── package.json
-├── rollup.config.mjs         # Rollup 配置（none/listView 模式）
+├── tsdown.config.ts          # tsdown 配置（none/listView 模式）
 ├── vite.config.ts            # Vite 配置（view 模式）
 └── tsconfig.json
 ```
 
 ## 构建 none 模式插件
 
-使用 Rollup 将 TypeScript 编译为 ESM 格式：
+使用 tsdown 将 TypeScript 编译为 ESM 格式：
 
 ### 安装构建依赖
 
 ```json
 {
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^28.0.0",
-    "@rollup/plugin-node-resolve": "^15.0.0",
-    "rollup": "^4.0.0",
-    "rollup-plugin-esbuild": "^6.0.0"
+    "@public-tauri/api": "^1.0.0",
+    "tsdown": "^0.21.7"
   }
 }
 ```
 
-### Rollup 配置
+### tsdown 配置
 
-```js
-// rollup.config.mjs
-import { defineConfig } from 'rollup'
-import esbuild from 'rollup-plugin-esbuild'
-import commonjs from '@rollup/plugin-commonjs'
-import { nodeResolve } from '@rollup/plugin-node-resolve'
-import replace from '@rollup/plugin-replace'
+```ts
+// tsdown.config.ts
+import { defineConfig } from 'tsdown'
 
-const createRollupConfig = (input) => ({
-  input,
-  output: {
-    dir: 'dist',
-    format: 'esm',
-  },
-  plugins: [
-    commonjs(),
-    nodeResolve(),
-    esbuild({
-      target: 'es2022',
-      tsconfig: './tsconfig.json',
-    }),
-  ],
-  treeshake: 'smallest',
+export default defineConfig({
+  entry: './src/main.ts',
+  format: 'esm',
+  platform: 'browser',
+  target: 'es2022',
+  outExtensions: () => ({ js: '.js' }),
 })
-
-export default createRollupConfig('./src/main.ts')
 ```
 
 ### 构建命令
@@ -74,7 +57,7 @@ export default createRollupConfig('./src/main.ts')
 ```json
 {
   "scripts": {
-    "build": "rollup --config ./rollup.config.mjs"
+    "build": "tsdown"
   }
 }
 ```
@@ -87,38 +70,19 @@ pnpm build
 
 listView 模式的插件需要构建 preload 脚本：
 
-### Rollup 配置
+### tsdown 配置
 
-```js
-// rollup.config.mjs
-import { defineConfig } from 'rollup'
-import esbuild from 'rollup-plugin-esbuild'
-import commonjs from '@rollup/plugin-commonjs'
-import { nodeResolve } from '@rollup/plugin-node-resolve'
-import replace from '@rollup/plugin-replace'
+```ts
+// tsdown.config.ts
+import { defineConfig } from 'tsdown'
 
-const createRollupConfig = (input) => ({
-  input,
-  output: {
-    dir: 'dist',
-    format: 'esm',
-  },
-  plugins: [
-    commonjs(),
-    nodeResolve(),
-    esbuild({
-      target: 'es2022',
-      tsconfig: './tsconfig.json',
-    }),
-    replace({
-      preventAssignment: true,
-      'process.env.PLUGIN_NAME': JSON.stringify('my-plugin'),
-    }),
-  ],
-  treeshake: 'smallest',
+export default defineConfig({
+  entry: './src/command.preload.ts',
+  format: 'esm',
+  platform: 'browser',
+  target: 'es2022',
+  outExtensions: () => ({ js: '.js' }),
 })
-
-export default defineConfig([createRollupConfig('./src/command.preload.ts')])
 ```
 
 ## 构建 view 模式插件
@@ -128,8 +92,7 @@ view 模式使用 Vite 构建 Vue/Web 应用：
 ### 安装依赖
 
 ```bash
-pnpm add vue
-pnpm add -D vite @vitejs/plugin-vue typescript vue-tsc
+pnpm add -D @public-tauri/api vue vite @vitejs/plugin-vue typescript vue-tsc
 ```
 
 ### Vite 配置
@@ -192,17 +155,12 @@ pnpm build
       }
     ]
   },
-  "dependencies": {
-    "@public-tauri/api": "^1.0.0"
-  },
   "devDependencies": {
-    "rollup": "^4.0.0",
-    "rollup-plugin-esbuild": "^6.0.0",
-    "@rollup/plugin-commonjs": "^28.0.0",
-    "@rollup/plugin-node-resolve": "^15.0.0"
+    "@public-tauri/api": "^1.0.0",
+    "tsdown": "^0.21.7"
   },
   "scripts": {
-    "build": "rollup --config rollup.config.mjs"
+    "build": "tsdown"
   }
 }
 ```
@@ -227,11 +185,9 @@ pnpm build
       }
     ]
   },
-  "dependencies": {
-    "@public-tauri/api": "^1.0.0",
-    "vue": "^3.5.0"
-  },
   "devDependencies": {
+    "@public-tauri/api": "^1.0.0",
+    "vue": "^3.5.0",
     "vite": "^7.0.0",
     "@vitejs/plugin-vue": "^6.0.0",
     "typescript": "~5.8.0",

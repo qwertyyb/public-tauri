@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rollup --config ./rollup.config.mjs"
+    "build": "tsdown"
   },
   "keywords": [],
   "author": "",
@@ -18,15 +18,9 @@
     "main": "./dist/preload.js",
     "server": "./dist/server.js"
   },
-  "dependencies": {
-    "socket.io-client": "^4.8.1",
-    "@public-tauri/api": "workspace:^"
-  },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "catalog:plugin",
-    "@rollup/plugin-node-resolve": "catalog:plugin",
-    "rollup": "catalog:plugin",
-    "rollup-plugin-esbuild": "catalog:plugin",
-    "@rollup/plugin-replace": "catalog:plugin"
+    "socket.io-client": "^4.8.1",
+    "@public-tauri/api": "workspace:^",
+    "tsdown": "catalog:plugin"
   }
 }

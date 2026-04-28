@@ -63,30 +63,28 @@ function generatePackageJson(options: ScaffoldOptions): string {
     type: 'module',
     publicPlugin,
     scripts: {},
-    dependencies: {
+    devDependencies: {
       '@public-tauri/api': 'latest',
     },
-    devDependencies: {},
   };
 
   if (mode === 'none' || mode === 'listView') {
-    pkg.scripts.build = 'rollup --config ./rollup.config.mjs';
+    pkg.scripts.build = 'tsdown';
     pkg.devDependencies = {
-      '@rollup/plugin-commonjs': '^28.0.0',
-      '@rollup/plugin-node-resolve': '^16.0.0',
-      rollup: '^4.0.0',
-      'rollup-plugin-esbuild': '^6.0.0',
+      ...pkg.devDependencies,
+      tsdown: '^0.21.7',
     };
   } else {
     pkg.scripts = {
       dev: 'vite',
       build: 'vite build',
     };
-    pkg.dependencies.vue = '^3.5.0';
     pkg.devDependencies = {
+      ...pkg.devDependencies,
       '@vitejs/plugin-vue': '^6.0.0',
       typescript: '~5.8.0',
       vite: '^7.0.0',
+      vue: '^3.5.0',
       'vue-tsc': '^3.0.0',
     };
   }
@@ -94,7 +92,7 @@ function generatePackageJson(options: ScaffoldOptions): string {
   return JSON.stringify(pkg, null, 2);
 }
 
-function generateRollupConfig(options: ScaffoldOptions): string {
+function generateTsdownConfig(options: ScaffoldOptions): string {
   const inputs: string[] = ['./src/main.ts'];
   if (options.mode === 'listView') {
     options.commands.forEach((cmd) => {
@@ -106,23 +104,14 @@ function generateRollupConfig(options: ScaffoldOptions): string {
     ? `'${inputs[0]}'`
     : `[${inputs.map(i => `'${i}'`).join(', ')}]`;
 
-  return `import { defineConfig } from 'rollup'
-import esbuild from 'rollup-plugin-esbuild'
-import commonjs from '@rollup/plugin-commonjs'
-import { nodeResolve } from '@rollup/plugin-node-resolve'
+  return `import { defineConfig } from 'tsdown'
 
 export default defineConfig({
-  input: ${inputStr},
-  output: {
-    dir: 'dist',
-    format: 'esm',
-  },
-  plugins: [
-    commonjs(),
-    nodeResolve(),
-    esbuild({ target: 'es2022' }),
-  ],
-  external: ['@public-tauri/api'],
+  entry: ${inputStr},
+  format: 'esm',
+  platform: 'browser',
+  target: 'es2022',
+  outExtensions: () => ({ js: '.js' }),
 })
 `;
 }
@@ -285,8 +274,8 @@ export async function generatePlugin(options: ScaffoldOptions): Promise<string> 
 
   if (options.mode === 'none') {
     await writeTextFile(
-      await join(pluginDir, 'rollup.config.mjs'),
-      generateRollupConfig(options),
+      await join(pluginDir, 'tsdown.config.ts'),
+      generateTsdownConfig(options),
     );
     await writeTextFile(
       await join(srcDir, 'main.ts'),
@@ -311,8 +300,8 @@ export async function generatePlugin(options: ScaffoldOptions): Promise<string> 
     );
   } else if (options.mode === 'listView') {
     await writeTextFile(
-      await join(pluginDir, 'rollup.config.mjs'),
-      generateRollupConfig(options),
+      await join(pluginDir, 'tsdown.config.ts'),
+      generateTsdownConfig(options),
     );
     await writeTextFile(
       await join(srcDir, 'main.ts'),

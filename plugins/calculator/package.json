@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rollup --config ./rollup.config.mjs"
+    "build": "tsdown"
   },
   "keywords": [],
   "author": "",
@@ -42,17 +42,10 @@
       }
     ]
   },
-  "dependencies": {
+  "devDependencies": {
     "@public-tauri/api": "workspace:^",
     "@public/schema": "workspace:^",
     "mathjs": "^14.6.0",
-    "tauri-plugin-clipboard-api": "^2.1.11"
-  },
-  "devDependencies": {
-    "@rollup/plugin-commonjs": "catalog:plugin",
-    "@rollup/plugin-node-resolve": "catalog:plugin",
-    "@rollup/plugin-replace": "catalog:plugin",
-    "rollup": "catalog:plugin",
-    "rollup-plugin-esbuild": "catalog:plugin"
+    "tsdown": "catalog:plugin"
   }
 }

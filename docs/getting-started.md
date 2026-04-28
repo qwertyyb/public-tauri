@@ -41,7 +41,7 @@
 ### 2. 安装依赖
 
 ```bash
-pnpm add @public-tauri/api
+pnpm add -D @public-tauri/api
 ```
 
 ### 3. 编写插件逻辑
@@ -69,35 +69,27 @@ export default definePlugin(({ updateCommands }) => {
 
 **模式一：内置插件（mode: none）**
 
-使用 Rollup 或类似工具将入口文件打包为 ESM 格式：
+使用 tsdown 将入口文件打包为 ESM 格式：
 
 ```bash
 # 安装构建工具
-pnpm add -D rollup @rollup/plugin-node-resolve @rollup/plugin-commonjs rollup-plugin-esbuild
+pnpm add -D tsdown
 
 # 构建输出到 dist/index.js
-pnpm rollup --config rollup.config.mjs
+pnpm tsdown
 ```
 
-`rollup.config.mjs` 示例：
+`tsdown.config.ts` 示例：
 
-```js
-import { defineConfig } from 'rollup'
-import esbuild from 'rollup-plugin-esbuild'
-import commonjs from '@rollup/plugin-commonjs'
-import { nodeResolve } from '@rollup/plugin-node-resolve'
+```ts
+import { defineConfig } from 'tsdown'
 
 export default defineConfig({
-  input: './src/main.ts',
-  output: {
-    dir: 'dist',
-    format: 'esm',
-  },
-  plugins: [
-    commonjs(),
-    nodeResolve(),
-    esbuild({ target: 'es2022' }),
-  ],
+  entry: './src/main.ts',
+  format: 'esm',
+  platform: 'browser',
+  target: 'es2022',
+  outExtensions: () => ({ js: '.js' }),
 })
 ```
 
@@ -109,17 +101,17 @@ export default defineConfig({
 
 ```bash
 pnpm create vite . --template vue-ts
-pnpm add @public-tauri/api
+pnpm add -D @public-tauri/api
 ```
 
 构建产物输出到 `dist/`，在 `package.json` 中添加 `"html": "./dist/index.html"`。
 
 **模式三：ListView 模板插件（mode: listView）**
 
-使用 Rollup 构建一个 preload 脚本：
+使用 tsdown 构建一个 preload 脚本：
 
 ```bash
-pnpm rollup --config rollup.config.mjs
+pnpm tsdown
 ```
 
 构建产物输出到 `dist/command.preload.js`，在命令配置中添加 `"preload": "./dist/command.preload.js"`。
@@ -158,7 +150,7 @@ my-plugin/
 ├── dist/
 │   └── index.js          # 构建产物
 ├── package.json
-├── rollup.config.mjs
+├── tsdown.config.ts
 └── tsconfig.json
 ```
 

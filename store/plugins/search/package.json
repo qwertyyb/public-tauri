@@ -12,7 +12,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
-    "build": "rollup --config ./rollup.config.mjs"
+    "build": "tsdown"
   },
   "keywords": [],
   "author": "",
@@ -32,7 +32,11 @@
         "matches": [
           {
             "type": "trigger",
-            "triggers": ["g", "google", "gg"],
+            "triggers": [
+              "g",
+              "google",
+              "gg"
+            ],
             "title": "谷歌搜索\"$query\"",
             "subtitle": "在浏览器中打开 Google 搜索结果"
           }
@@ -46,7 +50,11 @@
         "matches": [
           {
             "type": "trigger",
-            "triggers": ["b", "bing", "必应"],
+            "triggers": [
+              "b",
+              "bing",
+              "必应"
+            ],
             "title": "必应搜索\"$query\"",
             "subtitle": "在浏览器中打开必应搜索结果"
           }
@@ -60,7 +68,11 @@
         "matches": [
           {
             "type": "trigger",
-            "triggers": ["bd", "baidu", "百度"],
+            "triggers": [
+              "bd",
+              "baidu",
+              "百度"
+            ],
             "title": "百度搜索\"$query\"",
             "subtitle": "在浏览器中打开百度搜索结果"
           }
@@ -68,15 +80,8 @@
       }
     ]
   },
-  "dependencies": {
-    "@public-tauri/api": "workspace:^"
-  },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "catalog:plugin",
-    "@rollup/plugin-json": "catalog:plugin",
-    "@rollup/plugin-node-resolve": "catalog:plugin",
-    "@rollup/plugin-replace": "catalog:plugin",
-    "rollup": "catalog:plugin",
-    "rollup-plugin-esbuild": "catalog:plugin"
+    "@public-tauri/api": "workspace:^",
+    "tsdown": "catalog:plugin"
   }
 }

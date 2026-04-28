@@ -126,37 +126,40 @@ http://my-plugin.scope.plugin.localhost:2345/dist/index.html
 
 ## 构建服务端代码
 
-服务端代码需要构建为 Node.js 可执行的 ESM 格式。推荐使用 Rollup 或 tsdown：
+服务端代码需要构建为 Node.js 可执行的 ESM 格式。推荐使用 tsdown：
 
-### Rollup 配置
+### tsdown 配置
 
-```js
-// rollup.config.mjs
-import { defineConfig } from 'rollup'
-import esbuild from 'rollup-plugin-esbuild'
-import commonjs from '@rollup/plugin-commonjs'
-import { nodeResolve } from '@rollup/plugin-node-resolve'
+```ts
+// tsdown.config.ts
+import { defineConfig } from 'tsdown'
 
 export default defineConfig([
   // 前端入口
   {
-    input: './src/main.ts',
-    output: { dir: 'dist', format: 'esm' },
-    plugins: [commonjs(), nodeResolve(), esbuild({ target: 'es2022' })],
+    entry: './src/main.ts',
+    format: 'esm',
+    platform: 'browser',
+    target: 'es2022',
+    outExtensions: () => ({ js: '.js' }),
   },
   // 服务端入口
   {
-    input: './src/server.ts',
-    output: { dir: 'dist', format: 'esm' },
-    plugins: [commonjs(), nodeResolve(), esbuild({ target: 'es2022' })],
-    external: ['node:*'],  // 外部化 Node.js 内置模块
+    entry: './src/server.ts',
+    format: 'esm',
+    platform: 'node',
+    target: 'es2022',
+    outExtensions: () => ({ js: '.js' }),
+    deps: {
+      neverBundle: ['node:*'],
+    },
   },
 ])
 ```
 
 ## 在 server 中使用 `@public-tauri/api`
 
-构建 server 产物时，将 `@public-tauri/api` 解析到 Node 实现，例如 Rollup `alias`：`@public-tauri/api` → `@public-tauri/api/node`（或在你的构建里将 `server` 入口单独配置 `resolve.alias`）。在 server 源码中：
+构建 server 产物时，将 `@public-tauri/api` 解析到 Node 实现，例如 tsdown `alias`：`@public-tauri/api` → `@public-tauri/api/node`（或在你的构建里将 `server` 入口单独配置 `alias`）。在 server 源码中：
 
 ```ts
 import { utils, fetch, dialog, channel } from '@public-tauri/api/node'

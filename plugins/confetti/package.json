@@ -32,15 +32,10 @@
     ]
   },
   "scripts": {
-    "build": "rollup -c rollup.config.mjs"
-  },
-  "dependencies": {
-    "@public-tauri/api": "workspace:^"
+    "build": "tsdown"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "catalog:plugin",
-    "@rollup/plugin-node-resolve": "catalog:plugin",
-    "rollup": "catalog:plugin",
-    "rollup-plugin-esbuild": "catalog:plugin"
+    "@public-tauri/api": "workspace:^",
+    "tsdown": "catalog:plugin"
   }
 }
