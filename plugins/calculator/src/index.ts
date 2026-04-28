@@ -1,6 +1,5 @@
 
-import { writeText } from 'tauri-plugin-clipboard-api';
-import { dialog, definePlugin, storage, type ICommand } from '@public-tauri/api';
+import { dialog, definePlugin, storage, type ICommand, clipboard } from '@public-tauri/api';
 import { create, all } from 'mathjs';
 
 const DECIMAL_SEPARATOR = '.';
@@ -109,14 +108,14 @@ const calculatorPlugin = definePlugin(() => ({
     }
     return [];
   },
-  onAction(command, action) {
+  async onAction(command, action) {
     if (action.name === 'copy') {
-      const extra = (command as any).extra;
+      const { extra } = (command as any);
       // 保存到历史
       if (extra?.expression) {
         addToHistory(extra.expression, String(command.text));
       }
-      writeText(String(command.text));
+      await clipboard.writeText(String(command.text));
       dialog.showToast('结果已复制到剪切板');
     }
   },

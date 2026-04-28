@@ -1,5 +1,4 @@
-import { storage, dialog } from '@public-tauri/api';
-import { writeText } from 'tauri-plugin-clipboard-api';
+import { storage, dialog, clipboard } from '@public-tauri/api';
 
 const HISTORY_KEY = 'calculator_history';
 const MAX_HISTORY_SIZE = 100;
@@ -80,7 +79,7 @@ const listView = {
         await storage.setItem(HISTORY_KEY, history);
       }
     }
-    await writeText(item.contentValue);
+    await clipboard.writeText(String(item.contentValue));
     await dialog.showToast('结果已复制到剪切板');
   },
 };
