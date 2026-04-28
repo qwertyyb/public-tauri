@@ -18,7 +18,7 @@ pnpm tauri:dev
 
 **`pnpm tauri:dev` 的行为**：该命令会 **持续占用当前终端**（同时跑 Vite 与 Tauri 开发进程），在开发过程中 **一直保持运行**，直到你在该终端中 **手动结束**（例如 <kbd>Ctrl</kbd>+<kbd>C</kbd>）。**结束该命令时，开发版桌面应用会随之退出**，WebDriver 与 Vite 也会随之停止。
 
-`tauri:dev` 在根目录 `package.json` 中等价于 **`tauri dev --features webdriver`**。开发模式下会启用 **tauri-plugin-webdriver**，便于本地自动化连接 W3C WebDriver（默认 `http://127.0.0.1:4445`）。
+`tauri:dev` 在根目录 `package.json` 中等价于 **`tauri dev`**。开发模式下默认启用 **tauri-plugin-webdriver**，便于本地自动化连接 W3C WebDriver（默认 `http://127.0.0.1:4445`）；生产构建会禁用默认 Cargo features，不链接 WebDriver 插件。
 
 前端由 Vite 提供；开发页 URL 需与 `src-tauri/tauri.conf.json` 中的 **`build.devUrl`** 一致（通常为 `http://localhost:1420/`，可通过环境变量覆盖，见下文）。
 
@@ -28,7 +28,7 @@ pnpm tauri:dev
 
 ### 前置
 
-1. **先**在一个终端启动应用：`pnpm tauri:dev`（需 WebDriver feature，否则脚本会长时间停在「等待 WebDriver」）。
+1. **先**在一个终端启动应用：`pnpm tauri:dev`（debug 构建默认启用 WebDriver）。
 2. 在**另一终端**执行下方 npm 脚本；确保能访问 `http://127.0.0.1:4445/status`（脚本会轮询直至就绪）。
 
 ### 脚本与命令对照

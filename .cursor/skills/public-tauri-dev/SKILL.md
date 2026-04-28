@@ -24,7 +24,7 @@ pnpm tauri:dev
 ```
 
 - **Agent 启动开发时**（Cursor 等环境可能注入 `CARGO_TARGET_DIR` 指向沙箱缓存）：须在仓库根目录执行 **`unset CARGO_TARGET_DIR && pnpm tauri:dev`**，使 Cargo 使用默认 **`src-tauri/target/debug/`**，避免日志中出现 `cursor-sandbox-cache/.../cargo-target` 下的二进制路径。人工在本机终端开发可直接 `pnpm tauri:dev`。
-- `tauri:dev` 等价于 `tauri dev --features webdriver`（见 `package.json`），会启用 **tauri-plugin-webdriver**（默认 `http://127.0.0.1:4445`）。
+- `tauri:dev` 等价于 `tauri dev`（见 `package.json`），debug 构建默认启用 **tauri-plugin-webdriver**（默认 `http://127.0.0.1:4445`）。
 - 该进程 **长期占用终端**（Vite + 桌面应用），**按 Ctrl+C 结束命令时，开发版应用、WebDriver、Vite 会一并停止**。
 - 开发页 URL 须与 `src-tauri/tauri.conf.json` 的 **`build.devUrl`** 一致（通常 `http://localhost:1420/`）。
 
@@ -36,7 +36,7 @@ pnpm tauri:dev
 
 ### 必须的两步
 
-1. **终端 A**：`pnpm tauri:dev`（保持运行；**Agent** 用 **`unset CARGO_TARGET_DIR && pnpm tauri:dev`**；无 webdriver feature 时脚本会一直等 WebDriver）。
+1. **终端 A**：`pnpm tauri:dev`（保持运行；**Agent** 用 **`unset CARGO_TARGET_DIR && pnpm tauri:dev`**；debug 构建默认启用 WebDriver）。
 2. **终端 B**：执行下表命令；可先 `curl -sSf http://127.0.0.1:4445/status` 确认服务存在（脚本内也会轮询）。
 
 ### 命令与脚本
@@ -120,7 +120,7 @@ pnpm tauri:dev
 ## Agent 执行建议
 
 - **启动开发（Agent）**：在仓库根目录执行 **`unset CARGO_TARGET_DIR && pnpm tauri:dev`**，且 **必须在后台运行**（阻塞式前景会话会一直占用 shell，无法在同一工作流里再执行测试命令）。使用 IDE/Agent 提供的 **后台任务**、或等价「非阻塞启动」方式；待 `http://127.0.0.1:4445/status`（及需要时 `1420`）可用后，再在**另一命令**中执行 `pnpm test:webdriver` / `pnpm test:webdriver:search` / `pnpm test:webdriver:shell` / `pnpm test:webdriver:google-chrome` / `pnpm test:webdriver:snippets`（或你新增的 `test:webdriver:*`）。
-- **需要验证前端自动化**：顺序为 **后台 `unset CARGO_TARGET_DIR && pnpm tauri:dev` → 再跑上列 `pnpm test:webdriver*`**；超时或连不上时查 4445/1420 是否监听、是否启用了带 `webdriver` 的 dev 命令。
+- **需要验证前端自动化**：顺序为 **后台 `unset CARGO_TARGET_DIR && pnpm tauri:dev` → 再跑上列 `pnpm test:webdriver*`**；超时或连不上时查 4445/1420 是否监听。
 - **停止应用**：人工在前景终端跑 `tauri:dev` 时用 **Ctrl+C**。Agent 用后台任务启动时，通过 **结束该后台任务** 或对 `public-tauri` / `tauri` dev 父进程发 **SIGTERM**（避免误杀无关 Node 进程）。
 - **插件 API、manifest、商店**：读 **docs/plugin-index.md**，不要用本 skill 代替插件文档。
 

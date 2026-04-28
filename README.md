@@ -23,7 +23,7 @@ pnpm install
 # 运行 Nodejs Server
 cd src-node && pnpm dev
 
-# 开发调试（含 webdriver feature，供 E2E / 冒烟脚本连接）
+# 开发调试（debug 构建默认启用 WebDriver，供 E2E / 冒烟脚本连接）
 pnpm tauri:dev
 
 # 构建插件 

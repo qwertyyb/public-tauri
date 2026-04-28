@@ -13,9 +13,8 @@ rust-version = "1.90"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [features]
-# Enable with: `pnpm tauri:dev` or `cargo tauri dev --features webdriver`
-# Omit in release builds (`pnpm tauri build`) so automation is not linked.
-default = []
+# Enabled by default for development; production builds use `--no-default-features`.
+default = ["webdriver"]
 webdriver = ["dep:tauri-plugin-webdriver"]
 
 [lib]

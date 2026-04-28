@@ -1,7 +1,7 @@
 /**
  * E2E: 内置 snippets 插件 — create snippet（主操作「创建」）、search snippets（主操作「粘贴」及更多操作）
  *
- * 前置：`pnpm tauri:dev`（`--features webdriver`）。环境：`TAURI_WEBDRIVER_URL`、`TAURI_DEV_URL`。
+ * 前置：`pnpm tauri:dev`（debug 构建默认启用 WebDriver）。环境：`TAURI_WEBDRIVER_URL`、`TAURI_DEV_URL`。
  */
 import { Builder, Browser, By, until, type WebDriver } from 'selenium-webdriver';
 

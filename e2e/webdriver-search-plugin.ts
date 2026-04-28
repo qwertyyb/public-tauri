@@ -1,7 +1,7 @@
 /**
  * E2E: @public-tauri-ext/search（Google / 必应 / 百度）
  *
- * 前置：`pnpm tauri:dev`（`--features webdriver`）；DEV 下存在 `__PUBLIC_DEV_REGISTER_PLUGIN_PATH__`。
+ * 前置：`pnpm tauri:dev`（debug 构建默认启用 WebDriver）；DEV 下存在 `__PUBLIC_DEV_REGISTER_PLUGIN_PATH__`。
  * 环境变量：`TAURI_WEBDRIVER_URL`、`TAURI_DEV_URL`、可选 `E2E_SEARCH_PLUGIN_PATH`（默认仓库内 `store/plugins/search`）。
  * 输入与按键说明见 docs-app/webdriver-e2e-input.md；报告写入 reports/search-plugin-e2e-report.md（每次运行覆盖）。
  */

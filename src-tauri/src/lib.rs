@@ -18,7 +18,7 @@ pub fn run() {
     }
 
     builder = builder.plugin(tauri_plugin_upload::init());
-    // W3C WebDriver on http://127.0.0.1:4445 — enable with `pnpm tauri:dev` (see package.json)
+    // W3C WebDriver on http://127.0.0.1:4445 is available in debug builds only.
     #[cfg(all(
         debug_assertions,
         feature = "webdriver",

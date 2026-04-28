@@ -1,7 +1,7 @@
 /**
  * E2E: 权限设置截图测试
  * 
- * 前置：`unset CARGO_TARGET_DIR && pnpm tauri:dev`（`--features webdriver`）
+ * 前置：`unset CARGO_TARGET_DIR && pnpm tauri:dev`（debug 构建默认启用 WebDriver）
  * 运行：`npx tsx e2e/webdriver-screenshot.ts`
  */
 import { Builder, Browser, By, until, type WebDriver, Key } from 'selenium-webdriver';

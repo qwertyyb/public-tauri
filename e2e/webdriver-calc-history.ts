@@ -1,7 +1,7 @@
 /**
  * E2E: 计算器插件历史功能测试
  * 
- * 前置：`pnpm tauri:dev`（`--features webdriver`）
+ * 前置：`pnpm tauri:dev`（debug 构建默认启用 WebDriver）
  * 运行：`npx tsx e2e/webdriver-calc-history.ts`
  */
 import { Builder, Browser, until, type WebDriver, By, Key } from 'selenium-webdriver';

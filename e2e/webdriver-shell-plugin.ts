@@ -1,7 +1,7 @@
 /**
  * E2E: @public-tauri-ext/shell（trigger: >）
  *
- * 前置：`pnpm tauri:dev`（`--features webdriver`）；DEV 下存在 `__PUBLIC_DEV_REGISTER_PLUGIN_PATH__`。
+ * 前置：`pnpm tauri:dev`（debug 构建默认启用 WebDriver）；DEV 下存在 `__PUBLIC_DEV_REGISTER_PLUGIN_PATH__`。
  * 环境变量：`TAURI_WEBDRIVER_URL`、`TAURI_DEV_URL`、可选 `E2E_SHELL_PLUGIN_PATH`（默认仓库内 `store/plugins/shell`）。
  * 报告写入 reports/shell-plugin-e2e-report.md（每次运行覆盖）。
  */

@@ -1,7 +1,7 @@
 /**
  * E2E: 内置 confetti 插件 — 全屏彩带、透明穿透点击
  *
- * 前置：`unset CARGO_TARGET_DIR && pnpm tauri:dev`（`--features webdriver`）。环境：`TAURI_WEBDRIVER_URL`、`TAURI_DEV_URL`。
+ * 前置：`unset CARGO_TARGET_DIR && pnpm tauri:dev`（debug 构建默认启用 WebDriver）。环境：`TAURI_WEBDRIVER_URL`、`TAURI_DEV_URL`。
  * 依赖开发环境 `window.__E2E_INVOKE`（见 `src/main.ts`）用于 `invoke` 探针。
  */
 import { Builder, Browser, By, until, type WebDriver, Key } from 'selenium-webdriver';

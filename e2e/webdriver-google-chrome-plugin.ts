@@ -1,7 +1,7 @@
 /**
  * E2E: @public-tauri-ext/google-chrome（触发词 gc）
  *
- * 前置：`pnpm tauri:dev`（`--features webdriver`）；本机需安装 Google Chrome。
+ * 前置：`pnpm tauri:dev`（debug 构建默认启用 WebDriver）；本机需安装 Google Chrome。
  * 环境变量：`TAURI_WEBDRIVER_URL`、`TAURI_DEV_URL`、可选 `E2E_GOOGLE_CHROME_PLUGIN_PATH`（默认 `store/plugins/google-chrome`）。
  * 报告：`reports/google-chrome-plugin-e2e-report.md`
  */
