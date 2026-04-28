@@ -8,6 +8,8 @@ import { storage } from './storage';
 const logger = createLogger('api.utils');
 const CHANNEL_INVOKE_EVENT = '__public_tauri_channel_invoke__';
 const CHANNEL_EVENT = '__public_tauri_channel_event__';
+const CHANNEL_HANDLER_READY = '__public_tauri_channel_handler_ready__';
+const CHANNEL_HANDLER_REMOVED = '__public_tauri_channel_handler_removed__';
 
 export type PluginChannelHandler = (...args: any[]) => any;
 
@@ -18,6 +20,10 @@ export type PluginChannel = {
   on: (event: string, callback: (...args: any[]) => void) => () => void
   once: (event: string, callback: (...args: any[]) => void) => () => void
   off: (event: string, callback: (...args: any[]) => void) => void
+};
+
+type PluginChannelOptions = {
+  hasServerModule?: boolean
 };
 
 export const invokePluginServerMethod: <T extends any>(name: string, method: string, args: any[]) => Promise<T> = logger.wrap(
@@ -94,59 +100,88 @@ export const createPluginServerListener = logger.wrap(
 
 export const createPluginChannel = logger.wrap(
   'createPluginChannel',
-  (pluginName: string): PluginChannel => {
-    const socket = io(SERVER, {
-      path: '/socket.io',
-      query: {
-        name: pluginName,
-      },
-    });
+  (pluginName: string, options: PluginChannelOptions = {}): PluginChannel => {
+    const { hasServerModule = true } = options;
+    let socket: ReturnType<typeof io> | null = null;
+    let warnedNoServerModule = false;
     const handlers = new Map<string, PluginChannelHandler>();
 
-    socket.on(CHANNEL_INVOKE_EVENT, async (
-      payload: { name?: string, args?: any[] },
-      ack?: (response: { ok: true, data: unknown } | { ok: false, message: string }) => void,
-    ) => {
-      if (!ack) {
+    const warnNoServerModule = (method: string) => {
+      if (warnedNoServerModule) {
         return;
       }
-      const name = payload?.name;
-      const handler = name ? handlers.get(name) : undefined;
-      if (!name || !handler) {
-        ack({ ok: false, message: `frontend handler not found: ${name || '<empty>'}` });
-        return;
+      warnedNoServerModule = true;
+      console.warn(`[public-tauri] channel.${method} ignored: plugin ${pluginName} has no server module`);
+    };
+
+    const bindInternalHandlers = (activeSocket: ReturnType<typeof io>) => {
+      activeSocket.on(CHANNEL_INVOKE_EVENT, async (
+        payload: { name?: string, args?: any[] },
+        ack?: (response: { ok: true, data: unknown } | { ok: false, message: string }) => void,
+      ) => {
+        if (!ack) {
+          return;
+        }
+        const name = payload?.name;
+        const handler = name ? handlers.get(name) : undefined;
+        if (!name || !handler) {
+          ack({ ok: false, message: `frontend handler not found: ${name || '<empty>'}` });
+          return;
+        }
+        try {
+          const data = await handler(...(payload.args || []));
+          ack({ ok: true, data });
+        } catch (e) {
+          ack({ ok: false, message: e instanceof Error ? e.message : String(e) });
+        }
+      });
+    };
+
+    const ensureSocket = (method: string) => {
+      if (!hasServerModule) {
+        warnNoServerModule(method);
+        return null;
       }
-      try {
-        const data = await handler(...(payload.args || []));
-        ack({ ok: true, data });
-      } catch (e) {
-        ack({ ok: false, message: e instanceof Error ? e.message : String(e) });
+      if (socket) {
+        return socket;
       }
-    });
+      socket = io(SERVER, {
+        path: '/socket.io',
+        query: {
+          name: pluginName,
+        },
+      });
+      bindInternalHandlers(socket);
+      return socket;
+    };
 
     return {
       invoke: <T = any>(name: string, ...args: any[]) => invokePluginServerMethod<T>(pluginName, name, args),
       handle: (name: string, callback: PluginChannelHandler) => {
         handlers.set(name, callback);
+        ensureSocket('handle')?.emit(CHANNEL_HANDLER_READY, { name });
         return () => {
           if (handlers.get(name) === callback) {
             handlers.delete(name);
+            socket?.emit(CHANNEL_HANDLER_REMOVED, { name });
           }
         };
       },
       emit: (event: string, ...args: any[]) => {
-        socket.emit(CHANNEL_EVENT, { event, args });
+        ensureSocket('emit')?.emit(CHANNEL_EVENT, { event, args });
       },
       on: (event: string, callback: (...args: any[]) => void) => {
-        socket.on(event, callback);
-        return () => socket.off(event, callback);
+        const activeSocket = ensureSocket('on');
+        activeSocket?.on(event, callback);
+        return () => activeSocket?.off(event, callback);
       },
       once: (event: string, callback: (...args: any[]) => void) => {
-        socket.once(event, callback);
-        return () => socket.off(event, callback);
+        const activeSocket = ensureSocket('once');
+        activeSocket?.once(event, callback);
+        return () => activeSocket?.off(event, callback);
       },
       off: (event: string, callback: (...args: any[]) => void) => {
-        socket.off(event, callback);
+        socket?.off(event, callback);
       },
     };
   },

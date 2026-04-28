@@ -2,7 +2,7 @@ import { Worker } from 'node:worker_threads';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { join, dirname } from 'node:path';
 import { existsSync } from 'node:fs';
-import { emitEvent, getSocket, setChannelEventHandler } from './sockets';
+import { emitEvent, getSocket, removeSocket, setChannelEventHandler, waitFrontendHandlerReady, waitSocketReady } from './sockets';
 import { runNodeUtilsInvoke } from '../lib/invoke-node-utils';
 import { requestHostInvoke, type HostInvokePayload } from './host-bridge';
 import { MainToWorker, WorkerToMain } from './worker-protocol';
@@ -10,6 +10,7 @@ import { plugins } from './store';
 
 const WORKER_FILE = 'public-plugin-worker.cjs';
 const CHANNEL_INVOKE_EVENT = '__public_tauri_channel_invoke__';
+const SERVER_READY_TIMEOUT = 120_000;
 
 /** 插件 Worker 为独立 CJS 产物；主进程 sidecar 也是 CJS，避免混用加载模式。 */
 function resolvePluginWorkerModuleUrl() {
@@ -66,13 +67,14 @@ async function runWorkerBridgeInvoke(payload: WorkerBridgePayload): Promise<unkn
   return requestHostInvoke(payload as HostInvokePayload);
 }
 
-function requestFrontendInvoke(name: string, method: string, args: any[], timeoutMs = 20000): Promise<unknown> {
+async function requestFrontendInvoke(name: string, method: string, args: any[], timeoutMs = 20000): Promise<unknown> {
+  await waitSocketReady(name, timeoutMs);
+  await waitFrontendHandlerReady(name, method, timeoutMs);
+  const socket = getSocket(name);
+  if (!socket) {
+    throw new Error(`插件 ${name} 前端未连接`);
+  }
   return new Promise((resolve, reject) => {
-    const socket = getSocket(name);
-    if (!socket) {
-      reject(new Error(`插件 ${name} 前端未连接`));
-      return;
-    }
     const tid = setTimeout(() => reject(new Error(`frontend invoke timeout: ${method}`)), timeoutMs);
     socket.emit(CHANNEL_INVOKE_EVENT, { name: method, args }, (res: Ack | undefined) => {
       clearTimeout(tid);
@@ -115,7 +117,11 @@ async function handleMessageFromPluginWorker(w: Worker, m: { kind: string, [k: s
     return;
   }
   if (m.kind === WorkerToMain.CHANNEL_EMIT) {
-    await emitEvent(m.name, m.event, ...(m.args || []));
+    try {
+      await emitEvent(m.name, m.event, ...(m.args || []));
+    } catch (e) {
+      console.warn(`[public-plugin] frontend event dropped: ${m.name}.${m.event}`, e);
+    }
     return;
   }
   if (m.kind === WorkerToMain.CHANNEL_INVOKE) {
@@ -142,6 +148,15 @@ async function callRegisteredPlugin(name: string, method: string, args: any[]) {
   if (!s) {
     throw new Error(`插件 ${name} 不存在`);
   }
+  if (!s.modulePath) {
+    throw new Error(`插件 ${name} 未配置 server module`);
+  }
+  if (s.serverReadyPromise && !s.serverReady) {
+    await s.serverReadyPromise;
+  }
+  if (s.serverReadyError) {
+    throw new Error(`插件 ${name} server module 加载失败: ${s.serverReadyError}`);
+  }
   if (s.worker) {
     return callPluginOnWorker(s.worker, method, args);
   }
@@ -162,13 +177,14 @@ function callPluginOnWorker(worker: Worker, method: string, args: any[]) {
 export const registerPlugin = async (name: string, options: {
   staticPaths?: string[],
   modulePath?: string,
-  cwd: string,
+  cwd?: string,
 }) => {
   if (!options.modulePath) {
     plugins.set(name, {
       staticPaths: options.staticPaths,
       modulePath: options.modulePath,
       cwd: options.cwd,
+      serverReady: true,
     });
     return;
   }
@@ -176,13 +192,48 @@ export const registerPlugin = async (name: string, options: {
   if (!workerUrl) {
     throw new Error(`未找到 ${WORKER_FILE}。请在 \`src-node\` 下执行 \`pnpm run build\` 生成 Worker 再启动应用。`);
   }
+  let resolveServerReady: () => void = () => {};
+  let rejectServerReady: (e: Error) => void = () => {};
+  const serverReadyPromise = new Promise<void>((res, rej) => {
+    resolveServerReady = res;
+    rejectServerReady = rej;
+  });
+  serverReadyPromise.catch(() => {});
+  const serverReadyTimeout = setTimeout(() => {
+    const err = new Error('server module ready timeout');
+    const state = plugins.get(name);
+    if (state && !state.serverReady) {
+      state.serverReadyError = err.message;
+    }
+    rejectServerReady(err);
+  }, SERVER_READY_TIMEOUT);
   const w = new Worker(workerUrl, { name: `p:${name}`, workerData: { name } });
+  plugins.set(name, {
+    staticPaths: options.staticPaths,
+    modulePath: options.modulePath,
+    worker: w,
+    cwd: options.cwd,
+    serverReady: false,
+    serverReadyPromise,
+    serverReadyReject: rejectServerReady,
+  });
   w.on('error', (e) => {
     console.error(`[public-plugin] worker process error: ${name}`, e);
+    const state = plugins.get(name);
+    if (state) {
+      state.serverReadyError = e.message;
+    }
+    rejectServerReady(e);
   });
   w.on('exit', (code) => {
     if (code !== 0) {
       console.error(`[public-plugin] worker exit: ${name}`, code);
+    }
+    const state = plugins.get(name);
+    if (state && !state.serverReady) {
+      const err = new Error(`worker exit: ${code}`);
+      state.serverReadyError = err.message;
+      rejectServerReady(err);
     }
   });
   const loadP = new Promise<void>((res, rej) => {
@@ -190,43 +241,69 @@ export const registerPlugin = async (name: string, options: {
       w.terminate();
       rej(new Error('load timeout'));
     }, 120_000);
-    w.once('message', (m: any) => {
+    const onMessage = (m: any) => {
+      if (m?.kind !== WorkerToMain.LOAD_DONE) {
+        void handleMessageFromPluginWorker(w, m);
+        return;
+      }
       clearTimeout(to);
+      w.off('message', onMessage);
       w.on('message', (m2) => {
         void handleMessageFromPluginWorker(w, m2);
       });
-      if (m?.kind === WorkerToMain.LOAD_DONE && m.ok) {
+      if (m.ok) {
         res();
         return;
       }
       w.terminate();
       rej(new Error(m?.error || 'load fail'));
-    });
+    };
+    w.on('message', onMessage);
   });
   w.postMessage({ kind: MainToWorker.LOAD, name, modulePath: options.modulePath });
   try {
     await loadP;
+    clearTimeout(serverReadyTimeout);
+    const state = plugins.get(name);
+    if (state) {
+      state.serverReady = true;
+      state.serverReadyError = undefined;
+      state.serverReadyReject = undefined;
+    }
+    resolveServerReady();
   } catch (e) {
+    clearTimeout(serverReadyTimeout);
+    const err = e instanceof Error ? e : new Error(String(e));
+    const state = plugins.get(name);
+    if (state) {
+      state.serverReadyError = err.message;
+    }
+    rejectServerReady(err);
     w.terminate();
+    removeSocket(name);
+    plugins.delete(name);
     throw e;
   }
-  plugins.set(name, {
-    staticPaths: options.staticPaths,
-    modulePath: options.modulePath,
-    worker: w,
-    cwd: options.cwd,
-  });
 };
 
 export const unregisterPlugin = (name: string) => {
   const s = plugins.get(name);
+  if (s && !s.serverReady) {
+    const err = new Error(`插件 ${name} 已卸载`);
+    s.serverReadyError = err.message;
+    s.serverReadyReject?.(err);
+  }
+  if (s?.socket) {
+    s.socket.disconnect(true);
+  }
+  removeSocket(name);
   if (s?.worker) {
     s.worker.terminate();
   }
   plugins.delete(name);
 };
 
-export const updatePlugin = (name: string, options: { staticPaths?: string[], modulePath?: string, cwd: string }) => {
+export const updatePlugin = (name: string, options: { staticPaths?: string[], modulePath?: string, cwd?: string }) => {
   unregisterPlugin(name);
   return registerPlugin(name, {
     staticPaths: options.staticPaths,

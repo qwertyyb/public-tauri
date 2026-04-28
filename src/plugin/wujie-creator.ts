@@ -72,6 +72,8 @@ interface CreateWujieOptions {
   name: string;
   /** 入口 URL */
   entryUrl: string;
+  /** 是否存在 Node server module */
+  hasServerModule?: boolean;
   /** 额外注入的脚本 */
   insertScript?: { content: string; module?: boolean };
   /** 在 wujie 环境中执行的插件 main 入口 */
@@ -114,7 +116,7 @@ export const createWujieApp = (options: CreateWujieOptions): {
   events: EventTarget;
   mainReady: Promise<void>;
 } => {
-  const { name, entryUrl, insertScript, mainScript, preload = true } = options;
+  const { name, entryUrl, hasServerModule = false, insertScript, mainScript, preload = true } = options;
   const events = new EventTarget();
   let resolveMain: () => void = () => {};
   let rejectMain: (reason?: any) => void = () => {};
@@ -162,7 +164,7 @@ export const createWujieApp = (options: CreateWujieOptions): {
       NativeWindow,
 
       storage: createPluginStorage(name),
-      channel: createPluginChannel(name),
+      channel: createPluginChannel(name, { hasServerModule }),
       createMainPlugin: (opts: IPluginLifecycle) => {
         mainScript?.onPlugin(opts);
       },

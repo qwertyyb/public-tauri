@@ -93,6 +93,7 @@ export const registerPlugin = async (pluginPath: string) => {
       const { events, mainReady } = createWujieApp({
         name,
         entryUrl,
+        hasServerModule: Boolean(manifest.server),
         insertScript: listViewScript,
         mainScript: manifest.main ? {
           url: getEntryUrl(name, path.join('/', manifest.main)),
