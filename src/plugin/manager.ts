@@ -11,7 +11,7 @@ import type { IRunningPlugin, IPluginsSettings, IPluginSettings, ICommandSetting
 import { BUILTIN_PLUGINS } from './builtin';
 import { DEV_PLUGIN_PATH_LIST_KEY, migratePluginPathListsFromLegacy, STORE_PLUGIN_PATH_LIST_KEY } from '@/services/store';
 import { wujiePool } from './wujie-pool';
-import { createWujieApp, getEntryUrl, getTemplatePath } from './wujie-creator';
+import { createWujieApp, destroyWujieApp, getEntryUrl, getTemplatePath } from './wujie-creator';
 import { INNER_PLUGIN_NAMES } from './constants';
 
 const plugins: Map<string, IRunningPlugin> = new Map(BUILTIN_PLUGINS);
@@ -120,7 +120,7 @@ export const registerPlugin = async (pluginPath: string) => {
 
 export const unregisterPlugin = (name: string) => {
   plugins.delete(name);
-  wujiePool.destroy(name);
+  destroyWujieApp(name);
 };
 
 /**
@@ -172,7 +172,7 @@ export const disablePlugin = (name: string, disabled: boolean) => {
   }
   pluginsSettings[name]!.disabled = disabled;
   save();
-  wujiePool.destroy(name);
+  destroyWujieApp(name);
 };
 
 export const disablePluginCommand = (name: string, commandName: string, disabled: boolean) => {

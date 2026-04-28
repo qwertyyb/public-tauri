@@ -29,6 +29,7 @@ import {
 } from '@public/core';
 import type { IPluginLifecycle, IAction, ICommand } from '@public/schema';
 import { wujiePool } from './wujie-pool';
+import { registerPluginFrontendApi, unregisterPluginFrontendApi } from './frontend-api-registry';
 import logger from '@/utils/logger';
 
 // BUILTIN_PLUGINS_PATH 在 vite-env.d.ts 中声明
@@ -130,13 +131,12 @@ export const createWujieApp = (options: CreateWujieOptions): {
     insertScript,
     mainScript ? { content: createMainLoaderScript(name, mainScript.url), module: true } : undefined,
   ].filter(Boolean) as { content: string; module?: boolean }[];
-
-  setupApp({
-    name,
-    url: entryUrl,
-    exec: true,
-    alive: true,
-    fetch(input, init) {
+  const channel = createPluginChannel(name, { hasServerModule });
+  const pluginApi = {
+    dialog,
+    utils,
+    clipboard,
+    fetch: (input: RequestInfo, init?: RequestInit) => {
       const url = input instanceof Request ? input.url : input;
       const { host } = new URL(url);
       if (host.endsWith('.localhost:2345') || host === '127.0.0.1:2345' || host === 'localhost:2345') {
@@ -145,45 +145,50 @@ export const createWujieApp = (options: CreateWujieOptions): {
 
       return fetch(input, init);
     },
-    props: {
-      dialog,
-      utils,
-      clipboard,
-      fetch,
-      screen,
-      mainWindow,
-      Database,
-      showSaveFilePicker,
-      fs,
-      resolveFileIcon,
-      resolveLocalPath,
-      shell,
-      opener,
-      WebviewWindow,
-      Webview,
-      NativeWindow,
+    screen,
+    mainWindow,
+    Database,
+    showSaveFilePicker,
+    fs,
+    resolveFileIcon,
+    resolveLocalPath,
+    shell,
+    opener,
+    WebviewWindow,
+    Webview,
+    NativeWindow,
+    storage: createPluginStorage(name),
+    channel,
+    createMainPlugin: (opts: IPluginLifecycle) => {
+      mainScript?.onPlugin(opts);
+    },
+    updateCommands: (commands: ICommand[]) => {
+      mainScript?.updateCommands(commands);
+    },
+    getPreferences: () => mainScript?.getPreferences() || {},
+    resolveMain,
+    rejectMain,
+    updateActions: (actions?: IAction[]) => {
+      events.dispatchEvent(new CustomEvent('updateActions', { detail: { actions, plugin: name } }));
+    },
+    updateSearchBarValue: (value: string) => {
+      console.log('updateSearchBarValue', value);
+      events.dispatchEvent(new CustomEvent('updateSearchBarValue', { detail: { value } }));
+    },
+    updateSearchBarVisible: (visible: boolean) => {
+      events.dispatchEvent(new CustomEvent('updateSearchBarVisible', { detail: { visible } }));
+    },
+  };
+  registerPluginFrontendApi(name, pluginApi);
 
-      storage: createPluginStorage(name),
-      channel: createPluginChannel(name, { hasServerModule }),
-      createMainPlugin: (opts: IPluginLifecycle) => {
-        mainScript?.onPlugin(opts);
-      },
-      updateCommands: (commands: ICommand[]) => {
-        mainScript?.updateCommands(commands);
-      },
-      getPreferences: () => mainScript?.getPreferences() || {},
-      resolveMain,
-      rejectMain,
-      updateActions: (actions?: IAction[]) => {
-        events.dispatchEvent(new CustomEvent('updateActions', { detail: { actions, plugin: name } }));
-      },
-      updateSearchBarValue: (value: string) => {
-        console.log('updateSearchBarValue', value);
-        events.dispatchEvent(new CustomEvent('updateSearchBarValue', { detail: { value } }));
-      },
-      updateSearchBarVisible: (visible: boolean) => {
-        events.dispatchEvent(new CustomEvent('updateSearchBarVisible', { detail: { visible } }));
-      },
+  setupApp({
+    name,
+    url: entryUrl,
+    exec: true,
+    alive: true,
+    fetch: pluginApi.fetch,
+    props: {
+      ...pluginApi,
       events,
     },
     plugins: jsBeforeLoaders.length ? [
@@ -213,6 +218,7 @@ export const createWujieApp = (options: CreateWujieOptions): {
  * 会从池中移除并调用 destroyApp
  */
 export const destroyWujieApp = (name: string): void => {
+  unregisterPluginFrontendApi(name);
   wujiePool.destroy(name);
 };
 

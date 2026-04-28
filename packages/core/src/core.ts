@@ -1,6 +1,5 @@
 import * as clipboardBase from 'tauri-plugin-clipboard-api';
 import { cursorPosition, getCurrentWindow } from '@tauri-apps/api/window';
-import * as autostart from '@tauri-apps/plugin-autostart';
 import { invokeServerUtils } from './server';
 import { listen, type UnlistenFn } from '@tauri-apps/api/event';
 import { invoke } from '@tauri-apps/api/core';
@@ -131,10 +130,6 @@ export const utils = {
     const [position, scaleFactor] = await Promise.all([cursorPosition(), getCurrentWindow().scaleFactor()]);
     return position.toLogical(scaleFactor);
   },
-};
-
-export const system = {
-  autostart,
 };
 
 /// Permission status types

@@ -49,6 +49,18 @@ const invokeBridge = (name: string, args: unknown[] = []) => {
   return promise;
 };
 
+const invokeFrontendChannel = <T = unknown>(method: string, args: unknown[] = []) => {
+  const { id, promise } = makeBridgeRequest<T>();
+  getParentPort().postMessage({
+    kind: WorkerToMain.CHANNEL_INVOKE,
+    id,
+    name: pluginName,
+    method,
+    args,
+  });
+  return promise;
+};
+
 function registerChannelHandler(method: string, handler: (...args: any[]) => any) {
   channelHandlers.set(method, handler);
   return () => {
@@ -94,7 +106,7 @@ function emitChannelEvent(event: string, args: any[] = []) {
   if (!listeners) {
     return;
   }
-  for (const listener of [...listeners]) {
+  for (const listener of listeners) {
     listener(...args);
   }
 }
@@ -206,11 +218,7 @@ export const clipboard: any = {
   writeImage: (b: any) => invokeBridge('clipboard.writeImage', [b]),
 } as any;
 
-export const system = { autostart: {} } as any;
-
-export const showSaveFilePicker: typeof coreApi['showSaveFilePicker'] = (() => {
-  throw new Error('showSaveFilePicker: use host 渠道');
-}) as any;
+export const showSaveFilePicker: typeof coreApi['showSaveFilePicker'] = ((...args: any[]) => invokeBridge('showSaveFilePicker', args)) as any;
 export const Database = {} as any;
 export const storage: any = {
   get: () => {
@@ -231,17 +239,7 @@ export const shell: any = {};
 export const opener: any = {};
 
 export const channel: coreApi.PluginChannel = {
-  invoke: <T = any>(name: string, ...args: any[]) => {
-    const { id, promise } = makeBridgeRequest<T>();
-    getParentPort().postMessage({
-      kind: WorkerToMain.CHANNEL_INVOKE,
-      id,
-      name: pluginName,
-      method: name,
-      args,
-    });
-    return promise;
-  },
+  invoke: <T = any>(name: string, ...args: any[]) => invokeFrontendChannel<T>(name, args),
   handle: registerChannelHandler,
   emit: (event: string, ...args: any[]) => {
     getParentPort().postMessage({
@@ -269,21 +267,13 @@ export const channel: coreApi.PluginChannel = {
   },
 };
 
-export const updateCommands = (_commands: ICommand[]) => {
-  throw new Error('updateCommands: 在 server 中无 UI');
-};
+export const updateCommands = (commands: ICommand[]) => invokeBridge('updateCommands', [commands]);
 
 export const getPreferences = <T = Record<string, any>>(): T => Object.create(null) as T;
 
-export const updateActions = (_actions: IAction[]) => {
-  throw new Error('setActions: 在 server 中无 UI');
-};
+export const updateActions = (actions: IAction[]) => invokeBridge('updateActions', [actions]);
 
 export const definePlugin: typeof import('./index').definePlugin = (f: any) => f;
 
-export const updateSearchBarValue = () => {
-  throw new Error('在 server 中无搜索栏');
-};
-export const updateSearchBarVisible = () => {
-  throw new Error('在 server 中无搜索栏');
-};
+export const updateSearchBarValue = (value: string) => invokeBridge('updateSearchBarValue', [value]);
+export const updateSearchBarVisible = (visible: boolean) => invokeBridge('updateSearchBarVisible', [visible]);
