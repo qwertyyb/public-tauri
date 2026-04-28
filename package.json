@@ -20,7 +20,7 @@
     "plugin:build": "pnpm --filter \"./plugins/*\" run build",
     "prepare-nodejs": "tsx scripts/prepare-nodejs.ts",
     "preapp:build": "pnpm run prepare-nodejs && pnpm --filter './packages/template' --filter './src-node' --filter './plugins/*' --filter 'wechat-qrcode' run build",
-    "app:build": "pnpm tauri build --no-default-features",
+    "app:build": "pnpm tauri build -- --no-default-features",
     "postinstall": "pnpm preapp:build",
     "store:build": "tsx scripts/build-store.ts",
     "site:dev": "vitepress dev docs",
