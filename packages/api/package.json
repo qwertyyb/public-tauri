@@ -5,7 +5,11 @@
   "type": "module",
   "sideEffects": false,
   "exports": {
-    ".": "./src/index.ts",
+    ".": {
+      "node": "./src/node.ts",
+      "browser": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
     "./node": "./src/node.ts",
     "./components/*": "./src/components/*"
   },
@@ -29,7 +33,11 @@
   },
   "publishConfig": {
     "exports": {
-      ".": "./dist/index.mjs",
+      ".": {
+        "node": "./dist/node.mjs",
+        "browser": "./dist/index.mjs",
+        "default": "./dist/index.mjs"
+      },
       "./node": "./dist/node.mjs",
       "./package.json": "./package.json"
     }
