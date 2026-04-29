@@ -76,6 +76,7 @@ const publicApiPath = path.join(invocationDir, 'packages', 'api', 'src', 'index.
 const publicApiNodePath = path.join(invocationDir, 'packages', 'api', 'src', 'node.ts');
 const raycastShimPath = path.join(invocationDir, 'packages', 'api', 'src', 'raycast.ts');
 const raycastUtilsShimPath = path.join(invocationDir, 'packages', 'api', 'src', 'raycast-utils.ts');
+const defaultPluginIcon = 'extension';
 const warnings: ConvertWarning[] = [];
 
 const readJson = async <T>(filePath: string): Promise<T> => JSON.parse(await fs.readFile(filePath, 'utf8')) as T;
@@ -301,7 +302,7 @@ const convert = async () => {
   await fs.mkdir(distDir, { recursive: true });
   await copyAssetsDir();
 
-  const icon = normalizeRaycastIcon(sourcePackage.icon || convertedCommands[0]?.icon);
+  const icon = normalizeRaycastIcon(sourcePackage.icon || convertedCommands[0]?.icon) || defaultPluginIcon;
   const pluginPreferences = (sourcePackage.preferences || []).map(convertPreference);
   const commandPreferences = convertedCommands.flatMap(command => (command.preferences || []).map(convertPreference));
   const preferenceNames = new Set<string>();

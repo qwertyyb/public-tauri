@@ -31,7 +31,7 @@ tauri-build = { version = "2", features = [] }
 base64 = "0.22.1"
 png = "0.18.0"
 serde = "1.0.219"
-tauri = { version = "2", features = ["protocol-asset", "macos-private-api", "tray-icon", "image-ico", "image-png", "devtools"] }
+tauri = { version = "2", features = ["protocol-asset", "macos-private-api", "tray-icon", "image-ico", "image-png", "devtools", 'webview-data-url'] }
 tauri-nspanel = { git = "https://github.com/ahkohd/tauri-nspanel", branch = "v2.1" }
 tauri-plugin-clipboard = "2"
 # `watch`：注册 fs `watch` / `unwatch` 命令，供 devPluginHotReload 使用

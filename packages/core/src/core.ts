@@ -1,5 +1,6 @@
 import * as clipboardBase from 'tauri-plugin-clipboard-api';
 import { cursorPosition, getCurrentWindow } from '@tauri-apps/api/window';
+import { WebviewWindow } from '@tauri-apps/api/webviewWindow';
 import { invokeServerUtils } from './server';
 import { listen, type UnlistenFn } from '@tauri-apps/api/event';
 import { invoke } from '@tauri-apps/api/core';
@@ -7,7 +8,7 @@ import { invoke } from '@tauri-apps/api/core';
 export * as globalShortcut from '@tauri-apps/plugin-global-shortcut';
 export { default as Database } from '@tauri-apps/plugin-sql';
 export type { UnlistenFn } from '@tauri-apps/api/event';
-export { WebviewWindow } from '@tauri-apps/api/webviewWindow';
+export { WebviewWindow };
 export { Window as NativeWindow } from '@tauri-apps/api/window';
 export { Webview } from '@tauri-apps/api/webview';
 
@@ -79,6 +80,129 @@ export const dialog = {
       window.dispatchEvent(new CustomEvent('app:showToast', { detail: { options: { message, ...options, done: resolve } } }));
     });
   },
+  showHUD(title: string, options?: HudOptions) {
+    return showHUD(title, options);
+  },
+};
+
+type HudOptions = {
+  duration?: number
+};
+
+let hudWebview: InstanceType<typeof WebviewWindow> | null = null;
+let hudDestroyTimer: ReturnType<typeof setTimeout> | null = null;
+
+const htmlEscape = (value: string) => value
+  .replaceAll('&', '&amp;')
+  .replaceAll('<', '&lt;')
+  .replaceAll('>', '&gt;')
+  .replaceAll('"', '&quot;')
+  .replaceAll('\'', '&#39;');
+
+const createHudUrl = (title: string) => {
+  const html = `<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+}
+body {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  box-sizing: border-box;
+  padding-bottom: 96px;
+}
+.hud {
+  max-width: min(720px, calc(100vw - 96px));
+  padding: 13px 20px;
+  border-radius: 14px;
+  color: #fff;
+  background: rgba(28, 28, 30, 0.88);
+  box-shadow: 0 14px 44px rgba(0, 0, 0, 0.28);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: center;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  animation: hud-in 140ms ease-out;
+}
+@keyframes hud-in {
+  from { opacity: 0; transform: translateY(8px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+</style>
+</head>
+<body>
+  <div class="hud">${htmlEscape(title)}</div>
+</body>
+</html>`;
+  return `data:text/html;charset=utf-8,${encodeURIComponent(html)}`;
+};
+
+const showHUD = async (title: string, options: HudOptions = {}) => {
+  const duration = options.duration ?? 1800;
+  if (hudDestroyTimer) {
+    clearTimeout(hudDestroyTimer);
+    hudDestroyTimer = null;
+  }
+  if (hudWebview) {
+    await hudWebview.destroy().catch(() => {});
+    hudWebview = null;
+  }
+
+  const instance = new WebviewWindow('public-hud', {
+    url: createHudUrl(title),
+    transparent: true,
+    decorations: false,
+    acceptFirstMouse: false,
+    skipTaskbar: true,
+    focusable: false,
+    focus: false,
+    shadow: false,
+    alwaysOnTop: true,
+    center: true,
+    width: window.screen.width,
+    height: window.screen.height,
+    visible: true,
+  });
+  hudWebview = instance;
+
+  await new Promise<void>((resolve) => {
+    instance.once('tauri://webview-created', () => resolve());
+    instance.once('tauri://error', () => resolve());
+    setTimeout(resolve, 200);
+  });
+
+  try {
+    await instance.setIgnoreCursorEvents(true);
+    await instance.setSimpleFullscreen(true);
+  } catch (err) {
+    console.warn('[public-tauri] failed to configure HUD webview', err);
+  }
+
+  hudDestroyTimer = setTimeout(() => {
+    void instance.destroy()
+      .catch(() => {})
+      .finally(() => {
+        if (hudWebview === instance) {
+          hudWebview = null;
+        }
+        if (hudDestroyTimer) {
+          hudDestroyTimer = null;
+        }
+      });
+  }, duration);
 };
 
 export type ClipboardApi = typeof clipboardBase & {

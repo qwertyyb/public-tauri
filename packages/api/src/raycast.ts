@@ -149,7 +149,7 @@ export const showToast = async (
 
 export const showHUD = async (title: string, options?: { clearRootSearch?: boolean, popToRootType?: PopToRootTypeValue }) => {
   await closeMainWindow(options);
-  await dialog.showToast(title);
+  await dialog.showHUD(title);
 };
 
 export const closeMainWindow = async (options?: { clearRootSearch?: boolean, popToRootType?: PopToRootTypeValue }) => {

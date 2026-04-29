@@ -14,6 +14,18 @@
         "raycast",
         "smoke"
       ]
+    },
+    {
+      "name": "hud-smoke",
+      "title": "Raycast HUD Smoke",
+      "subtitle": "Validate Raycast showHUD compatibility",
+      "description": "Shows a Raycast HUD using the compatibility layer.",
+      "mode": "no-view",
+      "keywords": [
+        "raycast",
+        "hud",
+        "smoke"
+      ]
     }
   ],
   "preferences": [

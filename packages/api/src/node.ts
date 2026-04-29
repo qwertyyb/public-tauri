@@ -106,9 +106,9 @@ function emitChannelEvent(event: string, args: any[] = []) {
   if (!listeners) {
     return;
   }
-  for (const listener of listeners) {
+  listeners.forEach((listener) => {
     listener(...args);
-  }
+  });
 }
 
 const activeParentPort = parentPort;
@@ -200,6 +200,7 @@ export const dialog: typeof coreApi['dialog'] = {
   showAlert: (a: any, t?: any, o?: any) => invokeBridge('dialog.showAlert', optionalArgs(a, t, o)) as any,
   showConfirm: (a: any, t?: any, o?: any) => invokeBridge('dialog.showConfirm', optionalArgs(a, t, o)) as any,
   showToast: (a: any, o?: any) => invokeBridge('dialog.showToast', o ? [a, o] : [a]) as any,
+  showHUD: (title: string, options?: any) => invokeBridge('dialog.showHUD', options ? [title, options] : [title]) as any,
 } as any;
 
 export const permissions: typeof coreApi['permissions'] = {
