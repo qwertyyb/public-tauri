@@ -37,6 +37,7 @@ declare const BUILTIN_PLUGINS_PATH: string;
 
 // 模板路径缓存
 let templatePathCache: string | null = null;
+const MAIN_READY_TIMEOUT_MS = 30_000;
 
 /**
  * 获取模板路径
@@ -91,11 +92,17 @@ interface CreateWujieOptions {
 const createMainLoaderScript = (name: string, url: string) => `
 (async () => {
   try {
+    console.log('createMainLoaderScript resolveMain start ${name}, ${url}');
     const mod = await import(${JSON.stringify(url)});
+    console.log('createMainLoaderScript resolveMain done${name}');
     const createPlugin = mod.default || mod;
     if (typeof createPlugin === 'function') {
       const pluginReturn = createPlugin();
-      window.$wujie.props.createMainPlugin?.(await pluginReturn);
+      try {
+        window.$wujie.props.createMainPlugin?.(await pluginReturn);
+      } catch (error) {
+        console.warn('[public-tauri] createMainPlugin bridge warning: ${name}', error);
+      }
     }
     window.$wujie.props.resolveMain?.();
   } catch (error) {
@@ -121,12 +128,35 @@ export const createWujieApp = (options: CreateWujieOptions): {
   const events = new EventTarget();
   let resolveMain: () => void = () => {};
   let rejectMain: (reason?: any) => void = () => {};
+  let mainReadyTimer: ReturnType<typeof setTimeout> | undefined;
   const mainReady = mainScript
     ? new Promise<void>((resolve, reject) => {
-      resolveMain = resolve;
-      rejectMain = reject;
+      resolveMain = () => {
+        if (mainReadyTimer) {
+          clearTimeout(mainReadyTimer);
+          mainReadyTimer = undefined;
+        }
+        resolve();
+      };
+      rejectMain = (reason?: any) => {
+        if (mainReadyTimer) {
+          clearTimeout(mainReadyTimer);
+          mainReadyTimer = undefined;
+        }
+        reject(reason);
+      };
+      mainReadyTimer = setTimeout(() => {
+        rejectMain(new Error(`[WujieCreator] plugin main ready timeout: ${name}, entryUrl: ${entryUrl}`));
+      }, MAIN_READY_TIMEOUT_MS);
     })
     : Promise.resolve();
+  mainReady
+    .finally(() => {
+      wujiePool.markReady(name);
+    })
+    .catch(() => {
+      // registerPlugin 会处理错误；这里避免未处理的异步 reject。
+    });
   const jsBeforeLoaders = [
     insertScript,
     mainScript ? { content: createMainLoaderScript(name, mainScript.url), module: true } : undefined,
@@ -161,6 +191,7 @@ export const createWujieApp = (options: CreateWujieOptions): {
     channel,
     createMainPlugin: (opts: IPluginLifecycle) => {
       mainScript?.onPlugin(opts);
+      return true;
     },
     updateCommands: (commands: ICommand[]) => {
       mainScript?.updateCommands(commands);
@@ -180,30 +211,41 @@ export const createWujieApp = (options: CreateWujieOptions): {
     },
   };
   registerPluginFrontendApi(name, pluginApi);
-
-  setupApp({
-    name,
-    url: entryUrl,
-    exec: true,
-    alive: true,
-    fetch: pluginApi.fetch,
-    props: {
-      ...pluginApi,
-      events,
-    },
-    plugins: jsBeforeLoaders.length ? [
-      {
-        jsBeforeLoaders,
-      },
-    ] : [],
+  wujiePool.set(name, {
+    status: mainScript ? 'loading' : 'ready',
+    onDestroy: mainScript ? () => rejectMain(new Error(`[WujieCreator] plugin app destroyed before ready: ${name}`)) : undefined,
   });
 
-  if (preload) {
-    preloadApp({ name });
+  console.log('createWujieApp start', options.name, jsBeforeLoaders, mainScript);
+  try {
+    setupApp({
+      name,
+      url: entryUrl,
+      exec: true,
+      alive: true,
+      fetch: pluginApi.fetch,
+      props: {
+        ...pluginApi,
+        events,
+      },
+      plugins: jsBeforeLoaders.length ? [
+        {
+          jsBeforeLoaders,
+        },
+      ] : [],
+    });
+    console.log('createWujieApp setupApp done', name);
+  } catch (error) {
+    throw new Error(`[WujieCreator] setup app failed: ${name}: ${error instanceof Error ? error.message : String(error)}`);
   }
 
-  // 注册到池中
-  wujiePool.set(name);
+  if (preload) {
+    try {
+      preloadApp({ name });
+    } catch (error) {
+      console.warn(`[WujieCreator] preload app warning: ${name}`, error);
+    }
+  }
 
   logger.info(`[WujieCreator] Created app: ${name}, entryUrl: ${entryUrl}`);
 

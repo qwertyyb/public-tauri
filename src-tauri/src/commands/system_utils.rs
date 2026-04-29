@@ -3,6 +3,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Application {
+    name: String,
     display_name: String,
     executable_path: String,
     bundle_identifier: String,
@@ -11,6 +12,7 @@ pub struct Application {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct FrontmostApplication {
+    name: String,
     display_name: String,
     executable_path: String,
     bundle_identifier: String,
@@ -49,15 +51,17 @@ mod platform {
         value.map(|value| value.to_string()).unwrap_or_default()
     }
 
-    fn bundle_name(bundle: &NSBundle) -> Option<String> {
+    fn bundle_display_name(bundle: &NSBundle) -> Option<String> {
         bundle
             .objectForInfoDictionaryKey(ns_string!("CFBundleDisplayName"))
             .and_then(|value| value.downcast::<NSString>().ok())
-            .or_else(|| {
-                bundle
-                    .objectForInfoDictionaryKey(ns_string!("CFBundleName"))
-                    .and_then(|value| value.downcast::<NSString>().ok())
-            })
+            .map(|value| value.to_string())
+    }
+
+    fn bundle_name(bundle: &NSBundle) -> Option<String> {
+        bundle
+            .objectForInfoDictionaryKey(ns_string!("CFBundleName"))
+            .and_then(|value| value.downcast::<NSString>().ok())
             .map(|value| value.to_string())
     }
 
@@ -72,14 +76,29 @@ mod platform {
             .unwrap_or_default()
     }
 
+    fn app_name_from_path(path: &str) -> Option<String> {
+        Path::new(path)
+            .file_stem()
+            .map(|name| name.to_string_lossy().into_owned())
+    }
+
     fn application_from_url(app_url: &NSURL) -> Application {
         let bundle = NSBundle::bundleWithURL(app_url);
 
+        let display_name = bundle
+            .as_deref()
+            .and_then(bundle_display_name)
+            .or_else(|| bundle.as_deref().and_then(bundle_name))
+            .unwrap_or_else(|| app_name_from_url(app_url));
+        let name = bundle
+            .as_deref()
+            .and_then(bundle_name)
+            .or_else(|| bundle.as_deref().and_then(bundle_display_name))
+            .unwrap_or_else(|| app_name_from_url(app_url));
+
         Application {
-            display_name: bundle
-                .as_deref()
-                .and_then(bundle_name)
-                .unwrap_or_else(|| app_name_from_url(app_url)),
+            name,
+            display_name,
             executable_path: bundle
                 .as_deref()
                 .map(|bundle| ns_string(bundle.executablePath()))
@@ -102,8 +121,17 @@ mod platform {
             .unwrap_or_default();
         let bundle_identifier = ns_string(application.bundleIdentifier());
         let pid = application.processIdentifier() as i32;
+        let bundle = application
+            .bundleURL()
+            .and_then(|url| NSBundle::bundleWithURL(&url));
+        let name = bundle
+            .as_deref()
+            .and_then(bundle_name)
+            .or_else(|| app_name_from_path(&executable_path))
+            .unwrap_or_else(|| display_name.clone());
 
         FrontmostApplication {
+            name,
             display_name,
             executable_path,
             bundle_identifier,

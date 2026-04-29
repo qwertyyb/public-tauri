@@ -139,6 +139,7 @@
     "fs:read-all",
     "fs:write-all",
     "fs:allow-watch",
+    "fs:allow-read-text-file",
     {
       "identifier": "fs:scope",
       "allow": [
@@ -147,6 +148,12 @@
         },
         {
           "path": "$RESOURCE/**/*"
+        },
+        {
+          "path": "$TEMP/**/*"
+        },
+        {
+          "path": "/tmp/**/*"
         }
       ]
     },

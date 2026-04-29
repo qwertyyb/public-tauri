@@ -1,0 +1,38 @@
+{
+  "name": "raycast-no-view-smoke",
+  "title": "Raycast No View Smoke",
+  "description": "Smoke fixture for Raycast no-view compatibility",
+  "type": "module",
+  "commands": [
+    {
+      "name": "smoke",
+      "title": "Raycast Smoke",
+      "subtitle": "Validate Node builtins and basic Raycast APIs",
+      "description": "Checks node:fs, node:path, toast, clipboard, open, and preferences.",
+      "mode": "no-view",
+      "keywords": [
+        "raycast",
+        "smoke"
+      ]
+    }
+  ],
+  "preferences": [
+    {
+      "name": "message",
+      "title": "Message",
+      "type": "textfield",
+      "required": false,
+      "default": "hello from raycast"
+    },
+    {
+      "name": "targetUrl",
+      "title": "Target URL",
+      "type": "textfield",
+      "required": false,
+      "default": "https://example.com"
+    }
+  ],
+  "dependencies": {
+    "@raycast/api": "^1.0.0"
+  }
+}

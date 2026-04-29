@@ -14,6 +14,8 @@ import logger from '@/utils/logger';
 interface WujieAppEntry {
   name: string;
   lastAccess: number;
+  status: 'loading' | 'ready';
+  onDestroy?: () => void;
 }
 
 /**
@@ -34,9 +36,15 @@ class WujieAppPool {
    * 注册一个新子应用
    * 如果超出最大数量，会自动驱逐最久未使用的非保护应用
    */
-  set(name: string): void {
+  set(name: string, options: { status?: WujieAppEntry['status'], onDestroy?: () => void } = {}): void {
+    const status = options.status || 'ready';
     // 已经在池中，更新访问时间
     if (this.registeredApps.has(name)) {
+      const entry = this.entries.find(e => e.name === name);
+      if (entry) {
+        entry.status = status;
+        entry.onDestroy = options.onDestroy;
+      }
       this.touch(name);
       return;
     }
@@ -53,10 +61,24 @@ class WujieAppPool {
     this.entries.push({
       name,
       lastAccess: Date.now(),
+      status,
+      onDestroy: options.onDestroy,
     });
     this.registeredApps.add(name);
 
-    logger.info(`[WujiePool] Registered: ${name}, total: ${this.registeredApps.size}`);
+    logger.info(`[WujiePool] Registered: ${name}, status: ${status}, total: ${this.registeredApps.size}`);
+  }
+
+  /**
+   * 标记子应用创建完成，可以参与 LRU 驱逐。
+   */
+  markReady(name: string): void {
+    const entry = this.entries.find(e => e.name === name);
+    if (!entry) return;
+    entry.status = 'ready';
+    entry.onDestroy = undefined;
+    this.touch(name);
+    logger.info(`[WujiePool] Ready: ${name}`);
   }
 
   /**
@@ -93,6 +115,8 @@ class WujieAppPool {
     }
 
     try {
+      const entry = this.entries.find(e => e.name === name);
+      entry?.onDestroy?.();
       destroyApp(name);
       logger.info(`[WujiePool] Destroyed: ${name}`);
     } catch (err) {
@@ -102,26 +126,6 @@ class WujieAppPool {
     this.entries = this.entries.filter(e => e.name !== name);
     this.registeredApps.delete(name);
     this.protectedApps.delete(name);
-  }
-
-  /**
-   * 驱逐最久未使用的非保护应用（如果超出最大数量）
-   */
-  private evictIfNeeded(): void {
-    while (this.entries.length >= MAX_WUJIE_APPS) {
-      // 按最后访问时间升序排序（最旧的在前）
-      const candidates = this.entries
-        .filter(e => !this.protectedApps.has(e.name))
-        .sort((a, b) => a.lastAccess - b.lastAccess);
-
-      if (candidates.length === 0) {
-        logger.warn('[WujiePool] All apps are protected, cannot evict');
-        return;
-      }
-
-      const toEvict = candidates[0];
-      this.destroy(toEvict.name);
-    }
   }
 
   /**
@@ -160,6 +164,26 @@ class WujieAppPool {
     this.entries = [];
     this.registeredApps.clear();
     // 保留保护列表，但清除注册记录
+  }
+
+  /**
+   * 驱逐最久未使用的非保护应用（如果超出最大数量）
+   */
+  private evictIfNeeded(): void {
+    while (this.entries.length >= MAX_WUJIE_APPS) {
+      // 按最后访问时间升序排序（最旧的在前）
+      const candidates = this.entries
+        .filter(e => e.status === 'ready' && !this.protectedApps.has(e.name))
+        .sort((a, b) => a.lastAccess - b.lastAccess);
+
+      if (candidates.length === 0) {
+        logger.warn('[WujiePool] No ready non-protected app can be evicted');
+        return;
+      }
+
+      const toEvict = candidates[0];
+      this.destroy(toEvict.name);
+    }
   }
 }
 

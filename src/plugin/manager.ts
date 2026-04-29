@@ -101,13 +101,27 @@ export const registerPlugin = async (pluginPath: string) => {
             pluginInstance.commands = commands.map(item => formatCommand(item, manifest, pluginPath));
           },
           getPreferences: () => pluginsSettings[name]?.preferences || {},
-          onPlugin: plugin => Object.assign(mainPlugin, plugin),
+          onPlugin: (plugin) => {
+            const lifecycleKeys: (keyof IPluginLifecycle)[] = ['onInput', 'onSelect', 'onExit', 'onAction'];
+            lifecycleKeys.forEach((key) => {
+              try {
+                const handler = plugin?.[key];
+                if (typeof handler === 'function') {
+                  mainPlugin[key] = handler as any;
+                }
+              } catch (err) {
+                console.warn(`[plugin-manager] failed to read lifecycle ${String(key)} for ${name}`, err);
+              }
+            });
+          },
         } : undefined,
       });
       pluginInstance.entryUrl = entryUrl;
       pluginInstance.events = events;
       if (manifest.main) {
-        await mainReady;
+        await mainReady.catch((error) => {
+          console.warn(`[plugin-manager] plugin main ready warning: ${name}`, error);
+        });
       }
     }
     plugins.set(pkg.name, pluginInstance);
@@ -414,9 +428,14 @@ const initCustomPlugins = async () => {
   const devPaths: string[] = (await storage.getItem(DEV_PLUGIN_PATH_LIST_KEY)) || [];
   const pluginPathList = [...storePaths, ...devPaths];
   if (!pluginPathList.length) return;
-  return Promise.all(pluginPathList.map(pluginPath => registerPlugin(pluginPath).catch((err) => {
-    console.error('register plugin error: ', pluginPath, err);
-  })));
+  console.warn('initCustomPlugins pluginPathList', pluginPathList);
+  return Promise.all(pluginPathList.map(pluginPath => registerPlugin(pluginPath)
+    .then(() => {
+      console.warn('register plugin success: ', pluginPath);
+    })
+    .catch((err) => {
+      console.error('register plugin error: ', pluginPath, err);
+    })));
 };
 
 const initCommandsShortcut = () => {
@@ -440,11 +459,12 @@ const initCommandsShortcut = () => {
 export const init = async () => {
   try {
     const result: IPluginsSettings = await storage.getItem('pluginsSettings');
-    console.log('pluginsSettings', result);
+    console.warn('pluginsSettings', result);
     pluginsSettings = result || {};
 
     // 1. 先初始化内置插件（plugins/ 目录）
     await initInnerPlugins();
+    console.warn('initInnerPlugins done');
 
     // 2. 标记内置插件为受保护，不会被 LRU 驱逐
     for (const name of INNER_PLUGIN_NAMES) {
@@ -452,11 +472,14 @@ export const init = async () => {
     }
 
     // 3. 再初始化其他插件（store + dev）
+    console.warn('initCustomPlugins start');
     await initCustomPlugins();
+    console.warn('initCustomPlugins done');
 
     initCommandsShortcut();
   } finally {
     // 用 !PROD：个别环境（如自动化 WebView）下 import.meta.env.DEV 可能为 false，仍需要 E2E 钩子
+    console.warn('import.meta.env.PROD', import.meta.env.PROD, typeof window !== 'undefined');
     if (!import.meta.env.PROD && typeof window !== 'undefined') {
       const { registerPluginFromLocalPath } = await import('@/services/store');
       (window as Window & { __PUBLIC_DEV_REGISTER_PLUGIN_PATH__?: (pluginPath: string) => Promise<void> }).__PUBLIC_DEV_REGISTER_PLUGIN_PATH__ = registerPluginFromLocalPath;

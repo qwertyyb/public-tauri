@@ -15,6 +15,7 @@ const labels = {
 };
 
 interface Application {
+  name: string
   displayName: string
   executablePath: string
   bundleIdentifier: string
@@ -43,7 +44,10 @@ export const getFrontmostApplication = async (): Promise<Application | undefined
         }
         return acc;
       }, {}) as Application;
-      return values;
+      return {
+        ...values,
+        name: values.displayName,
+      };
     })));
   return frontmost[0];
 };

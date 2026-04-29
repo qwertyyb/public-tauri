@@ -108,6 +108,7 @@ export const fetch = async (input: RequestInfo, init?: RequestInit): Promise<Res
 };
 
 export interface IApplication {
+  name: string
   displayName: string
   executablePath: string
   bundleIdentifier: string
