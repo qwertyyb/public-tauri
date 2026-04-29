@@ -97,9 +97,12 @@ const htmlEscape = (value: string) => value
   .replaceAll('<', '&lt;')
   .replaceAll('>', '&gt;')
   .replaceAll('"', '&quot;')
-  .replaceAll('\'', '&#39;');
+  .replaceAll('\'', '&#39;')
+  /* 字符中有 # 时页面无法显示，应是 tauri bug，等修复*/
+  .replaceAll('#', ' ');
 
 const createHudUrl = (title: string) => {
+  /* 字符中有 # 时页面无法显示，应是 tauri bug，等修复*/
   const html = `<html>
 <head>
 <meta charset="utf-8">
@@ -120,17 +123,17 @@ body {
   align-items: flex-end;
   justify-content: center;
   box-sizing: border-box;
-  padding-bottom: 96px;
+  padding-bottom: 16vh;
 }
 .hud {
   max-width: min(720px, calc(100vw - 96px));
-  padding: 13px 20px;
-  border-radius: 14px;
-  color: #fff;
+  padding: 6px 20px;
+  border-radius:9999px;
+  color: white;
   background: rgba(28, 28, 30, 0.88);
   box-shadow: 0 14px 44px rgba(0, 0, 0, 0.28);
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.35;
   text-align: center;
   backdrop-filter: blur(18px);
@@ -151,6 +154,7 @@ body {
 };
 
 const showHUD = async (title: string, options: HudOptions = {}) => {
+  console.log('showHUD', title);
   const duration = options.duration ?? 1800;
   if (hudDestroyTimer) {
     clearTimeout(hudDestroyTimer);

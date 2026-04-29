@@ -14,6 +14,7 @@ import { createTray } from './utils/tray';
 import { start as startServer } from './utils/server';
 import { getSettings, registerMainShortcut } from './services/settings';
 import { connectTauriNodeHostSocket } from './bridge/node-tauri-rpc';
+import { getCurrentWindow } from '@tauri-apps/api/window';
 
 // @ts-expect-error
 window[CORE_API_KEY] = core;
@@ -32,8 +33,8 @@ createTray();
 startServer()
   .then(() => {
     connectTauriNodeHostSocket();
-    getSettings().then(settings => {
-      registerMainShortcut(settings.shortcuts).then(result => {
+    getSettings().then((settings) => {
+      registerMainShortcut(settings.shortcuts).then((result) => {
         if (!result.registered) {
           console.warn('[Permissions] Failed to register main shortcut');
         }
@@ -49,6 +50,9 @@ startServer()
       });
     }
     return initDeepLinks();
+  })
+  .finally(() => {
+    getCurrentWindow().show();
   });
 
 const app = createApp(App);

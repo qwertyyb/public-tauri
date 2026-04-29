@@ -19,7 +19,7 @@ tauri_panel! {
 }
 
 pub fn setup_panel(app: &mut App) {
-    app.set_activation_policy(tauri::ActivationPolicy::Accessory);
+    app.set_activation_policy(tauri::ActivationPolicy::Prohibited);
 
     let handle = app.app_handle();
 
@@ -33,8 +33,6 @@ pub fn setup_panel(app: &mut App) {
     panel.set_style_mask(NSWindowStyleMask::NonactivatingPanel);
 
     let handler = PanelEventHandler::new();
-
-    panel.show();
 
     panel.set_event_handler(Some(handler.as_ref()));
 
