@@ -21,6 +21,8 @@ interface Application {
   bundleIdentifier: string
 }
 
+const appleScriptString = (value: string) => `"${value.replace(/\\/g, '\\\\').replace(/"/g, '\\"')}"`;
+
 
 export const getFrontmostApplication = async (): Promise<Application | undefined | null> => {
   const { stdout } = await execAsync('lsappinfo visibleProcessList');
@@ -179,6 +181,15 @@ const utils = {
     resolve(stdout);
     return;
   })),
+  'system.trash': async (path: string | string[]) => {
+    const paths = Array.isArray(path) ? path : [path];
+    const script = `
+    tell application "Finder"
+      ${paths.map(item => `  delete POSIX file ${appleScriptString(item)}`).join('\n')}
+    end tell
+    `;
+    return await runAppleScript(script);
+  },
 
   'storage.getItem': (key: string) => storage.getItem(key),
   'storage.setItem': (key: string, value: string) => storage.setItem(key, value),

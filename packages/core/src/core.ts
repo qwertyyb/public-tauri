@@ -127,6 +127,7 @@ export const utils = {
   getApplications: (fileOrUrl: string): Promise<IApplication[]> => invoke('get_application', { fileOrUrl }),
   runCommand: (command: string): Promise<string> => invokeServerUtils('system.runCommand', [command]),
   runAppleScript: (script: string): Promise<string> => invokeServerUtils('system.runAppleScript', [script]),
+  trash: (path: string | string[]): Promise<string> => invokeServerUtils('system.trash', [path]),
   getMousePosition: async () => {
     const [position, scaleFactor] = await Promise.all([cursorPosition(), getCurrentWindow().scaleFactor()]);
     return position.toLogical(scaleFactor);

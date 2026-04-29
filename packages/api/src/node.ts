@@ -146,6 +146,7 @@ export const utils: typeof coreApi['utils'] = {
   getApplications: (fileOrUrl: string) => invokeBridge('utils.getApplications', [fileOrUrl]) as Promise<unknown>,
   runCommand: (c: string) => invokeBridge('utils.runCommand', [c]) as Promise<string>,
   runAppleScript: (s: string) => invokeBridge('utils.runAppleScript', [s]) as Promise<string>,
+  trash: (path: string | string[]) => invokeBridge('utils.trash', [path]) as Promise<string>,
   getMousePosition: () => invokeBridge('utils.getMousePosition'),
 } as any;
 
