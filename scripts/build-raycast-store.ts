@@ -26,8 +26,6 @@ type RaycastPackage = {
   version?: string;
   commands?: RaycastCommand[];
   preferences?: unknown[];
-  dependencies?: Record<string, string>;
-  devDependencies?: Record<string, string>;
 };
 
 const args = process.argv.slice(2);
@@ -96,8 +94,6 @@ for (const extensionName of extensionNames) {
         preferences: command.preferences || [],
       })),
       preferences: pkg.preferences || [],
-      dependencies: pkg.dependencies || {},
-      devDependencies: pkg.devDependencies || {},
     });
   } catch (error) {
     skipped.push({
