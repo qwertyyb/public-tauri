@@ -100,6 +100,22 @@ export const registerPlugin = async (pluginPath: string) => {
           updateCommands: (commands: IPluginCommand[]) => {
             pluginInstance.commands = commands.map(item => formatCommand(item, manifest, pluginPath));
           },
+          updateCommand: (commandName: string, command: Partial<IPluginCommand>) => {
+            const commandIndex = pluginInstance.commands.findIndex(item => item.name === commandName);
+            if (commandIndex < 0) return;
+            const nextCommand: IPluginCommand = {
+              ...pluginInstance.commands[commandIndex],
+              ...command,
+              name: commandName,
+            };
+            pluginInstance.commands = pluginInstance.commands.map((item, index) => (
+              index === commandIndex ? formatCommand(nextCommand, manifest, pluginPath) : item
+            ));
+          },
+          launchCommand: (options: { pluginName?: string, commandName: string, query?: string, payload?: any }) => {
+            const pluginName = options.pluginName ?? name;
+            enterCommandByName(pluginName, options.commandName, options.query ?? '', { from: 'extension', source: name, query: options.query, payload: options.payload });
+          },
           getPreferences: () => pluginsSettings[name]?.preferences || {},
           onPlugin: (plugin) => {
             const lifecycleKeys: (keyof IPluginLifecycle)[] = ['onInput', 'onSelect', 'onExit', 'onAction'];

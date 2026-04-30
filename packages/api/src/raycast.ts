@@ -3,13 +3,15 @@ import fsSync from 'node:fs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { clipboard, dialog, mainWindow, utils } from './node';
+import { clipboard, dialog, launchCommand as launchPublicCommand, mainWindow, openCommandPreferences as openPublicCommandPreferences, openPluginPreferences, updateCommand, utils } from './node';
 
 type PreferenceValues = Record<string, unknown>;
 type StorageValue = string | number | boolean;
 type ClipboardContent = string | number | { text?: string, file?: PathLike, html?: string };
 type CacheSubscriber = (key: string | undefined, data: string | undefined) => void;
 type PopToRootTypeValue = typeof PopToRootType[keyof typeof PopToRootType];
+type LaunchTypeValue = typeof LaunchType[keyof typeof LaunchType];
+type RaycastCommandManifest = Record<string, unknown> & { name: string, subtitle?: string };
 
 export type Application = {
   name: string;
@@ -22,6 +24,8 @@ export type Application = {
 export type RaycastContext = {
   pluginName?: string;
   commandName?: string;
+  commands?: RaycastCommandManifest[];
+  launchType?: LaunchTypeValue;
   preferences?: PreferenceValues;
   supportPath?: string;
   assetsPath?: string;
@@ -301,7 +305,7 @@ export const environment = {
     return 'no-view';
   },
   get launchType() {
-    return LaunchType.UserInitiated;
+    return currentContext.launchType || LaunchType.UserInitiated;
   },
   get appearance() {
     return 'light';
@@ -419,10 +423,6 @@ export const UNIMPLEMENTED_RAYCAST_APIS = [
   'BrowserExtension.getContent',
   'BrowserExtension.getTabs',
   'OAuth.PKCEClient',
-  'launchCommand',
-  'updateCommandMetadata',
-  'openExtensionPreferences',
-  'openCommandPreferences',
   'getApplications() without a path',
   'Clipboard.copy/paste file content',
   'Clipboard.copy/paste html content as rich HTML',
@@ -462,10 +462,44 @@ export const OAuth = { PKCEClient: class PKCEClient {
     unsupported('OAuth.PKCEClient');
   }
 } };
-export const launchCommand = () => unsupported('launchCommand');
-export const updateCommandMetadata = () => unsupported('updateCommandMetadata');
-export const openExtensionPreferences = () => unsupported('openExtensionPreferences');
-export const openCommandPreferences = () => unsupported('openCommandPreferences');
+export const launchCommand = (options: {
+  name: string,
+  type: LaunchTypeValue,
+  extensionName?: string,
+  ownerOrAuthorName?: string,
+  arguments?: Record<string, unknown> | null,
+  context?: unknown,
+  fallbackText?: string | null,
+}) => launchPublicCommand({
+  pluginName: options.extensionName,
+  commandName: options.name,
+  query: options.fallbackText || '',
+  payload: {
+    arguments: options.arguments || {},
+    context: options.context ?? null,
+    fallbackText: options.fallbackText || '',
+    launchType: options.type,
+    ownerOrAuthorName: options.ownerOrAuthorName,
+  },
+});
+export const updateCommandMetadata = (metadata: { subtitle?: string | null } = {}) => {
+  if (!currentContext.commandName) {
+    throw new Error('[raycast-api] updateCommandMetadata requires a command context');
+  }
+  if (!Object.prototype.hasOwnProperty.call(metadata, 'subtitle')) {
+    return Promise.resolve();
+  }
+  const originalCommand = currentContext.commands?.find(command => command.name === currentContext.commandName);
+  const subtitle = metadata.subtitle === null ? originalCommand?.subtitle : metadata.subtitle;
+  return updateCommand(currentContext.commandName, { subtitle });
+};
+export const openExtensionPreferences = () => openPluginPreferences();
+export const openCommandPreferences = () => {
+  if (!currentContext.commandName) {
+    throw new Error('[raycast-api] openCommandPreferences requires a command context');
+  }
+  return openPublicCommandPreferences(currentContext.commandName);
+};
 
 export const List = () => unsupported('List');
 export const Form = () => unsupported('Form');

@@ -270,6 +270,8 @@ export const channel: coreApi.PluginChannel = {
 };
 
 export const updateCommands = (commands: ICommand[]) => invokeBridge('updateCommands', [commands]);
+export const updateCommand = (name: string, command: Partial<ICommand>) => invokeBridge('updateCommand', [name, command]);
+export const launchCommand = (options: import('./index').LaunchCommandOptions) => invokeBridge('launchCommand', [options]);
 
 export const getPreferences = <T = Record<string, any>>(): T => Object.create(null) as T;
 
@@ -279,3 +281,5 @@ export const definePlugin: typeof import('./index').definePlugin = (f: any) => f
 
 export const updateSearchBarValue = (value: string) => invokeBridge('updateSearchBarValue', [value]);
 export const updateSearchBarVisible = (visible: boolean) => invokeBridge('updateSearchBarVisible', [visible]);
+export const openPluginPreferences = () => invokeBridge('openPluginPreferences', []);
+export const openCommandPreferences = (command: string) => invokeBridge('openCommandPreferences', [command]);

@@ -30,6 +30,7 @@ import {
 import type { IPluginLifecycle, IAction, ICommand } from '@public/schema';
 import { wujiePool } from './wujie-pool';
 import { registerPluginFrontendApi, unregisterPluginFrontendApi } from './frontend-api-registry';
+import { openCommandPreferences, openPluginPreferences } from './utils';
 import logger from '@/utils/logger';
 
 // BUILTIN_PLUGINS_PATH 在 vite-env.d.ts 中声明
@@ -82,6 +83,8 @@ interface CreateWujieOptions {
   mainScript?: {
     url: string;
     updateCommands: (commands: ICommand[]) => void;
+    updateCommand: (name: string, command: Partial<ICommand>) => void;
+    launchCommand: (options: { pluginName?: string, commandName: string, query?: string, payload?: any }) => void;
     getPreferences: () => Record<string, any>;
     onPlugin: (plugin: IPluginLifecycle) => void;
   };
@@ -196,6 +199,12 @@ export const createWujieApp = (options: CreateWujieOptions): {
     updateCommands: (commands: ICommand[]) => {
       mainScript?.updateCommands(commands);
     },
+    updateCommand: (commandName: string, command: Partial<ICommand>) => {
+      mainScript?.updateCommand(commandName, command);
+    },
+    launchCommand: (options: { pluginName?: string, commandName: string, query?: string, payload?: any }) => {
+      mainScript?.launchCommand(options);
+    },
     getPreferences: () => mainScript?.getPreferences() || {},
     resolveMain,
     rejectMain,
@@ -209,6 +218,8 @@ export const createWujieApp = (options: CreateWujieOptions): {
     updateSearchBarVisible: (visible: boolean) => {
       events.dispatchEvent(new CustomEvent('updateSearchBarVisible', { detail: { visible } }));
     },
+    openPluginPreferences: () => openPluginPreferences(name),
+    openCommandPreferences: (command: string) => openCommandPreferences(name, command),
   };
   registerPluginFrontendApi(name, pluginApi);
   wujiePool.set(name, {

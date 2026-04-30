@@ -47,6 +47,24 @@ export const updateCommands = (commands: ICommand[]): void => {
   throw new Error('updateCommands is not supported in current environment');
 };
 
+export const updateCommand = (name: string, command: Partial<ICommand>): void => {
+  if (isInWujie) {
+    window.$wujie?.props?.updateCommand?.(name, command);
+    return;
+  }
+  throw new Error('updateCommand is not supported in current environment');
+};
+
+export type LaunchCommandOptions = { pluginName?: string, commandName: string, query?: string, payload?: any };
+
+export const launchCommand = (options: LaunchCommandOptions): void => {
+  if (isInWujie) {
+    window.$wujie?.props?.launchCommand?.(options);
+    return;
+  }
+  throw new Error('launchCommand is not supported in current environment');
+};
+
 export const getPreferences = <T extends Record<string, any> = Record<string, any>>(): T => {
   if (isInWujie) {
     return (window.$wujie?.props?.getPreferences?.() || {}) as T;
@@ -64,6 +82,8 @@ export const updateActions = (actions: PluginShellAction[]): void => {
 
 export const definePlugin = (options: (app: {
   updateCommands: (commands: ICommand[]) => void
+  updateCommand: (name: string, command: Partial<ICommand>) => void
+  launchCommand: (options: LaunchCommandOptions) => void
   getPreferences: typeof getPreferences
 }) => IPluginLifecycle) => options;
 
@@ -81,4 +101,18 @@ export const updateSearchBarVisible = (visible: boolean): void => {
     return;
   }
   throw new Error('updateSearchBarVisible is not supported in current environment');
+};
+
+export const openPluginPreferences = (): void | Promise<void> => {
+  if (isInWujie) {
+    return window.$wujie?.props?.openPluginPreferences?.();
+  }
+  throw new Error('openPluginPreferences is not supported in current environment');
+};
+
+export const openCommandPreferences = (command: string): void | Promise<void> => {
+  if (isInWujie) {
+    return window.$wujie?.props?.openCommandPreferences?.(command);
+  }
+  throw new Error('openCommandPreferences is not supported in current environment');
 };

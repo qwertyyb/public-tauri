@@ -197,9 +197,10 @@ const generatePublicMain = () => `export default function createPlugin() {
 
 const toImportName = (index: number) => `command${index}`;
 
-const generateServer = (commands: ConvertedCommand[], packageName: string) => {
+const generateServer = (commands: ConvertedCommand[], packageName: string, publicCommands: Record<string, unknown>[]) => {
   const imports = commands.map((command, index) => `import * as ${toImportName(index)} from ${JSON.stringify(command.entry)};`).join('\n');
   const commandMapEntries = commands.map((command, index) => `  ${JSON.stringify(command.name)}: ${toImportName(index)},`).join('\n');
+  const commandManifests = JSON.stringify(publicCommands, null, 2);
   return `import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { channel } from '@public-tauri/api/node';
@@ -213,6 +214,7 @@ ${commandMapEntries}
 
 const distDir = path.dirname(fileURLToPath(import.meta.url));
 const pluginRoot = path.dirname(distDir);
+const commandManifests = ${commandManifests};
 
 channel.handle('raycast:run', async (payload = {}) => {
   const commandName = String(payload.commandName || '');
@@ -224,17 +226,21 @@ channel.handle('raycast:run', async (payload = {}) => {
   if (typeof run !== 'function') {
     throw new Error(\`Raycast command \${commandName} has no default function export\`);
   }
+  const launchPayload = payload.options?.payload || {};
   __setRaycastContext({
     pluginName: ${JSON.stringify(packageName)},
     commandName,
+    commands: commandManifests,
+    launchType: launchPayload.launchType,
     preferences: payload.preferences || {},
     supportPath: path.join(pluginRoot, '.raycast-compat'),
     assetsPath: path.join(pluginRoot, 'assets'),
   });
   return await run({
-    arguments: {},
-    fallbackText: payload.query || '',
-    launchContext: payload,
+    arguments: launchPayload.arguments || {},
+    fallbackText: launchPayload.fallbackText ?? payload.query ?? '',
+    launchContext: launchPayload.context ?? payload,
+    launchType: launchPayload.launchType || 'userInitiated',
   });
 });
 `;
@@ -358,7 +364,7 @@ const convert = async () => {
     },
   });
   await fs.writeFile(path.join(buildDir, 'public-main.ts'), generatePublicMain(), 'utf8');
-  await fs.writeFile(path.join(buildDir, 'server.ts'), generateServer(convertedCommands, sourcePackage.name), 'utf8');
+  await fs.writeFile(path.join(buildDir, 'server.ts'), generateServer(convertedCommands, sourcePackage.name, publicCommands), 'utf8');
   await fs.writeFile(path.join(outputDir, 'tsdown.config.ts'), generateTsdownConfig(), 'utf8');
   await writeJson(path.join(outputDir, 'raycast-conversion-report.json'), {
     source: inputDir,

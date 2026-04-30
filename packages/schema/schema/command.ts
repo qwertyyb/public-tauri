@@ -146,7 +146,7 @@ export type ICommandActionOptions = { from: 'search' } & {
 } | { from: 'search' } & {
   match: ICommandFileMatch;
   result: ICommandFileMatchResult;
-} | { from: 'search' } | { from: 'hotkey' } | { from: 'redirect' };
+} | { from: 'search' } | { from: 'hotkey' } | { from: 'redirect' } | { from: 'extension', source: string, query?: string, payload?: any };
 
 export type IResultItem = {
   title: string;
