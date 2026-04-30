@@ -1,0 +1,37 @@
+{
+  "private": true,
+  "name": "@public-tauri/raycast-convert",
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./cli": "./src/cli.ts"
+  },
+  "bin": {
+    "raycast-convert": "./src/cli.ts"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "convert": "tsx src/cli.ts",
+    "lint": "eslint src"
+  },
+  "dependencies": {
+    "tsx": "^4.20.3"
+  },
+  "devDependencies": {
+    "@types/node": "^24.1.0",
+    "eslint": "^9.32.0",
+    "tsdown": "catalog:plugin",
+    "typescript": "catalog:"
+  },
+  "publishConfig": {
+    "exports": {
+      ".": "./dist/index.mjs",
+      "./cli": "./dist/cli.mjs",
+      "./package.json": "./package.json"
+    },
+    "bin": {
+      "raycast-convert": "./dist/cli.mjs"
+    }
+  }
+}
