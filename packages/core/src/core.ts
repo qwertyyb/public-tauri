@@ -91,19 +91,17 @@ type HudOptions = {
 
 let hudWebview: InstanceType<typeof WebviewWindow> | null = null;
 let hudDestroyTimer: ReturnType<typeof setTimeout> | null = null;
+let hudBlobUrl: string | null = null;
 
 const htmlEscape = (value: string) => value
   .replaceAll('&', '&amp;')
   .replaceAll('<', '&lt;')
   .replaceAll('>', '&gt;')
   .replaceAll('"', '&quot;')
-  .replaceAll('\'', '&#39;')
-  /* 字符中有 # 时页面无法显示，应是 tauri bug，等修复*/
-  .replaceAll('#', ' ');
+  .replaceAll('\'', '&#39;');
 
 const createHudUrl = (title: string) => {
-  /* 字符中有 # 时页面无法显示，应是 tauri bug，等修复*/
-  const html = `<html>
+  const html = `<!doctype html><html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -150,7 +148,7 @@ body {
   <div class="hud">${htmlEscape(title)}</div>
 </body>
 </html>`;
-  return `data:text/html;charset=utf-8,${encodeURIComponent(html)}`;
+  return URL.createObjectURL(new Blob([html], { type: 'text/html;charset=utf-8' }));
 };
 
 const showHUD = async (title: string, options: HudOptions = {}) => {
@@ -164,9 +162,15 @@ const showHUD = async (title: string, options: HudOptions = {}) => {
     await hudWebview.destroy().catch(() => {});
     hudWebview = null;
   }
+  if (hudBlobUrl) {
+    URL.revokeObjectURL(hudBlobUrl);
+    hudBlobUrl = null;
+  }
 
+  const hudUrl = createHudUrl(title);
+  hudBlobUrl = hudUrl;
   const instance = new WebviewWindow('public-hud', {
-    url: createHudUrl(title),
+    url: hudUrl,
     transparent: true,
     decorations: false,
     acceptFirstMouse: false,
@@ -201,6 +205,10 @@ const showHUD = async (title: string, options: HudOptions = {}) => {
       .finally(() => {
         if (hudWebview === instance) {
           hudWebview = null;
+        }
+        if (hudBlobUrl === hudUrl) {
+          URL.revokeObjectURL(hudUrl);
+          hudBlobUrl = null;
         }
         if (hudDestroyTimer) {
           hudDestroyTimer = null;

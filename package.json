@@ -14,6 +14,7 @@
     "test:webdriver:search": "tsx e2e/webdriver-search-plugin.ts",
     "test:webdriver:shell": "tsx e2e/webdriver-shell-plugin.ts",
     "test:webdriver:google-chrome": "tsx e2e/webdriver-google-chrome-plugin.ts",
+    "test:webdriver:raycast-flush-dns": "tsx e2e/webdriver-raycast-flush-dns-plugin.ts",
     "test:webdriver:raycast-screenshot": "tsx e2e/webdriver-raycast-screenshot-plugin.ts",
     "test:webdriver:snippets": "tsx e2e/webdriver-snippets-plugin.ts",
     "test:webdriver:confetti": "tsx e2e/webdriver-confetti-plugin.ts",
