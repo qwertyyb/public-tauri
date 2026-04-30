@@ -1,15 +1,17 @@
-name: Build Store
+name: Build Raycast Store
 
 on:
+  schedule:
+    - cron: '0 18 * * *'
+  workflow_dispatch:
   push:
     branches: [master]
     paths:
-      - 'store/plugins/**/package.json'
+      - '.github/workflows/build-raycast-store.yml'
 
 jobs:
-  build-store:
+  build-raycast-store:
     runs-on: ubuntu-latest
-    # 无此项时 GITHUB_TOKEN 往往只有 read，git push 会 403
     permissions:
       contents: write
 
@@ -17,10 +19,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          # 在分支上检出有名称的分支，便于 commit 后 push；不要用默认的纯 SHA  detached HEAD
           ref: ${{ github.ref_name }}
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Checkout Raycast extensions
+        uses: actions/checkout@v4
+        with:
+          repository: raycast/extensions
+          ref: main
+          path: .tmp/raycast-extensions
+          fetch-depth: 1
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -32,17 +41,17 @@ jobs:
         with:
           node-version: 24
 
-      - name: Build store index
-        run: pnpm dlx tsx scripts/build-store.ts
+      - name: Build Raycast store index
+        run: pnpm dlx tsx scripts/build-raycast-store.ts --raycast-root .tmp/raycast-extensions --out store/raycast/index.json
 
-      - name: Commit and push store/index.json
+      - name: Commit and push Raycast store index
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add store/index.json
+          git add store/raycast/index.json
           if ! git diff --cached --quiet; then
-            git commit -m "chore(store): auto-update index.json"
+            git commit -m "chore(raycast-store): auto-update index.json"
             git push origin "HEAD:${{ github.ref_name }}"
           else
-            echo "No changes to commit, store/index.json is up to date"
+            echo "No changes to commit, store/raycast/index.json is up to date"
           fi
