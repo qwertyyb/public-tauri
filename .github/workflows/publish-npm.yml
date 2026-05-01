@@ -3,6 +3,9 @@ name: Publish npm Packages
 on:
   push:
     branches: [master]
+    paths-ignore:
+      - 'store/index.json'
+      - 'store/raycast/index.json'
   workflow_dispatch:
 
 concurrency:
@@ -35,7 +38,7 @@ jobs:
           registry-url: https://registry.npmjs.org/
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile --ignore-scripts
 
       - name: Verify publish package metadata
         run: pnpm publish:verify
