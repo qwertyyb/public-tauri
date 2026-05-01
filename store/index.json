@@ -1,5 +1,5 @@
 {
-  "updateTime": 1777614044184,
+  "updateTime": 1777615004195,
   "plugins": [
     {
       "name": "@public-tauri-ext/google-chrome",
@@ -59,7 +59,7 @@
     {
       "name": "@public-tauri-ext/magic",
       "icon": "https://img.icons8.com/?size=100&id=ZXnn88azBI7W&format=png&color=000000",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "author": "",
       "manifest": {
         "name": "@public-tauri-ext/magic",
@@ -236,7 +236,7 @@
     {
       "name": "@public-tauri-ext/v2ex",
       "icon": "https://github.com/qwertyyb/public-tauri/blob/master/store/plugins/v2ex/assets/v2ex.png?raw=true",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "author": "",
       "manifest": {
         "name": "@public-tauri-ext/v2ex",
