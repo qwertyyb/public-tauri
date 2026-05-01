@@ -46,7 +46,6 @@ export const runCli = async () => {
     outputDir: values.out,
     build: values.build,
     mode: getConvertMode(values.mode),
-    invocationDir: process.cwd(),
   });
 
   console.log(`Converted ${report.convertedCommands.length} command(s) to ${report.output}`);

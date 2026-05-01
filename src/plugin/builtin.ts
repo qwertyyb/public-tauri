@@ -78,12 +78,32 @@ export const BUILTIN_PLUGINS = new Map<string, IRunningPlugin>([
           ],
           mode: 'none',
         },
+        {
+          name: 'raycast-store',
+          title: 'Raycast 扩展商店',
+          subtitle: '浏览 Raycast 扩展目录',
+          icon: 'store',
+          matches: [
+            {
+              type: 'text',
+              keywords: [
+                'raycast store',
+                'Raycast 商店',
+                'raycast 商店',
+                'Raycast 扩展',
+              ],
+            },
+          ],
+          mode: 'none',
+        },
       ],
       plugin: {
-        async onAction() {
-          mainWindow.pushView({
-            path: '/plugin/store',
-          });
+        async onAction(command) {
+          if (command.name === 'raycast-store') {
+            mainWindow.pushView({ path: '/plugin/store/raycast' });
+          } else {
+            mainWindow.pushView({ path: '/plugin/store' });
+          }
         },
       },
     },

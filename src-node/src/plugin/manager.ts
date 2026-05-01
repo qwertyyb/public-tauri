@@ -7,6 +7,7 @@ import { runNodeUtilsInvoke } from '../lib/invoke-node-utils';
 import { requestHostInvoke, type HostInvokePayload } from './host-bridge';
 import { MainToWorker, WorkerToMain } from './worker-protocol';
 import { plugins } from './store';
+import type { PluginState } from './store';
 
 const WORKER_FILE = 'public-plugin-worker.cjs';
 const CHANNEL_INVOKE_EVENT = '__public_tauri_channel_invoke__';
@@ -171,6 +172,15 @@ function callPluginOnWorker(worker: Worker, method: string, args: any[]) {
   });
 }
 
+/** Worker 生命周期结束：清空 worker 与 serverReady* 字段（不把运行时 error 混进 serverReadyError）。 */
+function resetPluginWorkerLifecycle(state: PluginState) {
+  state.worker = undefined;
+  state.serverReady = false;
+  state.serverReadyPromise = undefined;
+  state.serverReadyReject = undefined;
+  state.serverReadyError = undefined;
+}
+
 /**
  * 有 `modulePath` 的插件**仅**在 Worker 中执行；`public-plugin-worker.cjs` 为必构建物。
  */
@@ -219,22 +229,23 @@ export const registerPlugin = async (name: string, options: {
   });
   w.on('error', (e) => {
     console.error(`[public-plugin] worker process error: ${name}`, e);
-    const state = plugins.get(name);
-    if (state) {
-      state.serverReadyError = e.message;
-    }
     rejectServerReady(e);
   });
   w.on('exit', (code) => {
+    clearTimeout(serverReadyTimeout);
     if (code !== 0) {
       console.error(`[public-plugin] worker exit: ${name}`, code);
     }
     const state = plugins.get(name);
-    if (state && !state.serverReady) {
-      const err = new Error(`worker exit: ${code}`);
-      state.serverReadyError = err.message;
-      rejectServerReady(err);
+    if (!state) return;
+    if (!state.serverReady && state.serverReadyReject) {
+      try {
+        state.serverReadyReject(new Error(`worker exit: ${code ?? 'unknown'}`));
+      } catch {
+        /* Promise 已 settled 等 */
+      }
     }
+    resetPluginWorkerLifecycle(state);
   });
   const loadP = new Promise<void>((res, rej) => {
     const to = setTimeout(() => {

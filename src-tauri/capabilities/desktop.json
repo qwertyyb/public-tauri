@@ -126,6 +126,7 @@
     },
     "shellx:allow-execute",
     "shellx:allow-kill",
+    "shellx:allow-open",
     {
       "identifier": "shellx:allow-spawn",
       "allow": [

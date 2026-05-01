@@ -5,6 +5,8 @@ import { mkdir, remove, exists } from '@tauri-apps/plugin-fs';
 import { download } from '@tauri-apps/plugin-upload';
 import { storage, shell } from '@public-tauri/core';
 import type { IStorePlugin } from '@/types/store';
+import type { RaycastStoreExtension, RaycastStoreIndex } from '@/types/raycast-store';
+import { publicPluginNpmNameForRaycastExtension } from '@/services/raycast-store';
 
 const STORE_URL = 'https://raw.githubusercontent.com/qwertyyb/public-tauri/refs/heads/master/store/index.json';
 
@@ -12,6 +14,8 @@ const NPM_REGISTRY = 'https://registry.npmjs.org';
 
 const installedPluginNames = ref<Set<string>>(new Set());
 const installingPluginNames = ref<Set<string>>(new Set());
+/** Raycast 商店扩展目录名（索引 `name`） */
+const installingRaycastExtensionKeys = ref<Set<string>>(new Set());
 
 const getPluginDirName = (npmPkg: string) => npmPkg;
 
@@ -25,10 +29,11 @@ export const isPluginInstalled = (name: string): boolean => installedPluginNames
 
 export const isPluginInstalling = (name: string): boolean => installingPluginNames.value.has(name);
 
+export const isRaycastExtensionInstalling = (extensionKey: string): boolean => installingRaycastExtensionKeys.value.has(extensionKey);
+
 export const fetchStorePlugins = async (): Promise<IStorePlugin[]> => {
   const r = await fetch(STORE_URL);
   const json = await r.json();
-  console.log('json', json);
   return json.plugins;
 };
 
@@ -209,6 +214,97 @@ export const registerPluginFromLocalPath = async (pluginPath: string): Promise<v
   }
   await refreshInstalledPlugins();
   void import('@/plugin/devPluginHotReload').then(m => m.syncDevPluginFileWatchers());
+};
+
+const NODE_SERVER_FETCH_EXTENSION_URL = 'http://127.0.0.1:2345/raycast/fetch-extension';
+const NODE_SERVER_CONVERT_URL = 'http://127.0.0.1:2345/raycast/convert';
+
+export const installRaycastStoreExtension = async (
+  ext: RaycastStoreExtension,
+  index: RaycastStoreIndex,
+): Promise<void> => {
+  const extKey = ext.name;
+  if (installingRaycastExtensionKeys.value.has(extKey)) return;
+  installingRaycastExtensionKeys.value.add(extKey);
+
+  const publicNpm = publicPluginNpmNameForRaycastExtension(ext);
+  const customDir = await getCustomPluginsDir();
+  const dirName = getPluginDirName(publicNpm);
+  const pluginDir = await join(customDir, dirName);
+
+  const workRoot = await join(await appDataDir(), 'raycast-store-work', `${extKey}-${Date.now()}`);
+  const sourceDir = await join(workRoot, 'source');
+
+  try {
+    if (await exists(pluginDir)) {
+      await remove(pluginDir, { recursive: true });
+    }
+
+    await mkdir(workRoot, { recursive: true });
+    await mkdir(sourceDir, { recursive: true });
+
+    const fetchRes = await fetch(NODE_SERVER_FETCH_EXTENSION_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        repo: index.source.repo,
+        commit: index.source.commit,
+        sourcePath: ext.source.path,
+        destDir: sourceDir,
+      }),
+    });
+    const fetchPayload = await fetchRes.json().catch(() => ({})) as { ok?: boolean; error?: string };
+    if (!fetchRes.ok || !fetchPayload.ok) {
+      throw new Error(fetchPayload.error || `拉取 Raycast 扩展源码失败 HTTP ${fetchRes.status}`);
+    }
+
+    const res = await fetch(NODE_SERVER_CONVERT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        inputDir: sourceDir,
+        outputDir: pluginDir,
+        build: true,
+      }),
+    });
+    const payload = await res.json().catch(() => ({})) as { ok?: boolean; error?: string };
+    if (!res.ok || !payload.ok) {
+      throw new Error(payload.error || `Raycast 转换失败 HTTP ${res.status}`);
+    }
+
+    await addRaycastPluginPath(pluginDir);
+    const { registerPlugin } = await import('@/plugin/manager');
+    try {
+      await registerPlugin(pluginDir);
+    } catch (regErr) {
+      await removeRaycastPluginPath(pluginDir).catch(() => {});
+      if (await exists(pluginDir)) {
+        await remove(pluginDir, { recursive: true }).catch(() => {});
+      }
+      throw regErr;
+    }
+    await refreshInstalledPlugins();
+  } finally {
+    installingRaycastExtensionKeys.value.delete(extKey);
+    if (await exists(workRoot)) {
+      await remove(workRoot, { recursive: true }).catch(() => {});
+    }
+  }
+};
+
+/** 卸载由 Raycast 商店安装的转换插件（目录位于应用 plugins 下，并从 raycastPluginPathList 移除） */
+export const uninstallRaycastStorePlugin = async (publicNpmPackageName: string): Promise<void> => {
+  const customDir = await getCustomPluginsDir();
+  const pluginDir = await join(customDir, getPluginDirName(publicNpmPackageName));
+
+  if (await exists(pluginDir)) {
+    await remove(pluginDir, { recursive: true });
+  }
+  await removeRaycastPluginPath(pluginDir);
+
+  const { unregisterPlugin } = await import('@/plugin/manager');
+  unregisterPlugin(publicNpmPackageName);
+  await refreshInstalledPlugins();
 };
 
 export const installStorePlugin = async (plugin: IStorePlugin): Promise<void> => {

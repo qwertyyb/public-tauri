@@ -4,7 +4,9 @@ import PluginPrfsView from '@/views/PluginPrfsView.vue';
 import SettingsView from '@/views/SettingsView.vue';
 import AboutView from '@/views/AboutView.vue';
 import StoreView from '@/views/StoreView.vue';
+import RaycastStoreView from '@/views/RaycastStoreView.vue';
 import StoreDetailView from '@/views/StoreDetailView.vue';
+import StoreRaycastDetailView from '@/views/StoreRaycastDetailView.vue';
 import RoutePage from '@/components/RoutePage.vue';
 import { nextTick, onBeforeUnmount, provide, shallowRef, useTemplateRef, type Component } from 'vue';
 import { routerSymbol } from './router';
@@ -23,7 +25,9 @@ const routes: Record<string, Component | undefined> = {
   '/settings': SettingsView,
   '/about': AboutView,
   '/plugin/store': StoreView,
+  '/plugin/store/raycast': RaycastStoreView,
   '/plugin/store/detail': StoreDetailView,
+  '/plugin/store/raycast-detail': StoreRaycastDetailView,
   '/plugin/view/wujie': PluginWujieView,
   '/developer/create': CreatePluginView,
   '/developer/plugins': DevPluginsView,

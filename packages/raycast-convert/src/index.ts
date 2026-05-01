@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { installAndBuild } from './build';
 import { resolveNoViewCommands } from './commands';
-import { copyAssetsDir, readJson, writeJson } from './files';
+import { copyPluginSourceToOutput, readJson, writeJson } from './files';
 import { generatePublicMain } from './generate/public-main';
 import { generateServerModule } from './generate/server-module';
 import { generateTsdownConfig } from './generate/tsdown-config';
@@ -14,7 +14,7 @@ import { mergePreferences } from './preferences';
 import type { ConversionReport, ConvertOptions, ConvertWarning, RaycastPackage } from './types';
 
 export type * from './types';
-export { RAYCAST_CONVERTED_SCOPE, resolveConvertedPackageName, resolveRaycastSlug } from './package-name';
+export { RAYCAST_CONVERTED_SCOPE, resolveConvertedPackageName, resolveRaycastSlug, sanitizeSlug } from './package-name';
 
 const createPublicCommands = (commands: { name: string, title?: string, subtitle?: string, description?: string, icon?: string, keywords?: string[] }[], icon: string) => commands.map(command => ({
   name: command.name,
@@ -40,9 +40,9 @@ export const convertRaycastPlugin = async (rawOptions: ConvertOptions): Promise<
   const { convertedCommands, skippedCommands } = await resolveNoViewCommands(options.inputDir, sourceCommands);
 
   await fs.rm(options.outputDir, { recursive: true, force: true });
+  await copyPluginSourceToOutput(options.inputDir, options.outputDir);
   await fs.mkdir(options.buildDir, { recursive: true });
   await fs.mkdir(options.distDir, { recursive: true });
-  await copyAssetsDir(options.inputDir, options.assetsDir);
 
   const icon = normalizeRaycastIcon(sourcePackage.icon || convertedCommands[0]?.icon) || DEFAULT_PLUGIN_ICON;
   const commandPreferences = convertedCommands.flatMap(command => command.preferences || []);
@@ -65,7 +65,15 @@ export const convertRaycastPlugin = async (rawOptions: ConvertOptions): Promise<
     warnings,
   }));
   await fs.writeFile(path.join(options.buildDir, 'public-main.ts'), generatePublicMain(), 'utf8');
-  await fs.writeFile(path.join(options.buildDir, 'server.ts'), generateServerModule(convertedCommands, convertedPackageName, publicCommands), 'utf8');
+  await fs.writeFile(
+    path.join(options.buildDir, 'server.ts'),
+    generateServerModule(convertedCommands, convertedPackageName, publicCommands, {
+      inputDir: options.inputDir,
+      outputDir: options.outputDir,
+      buildDir: options.buildDir,
+    }),
+    'utf8',
+  );
   await fs.writeFile(path.join(options.outputDir, 'tsdown.config.ts'), generateTsdownConfig(options), 'utf8');
 
   const report: ConversionReport = {
@@ -73,7 +81,12 @@ export const convertRaycastPlugin = async (rawOptions: ConvertOptions): Promise<
     output: options.outputDir,
     sourcePackageName: typeof sourcePackage.name === 'string' ? sourcePackage.name : undefined,
     convertedPackageName,
-    convertedCommands: convertedCommands.map(command => ({ name: command.name, entry: command.entry })),
+    convertedCommands: convertedCommands.map((command) => {
+      const outputEntry = path.join(options.outputDir, path.relative(path.resolve(options.inputDir), path.resolve(command.entry)));
+      const entry = path.relative(options.outputDir, outputEntry).split(path.sep)
+        .join('/') || '.';
+      return { name: command.name, entry };
+    }),
     skippedCommands,
     warnings,
   };

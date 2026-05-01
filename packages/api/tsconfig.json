@@ -3,7 +3,8 @@
     "rootDir": "./src",
     "outDir": "./dist",
     "module": "ESNext",
-    "moduleResolution": "bundler"
+    "moduleResolution": "bundler",
+    "target": "ES2022"
   },
   "files": [
     "src/index.ts",

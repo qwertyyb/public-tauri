@@ -7,6 +7,7 @@ import { createServer } from 'http';
 import managerRoutes from './routes/manager';
 import utilsRouter from './routes/utils';
 import healthRouter from './routes/health';
+import raycastRouter from './routes/raycast';
 
 import createLoggerMiddleware from './middlewares/log';
 import createErrorHandler from './middlewares/err';
@@ -32,6 +33,7 @@ app.use(createPluginMiddleware());
 app.use(managerRoutes.routes()).use(managerRoutes.allowedMethods());
 app.use(utilsRouter.routes()).use(utilsRouter.allowedMethods());
 app.use(healthRouter.routes()).use(healthRouter.allowedMethods());
+app.use(raycastRouter.routes()).use(raycastRouter.allowedMethods());
 
 // app.callback 的类型定义有问题，先 disable 一下
 

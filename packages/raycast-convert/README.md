@@ -17,6 +17,31 @@ pnpm raycast:convert:production <raycast-plugin-dir> --out <public-plugin-dir> [
 raycast-convert <raycast-plugin-dir> --out <public-plugin-dir> [--build] [--mode development|production]
 ```
 
+## 关键步骤（转换逻辑）
+
+转换器按固定顺序处理，核心步骤如下：
+
+1. **准备输出目录**  
+   删除目标 `outDir`（若存在），保证输出是一次干净的生成结果。
+
+2. **复制 Raycast 源码树**  
+   将输入插件目录下的文件与子目录**递归复制**到 `outDir`。  
+   **不复制** `package.json`（由下一步生成）。  
+   为便于在 `outDir` 内重新解析依赖，同时**跳过** `node_modules` 以及常见 lockfile（`pnpm-lock.yaml`、`package-lock.json`、`yarn.lock`）。  
+   其它文件（含 `src/`、`assets/`、`tsconfig.json` 等）原样保留。
+
+3. **生成 Public 插件清单与打包入口**  
+   - 写入 **`package.json`**：`publicPlugin` manifest、`@public-tauri/api` 依赖、合并后的 `dependencies` / `devDependencies`（移除 `@raycast/api`、`@raycast/utils`）、以及 `build` 脚本等。  
+   - 写入 **`.raycast-build/public-main.ts`**（浏览器侧桥接）与 **`.raycast-build/server.ts`**（Node 侧命令入口）。  
+   - 写入 **`tsdown.config.ts`**：双入口（browser / node）打包到 `dist/`。  
+   - 写入 **`raycast-conversion-report.json`**：已转换命令、跳过命令与 warnings。
+
+4. **安装依赖并打包（可选）**  
+   若传入 `--build`，在 **`outDir`** 内依次执行：  
+   `pnpm install` → `pnpm exec tsdown --config tsdown.config.ts`。
+
+原始 Raycast 插件目录不会被修改；依赖安装与构建仅在生成的 `outDir` 中进行。
+
 ## 功能
 
 转换器读取一个 Raycast 插件目录，并生成一个 Public Tauri 插件目录。
@@ -30,21 +55,9 @@ raycast-convert <raycast-plugin-dir> --out <public-plugin-dir> [--build] [--mode
 - `.raycast-build/server.ts`，Node 侧命令运行入口。
 - `tsdown.config.ts`，用于打包转换后的插件。
 - `raycast-conversion-report.json`，记录已转换命令、跳过命令和 warnings。
-- `assets/`，当 Raycast 插件存在资源目录时会复制过来。
+- 自 Raycast 插件目录复制的其余源码与资源（不含上述跳过项）。
 
 如果传入 `--build`，转换器会在生成的 Public Tauri 插件目录中安装依赖，并执行 `tsdown` 构建。
-
-## 转换流程
-
-```text
-Raycast 插件源码
--> 生成 Public Tauri 插件文件
--> 写入 package.json 和 tsdown.config.ts
--> 在生成的插件目录执行 pnpm install
--> pnpm exec tsdown --config tsdown.config.ts
-```
-
-原始 Raycast 插件源码目录不会被安装依赖，也不会被修改。
 
 ## 模式
 
@@ -76,16 +89,9 @@ Raycast 插件源码
 
 ## Raycast API 映射
 
-生成的 `tsdown.config.ts` 会将 Raycast API 映射到 Public Tauri 的兼容层：
+生成的 `tsdown.config.ts` 在 **Node（server）入口** 上将 `@raycast/api` 与 `@raycast/utils` 解析到已安装的 `@public-tauri/api` 包内对应源码路径（见生成文件中的 `alias`）。**浏览器（public-main）入口** 不配置这两项别名。
 
-```ts
-alias: {
-  '@raycast/api': '@public-tauri/api/raycast',
-  '@raycast/utils': '@public-tauri/api/raycast/utils',
-}
-```
-
-原 Raycast 插件中的其它依赖会保留。
+原 Raycast 插件中除 `@raycast/api` / `@raycast/utils` 外的其它依赖会保留在生成的 `package.json` 中。
 
 ## 当前支持范围
 

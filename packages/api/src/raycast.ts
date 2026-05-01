@@ -116,40 +116,163 @@ export const __setRaycastContext = (context: RaycastContext) => {
 
 export const __getRaycastContext = () => currentContext;
 
-export const Toast = {
-  Style: {
+const formatToastBody = (title: string, message?: string) => (
+  [title, message].filter(Boolean).join('\n')
+);
+
+const isToastOptions = (value: unknown): value is Toast.Options => (
+  typeof value === 'object'
+  && value !== null
+  && 'title' in value
+  && typeof (value as Toast.Options).title === 'string'
+);
+
+export class Toast {
+  static Style = {
     Success: 'SUCCESS',
     Failure: 'FAILURE',
     Animated: 'ANIMATED',
-  },
-} as const;
+  } as const;
 
-export type ToastStyle = typeof Toast.Style[keyof typeof Toast.Style];
+  private _style: Toast.Style = Toast.Style.Success;
+  private _title = '';
+  private _message?: string;
+  private _primaryAction?: Toast.ActionOptions;
+  private _secondaryAction?: Toast.ActionOptions;
+  private _hidden = false;
 
-export type ToastOptions = {
-  style?: ToastStyle;
-  title: string;
-  message?: string;
-  primaryAction?: unknown;
-  secondaryAction?: unknown;
-};
+  /** @deprecated Use {@link showToast} instead */
+  constructor(props: Toast.Options) {
+    this.applyOptions(props);
+  }
 
-export const showToast = async (
-  styleOrOptions: ToastStyle | ToastOptions,
+  private applyOptions(props: Toast.Options) {
+    this._style = props.style ?? Toast.Style.Success;
+    this._title = props.title;
+    this._message = props.message;
+    this._primaryAction = props.primaryAction;
+    this._secondaryAction = props.secondaryAction;
+  }
+
+  get style(): Toast.Style {
+    return this._style;
+  }
+
+  set style(value: Toast.Style) {
+    this._style = value;
+    this.pushHost();
+  }
+
+  get title(): string {
+    return this._title;
+  }
+
+  set title(value: string) {
+    this._title = value;
+    this.pushHost();
+  }
+
+  get message(): string | undefined {
+    return this._message;
+  }
+
+  set message(value: string | undefined) {
+    this._message = value;
+    this.pushHost();
+  }
+
+  get primaryAction(): Toast.ActionOptions | undefined {
+    return this._primaryAction;
+  }
+
+  set primaryAction(value: Toast.ActionOptions | undefined) {
+    this._primaryAction = value;
+  }
+
+  get secondaryAction(): Toast.ActionOptions | undefined {
+    return this._secondaryAction;
+  }
+
+  set secondaryAction(value: Toast.ActionOptions | undefined) {
+    this._secondaryAction = value;
+  }
+
+  async show(): Promise<void> {
+    this._hidden = false;
+    this.pushHost();
+  }
+
+  async hide(): Promise<void> {
+    this._hidden = true;
+  }
+
+  private pushHost() {
+    if (this._hidden) return;
+    const icon = (() => {
+      switch (this._style) {
+        case Toast.Style.Failure:
+          return 'error';
+        case Toast.Style.Animated:
+          return 'loading';
+        case Toast.Style.Success:
+        default:
+          return 'success';
+      }
+    })();
+    const duration = this._style === Toast.Style.Animated ? 2_000 : undefined;
+    void dialog.showToast(formatToastBody(this._title, this._message), {
+      icon,
+      duration,
+    });
+  }
+}
+
+export namespace Toast {
+  export type Style = (typeof Toast.Style)[keyof typeof Toast.Style];
+  export interface Options {
+    title: string;
+    message?: string;
+    style?: Style;
+    primaryAction?: ActionOptions;
+    secondaryAction?: ActionOptions;
+  }
+  export interface ActionOptions {
+    title: string;
+    shortcut?: unknown;
+    onAction: (toast: Toast) => void;
+  }
+}
+
+/** @deprecated Use {@link Toast.Style} */
+export type ToastStyle = Toast.Style;
+
+/** @deprecated Use {@link Toast.Options} */
+export type ToastOptions = Toast.Options;
+
+/** @deprecated Use {@link Toast.Style} */
+export const ToastStyle = Toast.Style;
+
+/** @deprecated Use {@link Toast.ActionOptions} */
+export type ToastActionOptions = Toast.ActionOptions;
+
+export async function showToast(options: Toast.Options): Promise<Toast>;
+export async function showToast(style: Toast.Style, title: string, message?: string): Promise<Toast>;
+export async function showToast(
+  styleOrOptions: Toast.Options | Toast.Style,
   title?: string,
   message?: string,
-) => {
-  const options: ToastOptions = typeof styleOrOptions === 'string'
-    ? { style: styleOrOptions, title: title || '', message }
-    : styleOrOptions;
-  const text = [options.title, options.message].filter(Boolean).join('\n');
-  await dialog.showToast(text || options.style || '');
-  return {
-    ...options,
-    hide: async () => {},
-    show: async () => {},
-  };
-};
+): Promise<Toast> {
+  const options: Toast.Options = isToastOptions(styleOrOptions)
+    ? styleOrOptions
+    : {
+      style: styleOrOptions as Toast.Style,
+      title: title ?? '',
+      message,
+    };
+  const toast = new Toast(options);
+  await toast.show();
+  return toast;
+}
 
 export const showHUD = async (title: string, options?: { clearRootSearch?: boolean, popToRootType?: PopToRootTypeValue }) => {
   await closeMainWindow(options);

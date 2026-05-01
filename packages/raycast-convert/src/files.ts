@@ -17,8 +17,30 @@ export const exists = async (filePath: string) => {
   }
 };
 
-export const copyAssetsDir = async (inputDir: string, assetsDir: string) => {
-  const source = path.join(inputDir, 'assets');
-  if (!await exists(source)) return;
-  await fs.cp(source, assetsDir, { recursive: true });
+/** Names skipped when mirroring the Raycast plugin into outDir (see README). */
+export const PLUGIN_COPY_SKIP_NAMES = new Set([
+  'package.json',
+  'node_modules',
+  'pnpm-lock.yaml',
+  'package-lock.json',
+  'yarn.lock',
+]);
+
+/**
+ * Recursively copy the Raycast plugin directory into `outputDir`, except entries in `skipNames`.
+ * Source `package.json` is never copied; generated `package.json` is written separately.
+ */
+export const copyPluginSourceToOutput = async (
+  inputDir: string,
+  outputDir: string,
+  skipNames: ReadonlySet<string> = PLUGIN_COPY_SKIP_NAMES,
+) => {
+  await fs.mkdir(outputDir, { recursive: true });
+  const entries = await fs.readdir(inputDir, { withFileTypes: true });
+  for (const entry of entries) {
+    if (skipNames.has(entry.name)) continue;
+    const from = path.join(inputDir, entry.name);
+    const to = path.join(outputDir, entry.name);
+    await fs.cp(from, to, { recursive: true });
+  }
 };

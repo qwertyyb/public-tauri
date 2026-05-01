@@ -20,7 +20,7 @@ export function requestHostInvoke(payload: HostInvokePayload, timeoutMs = 20000)
       reject(new Error('Tauri 主窗体未连接，无法执行需前端的操作'));
       return;
     }
-    const tid = setTimeout(() => reject(new Error('host invoke 超时')), timeoutMs);
+    const tid = setTimeout(() => reject(new Error(`host invoke 超时: ${payload.name}`)), timeoutMs);
     (socket as any).emit('tauri:host:invoke', payload, (res: Ack | undefined) => {
       clearTimeout(tid);
       if (res == null) {

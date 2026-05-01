@@ -101,19 +101,24 @@ async function invokeChannelHandler(method: string, args: any[] = []) {
   return await handler(...args);
 }
 
-function emitChannelEvent(event: string, args: any[] = []) {
+async function emitChannelEvent(event: string, args: any[] = []) {
   const listeners = eventListeners.get(event);
   if (!listeners) {
     return;
   }
-  listeners.forEach((listener) => {
-    listener(...args);
-  });
+  for (const listener of listeners) {
+    try {
+      await listener(...args);
+    } catch (e) {
+      console.error(`[public-tauri/api/node] channel.on("${event}") listener error`, e);
+    }
+  }
 }
 
 const activeParentPort = parentPort;
 if (activeParentPort) {
-  activeParentPort.on('message', async (msg: any) => {
+  const port = activeParentPort;
+  const dispatchParentPortMessage = async (msg: any) => {
     if (msg === null || msg === undefined) return;
     if (msg.kind === MainToWorker.BRIDGE_RESPONSE) {
       finishBridgeResponse({ id: msg.id, data: msg.data, err: msg.err });
@@ -122,16 +127,30 @@ if (activeParentPort) {
     if (msg.kind === MainToWorker.CHANNEL_INVOKE) {
       try {
         const data = await invokeChannelHandler(msg.method, msg.args || []);
-        activeParentPort.postMessage({ kind: WorkerToMain.CHANNEL_INVOKE_DONE, id: msg.id, data });
+        port.postMessage({ kind: WorkerToMain.CHANNEL_INVOKE_DONE, id: msg.id, data });
       } catch (e) {
         const err = e instanceof Error ? e : new Error(String(e));
-        activeParentPort.postMessage({ kind: WorkerToMain.CHANNEL_INVOKE_DONE, id: msg.id, err: err.message });
+        port.postMessage({ kind: WorkerToMain.CHANNEL_INVOKE_DONE, id: msg.id, err: err.message });
       }
       return;
     }
     if (msg.kind === MainToWorker.CHANNEL_EVENT) {
-      emitChannelEvent(msg.event, msg.args || []);
+      await emitChannelEvent(msg.event, msg.args || []);
     }
+  };
+
+  port.on('message', (msg: any) => {
+    void dispatchParentPortMessage(msg).catch((e) => {
+      const err = e instanceof Error ? e : new Error(String(e));
+      console.error('[public-tauri/api/node] parentPort message error', err);
+      if (msg?.kind === MainToWorker.CHANNEL_INVOKE && typeof msg.id === 'number') {
+        try {
+          port.postMessage({ kind: WorkerToMain.CHANNEL_INVOKE_DONE, id: msg.id, err: err.message });
+        } catch {
+          /* MessagePort 可能已关闭 */
+        }
+      }
+    });
   });
 }
 

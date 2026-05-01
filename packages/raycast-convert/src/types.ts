@@ -61,7 +61,6 @@ export type ResolvedConvertOptions = Required<Omit<ConvertOptions, 'outputDir' |
   publicApiDependency: string;
   buildDir: string;
   distDir: string;
-  assetsDir: string;
 };
 
 export type ConversionReport = {

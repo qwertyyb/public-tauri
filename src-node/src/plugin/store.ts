@@ -1,7 +1,7 @@
 import type { Worker } from 'node:worker_threads';
 import type { Socket } from 'socket.io';
 
-type PluginState = {
+export type PluginState = {
   staticPaths: string[] | null | undefined,
   cwd?: string,
 

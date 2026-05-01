@@ -20,6 +20,7 @@
   "license": "ISC",
   "packageManager": "pnpm@10.8.0",
   "dependencies": {
+    "@public-tauri/raycast-convert": "workspace:^",
     "@koa/bodyparser": "^6.0.0",
     "@koa/cors": "^5.0.0",
     "@koa/router": "^13.1.1",
