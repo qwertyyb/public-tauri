@@ -159,7 +159,7 @@ import { generatePlugin, type PluginMode } from '@/services/scaffold';
 import { registerPluginFromLocalPath } from '@/services/store';
 import { showToast } from '@/utils/feedback';
 import { popView } from '@/plugin/utils';
-import { opener } from '@public/core';
+import { opener } from '@public-tauri/core';
 
 interface CommandForm {
   name: string;

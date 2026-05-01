@@ -1,5 +1,5 @@
 {
-  "name": "script-commands",
+  "name": "@public-tauri/plugin-script-commands",
   "version": "0.0.0",
   "private": true,
   "type": "module",

@@ -1,5 +1,5 @@
 {
-  "name": "calculator",
+  "name": "@public-tauri/plugin-calculator",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -44,8 +44,9 @@
   },
   "devDependencies": {
     "@public-tauri/api": "workspace:^",
-    "@public/schema": "workspace:^",
     "mathjs": "^14.6.0",
-    "tsdown": "catalog:plugin"
-  }
+    "tsdown": "catalog:plugin",
+    "@public-tauri/schema": "workspace:^"
+  },
+  "private": true
 }

@@ -33,7 +33,7 @@ import PublicLayout from '@/components/PublicLayout.vue';
 import InputBar from '@/components/InputBar.vue';
 import type { ActionPanel } from '@/components/ActionBar.vue';
 import type { ActionPanelAction, IRunningPlugin } from '@/types/plugin';
-import type { ICommand } from '@public/schema';
+import type { ICommand } from '@public-tauri/schema';
 import { computed, onBeforeUnmount, onMounted, ref, useTemplateRef, watch } from 'vue';
 import { onPageEnter, onPageLeave } from '@/router';
 import { popView } from '@/plugin/utils';

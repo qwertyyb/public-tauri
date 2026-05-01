@@ -23,7 +23,7 @@ import ResultView from './PublicList.vue';
 import EmptyView from './PublicListEmptyView.vue';
 import { onBeforeUnmount, onMounted, ref, toRaw, watch } from 'vue';
 import LoadingBar from './LoadingBar.vue';
-import type { IListViewCommand, IResultItem, IAction, ICommandActionOptions } from '@public/schema';
+import type { IListViewCommand, IResultItem, IAction, ICommandActionOptions } from '@public-tauri/schema';
 import { mainWindow, updateActions, updateSearchBarValue, updateSearchBarVisible } from '../index';
 
 const props = defineProps<{

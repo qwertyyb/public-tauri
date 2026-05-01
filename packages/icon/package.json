@@ -1,5 +1,5 @@
 {
-  "name": "@public/icon",
+  "name": "@public-tauri/icon",
   "version": "1.0.0",
   "description": "Unified icon protocol system for Public app",
   "type": "module",
@@ -18,5 +18,6 @@
   "license": "ISC",
   "dependencies": {
     "@tauri-apps/api": "^2.10.1"
-  }
+  },
+  "private": true
 }

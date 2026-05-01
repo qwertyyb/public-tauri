@@ -2,8 +2,15 @@
   "name": "@public-tauri-ext/magic",
   "version": "1.0.0",
   "type": "module",
-  "description": "",
+  "description": "魔方平台快捷操作",
   "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsdown"

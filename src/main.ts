@@ -1,8 +1,8 @@
 import { createApp } from 'vue';
 import VirtualList from 'vue-virtual-list-v3';
 import ui from '@nuxt/ui/vue-plugin';
-import { CORE_API_KEY } from '@public/core/const';
-import * as core from '@public/core';
+import { CORE_API_KEY } from '@public-tauri/core/const';
+import * as core from '@public-tauri/core';
 import App from './App.vue';
 import './assets/css/main.css';
 import './style.css';

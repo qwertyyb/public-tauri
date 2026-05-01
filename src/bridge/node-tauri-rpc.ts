@@ -1,6 +1,6 @@
 // @ts-ignore
 import { io } from 'socket.io-client/dist/socket.io.js';
-import { SERVER } from '@public/core/const';
+import { SERVER } from '@public-tauri/core/const';
 import { invokePluginFrontendApi } from '@/plugin/frontend-api-registry';
 
 const HOST_CLIENT_NAME = '__public_tauri_host__';

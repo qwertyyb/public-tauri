@@ -26,8 +26,8 @@ import {
   NativeWindow,
   createPluginChannel,
   createPluginStorage,
-} from '@public/core';
-import type { IPluginLifecycle, IAction, ICommand } from '@public/schema';
+} from '@public-tauri/core';
+import type { IPluginLifecycle, IAction, ICommand } from '@public-tauri/schema';
 import { wujiePool } from './wujie-pool';
 import { registerPluginFrontendApi, unregisterPluginFrontendApi } from './frontend-api-registry';
 import { openCommandPreferences, openPluginPreferences } from './utils';

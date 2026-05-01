@@ -1,11 +1,11 @@
 import path, { join } from 'path-browserify';
-import { globalShortcut, mainWindow, registerServerModule, storage } from '@public/core';
+import { globalShortcut, mainWindow, registerServerModule, storage } from '@public-tauri/core';
 import { readTextFile } from '@tauri-apps/plugin-fs';
 import { formatCommand, getLocalPath, openCommandPreferences, openPluginPreferences, popView, pushView, resolveIconUrl } from './utils';
 import { set } from 'es-toolkit/compat';
 import { resolveResource } from '@tauri-apps/api/path';
 import { startApp } from 'wujie';
-import { parsePluginConfig, type IPluginManifest, type ICommand as IPluginCommand, type IPluginLifecycle, type IPreference, type ICommandActionOptions, type IAction } from '@public/schema';
+import { parsePluginConfig, type IPluginManifest, type ICommand as IPluginCommand, type IPluginLifecycle, type IPreference, type ICommandActionOptions, type IAction } from '@public-tauri/schema';
 import logger from '@/utils/logger';
 import type { IRunningPlugin, IPluginsSettings, IPluginSettings, ICommandSettings } from '@/types/plugin';
 import { BUILTIN_PLUGINS } from './builtin';

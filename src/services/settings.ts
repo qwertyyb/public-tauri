@@ -1,5 +1,5 @@
 import { register, unregister } from '@public-tauri/plugin-double-tap-shortcut';
-import { storage, mainWindow, permissions } from '@public/core';
+import { storage, mainWindow, permissions } from '@public-tauri/core';
 import { isTauri } from '@tauri-apps/api/core';
 import { getPlugins as getAllPlugins } from '@/plugin/manager';
 import type { ISettings } from '@/types/plugin';

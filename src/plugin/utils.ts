@@ -1,8 +1,8 @@
 import { convertFileSrc } from '@tauri-apps/api/core';
 import { pinyin as proPinyin } from 'pinyin-pro';
 import { join } from 'path-browserify';
-import type { IPluginManifest, ICommand } from '@public/schema';
-import { resolveLocalPath } from '@public/icon';
+import type { IPluginManifest, ICommand } from '@public-tauri/schema';
+import { resolveLocalPath } from '@public-tauri/icon';
 
 export const getLocalPath = (
   urlOrPath: string | undefined,

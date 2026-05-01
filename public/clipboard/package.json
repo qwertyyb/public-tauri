@@ -1,5 +1,5 @@
 {
-  "name": "clipboard",
+  "name": "@public-tauri/plugin-clipboard",
   "version": "1.0.0",
   "description": "",
   "main": "dist/preload.js",
@@ -39,5 +39,6 @@
         "preload": "./dist/command.preload.js"
       }
     ]
-  }
+  },
+  "private": true
 }

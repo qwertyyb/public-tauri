@@ -2,7 +2,7 @@ import fuzzysort from 'fuzzysort';
 import { dispatchPluginAction, enterCommand, getPlugins } from './manager';
 import { resultsMap } from './store';
 import { getLocalPath, hanziToPinyin, htmlEscape } from './utils';
-import { AsyncFile, type IAction, type ICommandFileMatch, type ICommand as IPluginCommand, type ICommandActionOptions } from '@public/schema';
+import { AsyncFile, type IAction, type ICommandFileMatch, type ICommand as IPluginCommand, type ICommandActionOptions } from '@public-tauri/schema';
 import type { IRunningPlugin } from '@/types/plugin';
 
 const compileString = (template: string, vars: any) => {

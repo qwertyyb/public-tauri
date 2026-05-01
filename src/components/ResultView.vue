@@ -37,7 +37,7 @@ import { computed, nextTick, ref, useTemplateRef, watch } from 'vue';
 import ResultItem from '@/components/ResultItem.vue';
 import ResultItemPreview from '@/components/ResultItemPreview.vue';
 import { isKeyPressed } from '@/utils/keyboard';
-import type { IResultItem } from '@public/schema';
+import type { IResultItem } from '@public-tauri/schema';
 import { onPageEnter, onPageLeave } from '@/router';
 import { ACTION_BAR_HEIGHT, DIVIDER_WIDTH, NAV_HEIGHT } from '@/const';
 import {

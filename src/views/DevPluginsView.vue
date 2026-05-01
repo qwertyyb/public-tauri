@@ -31,11 +31,11 @@
 import { computed, onMounted, ref } from 'vue';
 import PublicLayout from '@/components/PublicLayout.vue';
 import ResultView from '@/components/ResultView.vue';
-import type { IResultItem } from '@public/schema';
+import type { IResultItem } from '@public-tauri/schema';
 import type { ActionPanelAction, IRunningPlugin } from '@/types/plugin';
 import { getDevPluginPaths, unloadDevPlugin } from '@/services/store';
 import { showConfirm, showToast } from '@/utils/feedback';
-import { opener } from '@public/core';
+import { opener } from '@public-tauri/core';
 import { onPageEnter } from '@/router';
 
 interface DevPluginInfo {

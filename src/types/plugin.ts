@@ -1,4 +1,4 @@
-import type { ICommand, IPluginLifecycle, IPluginManifest } from '@public/schema';
+import type { ICommand, IPluginLifecycle, IPluginManifest } from '@public-tauri/schema';
 
 export interface IRunningPlugin {
   plugin?: IPluginLifecycle

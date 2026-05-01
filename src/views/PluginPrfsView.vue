@@ -60,7 +60,7 @@
 
 <script setup lang="ts">
 import { getPlugin, updateCommandPreferences, updatePluginPreferences } from '@/plugin/manager';
-import type { IPluginManifest } from '@public/schema';
+import type { IPluginManifest } from '@public-tauri/schema';
 import { computed, nextTick, ref, shallowRef, toRaw, watch } from 'vue';
 
 const props = defineProps<{ plugin: string, command?: string, done?:() => void }>();

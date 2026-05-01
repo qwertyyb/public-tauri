@@ -1,4 +1,4 @@
-import type { IPluginManifest } from '@public/schema';
+import type { IPluginManifest } from '@public-tauri/schema';
 
 export interface IStorePlugin {
   name: string;

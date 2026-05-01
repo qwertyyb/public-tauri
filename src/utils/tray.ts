@@ -3,7 +3,7 @@ import { Menu } from '@tauri-apps/api/menu';
 import { Image } from '@tauri-apps/api/image';
 import { resolveResource } from '@tauri-apps/api/path';
 import { getCurrentWindow } from '@tauri-apps/api/window';
-import { mainWindow } from '@public/core';
+import { mainWindow } from '@public-tauri/core';
 
 const menu = await Menu.new({
   items: [

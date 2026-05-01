@@ -1,7 +1,7 @@
-import type * as coreApi from '@public/core';
-import { CORE_API_KEY } from '@public/core/const';
-import type { IPluginLifecycle, ICommand, IAction } from '@public/schema';
-export type * from '@public/schema';
+import type * as coreApi from '@public-tauri/core';
+import { CORE_API_KEY } from '@public-tauri/core/const';
+import type { IPluginLifecycle, ICommand, IAction } from '@public-tauri/schema';
+export type * from '@public-tauri/schema';
 
 /** Actions for the host ActionBar in view-mode plugins: first entry is main (↵), the rest go to “more”. */
 export type PluginShellAction = IAction & { action?: () => void };

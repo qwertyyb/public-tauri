@@ -41,7 +41,7 @@
 </template>
 
 <script setup lang="ts">
-import AppIcon from '@public/icon/AppIcon.vue';
+import AppIcon from '@public-tauri/icon/AppIcon.vue';
 interface IResultItem {
   icon?: string,
   title: string,

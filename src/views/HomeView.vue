@@ -30,7 +30,7 @@ import * as service from '@/services';
 import type { UnlistenFn } from '@tauri-apps/api/event';
 import { getCurrentWindow } from '@tauri-apps/api/window';
 import { onBeforeUnmount, onMounted, ref, toRaw, watch } from 'vue';
-import type { IAction, ICommand as IPluginCommand } from '@public/schema';
+import type { IAction, ICommand as IPluginCommand } from '@public-tauri/schema';
 import type { ActionPanelAction } from '@/types/plugin';
 
 const results = ref<IPluginCommand[]>([]);

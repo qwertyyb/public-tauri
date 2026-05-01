@@ -1,9 +1,15 @@
 {
   "name": "@public-tauri/api",
   "version": "1.0.0",
-  "description": "",
+  "description": "Public Tauri plugin API for browser, node, and Raycast compatibility layers.",
   "type": "module",
   "sideEffects": false,
+  "files": [
+    "dist",
+    "src",
+    "package.json",
+    "README.md"
+  ],
   "exports": {
     ".": {
       "node": "./src/node.ts",
@@ -29,12 +35,14 @@
     "virtua": "^0.43.6"
   },
   "devDependencies": {
-    "@public/core": "workspace:^",
-    "@public/schema": "workspace:^",
     "@types/node": "^24.0.0",
-    "tsdown": "^0.21.7"
+    "tsdown": "^0.21.7",
+    "@public-tauri/core": "workspace:^",
+    "@public-tauri/schema": "workspace:^"
   },
   "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/",
     "exports": {
       ".": {
         "node": "./dist/node.mjs",

@@ -22,7 +22,7 @@ import InputBar from '@/components/InputBar.vue';
 import ResultView from '@/components/ResultView.vue';
 import PublicLayout from '@/components/PublicLayout.vue';
 import { ref, watch, onMounted } from 'vue';
-import type { IResultItem } from '@public/schema';
+import type { IResultItem } from '@public-tauri/schema';
 import { useRouter } from '@/router';
 import { fetchStorePlugins, searchPlugins, isPluginInstalled, refreshInstalledPlugins } from '@/services/store';
 import type { IStorePlugin } from '@/types/store';

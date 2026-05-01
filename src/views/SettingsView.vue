@@ -284,7 +284,7 @@ import { computed, ref, toRaw, watch } from 'vue';
 import { useColorMode } from '@vueuse/core';
 import PublicLayout from '@/components/PublicLayout.vue';
 import ShortcutsRecorder from '@/components/HotkeyRecorder.vue';
-import type { ICommand as IPluginCommand } from '@public/schema';
+import type { ICommand as IPluginCommand } from '@public-tauri/schema';
 import type { IRunningPlugin, ICommandSettings } from '@/types/plugin';
 import { getSettings, updateSettings, getPlugins, updateMainShortcut, checkAllPermissions, type PermissionCheckResult } from '@/services/settings';
 import { onPageEnter, useRouter } from '@/router';

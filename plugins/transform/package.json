@@ -1,5 +1,5 @@
 {
-  "name": "transform",
+  "name": "@public-tauri/plugin-transform",
   "version": "1.0.0",
   "description": "",
   "type": "module",
@@ -20,5 +20,6 @@
   "devDependencies": {
     "@public-tauri/api": "workspace:^",
     "tsdown": "catalog:plugin"
-  }
+  },
+  "private": true
 }

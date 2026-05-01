@@ -1,5 +1,5 @@
-import type { ICommand, IAction } from '@public/schema';
-import type * as coreApi from '@public/core';
+import type { ICommand, IAction } from '@public-tauri/schema';
+import type * as coreApi from '@public-tauri/core';
 import { parentPort, workerData } from 'node:worker_threads';
 
 const MainToWorker = {

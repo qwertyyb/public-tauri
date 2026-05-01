@@ -1,8 +1,9 @@
 {
-  "name": "qrcode",
+  "name": "@public-tauri/plugin-qrcode",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
+  "private": true,
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -91,10 +92,10 @@
   },
   "devDependencies": {
     "@public-tauri/api": "workspace:^",
-    "qrcode": "^1.4.4",
     "sharp": "^0.34.3",
-    "wechat-qrcode": "workspace:^",
     "@types/qrcode": "^1.5.5",
-    "tsdown": "catalog:plugin"
+    "tsdown": "catalog:plugin",
+    "@public-tauri/wechat-qrcode": "workspace:^",
+    "qrcode": "^1.4.4"
   }
 }

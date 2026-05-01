@@ -2,8 +2,16 @@
   "name": "@public-tauri-ext/v2ex",
   "version": "1.0.0",
   "type": "module",
-  "description": "",
+  "description": "查看 V2EX 热贴和新贴",
+  "files": [
+    "dist",
+    "assets"
+  ],
   "private": false,
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsdown"

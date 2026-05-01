@@ -1,0 +1,30 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@3.1.1/schema.json",
+  "changelog": "@changesets/cli/changelog",
+  "commit": false,
+  "fixed": [],
+  "linked": [],
+  "access": "public",
+  "baseBranch": "master",
+  "updateInternalDependencies": "patch",
+  "ignore": [
+    "@public-tauri/core",
+    "@public-tauri/icon",
+    "@public-tauri/plugin-calculator",
+    "@public-tauri/plugin-clipboard",
+    "@public-tauri/plugin-confetti",
+    "@public-tauri/plugin-double-tap-shortcut",
+    "@public-tauri/plugin-emoji",
+    "@public-tauri/plugin-launcher",
+    "@public-tauri/plugin-mdn",
+    "@public-tauri/plugin-qrcode",
+    "@public-tauri/plugin-script-commands",
+    "@public-tauri/plugin-snippets",
+    "@public-tauri/plugin-transform",
+    "@public-tauri/plugin-translate",
+    "@public-tauri/schema",
+    "@public-tauri/src-node",
+    "@public-tauri/template",
+    "@public-tauri/wechat-qrcode"
+  ]
+}

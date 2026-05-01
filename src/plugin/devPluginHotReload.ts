@@ -1,7 +1,7 @@
 import { isTauri } from '@tauri-apps/api/core';
 import { watch, type UnwatchFn } from '@tauri-apps/plugin-fs';
 import { getDevPluginPathList } from '@/services/store';
-import { dialog } from '@public/core';
+import { dialog } from '@public-tauri/core';
 import { reloadPluginFromLocalPath } from './manager';
 import logger from '@/utils/logger';
 

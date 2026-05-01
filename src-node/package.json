@@ -1,5 +1,5 @@
 {
-  "name": "src-node",
+  "name": "@public-tauri/src-node",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -43,5 +43,6 @@
     "tsdown": "^0.21.7",
     "tsx": "^4.20.3",
     "typescript": "^5.9.2"
-  }
+  },
+  "private": true
 }

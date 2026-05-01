@@ -36,7 +36,7 @@
 import { computed, onBeforeMount, onMounted, ref, useTemplateRef, watch } from 'vue';
 import { VList } from 'virtua/vue';
 import ListItem from './PublicListItem.vue';
-import type { IAction } from '@public/schema';
+import type { IAction } from '@public-tauri/schema';
 import ResultItemPreview from './PublicListItemDetail.vue';
 
 const getPressedKeys = (event: KeyboardEvent) => {

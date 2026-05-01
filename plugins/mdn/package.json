@@ -1,5 +1,5 @@
 {
-  "name": "mdn",
+  "name": "@public-tauri/plugin-mdn",
   "version": "1.0.0",
   "type": "module",
   "description": "",
@@ -45,5 +45,6 @@
   "devDependencies": {
     "@public-tauri/api": "workspace:^",
     "tsdown": "catalog:plugin"
-  }
+  },
+  "private": true
 }

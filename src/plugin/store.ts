@@ -1,5 +1,5 @@
 import { type IRunningPlugin } from '@/types/plugin';
-import { type ICommand, type ICommandMatchPair } from '@public/schema';
+import { type ICommand, type ICommandMatchPair } from '@public-tauri/schema';
 
 export const plugins: Map<string, IRunningPlugin> = new Map();
 

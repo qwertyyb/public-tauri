@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@public/schema",
+  "name": "@public-tauri/schema",
   "version": "1.0.0",
   "description": "",
   "exports": {

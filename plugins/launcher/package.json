@@ -1,5 +1,5 @@
 {
-  "name": "launcher",
+  "name": "@public-tauri/plugin-launcher",
   "version": "1.0.0",
   "description": "",
   "main": "dist/preload.js",
@@ -22,5 +22,6 @@
     "socket.io-client": "^4.8.1",
     "@public-tauri/api": "workspace:^",
     "tsdown": "catalog:plugin"
-  }
+  },
+  "private": true
 }

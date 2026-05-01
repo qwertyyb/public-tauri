@@ -3,7 +3,7 @@ import { pinyin } from 'pinyin-pro';
 import { appDataDir, join } from '@tauri-apps/api/path';
 import { mkdir, remove, exists } from '@tauri-apps/plugin-fs';
 import { download } from '@tauri-apps/plugin-upload';
-import { storage, shell } from '@public/core';
+import { storage, shell } from '@public-tauri/core';
 import type { IStorePlugin } from '@/types/store';
 
 const STORE_URL = 'https://raw.githubusercontent.com/qwertyyb/public-tauri/refs/heads/master/store/index.json';

@@ -1,5 +1,5 @@
 {
-  "name": "emoji",
+  "name": "@public-tauri/plugin-emoji",
   "version": "1.0.0",
   "type": "module",
   "description": "",
@@ -31,5 +31,6 @@
     "@public-tauri/api": "workspace:^",
     "gemoji": "^8.1.0",
     "tsdown": "catalog:plugin"
-  }
+  },
+  "private": true
 }

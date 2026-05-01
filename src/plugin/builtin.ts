@@ -1,6 +1,6 @@
-import type { ICommand, IPluginManifest, IPluginLifecycle } from '@public/schema';
+import type { ICommand, IPluginManifest, IPluginLifecycle } from '@public-tauri/schema';
 import type { IRunningPlugin } from '@/types/plugin';
-import { dialog, mainWindow } from '@public/core';
+import { dialog, mainWindow } from '@public-tauri/core';
 import { registerPluginFromLocalPath } from '@/services/store';
 
 // 定义内置插件的配置类型
