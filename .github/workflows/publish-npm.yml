@@ -38,6 +38,7 @@ jobs:
           registry-url: https://registry.npmjs.org/
 
       - name: Install dependencies
+        # Avoid running the root postinstall build before the publish checks.
         run: pnpm install --frozen-lockfile --ignore-scripts
 
       - name: Verify publish package metadata
