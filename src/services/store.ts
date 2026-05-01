@@ -55,6 +55,8 @@ const getCustomPluginsDir = async () => {
 
 /** 商店下载并解压到的插件目录列表（Node storage key） */
 export const STORE_PLUGIN_PATH_LIST_KEY = 'storePluginPathList';
+/** Raycast 插件转换后在本地安装的路径列表（与 npm 商店安装分离） */
+export const RAYCAST_PLUGIN_PATH_LIST_KEY = 'raycastPluginPathList';
 /** 开发中「从本地目录加载」的插件路径列表（与商店分离，便于管理） */
 export const DEV_PLUGIN_PATH_LIST_KEY = 'devPluginPathList';
 /** 旧版单一列表，启动时迁移到上两者后删除 */
@@ -121,6 +123,29 @@ export const getDevPluginPathList = async (): Promise<string[]> => (await storag
 
 export const getStorePluginPathList = async (): Promise<string[]> => (await storage.getItem(STORE_PLUGIN_PATH_LIST_KEY)) || [];
 
+export const addRaycastPluginPath = async (pluginPath: string): Promise<void> => {
+  const list: string[] = await storage.getItem(RAYCAST_PLUGIN_PATH_LIST_KEY) || [];
+  const n = normalizePathForPrefix(pluginPath);
+  if (list.some(p => normalizePathForPrefix(p) === n)) return;
+  list.push(pluginPath);
+  await storage.setItem(RAYCAST_PLUGIN_PATH_LIST_KEY, list);
+};
+
+export const removeRaycastPluginPath = async (pluginPath: string): Promise<void> => {
+  const list: string[] = await storage.getItem(RAYCAST_PLUGIN_PATH_LIST_KEY) || [];
+  const n = normalizePathForPrefix(pluginPath);
+  await storage.setItem(RAYCAST_PLUGIN_PATH_LIST_KEY, list.filter(p => normalizePathForPrefix(p) !== n));
+};
+
+export const getRaycastPluginPathList = async (): Promise<string[]> => (await storage.getItem(RAYCAST_PLUGIN_PATH_LIST_KEY)) || [];
+
+export const isPluginPathInRaycastList = async (pluginPath: string): Promise<boolean> => {
+  if (!pluginPath) return false;
+  const n = normalizePathForPrefix(pluginPath);
+  const list: string[] = (await storage.getItem(RAYCAST_PLUGIN_PATH_LIST_KEY)) || [];
+  return list.some(p => normalizePathForPrefix(p) === n);
+};
+
 export const isPluginPathInDevList = async (pluginPath: string): Promise<boolean> => {
   if (!pluginPath) return false;
   const n = normalizePathForPrefix(pluginPath);
@@ -153,9 +178,7 @@ export const unregisterDevPluginFromLocalPath = async (pluginPath: string): Prom
   void import('@/plugin/devPluginHotReload').then(m => m.syncDevPluginFileWatchers());
 };
 
-export const getDevPluginPaths = async (): Promise<string[]> => {
-  return (await storage.getItem(DEV_PLUGIN_PATH_LIST_KEY)) || [];
-};
+export const getDevPluginPaths = async (): Promise<string[]> => (await storage.getItem(DEV_PLUGIN_PATH_LIST_KEY)) || [];
 
 export const unloadDevPlugin = async (pluginPath: string, pluginName: string): Promise<void> => {
   const { unregisterPlugin } = await import('@/plugin/manager');

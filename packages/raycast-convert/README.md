@@ -21,6 +21,8 @@ raycast-convert <raycast-plugin-dir> --out <public-plugin-dir> [--build] [--mode
 
 转换器读取一个 Raycast 插件目录，并生成一个 Public Tauri 插件目录。
 
+转换后 `package.json` 的 `name` 固定为 `@public-tauri-raycast/<slug>`（由 Raycast 包名或输入目录名推导），与 Public 应用商店中已发布的包名空间区分。`raycast-conversion-report.json` 中记录 `sourcePackageName`（源 `package.json` 的 `name`，可能缺失）与 `convertedPackageName`。
+
 生成的插件包含：
 
 - `package.json`，包含 `publicPlugin` manifest。

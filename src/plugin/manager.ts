@@ -9,7 +9,7 @@ import { parsePluginConfig, type IPluginManifest, type ICommand as IPluginComman
 import logger from '@/utils/logger';
 import type { IRunningPlugin, IPluginsSettings, IPluginSettings, ICommandSettings } from '@/types/plugin';
 import { BUILTIN_PLUGINS } from './builtin';
-import { DEV_PLUGIN_PATH_LIST_KEY, migratePluginPathListsFromLegacy, STORE_PLUGIN_PATH_LIST_KEY } from '@/services/store';
+import { DEV_PLUGIN_PATH_LIST_KEY, migratePluginPathListsFromLegacy, RAYCAST_PLUGIN_PATH_LIST_KEY, STORE_PLUGIN_PATH_LIST_KEY } from '@/services/store';
 import { wujiePool } from './wujie-pool';
 import { createWujieApp, destroyWujieApp, getEntryUrl, getTemplatePath } from './wujie-creator';
 import { INNER_PLUGIN_NAMES } from './constants';
@@ -441,8 +441,9 @@ const initInnerPlugins = async () => {
 const initCustomPlugins = async () => {
   await migratePluginPathListsFromLegacy();
   const storePaths: string[] = (await storage.getItem(STORE_PLUGIN_PATH_LIST_KEY)) || [];
+  const raycastPaths: string[] = (await storage.getItem(RAYCAST_PLUGIN_PATH_LIST_KEY)) || [];
   const devPaths: string[] = (await storage.getItem(DEV_PLUGIN_PATH_LIST_KEY)) || [];
-  const pluginPathList = [...storePaths, ...devPaths];
+  const pluginPathList = [...storePaths, ...raycastPaths, ...devPaths];
   if (!pluginPathList.length) return;
   console.warn('initCustomPlugins pluginPathList', pluginPathList);
   return Promise.all(pluginPathList.map(pluginPath => registerPlugin(pluginPath)
@@ -487,7 +488,7 @@ export const init = async () => {
       wujiePool.protect(name);
     }
 
-    // 3. 再初始化其他插件（store + dev）
+    // 3. 再初始化其他插件（store + Raycast 转换 + dev）
     console.warn('initCustomPlugins start');
     await initCustomPlugins();
     console.warn('initCustomPlugins done');

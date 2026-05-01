@@ -23,7 +23,7 @@ export type RaycastCommand = {
 };
 
 export type RaycastPackage = {
-  name: string;
+  name?: string;
   version?: string;
   type?: string;
   title?: string;
@@ -67,6 +67,10 @@ export type ResolvedConvertOptions = Required<Omit<ConvertOptions, 'outputDir' |
 export type ConversionReport = {
   source: string;
   output: string;
+  /** Raycast extension package.json name before conversion (may be missing). */
+  sourcePackageName?: string;
+  /** Converted Public plugin npm name, e.g. @public-tauri-raycast/screenshot */
+  convertedPackageName: string;
   convertedCommands: { name: string, entry: string }[];
   skippedCommands: { name: string, reason: string }[];
   warnings: ConvertWarning[];

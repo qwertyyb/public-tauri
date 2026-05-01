@@ -17,7 +17,7 @@ const rewriteDependencyMap = (dependencies: Record<string, string> | undefined) 
 export const createConvertedPackage = (
   sourcePackage: RaycastPackage,
   publicPlugin: Record<string, unknown>,
-  options: { publicApiDependency: string, warnings: ConvertWarning[] },
+  options: { convertedPackageName: string, publicApiDependency: string, warnings: ConvertWarning[] },
 ) => {
   const dependenciesResult = rewriteDependencyMap(sourcePackage.dependencies);
   const devDependenciesResult = rewriteDependencyMap(sourcePackage.devDependencies);
@@ -30,6 +30,7 @@ export const createConvertedPackage = (
 
   return {
     ...sourcePackage,
+    name: options.convertedPackageName,
     version: sourcePackage.version || '1.0.0',
     type: 'module',
     private: true,
