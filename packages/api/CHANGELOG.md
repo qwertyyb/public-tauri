@@ -1,5 +1,11 @@
 # @public-tauri/api
 
+## 1.0.2
+
+### Patch Changes
+
+- cee1855: 兼容 no-view command
+
 ## 1.0.1
 
 ### Patch Changes
