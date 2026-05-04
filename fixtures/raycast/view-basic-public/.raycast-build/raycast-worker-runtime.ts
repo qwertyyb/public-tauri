@@ -1,4 +1,3 @@
-
 /**
  * Generated into converted plugins as `.raycast-build/raycast-worker-runtime.ts`.
  * React custom renderer: Raycast List/Detail/Action UI runs in the Node Worker; snapshots go to the wujie view client.
@@ -54,14 +53,10 @@ export function createRaycastViewSession(options: { emitSnapshot: (snapshot: Ray
   let latestSnapshot: RaycastViewSnapshot | null = null;
   const rootNode: HostRootContainer = { children: [] };
   let snapshotQueued = false;
-  let selectedItemId = '';
-  let searchText = '';
 
   const serializeRoot = (): RaycastViewSnapshot => {
     latestSnapshot = buildSnapshotFromHostRoot(rootNode.children, handlers, {
       commandName: __getRaycastContext().commandName || '',
-      selectedItemId,
-      searchText,
     });
     return latestSnapshot;
   };
@@ -178,7 +173,7 @@ export function createRaycastViewSession(options: { emitSnapshot: (snapshot: Ray
   };
 
   // HostConfig 随 react-reconciler 版本扩展字段；变异宿主只需最小子集（见官方 custom renderer 示例）。
-  const reconciler = Reconciler(hostConfig as any);
+  const reconciler = Reconciler(hostConfig);
 
   let rootContainer: ReturnType<typeof reconciler.createContainer> | null = null;
 
@@ -202,24 +197,14 @@ export function createRaycastViewSession(options: { emitSnapshot: (snapshot: Ray
       null,
       noop,
     );
-    (reconciler as { flushSyncWork?: () => void }).flushSyncWork?.();
-  };
-
-  const updateSearch = (keyword: string) => {
-    searchText = keyword;
-    emitSnapshot();
-  };
-
-  const selectItem = (itemId: string) => {
-    selectedItemId = itemId;
-    emitSnapshot();
+    reconciler.flushSyncWork?.();
   };
 
   const dispatchHostEvent = async (hostId: string, event = 'onAction', args: unknown[] = []) => {
     const handler = handlers.get(`${hostId}:${event}`);
     if (!handler) throw new Error(`Unknown Raycast host event: ${hostId} · ${event}`);
     await handler(...args);
-    (reconciler as { flushSyncWork?: () => void }).flushSyncWork?.();
+    reconciler.flushSyncWork?.();
   };
 
   const unmount = () => {
@@ -231,5 +216,5 @@ export function createRaycastViewSession(options: { emitSnapshot: (snapshot: Ray
     handlers.clear();
   };
 
-  return { mount, updateSearch, selectItem, dispatchHostEvent, unmount };
+  return { mount, dispatchHostEvent, unmount };
 }

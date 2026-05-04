@@ -242,7 +242,7 @@ function serializeHostSubtree(
 export function buildSnapshotFromHostRoot(
   rootChildren: HostInstance[],
   handlers: HostEventHandlerRegistry,
-  meta: { commandName: string; selectedItemId: string; searchText: string },
+  meta: { commandName: string },
 ): RaycastViewSnapshot {
   handlers.clear();
   let slotSeq = 0;
@@ -251,14 +251,8 @@ export function buildSnapshotFromHostRoot(
     return `rv:p:${slotSeq}`;
   };
   const root = serializeHostSubtree(rootChildren[0], handlers, nextSlotId);
-  const list = findListInSnapshot(root);
-  const items = list ? listItemNodes(list) : [];
-  const firstItem = items[0];
-  const nextSelectedItemId = meta.selectedItemId || (firstItem ? businessIdForListItem(firstItem) : undefined);
   return {
     commandName: meta.commandName,
     root,
-    selectedItemId: nextSelectedItemId,
-    searchText: meta.searchText,
   };
 }

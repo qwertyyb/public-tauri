@@ -39,10 +39,6 @@ export type RaycastViewSearchPayload = {
   keyword: string;
 };
 
-export type RaycastViewSelectPayload = {
-  itemId: string;
-};
-
 /** run-action 通道：hostId 为 SerializedHostNode.hostId（含 props slot 内合成的 rv:p:*） */
 export type RaycastViewDispatchPayload = {
   commandName: string;

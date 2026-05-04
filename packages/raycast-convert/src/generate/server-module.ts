@@ -106,13 +106,6 @@ channel.handle('raycast:view:mount', async (payload = {}) => {
   return true;
 });
 
-channel.handle('raycast:view:select', async (payload = {}) => {
-  const session = viewSessions.get(String(payload.commandName || ''));
-  if (!session) return false;
-  session.selectItem(String(payload.itemId || ''));
-  return true;
-});
-
 channel.handle('raycast:view:run-action', async (payload = {}) => {
   const session = viewSessions.get(String(payload.commandName || ''));
   if (!session) throw new Error(\`No Raycast view session for \${String(payload.commandName || '')}\`);
