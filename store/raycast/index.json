@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-05-03T19:16:07.874Z",
+  "generatedAt": "2026-05-04T19:56:36.590Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "4237b41dfaf3903de0f18b1d7fefb26290d92829"
+    "commit": "4fab9f9e916d625cb13714837055a7b67bf2cb1e"
   },
-  "count": 2878,
+  "count": 2879,
   "extensions": [
     {
       "name": "0x0",
@@ -29239,7 +29239,7 @@
     {
       "name": "claudecast",
       "title": "ClaudeCast",
-      "description": "Claude Code workflows at your fingertips: Quick prompts, session management, and agentic workflows",
+      "description": "Discover, resume, and automate Claude Code sessions: deep full-text search, one-keystroke resume, agentic loops, usage analytics, and quick prompts",
       "icon": "command-icon.png",
       "author": "qazi0",
       "contributors": [
@@ -108700,6 +108700,95 @@
       "preferences": []
     },
     {
+      "name": "lattice-scholar-extension",
+      "title": "Lattice Scholar Extension",
+      "description": "Search your Lattice literature library from Raycast",
+      "icon": "extension_icon.png",
+      "author": "frank-miao",
+      "contributors": [],
+      "categories": [
+        "Documentation"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/frank-miao/lattice-scholar-extension",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/lattice-scholar-extension",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "lattice-search",
+          "title": "Search Literature",
+          "subtitle": "Lattice Scholar Extension",
+          "description": "Search literature in your Lattice library",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "lattice-status",
+          "title": "Check Connection",
+          "subtitle": "Lattice Scholar Extension",
+          "description": "Check Lattice local API connection status",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "lattice-doi",
+          "title": "Find Paper by Current Page",
+          "subtitle": "Lattice Scholar Extension",
+          "description": "Detect the DOI on the current browser page and show paper metadata",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "port",
+          "title": "API Port",
+          "description": "Port number for the Lattice local API (default: 52731)",
+          "type": "textfield",
+          "required": false,
+          "default": "52731",
+          "placeholder": "52731"
+        },
+        {
+          "name": "preferredFormat",
+          "title": "Preferred Export Format",
+          "description": "Default format for the quick copy action. Use a structured format like bibtex, ris, csl-json, or a CSL filename from assets/styles without the .csl suffix.",
+          "type": "textfield",
+          "required": false,
+          "default": "bibtex",
+          "placeholder": "bibtex"
+        },
+        {
+          "name": "clipboardFontFamily",
+          "title": "Clipboard Font Family",
+          "description": "Font family for rich-text citation exports to Word",
+          "type": "textfield",
+          "required": false,
+          "default": "Arial",
+          "placeholder": "Arial"
+        },
+        {
+          "name": "clipboardFontSize",
+          "title": "Clipboard Font Size",
+          "description": "Font size in points for rich-text citation exports",
+          "type": "textfield",
+          "required": false,
+          "default": "10",
+          "placeholder": "10"
+        }
+      ]
+    },
+    {
       "name": "launch-agents",
       "title": "Launch Agents",
       "description": "Manage Launch Agents",
@@ -154443,14 +154532,6 @@
           "title": "node bin path",
           "description": "Your node binary path",
           "placeholder": "e.g. /opt/homebrew/bin/node"
-        },
-        {
-          "type": "textfield",
-          "required": true,
-          "name": "npmPath",
-          "title": "npm bin path",
-          "description": "Your npm binary path",
-          "placeholder": "e.g. /opt/homebrew/bin/npm"
         },
         {
           "type": "dropdown",
@@ -212914,7 +212995,9 @@
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/stayallive/tny",
       "source": {
         "type": "github-monorepo",
