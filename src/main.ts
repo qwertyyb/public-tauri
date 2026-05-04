@@ -52,7 +52,9 @@ startServer()
     return initDeepLinks();
   })
   .finally(() => {
-    getCurrentWindow().show();
+    if (import.meta.env.PROD) {
+      getCurrentWindow().show();
+    }
   });
 
 const app = createApp(App);

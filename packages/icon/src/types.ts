@@ -19,4 +19,6 @@ export type AppIconProps = {
   basePath?: string
   /** 图标尺寸 */
   size?: number | string
+  /** 图标颜色（CSS color，如 `#0ea5e9`、`var(--ui-primary)`）；对内置 Material Symbols 生效，普通图片 URL 不受该属性着色 */
+  color?: string
 };

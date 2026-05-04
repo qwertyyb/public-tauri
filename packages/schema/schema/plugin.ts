@@ -6,7 +6,7 @@ export const pluginSchema = z.object({
   $schema: z.string().optional(),
   name: z.string('插件的唯一名字，请保持名称简短并与 URL 兼容'),
   title: z.string('插件标题，标题会在应用商店中以及偏好设置中显示给用户。请使用此标题来清晰地描述您的插件，以便用户能够在应用商店中找到它').max(60),
-  subtitle: z.string('插件的简短描述，用于快速说明插件的功能').max(100)
+  subtitle: z.string('插件的简短描述，用于快速说明插件的功能')
     .optional(),
   description: z.string('对插件的完整描述，将会在应用商店中显示给用户').optional(),
   icon: z.string('引用 assets 文件夹中的图标文件。请使用 png 格式，尺寸为 512 x 512 像素。为了支持明暗主题，请添加两个图标，其中一个带有@dark后缀，例如icon.png和icon@dark.png'),

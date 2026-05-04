@@ -10,21 +10,23 @@ const formatAliasProperty = (aliases: Record<string, string>) => {
   return entries ? `    alias: {\n${entries}\n    },` : '    alias: {},';
 };
 
-/**
- * 指向插件目录下已安装的 `@public-tauri/api` 源码入口（pnpm install 之后必存在）。
- * 仅用裸模块别名 `@public-tauri/api/raycast` 时，在 `deps.alwaysBundle` + DepsPlugin 的 resolve 链路上
- * 仍可能解析不到已从 package.json 移除的 `@raycast/api`，导致打包报错。
- */
+/** Server 入口：`@raycast/api` → `@public-tauri/api/raycast` 源码；view 与 no-view 一致。 */
 const getServerAliases = (outputDir: string): Record<string, string> => {
   const apiSrc = path.join(outputDir, 'node_modules', '@public-tauri', 'api', 'src');
   return {
     '@raycast/api': path.join(apiSrc, 'raycast.ts'),
-    '@raycast/utils': path.join(apiSrc, 'raycast-utils.ts'),
+    '@public-tauri/api/node': path.join(apiSrc, 'node.ts'),
   };
 };
 
-export const generateTsdownConfig = (options: ResolvedConvertOptions) => `export default [
-  {
+export const generateTsdownConfig = (
+  options: ResolvedConvertOptions,
+  flags: { hasPublicMain: boolean },
+) => {
+  const entries: string[] = [];
+
+  if (flags.hasPublicMain) {
+    entries.push(`  {
     entry: ${JSON.stringify(path.join(options.buildDir, 'public-main.ts'))},
     format: 'esm',
     platform: 'browser',
@@ -35,8 +37,10 @@ export const generateTsdownConfig = (options: ResolvedConvertOptions) => `export
       alwaysBundle: () => true,
     },
 ${formatAliasProperty({})}
-  },
-  {
+  },`);
+  }
+
+  entries.push(`  {
     entry: ${JSON.stringify(path.join(options.buildDir, 'server.ts'))},
     format: 'esm',
     platform: 'node',
@@ -47,6 +51,10 @@ ${formatAliasProperty({})}
       alwaysBundle: () => true,
     },
 ${formatAliasProperty(getServerAliases(options.outputDir))}
-  },
+  },`);
+
+  return `export default [
+${entries.join('\n')}
 ];
 `;
+};

@@ -1,0 +1,82 @@
+{
+  "name": "@public-tauri-raycast/raycast-view-basic",
+  "title": "Raycast View Basic",
+  "description": "Fixture for Raycast view command compatibility in Node Worker",
+  "type": "module",
+  "commands": [
+    {
+      "name": "search",
+      "title": "Raycast View Search",
+      "subtitle": "Validate Worker-rendered List, Detail, and ActionPanel",
+      "description": "Shows a Raycast List rendered from the Node Worker.",
+      "mode": "view",
+      "keywords": [
+        "raycast",
+        "view",
+        "worker",
+        "search"
+      ]
+    }
+  ],
+  "preferences": [
+    {
+      "name": "message",
+      "title": "Message",
+      "type": "textfield",
+      "required": false,
+      "default": "hello from worker-rendered raycast view"
+    }
+  ],
+  "dependencies": {
+    "@public-tauri/api": "file:/Users/qwertyyb/projects/public-tauri/packages/api",
+    "react": "^19.0.0",
+    "react-reconciler": "^0.31.0"
+  },
+  "version": "1.0.0",
+  "private": true,
+  "publicPlugin": {
+    "title": "Raycast View Basic",
+    "subtitle": "Fixture for Raycast view command compatibility in Node Worker",
+    "description": "Fixture for Raycast view command compatibility in Node Worker",
+    "icon": "extension",
+    "server": "./dist/server.js",
+    "html": "./dist/view/raycast.html",
+    "preferences": [
+      {
+        "name": "message",
+        "title": "Message",
+        "type": "text",
+        "required": false,
+        "defaultValue": "hello from worker-rendered raycast view"
+      }
+    ],
+    "commands": [
+      {
+        "name": "search",
+        "title": "Raycast View Search",
+        "subtitle": "Validate Worker-rendered List, Detail, and ActionPanel",
+        "description": "Shows a Raycast List rendered from the Node Worker.",
+        "icon": "extension",
+        "mode": "view",
+        "matches": [
+          {
+            "type": "text",
+            "keywords": [
+              "raycast",
+              "view",
+              "worker",
+              "search"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "scripts": {
+    "build": "tsdown --config tsdown.config.ts"
+  },
+  "devDependencies": {
+    "tsdown": "^0.21.7",
+    "@types/react": "^19.0.0"
+  }
+}

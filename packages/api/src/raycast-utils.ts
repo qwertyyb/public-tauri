@@ -1,4 +1,4 @@
-import { showToast, Toast } from './raycast';
+import { showToast, Toast } from './raycast-compat';
 import { utils } from './node';
 
 export const runAppleScript = (script: string) => utils.runAppleScript(script);

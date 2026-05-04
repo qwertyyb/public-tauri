@@ -53,6 +53,7 @@ const props = withDefaults(defineProps<AppIconProps>(), {
   icon: undefined,
   basePath: undefined,
   size: undefined,
+  color: undefined,
 });
 
 const resolved = computed(() => (props.icon ? resolveIcon(props.icon, { basePath: props.basePath, size: typeof props.size === 'number' ? props.size : undefined }) : null));
@@ -72,13 +73,17 @@ const containerStyle = computed(() => {
 });
 
 const iconStyle = computed<StyleValue>(() => {
-  if (!sizeValue.value) return undefined;
-  const px = typeof sizeValue.value === 'number' ? `${sizeValue.value}px` : sizeValue.value;
-  return {
-    width: px,
-    height: px,
-    fontSize: px,
-  };
+  const style: Record<string, string> = {};
+  if (sizeValue.value) {
+    const px = typeof sizeValue.value === 'number' ? `${sizeValue.value}px` : sizeValue.value;
+    style.width = px;
+    style.height = px;
+    style.fontSize = px;
+  }
+  if (props.color) {
+    style.color = props.color;
+  }
+  return Object.keys(style).length ? style : undefined;
 });
 </script>
 

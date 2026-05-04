@@ -1,15 +1,10 @@
 import type { ConvertWarning, RaycastPackage } from './types';
 
-const raycastApiPackages = new Set(['@raycast/api', '@raycast/utils']);
-
 const rewriteDependencyMap = (dependencies: Record<string, string> | undefined) => {
   const rewritten = { ...(dependencies || {}) };
-  let replacedRaycastApi = false;
-  for (const packageName of raycastApiPackages) {
-    if (packageName in rewritten) {
-      delete rewritten[packageName];
-      replacedRaycastApi = true;
-    }
+  const replacedRaycastApi = '@raycast/api' in rewritten;
+  if (replacedRaycastApi) {
+    delete rewritten['@raycast/api'];
   }
   return { dependencies: rewritten, replacedRaycastApi };
 };
@@ -17,14 +12,19 @@ const rewriteDependencyMap = (dependencies: Record<string, string> | undefined) 
 export const createConvertedPackage = (
   sourcePackage: RaycastPackage,
   publicPlugin: Record<string, unknown>,
-  options: { convertedPackageName: string, publicApiDependency: string, warnings: ConvertWarning[] },
+  options: {
+    convertedPackageName: string,
+    publicApiDependency: string,
+    warnings: ConvertWarning[],
+    hasViewCommands?: boolean,
+  },
 ) => {
   const dependenciesResult = rewriteDependencyMap(sourcePackage.dependencies);
   const devDependenciesResult = rewriteDependencyMap(sourcePackage.devDependencies);
   if (dependenciesResult.replacedRaycastApi || devDependenciesResult.replacedRaycastApi) {
     options.warnings.push({
       type: 'dependency',
-      message: 'Replaced @raycast/api and/or @raycast/utils with @public-tauri/api',
+      message: 'Replaced @raycast/api with @public-tauri/api (see tsdown alias); @raycast/utils is left as declared',
     });
   }
 
@@ -42,10 +42,17 @@ export const createConvertedPackage = (
     dependencies: {
       ...dependenciesResult.dependencies,
       '@public-tauri/api': dependenciesResult.dependencies['@public-tauri/api'] || options.publicApiDependency,
+      ...(options.hasViewCommands ? {
+        react: dependenciesResult.dependencies.react || '^19.0.0',
+        'react-reconciler': dependenciesResult.dependencies['react-reconciler'] || '^0.31.0',
+      } : {}),
     },
     devDependencies: {
       ...devDependenciesResult.dependencies,
       tsdown: devDependenciesResult.dependencies.tsdown || '^0.21.7',
+      ...(options.hasViewCommands ? {
+        '@types/react': devDependenciesResult.dependencies['@types/react'] || '^19.0.0',
+      } : {}),
     },
   };
 };

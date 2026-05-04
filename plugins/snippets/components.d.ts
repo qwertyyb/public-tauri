@@ -12,15 +12,15 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    UFormField: typeof import('./../../node_modules/.pnpm/@nuxt+ui@4.6.1_@tiptap+extensions@3.22.4_@tiptap+core@3.22.4_@tiptap+pm@3.22.4__@tiptap_29811710ff787130188345a7f61b110f/node_modules/@nuxt/ui/dist/runtime/components/FormField.vue')['default']
-    UInput: typeof import('./../../node_modules/.pnpm/@nuxt+ui@4.6.1_@tiptap+extensions@3.22.4_@tiptap+core@3.22.4_@tiptap+pm@3.22.4__@tiptap_29811710ff787130188345a7f61b110f/node_modules/@nuxt/ui/dist/runtime/components/Input.vue')['default']
-    UTextarea: typeof import('./../../node_modules/.pnpm/@nuxt+ui@4.6.1_@tiptap+extensions@3.22.4_@tiptap+core@3.22.4_@tiptap+pm@3.22.4__@tiptap_29811710ff787130188345a7f61b110f/node_modules/@nuxt/ui/dist/runtime/components/Textarea.vue')['default']
+    UFormField: typeof import('./../../node_modules/.pnpm/@nuxt+ui@4.6.1_@tiptap+extensions@3.22.4_@tiptap+core@3.22.4_@tiptap+pm@3.22.4__@tiptap_9ca2a001d6d5edc94594d0f106e7f0dd/node_modules/@nuxt/ui/dist/runtime/components/FormField.vue')['default']
+    UInput: typeof import('./../../node_modules/.pnpm/@nuxt+ui@4.6.1_@tiptap+extensions@3.22.4_@tiptap+core@3.22.4_@tiptap+pm@3.22.4__@tiptap_9ca2a001d6d5edc94594d0f106e7f0dd/node_modules/@nuxt/ui/dist/runtime/components/Input.vue')['default']
+    UTextarea: typeof import('./../../node_modules/.pnpm/@nuxt+ui@4.6.1_@tiptap+extensions@3.22.4_@tiptap+core@3.22.4_@tiptap+pm@3.22.4__@tiptap_9ca2a001d6d5edc94594d0f106e7f0dd/node_modules/@nuxt/ui/dist/runtime/components/Textarea.vue')['default']
   }
 }
 
 // For TSX support
 declare global {
-  const UFormField: typeof import('./../../node_modules/.pnpm/@nuxt+ui@4.6.1_@tiptap+extensions@3.22.4_@tiptap+core@3.22.4_@tiptap+pm@3.22.4__@tiptap_29811710ff787130188345a7f61b110f/node_modules/@nuxt/ui/dist/runtime/components/FormField.vue')['default']
-  const UInput: typeof import('./../../node_modules/.pnpm/@nuxt+ui@4.6.1_@tiptap+extensions@3.22.4_@tiptap+core@3.22.4_@tiptap+pm@3.22.4__@tiptap_29811710ff787130188345a7f61b110f/node_modules/@nuxt/ui/dist/runtime/components/Input.vue')['default']
-  const UTextarea: typeof import('./../../node_modules/.pnpm/@nuxt+ui@4.6.1_@tiptap+extensions@3.22.4_@tiptap+core@3.22.4_@tiptap+pm@3.22.4__@tiptap_29811710ff787130188345a7f61b110f/node_modules/@nuxt/ui/dist/runtime/components/Textarea.vue')['default']
+  const UFormField: typeof import('./../../node_modules/.pnpm/@nuxt+ui@4.6.1_@tiptap+extensions@3.22.4_@tiptap+core@3.22.4_@tiptap+pm@3.22.4__@tiptap_9ca2a001d6d5edc94594d0f106e7f0dd/node_modules/@nuxt/ui/dist/runtime/components/FormField.vue')['default']
+  const UInput: typeof import('./../../node_modules/.pnpm/@nuxt+ui@4.6.1_@tiptap+extensions@3.22.4_@tiptap+core@3.22.4_@tiptap+pm@3.22.4__@tiptap_9ca2a001d6d5edc94594d0f106e7f0dd/node_modules/@nuxt/ui/dist/runtime/components/Input.vue')['default']
+  const UTextarea: typeof import('./../../node_modules/.pnpm/@nuxt+ui@4.6.1_@tiptap+extensions@3.22.4_@tiptap+core@3.22.4_@tiptap+pm@3.22.4__@tiptap_9ca2a001d6d5edc94594d0f106e7f0dd/node_modules/@nuxt/ui/dist/runtime/components/Textarea.vue')['default']
 }

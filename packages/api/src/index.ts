@@ -1,5 +1,5 @@
 import type * as coreApi from '@public-tauri/core';
-import { CORE_API_KEY } from '@public-tauri/core/const';
+// import { CORE_API_KEY } from '@public-tauri/core/const';
 import type { IPluginLifecycle, ICommand, IAction } from '@public-tauri/schema';
 export type * from '@public-tauri/schema';
 
@@ -7,6 +7,8 @@ export type * from '@public-tauri/schema';
 export type PluginShellAction = IAction & { action?: () => void };
 
 /** 判断是否在插件内，如果在插件内，就通过 wujie 调用，否则就从 core 调用 */
+
+const CORE_API_KEY = Symbol.for('public-core-api');
 
 declare global {
   interface Window {
@@ -28,7 +30,7 @@ const getChannel = (): coreApi.PluginChannel => {
   throw new Error('channel is not supported in current environment');
 };
 
-export const { clipboard, dialog, mainWindow, fetch, utils, screen, WebviewWindow, Database, storage, showSaveFilePicker, fs, shell, opener, resolveFileIcon, resolveLocalPath, Webview, NativeWindow } = api;
+export const { clipboard, dialog, mainWindow, fetch, utils, screen, WebviewWindow, Database, storage, showSaveFilePicker, fs, shell, opener, resolveFileIcon, resolveLocalPath, Webview, NativeWindow } = api || {};
 
 export const channel: coreApi.PluginChannel = {
   invoke: (name, ...args) => getChannel().invoke(name, ...args),

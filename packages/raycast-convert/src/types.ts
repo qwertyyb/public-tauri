@@ -41,8 +41,11 @@ export type ConvertWarning = {
   message: string;
 };
 
+export type SupportedRaycastCommandMode = 'no-view' | 'view';
+
 export type ConvertedCommand = RaycastCommand & {
   entry: string;
+  mode: SupportedRaycastCommandMode;
 };
 
 export type ConvertMode = 'development' | 'production';

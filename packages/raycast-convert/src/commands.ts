@@ -19,12 +19,15 @@ const findCommandEntry = async (inputDir: string, command: RaycastCommand) => {
   return null;
 };
 
-export const resolveNoViewCommands = async (inputDir: string, sourceCommands: RaycastCommand[]) => {
+const SUPPORTED_COMMAND_MODES = new Set(['no-view', 'view']);
+
+export const resolveSupportedCommands = async (inputDir: string, sourceCommands: RaycastCommand[]) => {
   const convertedCommands: ConvertedCommand[] = [];
   const skippedCommands: { name: string, reason: string }[] = [];
 
   for (const command of sourceCommands) {
-    if (command.mode !== 'no-view') {
+    const mode = command.mode || 'view';
+    if (!SUPPORTED_COMMAND_MODES.has(mode)) {
       skippedCommands.push({ name: command.name, reason: `Unsupported mode: ${command.mode || '<empty>'}` });
       continue;
     }
@@ -33,12 +36,15 @@ export const resolveNoViewCommands = async (inputDir: string, sourceCommands: Ra
       skippedCommands.push({ name: command.name, reason: 'Command entry not found under src/' });
       continue;
     }
-    convertedCommands.push({ ...command, entry });
+    convertedCommands.push({ ...command, mode: mode as ConvertedCommand['mode'], entry });
   }
 
   if (!convertedCommands.length) {
-    throw new Error('No Raycast no-view commands were converted');
+    throw new Error('No supported Raycast commands were converted');
   }
 
   return { convertedCommands, skippedCommands };
 };
+
+/** @deprecated Use {@link resolveSupportedCommands} */
+export const resolveNoViewCommands = resolveSupportedCommands;

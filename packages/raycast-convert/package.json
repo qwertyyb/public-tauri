@@ -6,6 +6,8 @@
   "files": [
     "dist",
     "src",
+    "templates",
+    "tsconfig.json",
     "README.md",
     "package.json"
   ],
@@ -19,13 +21,16 @@
   "scripts": {
     "build": "tsdown",
     "convert": "tsx src/cli.ts",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
   },
   "dependencies": {
     "tsx": "^4.20.3"
   },
   "devDependencies": {
     "@types/node": "^24.1.0",
+    "@types/react": "^19.2.14",
+    "@types/react-reconciler": "^0.33.0",
     "eslint": "^9.32.0",
     "tsdown": "catalog:plugin",
     "typescript": "catalog:"

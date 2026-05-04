@@ -31,14 +31,16 @@
   "license": "ISC",
   "packageManager": "pnpm@10.8.0",
   "dependencies": {
+    "@types/react": "^19.2.14",
     "es-toolkit": "^1.39.8",
+    "react": "^19.2.5",
     "virtua": "^0.43.6"
   },
   "devDependencies": {
-    "@types/node": "^24.0.0",
-    "tsdown": "^0.21.7",
     "@public-tauri/core": "workspace:^",
-    "@public-tauri/schema": "workspace:^"
+    "@public-tauri/schema": "workspace:^",
+    "@types/node": "^24.0.0",
+    "tsdown": "^0.21.7"
   },
   "publishConfig": {
     "access": "public",

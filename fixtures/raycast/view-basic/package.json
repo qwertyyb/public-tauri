@@ -1,0 +1,28 @@
+{
+  "name": "raycast-view-basic",
+  "title": "Raycast View Basic",
+  "description": "Fixture for Raycast view command compatibility in Node Worker",
+  "type": "module",
+  "commands": [
+    {
+      "name": "search",
+      "title": "Raycast View Search",
+      "subtitle": "Validate Worker-rendered List, Detail, and ActionPanel",
+      "description": "Shows a Raycast List rendered from the Node Worker.",
+      "mode": "view",
+      "keywords": ["raycast", "view", "worker", "search"]
+    }
+  ],
+  "preferences": [
+    {
+      "name": "message",
+      "title": "Message",
+      "type": "textfield",
+      "required": false,
+      "default": "hello from worker-rendered raycast view"
+    }
+  ],
+  "dependencies": {
+    "@raycast/api": "^1.0.0"
+  }
+}
