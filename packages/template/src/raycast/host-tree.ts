@@ -147,13 +147,19 @@ export function itemDetailSlot(item: SerializedHostNode): SerializedHostNode | u
 }
 
 export type DetailPaneModel =
-  | { kind: 'detail'; markdown: string }
+  | { kind: 'detail'; markdown: string; metadata?: SerializedHostNode }
   | { kind: 'empty'; title?: string; description?: string };
 
 export function detailPaneFromSlot(detail: SerializedHostNode | undefined): DetailPaneModel | undefined {
   if (!detail || !isSerializedElement(detail)) return undefined;
   if (detail.type === 'raycast:detail') {
-    return { kind: 'detail', markdown: String(detail.props.markdown ?? '') };
+    const metaRaw = detail.props.metadata;
+    const metadata = readSerializedChildProp(metaRaw);
+    return {
+      kind: 'detail',
+      markdown: String(detail.props.markdown ?? ''),
+      ...(metadata ? { metadata } : {}),
+    };
   }
   if (detail.type === 'raycast:empty') {
     return {

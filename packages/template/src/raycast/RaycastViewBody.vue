@@ -59,7 +59,7 @@ withDefaults(
   --rv-radius: 10px;
   --rv-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
 
-  min-height: 100vh;
+  height: 100%;
   width: 100%;
   font-family: var(--rv-font);
   font-size: 13px;

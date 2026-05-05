@@ -22,6 +22,7 @@ const html = computed(() => renderMarkdown(props.markdown));
   font-size: 13px;
   line-height: 1.5;
   color: var(--rv-text);
+  padding: 0 16px;
 }
 
 .raycast-detail-md :deep(h1),

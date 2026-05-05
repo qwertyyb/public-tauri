@@ -13,6 +13,7 @@ import {
 import type { RaycastListViewProps } from './protocol/fromSerializedList';
 import { coerceSelectedIdForItemIds } from './view-selection';
 import RaycastDetailMarkdown from './RaycastDetailMarkdown.vue';
+import RaycastDetailMetadata from './RaycastDetailMetadata.vue';
 import RaycastEmptyPanel from './RaycastEmptyPanel.vue';
 import RaycastIconStrip from './RaycastIconStrip.vue';
 import RaycastSearchBar from './RaycastSearchBar.vue';
@@ -292,6 +293,10 @@ onBeforeUnmount(() => {
           <RaycastDetailMarkdown
             :markdown="selectedDetail.markdown"
           />
+          <RaycastDetailMetadata
+            v-if="selectedDetail.metadata"
+            :node="selectedDetail.metadata"
+          />
         </div>
         <div
           v-else-if="selectedDetail?.kind === 'empty'"
@@ -311,7 +316,7 @@ onBeforeUnmount(() => {
 .rv-list-shell {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100%;
 }
 
 .rv-list-meta {
@@ -521,6 +526,10 @@ onBeforeUnmount(() => {
 }
 
 .rv-raycast-item-detail {
-  padding: 16px 20px 24px;
+  padding: 16px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
 </style>

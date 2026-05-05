@@ -77,3 +77,9 @@ onBeforeUnmount(() => {
 <template>
   <RaycastViewBody :snapshot="snapshot" />
 </template>
+
+<style lang="scss">
+html, body, #raycast-app {
+  height: 100%;
+}
+</style>

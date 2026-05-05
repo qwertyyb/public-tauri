@@ -18,6 +18,7 @@ import {
   ActionPanelSection,
   ActionPanelSubmenu,
   Detail,
+  List,
 } from '@public-tauri/api/raycast';
 
 export type HostEventHandlerRegistry = Map<string, (...args: unknown[]) => void | Promise<void>>;
@@ -164,17 +165,115 @@ function serializeActionsReactTree(
   return undefined;
 }
 
+/** `Detail.Metadata` / `List.Item.Detail.Metadata` → 统一为 `raycast:detail-metadata*`，供宿主 Vue 单列渲染 */
+function serializeDetailMetadataReactTree(
+  node: React.ReactNode,
+  handlers: HostEventHandlerRegistry,
+  nextSlotId: () => string,
+): SerializedHostNode | undefined {
+  if (!React.isValidElement(node)) return undefined;
+  const el = node as React.ReactElement<Record<string, unknown>>;
+  const t = el.type;
+  const DM = Detail.Metadata;
+  const LIDM = List.Item.Detail.Metadata;
+
+  if (t === DM || t === LIDM) {
+    const hid = nextSlotId();
+    const rawKids = React.Children.toArray(el.props?.children as React.ReactNode);
+    const children = rawKids
+      .map(ch => serializeDetailMetadataReactTree(ch, handlers, nextSlotId))
+      .filter((x): x is SerializedHostNode => x != null);
+    return { hostId: hid, type: 'raycast:detail-metadata', props: {}, children };
+  }
+  if (t === DM.Label || t === LIDM.Label) {
+    const hid = nextSlotId();
+    return {
+      hostId: hid,
+      type: 'raycast:detail-metadata-label',
+      props: serializeActionProps(el.props ?? {}, hid, handlers),
+      children: [],
+    };
+  }
+  if (t === DM.Separator || t === LIDM.Separator) {
+    const hid = nextSlotId();
+    return { hostId: hid, type: 'raycast:detail-metadata-separator', props: {}, children: [] };
+  }
+  if (t === DM.Link || t === LIDM.Link) {
+    const hid = nextSlotId();
+    return {
+      hostId: hid,
+      type: 'raycast:detail-metadata-link',
+      props: serializeActionProps(el.props ?? {}, hid, handlers),
+      children: [],
+    };
+  }
+  if (t === DM.TagList || t === LIDM.TagList) {
+    const hid = nextSlotId();
+    const rawKids = React.Children.toArray(el.props?.children as React.ReactNode);
+    const children = rawKids
+      .map(ch => serializeDetailMetadataReactTree(ch, handlers, nextSlotId))
+      .filter((x): x is SerializedHostNode => x != null);
+    return {
+      hostId: hid,
+      type: 'raycast:detail-metadata-tag-list',
+      props: { title: String(el.props?.title ?? '') },
+      children,
+    };
+  }
+  if (t === DM.TagList.Item || t === LIDM.TagList.Item) {
+    const hid = nextSlotId();
+    return {
+      hostId: hid,
+      type: 'raycast:detail-metadata-tag-item',
+      props: serializeActionProps(el.props ?? {}, hid, handlers),
+      children: [],
+    };
+  }
+  if (typeof t === 'function') {
+    try {
+      const rendered = (t as React.FC<Record<string, unknown>>)(el.props ?? {});
+      return serializeDetailMetadataReactTree(rendered, handlers, nextSlotId);
+    } catch {
+      return undefined;
+    }
+  }
+  return undefined;
+}
+
 function serializeDetailReactSlot(
   el: React.ReactElement,
+  handlers: HostEventHandlerRegistry,
   nextSlotId: () => string,
 ): SerializedHostNode {
-  const element = el as React.ReactElement<{ markdown?: string }>;
+  const element = el as React.ReactElement<{
+    markdown?: string;
+    metadata?: React.ReactNode;
+    isLoading?: boolean;
+  }>;
   const hid = nextSlotId();
-  if (element.type === Detail || (element.type as { name?: string })?.name === 'Detail') {
+  const isStandaloneDetail = element.type === Detail
+    || (element.type as { name?: string })?.name === 'Detail';
+  const isListItemDetail = element.type === List.Item.Detail
+    || (element.type as { name?: string })?.name === 'ListItemDetail';
+
+  if (isStandaloneDetail || isListItemDetail) {
+    const props: Record<string, unknown> = {
+      markdown: String(element.props?.markdown || ''),
+      metadata: element.props?.metadata,
+      isLoading: element.props?.isLoading,
+    };
+    const metaSlot = element.props?.metadata;
+    if (React.isValidElement(metaSlot)) {
+      const metaTree = serializeDetailMetadataReactTree(metaSlot, handlers, nextSlotId);
+      if (metaTree) props.metadata = metaTree;
+    }
+    if (isListItemDetail && element.props?.isLoading === true) {
+      props.isLoading = true;
+    }
     return {
       hostId: hid,
       type: 'raycast:detail',
-      props: { markdown: String(element.props?.markdown || '') },
+      props,
       children: [],
     };
   }
@@ -202,7 +301,7 @@ function serializeHostProps(
     }
     if (React.isValidElement(v)) {
       if (k === 'detail') {
-        out[k] = serializeDetailReactSlot(v, nextSlotId);
+        out[k] = serializeDetailReactSlot(v, handlers, nextSlotId);
         continue;
       }
       if (k === 'actions') {
