@@ -33,7 +33,10 @@
         value="enter"
       />
       <template v-else-if="actionKey">
-        <UKbd value="meta" />
+        <UKbd
+          value="meta"
+          style="margin-right: 4px;"
+        />
         <UKbd :value="actionKey" />
       </template>
     </div>

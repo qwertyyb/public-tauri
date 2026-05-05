@@ -16,7 +16,7 @@
       :preview="preview"
       class="result-view"
       @select="onResultSelected"
-      @action="onResultAction"
+      @enter="onResultEnter"
     />
   </PublicLayout>
 </template>
@@ -96,8 +96,12 @@ const onResultSelected = async (_item: IPluginCommand | null, itemIndex: number)
 };
 
 const onResultAction = async (item: IPluginCommand, _itemIndex: number, action: IAction) => {
-  console.log('onResultActon', item);
   service.action(toRaw(item), toRaw(action), input.value.keyword);
+};
+
+const onResultEnter = (item: IPluginCommand, _itemIndex: number) => {
+  console.log('onResultEnter', item);
+  service.enter(toRaw(item), input.value.keyword);
 };
 
 declare global {
