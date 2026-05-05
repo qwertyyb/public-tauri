@@ -9,7 +9,7 @@ export default definePlugin(() => ({
       return;
     }
     webview = new WebviewWindow('confetti', {
-      url: 'http://confetti.plugin.localhost:2345/assets/overlay/index.html',
+      url: 'http://plugin-confetti.public-tauri.plugin.localhost:2345/assets/overlay/index.html',
       transparent: true,
       decorations: false,
       acceptFirstMouse: false,
