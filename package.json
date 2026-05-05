@@ -23,7 +23,7 @@
     "lint": "eslint --fix",
     "plugin:build": "pnpm --filter \"./plugins/*\" run build",
     "prepare-nodejs": "tsx scripts/prepare-nodejs.ts",
-    "preapp:build": "pnpm --filter './src-node' run build:node && pnpm run prepare-nodejs && pnpm --filter './packages/template' --filter './src-node' --filter './plugins/*' --filter './packages/api' --filter './packages/raycast-convert' --filter '@public-tauri/wechat-qrcode' run build",
+    "preapp:build": "pnpm --filter './src-node' rebuild && pnpm run prepare-nodejs && pnpm --filter './packages/template' --filter './src-node' --filter './plugins/*' --filter './packages/api' --filter './packages/raycast-convert' --filter '@public-tauri/wechat-qrcode' run build",
     "app:build": "pnpm tauri build -- --no-default-features",
     "postinstall": "pnpm preapp:build",
     "store:build": "tsx scripts/build-store.ts",
