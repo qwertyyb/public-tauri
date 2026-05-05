@@ -337,6 +337,9 @@ onBeforeUnmount(() => {
 .rv-list-loading-bar {
   flex-shrink: 0;
   height: 2px;
+  position: fixed;
+  top: var(--nav-height);
+  width: 100%;
   background: linear-gradient(
     90deg,
     transparent,

@@ -82,4 +82,7 @@ onBeforeUnmount(() => {
 html, body, #raycast-app {
   height: 100%;
 }
+:root {
+  color-scheme: light dark;
+}
 </style>

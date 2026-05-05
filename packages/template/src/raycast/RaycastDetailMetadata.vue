@@ -3,9 +3,12 @@ import { opener } from '@public-tauri/api';
 import type { SerializedHostNode } from './types';
 import { iconPropToDisplay } from './host-tree';
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   node: SerializedHostNode;
-}>();
+  layout?: 'vertical' | 'horizontal';
+}>(), {
+  layout: 'horizontal',
+});
 
 console.log('props', props.node);
 
@@ -30,7 +33,10 @@ function openUrl(url: string) {
 </script>
 
 <template>
-  <ul class="rv-detail-metadata-list">
+  <ul
+    class="rv-detail-metadata-list"
+    :class="`layout-${props.layout}`"
+  >
     <li
       v-for="ch in props.node.children"
       :key="ch.hostId"
@@ -98,9 +104,21 @@ function openUrl(url: string) {
   gap: 8px;
   margin-top: 16px;
   padding: 12px 16px;
-  border-top: 1px solid var(--rv-border);
   font-size: 12px;
   list-style: none;
+  &.layout-horizontal {
+    border-top: 1px solid var(--rv-border);
+  }
+  &.layout-vertical {
+    gap: 12px;
+    .rv-detail-metadata-item-with-title {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .rv-detail-metadata-label-title {
+      margin-bottom: 8px;
+    }
+  }
 }
 
 .rv-detail-metadata-item {
@@ -128,6 +146,7 @@ function openUrl(url: string) {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-weight: 500;
 }
 
 .rv-detail-metadata-label-title {

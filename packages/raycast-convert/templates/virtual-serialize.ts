@@ -84,8 +84,10 @@ function serializeReactElementTree(
   const { type } = el;
 
   if (typeof type === 'function') {
+    const maybeClassComponent = Boolean((type as { prototype?: { isReactComponent?: unknown } }).prototype?.isReactComponent);
+    if (maybeClassComponent) return undefined;
     try {
-      const rendered = type(el.props ?? {});
+      const rendered = (type as React.FC<Record<string, unknown>>)(el.props ?? {});
       return serializeReactElementTree(rendered, handlers, nextSlotId);
     } catch {
       return undefined;

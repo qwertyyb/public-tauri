@@ -64,10 +64,16 @@ onBeforeUnmount(() => {
       aria-busy="true"
     />
     <div class="rv-raycast-detail-view">
-      <RaycastDetailMarkdown :markdown="markdown ?? ''" />
+      <RaycastDetailMarkdown
+        :markdown="markdown ?? ''"
+        class="rv-detail-markdown"
+      />
+      <div class="rv-detail-metadata-separator" />
       <RaycastDetailMetadata
         v-if="metadata"
         :node="metadata"
+        class="rv-detail-metadata"
+        layout="vertical"
       />
     </div>
   </section>
@@ -84,6 +90,9 @@ onBeforeUnmount(() => {
 .rv-detail-loading-bar {
   flex-shrink: 0;
   height: 2px;
+  position: fixed;
+  top: var(--nav-height);
+  width: 100%;
   background: linear-gradient(
     90deg,
     transparent,
@@ -105,8 +114,24 @@ onBeforeUnmount(() => {
 }
 
 .rv-raycast-detail-view {
+  display: flex;
   min-height: 0;
+  height: 100%;
   overflow: auto;
-  padding: 16px 0 0;
 }
+
+.rv-detail-markdown {
+  flex: 2;
+}
+
+.rv-detail-metadata {
+  flex: 1;
+}
+
+.rv-detail-metadata-separator {
+  width: 1px;
+  height: 100%;
+  background: var(--rv-border);
+}
+
 </style>

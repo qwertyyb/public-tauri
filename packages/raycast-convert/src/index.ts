@@ -12,7 +12,6 @@ import { copyPluginSourceToOutput, readJson, writeJson } from './files';
 import { generatePublicMain } from './generate/public-main';
 import { generateServerModule } from './generate/server-module';
 import { generateTsdownConfig } from './generate/tsdown-config';
-import { generateViewProtocol } from './generate/view-protocol';
 import { DEFAULT_PLUGIN_ICON, normalizeRaycastIcon } from './icons';
 import { resolveConvertOptions } from './options';
 import { createConvertedPackage } from './package-json';
@@ -111,7 +110,6 @@ export const convertRaycastPlugin = async (rawOptions: ConvertOptions): Promise<
 
   let raycastViewRepoRoot: string | null = null;
   if (hasViewCommands) {
-    await fs.writeFile(path.join(options.buildDir, 'raycast-view-protocol.ts'), generateViewProtocol(), 'utf8');
     copyRaycastWorkerViewBundle(options.buildDir);
     if (viewHtmlUsesDevServer) {
       raycastViewRepoRoot = null;
@@ -119,10 +117,8 @@ export const convertRaycastPlugin = async (rawOptions: ConvertOptions): Promise<
       raycastViewRepoRoot = findPublicTauriRepoRoot(options.invocationDir)
         ?? findPublicTauriRepoRoot(process.cwd());
       if (!raycastViewRepoRoot) {
-        throw new Error(
-          'Could not locate Public Tauri repo root (pnpm-workspace.yaml + packages/api). '
-          + 'Run raycast-convert from the monorepo, set invocationDir, or copy packages/template dist into dist/view manually.',
-        );
+        throw new Error('Could not locate Public Tauri repo root (pnpm-workspace.yaml + packages/api). '
+          + 'Run raycast-convert from the monorepo, set invocationDir, or copy packages/template dist into dist/view manually.');
       }
       ensureRaycastViewTemplateBuilt(raycastViewRepoRoot);
       if (!options.build) {

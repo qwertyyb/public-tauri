@@ -50,22 +50,23 @@ withDefaults(
 .rv-root {
   --rv-font: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif;
   --rv-font-mono: ui-monospace, 'SF Mono', Menlo, monospace;
-  --rv-bg: #1e1e1e;
-  --rv-surface: #252526;
-  --rv-surface-elevated: #2d2d30;
-  --rv-border: rgba(255, 255, 255, 0.08);
-  --rv-text: rgba(255, 255, 255, 0.92);
-  --rv-text-secondary: rgba(255, 255, 255, 0.48);
-  --rv-accent: #f7f7f7;
-  --rv-row-hover: rgba(255, 255, 255, 0.06);
-  --rv-row-selected: rgba(10, 132, 255, 0.22);
-  --rv-row-selected-border: rgba(10, 132, 255, 0.55);
-  --rv-detail-bg: #232323;
+  /* --rv-bg: light-dark(#f6f7f9, #1e1e1e); */
+  --rv-surface: light-dark(#ffffff, #252526);
+  --rv-surface-elevated: light-dark(#f3f4f6, #2d2d30);
+  --rv-border: light-dark(rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.08));
+  --rv-text: light-dark(rgba(0, 0, 0, 0.8), rgba(255, 255, 255, 0.8));
+  --rv-text-secondary: light-dark(rgba(0, 0, 0, 0.48), rgba(255, 255, 255, 0.48));
+  --rv-accent: light-dark(#1f2937, #f7f7f7);
+  --rv-row-hover: light-dark(rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0.06));
+  --rv-row-selected: light-dark(rgba(10, 132, 255, 0.14), rgba(10, 132, 255, 0.22));
+  --rv-row-selected-border: light-dark(rgba(10, 132, 255, 0.42), rgba(10, 132, 255, 0.55));
+  /* --rv-detail-bg: light-dark(#fafbfc, #232323); */
   --rv-radius: 10px;
-  --rv-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+  --rv-shadow: light-dark(0 8px 24px rgba(15, 23, 42, 0.12), 0 12px 40px rgba(0, 0, 0, 0.35));
 
   height: 100%;
   width: 100%;
+  color-scheme: light dark;
   font-family: var(--rv-font);
   font-size: 13px;
   line-height: 1.35;
