@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-05-04T19:56:36.590Z",
+  "generatedAt": "2026-05-05T19:51:45.402Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "4fab9f9e916d625cb13714837055a7b67bf2cb1e"
+    "commit": "e65f86cc5aaf8531457d18dcb94ac9088c1b8eb5"
   },
-  "count": 2879,
+  "count": 2885,
   "extensions": [
     {
       "name": "0x0",
@@ -29243,7 +29243,8 @@
       "icon": "command-icon.png",
       "author": "qazi0",
       "contributors": [
-        "roderickjdunn"
+        "roderickjdunn",
+        "user_675a985a803f8cc8105b"
       ],
       "categories": [
         "Developer Tools",
@@ -29522,6 +29523,24 @@
             {
               "title": "Ghostty",
               "value": "Ghostty"
+            }
+          ]
+        },
+        {
+          "name": "openIn",
+          "title": "Open In",
+          "description": "Whether to open Claude Code sessions in a new window or a new tab. Notes: kitty's New Tab requires `allow_remote_control yes` and a `listen_on` socket in kitty.conf (otherwise falls back to a new window). Warp always opens a new window.",
+          "type": "dropdown",
+          "default": "window",
+          "required": false,
+          "data": [
+            {
+              "title": "New Window",
+              "value": "window"
+            },
+            {
+              "title": "New Tab",
+              "value": "tab"
             }
           ]
         },
@@ -32205,6 +32224,98 @@
           "required": false
         }
       ]
+    },
+    {
+      "name": "cocart-docs",
+      "title": "CoCart Docs",
+      "description": "Search CoCart API documentation quickly, copy URLs, or open them in your browser.",
+      "icon": "icon.png",
+      "author": "cocart_headless",
+      "contributors": [],
+      "categories": [
+        "Documentation",
+        "Developer Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/cocart_headless/cocart-docs",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/cocart-docs",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-docs",
+          "title": "Search CoCart User Guides",
+          "description": "Search through CoCart user guides, knowledge-base, tutorials, and how-to articles",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "browse-endpoints",
+          "title": "Browse API Reference",
+          "description": "Browse CoCart API endpoints by version and category",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-hooks-filters",
+          "title": "Search Hooks & Filters",
+          "description": "Search CoCart action hooks, filters, and functions",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-error-codes",
+          "title": "Lookup Error Codes",
+          "description": "Look up error codes and their meanings in CoCart API",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "recent-docs",
+          "title": "Recent CoCart Docs",
+          "description": "View recently opened docs and quick access pages",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "quick-links",
+          "title": "CoCart Quick Links",
+          "description": "Quick access to CoCart documentation sections and resources",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "whats-new",
+          "title": "What's New in CoCart",
+          "description": "View latest updates and breaking changes in CoCart",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "menu-bar",
+          "title": "CoCart Docs Menu Bar",
+          "description": "Quick access to CoCart docs from the menu bar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "cocktail-db",
@@ -65343,6 +65454,78 @@
       ]
     },
     {
+      "name": "finicky-rule-manager",
+      "title": "Finicky Rule Manager",
+      "description": "Manage Finicky browser routing rules from Raycast",
+      "icon": "extension-icon.png",
+      "author": "NormC",
+      "contributors": [],
+      "categories": [
+        "Applications",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/NormC/finicky-rule-manager",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/finicky-rule-manager",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "manage-finicky-rules",
+          "title": "Manage Finicky Rules",
+          "subtitle": "Finicky",
+          "description": "List, create, edit, and delete Finicky rules",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "create-rule-from-tab",
+          "title": "Create Rule from Browser Tab",
+          "subtitle": "Finicky",
+          "description": "Create a Finicky rule from an open browser tab",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "change-default-browser",
+          "title": "Change Default Browser",
+          "subtitle": "Finicky",
+          "description": "Change the default browser for Finicky",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "configPath",
+          "type": "textfield",
+          "required": true,
+          "title": "Finicky Config Path",
+          "description": "Path to your Finicky config file (e.g. ~/.finicky.js)",
+          "default": "~/.finicky.js",
+          "placeholder": "~/.finicky.js"
+        },
+        {
+          "name": "defaultBrowser",
+          "type": "textfield",
+          "required": false,
+          "title": "Default Browser",
+          "description": "Finicky defaultBrowser (e.g. Brave Browser)",
+          "default": "Brave Browser",
+          "placeholder": "Brave Browser"
+        }
+      ]
+    },
+    {
       "name": "finnish-dictionary",
       "title": "Finnish Dictionary",
       "description": "MacOS has a great dictionary, but it's not available for Finnish. This extension adds a Finnish dictionary at your fingertips.",
@@ -85170,6 +85353,50 @@
       ]
     },
     {
+      "name": "harmonic",
+      "title": "Harmonic",
+      "description": "Search notes and chords, see their frequencies, and play them as tones",
+      "icon": "extension-icon.png",
+      "author": "chandlervdw",
+      "contributors": [],
+      "categories": [
+        "Media",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/chandlervdw/harmonic",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/harmonic",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-notes",
+          "title": "Search Notes",
+          "subtitle": "Harmonic",
+          "description": "Search for musical notes and hear their frequencies across all octaves",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-chords",
+          "title": "Search Chords",
+          "subtitle": "Harmonic",
+          "description": "Search for chords by symbol and hear them played as tones",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "harpoon",
       "title": "Harpoon",
       "description": "Tag frequently used applications and quickly switch between them. Inspired by The Primeagen's Harpoon plugin.",
@@ -86950,6 +87177,104 @@
           "title": "Heptabase Space ID",
           "description": "Your Heptabase space ID (found in the URL: https://app.heptabase.com/{spaceId}/...)",
           "placeholder": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+        }
+      ]
+    },
+    {
+      "name": "hermes-agent",
+      "title": "Hermes Agent",
+      "description": "Chat with your local Hermes AI assistant",
+      "icon": "icon.png",
+      "author": "dailin4321",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/dailin4321/hermes-agent",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/hermes-agent",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "ask",
+          "title": "Ask Hermes",
+          "description": "Quick question to Hermes",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "chat",
+          "title": "Chat with Hermes",
+          "description": "Open a conversation with Hermes",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "clipboard",
+          "title": "Ask About Clipboard",
+          "description": "Ask Hermes about your clipboard content",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "selected-text",
+          "title": "Process Selected Text",
+          "description": "Summarize, explain, translate, or improve selected text",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "status",
+          "title": "API Server Status",
+          "description": "Check Hermes API server connection status",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-webchat",
+          "title": "Open Webchat",
+          "description": "Open Hermes webchat in browser",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "endpoint",
+          "title": "API Endpoint",
+          "description": "Hermes API server URL. Use http://127.0.0.1:8642 for local, or your remote URL for external access.",
+          "type": "textfield",
+          "default": "http://127.0.0.1:8642",
+          "required": true
+        },
+        {
+          "name": "token",
+          "title": "API Token",
+          "description": "Find in API_SERVER_KEY environment variable or ~/.hermes/config.yaml",
+          "type": "password",
+          "required": true
+        },
+        {
+          "name": "modelName",
+          "title": "Model Name",
+          "description": "Model identifier for API requests",
+          "type": "textfield",
+          "default": "",
+          "required": false
         }
       ]
     },
@@ -93139,6 +93464,14 @@
           "description": "Immich API Key",
           "type": "password",
           "required": true
+        },
+        {
+          "name": "download_folder",
+          "title": "Download Folder",
+          "placeholder": "~/Downloads",
+          "description": "Folder to save photos and videos. Default is the system's Downloads folder.",
+          "type": "directory",
+          "required": false
         }
       ]
     },
@@ -103930,6 +104263,14 @@
           "preferences": []
         },
         {
+          "name": "play-song",
+          "title": "Play Song",
+          "description": "Search YouTube Music and play a song in Kaset",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "toggle-playback",
           "title": "Toggle Play/Pause",
           "description": "Toggle between play and pause",
@@ -104254,6 +104595,52 @@
           "description": "Your Keeper Security Service Mode API key"
         }
       ]
+    },
+    {
+      "name": "keeply",
+      "title": "Keeply",
+      "description": "Search, browse, and manage your Keeply bookmarks",
+      "icon": "keeply-icon.png",
+      "author": "rolfkoenders",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "version": "1.0.0",
+      "storeUrl": "https://www.raycast.com/rolfkoenders/keeply",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/keeply",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-bookmarks",
+          "title": "Search Bookmarks",
+          "subtitle": "Keeply",
+          "description": "Browse and search your saved bookmarks",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "add-bookmark",
+          "title": "Add Bookmark",
+          "subtitle": "Keeply",
+          "description": "Save a URL to your Keeply account",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "kef-control",
@@ -140425,13 +140812,14 @@
     {
       "name": "open-with-app",
       "title": "Open With App",
-      "description": "Choose an application to open the selected Finder items.",
+      "description": "Choose an application to open the items selected in your file manager.",
       "icon": "extension-icon.png",
       "author": "fturcheti",
       "contributors": [
         "omarshahine",
         "pernielsentikaer",
-        "Sheraff"
+        "Sheraff",
+        "rpenco"
       ],
       "categories": [
         "System",
@@ -140452,8 +140840,8 @@
         {
           "name": "index",
           "title": "Open With…",
-          "subtitle": "Finder",
-          "description": "Choose an application to open the selected Finder items.",
+          "subtitle": "File Manager",
+          "description": "Choose an application to open the items selected in your file manager.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -178768,6 +179156,48 @@
       ]
     },
     {
+      "name": "save-clipboard",
+      "title": "Save Clipboard",
+      "description": "Save files that you have in your clipboard to your device.",
+      "icon": "extension-icon.png",
+      "author": "untitledpng",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/untitledpng/save-clipboard",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/save-clipboard",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "save-clipboard",
+          "title": "Save Clipboard",
+          "description": "Save files or screenshots from your clipboard to a chosen location on your device.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "defaultDirectory",
+          "title": "Default Save Location",
+          "description": "The default directory to save clipboard content to",
+          "type": "directory",
+          "required": false,
+          "default": "~/Downloads"
+        }
+      ]
+    },
+    {
       "name": "save-link",
       "title": "Save Link",
       "description": "Get the current browser tab URL and generate a webloc file, then copy it to clipboard.",
@@ -184725,6 +185155,38 @@
           "name": "capture-screenshot-delayed",
           "title": "Capture Screenshot (Delayed)",
           "description": "Capture a screenshot after a configurable delay via ShareX",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "ocr",
+          "title": "OCR",
+          "description": "Run OCR on a screen region with ShareX",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "color-picker",
+          "title": "Color Picker",
+          "description": "Pick a color from the screen with ShareX",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "image-effects",
+          "title": "Image Effects",
+          "description": "Open ShareX Image Effects tool",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "image-splitter",
+          "title": "Image Splitter",
+          "description": "Open ShareX Image Splitter tool",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -208377,7 +208839,8 @@
       "icon": "extension_icon.png",
       "author": "ABukSwienty",
       "contributors": [
-        "YourMCGeek"
+        "YourMCGeek",
+        "mbuvarp"
       ],
       "categories": [
         "Web",
@@ -214643,7 +215106,8 @@
         "rspeicher",
         "roele",
         "AntonNiklasson",
-        "xmok"
+        "xmok",
+        "merchako"
       ],
       "categories": [
         "Productivity",
@@ -214691,6 +215155,24 @@
           "title": "Toggle Device",
           "subtitle": "Toothpick",
           "description": "Shortcut for toggling a connection to a specific device.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "refresh-device",
+          "title": "Refresh Device",
+          "subtitle": "Toothpick",
+          "description": "Shortcut for refreshing a specific device connection.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "refresh-all",
+          "title": "Refresh All",
+          "subtitle": "Toothpick",
+          "description": "Turns Bluetooth off and on again.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -214763,6 +215245,30 @@
           "name": "toggle-favorite-device-3",
           "title": "Toggle Favorite Device #3",
           "description": "Shortcut for toggling a connection to favorite device #3.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "refresh-favorite-device-1",
+          "title": "Refresh Favorite Device #1",
+          "description": "Shortcut for refreshing favorite device #1.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "refresh-favorite-device-2",
+          "title": "Refresh Favorite Device #2",
+          "description": "Shortcut for refreshing favorite device #2.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "refresh-favorite-device-3",
+          "title": "Refresh Favorite Device #3",
+          "description": "Shortcut for refreshing favorite device #3.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -219557,8 +220063,8 @@
     },
     {
       "name": "twitter-video-downloader",
-      "title": "Twitter/X Video Downloader",
-      "description": "Download videos from Twitter/X with ease",
+      "title": "X/Twitter Video Downloader",
+      "description": "Download videos from X/Twitter with ease",
       "icon": "icon.png",
       "author": "kaanrkaraman",
       "contributors": [],
@@ -219568,7 +220074,10 @@
         "Web"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "storeUrl": "https://www.raycast.com/kaanrkaraman/twitter-video-downloader",
       "source": {
         "type": "github-monorepo",
@@ -219580,13 +220089,49 @@
         {
           "name": "index",
           "title": "Download Video",
-          "description": "Download video from Twitter/X with various options",
+          "subtitle": "X/Twitter",
+          "description": "Paste an X/Twitter status URL and save its video locally.",
           "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "download-from-clipboard",
+          "title": "Download Video from Clipboard",
+          "subtitle": "X/Twitter",
+          "description": "Read an X/Twitter status URL from the clipboard and download its video without opening a form.",
+          "mode": "no-view",
           "keywords": [],
           "preferences": []
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "downloadFolder",
+          "title": "Download Folder",
+          "description": "Folder where videos are saved. Defaults to ~/Downloads when empty.",
+          "type": "directory",
+          "required": false,
+          "default": ""
+        },
+        {
+          "name": "filenameTemplate",
+          "title": "Filename Template",
+          "description": "Placeholders: {username}, {tweetId}, {index}, {date}. The .mp4 extension is appended automatically.",
+          "type": "textfield",
+          "required": false,
+          "default": "{username}_{tweetId}"
+        },
+        {
+          "name": "downloadAllMedia",
+          "title": "Multi-Video Tweets",
+          "label": "Download every video when a tweet has multiple",
+          "description": "When a tweet contains more than one video or GIF, save all of them instead of only the first.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        }
+      ]
     },
     {
       "name": "two-factor-authentication-code-generator",
