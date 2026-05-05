@@ -11,6 +11,14 @@
       "description": "Shows a Raycast List rendered from the Node Worker.",
       "mode": "view",
       "keywords": ["raycast", "view", "worker", "search"]
+    },
+    {
+      "name": "detail",
+      "title": "Raycast View Detail",
+      "subtitle": "Validate standalone Worker-rendered Detail view",
+      "description": "Shows a Raycast Detail command rendered from the Node Worker.",
+      "mode": "view",
+      "keywords": ["raycast", "view", "worker", "detail"]
     }
   ],
   "preferences": [

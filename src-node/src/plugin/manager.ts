@@ -217,7 +217,7 @@ export const registerPlugin = async (name: string, options: {
     }
     rejectServerReady(err);
   }, SERVER_READY_TIMEOUT);
-  const w = new Worker(workerUrl, { name: `p:${name}`, workerData: { name } });
+  const w = new Worker(workerUrl, { name: `p:${name}`, workerData: { name }, stdout: true, stderr: true });
   plugins.set(name, {
     staticPaths: options.staticPaths,
     modulePath: options.modulePath,

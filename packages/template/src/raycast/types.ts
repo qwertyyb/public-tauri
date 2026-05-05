@@ -20,8 +20,32 @@ export type SerializedHostNode = SerializedHostElementNode;
 /** ActionBar / dispatch-host-event 使用的动作节点 */
 export type SerializedHostActionNode = SerializedHostElementNode & { type: 'raycast:action' };
 
+export type SerializedHostListDetailNode = SerializedHostElementNode<{
+  markdown: string;
+  isLoading?: boolean;
+  metadata?: SerializedHostNode;
+}> & { type: 'raycast:list-item-detail' };
+
 /** List 子节点 */
-export type SerializedHostListItemNode = SerializedHostElementNode & { type: 'raycast:list-item' };
+export type SerializedHostListItemNode = SerializedHostElementNode<{
+  title: string;
+  accessories?: SerializedHostElementNode[];
+  actions?: SerializedHostElementNode[];
+  icon?: string;
+  id?: string;
+  keywords?: string[];
+  quickLook?: { name?: string, path: string };
+  subtitle?: string;
+  detail?: SerializedHostDetailNode
+}> & { type: 'raycast:list-item' };
+
+export type SerializedHostDetailNode = SerializedHostElementNode<{
+  markdown: string;
+  isLoading?: boolean;
+  metadata?: SerializedHostNode;
+  actions: SerializedHostElementNode[];
+  navigationTitle?: string;
+}> & { type: 'raycast:detail' };
 
 export type SerializedHostEmptyNode = SerializedHostElementNode & { type: 'raycast:empty' };
 

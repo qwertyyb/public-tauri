@@ -1,23 +1,21 @@
 <script setup lang="ts">
 import { type PluginShellAction, updateActions } from '@public-tauri/api';
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
-import type { SerializedHostListItemNode } from './types';
+import type { SerializedHostListItemNode } from '../types';
 import {
   actionDisplayTitle,
-  detailPaneFromSlot,
   iconPropToDisplay,
   itemActionsForBar,
   itemBusinessId,
-  itemDetailSlot,
-} from './host-tree';
-import type { RaycastListViewProps } from './protocol/fromSerializedList';
-import { coerceSelectedIdForItemIds } from './view-selection';
-import RaycastDetailMarkdown from './RaycastDetailMarkdown.vue';
-import RaycastDetailMetadata from './RaycastDetailMetadata.vue';
-import RaycastEmptyPanel from './RaycastEmptyPanel.vue';
-import RaycastIconStrip from './RaycastIconStrip.vue';
-import RaycastSearchBar from './RaycastSearchBar.vue';
-import RaycastShortcutBadge from './RaycastShortcutBadge.vue';
+} from '../host-tree';
+import type { RaycastListViewProps } from '../protocol/fromSerializedList';
+import { coerceSelectedIdForItemIds } from '../view-selection';
+import RaycastDetailMarkdown from '../RaycastDetailMarkdown.vue';
+import RaycastDetailMetadata from '../RaycastDetailMetadata.vue';
+import RaycastEmptyPanel from '../RaycastEmptyPanel.vue';
+import RaycastIconStrip from '../RaycastIconStrip.vue';
+import RaycastSearchBar from '../RaycastSearchBar.vue';
+import RaycastShortcutBadge from '../RaycastShortcutBadge.vue';
 
 const props = defineProps<RaycastListViewProps>();
 
@@ -109,8 +107,7 @@ const selectedDetail = computed(() => {
   const id = selectedId.value;
   const item = displayItems.value.find(it => itemBusinessId(it) === id);
   if (!item) return undefined;
-  const slot = itemDetailSlot(item);
-  return detailPaneFromSlot(slot);
+  return item.props.detail?.props;
 });
 const detailColumnVisible = computed(() => props.isShowingDetail || Boolean(selectedDetail.value));
 
@@ -287,7 +284,7 @@ onBeforeUnmount(() => {
         aria-label="Detail"
       >
         <div
-          v-if="selectedDetail?.kind === 'detail'"
+          v-if="selectedDetail"
           class="rv-raycast-item-detail"
         >
           <RaycastDetailMarkdown
@@ -299,13 +296,10 @@ onBeforeUnmount(() => {
           />
         </div>
         <div
-          v-else-if="selectedDetail?.kind === 'empty'"
+          v-else
           class="rv-raycast-item-detail"
         >
-          <RaycastEmptyPanel
-            :title="selectedDetail.title"
-            :description="selectedDetail.description"
-          />
+          <RaycastEmptyPanel />
         </div>
       </aside>
     </div>

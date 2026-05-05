@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { RaycastViewSnapshot, SerializedHostListItemNode } from './types';
-import RaycastListView from './RaycastListView.vue';
+import RaycastDetailView from './views/RaycastDetailView.vue';
+import RaycastListView from './views/RaycastListView.vue';
 
 withDefaults(
   defineProps<{
@@ -32,6 +33,10 @@ withDefaults(
       v-if="snapshot?.root.type === 'raycast:list'"
       v-bind="snapshot.root.props"
       :items="snapshot.root.children as SerializedHostListItemNode[]"
+    />
+    <RaycastDetailView
+      v-if="snapshot?.root.type === 'raycast:detail'"
+      v-bind="snapshot.root.props"
     />
   </div>
 </template>

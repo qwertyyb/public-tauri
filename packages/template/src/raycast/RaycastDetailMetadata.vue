@@ -7,6 +7,8 @@ const props = defineProps<{
   node: SerializedHostNode;
 }>();
 
+console.log('props', props.node);
+
 function textFromProp(raw: unknown): string {
   if (typeof raw === 'string') return raw;
   if (raw && typeof raw === 'object' && raw !== null && 'value' in raw) {
@@ -28,67 +30,65 @@ function openUrl(url: string) {
 </script>
 
 <template>
-  <template v-if="props.node.type === 'raycast:detail-metadata'">
-    <ul class="rv-detail-metadata-list">
-      <li
-        v-for="ch in props.node.children"
-        :key="ch.hostId"
-        class="rv-detail-metadata-item"
+  <ul class="rv-detail-metadata-list">
+    <li
+      v-for="ch in props.node.children"
+      :key="ch.hostId"
+      class="rv-detail-metadata-item"
+    >
+      <div
+        v-if="ch.type.endsWith('-separator')"
+        class="rv-detail-metadata-sep"
+      />
+      <div
+        v-else
+        class="rv-detail-metadata-item-with-title"
       >
-        <div
-          v-if="ch.type === 'raycast:detail-metadata-separator'"
-          class="rv-detail-metadata-sep"
-        />
-        <div
-          v-else
-          class="rv-detail-metadata-item-with-title"
+        <span class="rv-detail-metadata-label-title">{{ ch.props.title }}</span>
+        <span
+          v-if="ch.type.endsWith('-label')"
+          class="rv-detail-metadata-label-value"
         >
-          <span class="rv-detail-metadata-label-title">{{ ch.props.title }}</span>
           <span
-            v-if="ch.type === 'raycast:detail-metadata-label'"
-            class="rv-detail-metadata-label-value"
+            v-if="iconPropToDisplay(ch.props.icon)"
+            class="rv-detail-metadata-label-icon"
+            aria-hidden
+          >{{ iconPropToDisplay(ch.props.icon) }}</span>
+          {{ textFromProp(ch.props.text) }}
+        </span>
+
+        <a
+          v-else-if="ch.type.endsWith('-link')"
+          class="rv-detail-metadata-link"
+          href="javascript:void(0)"
+          rel="noopener noreferrer"
+          target="_blank"
+          :title="String(ch.props.title ?? '')"
+          @click="openUrl(ch.props.target as string)"
+        >{{ ch.props.text }}</a>
+
+
+        <ul
+          v-else-if="ch.type.endsWith('-tag-list')"
+          class="rv-detail-metadata-tag-list"
+        >
+          <li
+            v-for="tag in ch.children"
+            :key="tag.hostId"
+            class="rv-detail-metadata-tag-item"
+            @click="runTagAction(tag.props.onAction)"
           >
             <span
-              v-if="iconPropToDisplay(ch.props.icon)"
-              class="rv-detail-metadata-label-icon"
+              v-if="iconPropToDisplay(tag.props.icon)"
+              class="rv-detail-metadata-tag-icon"
               aria-hidden
-            >{{ iconPropToDisplay(ch.props.icon) }}</span>
-            {{ textFromProp(ch.props.text) }}
-          </span>
-
-          <a
-            v-else-if="ch.type === 'raycast:detail-metadata-link'"
-            class="rv-detail-metadata-link"
-            href="javascript:void(0)"
-            rel="noopener noreferrer"
-            target="_blank"
-            :title="String(ch.props.title ?? '')"
-            @click="openUrl(ch.props.target)"
-          >{{ ch.props.text }}</a>
-
-
-          <ul
-            v-else-if="ch.type === 'raycast:detail-metadata-tag-list'"
-            class="rv-detail-metadata-tag-list"
-          >
-            <li
-              v-for="tag in ch.children"
-              :key="tag.hostId"
-              class="rv-detail-metadata-tag-item"
-              @click="runTagAction(tag.props.onAction)"
-            >
-              <span
-                v-if="iconPropToDisplay(tag.props.icon)"
-                class="rv-detail-metadata-tag-icon"
-                aria-hidden
-              >{{ iconPropToDisplay(tag.props.icon) }}</span>
-              <span class="rv-detail-metadata-tag-item-text">{{ tag.props.text }}</span>
-            </li>
-          </ul>
-        </div>
-      </li>
-    </ul>
-  </template>
+            >{{ iconPropToDisplay(tag.props.icon) }}</span>
+            <span class="rv-detail-metadata-tag-item-text">{{ tag.props.text }}</span>
+          </li>
+        </ul>
+      </div>
+    </li>
+  </ul>
 </template>
 
 <style scoped>
