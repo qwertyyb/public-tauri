@@ -38,6 +38,11 @@ withDefaults(
       v-if="snapshot?.root.type === 'raycast:detail'"
       v-bind="snapshot.root.props"
     />
+    <div class="rv-unsupported-view">
+      <p>
+        This view is not supported by the current plugin.
+      </p>
+    </div>
   </div>
 </template>
 
