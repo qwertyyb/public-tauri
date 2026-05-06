@@ -87,6 +87,7 @@ channel.handle('raycast:view:mount', async (payload = {}) => {
 
   const session = createRaycastViewSession({
     emitSnapshot: (snapshot) => channel.emit('raycast:view:snapshot', snapshot),
+    emitPatch: (patches) => channel.emit('raycast:view:patch', patches),
   });
   viewSessions.set(commandName, session);
   __setRaycastViewContext({

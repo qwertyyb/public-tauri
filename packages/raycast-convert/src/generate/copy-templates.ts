@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 const templateDir = path.join(path.dirname(fileURLToPath(import.meta.url)), '../../templates');
 
 const workerViewRelPaths = [
+  'json-patch.ts',
   'raycast-view-protocol.ts',
   'raycast-worker-runtime.ts',
   'host-instance.ts',

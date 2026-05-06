@@ -6,6 +6,8 @@
  */
 export const RAYCAST_SERIALIZED_FUNC_PREFIX = '__func__';
 
+export type { JsonPatchOp } from './json-patch';
+
 export type SerializedHostElementNode = {
   hostId: string;
   type: string;

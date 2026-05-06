@@ -5,6 +5,8 @@
 /** 与 {@link RAYCAST_SERIALIZED_FUNC_PREFIX} 同源；勿与真实业务字符串撞车。 */
 export const RAYCAST_SERIALIZED_FUNC_PREFIX = '__func__' as const;
 
+export type { JsonPatchOp } from './json-patch';
+
 export type SerializedHostElementNode<
   Props extends Record<string, unknown> = Record<string, unknown>,
   ChildProps extends Record<string, unknown> = Record<string, unknown>

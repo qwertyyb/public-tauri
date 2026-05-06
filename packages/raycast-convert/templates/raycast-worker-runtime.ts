@@ -9,6 +9,8 @@ import React from 'react';
 import Reconciler from 'react-reconciler';
 import { DefaultEventPriority } from 'react-reconciler/constants.js';
 import type { RaycastViewSnapshot } from './raycast-view-protocol';
+import type { JsonPatchOp } from './json-patch';
+import { generateJsonPatch } from './json-patch';
 import { __getRaycastContext, __setRaycastContext } from '@public-tauri/api/raycast';
 import type {
   HostElementInstance,
@@ -43,7 +45,10 @@ const noop = () => {};
 
 const swallowError = (_error: Error, _info: unknown) => {};
 
-export function createRaycastViewSession(options: { emitSnapshot: (snapshot: RaycastViewSnapshot) => void }) {
+export function createRaycastViewSession(options: {
+  emitSnapshot: (snapshot: RaycastViewSnapshot) => void;
+  emitPatch: (patches: JsonPatchOp[]) => void;
+}) {
   const handlers = new Map<string, (...args: unknown[]) => void | Promise<void>>();
   let hostIdSeq = 0;
   const nextHostId = () => {
@@ -52,19 +57,29 @@ export function createRaycastViewSession(options: { emitSnapshot: (snapshot: Ray
   };
 
   let latestSnapshot: RaycastViewSnapshot | null = null;
+  let sentInitialSnapshot = false;
   const rootNode: HostRootContainer = { children: [] };
   let snapshotQueued = false;
 
-  const serializeRoot = (): RaycastViewSnapshot => {
-    latestSnapshot = buildSnapshotFromHostRoot(rootNode.children, handlers, {
-      commandName: __getRaycastContext().commandName || '',
-    });
-    return latestSnapshot;
-  };
+  const serializeRoot = (): RaycastViewSnapshot => buildSnapshotFromHostRoot(rootNode.children, handlers, {
+    commandName: __getRaycastContext().commandName || '',
+  });
 
   const emitSnapshot = () => {
-    latestSnapshot = serializeRoot();
-    options.emitSnapshot(latestSnapshot);
+    const nextSnapshot = serializeRoot();
+
+    if (!sentInitialSnapshot || !latestSnapshot) {
+      latestSnapshot = nextSnapshot;
+      sentInitialSnapshot = true;
+      options.emitSnapshot(latestSnapshot);
+      return;
+    }
+
+    const patches = generateJsonPatch(latestSnapshot, nextSnapshot);
+    latestSnapshot = nextSnapshot;
+    if (patches.length > 0) {
+      options.emitPatch(patches);
+    }
   };
 
   const scheduleSnapshotAfterCommit = () => {
@@ -213,6 +228,8 @@ export function createRaycastViewSession(options: { emitSnapshot: (snapshot: Ray
       rootContainer = null;
     }
     hostIdSeq = 0;
+    latestSnapshot = null;
+    sentInitialSnapshot = false;
     handlers.clear();
   };
 
