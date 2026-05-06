@@ -11,6 +11,7 @@
         />
       </div>
     </template>
+    <LoadingBar v-if="loading" />
     <ResultView
       :results="results"
       class="result-view"
@@ -38,9 +39,11 @@ import {
 import type { RaycastStoreExtension, RaycastStoreIndex } from '@/types/raycast-store';
 import { popView } from '@/plugin/utils';
 import { showToast } from '@/utils/feedback';
+import LoadingBar from '@/components/LoadingBar.vue';
 
 const router = useRouter();
 
+const loading = ref(false);
 const selectedListItem = ref<IResultItem | null>(null);
 
 const results = ref<IResultItem[]>([]);
@@ -70,6 +73,7 @@ watch(input, () => {
 });
 
 onMounted(async () => {
+  loading.value = true;
   try {
     raycastIndex = await fetchRaycastStoreIndex();
     allRaycast = raycastIndex.extensions;
@@ -77,6 +81,8 @@ onMounted(async () => {
     updateResults(input.value.keyword);
   } catch {
     showToast('获取 Raycast 商店索引失败');
+  } finally {
+    loading.value = false;
   }
 });
 

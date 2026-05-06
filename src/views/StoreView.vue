@@ -9,6 +9,7 @@
         @escape="escapeHandler"
       />
     </template>
+    <LoadingBar v-if="loading" />
     <ResultView
       :results="results"
       class="result-view"
@@ -28,9 +29,11 @@ import { fetchStorePlugins, searchPlugins, isPluginInstalled, refreshInstalledPl
 import type { IStorePlugin } from '@/types/store';
 import { popView } from '@/plugin/utils';
 import { showToast } from '@/utils/feedback';
+import LoadingBar from '@/components/LoadingBar.vue';
 
 const router = useRouter();
 
+const loading = ref(false);
 const results = ref<IResultItem[]>([]);
 const input = ref<{ keyword: string, files: File[] }>({ keyword: '', files: [] });
 
@@ -59,13 +62,17 @@ watch(input, async (value) => {
 });
 
 onMounted(async () => {
-  allPlugins = await fetchStorePlugins()
-    .catch((err) => {
-      showToast('获取插件 Store 失败');
-      throw err;
-    });
-  await refreshInstalledPlugins();
-  updateResults(input.value.keyword);
+  loading.value = true;
+  try {
+    allPlugins = await fetchStorePlugins();
+    await refreshInstalledPlugins();
+    updateResults(input.value.keyword);
+  } catch (err) {
+    showToast('获取插件 Store 失败');
+    throw err;
+  } finally {
+    loading.value = false;
+  }
 });
 
 const onResultEnter = (item: IResultItem | null) => {

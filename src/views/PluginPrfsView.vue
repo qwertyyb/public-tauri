@@ -24,17 +24,17 @@
         :label="item.title"
         :required="item.required"
       >
-        <UInput
-          v-if="item.type === 'text' || item.type === 'textarea'"
-          v-model="formValue[item.name]"
-          :placeholder="item.placeholder"
-          class="w-full"
-        />
         <USelect
           v-if="item.type === 'select'"
           v-model="formValue[item.name]"
           :placeholder="item.placeholder"
           :items="(item.options || []).map(o => ({ value: o.value, label: o.label }))"
+          class="w-full"
+        />
+        <UInput
+          v-else
+          v-model="formValue[item.name]"
+          :placeholder="item.placeholder"
           class="w-full"
         />
         <p class="form-item-desc">
