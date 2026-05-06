@@ -42,18 +42,13 @@ function onPluginAction(event: Event) {
   })();
 }
 
-function onPluginExit(event: Event) {
-  void (async () => {
-    const commandName = String((event as CustomEvent).detail?.command?.name || activeCommandNameRef.value || '');
-    try {
-      if (commandName) {
-        await channel.invoke('raycast:view:unmount', { commandName });
-      }
-    } finally {
-      rawSnapshot = null;
-      snapshot.value = null;
-    }
-  })();
+async function onPluginExit(event: Event) {
+  rawSnapshot = null;
+  snapshot.value = null;
+  const commandName = String((event as CustomEvent).detail?.command?.name || activeCommandNameRef.value || '');
+  if (commandName) {
+    await channel.invoke('raycast:view:unmount', { commandName });
+  }
 }
 
 onMounted(() => {
@@ -93,7 +88,10 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <RaycastViewBody :snapshot="snapshot" />
+  <RaycastViewBody
+    v-if="snapshot"
+    :snapshot="snapshot"
+  />
 </template>
 
 <style lang="scss">

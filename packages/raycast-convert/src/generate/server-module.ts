@@ -123,6 +123,10 @@ channel.handle('raycast:view:unmount', async (payload = {}) => {
     session.unmount();
     viewSessions.delete(commandName);
   }
+  // 无活跃 view 会话时退出 Worker，配合宿主按需加载下次再拉起线程
+  if (viewSessions.size === 0) {
+    queueMicrotask(() => process.exit(0));
+  }
   return true;
 });
 `
