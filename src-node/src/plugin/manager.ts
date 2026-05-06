@@ -11,7 +11,7 @@ import type { PluginState } from './store';
 
 const WORKER_FILE = 'public-plugin-worker.cjs';
 const CHANNEL_INVOKE_EVENT = '__public_tauri_channel_invoke__';
-const SERVER_READY_TIMEOUT = 120_000;
+const WORKER_BOOT_TIMEOUT_MS = 120_000;
 
 /** 插件 Worker 为独立 CJS 产物；主进程 sidecar 也是 CJS，避免混用加载模式。 */
 function resolvePluginWorkerModuleUrl() {
@@ -92,9 +92,136 @@ async function requestFrontendInvoke(name: string, method: string, args: any[], 
   });
 }
 
-function dispatchEventToPluginWorker(name: string, event: string, args: any[]) {
+/**
+ * 创建 Worker、`import(modulePath)` 直至 BOOT_READY；失败时保留插件元数据并写入 serverReadyError。
+ */
+async function startPluginWorkerInternal(name: string): Promise<void> {
+  let state = plugins.get(name);
+  if (!state?.modulePath) {
+    throw new Error(`插件 ${name} 未配置 server module`);
+  }
+  if (state.worker && state.serverReady) {
+    return;
+  }
+
+  const workerUrl = resolvePluginWorkerModuleUrl();
+  if (!workerUrl) {
+    throw new Error(`未找到 ${WORKER_FILE}。请在 \`src-node\` 下执行 \`pnpm run build\` 生成 Worker 再启动应用。`);
+  }
+
+  const { modulePath } = state;
+  const w = new Worker(workerUrl, {
+    name: `p:${name}`,
+    workerData: { name, modulePath },
+    stdout: true,
+    stderr: true,
+  });
+
+  state.worker = w;
+  state.serverReady = false;
+  state.serverReadyError = undefined;
+
+  w.on('error', (e) => {
+    console.error(`[public-plugin] worker process error: ${name}`, e);
+  });
+
+  w.on('exit', (code) => {
+    if (code !== 0) {
+      console.error(`[public-plugin] worker exit: ${name}`, code);
+    }
+    const st = plugins.get(name);
+    if (!st) return;
+    resetPluginWorkerLifecycle(st);
+  });
+
+  const loadP = new Promise<void>((res, rej) => {
+    const to = setTimeout(() => {
+      w.terminate();
+      rej(new Error('Worker boot timeout'));
+    }, WORKER_BOOT_TIMEOUT_MS);
+    const onMessage = (m: any) => {
+      if (m?.kind !== WorkerToMain.BOOT_READY) {
+        void handleMessageFromPluginWorker(w, m);
+        return;
+      }
+      clearTimeout(to);
+      w.off('message', onMessage);
+      w.on('message', (m2) => {
+        void handleMessageFromPluginWorker(w, m2);
+      });
+      if (m.ok) {
+        res();
+        return;
+      }
+      w.terminate();
+      rej(new Error(m?.error || 'Worker boot failed'));
+    };
+    w.on('message', onMessage);
+  });
+
+  try {
+    await loadP;
+    state = plugins.get(name);
+    if (state) {
+      state.serverReady = true;
+      state.serverReadyError = undefined;
+    }
+  } catch (e) {
+    const err = e instanceof Error ? e : new Error(String(e));
+    state = plugins.get(name);
+    if (state) {
+      state.serverReadyError = err.message;
+      state.serverReady = false;
+      if (state.worker === w) {
+        state.worker = undefined;
+      }
+    }
+    try {
+      w.terminate();
+    } catch {
+      /* ignore */
+    }
+    throw err;
+  }
+}
+
+async function ensurePluginWorker(name: string): Promise<void> {
   const s = plugins.get(name);
-  s?.worker?.postMessage({ kind: MainToWorker.CHANNEL_EVENT, event, args });
+  if (!s?.modulePath) {
+    throw new Error(`插件 ${name} 未配置 server module`);
+  }
+  if (s.worker && s.serverReady) {
+    return;
+  }
+
+  if (!s.workerBootPromise) {
+    s.workerBootPromise = startPluginWorkerInternal(name);
+  }
+
+  const bootP = s.workerBootPromise;
+  try {
+    await bootP;
+  } finally {
+    const cur = plugins.get(name);
+    if (cur?.workerBootPromise === bootP) {
+      cur.workerBootPromise = undefined;
+    }
+  }
+}
+
+async function dispatchEventToPluginWorker(name: string, event: string, args: any[]) {
+  const s = plugins.get(name);
+  if (!s?.modulePath) {
+    return;
+  }
+  try {
+    await ensurePluginWorker(name);
+  } catch (e) {
+    console.warn(`[public-plugin] ensure worker for channel event failed: ${name}.${event}`, e);
+    return;
+  }
+  const w = plugins.get(name)?.worker;
+  w?.postMessage({ kind: MainToWorker.CHANNEL_EVENT, event, args });
 }
 
 /**
@@ -102,9 +229,6 @@ function dispatchEventToPluginWorker(name: string, event: string, args: any[]) {
  */
 async function handleMessageFromPluginWorker(w: Worker, m: { kind: string, [k: string]: any }) {
   if (m === null || m === undefined) {
-    return;
-  }
-  if (m.kind === WorkerToMain.LOAD_DONE) {
     return;
   }
   if (m.kind === WorkerToMain.INVOKE_BRIDGE) {
@@ -152,16 +276,18 @@ async function callRegisteredPlugin(name: string, method: string, args: any[]) {
   if (!s.modulePath) {
     throw new Error(`插件 ${name} 未配置 server module`);
   }
-  if (s.serverReadyPromise && !s.serverReady) {
-    await s.serverReadyPromise;
+  await ensurePluginWorker(name);
+  const after = plugins.get(name);
+  if (!after) {
+    throw new Error(`插件 ${name} 不存在`);
   }
-  if (s.serverReadyError) {
-    throw new Error(`插件 ${name} server module 加载失败: ${s.serverReadyError}`);
+  if (after.serverReadyError) {
+    throw new Error(`插件 ${name} server module 加载失败: ${after.serverReadyError}`);
   }
-  if (s.worker) {
-    return callPluginOnWorker(s.worker, method, args);
+  if (!after.worker || !after.serverReady) {
+    throw new Error(`插件 ${name} 未在 Worker 中加载`);
   }
-  throw new Error(`插件 ${name} 未在 Worker 中加载`);
+  return callPluginOnWorker(after.worker, method, args);
 }
 
 function callPluginOnWorker(worker: Worker, method: string, args: any[]) {
@@ -172,17 +298,17 @@ function callPluginOnWorker(worker: Worker, method: string, args: any[]) {
   });
 }
 
-/** Worker 生命周期结束：清空 worker 与 serverReady* 字段（不把运行时 error 混进 serverReadyError）。 */
+/** Worker 生命周期结束：清空 worker 与就绪状态（不把运行时 error 混进持久 serverReadyError）。 */
 function resetPluginWorkerLifecycle(state: PluginState) {
   state.worker = undefined;
   state.serverReady = false;
-  state.serverReadyPromise = undefined;
-  state.serverReadyReject = undefined;
+  state.workerBootPromise = undefined;
   state.serverReadyError = undefined;
 }
 
 /**
- * 有 `modulePath` 的插件**仅**在 Worker 中执行；`public-plugin-worker.cjs` 为必构建物。
+ * 有 `modulePath` 的插件**仅**在 Worker 中执行（按需启动）；`public-plugin-worker.cjs` 为必构建物。
+ * 注册阶段只写入元数据；首次 `invoke` 或 Socket `CHANNEL_EVENT` 时再 `ensurePluginWorker`。
  */
 export const registerPlugin = async (name: string, options: {
   staticPaths?: string[],
@@ -202,108 +328,17 @@ export const registerPlugin = async (name: string, options: {
   if (!workerUrl) {
     throw new Error(`未找到 ${WORKER_FILE}。请在 \`src-node\` 下执行 \`pnpm run build\` 生成 Worker 再启动应用。`);
   }
-  let resolveServerReady: () => void = () => {};
-  let rejectServerReady: (e: Error) => void = () => {};
-  const serverReadyPromise = new Promise<void>((res, rej) => {
-    resolveServerReady = res;
-    rejectServerReady = rej;
-  });
-  serverReadyPromise.catch(() => {});
-  const serverReadyTimeout = setTimeout(() => {
-    const err = new Error('server module ready timeout');
-    const state = plugins.get(name);
-    if (state && !state.serverReady) {
-      state.serverReadyError = err.message;
-    }
-    rejectServerReady(err);
-  }, SERVER_READY_TIMEOUT);
-  const w = new Worker(workerUrl, { name: `p:${name}`, workerData: { name }, stdout: true, stderr: true });
   plugins.set(name, {
     staticPaths: options.staticPaths,
     modulePath: options.modulePath,
-    worker: w,
     cwd: options.cwd,
     serverReady: false,
-    serverReadyPromise,
-    serverReadyReject: rejectServerReady,
+    serverReadyError: undefined,
   });
-  w.on('error', (e) => {
-    console.error(`[public-plugin] worker process error: ${name}`, e);
-    rejectServerReady(e);
-  });
-  w.on('exit', (code) => {
-    clearTimeout(serverReadyTimeout);
-    if (code !== 0) {
-      console.error(`[public-plugin] worker exit: ${name}`, code);
-    }
-    const state = plugins.get(name);
-    if (!state) return;
-    if (!state.serverReady && state.serverReadyReject) {
-      try {
-        state.serverReadyReject(new Error(`worker exit: ${code ?? 'unknown'}`));
-      } catch {
-        /* Promise 已 settled 等 */
-      }
-    }
-    resetPluginWorkerLifecycle(state);
-  });
-  const loadP = new Promise<void>((res, rej) => {
-    const to = setTimeout(() => {
-      w.terminate();
-      rej(new Error('load timeout'));
-    }, 120_000);
-    const onMessage = (m: any) => {
-      if (m?.kind !== WorkerToMain.LOAD_DONE) {
-        void handleMessageFromPluginWorker(w, m);
-        return;
-      }
-      clearTimeout(to);
-      w.off('message', onMessage);
-      w.on('message', (m2) => {
-        void handleMessageFromPluginWorker(w, m2);
-      });
-      if (m.ok) {
-        res();
-        return;
-      }
-      w.terminate();
-      rej(new Error(m?.error || 'load fail'));
-    };
-    w.on('message', onMessage);
-  });
-  w.postMessage({ kind: MainToWorker.LOAD, name, modulePath: options.modulePath });
-  try {
-    await loadP;
-    clearTimeout(serverReadyTimeout);
-    const state = plugins.get(name);
-    if (state) {
-      state.serverReady = true;
-      state.serverReadyError = undefined;
-      state.serverReadyReject = undefined;
-    }
-    resolveServerReady();
-  } catch (e) {
-    clearTimeout(serverReadyTimeout);
-    const err = e instanceof Error ? e : new Error(String(e));
-    const state = plugins.get(name);
-    if (state) {
-      state.serverReadyError = err.message;
-    }
-    rejectServerReady(err);
-    w.terminate();
-    removeSocket(name);
-    plugins.delete(name);
-    throw e;
-  }
 };
 
 export const unregisterPlugin = (name: string) => {
   const s = plugins.get(name);
-  if (s && !s.serverReady) {
-    const err = new Error(`插件 ${name} 已卸载`);
-    s.serverReadyError = err.message;
-    s.serverReadyReject?.(err);
-  }
   if (s?.socket) {
     s.socket.disconnect(true);
   }
@@ -328,5 +363,7 @@ export const callPlugin = (name: string, method: string, args: any[]) => callReg
 export { plugins };
 
 setChannelEventHandler((name, event, args) => {
-  dispatchEventToPluginWorker(name, event, args);
+  void dispatchEventToPluginWorker(name, event, args).catch((e) => {
+    console.warn(`[public-plugin] dispatch event to worker failed: ${name}.${event}`, e);
+  });
 });

@@ -7,8 +7,6 @@
 
 /** 父进程 → 插件 Worker */
 export const MainToWorker = {
-  /** 加载/重载 `modulePath` 上的插件模块 */
-  LOAD: 'm2w:load',
   /** 调用 Worker 中注册的 channel handler */
   CHANNEL_INVOKE: 'm2w:channelInvoke',
   /** 向 Worker 中注册的 channel event listener 投递事件 */
@@ -24,8 +22,8 @@ export type MainToWorkerKind = (typeof MainToWorker)[keyof typeof MainToWorker];
 
 /** 插件 Worker → 父进程 */
 export const WorkerToMain = {
-  /** LOAD 成功或失败 */
-  LOAD_DONE: 'w2m:loadDone',
+  /** Worker 自举 `import(modulePath)` 完成（成功或失败）；主线程仅在启动阶段消费 */
+  BOOT_READY: 'w2m:bootReady',
   /** Worker 发起宿主能力调用，由父进程决定走 Node utils 还是 Host 窗口 */
   INVOKE_BRIDGE: 'w2m:invokeBridge',
   /** Worker 调用前端 `channel.handle` 注册的方法 */

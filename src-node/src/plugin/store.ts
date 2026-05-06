@@ -7,9 +7,10 @@ export type PluginState = {
 
   modulePath?: string | null
   worker?: Worker
+  /** Worker 已 `BOOT_READY` 且可处理 invoke */
   serverReady?: boolean
-  serverReadyPromise?: Promise<void>
-  serverReadyReject?: (e: Error) => void
+  /** 单飞：同一插件并发 ensure 时共享 */
+  workerBootPromise?: Promise<void>
   serverReadyError?: string
 
   socket?: Socket
@@ -28,8 +29,7 @@ export const setSocket = (name: string, socket: Socket | undefined) => {
     modulePath: current?.modulePath,
     worker: current?.worker,
     serverReady: current?.serverReady,
-    serverReadyPromise: current?.serverReadyPromise,
-    serverReadyReject: current?.serverReadyReject,
+    workerBootPromise: current?.workerBootPromise,
     serverReadyError: current?.serverReadyError,
     socket,
   });
