@@ -1,7 +1,7 @@
 import { channel, definePlugin, resolveFileIcon, updateCommands } from '@public-tauri/api';
 
 const launcherPlugin = definePlugin(() => {
-  channel.on('apps', (apps) => {
+  channel.invoke('searchAppList').then((apps: any[]) => {
     console.log('apps', apps);
     const commands = apps.map(app => ({
       ...app,

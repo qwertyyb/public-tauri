@@ -485,7 +485,7 @@ export const init = async () => {
 
     // 2. 标记内置插件为受保护，不会被 LRU 驱逐
     for (const name of INNER_PLUGIN_NAMES) {
-      wujiePool.protect(name);
+      wujiePool.protect(`@public-tauri/plugin-${name}`);
     }
 
     // 3. 再初始化其他插件（store + Raycast 转换 + dev）
