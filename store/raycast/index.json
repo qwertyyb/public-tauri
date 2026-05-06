@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-05-05T19:51:45.402Z",
+  "generatedAt": "2026-05-06T20:08:49.709Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "e65f86cc5aaf8531457d18dcb94ac9088c1b8eb5"
+    "commit": "bfed72623614d46897dabacdd12e8fb8fca92547"
   },
-  "count": 2885,
+  "count": 2891,
   "extensions": [
     {
       "name": "0x0",
@@ -7705,6 +7705,110 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "app-updates",
+      "title": "App Updates",
+      "description": "Check for available updates of your installed macOS apps via Sparkle, Homebrew Cask, and Mac App Store",
+      "icon": "extension-icon.png",
+      "author": "Undolog",
+      "contributors": [],
+      "categories": [
+        "System",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/Undolog/app-updates",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/app-updates",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "check-updates",
+          "title": "Check Updates",
+          "subtitle": "App Updates",
+          "description": "Scan installed apps for available updates via Sparkle, Homebrew Cask, and Mac App Store",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "menu-bar",
+          "title": "Updates Menu Bar",
+          "subtitle": "App Updates",
+          "description": "Show available app updates in the menu bar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "doctor-advice",
+          "title": "Doctor Advice",
+          "subtitle": "App Updates",
+          "description": "Get AI-powered explanations and fix suggestions for brew doctor warnings.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "brew-maintenance",
+          "title": "Brew Maintenance",
+          "subtitle": "App Updates",
+          "description": "Run daily Homebrew maintenance: update, upgrade, doctor, cleanup. Shows results in menu bar.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "brewRunUpdate",
+              "title": "Steps",
+              "label": "brew update",
+              "description": "Update Homebrew formulae index",
+              "type": "checkbox",
+              "required": false,
+              "default": true
+            },
+            {
+              "name": "brewUpgradeFormulae",
+              "label": "brew upgrade (formulae)",
+              "description": "Upgrade outdated formulae (CLI tools, libraries)",
+              "type": "checkbox",
+              "required": false,
+              "default": true
+            },
+            {
+              "name": "brewUpgradeCasks",
+              "label": "brew upgrade --cask",
+              "description": "Upgrade outdated casks (GUI applications)",
+              "type": "checkbox",
+              "required": false,
+              "default": false
+            },
+            {
+              "name": "brewRunDoctor",
+              "label": "brew doctor",
+              "description": "Check for potential issues with your Homebrew installation",
+              "type": "checkbox",
+              "required": false,
+              "default": true
+            },
+            {
+              "name": "brewRunCleanup",
+              "label": "brew cleanup",
+              "description": "Remove old versions and cache files (older than 7 days)",
+              "type": "checkbox",
+              "required": false,
+              "default": false
+            }
+          ]
         }
       ],
       "preferences": []
@@ -15444,6 +15548,172 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "bhagavad-gita-quotes",
+      "title": "Bhagavad Gita Quotes",
+      "description": "Read and search Bhagavad Gita quotes (AI features require Raycast AI).",
+      "icon": "command-icon.png",
+      "author": "swayam_mehta",
+      "contributors": [],
+      "categories": [
+        "Other"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "1.0.0",
+      "storeUrl": "https://www.raycast.com/swayam_mehta/bhagavad-gita-quotes",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/bhagavad-gita-quotes",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "index",
+          "title": "Read Quotes",
+          "subtitle": "Bhagavad Gita",
+          "description": "Read and search quotes from the Bhagavad Gita",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "colorScheme",
+          "type": "dropdown",
+          "required": false,
+          "title": "Color Scheme",
+          "description": "Choose your preferred color scheme for icons",
+          "default": "orange",
+          "data": [
+            {
+              "title": "Blue",
+              "value": "blue"
+            },
+            {
+              "title": "Green",
+              "value": "green"
+            },
+            {
+              "title": "Purple",
+              "value": "purple"
+            },
+            {
+              "title": "Orange (Default)",
+              "value": "orange"
+            },
+            {
+              "title": "Red",
+              "value": "red"
+            }
+          ]
+        },
+        {
+          "name": "showSanskrit",
+          "type": "checkbox",
+          "required": false,
+          "title": "Show Sanskrit",
+          "description": "Display original Sanskrit verses when available",
+          "default": true,
+          "label": "Show Sanskrit verses"
+        },
+        {
+          "name": "apiSource",
+          "type": "dropdown",
+          "required": false,
+          "title": "API Source",
+          "description": "Select the source for Bhagavad Gita data",
+          "default": "vedic",
+          "data": [
+            {
+              "title": "Vedic Scriptures (No API Key Required)",
+              "value": "vedic"
+            },
+            {
+              "title": "RapidAPI (API Key Required)",
+              "value": "gita"
+            }
+          ]
+        },
+        {
+          "name": "apiKey",
+          "type": "password",
+          "required": false,
+          "title": "RapidAPI Key",
+          "description": "Required only if using RapidAPI source"
+        },
+        {
+          "name": "translationLanguage",
+          "type": "dropdown",
+          "required": false,
+          "title": "AI Target Language",
+          "description": "Select the language for AI translations and explanations",
+          "default": "English",
+          "data": [
+            {
+              "title": "English",
+              "value": "English"
+            },
+            {
+              "title": "Spanish",
+              "value": "Spanish"
+            },
+            {
+              "title": "French",
+              "value": "French"
+            },
+            {
+              "title": "German",
+              "value": "German"
+            },
+            {
+              "title": "Italian",
+              "value": "Italian"
+            },
+            {
+              "title": "Portuguese",
+              "value": "Portuguese"
+            },
+            {
+              "title": "Russian",
+              "value": "Russian"
+            },
+            {
+              "title": "Chinese",
+              "value": "Chinese"
+            },
+            {
+              "title": "Japanese",
+              "value": "Japanese"
+            },
+            {
+              "title": "Korean",
+              "value": "Korean"
+            },
+            {
+              "title": "Hindi",
+              "value": "Hindi"
+            },
+            {
+              "title": "Arabic",
+              "value": "Arabic"
+            },
+            {
+              "title": "Dutch",
+              "value": "Dutch"
+            },
+            {
+              "title": "Turkish",
+              "value": "Turkish"
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "biaodian",
@@ -46015,6 +46285,41 @@
       "preferences": []
     },
     {
+      "name": "definitelytyped",
+      "title": "DefinitelyTyped",
+      "description": "Search and install @types packages from DefinitelyTyped",
+      "icon": "extension-icon.png",
+      "author": "tcelestino",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/tcelestino/definitelytyped",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/definitelytyped",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-types",
+          "title": "Search @Types Packages",
+          "subtitle": "DefinitelyTyped",
+          "description": "Find and copy install commands for TypeScript type definitions",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "defiscan",
       "title": "DefiScan.live",
       "description": "Search on defiscan.live",
@@ -66558,6 +66863,370 @@
       ]
     },
     {
+      "name": "flashspace",
+      "title": "FlashSpace",
+      "description": "Manage FlashSpace workspaces, profiles, and apps from Raycast",
+      "icon": "extension-icon.png",
+      "author": "krmbzds",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/krmbzds/flashspace",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/flashspace",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "list-workspaces",
+          "title": "List Workspaces",
+          "description": "List all FlashSpace workspaces",
+          "mode": "view",
+          "keywords": [
+            "workspace",
+            "spaces",
+            "list"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "create-workspace",
+          "title": "Create Workspace",
+          "description": "Create a new FlashSpace workspace",
+          "mode": "view",
+          "keywords": [
+            "workspace",
+            "new",
+            "create"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "delete-workspace",
+          "title": "Delete Workspace",
+          "description": "Delete a FlashSpace workspace",
+          "mode": "view",
+          "keywords": [
+            "workspace",
+            "remove",
+            "delete"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "update-workspace",
+          "title": "Update Workspace",
+          "description": "Update FlashSpace workspace settings",
+          "mode": "view",
+          "keywords": [
+            "workspace",
+            "edit",
+            "update",
+            "modify"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "activate-workspace",
+          "title": "Activate Workspace",
+          "description": "Switch to a FlashSpace workspace",
+          "mode": "view",
+          "keywords": [
+            "workspace",
+            "switch",
+            "activate"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "list-profiles",
+          "title": "List Profiles",
+          "description": "List all FlashSpace profiles",
+          "mode": "view",
+          "keywords": [
+            "profile",
+            "list"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "create-profile",
+          "title": "Create Profile",
+          "description": "Create a new FlashSpace profile",
+          "mode": "view",
+          "keywords": [
+            "profile",
+            "new",
+            "create"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "delete-profile",
+          "title": "Delete Profile",
+          "description": "Delete a FlashSpace profile",
+          "mode": "view",
+          "keywords": [
+            "profile",
+            "remove",
+            "delete"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "assign-app",
+          "title": "Assign App",
+          "description": "Assign an app to a FlashSpace workspace",
+          "mode": "view",
+          "keywords": [
+            "app",
+            "assign",
+            "add"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "unassign-app",
+          "title": "Unassign App",
+          "description": "Unassign an app from all workspaces",
+          "mode": "view",
+          "keywords": [
+            "app",
+            "unassign",
+            "remove"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "assign-visible-apps",
+          "title": "Assign Visible Apps",
+          "description": "Assign all visible apps to a workspace",
+          "mode": "view",
+          "keywords": [
+            "app",
+            "assign",
+            "visible"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "list-apps",
+          "title": "List Workspace Apps",
+          "description": "List apps assigned to a workspace",
+          "mode": "view",
+          "keywords": [
+            "app",
+            "list",
+            "workspace"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "list-running-apps",
+          "title": "List Running Apps",
+          "description": "List currently running apps",
+          "mode": "view",
+          "keywords": [
+            "app",
+            "running",
+            "list"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "floating-apps",
+          "title": "Floating Apps",
+          "description": "Manage floating apps",
+          "mode": "view",
+          "keywords": [
+            "app",
+            "float",
+            "floating"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "focus-left",
+          "title": "Focus Left",
+          "description": "Focus the window to the left",
+          "mode": "no-view",
+          "keywords": [
+            "focus",
+            "window",
+            "left",
+            "direction"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "focus-right",
+          "title": "Focus Right",
+          "description": "Focus the window to the right",
+          "mode": "no-view",
+          "keywords": [
+            "focus",
+            "window",
+            "right",
+            "direction"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "focus-up",
+          "title": "Focus up",
+          "description": "Focus the window above",
+          "mode": "no-view",
+          "keywords": [
+            "focus",
+            "window",
+            "up",
+            "direction"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "focus-down",
+          "title": "Focus Down",
+          "description": "Focus the window below",
+          "mode": "no-view",
+          "keywords": [
+            "focus",
+            "window",
+            "down",
+            "direction"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "focus-next-app",
+          "title": "Focus Next App",
+          "description": "Focus the next app",
+          "mode": "no-view",
+          "keywords": [
+            "focus",
+            "app",
+            "next"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "focus-prev-app",
+          "title": "Focus Previous App",
+          "description": "Focus the previous app",
+          "mode": "no-view",
+          "keywords": [
+            "focus",
+            "app",
+            "previous",
+            "prev"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "focus-next-window",
+          "title": "Focus Next Window",
+          "description": "Focus the next window",
+          "mode": "no-view",
+          "keywords": [
+            "focus",
+            "window",
+            "next"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "focus-prev-window",
+          "title": "Focus Previous Window",
+          "description": "Focus the previous window",
+          "mode": "no-view",
+          "keywords": [
+            "focus",
+            "window",
+            "previous",
+            "prev"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "list-displays",
+          "title": "List Displays",
+          "description": "List all connected displays",
+          "mode": "view",
+          "keywords": [
+            "display",
+            "monitor",
+            "screen"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "get-status",
+          "title": "Get Status",
+          "description": "Get current FlashSpace status (active profile, workspace, app, display)",
+          "mode": "view",
+          "keywords": [
+            "status",
+            "info",
+            "current",
+            "active"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "hide-unassigned-apps",
+          "title": "Hide Unassigned Apps",
+          "description": "Hide all apps not assigned to any workspace",
+          "mode": "no-view",
+          "keywords": [
+            "hide",
+            "unassigned",
+            "apps"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "open-flashspace",
+          "title": "Open FlashSpace",
+          "description": "Open the FlashSpace application",
+          "mode": "no-view",
+          "keywords": [
+            "open",
+            "launch"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "open-space-control",
+          "title": "Open Space Control",
+          "description": "Open FlashSpace Space Control",
+          "mode": "no-view",
+          "keywords": [
+            "open",
+            "space",
+            "control"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "flashspacePath",
+          "type": "textfield",
+          "required": false,
+          "title": "FlashSpace CLI Path",
+          "description": "Path to the flashspace binary. Leave empty to auto-detect.",
+          "placeholder": "/opt/homebrew/bin/flashspace"
+        }
+      ]
+    },
+    {
       "name": "flaticon",
       "title": "Flaticon — Search Icons",
       "description": "Search icons on Flaticon",
@@ -72003,6 +72672,10 @@
             {
               "title": "Copy GIF Link",
               "value": "copyGifUrl"
+            },
+            {
+              "title": "Paste GIF Link",
+              "value": "pasteGifUrl"
             },
             {
               "title": "Copy GIF Markdown",
@@ -84780,7 +85453,8 @@
       "icon": "command-icon.png",
       "author": "Yukai",
       "contributors": [
-        "ridemountainpig"
+        "ridemountainpig",
+        "alexi.build"
       ],
       "categories": [
         "Productivity",
@@ -96395,6 +97069,84 @@
           "type": "checkbox",
           "default": true,
           "required": false
+        }
+      ]
+    },
+    {
+      "name": "ionos-sync",
+      "title": "IONOS Sync",
+      "description": "Sync local projects to IONOS web hosting via rsync over SSH — with dry-run preview, push/pull, and project management.",
+      "icon": "extension-icon.png",
+      "author": "wdeu",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/wdeu/ionos-sync",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/ionos-sync",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "sync-project",
+          "title": "Sync Project",
+          "subtitle": "IONOS Sync",
+          "description": "Select a project and push or pull files via rsync over SSH",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "manage-projects",
+          "title": "Manage Projects",
+          "subtitle": "IONOS Sync",
+          "description": "Add, edit or remove sync projects",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "ionosHost",
+          "title": "IONOS Host",
+          "description": "SSH hostname from your IONOS control panel (e.g. ssh.hosting.ionos.de)",
+          "type": "textfield",
+          "required": true,
+          "placeholder": "homXXXXX.1and1-data.host"
+        },
+        {
+          "name": "ionosUser",
+          "title": "SSH Username",
+          "description": "Your IONOS SSH username",
+          "type": "textfield",
+          "required": true,
+          "placeholder": "uXXXXXXXX"
+        },
+        {
+          "name": "ionosPort",
+          "title": "SSH Port",
+          "description": "SSH port (default: 22)",
+          "type": "textfield",
+          "required": false,
+          "default": "22",
+          "placeholder": "22"
+        },
+        {
+          "name": "sshKeyPath",
+          "title": "SSH Key Path (optional)",
+          "description": "Path to your SSH private key. Leave empty to use the default key (~/.ssh/id_rsa).",
+          "type": "file",
+          "required": false,
+          "placeholder": "~/.ssh/id_rsa"
         }
       ]
     },
@@ -205027,7 +205779,7 @@
       "platforms": [
         "macOS"
       ],
-      "version": "0.2.0",
+      "version": "1.0.30",
       "storeUrl": "https://www.raycast.com/praveenjuge/teak-raycast",
       "source": {
         "type": "github-monorepo",
@@ -205046,6 +205798,42 @@
           "preferences": []
         },
         {
+          "name": "save-text",
+          "title": "Save to Teak",
+          "subtitle": "Capture text or links to Teak",
+          "description": "Save any text or URL to Teak. Works as a Raycast root-search fallback command.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "save-clipboard-url",
+          "title": "Save Clipboard",
+          "subtitle": "Capture copied text or links to Teak",
+          "description": "Save the current clipboard contents to Teak in one step",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "save-selected-text",
+          "title": "Save Selected Text",
+          "subtitle": "Capture highlighted text to Teak",
+          "description": "Save the text currently selected in any app to Teak",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "save-current-browser-tab",
+          "title": "Save Current Browser Tab",
+          "subtitle": "Capture the active browser tab",
+          "description": "Save the current browser tab to Teak using Raycast Browser Extension",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "search-cards",
           "title": "Search Cards",
           "subtitle": "Find anything in your Teak vault",
@@ -205059,6 +205847,15 @@
           "title": "Favorites",
           "subtitle": "Open your saved favorites fast",
           "description": "Browse and open your favorited Teak cards",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "tags",
+          "title": "Browse Tags",
+          "subtitle": "List your tags with card counts",
+          "description": "Browse every tag in your Teak vault with card counts and drill into any tag",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -221025,7 +221822,10 @@
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
+      "version": "0.0.2",
       "storeUrl": "https://www.raycast.com/mynameisny/typora-note-creator",
       "source": {
         "type": "github-monorepo",
@@ -230633,6 +231433,43 @@
           "placeholder": "Paste Webflow API Token"
         }
       ]
+    },
+    {
+      "name": "webhook-sender",
+      "title": "Webhook Sender",
+      "description": "Send HTTP webhooks instantly — with key-value or raw JSON body, automatic history, saved presets, and rich response inspection.",
+      "icon": "icon.png",
+      "author": "BinaryBlitz10",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "version": "1.0.0",
+      "storeUrl": "https://www.raycast.com/BinaryBlitz10/webhook-sender",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/webhook-sender",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "index",
+          "title": "Send Webhook",
+          "subtitle": "Webhook Sender",
+          "description": "Send webhooks, view history, and manage saved webhooks",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "webkit-developer-docs",
