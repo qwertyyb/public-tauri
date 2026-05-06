@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { RaycastViewSnapshot, SerializedHostListItemNode } from './types';
 import RaycastDetailView from './views/RaycastDetailView.vue';
+import RaycastFormView from './views/RaycastFormView.vue';
 import RaycastListView from './views/RaycastListView.vue';
 
 withDefaults(
@@ -35,10 +36,18 @@ withDefaults(
       :items="snapshot.root.children as SerializedHostListItemNode[]"
     />
     <RaycastDetailView
-      v-if="snapshot?.root.type === 'raycast:detail'"
+      v-else-if="snapshot?.root.type === 'raycast:detail'"
       v-bind="snapshot.root.props"
     />
-    <div class="rv-unsupported-view">
+    <RaycastFormView
+      v-else-if="snapshot?.root.type === 'raycast:form'"
+      :node="snapshot.root"
+      v-bind="snapshot.root.props"
+    />
+    <div
+      v-else-if="snapshot"
+      class="rv-unsupported-view"
+    >
       <p>
         This view is not supported by the current plugin.
       </p>
@@ -88,5 +97,13 @@ withDefaults(
   background: rgba(255, 69, 58, 0.18);
   border-bottom: 1px solid rgba(255, 69, 58, 0.35);
   color: #ffb4b0;
+}
+
+.rv-unsupported-view {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--rv-text-secondary);
 }
 </style>

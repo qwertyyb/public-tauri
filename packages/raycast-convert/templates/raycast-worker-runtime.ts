@@ -102,13 +102,16 @@ export function createRaycastViewSession(options: {
     },
     getChildHostContext: () => ({}),
     shouldSetTextContent: () => false,
-    createInstance: (type: string, props: Record<string, unknown>): HostElementInstance => ({
-      type,
-      hostId: nextHostId(),
-      props,
-      parent: null,
-      children: [],
-    }),
+    createInstance: (type: string, props: Record<string, unknown>): HostElementInstance => {
+      console.log('createInstance', type, props);
+      return {
+        type,
+        hostId: nextHostId(),
+        props,
+        parent: null,
+        children: [],
+      };
+    },
     createTextInstance: (text: string): HostTextInstance => ({
       type: 'text',
       hostId: nextHostId(),

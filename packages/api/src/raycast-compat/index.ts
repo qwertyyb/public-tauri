@@ -8,6 +8,7 @@ export * from './components/Action';
 export * from './components/ActionPanel';
 export * from './components/Color';
 export * from './components/Detail';
+export * from './components/Form';
 export * from './components/Icon';
 export * from './components/Image';
 export * from './components/List';
@@ -685,6 +686,5 @@ export type {
   ActionStyleValue,
   ActionComponent,
 } from './components/Action';
-export const Form = () => unsupported('Form');
 export const Grid = () => unsupported('Grid');
 export const MenuBarExtra = () => unsupported('MenuBarExtra');
