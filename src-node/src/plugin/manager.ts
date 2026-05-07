@@ -55,6 +55,34 @@ const NODE_API_METHODS: Record<string, string | undefined> = {
   'utils.getSelectedText': 'system.getSelectedText',
   'utils.runCommand': 'system.runCommand',
   'utils.runAppleScript': 'system.runAppleScript',
+  'storage.getItem': 'storage.getItem',
+  'storage.setItem': 'storage.setItem',
+  'storage.allItems': 'storage.allItems',
+  'storage.removeItem': 'storage.removeItem',
+  'storage.clear': 'storage.clear',
+};
+
+const withPluginStoragePrefix = (pluginName: string, key: unknown) => {
+  const suffix = key === undefined || key === null ? '' : String(key);
+  return suffix ? `${pluginName}:${suffix}` : `${pluginName}:`;
+};
+
+const remapStorageArgs = (payload: WorkerBridgePayload) => {
+  const [arg0, arg1] = payload.args || [];
+  switch (payload.name) {
+    case 'storage.getItem':
+      return [withPluginStoragePrefix(payload.pluginName, arg0)];
+    case 'storage.setItem':
+      return [withPluginStoragePrefix(payload.pluginName, arg0), arg1];
+    case 'storage.removeItem':
+      return [withPluginStoragePrefix(payload.pluginName, arg0)];
+    case 'storage.allItems':
+      return [withPluginStoragePrefix(payload.pluginName, arg0)];
+    case 'storage.clear':
+      return [withPluginStoragePrefix(payload.pluginName, arg0)];
+    default:
+      return payload.args || [];
+  }
 };
 
 async function runWorkerBridgeInvoke(payload: WorkerBridgePayload): Promise<unknown> {
@@ -63,7 +91,10 @@ async function runWorkerBridgeInvoke(payload: WorkerBridgePayload): Promise<unkn
   }
   const nodeMethod = NODE_API_METHODS[payload.name];
   if (nodeMethod) {
-    return runNodeUtilsInvoke(nodeMethod, payload.args || []);
+    const args = payload.name.startsWith('storage.')
+      ? remapStorageArgs(payload)
+      : (payload.args || []);
+    return runNodeUtilsInvoke(nodeMethod, args);
   }
   return requestHostInvoke(payload as HostInvokePayload);
 }

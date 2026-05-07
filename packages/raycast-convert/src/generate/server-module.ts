@@ -22,28 +22,21 @@ export const generateServerModule = (
   publicCommands: Record<string, unknown>[],
   layout: { inputDir: string, outputDir: string, buildDir: string },
 ) => {
-  const nvImports = commands.noView.map((command, index) => `import * as nv${index} from ${JSON.stringify(commandEntryImportSpecifier(layout.inputDir, layout.outputDir, layout.buildDir, command.entry))};`).join('\n');
-  const vvImports = commands.view.map((command, index) => `import * as vv${index} from ${JSON.stringify(commandEntryImportSpecifier(layout.inputDir, layout.outputDir, layout.buildDir, command.entry))};`).join('\n');
-
-  const nvMap = commands.noView.map((command, index) => `  ${JSON.stringify(command.name)}: nv${index},`).join('\n');
-  const vvMap = commands.view.map((command, index) => `  ${JSON.stringify(command.name)}: vv${index},`).join('\n');
+  const nvLoaders = commands.noView.map(command => `  ${JSON.stringify(command.name)}: () => import(${JSON.stringify(commandEntryImportSpecifier(layout.inputDir, layout.outputDir, layout.buildDir, command.entry))}),`).join('\n');
+  const vvLoaders = commands.view.map(command => `  ${JSON.stringify(command.name)}: () => import(${JSON.stringify(commandEntryImportSpecifier(layout.inputDir, layout.outputDir, layout.buildDir, command.entry))}),`).join('\n');
 
   const commandManifests = JSON.stringify(publicCommands, null, 2);
 
   const viewRuntimeImport = commands.view.length
-    ? `import { createRaycastViewSession, __setRaycastViewContext } from './raycast-worker-runtime';`
+    ? 'import { createRaycastViewSession, __setRaycastViewContext } from \'./raycast-worker-runtime\';'
     : '';
 
   const raycastRunHandler = commands.noView.length
     ? `channel.handle('raycast:run', async (payload = {}) => {
   const commandName = String(payload.commandName || '');
-  const commandModule = commandModules[commandName];
-  if (!commandModule) {
+  const loadCommandModule = commandModuleLoaders[commandName];
+  if (!loadCommandModule) {
     throw new Error(\`Unknown Raycast command: \${commandName}\`);
-  }
-  const run = commandModule.default;
-  if (typeof run !== 'function') {
-    throw new Error(\`Raycast command \${commandName} has no default function export\`);
   }
   const launchPayload = payload.options?.payload || {};
   __setRaycastContext({
@@ -56,6 +49,11 @@ export const generateServerModule = (
     supportPath: path.join(pluginRoot, '.raycast-compat'),
     assetsPath: path.join(pluginRoot, 'assets'),
   });
+  const commandModule = await loadCommandModule();
+  const run = commandModule.default;
+  if (typeof run !== 'function') {
+    throw new Error(\`Raycast command \${commandName} has no default function export\`);
+  }
   return await run({
     arguments: launchPayload.arguments || {},
     fallbackText: launchPayload.fallbackText ?? payload.query ?? '',
@@ -76,20 +74,10 @@ channel.handle('raycast:view:mount', async (payload = {}) => {
     existingSession.unmount();
     viewSessions.delete(commandName);
   }
-  const commandModule = viewCommandModules[commandName];
-  if (!commandModule) {
+  const loadViewCommandModule = viewCommandModuleLoaders[commandName];
+  if (!loadViewCommandModule) {
     throw new Error(\`Unknown Raycast view command: \${commandName}\`);
   }
-  const Command = commandModule.default;
-  if (typeof Command !== 'function') {
-    throw new Error(\`Raycast view command \${commandName} has no default function export\`);
-  }
-
-  const session = createRaycastViewSession({
-    emitSnapshot: (snapshot) => channel.emit('raycast:view:snapshot', snapshot),
-    emitPatch: (patches) => channel.emit('raycast:view:patch', patches),
-  });
-  viewSessions.set(commandName, session);
   __setRaycastViewContext({
     pluginName: ${JSON.stringify(packageName)},
     commandName,
@@ -103,6 +91,17 @@ channel.handle('raycast:view:mount', async (payload = {}) => {
       launchType: payload.options?.payload?.launchType || 'userInitiated',
     },
   });
+  const commandModule = await loadViewCommandModule();
+  const Command = commandModule.default;
+  if (typeof Command !== 'function') {
+    throw new Error(\`Raycast view command \${commandName} has no default function export\`);
+  }
+
+  const session = createRaycastViewSession({
+    emitSnapshot: (snapshot) => channel.emit('raycast:view:snapshot', snapshot),
+    emitPatch: (patches) => channel.emit('raycast:view:patch', patches),
+  });
+  viewSessions.set(commandName, session);
   await session.mount(Command);
   return true;
 });
@@ -133,27 +132,24 @@ channel.handle('raycast:view:unmount', async (payload = {}) => {
     : '';
 
   const nvMapBlock = commands.noView.length
-    ? `const commandModules: Record<string, any> = {
-${nvMap}
+    ? `const commandModuleLoaders: Record<string, () => Promise<any>> = {
+${nvLoaders}
 };
 `
-    : 'const commandModules: Record<string, any> = {};';
+    : 'const commandModuleLoaders: Record<string, () => Promise<any>> = {};';
 
   const vvMapBlock = commands.view.length
-    ? `const viewCommandModules: Record<string, any> = {
-${vvMap}
+    ? `const viewCommandModuleLoaders: Record<string, () => Promise<any>> = {
+${vvLoaders}
 };
 `
-    : 'const viewCommandModules: Record<string, any> = {};';
+    : 'const viewCommandModuleLoaders: Record<string, () => Promise<any>> = {};';
 
   return `import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { channel } from '@public-tauri/api/node';
 import { __setRaycastContext } from '@public-tauri/api/raycast';
 ${viewRuntimeImport}
-
-${nvImports}
-${vvImports}
 
 ${nvMapBlock}
 ${vvMapBlock}

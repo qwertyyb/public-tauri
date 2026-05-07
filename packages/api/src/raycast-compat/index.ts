@@ -1,9 +1,8 @@
 import type { PathLike } from 'node:fs';
 import fsSync from 'node:fs';
-import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { clipboard, dialog, launchCommand as launchPublicCommand, mainWindow, openCommandPreferences as openPublicCommandPreferences, openPluginPreferences, updateCommand, utils } from '../node';
+import { clipboard, dialog, launchCommand as launchPublicCommand, mainWindow, openCommandPreferences as openPublicCommandPreferences, openPluginPreferences, storage, updateCommand, utils } from '../node';
 export * from './components/Action';
 export * from './components/ActionPanel';
 export * from './components/Color';
@@ -51,26 +50,6 @@ const pathLikeToString = (value: PathLike) => (value instanceof URL ? fileURLToP
 
 const getSupportPath = () => currentContext.supportPath || path.join(process.cwd(), '.raycast-compat');
 
-const ensureDir = async (dir: string) => {
-  await fs.mkdir(dir, { recursive: true });
-};
-
-const readJsonFile = async <T>(filePath: string, fallback: T): Promise<T> => {
-  try {
-    return JSON.parse(await fs.readFile(filePath, 'utf8')) as T;
-  } catch (error) {
-    if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
-      return fallback;
-    }
-    throw error;
-  }
-};
-
-const writeJsonFile = async (filePath: string, value: unknown) => {
-  await ensureDir(path.dirname(filePath));
-  await fs.writeFile(filePath, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
-};
-
 const readJsonFileSync = <T>(filePath: string, fallback: T): T => {
   try {
     return JSON.parse(fsSync.readFileSync(filePath, 'utf8')) as T;
@@ -86,8 +65,6 @@ const writeJsonFileSync = (filePath: string, value: unknown) => {
   fsSync.mkdirSync(path.dirname(filePath), { recursive: true });
   fsSync.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
 };
-
-const getLocalStoragePath = () => path.join(getSupportPath(), 'local-storage.json');
 
 const getCachePath = (namespace = 'default') => path.join(getSupportPath(), 'cache', `${namespace}.json`);
 
@@ -466,27 +443,30 @@ export const environment = {
 
 export const LocalStorage = {
   async getItem<T extends StorageValue = StorageValue>(key: string): Promise<T | undefined> {
-    const data = await readJsonFile<Record<string, StorageValue>>(getLocalStoragePath(), {});
-    return data[key] as T | undefined;
+    return await storage.getItem(key) as T | undefined;
   },
   async setItem(key: string, value: StorageValue) {
-    const filePath = getLocalStoragePath();
-    const data = await readJsonFile<Record<string, StorageValue>>(filePath, {});
-    data[key] = value;
-    await writeJsonFile(filePath, data);
+    await storage.setItem(key, value);
   },
   async removeItem(key: string) {
-    const filePath = getLocalStoragePath();
-    const data = await readJsonFile<Record<string, StorageValue>>(filePath, {});
-    delete data[key];
-    await writeJsonFile(filePath, data);
+    await storage.removeItem(key);
   },
   async clear() {
-    await writeJsonFile(getLocalStoragePath(), {});
+    await storage.clear('');
   },
   async allItems<T extends Record<string, StorageValue> = Record<string, StorageValue>>(): Promise<T> {
-    const items = await readJsonFile<Record<string, StorageValue>>(getLocalStoragePath(), {});
-    return items as T;
+    const items = await storage.allItems('') as Record<string, StorageValue>;
+    const pluginName = currentContext.pluginName;
+    if (!pluginName) {
+      return items as T;
+    }
+    const prefix = `${pluginName}:`;
+    return Object.entries(items).reduce<Record<string, StorageValue>>((acc, [fullKey, value]) => {
+      if (fullKey.startsWith(prefix)) {
+        acc[fullKey.slice(prefix.length)] = value;
+      }
+      return acc;
+    }, {}) as T;
   },
 };
 
