@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-05-06T20:08:49.709Z",
+  "generatedAt": "2026-05-07T19:54:50.163Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "bfed72623614d46897dabacdd12e8fb8fca92547"
+    "commit": "fc4636c24b607cd87a13e0963f08b5346d26a4cb"
   },
-  "count": 2891,
+  "count": 2892,
   "extensions": [
     {
       "name": "0x0",
@@ -6407,6 +6407,14 @@
           "name": "create-sender",
           "title": "Send an Email from an Alias",
           "description": "Send an email using one of your Addy aliases.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "create-alias-ai",
+          "title": "Create Alias with AI",
+          "description": "Describe a purpose and let AI generate a meaningful alias name and description.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -29905,7 +29913,8 @@
         "xilopaint",
         "ridemountainpig",
         "litomore",
-        "yusifaliyevpro"
+        "yusifaliyevpro",
+        "shivraj-roy"
       ],
       "categories": [
         "Productivity",
@@ -29937,7 +29946,17 @@
             "freeze",
             "dirty"
           ],
-          "preferences": []
+          "preferences": [
+            {
+              "name": "lockFnKeys",
+              "title": "Lock Function Row Keys",
+              "description": "Also block function row keys while cleaning. Original setting is restored on unlock. macOS Tahoe (26+) only.",
+              "type": "checkbox",
+              "label": "Lock Fn / function row keys (macOS Tahoe only)",
+              "default": false,
+              "required": false
+            }
+          ]
         }
       ],
       "preferences": []
@@ -204891,7 +204910,8 @@
         "brandenw",
         "j3lte",
         "itsmatteomanf",
-        "MatteoGauthier"
+        "MatteoGauthier",
+        "McKeev"
       ],
       "categories": [
         "Developer Tools",
@@ -205036,6 +205056,63 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "menubar",
+          "title": "Menu Bar Tailscale",
+          "subtitle": "Tailscale",
+          "description": "Shows Tailscale connection status in the menu bar when connected",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "showHostname",
+              "title": "Status Display",
+              "description": "Show your device hostname next to the menu bar icon",
+              "type": "checkbox",
+              "label": "Show Hostname",
+              "default": false,
+              "required": false
+            },
+            {
+              "name": "showIP",
+              "description": "Show your Tailscale IP next to the menu bar icon",
+              "type": "checkbox",
+              "label": "Show IP Address",
+              "default": false,
+              "required": false
+            },
+            {
+              "name": "showTailnetName",
+              "description": "Show the tailnet name next to the menu bar icon",
+              "type": "checkbox",
+              "label": "Show Tailnet Name",
+              "default": false,
+              "required": false
+            },
+            {
+              "name": "iconStyle",
+              "title": "Menu Bar Icon",
+              "description": "Choose the icon to show in the menu bar when connected",
+              "type": "dropdown",
+              "required": false,
+              "default": "command_icon",
+              "data": [
+                {
+                  "title": "Tailscale Icon",
+                  "value": "command_icon"
+                },
+                {
+                  "title": "Green Status Dot",
+                  "value": "connected"
+                },
+                {
+                  "title": "Link Emoji",
+                  "value": "link_emoji"
+                }
+              ]
+            }
+          ]
         }
       ],
       "preferences": [
@@ -224984,6 +225061,89 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "userplane",
+      "title": "Userplane",
+      "description": "Create Userplane recording links, browse recordings and recording links, and open the Userplane dashboard — all from Raycast.",
+      "icon": "icon.png",
+      "author": "wizenheimer",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "0.1.0",
+      "storeUrl": "https://www.raycast.com/wizenheimer/userplane",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/userplane",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "create-link",
+          "title": "Create Recording Link",
+          "description": "Create a recording link for a workspace domain and copy it to the clipboard.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "list-recordings",
+          "title": "Browse Recordings",
+          "description": "Browse recordings with thumbnails, filters, and sorting.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "list-links",
+          "title": "Browse Links",
+          "description": "Browse recording links with filters and sorting.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "menu-bar",
+          "title": "Show Menu Bar",
+          "description": "Quick access to Userplane from the macOS menu bar.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "title": "API Key",
+          "description": "Create one at https://dash.userplane.io/_/account?tab=developers",
+          "type": "password",
+          "required": true
+        },
+        {
+          "name": "apiBaseUrl",
+          "title": "API Host",
+          "description": "API host for self-hosted or staging deployments. Accepts any form: api-dev.userplane.io or https://api-dev.userplane.io.",
+          "type": "textfield",
+          "required": false,
+          "default": "api.userplane.io"
+        },
+        {
+          "name": "dashBaseUrl",
+          "title": "Dashboard Host",
+          "description": "Dashboard host for self-hosted or staging deployments. Accepts any form: dash-dev.userplane.io or https://dash-dev.userplane.io.",
+          "type": "textfield",
+          "required": false,
+          "default": "dash.userplane.io"
+        }
+      ]
     },
     {
       "name": "utm-campaign-builder",
