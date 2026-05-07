@@ -3,6 +3,7 @@
 export type RaycastViewWujiePropsSubset = {
   events?: EventTarget;
   getPreferences?: () => Record<string, unknown>;
+  updateNavigationTitle?: (title: string) => void;
   /** 宿主搜索栏显隐；与 `RaycastSearchBar` 联动 */
   updateSearchBarVisible?: (visible: boolean) => void;
   /** 将当前查询同步到宿主搜索框 */

@@ -10,6 +10,8 @@ type FormValues = {
   enabled: boolean;
   dueDate: Date | null;
   category: string;
+  tags: string[];
+  files: string[];
 };
 
 export default function Command() {
@@ -21,6 +23,8 @@ export default function Command() {
     enabled: true,
     dueDate: null,
     category: 'feature',
+    tags: ['blue'],
+    files: [],
   });
 
   const preview = useMemo(() => JSON.stringify({
@@ -75,6 +79,7 @@ export default function Command() {
         id="description"
         title="Description"
         placeholder="Input description"
+        enableMarkdown
         value={values.description}
         onChange={value => setValues(prev => ({ ...prev, description: value }))}
       />
@@ -98,14 +103,42 @@ export default function Command() {
         onChange={value => setValues(prev => ({ ...prev, category: value }))}
       >
         <Form.Dropdown.Section title="Common">
-          <Form.Dropdown.Item value="feature" title="Feature" />
-          <Form.Dropdown.Item value="bugfix" title="Bugfix" />
+          <Form.Dropdown.Item
+            value="feature"
+            title="Feature"
+            icon="star"
+            keywords={['roadmap', 'new']}
+            shortcut={{ modifiers: ['cmd'], key: '1' }}
+          />
+          <Form.Dropdown.Item
+            value="bugfix"
+            title="Bugfix"
+            icon="bug"
+            keywords={['issue', 'patch']}
+            shortcut={{ modifiers: ['cmd'], key: '2' }}
+          />
         </Form.Dropdown.Section>
         <Form.Dropdown.Section title="Other">
           <Form.Dropdown.Item value="chore" title="Chore" />
           <Form.Dropdown.Item value="docs" title="Docs" />
         </Form.Dropdown.Section>
       </Form.Dropdown>
+      <Form.TagPicker
+        id="tags"
+        title="Tags"
+        value={values.tags}
+        onChange={value => setValues(prev => ({ ...prev, tags: value }))}
+      >
+        <Form.TagPicker.Item value="blue" title="Blue" />
+        <Form.TagPicker.Item value="green" title="Green" />
+        <Form.TagPicker.Item value="red" title="Red" />
+      </Form.TagPicker>
+      <Form.FilePicker
+        id="files"
+        title="Files"
+        value={values.files}
+        onChange={value => setValues(prev => ({ ...prev, files: value }))}
+      />
       <Form.Description text={`Preview:\n${preview}`} />
     </Form>
   );

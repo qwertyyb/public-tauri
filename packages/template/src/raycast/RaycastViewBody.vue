@@ -1,16 +1,32 @@
 <script setup lang="ts">
+import { computed, watch } from 'vue';
 import type { RaycastViewSnapshot, SerializedHostListItemNode } from './types';
 import RaycastDetailView from './views/RaycastDetailView.vue';
 import RaycastFormView from './views/RaycastFormView.vue';
 import RaycastListView from './views/RaycastListView.vue';
 
-withDefaults(
+const props = withDefaults(
   defineProps<{
     snapshot: RaycastViewSnapshot | null;
     /** Worker / 宿主报错文案 */
     error?: string | null;
   }>(),
   { error: null, onSelectItem: undefined, renderMarkdown: undefined },
+);
+
+const navigationTitle = computed(() => {
+  const root = props.snapshot?.root;
+  if (!root || typeof root !== 'object' || !('props' in root)) return '';
+  const title = (root.props as { navigationTitle?: unknown }).navigationTitle;
+  return typeof title === 'string' ? title : '';
+});
+
+watch(
+  navigationTitle,
+  (title) => {
+    window.$wujie?.props?.updateNavigationTitle?.(title);
+  },
+  { immediate: true },
 );
 </script>
 
@@ -42,6 +58,7 @@ withDefaults(
     <RaycastFormView
       v-else-if="snapshot?.root.type === 'raycast:form'"
       :node="snapshot.root"
+      :command-name="snapshot.commandName"
       v-bind="snapshot.root.props"
     />
     <div

@@ -55,6 +55,7 @@ export type ActionProps = {
   shortcut?: KeyboardShortcut;
   style?: AlertActionStyle;
   onAction?: () => void | Promise<void>;
+  onSubmit?: (input: FormValues) => boolean | void | Promise<boolean | void>;
 };
 
 const shellQuote = (value: string) => `'${String(value).split('\'')
@@ -126,8 +127,8 @@ function ActionSubmitForm(props: ActionSubmitFormProps) {
     icon: props.icon,
     shortcut: props.shortcut,
     style: props.style,
-    onAction: () => {
-      void props.onSubmit?.({});
+    onSubmit: (values?: FormValues) => {
+      void props.onSubmit?.((values || {}) as FormValues);
     },
   });
 }

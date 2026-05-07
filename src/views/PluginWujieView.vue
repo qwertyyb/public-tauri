@@ -19,7 +19,7 @@
         alt=""
         class="command-icon"
       >
-      <span class="command-title">{{ command.title }}</span>
+      <span class="command-title">{{ displayTitle }}</span>
     </template>
     <div
       ref="wujie"
@@ -71,6 +71,10 @@ const leftActionPanel = computed<ActionPanel>(() => ({
     },
   ],
 }));
+const displayTitle = ref(props.command.title);
+watch(() => props.command.title, (nextTitle) => {
+  displayTitle.value = nextTitle;
+});
 
 const mainAction = ref<ActionPanelAction>();
 
@@ -93,6 +97,10 @@ const searchBarValueHandler = (event: CustomEvent<{ value: string }>) => {
   input.value.keyword = event.detail.value;
 };
 
+const navigationTitleHandler = (event: CustomEvent<{ title: string }>) => {
+  displayTitle.value = event.detail.title || props.command.title;
+};
+
 const escapeHandler = () => {
   popView();
 };
@@ -109,6 +117,8 @@ onPageEnter(() => {
   props.events.addEventListener('updateSearchBarVisible', searchBarVisibleHandler);
   // @ts-ignore
   props.events.addEventListener('updateSearchBarValue', searchBarValueHandler);
+  // @ts-ignore
+  props.events.addEventListener('updateNavigationTitle', navigationTitleHandler);
 });
 
 onPageLeave(() => {
@@ -118,6 +128,8 @@ onPageLeave(() => {
   props.events.removeEventListener('updateSearchBarVisible', searchBarVisibleHandler);
   // @ts-ignore
   props.events.removeEventListener('updateSearchBarValue', searchBarValueHandler);
+  // @ts-ignore
+  props.events.removeEventListener('updateNavigationTitle', navigationTitleHandler);
 });
 
 onBeforeUnmount(() => {
