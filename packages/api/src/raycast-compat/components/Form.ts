@@ -55,7 +55,7 @@ type FormHostRefPayload = {
 };
 
 const invokeFormHostRef = (payload: FormHostRefPayload) => {
-  void channel.invoke('raycast:view:form-item-ref', payload).catch(() => {});
+  void channel.invoke('raycast:view:ref-invoke', payload).catch(() => {});
 };
 
 const useFormItemRef = (
@@ -154,22 +154,22 @@ function FormSeparator(_props: FormSeparatorProps) {
 
 const FormTextField = React.forwardRef<FormItemRef, FormTextFieldProps>((props, ref) => {
   const refId = useFormItemRef(props, ref, () => props.defaultValue ?? '');
-  return React.createElement('raycast:form-text-field', { ...props, __formRefId: refId });
+  return React.createElement('raycast:form-text-field', { ...props, __refId: refId });
 });
 
 const FormPasswordField = React.forwardRef<FormItemRef, FormPasswordFieldProps>((props, ref) => {
   const refId = useFormItemRef(props, ref, () => props.defaultValue ?? '');
-  return React.createElement('raycast:form-password-field', { ...props, __formRefId: refId });
+  return React.createElement('raycast:form-password-field', { ...props, __refId: refId });
 });
 
 const FormTextArea = React.forwardRef<FormItemRef, FormTextAreaProps>((props, ref) => {
   const refId = useFormItemRef(props, ref, () => props.defaultValue ?? '');
-  return React.createElement('raycast:form-text-area', { ...props, __formRefId: refId });
+  return React.createElement('raycast:form-text-area', { ...props, __refId: refId });
 });
 
 const FormCheckbox = React.forwardRef<FormItemRef, FormCheckboxProps>((props, ref) => {
   const refId = useFormItemRef(props, ref, () => props.defaultValue ?? false);
-  return React.createElement('raycast:form-checkbox', { ...props, __formRefId: refId });
+  return React.createElement('raycast:form-checkbox', { ...props, __refId: refId });
 });
 
 const FormDatePicker = React.forwardRef<FormItemRef, FormDatePickerProps>((props, ref) => {
@@ -180,7 +180,7 @@ const FormDatePicker = React.forwardRef<FormItemRef, FormDatePickerProps>((props
     ...props,
     value: props.value instanceof Date ? props.value.toISOString() : props.value,
     defaultValue: props.defaultValue instanceof Date ? props.defaultValue.toISOString() : props.defaultValue,
-    __formRefId: refId,
+    __refId: refId,
   };
   return React.createElement('raycast:form-date-picker', serializedProps);
 });
@@ -188,7 +188,7 @@ const FormDatePicker = React.forwardRef<FormItemRef, FormDatePickerProps>((props
 const FormDropdown = React.forwardRef<FormItemRef, FormDropdownProps>((props, ref) => {
   const refId = useFormItemRef(props, ref, () => props.defaultValue ?? '');
   const { children, ...rest } = props;
-  return React.createElement('raycast:form-dropdown', { ...rest, __formRefId: refId }, children);
+  return React.createElement('raycast:form-dropdown', { ...rest, __refId: refId }, children);
 });
 
 function FormDropdownSection(props: FormDropdownSectionProps) {
@@ -203,7 +203,7 @@ function FormDropdownItem(props: FormDropdownItemProps) {
 const FormTagPicker = React.forwardRef<FormItemRef, FormTagPickerProps>((props, ref) => {
   const refId = useFormItemRef(props, ref, () => props.defaultValue ?? []);
   const { children, ...rest } = props;
-  return React.createElement('raycast:form-tag-picker', { ...rest, __formRefId: refId }, children);
+  return React.createElement('raycast:form-tag-picker', { ...rest, __refId: refId }, children);
 });
 
 function FormTagPickerItem(props: FormTagPickerItemProps) {
@@ -212,7 +212,7 @@ function FormTagPickerItem(props: FormTagPickerItemProps) {
 
 const FormFilePicker = React.forwardRef<FormItemRef, FormFilePickerProps>((props, ref) => {
   const refId = useFormItemRef(props, ref, () => props.defaultValue ?? []);
-  return React.createElement('raycast:form-file-picker', { ...props, __formRefId: refId });
+  return React.createElement('raycast:form-file-picker', { ...props, __refId: refId });
 });
 
 const FormDropdownComp = Object.assign(FormDropdown, {

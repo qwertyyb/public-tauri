@@ -4,11 +4,12 @@
  * 首次收到完整快照后，后续 Worker 仅下发 JSON Patch 增量变更，前端 apply 后再 hydrate。
  */
 import { onBeforeUnmount, onMounted, ref, shallowRef } from 'vue';
-import { channel, updateSearchBarVisible } from '@public-tauri/api';
+import { channel } from '@public-tauri/api';
 import type { RaycastViewSnapshot, JsonPatchOp } from './types';
 import { hydrateRaycastViewSnapshot, type HydrateSnapshotContext } from './hydrate-snapshot-funcs';
 import { applyJsonPatch } from './json-patch';
 import { getRaycastViewWujieProps } from './wujie-utils';
+import { invokeRefHandle } from './useRefHandle';
 import RaycastViewBody from './RaycastViewBody.vue';
 
 const activeCommandNameRef = ref('');
@@ -32,7 +33,6 @@ function onPluginAction(event: Event) {
     const detail = (event as CustomEvent).detail || {};
     const commandName = String(detail.command?.name || '');
     activeCommandNameRef.value = commandName;
-    updateSearchBarVisible(true);
     const props = getRaycastViewWujieProps();
     await channel.invoke('raycast:view:mount', {
       commandName,
@@ -41,63 +41,6 @@ function onPluginAction(event: Event) {
       preferences: props?.getPreferences?.() || {},
     });
   })();
-}
-
-function applyFormRefOp(payload: unknown) {
-  const data = (payload || {}) as { refId?: unknown; op?: unknown; value?: unknown };
-  const refId = typeof data.refId === 'string' ? data.refId : '';
-  const op = typeof data.op === 'string' ? data.op : '';
-  if (!refId || !op) return false;
-  const el = document.querySelector(`[data-rv-form-ref="${refId}"]`) as HTMLElement | null;
-  if (!el) return false;
-  if (op === 'focus') {
-    if ('focus' in el && typeof (el as any).focus === 'function') (el as any).focus();
-    return true;
-  }
-  if (op === 'reset') {
-    if (el instanceof HTMLInputElement) {
-      const kind = el.dataset.rvFormKind || '';
-      if (kind === 'checkbox') {
-        el.checked = Boolean(data.value);
-        el.dispatchEvent(new Event('change', { bubbles: true }));
-        return true;
-      }
-      if (kind === 'date') {
-        const v = data.value instanceof Date ? data.value.toISOString().slice(0, 10) : String(data.value || '');
-        el.value = v;
-        el.dispatchEvent(new Event('change', { bubbles: true }));
-        return true;
-      }
-      if (kind === 'file-picker') {
-        const values = Array.isArray(data.value) ? data.value : [];
-        el.dataset.rvFormValue = JSON.stringify(values);
-        el.dispatchEvent(new Event('change', { bubbles: true }));
-        return true;
-      }
-      el.value = String(data.value ?? '');
-      el.dispatchEvent(new Event('input', { bubbles: true }));
-      return true;
-    }
-    if (el instanceof HTMLTextAreaElement) {
-      el.value = String(data.value ?? '');
-      el.dispatchEvent(new Event('input', { bubbles: true }));
-      return true;
-    }
-    if (el instanceof HTMLSelectElement) {
-      const kind = el.dataset.rvFormKind || '';
-      if (kind === 'tag-picker') {
-        const selected = Array.isArray(data.value) ? data.value.map(String) : [];
-        for (const option of [...el.options]) {
-          option.selected = selected.includes(option.value);
-        }
-      } else {
-        el.value = String(data.value ?? '');
-      }
-      el.dispatchEvent(new Event('change', { bubbles: true }));
-      return true;
-    }
-  }
-  return false;
 }
 
 async function onPluginExit(event: Event) {
@@ -133,7 +76,7 @@ onMounted(() => {
     snapshot.value = hydrateRaycastViewSnapshot(rawSnapshot, hydrateCtx());
   });
 
-  unsubFormRefHandler = channel.handle('raycast:view:form-item-ref', payload => applyFormRefOp(payload));
+  unsubFormRefHandler = channel.handle('raycast:view:ref-invoke', payload => invokeRefHandle(payload));
 });
 
 onBeforeUnmount(() => {
