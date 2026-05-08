@@ -67,6 +67,7 @@ export default function Command() {
         placeholder="Input title"
         value={values.title}
         onChange={value => setValues(prev => ({ ...prev, title: value }))}
+        autoFocus
       />
       <Form.PasswordField
         id="password"

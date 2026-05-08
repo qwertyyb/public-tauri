@@ -390,7 +390,7 @@ onBeforeUnmount(() => {
   flex-direction: column;
   outline: none;
   border-right: 1px solid var(--rv-border);
-  background: var(--rv-surface);
+  /* background: var(--rv-surface); */
   min-height: 0;
 }
 
