@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import { type PluginShellAction, updateActions } from '@public-tauri/api';
-import { computed, onBeforeUnmount, ref, watch } from 'vue';
-import type { RaycastArgumentsFormCommand } from './types';
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
+import type { RaycastArgumentsFormCommand, RaycastCommandArgument, SerializedHostNode } from './types';
+import RaycastFormDescription from './form/RaycastFormDescription.vue';
+import RaycastFormDropdown from './form/RaycastFormDropdown.vue';
+import RaycastFormPasswordField from './form/RaycastFormPasswordField.vue';
+import RaycastFormTextField from './form/RaycastFormTextField.vue';
 
 const props = defineProps<{
   command: RaycastArgumentsFormCommand;
@@ -20,10 +24,39 @@ const emit = defineEmits<{
 
 const valuesRef = ref<Record<string, string>>({});
 const errorsRef = ref<Record<string, string>>({});
+const formRootRef = ref<HTMLElement | null>(null);
+
+function applyAutoFocus() {
+  const root = formRootRef.value;
+  if (!root) return;
+  const target = root.querySelector<HTMLElement>('[data-rv-auto-focus="true"]');
+  target?.focus({ preventScroll: true });
+}
 
 function safeUpdateActions(actions: PluginShellAction[]) {
   if (typeof window === 'undefined' || !window.$wujie) return;
   updateActions(actions);
+}
+
+function argumentFieldTitle(item: RaycastCommandArgument): string {
+  return item.required ? `${item.name} *` : item.name;
+}
+
+function dropdownItems(item: RaycastCommandArgument): SerializedHostNode[] {
+  if (item.type !== 'dropdown') return [];
+  return (item.data || []).map((opt, i) => ({
+    hostId: `rv-arg-dd-${item.name}-${i}`,
+    type: 'raycast:form-dropdown-item',
+    props: {
+      value: opt.value,
+      title: opt.title,
+    },
+    children: [],
+  }));
+}
+
+function onArgChange(name: string, value: unknown) {
+  valuesRef.value[name] = String(value ?? '');
 }
 
 function initValuesFromSchema() {
@@ -42,6 +75,20 @@ function initValuesFromSchema() {
 watch(schemaRef, () => {
   initValuesFromSchema();
 }, { immediate: true });
+
+watch(
+  () => schemaRef.value.map(item => `${item.name}:${item.type}`).join('|'),
+  async () => {
+    if (!schemaRef.value.length) return;
+    await nextTick();
+    applyAutoFocus();
+  },
+  { flush: 'post', immediate: true },
+);
+
+onMounted(() => {
+  void nextTick(applyAutoFocus);
+});
 
 function validate(): boolean {
   const nextErrors: Record<string, string> = {};
@@ -96,62 +143,72 @@ onBeforeUnmount(() => {
       <h3 class="rv-args-title">
         {{ commandTitleRef }}
       </h3>
-      <p class="rv-args-desc">
-        Fill required arguments, then use <strong>Run Command</strong> in the action bar (↵).
-      </p>
+      <RaycastFormDescription
+        :text="'Fill required arguments, then use Run Command in the action bar (↵).'"
+      />
     </header>
 
-    <div class="rv-args-form">
-      <label
-        v-for="item in schemaRef"
+    <div
+      ref="formRootRef"
+      class="rv-args-form"
+    >
+      <template
+        v-for="(item, index) in schemaRef"
         :key="item.name"
-        class="rv-args-field"
       >
-        <span class="rv-args-label">
-          {{ item.name }}
-          <span
-            v-if="item.required"
-            class="rv-args-required"
-          >*</span>
-        </span>
-        <input
-          v-if="item.type === 'text' || item.type === 'password'"
-          :data-arg-name="item.name"
-          :type="item.type === 'password' ? 'password' : 'text'"
+        <RaycastFormTextField
+          v-if="item.type === 'text'"
+          :id="item.name"
+          :title="argumentFieldTitle(item)"
           :placeholder="item.placeholder || ''"
-          :value="valuesRef[item.name] || ''"
-          class="rv-args-input"
-          @input="valuesRef[item.name] = String(($event.target as HTMLInputElement).value || '')"
-        >
-        <select
+          :value="valuesRef[item.name] ?? ''"
+          :error="errorsRef[item.name]"
+          :auto-focus="index === 0"
+          :on-field-value-change="(v: unknown) => onArgChange(item.name, v)"
+        />
+        <RaycastFormPasswordField
+          v-else-if="item.type === 'password'"
+          :id="item.name"
+          :title="argumentFieldTitle(item)"
+          :placeholder="item.placeholder || ''"
+          :value="valuesRef[item.name] ?? ''"
+          :error="errorsRef[item.name]"
+          :auto-focus="index === 0"
+          :on-field-value-change="(v: unknown) => onArgChange(item.name, v)"
+        />
+        <RaycastFormDropdown
           v-else-if="item.type === 'dropdown'"
-          :data-arg-name="item.name"
-          class="rv-args-select"
-          :value="valuesRef[item.name] || ''"
-          @change="valuesRef[item.name] = String(($event.target as HTMLSelectElement).value || '')"
-        >
-          <option
-            v-for="option in item.data || []"
-            :key="option.value"
-            :value="option.value"
-          >
-            {{ option.title }}
-          </option>
-        </select>
-        <span
-          v-if="errorsRef[item.name]"
-          class="rv-args-error"
-          :data-arg-error="item.name"
-        >
-          {{ errorsRef[item.name] }}
-        </span>
-      </label>
+          :id="item.name"
+          :title="argumentFieldTitle(item)"
+          :value="valuesRef[item.name] ?? ''"
+          :children="dropdownItems(item)"
+          :error="errorsRef[item.name]"
+          :auto-focus="index === 0"
+          :on-field-value-change="(v: unknown) => onArgChange(item.name, v)"
+        />
+      </template>
     </div>
   </section>
 </template>
 
 <style scoped>
 .rv-args-shell {
+  --rv-font: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif;
+  --rv-font-mono: ui-monospace, 'SF Mono', Menlo, monospace;
+  /* --rv-bg: light-dark(#f6f7f9, #1e1e1e); */
+  --rv-surface: light-dark(#ffffff, #252526);
+  --rv-surface-elevated: light-dark(#f3f4f6, #2d2d30);
+  --rv-border: light-dark(rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.08));
+  --rv-text: light-dark(rgba(0, 0, 0, 0.8), rgba(255, 255, 255, 0.8));
+  --rv-text-secondary: light-dark(rgba(0, 0, 0, 0.48), rgba(255, 255, 255, 0.48));
+  --rv-accent: light-dark(#1f2937, #f7f7f7);
+  --rv-row-hover: light-dark(rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0.06));
+  --rv-row-selected: light-dark(rgba(10, 132, 255, 0.14), rgba(10, 132, 255, 0.22));
+  --rv-row-selected-border: light-dark(rgba(10, 132, 255, 0.42), rgba(10, 132, 255, 0.55));
+  /* --rv-detail-bg: light-dark(#fafbfc, #232323); */
+  --rv-radius: 10px;
+  --rv-shadow: light-dark(0 8px 24px rgba(15, 23, 42, 0.12), 0 12px 40px rgba(0, 0, 0, 0.35));
+
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -171,51 +228,77 @@ onBeforeUnmount(() => {
   color: var(--rv-text);
 }
 
-.rv-args-desc {
-  margin: 0;
-  color: var(--rv-text-secondary);
-  font-size: 12px;
-}
-
-.rv-args-desc strong {
-  font-weight: 600;
-  color: var(--rv-text);
-}
-
 .rv-args-form {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
+</style>
 
-.rv-args-field {
+<!-- <style>
+.rv-form-field {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
-.rv-args-label {
+.rv-form-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--rv-text);
+}
+
+.rv-form-input,
+.rv-form-textarea,
+.rv-form-select {
+  width: 100%;
+  border: 1px solid var(--rv-border);
+  border-radius: 10px;
+  background: var(--rv-surface-elevated, var(--rv-surface));
+  color: var(--rv-text);
+  font: inherit;
+  font-size: 13px;
+  padding: 8px 10px;
+}
+
+.rv-form-textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+.rv-form-help {
+  font-size: 11px;
+  color: var(--rv-text-secondary);
+}
+
+.rv-form-help-error {
+  color: #ff6b6b;
+}
+
+.rv-form-markdown-preview {
+  border: 1px solid var(--rv-border);
+  border-radius: 10px;
+  background: var(--rv-surface);
+  padding: 10px;
   font-size: 12px;
   color: var(--rv-text-secondary);
 }
 
-.rv-args-required {
-  color: #ff453a;
+.rv-form-markdown-preview :deep(p) {
+  margin: 0.35em 0;
 }
 
-.rv-args-input,
-.rv-args-select {
-  width: 100%;
-  border: 1px solid var(--rv-border);
-  border-radius: 8px;
-  background: var(--rv-surface);
+.rv-form-markdown-preview :deep(pre) {
+  margin: 0.35em 0;
+  overflow: auto;
+}
+
+.rv-form-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   color: var(--rv-text);
-  padding: 8px 10px;
   font-size: 13px;
 }
+</style> -->
 
-.rv-args-error {
-  color: #ff7f7f;
-  font-size: 12px;
-}
-</style>

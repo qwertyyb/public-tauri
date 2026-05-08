@@ -68,7 +68,10 @@ onBeforeUnmount(() => {
         :markdown="markdown ?? ''"
         class="rv-detail-markdown"
       />
-      <div class="rv-detail-metadata-separator" />
+      <div
+        v-if="metadata"
+        class="rv-detail-metadata-separator"
+      />
       <RaycastDetailMetadata
         v-if="metadata"
         :node="metadata"

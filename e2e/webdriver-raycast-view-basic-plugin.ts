@@ -269,24 +269,24 @@ async function main(): Promise<void> {
     }
     await driver.findElement(By.css('.plugin-view .main-action')).click();
     await driver.wait(async () => {
-      const errText = await getShadowTextBySelector(driver, '.rv-args-error[data-arg-error="title"]');
+      const errText = await getShadowTextBySelector(driver, 'label.rv-form-field:has(input[data-rv-form-id="title"]) small.rv-form-help-error');
       return errText.includes('required');
     }, 20_000);
 
     await driver.executeScript(`
       var app = document.querySelector('.plugin-view .wujie-container wujie-app');
       if (!app || !app.shadowRoot) return;
-      var titleInput = app.shadowRoot.querySelector('.rv-args-input[data-arg-name="title"]');
+      var titleInput = app.shadowRoot.querySelector('input[data-rv-form-id="title"]');
       if (titleInput) {
         titleInput.value = 'webdriver-title';
         titleInput.dispatchEvent(new Event('input', { bubbles: true }));
       }
-      var secretInput = app.shadowRoot.querySelector('.rv-args-input[data-arg-name="secret"]');
+      var secretInput = app.shadowRoot.querySelector('input[data-rv-form-id="secret"]');
       if (secretInput) {
         secretInput.value = 'webdriver-secret';
         secretInput.dispatchEvent(new Event('input', { bubbles: true }));
       }
-      var colorSelect = app.shadowRoot.querySelector('.rv-args-select[data-arg-name="favoriteColor"]');
+      var colorSelect = app.shadowRoot.querySelector('select[data-rv-form-id="favoriteColor"]');
       if (colorSelect) {
         colorSelect.value = 'green';
         colorSelect.dispatchEvent(new Event('change', { bubbles: true }));
