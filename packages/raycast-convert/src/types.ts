@@ -11,6 +11,21 @@ export type RaycastPreference = {
   data?: { title?: string, label?: string, value: string | number | boolean }[];
 };
 
+export type RaycastCommandArgumentType = 'text' | 'password' | 'dropdown';
+
+export type RaycastCommandArgumentOption = {
+  title?: string;
+  value: string;
+};
+
+export type RaycastCommandArgument = {
+  name: string;
+  placeholder?: string;
+  type: RaycastCommandArgumentType;
+  required?: boolean;
+  data?: RaycastCommandArgumentOption[];
+};
+
 export type RaycastCommand = {
   name: string;
   title?: string;
@@ -20,6 +35,7 @@ export type RaycastCommand = {
   keywords?: string[];
   icon?: string;
   preferences?: RaycastPreference[];
+  arguments?: RaycastCommandArgument[];
 };
 
 export type RaycastPackage = {

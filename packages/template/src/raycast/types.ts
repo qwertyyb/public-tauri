@@ -79,3 +79,23 @@ export type RaycastViewDispatchPayload = {
   event?: string;
   args?: unknown[];
 };
+
+export type RaycastCommandArgumentOption = {
+  title: string;
+  value: string;
+};
+
+export type RaycastCommandArgument = {
+  name: string;
+  type: 'text' | 'password' | 'dropdown';
+  placeholder?: string;
+  required?: boolean;
+  data?: RaycastCommandArgumentOption[];
+};
+
+/** `plugin:action` 里 `detail.command` 的子集，供参数表单组件自行解析展示 */
+export type RaycastArgumentsFormCommand = {
+  name: string;
+  title?: string;
+  raycastArguments?: RaycastCommandArgument[];
+};

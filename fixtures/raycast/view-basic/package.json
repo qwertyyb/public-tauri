@@ -27,6 +27,48 @@
       "description": "Shows a Raycast Form command rendered from the Node Worker.",
       "mode": "view",
       "keywords": ["raycast", "view", "worker", "form"]
+    },
+    {
+      "name": "arguments",
+      "title": "Raycast View With Arguments",
+      "subtitle": "Validate arguments form before Worker view command",
+      "description": "Shows a Raycast Detail view command receiving launch arguments.",
+      "mode": "view",
+      "keywords": ["raycast", "view", "worker", "arguments"],
+      "arguments": [
+        {
+          "name": "title",
+          "placeholder": "Input title",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "secret",
+          "placeholder": "Input secret",
+          "type": "password",
+          "required": true
+        },
+        {
+          "name": "favoriteColor",
+          "type": "dropdown",
+          "placeholder": "Favorite Color",
+          "required": true,
+          "data": [
+            {
+              "title": "Red",
+              "value": "red"
+            },
+            {
+              "title": "Green",
+              "value": "green"
+            },
+            {
+              "title": "Blue",
+              "value": "blue"
+            }
+          ]
+        }
+      ]
     }
   ],
   "preferences": [

@@ -17,7 +17,14 @@ import { resolveConvertOptions } from './options';
 import { createConvertedPackage } from './package-json';
 import { resolveConvertedPackageName } from './package-name';
 import { mergePreferences } from './preferences';
-import type { ConversionReport, ConvertOptions, ConvertWarning, ConvertedCommand, RaycastPackage } from './types';
+import type {
+  ConversionReport,
+  ConvertOptions,
+  ConvertWarning,
+  ConvertedCommand,
+  RaycastCommandArgument,
+  RaycastPackage,
+} from './types';
 
 export type * from './types';
 export { RAYCAST_CONVERTED_SCOPE, resolveConvertedPackageName, resolveRaycastSlug, sanitizeSlug } from './package-name';
@@ -32,20 +39,33 @@ export const RAYCAST_VIEW_TEMPLATE_DEV_ENTRY = 'http://localhost:5173/raycast.ht
 const createPublicCommands = (
   commands: ConvertedCommand[],
   icon: string,
-) => commands.map(command => ({
-  name: command.name,
-  title: command.title || command.name,
-  subtitle: command.subtitle || command.description,
-  description: command.description,
-  icon: normalizeRaycastIcon(command.icon) || icon,
-  mode: command.mode === 'no-view' ? 'none' : 'view',
-  matches: [
-    {
-      type: 'text',
-      keywords: command.keywords?.length ? command.keywords : [command.title || command.name],
-    },
-  ],
-}));
+) => commands.map((command) => {
+  const raycastArguments = (command.arguments || []).map((arg: RaycastCommandArgument) => ({
+    name: arg.name,
+    type: arg.type,
+    placeholder: arg.placeholder,
+    required: Boolean(arg.required),
+    data: arg.type === 'dropdown'
+      ? (arg.data || []).map(item => ({ title: item.title || item.value, value: item.value }))
+      : undefined,
+  }));
+  return {
+    name: command.name,
+    title: command.title || command.name,
+    subtitle: command.subtitle || command.description,
+    description: command.description,
+    icon: normalizeRaycastIcon(command.icon) || icon,
+    mode: (command.mode === 'no-view' && raycastArguments.length === 0) ? 'none' : 'view',
+    raycastTargetMode: command.mode,
+    raycastArguments,
+    matches: [
+      {
+        type: 'text',
+        keywords: command.keywords?.length ? command.keywords : [command.title || command.name],
+      },
+    ],
+  };
+});
 
 export const convertRaycastPlugin = async (rawOptions: ConvertOptions): Promise<ConversionReport> => {
   const options = resolveConvertOptions(rawOptions);

@@ -107,6 +107,7 @@ raycast-convert <raycast-plugin-dir> --out <public-plugin-dir> [--build] [--mode
 **MVP 已支持：**
 
 - `List`、`List.Item`、`Detail`、`ActionPanel`、`Action`
+- Raycast command `arguments`（`text` / `password` / `dropdown`）参数表单前置并透传至 `LaunchProps.arguments`
 - `Detail.markdown` 在浏览器侧由 **`packages/template`** 产物内的 `markdown-it` 渲染为 HTML（禁用 raw HTML）
 - React 函数组件、`useState`、`useEffect`
 - Worker 侧 action 回调与 snapshot 更新

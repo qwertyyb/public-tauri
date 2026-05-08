@@ -63,6 +63,23 @@ async function getRaycastDetailText(driver: WebDriver): Promise<string> {
   `);
 }
 
+async function getShadowTextBySelector(driver: WebDriver, selector: string): Promise<string> {
+  return driver.executeScript<string>(`
+    var app = document.querySelector('.plugin-view .wujie-container wujie-app');
+    if (!app || !app.shadowRoot) return '';
+    var el = app.shadowRoot.querySelector(arguments[0]);
+    return el ? String(el.textContent || '').trim() : '';
+  `, selector);
+}
+
+async function openCommandFromHome(driver: WebDriver, commandTitle: string): Promise<void> {
+  await setMainInputValue(driver, commandTitle);
+  await driver.sleep(1200);
+  await driver.wait(until.elementLocated(By.css('.main-action .main-action-label')), 30_000);
+  await driver.findElement(By.css('.main-action')).click();
+  await driver.wait(until.elementLocated(By.css('.plugin-view')), 30_000);
+}
+
 /** 避免在插件详情页执行 unregister/reload 导致壳子与路由不一致、首页 `#main-input` 缺失 */
 async function popToRoot(driver: WebDriver): Promise<void> {
   await driver.executeScript(`
@@ -199,11 +216,7 @@ async function main(): Promise<void> {
     await popToRoot(driver);
     await driver.sleep(900);
 
-    await setMainInputValue(driver, 'Raycast View Search');
-    await driver.sleep(1200);
-    await driver.wait(until.elementLocated(By.css('.main-action .main-action-label')), 30_000);
-    await driver.findElement(By.css('.main-action')).click();
-    await driver.wait(until.elementLocated(By.css('.plugin-view')), 30_000);
+    await openCommandFromHome(driver, 'Raycast View Search');
 
     const wujieApp = await driver.wait(
       until.elementLocated(By.css('.plugin-view .wujie-container wujie-app')),
@@ -234,6 +247,61 @@ async function main(): Promise<void> {
     }
     await driver.findElement(By.css('.plugin-view .main-action')).click();
     await driver.wait(async () => (await getRaycastDetailText(driver)).includes('Count: 1'), 60_000);
+
+    await popToRoot(driver);
+    await driver.sleep(800);
+    await openCommandFromHome(driver, 'Raycast View With Arguments');
+    const argsFormVisible = await driver.wait(async () => driver.executeScript<boolean>(`
+      var app = document.querySelector('.plugin-view .wujie-container wujie-app');
+      return Boolean(app && app.shadowRoot && app.shadowRoot.querySelector('.rv-args-form'));
+    `), 60_000);
+    if (!argsFormVisible) {
+      throw new Error('Expected arguments form to be visible');
+    }
+
+    await driver.wait(
+      until.elementLocated(By.css('.plugin-view .main-action .main-action-label')),
+      60_000,
+    );
+    const runLabel = await driver.findElement(By.css('.plugin-view .main-action .main-action-label')).getText();
+    if (!runLabel.includes('Run Command')) {
+      throw new Error(`Expected Run Command action, got: ${runLabel}`);
+    }
+    await driver.findElement(By.css('.plugin-view .main-action')).click();
+    await driver.wait(async () => {
+      const errText = await getShadowTextBySelector(driver, '.rv-args-error[data-arg-error="title"]');
+      return errText.includes('required');
+    }, 20_000);
+
+    await driver.executeScript(`
+      var app = document.querySelector('.plugin-view .wujie-container wujie-app');
+      if (!app || !app.shadowRoot) return;
+      var titleInput = app.shadowRoot.querySelector('.rv-args-input[data-arg-name="title"]');
+      if (titleInput) {
+        titleInput.value = 'webdriver-title';
+        titleInput.dispatchEvent(new Event('input', { bubbles: true }));
+      }
+      var secretInput = app.shadowRoot.querySelector('.rv-args-input[data-arg-name="secret"]');
+      if (secretInput) {
+        secretInput.value = 'webdriver-secret';
+        secretInput.dispatchEvent(new Event('input', { bubbles: true }));
+      }
+      var colorSelect = app.shadowRoot.querySelector('.rv-args-select[data-arg-name="favoriteColor"]');
+      if (colorSelect) {
+        colorSelect.value = 'green';
+        colorSelect.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+      var hostBtn = document.querySelector('.plugin-view .main-action');
+      if (hostBtn) hostBtn.click();
+    `);
+
+    await driver.wait(async () => {
+      const text = await getRaycastDetailText(driver);
+      return text.includes('Arguments command loaded')
+        && text.includes('Title: webdriver-title')
+        && text.includes('Favorite Color: green')
+        && text.includes('Has Secret: yes');
+    }, 60_000);
 
     console.log('WebDriver Raycast worker view basic E2E OK');
   } finally {
