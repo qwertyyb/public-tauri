@@ -211,6 +211,9 @@ export const createWujieApp = (options: CreateWujieOptions): {
     updateActions: (actions?: IAction[]) => {
       events.dispatchEvent(new CustomEvent('updateActions', { detail: { actions, plugin: name } }));
     },
+    updateNavigationTitle: (title: string) => {
+      events.dispatchEvent(new CustomEvent('updateNavigationTitle', { detail: { title } }));
+    },
     updateSearchBarValue: (value: string) => {
       console.log('updateSearchBarValue', value);
       events.dispatchEvent(new CustomEvent('updateSearchBarValue', { detail: { value } }));

@@ -241,10 +241,12 @@ export const clipboard: any = {
 
 export const showSaveFilePicker: typeof coreApi['showSaveFilePicker'] = ((...args: any[]) => invokeBridge('showSaveFilePicker', args)) as any;
 export const Database = {} as any;
-export const storage: any = {
-  get: () => {
-    throw new Error('未实现');
-  },
+export const storage: typeof coreApi['storage'] = {
+  getItem: (key: string) => invokeBridge('storage.getItem', [key]) as Promise<any | undefined>,
+  setItem: (key: string, value: any) => invokeBridge('storage.setItem', [key, value]),
+  removeItem: (key: string) => invokeBridge('storage.removeItem', [key]),
+  allItems: (keyPrefix: string) => invokeBridge('storage.allItems', [keyPrefix]),
+  clear: (keyPrefix: string) => invokeBridge('storage.clear', [keyPrefix]),
 };
 export const WebviewWindow = {} as any;
 export const Webview = {} as any;

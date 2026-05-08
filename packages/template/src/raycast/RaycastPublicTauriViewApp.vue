@@ -17,6 +17,7 @@ const snapshot = shallowRef<RaycastViewSnapshot | null>(null);
 let rawSnapshot: RaycastViewSnapshot | null = null;
 let unsubSnapshot: (() => void) | undefined;
 let unsubPatch: (() => void) | undefined;
+let unsubFormRefHandler: (() => void) | undefined;
 let eventsTarget: EventTarget | null = null;
 
 function hydrateCtx(): HydrateSnapshotContext {
@@ -40,6 +41,63 @@ function onPluginAction(event: Event) {
       preferences: props?.getPreferences?.() || {},
     });
   })();
+}
+
+function applyFormRefOp(payload: unknown) {
+  const data = (payload || {}) as { refId?: unknown; op?: unknown; value?: unknown };
+  const refId = typeof data.refId === 'string' ? data.refId : '';
+  const op = typeof data.op === 'string' ? data.op : '';
+  if (!refId || !op) return false;
+  const el = document.querySelector(`[data-rv-form-ref="${refId}"]`) as HTMLElement | null;
+  if (!el) return false;
+  if (op === 'focus') {
+    if ('focus' in el && typeof (el as any).focus === 'function') (el as any).focus();
+    return true;
+  }
+  if (op === 'reset') {
+    if (el instanceof HTMLInputElement) {
+      const kind = el.dataset.rvFormKind || '';
+      if (kind === 'checkbox') {
+        el.checked = Boolean(data.value);
+        el.dispatchEvent(new Event('change', { bubbles: true }));
+        return true;
+      }
+      if (kind === 'date') {
+        const v = data.value instanceof Date ? data.value.toISOString().slice(0, 10) : String(data.value || '');
+        el.value = v;
+        el.dispatchEvent(new Event('change', { bubbles: true }));
+        return true;
+      }
+      if (kind === 'file-picker') {
+        const values = Array.isArray(data.value) ? data.value : [];
+        el.dataset.rvFormValue = JSON.stringify(values);
+        el.dispatchEvent(new Event('change', { bubbles: true }));
+        return true;
+      }
+      el.value = String(data.value ?? '');
+      el.dispatchEvent(new Event('input', { bubbles: true }));
+      return true;
+    }
+    if (el instanceof HTMLTextAreaElement) {
+      el.value = String(data.value ?? '');
+      el.dispatchEvent(new Event('input', { bubbles: true }));
+      return true;
+    }
+    if (el instanceof HTMLSelectElement) {
+      const kind = el.dataset.rvFormKind || '';
+      if (kind === 'tag-picker') {
+        const selected = Array.isArray(data.value) ? data.value.map(String) : [];
+        for (const option of [...el.options]) {
+          option.selected = selected.includes(option.value);
+        }
+      } else {
+        el.value = String(data.value ?? '');
+      }
+      el.dispatchEvent(new Event('change', { bubbles: true }));
+      return true;
+    }
+  }
+  return false;
 }
 
 async function onPluginExit(event: Event) {
@@ -74,11 +132,14 @@ onMounted(() => {
     rawSnapshot = applyJsonPatch(rawSnapshot, patches) as RaycastViewSnapshot;
     snapshot.value = hydrateRaycastViewSnapshot(rawSnapshot, hydrateCtx());
   });
+
+  unsubFormRefHandler = channel.handle('raycast:view:form-item-ref', payload => applyFormRefOp(payload));
 });
 
 onBeforeUnmount(() => {
   unsubSnapshot?.();
   unsubPatch?.();
+  unsubFormRefHandler?.();
   rawSnapshot = null;
   if (eventsTarget) {
     eventsTarget.removeEventListener('plugin:action', onPluginAction as (_event: Event) => void);
