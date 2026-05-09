@@ -1,0 +1,314 @@
+.rv-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.rv-form-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--rv-text);
+}
+
+.rv-form-input,
+.rv-form-textarea,
+.rv-form-select {
+  width: 100%;
+  border: 1px solid var(--rv-border);
+  border-radius: 10px;
+  background: var(--rv-surface-elevated, var(--rv-surface));
+  color: var(--rv-text);
+  font: inherit;
+  font-size: 13px;
+  padding: 8px 10px;
+}
+
+.rv-form-textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+.rv-form-help {
+  font-size: 11px;
+  color: var(--rv-text-secondary);
+}
+
+.rv-form-help-error {
+  color: #ff6b6b;
+}
+
+.rv-form-markdown-preview {
+  border: 1px solid var(--rv-border);
+  border-radius: 10px;
+  background: var(--rv-surface);
+  padding: 10px;
+  font-size: 12px;
+  color: var(--rv-text-secondary);
+}
+
+.rv-form-markdown-preview p {
+  margin: 0.35em 0;
+}
+
+.rv-form-markdown-preview pre {
+  margin: 0.35em 0;
+  overflow: auto;
+}
+
+.rv-form-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--rv-text);
+  font-size: 13px;
+}
+
+.rv-tag-picker {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.rv-tag-picker-control {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  min-height: 36px;
+  padding: 5px 8px;
+  border: 1px solid var(--rv-border);
+  border-radius: 10px;
+  background: var(--rv-surface-elevated, var(--rv-surface));
+  color: var(--rv-text);
+  font-size: 13px;
+  cursor: text;
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+
+.rv-tag-picker-focused .rv-tag-picker-control {
+  border-color: var(--rv-row-selected-border, rgba(10, 132, 255, 0.55));
+  box-shadow: 0 0 0 1px var(--rv-row-selected-border, rgba(10, 132, 255, 0.55));
+}
+
+.rv-tag-picker-error .rv-tag-picker-control {
+  border-color: #ff6b6b;
+}
+
+.rv-tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 24px;
+  padding: 0 4px 0 8px;
+  border-radius: 6px;
+  background: var(--rv-row-hover, rgba(255, 255, 255, 0.08));
+  color: var(--rv-text);
+  font-size: 12px;
+  line-height: 1;
+  user-select: none;
+}
+
+.rv-tag-chip-icon {
+  font-size: 13px;
+  line-height: 1;
+}
+
+.rv-tag-chip-title {
+  white-space: nowrap;
+}
+
+.rv-tag-chip-remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  margin-left: 2px;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--rv-text-secondary);
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.rv-tag-chip-remove:hover {
+  background: var(--rv-row-hover, rgba(255, 255, 255, 0.12));
+  color: var(--rv-text);
+}
+
+.rv-tag-picker-input {
+  flex: 1 1 80px;
+  min-width: 80px;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--rv-text);
+  font: inherit;
+  font-size: 13px;
+  line-height: 24px;
+}
+
+.rv-tag-picker-input::placeholder {
+  color: var(--rv-text-secondary);
+}
+
+.rv-tag-picker-hidden-select {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+  pointer-events: none;
+}
+
+.rv-tag-picker-options {
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 6px;
+  max-height: 240px;
+  overflow-y: auto;
+  border: 1px solid var(--rv-border);
+  border-radius: 10px;
+  background: var(--rv-surface-elevated, var(--rv-surface));
+  box-shadow: var(--rv-shadow, 0 8px 24px rgba(15, 23, 42, 0.18));
+}
+
+.rv-tag-picker-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  color: var(--rv-text);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.rv-tag-picker-option-active {
+  background: var(--rv-row-hover, rgba(255, 255, 255, 0.08));
+}
+
+.rv-tag-picker-option-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.rv-tag-picker-option-title {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rv-file-picker {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.rv-file-picker-control {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  min-height: 36px;
+  padding: 5px 8px;
+  border: 1px solid var(--rv-border);
+  border-radius: 10px;
+  background: var(--rv-surface-elevated, var(--rv-surface));
+  color: var(--rv-text);
+  font-size: 13px;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+
+.rv-file-picker-control:focus-visible {
+  border-color: var(--rv-row-selected-border, rgba(10, 132, 255, 0.55));
+  box-shadow: 0 0 0 1px var(--rv-row-selected-border, rgba(10, 132, 255, 0.55));
+}
+
+.rv-file-picker-error .rv-file-picker-control {
+  border-color: #ff6b6b;
+}
+
+.rv-file-picker-busy .rv-file-picker-control {
+  cursor: progress;
+  opacity: 0.7;
+}
+
+.rv-file-picker-placeholder {
+  color: var(--rv-text-secondary);
+  line-height: 24px;
+}
+
+.rv-file-picker-add-hint {
+  color: var(--rv-text-secondary);
+  font-size: 12px;
+  line-height: 24px;
+  padding: 0 4px;
+}
+
+.rv-file-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 24px;
+  padding: 0 4px 0 8px;
+  border-radius: 6px;
+  background: var(--rv-row-hover, rgba(255, 255, 255, 0.08));
+  color: var(--rv-text);
+  font-size: 12px;
+  line-height: 1;
+  user-select: none;
+  max-width: 100%;
+}
+
+.rv-file-chip-icon {
+  font-size: 13px;
+  line-height: 1;
+}
+
+.rv-file-chip-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 220px;
+}
+
+.rv-file-chip-remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  margin-left: 2px;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--rv-text-secondary);
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.rv-file-chip-remove:hover {
+  background: var(--rv-row-hover, rgba(255, 255, 255, 0.12));
+  color: var(--rv-text);
+}

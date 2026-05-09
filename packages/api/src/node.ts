@@ -240,6 +240,7 @@ export const clipboard: any = {
 } as any;
 
 export const showSaveFilePicker: typeof coreApi['showSaveFilePicker'] = ((...args: any[]) => invokeBridge('showSaveFilePicker', args)) as any;
+export const showOpenFilePicker: typeof coreApi['showOpenFilePicker'] = ((...args: any[]) => invokeBridge('showOpenFilePicker', args)) as any;
 export const Database = {} as any;
 export const storage: typeof coreApi['storage'] = {
   getItem: (key: string) => invokeBridge('storage.getItem', [key]) as Promise<any | undefined>,

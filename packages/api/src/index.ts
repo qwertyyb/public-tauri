@@ -30,7 +30,7 @@ const getChannel = (): coreApi.PluginChannel => {
   throw new Error('channel is not supported in current environment');
 };
 
-export const { clipboard, dialog, mainWindow, fetch, utils, screen, WebviewWindow, Database, storage, showSaveFilePicker, fs, shell, opener, resolveFileIcon, resolveLocalPath, Webview, NativeWindow } = api || {};
+export const { clipboard, dialog, mainWindow, fetch, utils, screen, WebviewWindow, Database, storage, showSaveFilePicker, showOpenFilePicker, fs, shell, opener, resolveFileIcon, resolveLocalPath, Webview, NativeWindow } = api || {};
 
 export const channel: coreApi.PluginChannel = {
   invoke: (name, ...args) => getChannel().invoke(name, ...args),

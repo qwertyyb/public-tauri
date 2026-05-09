@@ -25,6 +25,8 @@ export default function Command() {
     category: 'feature',
     tags: ['blue'],
     files: [],
+    filesMultiple: [],
+    filesDirectory: [],
   });
 
   const preview = useMemo(() => JSON.stringify({
@@ -136,9 +138,25 @@ export default function Command() {
       </Form.TagPicker>
       <Form.FilePicker
         id="files"
-        title="Files"
+        title="Files (single)"
         value={values.files}
         onChange={value => setValues(prev => ({ ...prev, files: value }))}
+      />
+      {/* multiple files */}
+      <Form.FilePicker
+        id="files-multiple"
+        title="Files (multiple)"
+        value={values.filesMultiple}
+        onChange={value => setValues(prev => ({ ...prev, filesMultiple: value }))}
+        allowMultipleSelection
+      />
+      {/* directory */}
+      <Form.FilePicker
+        id="files-directory"
+        title="Directory"
+        value={values.filesDirectory}
+        onChange={value => setValues(prev => ({ ...prev, filesDirectory: value }))}
+        canChooseDirectories
       />
       <Form.Description text={`Preview:\n${preview}`} />
     </Form>

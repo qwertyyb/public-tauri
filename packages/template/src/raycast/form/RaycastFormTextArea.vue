@@ -76,3 +76,7 @@ function emitFormEvent(type: 'focus' | 'blur', value: unknown) {
     >{{ error ?? info }}</small>
   </label>
 </template>
+
+<style>
+@import './rv-form-shared.css';
+</style>

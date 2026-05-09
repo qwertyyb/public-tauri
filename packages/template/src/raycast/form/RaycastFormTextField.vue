@@ -84,3 +84,7 @@ function emitFormEvent(type: 'focus' | 'blur', value: unknown) {
     />
   </label>
 </template>
+
+<style>
+@import './rv-form-shared.css';
+</style>

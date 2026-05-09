@@ -285,6 +285,9 @@ importers:
 
   packages/template:
     dependencies:
+      '@nuxt/ui':
+        specifier: ^4.6.1
+        version: 4.6.1(@tiptap/extensions@3.22.4(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4))(@tiptap/y-tiptap@3.0.3(prosemirror-model@1.25.4)(prosemirror-state@1.4.4)(prosemirror-view@1.41.8)(y-protocols@1.0.7(yjs@13.6.30))(yjs@13.6.30))(async-validator@4.2.5)(embla-carousel@8.6.0)(focus-trap@7.8.0)(qrcode@1.5.4)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(tailwindcss@4.2.4)(typescript@5.9.2)(vite@7.1.8(@types/node@22.18.8)(jiti@2.6.1)(lightningcss@1.32.0)(sass-embedded@1.89.2)(tsx@4.20.3))(vue-router@4.5.1(vue@3.5.22(typescript@5.9.2)))(vue@3.5.22(typescript@5.9.2))(yjs@13.6.30)(zod@4.1.11)
       '@public-tauri/api':
         specifier: workspace:^
         version: link:../api
@@ -294,6 +297,9 @@ importers:
       markdown-it:
         specifier: ^14.1.0
         version: 14.1.0
+      tailwindcss:
+        specifier: ^4.2.4
+        version: 4.2.4
       vue:
         specifier: ^3.5.22
         version: 3.5.22(typescript@5.9.2)
@@ -301,6 +307,9 @@ importers:
         specifier: ^4.5.1
         version: 4.5.1(vue@3.5.22(typescript@5.9.2))
     devDependencies:
+      '@iconify-json/lucide':
+        specifier: ^1.2.102
+        version: 1.2.102
       '@tsconfig/node22':
         specifier: ^22.0.2
         version: 22.0.2
@@ -8983,6 +8992,15 @@ snapshots:
       - '@vue/composition-api'
       - vue
 
+  '@floating-ui/vue@1.1.11(vue@3.5.22(typescript@5.9.2))':
+    dependencies:
+      '@floating-ui/dom': 1.7.6
+      '@floating-ui/utils': 0.2.11
+      vue-demi: 0.14.10(vue@3.5.22(typescript@5.9.2))
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+
   '@floating-ui/vue@1.1.11(vue@3.5.32(typescript@6.0.2))':
     dependencies:
       '@floating-ui/dom': 1.7.6
@@ -9036,6 +9054,11 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
       vue: 3.5.18(typescript@5.9.2)
+
+  '@iconify/vue@5.0.0(vue@3.5.22(typescript@5.9.2))':
+    dependencies:
+      '@iconify/types': 2.0.0
+      vue: 3.5.22(typescript@5.9.2)
 
   '@iconify/vue@5.0.0(vue@3.5.32(typescript@6.0.2))':
     dependencies:
@@ -9517,6 +9540,14 @@ snapshots:
     transitivePeerDependencies:
       - magicast
 
+  '@nuxt/devtools-kit@3.2.4(vite@7.1.8(@types/node@22.18.8)(jiti@2.6.1)(lightningcss@1.32.0)(sass-embedded@1.89.2)(tsx@4.20.3))':
+    dependencies:
+      '@nuxt/kit': 4.4.2
+      execa: 8.0.1
+      vite: 7.1.8(@types/node@22.18.8)(jiti@2.6.1)(lightningcss@1.32.0)(sass-embedded@1.89.2)(tsx@4.20.3)
+    transitivePeerDependencies:
+      - magicast
+
   '@nuxt/devtools-kit@3.2.4(vite@8.0.7(@types/node@24.12.2)(esbuild@0.27.7)(jiti@2.6.1)(sass-embedded@1.89.2)(tsx@4.20.3))':
     dependencies:
       '@nuxt/kit': 4.4.2
@@ -9572,6 +9603,46 @@ snapshots:
       consola: 3.4.2
       defu: 6.1.7
       fontless: 0.2.1(vite@7.0.6(@types/node@24.12.2)(jiti@2.6.1)(lightningcss@1.32.0)(sass-embedded@1.89.2)(tsx@4.20.3))
+      h3: 1.15.11
+      magic-regexp: 0.10.0
+      ofetch: 1.5.1
+      pathe: 2.0.3
+      sirv: 3.0.2
+      tinyglobby: 0.2.15
+      ufo: 1.6.3
+      unifont: 0.7.4
+      unplugin: 3.0.0
+      unstorage: 1.17.5
+    transitivePeerDependencies:
+      - '@azure/app-configuration'
+      - '@azure/cosmos'
+      - '@azure/data-tables'
+      - '@azure/identity'
+      - '@azure/keyvault-secrets'
+      - '@azure/storage-blob'
+      - '@capacitor/preferences'
+      - '@deno/kv'
+      - '@netlify/blobs'
+      - '@planetscale/database'
+      - '@upstash/redis'
+      - '@vercel/blob'
+      - '@vercel/functions'
+      - '@vercel/kv'
+      - aws4fetch
+      - db0
+      - idb-keyval
+      - ioredis
+      - magicast
+      - uploadthing
+      - vite
+
+  '@nuxt/fonts@0.14.0(vite@7.1.8(@types/node@22.18.8)(jiti@2.6.1)(lightningcss@1.32.0)(sass-embedded@1.89.2)(tsx@4.20.3))':
+    dependencies:
+      '@nuxt/devtools-kit': 3.2.4(vite@7.1.8(@types/node@22.18.8)(jiti@2.6.1)(lightningcss@1.32.0)(sass-embedded@1.89.2)(tsx@4.20.3))
+      '@nuxt/kit': 4.4.2
+      consola: 3.4.2
+      defu: 6.1.7
+      fontless: 0.2.1(vite@7.1.8(@types/node@22.18.8)(jiti@2.6.1)(lightningcss@1.32.0)(sass-embedded@1.89.2)(tsx@4.20.3))
       h3: 1.15.11
       magic-regexp: 0.10.0
       ofetch: 1.5.1
@@ -9673,6 +9744,27 @@ snapshots:
       '@iconify/utils': 3.1.0
       '@iconify/vue': 5.0.0(vue@3.5.18(typescript@5.8.3))
       '@nuxt/devtools-kit': 3.2.4(vite@7.0.6(@types/node@24.12.2)(jiti@2.6.1)(lightningcss@1.32.0)(sass-embedded@1.89.2)(tsx@4.20.3))
+      '@nuxt/kit': 4.4.2
+      consola: 3.4.2
+      local-pkg: 1.1.2
+      mlly: 1.8.2
+      ohash: 2.0.11
+      pathe: 2.0.3
+      picomatch: 4.0.4
+      std-env: 3.10.0
+      tinyglobby: 0.2.15
+    transitivePeerDependencies:
+      - magicast
+      - vite
+      - vue
+
+  '@nuxt/icon@2.2.1(vite@7.1.8(@types/node@22.18.8)(jiti@2.6.1)(lightningcss@1.32.0)(sass-embedded@1.89.2)(tsx@4.20.3))(vue@3.5.22(typescript@5.9.2))':
+    dependencies:
+      '@iconify/collections': 1.0.675
+      '@iconify/types': 2.0.0
+      '@iconify/utils': 3.1.0
+      '@iconify/vue': 5.0.0(vue@3.5.22(typescript@5.9.2))
+      '@nuxt/devtools-kit': 3.2.4(vite@7.1.8(@types/node@22.18.8)(jiti@2.6.1)(lightningcss@1.32.0)(sass-embedded@1.89.2)(tsx@4.20.3))
       '@nuxt/kit': 4.4.2
       consola: 3.4.2
       local-pkg: 1.1.2
@@ -9837,6 +9929,119 @@ snapshots:
       vue-component-type-helpers: 3.2.7
     optionalDependencies:
       vue-router: 4.5.1(vue@3.5.18(typescript@5.8.3))
+      zod: 4.1.11
+    transitivePeerDependencies:
+      - '@azure/app-configuration'
+      - '@azure/cosmos'
+      - '@azure/data-tables'
+      - '@azure/identity'
+      - '@azure/keyvault-secrets'
+      - '@azure/storage-blob'
+      - '@capacitor/preferences'
+      - '@deno/kv'
+      - '@emotion/is-prop-valid'
+      - '@netlify/blobs'
+      - '@planetscale/database'
+      - '@tiptap/extensions'
+      - '@tiptap/y-tiptap'
+      - '@upstash/redis'
+      - '@vercel/blob'
+      - '@vercel/functions'
+      - '@vercel/kv'
+      - '@vue/composition-api'
+      - async-validator
+      - aws4fetch
+      - axios
+      - change-case
+      - db0
+      - drauu
+      - embla-carousel
+      - focus-trap
+      - idb-keyval
+      - ioredis
+      - jwt-decode
+      - magicast
+      - nprogress
+      - qrcode
+      - react
+      - react-dom
+      - sortablejs
+      - universal-cookie
+      - uploadthing
+      - vite
+      - vue
+      - yjs
+
+  '@nuxt/ui@4.6.1(@tiptap/extensions@3.22.4(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4))(@tiptap/y-tiptap@3.0.3(prosemirror-model@1.25.4)(prosemirror-state@1.4.4)(prosemirror-view@1.41.8)(y-protocols@1.0.7(yjs@13.6.30))(yjs@13.6.30))(async-validator@4.2.5)(embla-carousel@8.6.0)(focus-trap@7.8.0)(qrcode@1.5.4)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(tailwindcss@4.2.4)(typescript@5.9.2)(vite@7.1.8(@types/node@22.18.8)(jiti@2.6.1)(lightningcss@1.32.0)(sass-embedded@1.89.2)(tsx@4.20.3))(vue-router@4.5.1(vue@3.5.22(typescript@5.9.2)))(vue@3.5.22(typescript@5.9.2))(yjs@13.6.30)(zod@4.1.11)':
+    dependencies:
+      '@floating-ui/dom': 1.7.6
+      '@iconify/vue': 5.0.0(vue@3.5.22(typescript@5.9.2))
+      '@internationalized/date': 3.12.1
+      '@internationalized/number': 3.6.6
+      '@nuxt/fonts': 0.14.0(vite@7.1.8(@types/node@22.18.8)(jiti@2.6.1)(lightningcss@1.32.0)(sass-embedded@1.89.2)(tsx@4.20.3))
+      '@nuxt/icon': 2.2.1(vite@7.1.8(@types/node@22.18.8)(jiti@2.6.1)(lightningcss@1.32.0)(sass-embedded@1.89.2)(tsx@4.20.3))(vue@3.5.22(typescript@5.9.2))
+      '@nuxt/kit': 4.4.2
+      '@nuxt/schema': 4.4.2
+      '@nuxtjs/color-mode': 3.5.2
+      '@standard-schema/spec': 1.1.0
+      '@tailwindcss/postcss': 4.2.4
+      '@tailwindcss/vite': 4.2.4(vite@7.1.8(@types/node@22.18.8)(jiti@2.6.1)(lightningcss@1.32.0)(sass-embedded@1.89.2)(tsx@4.20.3))
+      '@tanstack/vue-table': 8.21.3(vue@3.5.22(typescript@5.9.2))
+      '@tanstack/vue-virtual': 3.13.24(vue@3.5.22(typescript@5.9.2))
+      '@tiptap/core': 3.22.4(@tiptap/pm@3.22.4)
+      '@tiptap/extension-bubble-menu': 3.22.4(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4)
+      '@tiptap/extension-code': 3.22.4(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))
+      '@tiptap/extension-collaboration': 3.22.4(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4)(@tiptap/y-tiptap@3.0.3(prosemirror-model@1.25.4)(prosemirror-state@1.4.4)(prosemirror-view@1.41.8)(y-protocols@1.0.7(yjs@13.6.30))(yjs@13.6.30))(yjs@13.6.30)
+      '@tiptap/extension-drag-handle': 3.22.4(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/extension-collaboration@3.22.4(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4)(@tiptap/y-tiptap@3.0.3(prosemirror-model@1.25.4)(prosemirror-state@1.4.4)(prosemirror-view@1.41.8)(y-protocols@1.0.7(yjs@13.6.30))(yjs@13.6.30))(yjs@13.6.30))(@tiptap/extension-node-range@3.22.4(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4)(@tiptap/y-tiptap@3.0.3(prosemirror-model@1.25.4)(prosemirror-state@1.4.4)(prosemirror-view@1.41.8)(y-protocols@1.0.7(yjs@13.6.30))(yjs@13.6.30))
+      '@tiptap/extension-drag-handle-vue-3': 3.22.4(@tiptap/extension-drag-handle@3.22.4(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/extension-collaboration@3.22.4(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4)(@tiptap/y-tiptap@3.0.3(prosemirror-model@1.25.4)(prosemirror-state@1.4.4)(prosemirror-view@1.41.8)(y-protocols@1.0.7(yjs@13.6.30))(yjs@13.6.30))(yjs@13.6.30))(@tiptap/extension-node-range@3.22.4(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4)(@tiptap/y-tiptap@3.0.3(prosemirror-model@1.25.4)(prosemirror-state@1.4.4)(prosemirror-view@1.41.8)(y-protocols@1.0.7(yjs@13.6.30))(yjs@13.6.30)))(@tiptap/pm@3.22.4)(@tiptap/vue-3@3.22.4(@floating-ui/dom@1.7.6)(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4)(vue@3.5.18(typescript@5.9.2)))(vue@3.5.22(typescript@5.9.2))
+      '@tiptap/extension-floating-menu': 3.22.4(@floating-ui/dom@1.7.6)(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4)
+      '@tiptap/extension-horizontal-rule': 3.22.4(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4)
+      '@tiptap/extension-image': 3.22.4(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))
+      '@tiptap/extension-mention': 3.22.4(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4)(@tiptap/suggestion@3.22.4(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4))
+      '@tiptap/extension-node-range': 3.22.4(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4)
+      '@tiptap/extension-placeholder': 3.22.4(@tiptap/extensions@3.22.4(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4))
+      '@tiptap/markdown': 3.22.4(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4)
+      '@tiptap/pm': 3.22.4
+      '@tiptap/starter-kit': 3.22.4
+      '@tiptap/suggestion': 3.22.4(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4)
+      '@tiptap/vue-3': 3.22.4(@floating-ui/dom@1.7.6)(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4)(vue@3.5.22(typescript@5.9.2))
+      '@unhead/vue': 2.1.13(vue@3.5.22(typescript@5.9.2))
+      '@vueuse/core': 14.2.1(vue@3.5.22(typescript@5.9.2))
+      '@vueuse/integrations': 14.2.1(async-validator@4.2.5)(focus-trap@7.8.0)(fuse.js@7.3.0)(qrcode@1.5.4)(vue@3.5.22(typescript@5.9.2))
+      '@vueuse/shared': 14.2.1(vue@3.5.22(typescript@5.9.2))
+      colortranslator: 5.0.0
+      consola: 3.4.2
+      defu: 6.1.7
+      embla-carousel-auto-height: 8.6.0(embla-carousel@8.6.0)
+      embla-carousel-auto-scroll: 8.6.0(embla-carousel@8.6.0)
+      embla-carousel-autoplay: 8.6.0(embla-carousel@8.6.0)
+      embla-carousel-class-names: 8.6.0(embla-carousel@8.6.0)
+      embla-carousel-fade: 8.6.0(embla-carousel@8.6.0)
+      embla-carousel-vue: 8.6.0(vue@3.5.22(typescript@5.9.2))
+      embla-carousel-wheel-gestures: 8.1.0(embla-carousel@8.6.0)
+      fuse.js: 7.3.0
+      hookable: 6.1.0
+      knitwork: 1.3.0
+      magic-string: 0.30.21
+      mlly: 1.8.2
+      motion-v: 2.2.1(@vueuse/core@14.2.1(vue@3.5.18(typescript@5.9.2)))(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(vue@3.5.22(typescript@5.9.2))
+      ohash: 2.0.11
+      pathe: 2.0.3
+      reka-ui: 2.9.3(vue@3.5.22(typescript@5.9.2))
+      scule: 1.3.0
+      tailwind-merge: 3.5.0
+      tailwind-variants: 3.2.2(tailwind-merge@3.5.0)(tailwindcss@4.2.4)
+      tailwindcss: 4.2.4
+      tinyglobby: 0.2.15
+      typescript: 5.9.2
+      ufo: 1.6.3
+      unplugin: 3.0.0
+      unplugin-auto-import: 21.0.0(@nuxt/kit@4.4.2)(@vueuse/core@14.2.1(vue@3.5.18(typescript@5.9.2)))
+      unplugin-vue-components: 32.0.0(@nuxt/kit@4.4.2)(vue@3.5.22(typescript@5.9.2))
+      vaul-vue: 0.4.1(reka-ui@2.9.3(vue@3.5.18(typescript@5.9.2)))(vue@3.5.22(typescript@5.9.2))
+      vue-component-type-helpers: 3.2.7
+    optionalDependencies:
+      vue-router: 4.5.1(vue@3.5.22(typescript@5.9.2))
       zod: 4.1.11
     transitivePeerDependencies:
       - '@azure/app-configuration'
@@ -10488,6 +10693,13 @@ snapshots:
       tailwindcss: 4.2.4
       vite: 7.0.6(@types/node@24.12.2)(jiti@2.6.1)(lightningcss@1.32.0)(sass-embedded@1.89.2)(tsx@4.20.3)
 
+  '@tailwindcss/vite@4.2.4(vite@7.1.8(@types/node@22.18.8)(jiti@2.6.1)(lightningcss@1.32.0)(sass-embedded@1.89.2)(tsx@4.20.3))':
+    dependencies:
+      '@tailwindcss/node': 4.2.4
+      '@tailwindcss/oxide': 4.2.4
+      tailwindcss: 4.2.4
+      vite: 7.1.8(@types/node@22.18.8)(jiti@2.6.1)(lightningcss@1.32.0)(sass-embedded@1.89.2)(tsx@4.20.3)
+
   '@tailwindcss/vite@4.2.4(vite@8.0.7(@types/node@24.12.2)(esbuild@0.27.7)(jiti@2.6.1)(sass-embedded@1.89.2)(tsx@4.20.3))':
     dependencies:
       '@tailwindcss/node': 4.2.4
@@ -10509,6 +10721,11 @@ snapshots:
       '@tanstack/table-core': 8.21.3
       vue: 3.5.18(typescript@5.9.2)
 
+  '@tanstack/vue-table@8.21.3(vue@3.5.22(typescript@5.9.2))':
+    dependencies:
+      '@tanstack/table-core': 8.21.3
+      vue: 3.5.22(typescript@5.9.2)
+
   '@tanstack/vue-table@8.21.3(vue@3.5.32(typescript@6.0.2))':
     dependencies:
       '@tanstack/table-core': 8.21.3
@@ -10523,6 +10740,11 @@ snapshots:
     dependencies:
       '@tanstack/virtual-core': 3.14.0
       vue: 3.5.18(typescript@5.9.2)
+
+  '@tanstack/vue-virtual@3.13.24(vue@3.5.22(typescript@5.9.2))':
+    dependencies:
+      '@tanstack/virtual-core': 3.14.0
+      vue: 3.5.22(typescript@5.9.2)
 
   '@tanstack/vue-virtual@3.13.24(vue@3.5.32(typescript@6.0.2))':
     dependencies:
@@ -10667,6 +10889,13 @@ snapshots:
       '@tiptap/pm': 3.22.4
       '@tiptap/vue-3': 3.22.4(@floating-ui/dom@1.7.6)(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4)(vue@3.5.18(typescript@5.9.2))
       vue: 3.5.18(typescript@5.9.2)
+
+  '@tiptap/extension-drag-handle-vue-3@3.22.4(@tiptap/extension-drag-handle@3.22.4(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/extension-collaboration@3.22.4(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4)(@tiptap/y-tiptap@3.0.3(prosemirror-model@1.25.4)(prosemirror-state@1.4.4)(prosemirror-view@1.41.8)(y-protocols@1.0.7(yjs@13.6.30))(yjs@13.6.30))(yjs@13.6.30))(@tiptap/extension-node-range@3.22.4(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4)(@tiptap/y-tiptap@3.0.3(prosemirror-model@1.25.4)(prosemirror-state@1.4.4)(prosemirror-view@1.41.8)(y-protocols@1.0.7(yjs@13.6.30))(yjs@13.6.30)))(@tiptap/pm@3.22.4)(@tiptap/vue-3@3.22.4(@floating-ui/dom@1.7.6)(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4)(vue@3.5.18(typescript@5.9.2)))(vue@3.5.22(typescript@5.9.2))':
+    dependencies:
+      '@tiptap/extension-drag-handle': 3.22.4(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/extension-collaboration@3.22.4(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4)(@tiptap/y-tiptap@3.0.3(prosemirror-model@1.25.4)(prosemirror-state@1.4.4)(prosemirror-view@1.41.8)(y-protocols@1.0.7(yjs@13.6.30))(yjs@13.6.30))(yjs@13.6.30))(@tiptap/extension-node-range@3.22.4(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4)(@tiptap/y-tiptap@3.0.3(prosemirror-model@1.25.4)(prosemirror-state@1.4.4)(prosemirror-view@1.41.8)(y-protocols@1.0.7(yjs@13.6.30))(yjs@13.6.30))
+      '@tiptap/pm': 3.22.4
+      '@tiptap/vue-3': 3.22.4(@floating-ui/dom@1.7.6)(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4)(vue@3.5.18(typescript@5.9.2))
+      vue: 3.5.22(typescript@5.9.2)
 
   '@tiptap/extension-drag-handle-vue-3@3.22.4(@tiptap/extension-drag-handle@3.22.4(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/extension-collaboration@3.22.4(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4)(@tiptap/y-tiptap@3.0.3(prosemirror-model@1.25.4)(prosemirror-state@1.4.4)(prosemirror-view@1.41.8)(y-protocols@1.0.7(yjs@13.6.30))(yjs@13.6.30))(yjs@13.6.30))(@tiptap/extension-node-range@3.22.4(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4)(@tiptap/y-tiptap@3.0.3(prosemirror-model@1.25.4)(prosemirror-state@1.4.4)(prosemirror-view@1.41.8)(y-protocols@1.0.7(yjs@13.6.30))(yjs@13.6.30)))(@tiptap/pm@3.22.4)(@tiptap/vue-3@3.22.4(@floating-ui/dom@1.7.6)(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4)(vue@3.5.18(typescript@5.9.2)))(vue@3.5.32(typescript@6.0.2))':
     dependencies:
@@ -10847,6 +11076,16 @@ snapshots:
       '@tiptap/core': 3.22.4(@tiptap/pm@3.22.4)
       '@tiptap/pm': 3.22.4
       vue: 3.5.18(typescript@5.9.2)
+    optionalDependencies:
+      '@tiptap/extension-bubble-menu': 3.22.4(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4)
+      '@tiptap/extension-floating-menu': 3.22.4(@floating-ui/dom@1.7.6)(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4)
+
+  '@tiptap/vue-3@3.22.4(@floating-ui/dom@1.7.6)(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4)(vue@3.5.22(typescript@5.9.2))':
+    dependencies:
+      '@floating-ui/dom': 1.7.6
+      '@tiptap/core': 3.22.4(@tiptap/pm@3.22.4)
+      '@tiptap/pm': 3.22.4
+      vue: 3.5.22(typescript@5.9.2)
     optionalDependencies:
       '@tiptap/extension-bubble-menu': 3.22.4(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4)
       '@tiptap/extension-floating-menu': 3.22.4(@floating-ui/dom@1.7.6)(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4)
@@ -11344,6 +11583,12 @@ snapshots:
       hookable: 6.1.0
       unhead: 2.1.13
       vue: 3.5.18(typescript@5.9.2)
+
+  '@unhead/vue@2.1.13(vue@3.5.22(typescript@5.9.2))':
+    dependencies:
+      hookable: 6.1.0
+      unhead: 2.1.13
+      vue: 3.5.22(typescript@5.9.2)
 
   '@unhead/vue@2.1.13(vue@3.5.32(typescript@6.0.2))':
     dependencies:
@@ -11852,6 +12097,16 @@ snapshots:
       - '@vue/composition-api'
       - vue
 
+  '@vueuse/core@10.11.1(vue@3.5.22(typescript@5.9.2))':
+    dependencies:
+      '@types/web-bluetooth': 0.0.20
+      '@vueuse/metadata': 10.11.1
+      '@vueuse/shared': 10.11.1(vue@3.5.22(typescript@5.9.2))
+      vue-demi: 0.14.10(vue@3.5.22(typescript@5.9.2))
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+
   '@vueuse/core@10.11.1(vue@3.5.32(typescript@6.0.2))':
     dependencies:
       '@types/web-bluetooth': 0.0.20
@@ -11884,6 +12139,13 @@ snapshots:
       '@vueuse/metadata': 14.2.1
       '@vueuse/shared': 14.2.1(vue@3.5.18(typescript@5.9.2))
       vue: 3.5.18(typescript@5.9.2)
+
+  '@vueuse/core@14.2.1(vue@3.5.22(typescript@5.9.2))':
+    dependencies:
+      '@types/web-bluetooth': 0.0.21
+      '@vueuse/metadata': 14.2.1
+      '@vueuse/shared': 14.2.1(vue@3.5.22(typescript@5.9.2))
+      vue: 3.5.22(typescript@5.9.2)
 
   '@vueuse/core@14.2.1(vue@3.5.32(typescript@6.0.2))':
     dependencies:
@@ -11927,6 +12189,17 @@ snapshots:
       fuse.js: 7.3.0
       qrcode: 1.5.4
 
+  '@vueuse/integrations@14.2.1(async-validator@4.2.5)(focus-trap@7.8.0)(fuse.js@7.3.0)(qrcode@1.5.4)(vue@3.5.22(typescript@5.9.2))':
+    dependencies:
+      '@vueuse/core': 14.2.1(vue@3.5.22(typescript@5.9.2))
+      '@vueuse/shared': 14.2.1(vue@3.5.22(typescript@5.9.2))
+      vue: 3.5.22(typescript@5.9.2)
+    optionalDependencies:
+      async-validator: 4.2.5
+      focus-trap: 7.8.0
+      fuse.js: 7.3.0
+      qrcode: 1.5.4
+
   '@vueuse/integrations@14.2.1(async-validator@4.2.5)(focus-trap@7.8.0)(fuse.js@7.3.0)(qrcode@1.5.4)(vue@3.5.32(typescript@6.0.2))':
     dependencies:
       '@vueuse/core': 14.2.1(vue@3.5.32(typescript@6.0.2))
@@ -11958,6 +12231,13 @@ snapshots:
       - '@vue/composition-api'
       - vue
 
+  '@vueuse/shared@10.11.1(vue@3.5.22(typescript@5.9.2))':
+    dependencies:
+      vue-demi: 0.14.10(vue@3.5.22(typescript@5.9.2))
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+
   '@vueuse/shared@10.11.1(vue@3.5.32(typescript@6.0.2))':
     dependencies:
       vue-demi: 0.14.10(vue@3.5.32(typescript@6.0.2))
@@ -11978,6 +12258,10 @@ snapshots:
   '@vueuse/shared@14.2.1(vue@3.5.18(typescript@5.9.2))':
     dependencies:
       vue: 3.5.18(typescript@5.9.2)
+
+  '@vueuse/shared@14.2.1(vue@3.5.22(typescript@5.9.2))':
+    dependencies:
+      vue: 3.5.22(typescript@5.9.2)
 
   '@vueuse/shared@14.2.1(vue@3.5.32(typescript@6.0.2))':
     dependencies:
@@ -12585,6 +12869,12 @@ snapshots:
       embla-carousel: 8.6.0
       embla-carousel-reactive-utils: 8.6.0(embla-carousel@8.6.0)
       vue: 3.5.18(typescript@5.9.2)
+
+  embla-carousel-vue@8.6.0(vue@3.5.22(typescript@5.9.2)):
+    dependencies:
+      embla-carousel: 8.6.0
+      embla-carousel-reactive-utils: 8.6.0(embla-carousel@8.6.0)
+      vue: 3.5.22(typescript@5.9.2)
 
   embla-carousel-vue@8.6.0(vue@3.5.32(typescript@6.0.2)):
     dependencies:
@@ -13358,6 +13648,44 @@ snapshots:
       unstorage: 1.17.5
     optionalDependencies:
       vite: 7.0.6(@types/node@24.12.2)(jiti@2.6.1)(lightningcss@1.32.0)(sass-embedded@1.89.2)(tsx@4.20.3)
+    transitivePeerDependencies:
+      - '@azure/app-configuration'
+      - '@azure/cosmos'
+      - '@azure/data-tables'
+      - '@azure/identity'
+      - '@azure/keyvault-secrets'
+      - '@azure/storage-blob'
+      - '@capacitor/preferences'
+      - '@deno/kv'
+      - '@netlify/blobs'
+      - '@planetscale/database'
+      - '@upstash/redis'
+      - '@vercel/blob'
+      - '@vercel/functions'
+      - '@vercel/kv'
+      - aws4fetch
+      - db0
+      - idb-keyval
+      - ioredis
+      - uploadthing
+
+  fontless@0.2.1(vite@7.1.8(@types/node@22.18.8)(jiti@2.6.1)(lightningcss@1.32.0)(sass-embedded@1.89.2)(tsx@4.20.3)):
+    dependencies:
+      consola: 3.4.2
+      css-tree: 3.2.1
+      defu: 6.1.7
+      esbuild: 0.27.7
+      fontaine: 0.8.0
+      jiti: 2.6.1
+      lightningcss: 1.32.0
+      magic-string: 0.30.21
+      ohash: 2.0.11
+      pathe: 2.0.3
+      ufo: 1.6.3
+      unifont: 0.7.4
+      unstorage: 1.17.5
+    optionalDependencies:
+      vite: 7.1.8(@types/node@22.18.8)(jiti@2.6.1)(lightningcss@1.32.0)(sass-embedded@1.89.2)(tsx@4.20.3)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -14304,6 +14632,19 @@ snapshots:
       - react
       - react-dom
 
+  motion-v@2.2.1(@vueuse/core@14.2.1(vue@3.5.18(typescript@5.9.2)))(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(vue@3.5.22(typescript@5.9.2)):
+    dependencies:
+      '@vueuse/core': 14.2.1(vue@3.5.18(typescript@5.9.2))
+      framer-motion: 12.38.0(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
+      hey-listen: 1.0.8
+      motion-dom: 12.38.0
+      motion-utils: 12.36.0
+      vue: 3.5.22(typescript@5.9.2)
+    transitivePeerDependencies:
+      - '@emotion/is-prop-valid'
+      - react
+      - react-dom
+
   motion-v@2.2.1(@vueuse/core@14.2.1(vue@3.5.18(typescript@5.9.2)))(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(vue@3.5.32(typescript@6.0.2)):
     dependencies:
       '@vueuse/core': 14.2.1(vue@3.5.18(typescript@5.9.2))
@@ -14991,6 +15332,22 @@ snapshots:
       defu: 6.1.7
       ohash: 2.0.11
       vue: 3.5.18(typescript@5.9.2)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+
+  reka-ui@2.9.3(vue@3.5.22(typescript@5.9.2)):
+    dependencies:
+      '@floating-ui/dom': 1.7.6
+      '@floating-ui/vue': 1.1.11(vue@3.5.22(typescript@5.9.2))
+      '@internationalized/date': 3.12.1
+      '@internationalized/number': 3.6.6
+      '@tanstack/vue-virtual': 3.13.24(vue@3.5.22(typescript@5.9.2))
+      '@vueuse/core': 14.2.1(vue@3.5.22(typescript@5.9.2))
+      '@vueuse/shared': 14.2.1(vue@3.5.22(typescript@5.9.2))
+      aria-hidden: 1.2.6
+      defu: 6.1.7
+      ohash: 2.0.11
+      vue: 3.5.22(typescript@5.9.2)
     transitivePeerDependencies:
       - '@vue/composition-api'
 
@@ -16033,6 +16390,21 @@ snapshots:
     optionalDependencies:
       '@nuxt/kit': 4.4.2
 
+  unplugin-vue-components@32.0.0(@nuxt/kit@4.4.2)(vue@3.5.22(typescript@5.9.2)):
+    dependencies:
+      chokidar: 5.0.0
+      local-pkg: 1.1.2
+      magic-string: 0.30.21
+      mlly: 1.8.2
+      obug: 2.1.1
+      picomatch: 4.0.4
+      tinyglobby: 0.2.15
+      unplugin: 3.0.0
+      unplugin-utils: 0.3.1
+      vue: 3.5.22(typescript@5.9.2)
+    optionalDependencies:
+      '@nuxt/kit': 4.4.2
+
   unplugin-vue-components@32.0.0(@nuxt/kit@4.4.2)(vue@3.5.32(typescript@6.0.2)):
     dependencies:
       chokidar: 5.0.0
@@ -16134,6 +16506,14 @@ snapshots:
       '@vueuse/core': 10.11.1(vue@3.5.18(typescript@5.9.2))
       reka-ui: 2.9.3(vue@3.5.18(typescript@5.9.2))
       vue: 3.5.18(typescript@5.9.2)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+
+  vaul-vue@0.4.1(reka-ui@2.9.3(vue@3.5.18(typescript@5.9.2)))(vue@3.5.22(typescript@5.9.2)):
+    dependencies:
+      '@vueuse/core': 10.11.1(vue@3.5.22(typescript@5.9.2))
+      reka-ui: 2.9.3(vue@3.5.18(typescript@5.9.2))
+      vue: 3.5.22(typescript@5.9.2)
     transitivePeerDependencies:
       - '@vue/composition-api'
 
@@ -16465,6 +16845,10 @@ snapshots:
   vue-demi@0.14.10(vue@3.5.18(typescript@5.9.2)):
     dependencies:
       vue: 3.5.18(typescript@5.9.2)
+
+  vue-demi@0.14.10(vue@3.5.22(typescript@5.9.2)):
+    dependencies:
+      vue: 3.5.22(typescript@5.9.2)
 
   vue-demi@0.14.10(vue@3.5.32(typescript@6.0.2)):
     dependencies:
