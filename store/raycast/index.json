@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generatedAt": "2026-05-08T19:50:32.634Z",
+  "generatedAt": "2026-05-09T19:20:07.414Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "21f307a4ce469a4dd20e7dfa219d340168d6a87d"
+    "commit": "099d7222215265ea97bb55f1ab54fae289cd25f5"
   },
   "count": 2892,
   "extensions": [
