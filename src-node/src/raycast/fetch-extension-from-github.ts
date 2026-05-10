@@ -1,6 +1,6 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { downloadGitFolder } from '../git/download-git-folder.js';
+import { downloadGitFolder } from '../utils/git.js';
 
 const GITHUB_API = 'https://api.github.com';
 const RAW_BASE = 'https://raw.githubusercontent.com';

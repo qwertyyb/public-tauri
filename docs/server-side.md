@@ -4,7 +4,7 @@
 
 在插件 **server** 入口中如需使用与主应用一致的 API，请从 **`@public-tauri/api/node`** 引入：与 `localhost:2345` 上已有能力一致的（如 `utils` 中走 `invokeServerUtils` 的路径）在 Node 内直接完成；仅当需要 Tauri、WebView 或 `window` 事件时，才经主窗体上的 Socket 回桥执行。主应用启动后会自动建立 `__public_tauri_host__` 的 Socket 连接用于该回桥。
 
-`pnpm --filter src-node run build` 会生成 `dist/public-plugin-worker.cjs`，主进程用 `new Worker(fileUrl)` 加载。协议字段见 `src-node/src/plugin/worker-protocol.ts`（`kind: m2w:*` / `w2m:*` 前缀，避免与旧版单字母字段混淆）。
+`pnpm --filter src-node run build` 会生成 `dist/public-plugin-worker.cjs`（源码入口 `src-node/src/plugin-runtime-entry.ts`，插件 server module 的 Worker 运行时），主进程用 `new Worker(fileUrl)` 加载。协议字段见 `src-node/src/plugin/worker-protocol.ts`（`kind: m2w:*` / `w2m:*` 前缀，避免与旧版单字母字段混淆）。
 
 ## 配置
 

@@ -29,7 +29,7 @@ export default defineConfig([
   },
   {
     entry: {
-      'public-plugin-worker': './src/plugin/worker/entry.ts',
+      'public-plugin-worker': './src/plugin-runtime-entry.ts',
     },
     platform: 'node',
     format: 'commonjs',

@@ -1,6 +1,13 @@
+/**
+ * 插件 server module 在 Node `worker_threads` 中的运行时入口。
+ *
+ * 由 tsdown 打包为 `dist/public-plugin-worker.cjs`，主进程通过 `new Worker(fileUrl)` 加载；
+ * 在本 Worker 内动态 `import()` 各插件的 server 模块并完成 boot 握手（见 `WorkerToMain.BOOT_READY`）。
+ */
+
 import { parentPort, isMainThread, workerData } from 'node:worker_threads';
 import { pathToFileURL } from 'node:url';
-import { WorkerToMain } from '../worker-protocol';
+import { WorkerToMain } from './plugin/worker-protocol';
 
 if (isMainThread || !parentPort) {
   throw new Error('public plugin worker: must run inside worker_threads');
