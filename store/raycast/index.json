@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-05-09T19:20:07.414Z",
+  "generatedAt": "2026-05-10T19:21:36.918Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "099d7222215265ea97bb55f1ab54fae289cd25f5"
+    "commit": "f198acd24a916bfe35e6986135ee1ae0ae62eaaf"
   },
-  "count": 2892,
+  "count": 2893,
   "extensions": [
     {
       "name": "0x0",
@@ -105429,7 +105429,9 @@
         "Applications"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/ho991217/kef-control",
       "source": {
         "type": "github-monorepo",
@@ -124154,7 +124156,7 @@
         "macOS",
         "Windows"
       ],
-      "version": "1.0.0",
+      "version": "1.2.0",
       "storeUrl": "https://www.raycast.com/monfortegg/minimax-ai",
       "source": {
         "type": "github-monorepo",
@@ -124194,16 +124196,50 @@
           "placeholder": "Enter your MiniMax API key"
         },
         {
+          "name": "apiEndpoint",
+          "type": "dropdown",
+          "required": false,
+          "title": "API Endpoint",
+          "description": "Select the API endpoint based on your account region",
+          "default": "international",
+          "data": [
+            {
+              "title": "China (api.minimaxi.com)",
+              "value": "china"
+            },
+            {
+              "title": "International (api.minimax.io)",
+              "value": "international"
+            }
+          ]
+        },
+        {
           "name": "model",
           "type": "dropdown",
           "required": false,
           "title": "Model",
           "description": "MiniMax model to use for AI responses",
-          "default": "MiniMax-M2.5",
+          "default": "MiniMax-M2.7",
           "data": [
             {
-              "title": "MiniMax M2.5 (Recommended)",
+              "title": "MiniMax M2.7 (Recommended)",
+              "value": "MiniMax-M2.7"
+            },
+            {
+              "title": "MiniMax M2.7-highspeed",
+              "value": "MiniMax-M2.7-highspeed"
+            },
+            {
+              "title": "MiniMax M2.5",
               "value": "MiniMax-M2.5"
+            },
+            {
+              "title": "MiniMax M2.5-highspeed",
+              "value": "MiniMax-M2.5-highspeed"
+            },
+            {
+              "title": "M2-her (Roleplay)",
+              "value": "M2-her"
             },
             {
               "title": "MiniMax M2.1",
@@ -147008,6 +147044,24 @@
           "description": "Your Parcel API key generated from web.parcelapp.net",
           "type": "password",
           "required": true
+        },
+        {
+          "name": "ambiguousDotDateOrder",
+          "title": "Ambiguous Dotted Dates (e.g. 06.07.2025)",
+          "description": "Some carriers send dates where both numbers could be month or day. Choose how to interpret them.",
+          "type": "dropdown",
+          "required": false,
+          "default": "month_day",
+          "data": [
+            {
+              "title": "MM.DD — common in US",
+              "value": "month_day"
+            },
+            {
+              "title": "DD.MM — common in EU/GB",
+              "value": "day_month"
+            }
+          ]
         }
       ]
     },
@@ -204390,7 +204444,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/chupi/tabby",
       "source": {
@@ -204410,7 +204465,24 @@
           "preferences": []
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "tabbyPath",
+          "type": "textfield",
+          "required": false,
+          "title": "Tabby Executable Path",
+          "description": "Optional. Override the path to the Tabby executable. Leave empty to use the default for your OS.",
+          "default": ""
+        },
+        {
+          "name": "configPath",
+          "type": "textfield",
+          "required": false,
+          "title": "Tabby Config Path",
+          "description": "Optional. Override the path to Tabby's config.yaml. Leave empty to use the default for your OS.",
+          "default": ""
+        }
+      ]
     },
     {
       "name": "table-converter",
@@ -237230,6 +237302,131 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "wrap-unwrap",
+      "title": "Wrap Unwrap",
+      "description": "Wrap and unwrap text using Markdown-aware reflow.",
+      "icon": "extension-icon.png",
+      "author": "chrismessina",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/chrismessina/wrap-unwrap",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/wrap-unwrap",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "wrap-text",
+          "title": "Wrap Text",
+          "description": "Wrap text at a configurable column width.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "width",
+              "title": "Wrap Column",
+              "description": "Wrap lines at this column. Must be a positive integer; falls back to 80 on invalid input.",
+              "type": "textfield",
+              "required": false,
+              "default": "80",
+              "placeholder": "80"
+            }
+          ]
+        },
+        {
+          "name": "unwrap-text",
+          "title": "Unwrap Text",
+          "description": "Reflow wrapped text into continuous paragraphs while preserving Markdown structure.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "hyphenation",
+              "title": "Hyphenation",
+              "description": "When joining lines, remove a trailing hyphen if it appears to be a soft line-break hyphen (e.g., `inter-` + `esting` becomes `interesting`).",
+              "type": "checkbox",
+              "required": false,
+              "default": true,
+              "label": "Strip Soft Hyphens"
+            },
+            {
+              "name": "keepBlankLines",
+              "title": "Blank Lines",
+              "description": "Preserve blank lines between paragraphs instead of collapsing runs.",
+              "type": "checkbox",
+              "required": false,
+              "default": false,
+              "label": "Keep Blank Lines"
+            }
+          ]
+        }
+      ],
+      "preferences": [
+        {
+          "name": "source",
+          "title": "Preferred Source",
+          "description": "Choose a preferred text source. If no text is found there, the other is used.",
+          "type": "dropdown",
+          "required": false,
+          "default": "selection",
+          "data": [
+            {
+              "title": "Selected Text",
+              "value": "selection"
+            },
+            {
+              "title": "Clipboard",
+              "value": "clipboard"
+            }
+          ]
+        },
+        {
+          "name": "action",
+          "title": "Primary Action",
+          "description": "Choose whether the primary action should copy or paste the output.",
+          "type": "dropdown",
+          "required": false,
+          "default": "paste",
+          "data": [
+            {
+              "title": "Paste",
+              "value": "paste"
+            },
+            {
+              "title": "Copy",
+              "value": "copy"
+            }
+          ]
+        },
+        {
+          "name": "hideHUD",
+          "title": "HUD",
+          "description": "Suppress the success HUD after the action completes.",
+          "type": "checkbox",
+          "required": false,
+          "default": false,
+          "label": "Hide HUD"
+        },
+        {
+          "name": "popToRoot",
+          "title": "After Action",
+          "description": "Return to Raycast root after completing the action. No-op when launched via hotkey with no Raycast UI visible.",
+          "type": "checkbox",
+          "required": false,
+          "default": false,
+          "label": "Pop to Root After Action"
+        }
+      ]
     },
     {
       "name": "wrike",
