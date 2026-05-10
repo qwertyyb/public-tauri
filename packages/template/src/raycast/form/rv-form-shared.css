@@ -16,11 +16,17 @@
   width: 100%;
   border: 1px solid var(--rv-border);
   border-radius: 10px;
-  background: var(--rv-surface-elevated, var(--rv-surface));
+  background: transparent;
   color: var(--rv-text);
   font: inherit;
   font-size: 13px;
   padding: 8px 10px;
+}
+
+.rv-form-input::placeholder,
+.rv-form-textarea::placeholder,
+.rv-form-select::placeholder {
+  color: var(--rv-text-secondary);
 }
 
 .rv-form-textarea {
@@ -40,7 +46,7 @@
 .rv-form-markdown-preview {
   border: 1px solid var(--rv-border);
   border-radius: 10px;
-  background: var(--rv-surface);
+  background: transparent;
   padding: 10px;
   font-size: 12px;
   color: var(--rv-text-secondary);
@@ -79,7 +85,7 @@
   padding: 5px 8px;
   border: 1px solid var(--rv-border);
   border-radius: 10px;
-  background: var(--rv-surface-elevated, var(--rv-surface));
+  background: transparent;
   color: var(--rv-text);
   font-size: 13px;
   cursor: text;
@@ -178,7 +184,7 @@
   overflow-y: auto;
   border: 1px solid var(--rv-border);
   border-radius: 10px;
-  background: var(--rv-surface-elevated, var(--rv-surface));
+  background: transparent;
   box-shadow: var(--rv-shadow, 0 8px 24px rgba(15, 23, 42, 0.18));
 }
 
@@ -230,7 +236,7 @@
   padding: 5px 8px;
   border: 1px solid var(--rv-border);
   border-radius: 10px;
-  background: var(--rv-surface-elevated, var(--rv-surface));
+  background: transparent;
   color: var(--rv-text);
   font-size: 13px;
   cursor: pointer;
