@@ -73,7 +73,9 @@ dialog {
   border: none;
   outline: none;
   border-radius: var(--ui-radius, 0.375rem);
-  background-color: var(--ui-bg-elevated, #f4f4f4);
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
   padding: 0;
   overflow: hidden;
   &::backdrop {
@@ -123,5 +125,7 @@ dialog {
 <style>
 .dark dialog.confirm-dialog {
   background-color: #27272a;
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
 }
 </style>
