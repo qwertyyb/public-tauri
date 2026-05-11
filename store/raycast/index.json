@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-05-10T19:21:36.918Z",
+  "generatedAt": "2026-05-11T20:03:13.090Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "f198acd24a916bfe35e6986135ee1ae0ae62eaaf"
+    "commit": "a339e2d4847a4561e5c3106f5bfd28c436630c18"
   },
-  "count": 2893,
+  "count": 2906,
   "extensions": [
     {
       "name": "0x0",
@@ -7293,6 +7293,106 @@
       ]
     },
     {
+      "name": "apfel",
+      "title": "Apfel",
+      "description": "Interact with Apfel CLI from Raycast!",
+      "icon": "icon.png",
+      "author": "eggsy",
+      "contributors": [
+        "florisdobber"
+      ],
+      "categories": [
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/eggsy/apfel",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/apfel",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "chat",
+          "title": "Chat",
+          "description": "Chat with Apfel AI",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "saved",
+          "title": "Saved Answers",
+          "description": "Collection of your saved answers",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "history",
+          "title": "History",
+          "description": "View your recent answers",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "model",
+          "title": "Models",
+          "description": "Add or edit your models",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "conversation",
+          "title": "Conversations",
+          "description": "Collection of your recent conversations",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "translate",
+          "title": "Translate",
+          "description": "Translate text to supported languages using Apfel",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "explain",
+          "title": "Explain Text",
+          "description": "Explain the selected text using Apfel",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "explain-file",
+          "title": "Explain File",
+          "description": "Explain the file using Apfel",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "explain-directory",
+          "title": "Explain Directory",
+          "description": "Explain the directory using Apfel",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "apify",
       "title": "Apify",
       "description": "Your full-stack platform for web scraping",
@@ -8700,6 +8800,50 @@
           "required": false
         }
       ]
+    },
+    {
+      "name": "apple-passwords",
+      "title": "Apple Password",
+      "description": "Search Apple Passwords and copy passwords or one-time codes from your local vault.",
+      "icon": "icon.png",
+      "author": "alec-harmon",
+      "contributors": [],
+      "categories": [
+        "Security",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/alec-harmon/apple-passwords",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/apple-passwords",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "apw",
+          "title": "Search Passwords",
+          "subtitle": "Apple Password",
+          "description": "Search Apple Passwords and copy passwords or one-time codes",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "clear-cache",
+          "title": "Clear Password Cache",
+          "subtitle": "Apple Password",
+          "description": "Delete the local Apple Password cache file",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "apple-photos",
@@ -23401,6 +23545,39 @@
           ]
         }
       ]
+    },
+    {
+      "name": "camper-calc",
+      "title": "Camper Van Cost Tracker",
+      "description": "Calculate the real cost of your camper van per day – track expenses, residual value, and yearly breakdown.",
+      "icon": "extension-icon.png",
+      "author": "wdeu",
+      "contributors": [],
+      "categories": [
+        "Finance"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/wdeu/camper-calc",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/camper-calc",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "camper-calc",
+          "title": "Camper-Calc",
+          "description": "Open the cost calculator",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "can-i-php",
@@ -46122,7 +46299,8 @@
       "icon": "browser-icon.png",
       "author": "clins1994",
       "contributors": [
-        "pernielsentikaer"
+        "pernielsentikaer",
+        "elfitaflores"
       ],
       "categories": [
         "System"
@@ -46144,6 +46322,14 @@
           "title": "Set Default Browser",
           "description": "Set your default browser",
           "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-default",
+          "title": "Open Default Browser",
+          "description": "Open your default browser",
+          "mode": "no-view",
           "keywords": [],
           "preferences": []
         }
@@ -46811,6 +46997,42 @@
           "title": "Descript to YouTube Chapters",
           "description": "Convert Descript's transcript file into YouTube Chapters",
           "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "design-skills",
+      "title": "Design Skills",
+      "description": "Browse, preview, and install brand design skills for your AI coding agent.",
+      "icon": "icon.png",
+      "author": "shivraj-roy",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Design Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/shivraj-roy/design-skills",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/design-skills",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-design-skills",
+          "title": "Search Design Skills",
+          "subtitle": "Getdesign",
+          "description": "Browse and search DESIGN.md files from the awesome-design-md collection.",
+          "mode": "view",
           "keywords": [],
           "preferences": []
         }
@@ -50685,6 +50907,52 @@
           "default": ""
         }
       ]
+    },
+    {
+      "name": "dnb-book-lookup",
+      "title": "DNB Book Lookup",
+      "description": "Look up book contents from Deutsche Nationalbibliothek by ISBN with optional AI-generated Klappentext",
+      "icon": "extension-icon.png",
+      "author": "wdeu",
+      "contributors": [],
+      "categories": [
+        "Documentation",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "version": "1.0.0",
+      "storeUrl": "https://www.raycast.com/wdeu/dnb-book-lookup",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/dnb-book-lookup",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "lookup-book",
+          "title": "Look up DNB Book",
+          "description": "Look up book contents in the Deutsche Nationalbibliothek by ISBN",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "generateKlappentext",
+              "type": "checkbox",
+              "title": "Generate Klappentext",
+              "label": "Generate AI Klappentext from table of contents",
+              "description": "Generates a Klappentext (max. 150 words) and keywords. Requires Raycast Pro or BYOK.",
+              "default": false,
+              "required": false
+            }
+          ]
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "dns-lookup",
@@ -66395,14 +66663,16 @@
       "description": "Micro-workouts to stay active while working",
       "icon": "extension-icon.png",
       "author": "rasheed_s",
-      "contributors": [],
+      "contributors": [
+        "pernielsentikaer"
+      ],
       "categories": [
-        "Productivity",
-        "Other"
+        "Productivity"
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/rasheed_s/fitdesk",
       "source": {
@@ -83297,6 +83567,112 @@
           "title": "Website URL",
           "description": "The URL of the Grafbase website",
           "placeholder": "Enter a custom URL"
+        }
+      ]
+    },
+    {
+      "name": "gram",
+      "title": "Gram",
+      "description": "Raycast Extension for Gram",
+      "icon": "icon.png",
+      "author": "justyt65",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/justyt65/gram",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/gram",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "open-new-window",
+          "title": "Open New Window",
+          "subtitle": "Gram",
+          "description": "Opens a new Gram window.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open",
+          "title": "Open with Gram",
+          "subtitle": "Gram",
+          "description": "Opens the currently selected Finder item in Gram",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search",
+          "title": "Search Recent Projects",
+          "subtitle": "Gram",
+          "description": "Search and open recent projects in Gram",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "build",
+          "type": "dropdown",
+          "required": false,
+          "title": "Build",
+          "default": "Gram",
+          "description": "Select which build of Gram to use",
+          "data": [
+            {
+              "value": "Gram",
+              "title": "Gram"
+            },
+            {
+              "value": "Gram Dev",
+              "title": "Gram Dev"
+            }
+          ]
+        },
+        {
+          "name": "showGitBranch",
+          "type": "checkbox",
+          "title": "Git Integration",
+          "required": false,
+          "label": "Show Git Branch",
+          "default": true,
+          "description": "Display the current Git branch for files and folders in Git repositories"
+        },
+        {
+          "name": "projectIconStyle",
+          "type": "dropdown",
+          "title": "Visual Customization",
+          "required": false,
+          "default": "icon",
+          "description": "Choose how project icons are displayed",
+          "data": [
+            {
+              "value": "icon",
+              "title": "Icons"
+            },
+            {
+              "value": "colored-dot",
+              "title": "Colored Dots"
+            }
+          ]
+        },
+        {
+          "name": "showOpenStatus",
+          "type": "checkbox",
+          "required": false,
+          "label": "Show Open Status",
+          "default": false,
+          "description": "Display an 'Open' tag for projects currently open in Gram"
         }
       ]
     },
@@ -106022,6 +106398,215 @@
       ]
     },
     {
+      "name": "keyraycast",
+      "title": "KeyRaycast",
+      "description": "Show keystrokes on screen — a modern KeyCastr alternative as a Raycast extension",
+      "icon": "command-icon.png",
+      "author": "benostein",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/benostein/keyraycast",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/keyraycast",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "toggle",
+          "title": "Toggle Keystroke Overlay",
+          "subtitle": "KeyRaycast",
+          "description": "Start or stop the keystroke overlay. Toggle off then on to apply settings changes.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "displayMode",
+          "title": "Display Mode",
+          "description": "Which keystrokes to show",
+          "type": "dropdown",
+          "required": false,
+          "default": "allKeys",
+          "data": [
+            {
+              "title": "All Keys",
+              "value": "allKeys"
+            },
+            {
+              "title": "All Modified Keys",
+              "value": "allModified"
+            },
+            {
+              "title": "Command Keys Only",
+              "value": "commandKeys"
+            }
+          ]
+        },
+        {
+          "name": "displayDuration",
+          "title": "Display Duration",
+          "description": "How long keystrokes stay visible",
+          "type": "dropdown",
+          "required": false,
+          "default": "2.0",
+          "data": [
+            {
+              "title": "0.5 seconds",
+              "value": "0.5"
+            },
+            {
+              "title": "1.0 seconds",
+              "value": "1.0"
+            },
+            {
+              "title": "1.5 seconds",
+              "value": "1.5"
+            },
+            {
+              "title": "2.0 seconds",
+              "value": "2.0"
+            },
+            {
+              "title": "3.0 seconds",
+              "value": "3.0"
+            },
+            {
+              "title": "5.0 seconds",
+              "value": "5.0"
+            }
+          ]
+        },
+        {
+          "name": "appearance",
+          "title": "Appearance",
+          "description": "Color theme for the overlay pills",
+          "type": "dropdown",
+          "required": false,
+          "default": "auto",
+          "data": [
+            {
+              "title": "Auto (match system)",
+              "value": "auto"
+            },
+            {
+              "title": "Glass (macOS 26+)",
+              "value": "glass"
+            },
+            {
+              "title": "Dark",
+              "value": "dark"
+            },
+            {
+              "title": "Light",
+              "value": "light"
+            }
+          ]
+        },
+        {
+          "name": "fontSize",
+          "title": "Font Size",
+          "description": "Size of the keystroke text",
+          "type": "dropdown",
+          "required": false,
+          "default": "medium",
+          "data": [
+            {
+              "title": "Extra Small",
+              "value": "xsmall"
+            },
+            {
+              "title": "Small",
+              "value": "small"
+            },
+            {
+              "title": "Medium",
+              "value": "medium"
+            },
+            {
+              "title": "Large",
+              "value": "large"
+            },
+            {
+              "title": "Extra Large",
+              "value": "xlarge"
+            }
+          ]
+        },
+        {
+          "name": "position",
+          "title": "Position",
+          "description": "Where to show the overlay on screen",
+          "type": "dropdown",
+          "required": false,
+          "default": "bottomCenter",
+          "data": [
+            {
+              "title": "Bottom Center",
+              "value": "bottomCenter"
+            },
+            {
+              "title": "Bottom Left",
+              "value": "bottomLeft"
+            },
+            {
+              "title": "Bottom Right",
+              "value": "bottomRight"
+            },
+            {
+              "title": "Top Center",
+              "value": "topCenter"
+            },
+            {
+              "title": "Top Left",
+              "value": "topLeft"
+            },
+            {
+              "title": "Top Right",
+              "value": "topRight"
+            }
+          ]
+        },
+        {
+          "name": "uppercaseKeys",
+          "title": "Advanced",
+          "description": "Show all typed characters in uppercase. When off, typing shows as-is (hello not HELLO). Shortcuts like ⌘S are always uppercase.",
+          "type": "checkbox",
+          "required": false,
+          "default": false,
+          "label": "Force Uppercase"
+        },
+        {
+          "name": "showSpaceSymbol",
+          "title": "",
+          "description": "Show ␣ symbol for space key instead of a blank space",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "label": "Show Space Symbol"
+        },
+        {
+          "name": "showMouseClicks",
+          "title": "",
+          "description": "Show modifier+clicks and right-clicks in the overlay",
+          "type": "checkbox",
+          "required": false,
+          "default": false,
+          "label": "Show Mouse Clicks"
+        }
+      ]
+    },
+    {
       "name": "kill-mcp",
       "title": "Kill MCP Servers",
       "description": "View and manage MCP (Model Context Protocol) servers running on your Mac. See RAM usage and kill processes.",
@@ -118586,7 +119171,7 @@
       "platforms": [
         "macOS"
       ],
-      "version": "1.2.1",
+      "version": "1.2.2",
       "storeUrl": "https://www.raycast.com/ewilderj/markdown-converter",
       "source": {
         "type": "github-monorepo",
@@ -132140,6 +132725,87 @@
           "description": "Create a Github Personal Access Token and paste it here.",
           "type": "password",
           "required": true
+        }
+      ]
+    },
+    {
+      "name": "next-up",
+      "title": "Next Up",
+      "description": "A simple all-in-one scheduler and quick glance to manage custom weekly schedules for class and more!",
+      "icon": "extension-icon.png",
+      "author": "adrianbonpin",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/adrianbonpin/next-up",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/next-up",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "what-s-next",
+          "title": "Today",
+          "description": "See what's coming up next in your schedule today. Shows the next class and all of today's courses with quick access to meeting links.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "schedule-for-the-week",
+          "title": "Schedule for the Week",
+          "description": "View your entire week at a glance. All courses organized by day with today's schedule highlighted.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "manage-schedules",
+          "title": "Manage Schedules",
+          "description": "Create, edit, and organize your class schedules. Add courses with multiple time slots, manage schedule groups, and set up quick-access links.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "menu-bar",
+          "title": "Next up Menu Bar",
+          "description": "Keep your next class visible in the menu bar at all times. Click to see today's full schedule and join meetings instantly.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "add-ephemeral-course",
+          "title": "Add Ephemeral Course",
+          "description": "Quickly add a temporary course for today. Automatically disappears tomorrow.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "exportPath",
+          "title": "Export Folder",
+          "description": "Folder where exported schedule JSON files will be saved (e.g. ~/Downloads)",
+          "type": "directory",
+          "required": false,
+          "default": "~/Downloads"
+        },
+        {
+          "name": "importFilePath",
+          "title": "Import File Path",
+          "description": "Full path to a previously exported next-up JSON file to import via 'Import from File' action (⌘⇧I) in Manage Schedules",
+          "type": "file",
+          "required": false
         }
       ]
     },
@@ -145804,6 +146470,73 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "pantheon-sites",
+      "title": "Pantheon Sites",
+      "description": "List and manage Pantheon sites",
+      "icon": "command-icon.png",
+      "author": "matbrady",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/matbrady/pantheon-sites",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/pantheon-sites",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "index",
+          "title": "List Pantheon Sites",
+          "description": "Show list of all available pantheon sites",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "terminus",
+          "title": "Terminus Commands",
+          "description": "Visit terminus commands documentation",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "title": "WordPress Admin URL",
+          "name": "wordpressAdminUrl",
+          "description": "Overide the default admin url '/login.php'",
+          "type": "textfield",
+          "required": false,
+          "default": "/login.php"
+        },
+        {
+          "title": "Show Site Screenshots",
+          "name": "showScreenshots",
+          "description": "Display a live screenshot of the site's live environment in the detail panel.",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "label": "Show screenshots"
+        },
+        {
+          "title": "Terminus Path",
+          "name": "terminusPath",
+          "description": "Full path to the terminus binary. Leave blank to auto-detect (supports Homebrew, Composer global, and standard PATH installs).",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "/usr/local/bin/terminus"
+        }
+      ]
     },
     {
       "name": "papago-translate",
@@ -171658,6 +172391,125 @@
       ]
     },
     {
+      "name": "raylog-markdown-tasks",
+      "title": "Raylog - Markdown Tasks",
+      "description": "Manage focused local tasks from Raycast with a standalone markdown note.",
+      "icon": "raylog-markdown-tasks.png",
+      "author": "dillon-mccardell",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/dillon-mccardell/raylog-markdown-tasks",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/raylog-markdown-tasks",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "list-tasks",
+          "title": "List Tasks",
+          "description": "Focus, filter, and move Raylog tasks through their lifecycle",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "showDueDateIndicator",
+              "type": "checkbox",
+              "required": false,
+              "default": true,
+              "title": "Due Countdown",
+              "description": "Display the due date countdown in the task list",
+              "label": "Display due countdowns in the task list"
+            },
+            {
+              "name": "showPastDueIndicator",
+              "type": "checkbox",
+              "required": false,
+              "default": true,
+              "title": "Past Due Indicator",
+              "description": "Display overdue tasks with a past due indicator in the task list",
+              "label": "Highlight overdue tasks in the task list"
+            },
+            {
+              "name": "showStartDateIndicator",
+              "type": "checkbox",
+              "required": false,
+              "default": true,
+              "title": "Start Countdown",
+              "description": "Display the start date countdown in the task list",
+              "label": "Display start countdowns in the task list"
+            },
+            {
+              "name": "dueSoonDays",
+              "type": "textfield",
+              "required": false,
+              "default": "2",
+              "title": "Due Soon Days",
+              "description": "Number of days for a task to be considered Due Soon",
+              "placeholder": "2",
+              "label": "Days ahead"
+            },
+            {
+              "name": "logStatusBehavior",
+              "type": "dropdown",
+              "required": false,
+              "default": "auto_start",
+              "title": "Status Change on Log",
+              "description": "Choose what happens when logging work on a to-do task",
+              "data": [
+                {
+                  "title": "Auto Start Task",
+                  "value": "auto_start"
+                },
+                {
+                  "title": "Keep Current Status",
+                  "value": "keep_status"
+                },
+                {
+                  "title": "Prompt Each Time",
+                  "value": "prompt"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "menu-bar-task",
+          "title": "Refresh Menu Bar",
+          "description": "Show the next Raylog task in the macOS menu bar.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "add-task",
+          "title": "Add Task",
+          "description": "Capture a new Raylog task with dates and status.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "storageNotePath",
+          "type": "file",
+          "required": true,
+          "title": "Storage Note",
+          "description": "Markdown note used for Raylog storage",
+          "label": "Storage Note"
+        }
+      ]
+    },
+    {
       "name": "raynab",
       "title": "Raynab — Manage Your Budgets",
       "description": "View and manage your YNAB Budgets directly from Raycast",
@@ -181690,6 +182542,77 @@
       "preferences": []
     },
     {
+      "name": "scrycast",
+      "title": "Scrycast",
+      "description": "Search for Magic: The Gathering cards on Scryfall or your collection",
+      "icon": "scrycast.png",
+      "author": "aayushpi",
+      "contributors": [],
+      "categories": [
+        "Fun",
+        "Other"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/aayushpi/scrycast",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/scrycast",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "index",
+          "title": "Search Cards",
+          "subtitle": "Search cards on Scryfall",
+          "description": "Search cards on Scryfall",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "saved-cards",
+          "title": "Bookmarked Cards",
+          "subtitle": "View your bookmarked cards",
+          "description": "View your bookmarked cards",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "my-collection",
+          "title": "Search My Collection",
+          "subtitle": "Import and search your personal collection",
+          "description": "Import and browse your ManaBox card collection",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "browse-sets",
+          "title": "Browse by Set",
+          "subtitle": "Browse cards organized by set",
+          "description": "Browse Magic sets and explore the top EDHRec card from each set",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "browse-decks",
+          "title": "Browse Decks",
+          "subtitle": "Browse your saved decks",
+          "description": "Browse preconstructed decks from Moxfield or Archidekt",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "scss-compile",
       "title": "SCSS Compile",
       "description": "Utility that convert SCSS (Sassy Cascading Style Sheets) file into CSS file",
@@ -187609,6 +188532,91 @@
           "title": "iPad Name",
           "description": "The name of your iPad as shown in System Settings",
           "default": "iPad"
+        }
+      ]
+    },
+    {
+      "name": "sidecar-connect",
+      "title": "Sidecar Connect",
+      "description": "Connect and manage Sidecar devices directly from Raycast.",
+      "icon": "extension-icon.png",
+      "author": "dejuknow",
+      "contributors": [],
+      "categories": [
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/dejuknow/sidecar-connect",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/sidecar-connect",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "toggle",
+          "title": "Toggle Sidecar",
+          "description": "Connect or disconnect your preferred Sidecar device",
+          "mode": "no-view",
+          "keywords": [
+            "sidecar",
+            "ipad",
+            "toggle",
+            "connect",
+            "disconnect"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "manage-displays",
+          "title": "Manage Sidecar",
+          "description": "Browse devices, connect, disconnect, and manage favorites",
+          "mode": "view",
+          "keywords": [
+            "sidecar",
+            "ipad",
+            "display",
+            "connect"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "quick-connect",
+          "title": "Quick Connect Sidecar",
+          "description": "Connect to your default or favorite Sidecar device",
+          "mode": "no-view",
+          "keywords": [
+            "sidecar",
+            "ipad",
+            "extend"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "disconnect",
+          "title": "Disconnect Sidecar",
+          "description": "Disconnect all active Sidecar sessions",
+          "mode": "no-view",
+          "keywords": [
+            "sidecar",
+            "ipad",
+            "disconnect"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "defaultDevice",
+          "type": "textfield",
+          "required": false,
+          "title": "Default Device",
+          "description": "iPad name for Toggle and Quick Connect (e.g. \"My iPad\")",
+          "placeholder": "My iPad"
         }
       ]
     },
@@ -206666,7 +207674,10 @@
         "Communication"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "storeUrl": "https://www.raycast.com/Joshlucpoll/tempmail",
       "source": {
         "type": "github-monorepo",
@@ -206678,7 +207689,7 @@
         {
           "name": "tempmail",
           "title": "Open Mailbox",
-          "description": "Open TempMail inbox to mange and view emails and addresses",
+          "description": "Open TempMail inbox to manage and view emails and addresses",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -210359,6 +211370,56 @@
           "name": "index",
           "title": "Download Threads Video",
           "description": "Download threads video with URL",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "tibia-helper",
+      "title": "Tibia Helper",
+      "description": "Helper tools for Tibia including NPC prices, Rashid location, and imbuement guides",
+      "icon": "extension_icon.png",
+      "author": "kjbakke",
+      "contributors": [],
+      "categories": [
+        "Fun",
+        "Data"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/kjbakke/tibia-helper",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/tibia-helper",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-item-prices",
+          "title": "Search Item NPC Price",
+          "description": "Search for Tibia items and see which NPC pays the most",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "rashid-location",
+          "title": "Rashid Location",
+          "description": "Show which city Rashid is currently in",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-imbuements",
+          "title": "Search Imbuements",
+          "description": "Search for Tibia imbuements and see required materials",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -227500,8 +228561,8 @@
     },
     {
       "name": "vim-leader-key",
-      "title": "Vim Leader Key",
-      "description": "Vim-style leader key for launching apps, running commands, and triggering actions with key sequences",
+      "title": "Vim Leader Key - Keyboard Shortcut Sequences",
+      "description": "Vim-style keyboard shortcut sequences for launching apps, running commands, and triggering actions",
       "icon": "icon.png",
       "author": "akshay_k",
       "contributors": [],
@@ -227526,6 +228587,14 @@
           "name": "leader-key",
           "title": "Leader Key",
           "description": "Activate leader key mode to trigger actions with key sequences",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "quick-capture",
+          "title": "Quick Capture",
+          "description": "Capture the current app, URL, folder, or path as a Leader Key shortcut",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -227563,6 +228632,15 @@
           "default": "2.5",
           "title": "Timeout Duration",
           "description": "Seconds of inactivity before resetting (2.5 - 6 seconds)",
+          "required": false
+        },
+        {
+          "name": "openUrlsInActiveBrowser",
+          "type": "checkbox",
+          "default": false,
+          "title": "Open URLs in Active Browser",
+          "description": "Open URL shortcuts in the active browser instead of the configured or default browser when a browser is active",
+          "label": "Open URLs in active browser",
           "required": false
         }
       ]
