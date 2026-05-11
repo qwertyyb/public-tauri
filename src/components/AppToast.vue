@@ -42,15 +42,15 @@ onUnmounted(() => {
   left: 50%;
   bottom: 60px;
   transform: translateX(-50%);
-  background: var(--ui-bg-inverted, rgba(0, 0, 0, 0.85));
-  color: var(--ui-text-inverted, #fff);
+  background: var(--public-toast-bg);
+  color: var(--public-toast-fg);
   padding: 8px 16px;
   font-size: 14px;
   pointer-events: none;
   outline: none;
   border: none;
   border-radius: var(--ui-radius, 0.375rem);
-  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--public-toast-shadow);
   animation: fade-in-up .3s ease-out forwards;
   @keyframes fade-in-up {
     0% {

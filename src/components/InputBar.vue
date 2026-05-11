@@ -221,10 +221,7 @@ onPageLeave(() => {
   min-width: 42px;
 }
 .input-placeholder {
-  color: rgba(0, 0, 0, 0.38);
-  .dark & {
-    color: rgba(255, 255, 255, 0.38);
-  }
+  color: var(--public-input-placeholder);
   position: absolute;
   left: 0;
   top: 0;

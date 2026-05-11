@@ -175,27 +175,5 @@ defineExpose({
     align-items: center;
     min-width: 0;
   }
-
-  .action-key-hint {
-    flex-shrink: 0;
-    font-size: 11px;
-    padding: 0 5px;
-    min-width: 22px;
-    height: 22px;
-    line-height: 22px;
-    border-radius: 4px;
-    text-align: center;
-    background-color: light-dark(rgba(0, 0, 0, 0.08), rgba(255, 255, 255, 0.12));
-    border: 1px solid light-dark(rgba(0, 0, 0, 0.15), rgba(255, 255, 255, 0.2));
-    box-sizing: border-box;
-    opacity: 0.85;
-  }
-
-  .divider {
-    width: 1px;
-    height: 18px;
-    background-color: var(--ui-border-color);
-    margin: 0 4px;
-  }
 }
 </style>

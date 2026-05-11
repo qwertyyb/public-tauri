@@ -1,0 +1,173 @@
+/**
+ * 宿主 src/ 颜色与设计 token。
+ * --public-* 为应用主题（单一来源）；--ui-*（Nuxt UI）由此派生，便于换肤而不直接改组件库变量名。
+ *
+ * 区块：① --public-* 主题（含组件 token）→ ② --ui-* 派生 → ③ 浮层 / .opaque-surface → ④ 壳层语义变量
+ */
+
+/* -------------------------------------------------------------------------- */
+/* ① 应用主题：--public-*（默认值 = 当前浅色 / 中性表现）                        */
+/* -------------------------------------------------------------------------- */
+
+:root {
+  /* 与 Nuxt 色阶的默认衔接（可改为纯色以脱离 Nuxt 主色） */
+  --public-primary: var(--ui-color-primary-800);
+  --public-text-dimmed: var(--ui-color-neutral-500);
+
+  /* 玻璃主表面（与 .dark 共用的 token 只在此处定义一次） */
+  --public-ui-bg: transparent;
+
+  /* 玻璃：浅色模式 */
+  --public-ui-bg-muted: rgba(0, 0, 0, 0.04);
+  --public-ui-bg-elevated: rgba(255, 255, 255, 0.5);
+  --public-ui-bg-accented: rgba(0, 0, 0, 0.06);
+  --public-ui-border: rgba(0, 0, 0, 0.1);
+  --public-ui-border-muted: rgba(0, 0, 0, 0.06);
+  --public-ui-border-accented: rgba(0, 0, 0, 0.16);
+
+  /* 浮层（popover / dialog / menu / …） */
+  --public-layer-float-bg: rgba(255, 255, 255, 0.85);
+  --public-layer-float-bg-accented: rgba(0, 0, 0, 0.08);
+
+  /* 应用壳层 fallback（--ui-border-color 等未就绪时） */
+  --public-shell-border-fallback: #e4e4e7;
+  --public-shell-divider-fallback: rgba(0, 0, 0, 0.06);
+  --public-shell-action-panel-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
+  --public-shell-text-primary-fallback: #18181b;
+  --public-shell-text-secondary-fallback: #71717a;
+
+  /* 组件 */
+  --public-create-plugin-mode-active-bg: color-mix(in srgb, var(--public-primary) 8%, transparent);
+  --public-input-placeholder: rgba(0, 0, 0, 0.38);
+  --public-scrollbar-thumb: rgba(0, 0, 0, 0.3);
+  --public-dialog-surface: rgba(255, 255, 255, 0.8);
+  --public-dialog-backdrop: rgba(0, 0, 0, 0.8);
+  --public-dialog-action-hover: rgba(0, 0, 0, 0.1);
+  --public-toast-shadow: 0px 3px 8px rgba(0, 0, 0, 0.3);
+  --public-toast-bg: rgba(0, 0, 0, 0.85);
+  --public-toast-fg: #fff;
+  --public-loading-bar-color: #838383;
+  --public-result-match-accent: rgb(251, 163, 0);
+  --public-result-item-hover-bg: rgba(0, 0, 0, 0.06);
+  --public-result-item-selected-bg: rgba(0, 0, 0, 0.1);
+  --public-settings-shortcut-area-bg: rgba(0, 0, 0, 0.15);
+  --public-settings-panel-header-bg: color-mix(in srgb, var(--public-primary) 20%, transparent);
+  --public-settings-row-stripe: rgba(255, 255, 255, 0.03);
+  --public-settings-permission-surface: rgba(255, 255, 255, 0.03);
+  --public-border-fallback: rgba(0, 0, 0, 0.1);
+  --public-border-fallback-soft: rgba(0, 0, 0, 0.08);
+  --public-border-fallback-emphasis: rgba(0, 0, 0, 0.12);
+
+  /* ④ 应用壳层语义（依赖上文 --public-*） */
+  --theme-color: var(--public-primary);
+  --border-color: var(--ui-border-color, var(--public-shell-border-fallback));
+  --selected-bg-color: color-mix(in srgb, var(--public-primary) 40%, transparent);
+  --divider-color: var(--ui-border-color, var(--public-shell-divider-fallback));
+  --action-panel-shadow: var(--public-shell-action-panel-shadow);
+  --text-primary-color: var(--ui-text-highlighted, var(--public-shell-text-primary-fallback));
+  --text-secondary-color: var(--ui-text-muted, var(--public-shell-text-secondary-fallback));
+}
+
+.dark {
+  /* 玻璃：深色模式 */
+  --public-ui-bg-muted: rgba(255, 255, 255, 0.04);
+  --public-ui-bg-elevated: rgba(255, 255, 255, 0.08);
+  --public-ui-bg-accented: rgba(255, 255, 255, 0.12);
+  --public-ui-border: rgba(255, 255, 255, 0.1);
+  --public-ui-border-muted: rgba(255, 255, 255, 0.06);
+  --public-ui-border-accented: rgba(255, 255, 255, 0.18);
+
+  --public-layer-float-bg: rgba(40, 40, 45, 0.85);
+  --public-layer-float-bg-accented: rgba(255, 255, 255, 0.14);
+
+  --public-shell-border-fallback: #3f3f46;
+  --public-shell-divider-fallback: rgba(255, 255, 255, 0.06);
+  --public-shell-action-panel-shadow: 0 0 16px rgba(0, 0, 0, 0.4);
+  --public-shell-text-primary-fallback: #fafafa;
+  --public-shell-text-secondary-fallback: #a1a1aa;
+
+  --public-input-placeholder: rgba(255, 255, 255, 0.38);
+  --public-scrollbar-thumb: rgba(255, 255, 255, 0.28);
+  --public-dialog-surface: #27272a;
+  --public-dialog-action-hover: rgba(255, 255, 255, 0.1);
+  --public-result-item-hover-bg: rgba(255, 255, 255, 0.08);
+  --public-result-item-selected-bg: rgba(255, 255, 255, 0.12);
+  --public-settings-shortcut-area-bg: rgba(255, 255, 255, 0.12);
+  --public-border-fallback: rgba(255, 255, 255, 0.1);
+  --public-border-fallback-soft: rgba(255, 255, 255, 0.08);
+  --public-border-fallback-emphasis: rgba(255, 255, 255, 0.12);
+}
+
+/* -------------------------------------------------------------------------- */
+/* ② Nuxt UI：--ui-* 仅从 --public-* 派生（玻璃主表面）                          */
+/* -------------------------------------------------------------------------- */
+
+/*
+ * 主窗口 macOS popover vibrancy 下，默认 --ui-bg 不透明会压住毛玻璃。
+ * 独立窗口（无 vibrancy）根节点可加 .opaque-surface（见下文）恢复不透明。
+ */
+.light,
+:host,
+:root {
+  --ui-primary: var(--public-primary);
+  --ui-text-dimmed: var(--public-text-dimmed);
+
+  --ui-bg: var(--public-ui-bg);
+  --ui-bg-muted: var(--public-ui-bg-muted);
+  --ui-bg-elevated: var(--public-ui-bg-elevated);
+  --ui-bg-accented: var(--public-ui-bg-accented);
+  --ui-border: var(--public-ui-border);
+  --ui-border-muted: var(--public-ui-border-muted);
+  --ui-border-accented: var(--public-ui-border-accented);
+}
+
+/*
+ * 浮层：popover / dialog / menu / listbox / tooltip
+ * 内嵌表面要薄、浮层要实；webview 内 backdrop 需自带模糊与不透明兜底。
+ */
+[data-reka-popper-content-wrapper] > *,
+[role="dialog"],
+[role="menu"],
+[role="listbox"],
+[role="tooltip"] {
+  --ui-bg: var(--public-layer-float-bg);
+  --ui-bg-elevated: var(--public-layer-float-bg);
+  --ui-bg-accented: var(--public-layer-float-bg-accented);
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+}
+
+/* 原生表单控件透明底，避免 UA 灰块 */
+input,
+textarea,
+select {
+  background-color: transparent;
+}
+
+/* 无 vibrancy 的不透明表面：局部 --public-opaque-* 再映射到 --ui-* */
+.opaque-surface {
+  --public-opaque-bg: #fff;
+  --public-opaque-bg-muted: var(--ui-color-neutral-50);
+  --public-opaque-bg-elevated: var(--ui-color-neutral-100);
+  --public-opaque-bg-accented: var(--ui-color-neutral-200);
+  --public-opaque-border: var(--ui-color-neutral-200);
+  --public-opaque-border-muted: var(--ui-color-neutral-200);
+  --public-opaque-border-accented: var(--ui-color-neutral-300);
+
+  --ui-bg: var(--public-opaque-bg);
+  --ui-bg-muted: var(--public-opaque-bg-muted);
+  --ui-bg-elevated: var(--public-opaque-bg-elevated);
+  --ui-bg-accented: var(--public-opaque-bg-accented);
+  --ui-border: var(--public-opaque-border);
+  --ui-border-muted: var(--public-opaque-border-muted);
+  --ui-border-accented: var(--public-opaque-border-accented);
+}
+.dark .opaque-surface {
+  --public-opaque-bg: var(--ui-color-neutral-900);
+  --public-opaque-bg-muted: var(--ui-color-neutral-800);
+  --public-opaque-bg-elevated: var(--ui-color-neutral-800);
+  --public-opaque-bg-accented: var(--ui-color-neutral-700);
+  --public-opaque-border: var(--ui-color-neutral-800);
+  --public-opaque-border-muted: var(--ui-color-neutral-700);
+  --public-opaque-border-accented: var(--ui-color-neutral-700);
+}

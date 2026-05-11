@@ -196,7 +196,7 @@ onPageLeave(() => {
 }
 /* 滚动条滑块 */
 ::-webkit-scrollbar-thumb {
-    background: rgba(0,0,0,0.3);
+    background: var(--public-scrollbar-thumb);
     border-radius: 9999px;
 }
 </style>

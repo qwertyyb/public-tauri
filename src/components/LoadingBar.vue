@@ -13,7 +13,7 @@
 .loadingBarInner {
   width: 100%;
   height: 1px;
-  background: linear-gradient(to right, transparent, #838383, transparent);
+  background: linear-gradient(to right, transparent, var(--public-loading-bar-color), transparent);
   position: absolute;
   top: 0;
   left: -100%;

@@ -82,20 +82,14 @@ defineEmits<{
   cursor: pointer;
   :deep(mark), :deep(b) {
     background: none;
-    color: rgb(251, 163, 0);
+    color: var(--public-result-match-accent);
   }
 }
 .resultItem:hover {
-  background: rgba(0, 0, 0, 0.06);
-  .dark & {
-    background: rgba(255, 255, 255, 0.08);
-  }
+  background: var(--public-result-item-hover-bg);
 }
 .resultItem.selected {
-  background: rgba(0, 0, 0, 0.1);
-  .dark & {
-    background: rgba(255, 255, 255, 0.12);
-  }
+  background: var(--public-result-item-selected-bg);
 }
 .item-image {
   width: 36px;

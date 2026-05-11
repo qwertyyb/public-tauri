@@ -597,7 +597,7 @@ watch(curView, (view) => {
     min-width: 100px;
   }
   .main-shortcuts {
-    background: rgba(0, 0, 0, 0.15);
+    background: var(--public-settings-shortcut-area-bg);
     &:deep(.keyboard-key) {
       background: none;
       font-size: 20px;
@@ -605,7 +605,7 @@ watch(curView, (view) => {
   }
   .panel-header {
     height: 42px;
-    background: color-mix(in srgb, var(--ui-primary) 20%, transparent);
+    background: var(--public-settings-panel-header-bg);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -661,7 +661,7 @@ watch(curView, (view) => {
   height: 48px;
   padding: 8px 16px;
   &:nth-child(even) {
-    background: rgba(255, 255, 255, .03);
+    background: var(--public-settings-row-stripe);
   }
   .link-title {
     font-size: 14px;
@@ -678,7 +678,7 @@ watch(curView, (view) => {
   justify-content: space-between;
   padding: 16px;
   border-radius: 8px;
-  background: rgba(255, 255, 255, .03);
+  background: var(--public-settings-permission-surface);
   margin-bottom: 12px;
   &:last-child {
     margin-bottom: 0;

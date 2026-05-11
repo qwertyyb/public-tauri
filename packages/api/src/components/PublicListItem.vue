@@ -29,23 +29,10 @@
         {{ subtitle }}
       </h5>
     </div>
-    <!-- <div class="item-actions">
-      <ShortcutsKey
-        v-if="selected"
-        shortcuts="Enter"
-        @click="$emit('enter')"
-      />
-      <ShortcutsKey
-        v-else-if="actionKey"
-        :shortcuts="['Meta', actionKey]"
-        @click="$emit('enter')"
-      />
-    </div> -->
   </div>
 </template>
 
 <script setup lang="ts">
-// import ShortcutsKey from '@/components/ShortcutsKey.vue';
 interface IResultItem {
   icon?: string,
   title: string,

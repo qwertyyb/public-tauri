@@ -73,13 +73,13 @@ dialog {
   border: none;
   outline: none;
   border-radius: var(--ui-radius, 0.375rem);
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: var(--public-dialog-surface);
   backdrop-filter: blur(18px) saturate(180%);
   -webkit-backdrop-filter: blur(18px) saturate(180%);
   padding: 0;
   overflow: hidden;
   &::backdrop {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: var(--public-dialog-backdrop);
   }
 
   .dialog-body {
@@ -107,7 +107,7 @@ dialog {
     text-align: center;
     &:hover {
       cursor: pointer;
-      background: rgba(0, 0, 0, 0.1);
+      background: var(--public-dialog-action-hover);
     }
     &.cancel-btn {
       opacity: 0.7;
@@ -119,13 +119,5 @@ dialog {
       border-left: 1px solid var(--divider-color);
     }
   }
-}
-</style>
-
-<style>
-.dark dialog.confirm-dialog {
-  background-color: #27272a;
-  backdrop-filter: blur(18px) saturate(180%);
-  -webkit-backdrop-filter: blur(18px) saturate(180%);
 }
 </style>

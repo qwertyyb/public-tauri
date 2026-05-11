@@ -309,7 +309,7 @@ const mainAction = computed<ActionPanelAction>(() => ({
   column-gap: 8px;
   row-gap: 2px;
   padding: 10px 12px;
-  border: 1px solid var(--ui-border-color, rgba(0, 0, 0, 0.1));
+  border: 1px solid var(--ui-border-color, var(--public-border-fallback));
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.15s;
@@ -318,7 +318,7 @@ const mainAction = computed<ActionPanelAction>(() => ({
   }
   &.active {
     border-color: var(--ui-primary);
-    background: color-mix(in srgb, var(--ui-primary) 8%, transparent);
+    background: var(--public-create-plugin-mode-active-bg);
   }
 }
 
@@ -340,7 +340,7 @@ const mainAction = computed<ActionPanelAction>(() => ({
 }
 
 .command-card {
-  border: 1px solid var(--ui-border-color, rgba(0, 0, 0, 0.08));
+  border: 1px solid var(--ui-border-color, var(--public-border-fallback-soft));
   border-radius: 8px;
   padding: 10px 12px;
   margin-bottom: 8px;
@@ -364,7 +364,7 @@ const mainAction = computed<ActionPanelAction>(() => ({
   align-items: center;
   gap: 8px;
   padding: 8px 12px;
-  border: 1px solid var(--ui-border-color, rgba(0, 0, 0, 0.12));
+  border: 1px solid var(--ui-border-color, var(--public-border-fallback-emphasis));
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.15s;

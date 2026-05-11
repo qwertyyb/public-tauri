@@ -18,15 +18,6 @@ const leftActionsBase: ActionPanel['actions'] = [
   { name: 'about', icon: 'info', title: 'About Public', action: () => pushView({ path: '/about' }) },
 ];
 
-if (import.meta.env.DEV) {
-  leftActionsBase.push({
-    name: '__dev_transition_residual_test',
-    icon: 'science',
-    title: '过渡残影测试',
-    action: () => pushView({ path: '/dev/transition-residual-test' }),
-  });
-}
-
 leftActionsBase.push({ name: 'exit', icon: 'exit_to_app', title: 'Quit Public', styleType: 'danger', action: quitApp });
 
 export const leftActionPanel: ActionPanel = {
