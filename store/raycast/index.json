@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-05-11T20:03:13.090Z",
+  "generatedAt": "2026-05-12T20:08:55.091Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "a339e2d4847a4561e5c3106f5bfd28c436630c18"
+    "commit": "d3fd2e31a49f467a9614f95285699e166df333a5"
   },
-  "count": 2906,
+  "count": 2910,
   "extensions": [
     {
       "name": "0x0",
@@ -15709,11 +15709,13 @@
       "author": "swayam_mehta",
       "contributors": [],
       "categories": [
-        "Other"
+        "Other",
+        "Productivity"
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "version": "1.0.0",
       "storeUrl": "https://www.raycast.com/swayam_mehta/bhagavad-gita-quotes",
@@ -21028,7 +21030,8 @@
         "ViGeng",
         "ridemountainpig",
         "chrismessina",
-        "clins1994"
+        "clins1994",
+        "alexi.build"
       ],
       "categories": [],
       "license": "MIT",
@@ -36963,13 +36966,16 @@
       "name": "conventional-comments",
       "title": "Conventional Comments",
       "description": "Paste conventional comment into your foremost application",
-      "icon": "icon.png",
+      "icon": "extension-icon.png",
       "author": "krzysztofzuraw",
-      "contributors": [],
+      "contributors": [
+        "0xdhrv"
+      ],
       "categories": [],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/krzysztofzuraw/conventional-comments",
       "source": {
@@ -47483,6 +47489,77 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "dev-cache-cleaner",
+      "title": "Dev Cache Cleaner",
+      "description": "Scan and clean developer caches, build artifacts, and orphaned dependencies to reclaim disk space",
+      "icon": "extension-icon.png",
+      "author": "Undolog",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/Undolog/dev-cache-cleaner",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/dev-cache-cleaner",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "scan-caches",
+          "title": "Scan Caches",
+          "subtitle": "Dev Cache Cleaner",
+          "description": "Scan developer caches and build artifacts, see reclaimable space, and clean selectively",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "clean-safe-caches",
+          "title": "Clean Safe Caches",
+          "subtitle": "Dev Cache Cleaner",
+          "description": "Scan and instantly clean all safe developer caches with one click",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "menu-bar",
+          "title": "Cache Status",
+          "subtitle": "Dev Cache Cleaner",
+          "description": "Show reclaimable cache space in the menu bar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "projectPaths",
+          "title": "Project Directories",
+          "description": "Comma-separated list of directories to scan for orphaned build artifacts (e.g. ~/Projects, ~/GitHub)",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "~/Projects, ~/GitHub, ~/Code",
+          "default": ""
+        },
+        {
+          "name": "minAgeDays",
+          "title": "Minimum Age (days)",
+          "description": "Only flag build artifacts older than this many days",
+          "type": "textfield",
+          "required": false,
+          "default": "30"
+        }
+      ]
     },
     {
       "name": "dev-to",
@@ -66419,6 +66496,88 @@
       ]
     },
     {
+      "name": "firebase-remote-config-admin",
+      "title": "Firebase - Remote Config",
+      "description": "Inspect, compare, edit, publish, delete, and roll back Firebase Remote Config across multiple projects",
+      "icon": "extension-icon.png",
+      "author": "danilorequena",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/danilorequena/firebase-remote-config-admin",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/firebase-remote-config-admin",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "remote-config-admin",
+          "title": "Browse Remote Config",
+          "description": "Inspect parameters and conditions across multiple Firebase projects",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "manage-projects",
+          "title": "Manage Projects",
+          "description": "Manage saved Firebase projects and project groups",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "bulk-operations",
+          "title": "Bulk Operations",
+          "description": "Preview and publish parameter or condition changes across projects",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "remote-config-versions",
+          "title": "Versions & Rollback",
+          "description": "List published versions and roll back a project template",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "export-defaults",
+          "title": "Export Defaults",
+          "description": "Download Remote Config defaults for a project",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "sharedCredentialRef",
+          "type": "textfield",
+          "required": false,
+          "title": "Shared Service Account JSON Path",
+          "description": "Optional fallback path to a Firebase service account JSON file used by projects without a credentialRef"
+        },
+        {
+          "name": "requestTimeoutMs",
+          "type": "textfield",
+          "required": false,
+          "default": "20000",
+          "title": "Request Timeout (ms)",
+          "description": "HTTP timeout for Firebase API requests"
+        }
+      ]
+    },
+    {
       "name": "firecrawl",
       "title": "Firecrawl",
       "description": "Scrape, search, and conduct in-depth research with Firecrawl",
@@ -75366,6 +75525,41 @@
               "title": "Menu Bar Icon"
             },
             {
+              "name": "notifyOnNewStars",
+              "description": "Show a badge in the menu bar title and a 'What's New' section when your repositories receive new stars",
+              "type": "checkbox",
+              "required": false,
+              "default": true,
+              "label": "Notify on new stars",
+              "title": "New Stars Notification"
+            },
+            {
+              "name": "refreshFrequency",
+              "description": "How often to refresh stats in the background. Lower values keep the data fresher but use more GitHub API quota.",
+              "type": "dropdown",
+              "required": false,
+              "default": "30m",
+              "title": "Refresh Frequency",
+              "data": [
+                {
+                  "title": "15 minutes",
+                  "value": "15m"
+                },
+                {
+                  "title": "30 minutes",
+                  "value": "30m"
+                },
+                {
+                  "title": "1 hour",
+                  "value": "1h"
+                },
+                {
+                  "title": "2 hours",
+                  "value": "2h"
+                }
+              ]
+            },
+            {
               "name": "titleMetric",
               "description": "The metric shown next to the menu bar icon",
               "type": "dropdown",
@@ -78334,6 +78528,7 @@
         "macOS",
         "Windows"
       ],
+      "version": "1.4.3",
       "storeUrl": "https://www.raycast.com/thomas/google-calendar",
       "source": {
         "type": "github-monorepo",
@@ -85684,6 +85879,51 @@
           "title": "Create Task",
           "subtitle": "Habitica",
           "description": "Quickly create a new Habitica task",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "view-dailies",
+          "title": "View Dailies",
+          "subtitle": "Habitica",
+          "description": "View, check, and edit your Habitica dailies",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "view-habits",
+          "title": "View Habits",
+          "subtitle": "Habitica",
+          "description": "View, score, and edit your Habitica habits",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "view-profile",
+          "title": "View Profile",
+          "subtitle": "Habitica",
+          "description": "View your Habitica stats and quests",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "view-inventory",
+          "title": "View Inventory",
+          "subtitle": "Habitica",
+          "description": "View your Habitica eggs, potions, and food",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "view-shop",
+          "title": "View Shop",
+          "subtitle": "Habitica",
+          "description": "View and purchase custom rewards and in-game items",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -106403,7 +106643,9 @@
       "description": "Show keystrokes on screen — a modern KeyCastr alternative as a Raycast extension",
       "icon": "command-icon.png",
       "author": "benostein",
-      "contributors": [],
+      "contributors": [
+        "0xdhrv"
+      ],
       "categories": [
         "Productivity",
         "System"
@@ -108214,6 +108456,77 @@
               ]
             }
           ]
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "kurslog",
+      "title": "Kurslog",
+      "description": "Compare crypto exchange rates from 100+ exchangers in Ukraine and 100+ countries with best rates for USDT, BTC, ETH to fiat, cash, Payoneer, and more.",
+      "icon": "extension-icon.png",
+      "author": "kurslog",
+      "contributors": [],
+      "categories": [
+        "Finance"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/kurslog/kurslog",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/kurslog",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "exchange-rates",
+          "title": "Exchange Rates",
+          "subtitle": "Kurslog",
+          "description": "Browse popular directions with best rates aggregated from 100+ exchangers",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "check-rate",
+          "title": "Check Rate",
+          "subtitle": "Kurslog",
+          "description": "Pick FROM and TO currencies, compare rates from 100+ exchangers",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "exchangers",
+          "title": "Exchangers",
+          "subtitle": "Kurslog",
+          "description": "Browse catalog of 100+ exchangers with trust scores and ratings",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "favorites",
+          "title": "My Favorites",
+          "subtitle": "Kurslog",
+          "description": "View your saved favorite directions and exchangers",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "quick-search",
+          "title": "Quick Search",
+          "subtitle": "Kurslog",
+          "description": "Type currency names to instantly find exchange rates (e.g. usdt trc20 monobank)",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": []
@@ -140470,7 +140783,8 @@
       "icon": "extension_icon.png",
       "author": "larsasolidor",
       "contributors": [
-        "xmok"
+        "xmok",
+        "hllvc"
       ],
       "categories": [
         "Communication",
@@ -140500,10 +140814,65 @@
         {
           "name": "send-from-clipboard",
           "title": "Send from Clipboard",
-          "description": "Creates a one-time secret from the clipboard (3h lifetime, no passphrase) and copies the link.",
+          "description": "Creates a one-time secret from the clipboard (no passphrase) and copies the link.",
           "mode": "no-view",
           "keywords": [],
-          "preferences": []
+          "preferences": [
+            {
+              "name": "lifetime",
+              "type": "dropdown",
+              "required": false,
+              "title": "Default Lifetime",
+              "description": "How long the clipboard secret stays available before expiring.",
+              "default": "3600",
+              "data": [
+                {
+                  "title": "1 minute",
+                  "value": "60"
+                },
+                {
+                  "title": "5 minutes",
+                  "value": "300"
+                },
+                {
+                  "title": "30 minutes",
+                  "value": "1800"
+                },
+                {
+                  "title": "1 hour",
+                  "value": "3600"
+                },
+                {
+                  "title": "4 hours",
+                  "value": "14400"
+                },
+                {
+                  "title": "12 hours",
+                  "value": "43200"
+                },
+                {
+                  "title": "1 day",
+                  "value": "86400"
+                },
+                {
+                  "title": "3 days",
+                  "value": "259200"
+                },
+                {
+                  "title": "7 days",
+                  "value": "604800"
+                },
+                {
+                  "title": "14 days",
+                  "value": "1209600"
+                },
+                {
+                  "title": "30 days",
+                  "value": "2592000"
+                }
+              ]
+            }
+          ]
         },
         {
           "name": "recent-secrets",
@@ -140868,7 +141237,9 @@
         "System"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/timothy_boye/open-folders",
       "source": {
         "type": "github-monorepo",
@@ -141205,6 +141576,23 @@
               "description": "Sets the directory to open."
             }
           ]
+        },
+        {
+          "name": "trash",
+          "title": "Open Trash",
+          "description": "Open the Trash folder in Finder.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "recentFolders",
+          "title": "Recent Folders",
+          "description": "List of recently opened folders from this extension.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon-grid.png",
+          "preferences": []
         }
       ],
       "preferences": []
@@ -141864,7 +142252,8 @@
       "icon": "open-link.png",
       "author": "koinzhang",
       "contributors": [
-        "ViGeng"
+        "ViGeng",
+        "ridemountainpig"
       ],
       "categories": [
         "Developer Tools",
@@ -141872,7 +142261,9 @@
         "Web"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/koinzhang/open-link-in-specific-browser",
       "source": {
         "type": "github-monorepo",
@@ -174642,6 +175033,367 @@
       ]
     },
     {
+      "name": "rebaptize",
+      "title": "Rebaptize - Rename",
+      "description": "Give your files a new name. Bulk rename, smart episode organizing, sort by date or GPS location",
+      "icon": "icon.png",
+      "author": "miguel_caetano_dias",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/miguel_caetano_dias/rebaptize",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/rebaptize",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "rebaptize",
+          "title": "Rename Files",
+          "description": "Bulk rename files using presets for TV shows, anime, movies, auto enumerate, date, or find & replace",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "smart-organize",
+          "title": "Smart Organize Episodes",
+          "description": "Auto-detect episode numbers and organize into season folders with proper naming",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "sort-by-date",
+          "title": "Sort Files by Date",
+          "description": "Organize files into folders by creation date (day, month, or year)",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "sort-by-location",
+          "title": "Sort Photos by Location",
+          "description": "Organize photos into folders based on GPS location data from EXIF metadata",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "smart-find-replace",
+          "title": "Smart Find & Replace",
+          "description": "Find and replace patterns in filenames with multi-rule support, regex capture groups, and file filters",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "create-script",
+          "title": "Create Rename Script",
+          "description": "Build a reusable rename pipeline: filter by file type, chain multiple rename steps, save and run with an alias",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "run-script",
+          "title": "Run Rename Script",
+          "description": "List and run saved rename scripts against the current Finder folder",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "preset-tv-show",
+          "title": "Rename as TV Show",
+          "description": "Rename files into TV show format (Show Name S01E01)",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "preset-anime",
+          "title": "Rename as Anime",
+          "description": "Rename files into anime fansub format ([Group] Name - 01 [Quality])",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "preset-movie",
+          "title": "Rename as Movie",
+          "description": "Rename files into movie format (Name Year Quality)",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "preset-date-based",
+          "title": "Rename by Date",
+          "description": "Rename files using their creation date",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "preset-change-case",
+          "title": "Change Filename Case",
+          "description": "Convert filenames to UPPERCASE, lowercase, Title Case, or Sentence case",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "preset-swap-delimiter",
+          "title": "Swap Filename Delimiter",
+          "description": "Replace dots, underscores, dashes, or any delimiter in filenames with another",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "preset-auto-enumerate",
+          "title": "Auto Enumerate Files",
+          "description": "Number files sequentially, optionally sorted by creation or modification date",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "preset-change-extension",
+          "title": "Change File Extension",
+          "description": "Bulk change file extensions (e.g. .jpeg to .jpg)",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "instant-uppercase",
+          "title": "Uppercase All Filenames",
+          "description": "Instantly convert all filenames in the current Finder folder to UPPERCASE",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "instant-lowercase",
+          "title": "Lowercase All Filenames",
+          "description": "Instantly convert all filenames in the current Finder folder to lowercase",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "instant-titlecase",
+          "title": "Title Case All Filenames",
+          "description": "Instantly capitalize the first letter of every word in filenames",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "instant-sentencecase",
+          "title": "Sentence Case All Filenames",
+          "description": "Instantly capitalize only the first letter of each filename",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "instant-dots-to-spaces",
+          "title": "Replace Dots with Spaces",
+          "description": "Instantly replace all dots in filenames with spaces",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "instant-spaces-to-dots",
+          "title": "Replace Spaces with Dots",
+          "description": "Instantly replace all spaces in filenames with dots",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "instant-underscores-to-spaces",
+          "title": "Replace Underscores with Spaces",
+          "description": "Instantly replace all underscores in filenames with spaces",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "instant-spaces-to-underscores",
+          "title": "Replace Spaces with Underscores",
+          "description": "Instantly replace all spaces in filenames with underscores",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "instant-dashes-to-spaces",
+          "title": "Replace Dashes with Spaces",
+          "description": "Instantly replace all dashes in filenames with spaces",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "instant-spaces-to-dashes",
+          "title": "Replace Spaces with Dashes",
+          "description": "Instantly replace all spaces in filenames with dashes",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "instant-collapse-spaces",
+          "title": "Collapse Multiple Spaces",
+          "description": "Instantly collapse double/triple/etc spaces into single spaces in filenames",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "instant-enumerate-by-name",
+          "title": "Enumerate Files by Name",
+          "description": "Instantly number files 001, 002, 003... sorted alphabetically by name",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "instant-enumerate-by-date",
+          "title": "Enumerate Files by Date Created",
+          "description": "Instantly number files 001, 002, 003... sorted by creation date (oldest first)",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "instant-undo",
+          "title": "Undo Last Rename",
+          "description": "Revert the last instant rename command (available for 5 minutes after execution)",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "instant-remove-accents",
+          "title": "Remove Accents from Filenames",
+          "description": "Remove diacritics and accents: café → cafe, über → uber",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "instant-strip-digits",
+          "title": "Strip Digits from Filenames",
+          "description": "Remove all digits from filenames",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "instant-strip-special",
+          "title": "Strip Special Characters",
+          "description": "Remove brackets, symbols, and special characters from filenames",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "instant-trim",
+          "title": "Trim Filenames",
+          "description": "Remove leading and trailing spaces, dashes, dots, and underscores from filenames",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "instant-pad-numbers",
+          "title": "Add Zero Padding to Numbers",
+          "description": "Pad numbers in filenames to 3 digits: file1 → file001",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "instant-unpad-numbers",
+          "title": "Remove Zero Padding from Numbers",
+          "description": "Remove leading zeros from numbers: file001 → file1",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "instant-parent-folder",
+          "title": "Prepend Parent Folder Name",
+          "description": "Add the parent folder name before each filename: NYC/img.jpg → NYC - img.jpg",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "instant-swap-parts",
+          "title": "Swap Filename Parts",
+          "description": "Swap two parts of a filename around \" - \" separator: Artist - Song → Song - Artist",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "instant-transliterate",
+          "title": "Transliterate to Latin",
+          "description": "Convert Cyrillic, accented, and non-Latin characters to ASCII equivalents",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "exif-rename",
+          "title": "Rename Photos by EXIF",
+          "description": "Rename photos using EXIF metadata: date taken, camera model, ISO, focal length",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "rename-from-csv",
+          "title": "Rename from CSV",
+          "description": "Rename files using a CSV mapping of old names to new names",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "tmdbApiKey",
+          "title": "TMDB API Key (Free)",
+          "description": "Optional. Get a free API key at themoviedb.org to enable automatic season/episode lookup for Smart Organize Episodes.",
+          "type": "password",
+          "required": false
+        },
+        {
+          "name": "tvdbApiKey",
+          "title": "TheTVDB API Key ($12/year)",
+          "description": "Optional. Requires a $12/year subscription at thetvdb.com. Alternative to TMDB for season/episode metadata.",
+          "type": "password",
+          "required": false
+        }
+      ]
+    },
+    {
       "name": "rebrandly",
       "title": "Rebrandly",
       "description": "Browse Rebrandly shortlinks, create new and delete old",
@@ -177329,7 +178081,6 @@
           "type": "checkbox",
           "label": "Enable Projects Caching",
           "name": "enableProjectsCaching",
-          "title": "Enable Projects Caching",
           "description": "Enable caching of projects to avoid scanning directories every time (you can clear it by using the \"Clear Cache\" command)",
           "required": true,
           "default": true
@@ -177338,9 +178089,24 @@
           "type": "checkbox",
           "label": "Group projects by folder",
           "name": "enableProjectsGrouping",
-          "title": "Group projects by folder",
           "description": "Group projects by folder",
           "required": true,
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "label": "Show Recently Opened",
+          "name": "showRecentlyOpenedInList",
+          "description": "Show the top Recently Opened section in the repository list. The Recently Opened filter and item indicators remain available when this is disabled.",
+          "required": false,
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "label": "Show Git Info",
+          "name": "showGitInfoInList",
+          "description": "Display Git status, ahead/behind, upstream, and recent-open indicators in the repository list. Filters still work when this is disabled.",
+          "required": false,
           "default": true
         },
         {
@@ -177380,7 +178146,6 @@
           "type": "checkbox",
           "label": "Resize Editor Window After Launch",
           "name": "resizeEditorWindowAfterLaunch",
-          "title": "Resize Editor Window After Launch",
           "description": "Resize the editor window after launching a project",
           "required": false
         },
@@ -224702,11 +225467,14 @@
       "contributors": [
         "Kang",
         "yug2005",
-        "xmok"
+        "xmok",
+        "alexi.build"
       ],
       "categories": [],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/eggsy/unsplash",
       "source": {
         "type": "github-monorepo",
@@ -231925,7 +232693,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/joetannenbaum/warp",
       "source": {
