@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-05-12T20:08:55.091Z",
+  "generatedAt": "2026-05-13T20:10:52.538Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "d3fd2e31a49f467a9614f95285699e166df333a5"
+    "commit": "1bd38f8dbf0d47932de48d0e495df1f370a352e9"
   },
-  "count": 2910,
+  "count": 2912,
   "extensions": [
     {
       "name": "0x0",
@@ -78888,7 +78888,8 @@
         "j3lte",
         "0xdhrv",
         "xmok",
-        "hayk_safaryan"
+        "hayk_safaryan",
+        "alexi.build"
       ],
       "categories": [],
       "license": "MIT",
@@ -80142,7 +80143,8 @@
         "ChanningKuo",
         "likid",
         "xmok",
-        "brucemakes012"
+        "brucemakes012",
+        "alexi.build"
       ],
       "categories": [
         "Web",
@@ -116657,6 +116659,48 @@
       "preferences": []
     },
     {
+      "name": "lume",
+      "title": "Lume",
+      "description": "Manage Lume virtual machines on Apple Silicon",
+      "icon": "extension-icon.png",
+      "author": "sharat_visweswara",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/sharat_visweswara/lume",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/lume",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "list",
+          "title": "List VMs",
+          "description": "List and manage Lume virtual machines",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "port",
+              "title": "Lume Server Port",
+              "description": "Port the Lume HTTP server is listening on",
+              "type": "textfield",
+              "default": "7777",
+              "required": false
+            }
+          ]
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "luna-search",
       "title": "Luna Search",
       "description": "Quickly find and open Luna Games",
@@ -132206,6 +132250,68 @@
           "mode": "no-view",
           "keywords": [],
           "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "nerd-font-picker",
+      "title": "Nerd Font Picker",
+      "description": "Browse and copy Nerd Font glyphs from your installed fonts",
+      "icon": "extension-icon.png",
+      "author": "kud",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Design Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "1.0.0",
+      "storeUrl": "https://www.raycast.com/kud/nerd-font-picker",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/nerd-font-picker",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "list",
+          "title": "Nerd Font Glyphs",
+          "description": "Browse and copy Nerd Font glyphs with detailed metadata",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "fontName",
+              "title": "Font Name",
+              "description": "Name filter for selecting a Nerd Font when multiple are installed (e.g. JetBrainsMono). Leave blank to use the first font found.",
+              "type": "textfield",
+              "required": false,
+              "default": ""
+            },
+            {
+              "name": "iconColor",
+              "title": "Icon Colour",
+              "description": "Colour used to render each glyph icon",
+              "type": "dropdown",
+              "required": false,
+              "default": "white",
+              "data": [
+                {
+                  "title": "White",
+                  "value": "white"
+                },
+                {
+                  "title": "Black",
+                  "value": "black"
+                }
+              ]
+            }
+          ]
         }
       ],
       "preferences": []
