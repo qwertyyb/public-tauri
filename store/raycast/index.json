@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-05-13T20:10:52.538Z",
+  "generatedAt": "2026-05-15T19:56:10.276Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "1bd38f8dbf0d47932de48d0e495df1f370a352e9"
+    "commit": "90cdc8f62b6960ad2d178f0c916c393597234f99"
   },
-  "count": 2912,
+  "count": 2914,
   "extensions": [
     {
       "name": "0x0",
@@ -2815,7 +2815,7 @@
     {
       "name": "agent-usage",
       "title": "Agent Usage",
-      "description": "Monitor AI coding agent usage across Amp, Claude, Codex, Copilot, Droid, Gemini, Kimi, Synthetic, Antigravity, and z.ai",
+      "description": "Monitor AI coding agent usage across Amp, Claude, Codex, Copilot, Droid, Gemini, Kimi, Synthetic, Antigravity, z.ai, MiniMax, and OpenCode Go",
       "icon": "extension-icon.png",
       "author": "thuggyduck",
       "contributors": [
@@ -2949,6 +2949,14 @@
           "required": false
         },
         {
+          "name": "showOpencodeGo",
+          "type": "checkbox",
+          "label": "Show OpenCode Go",
+          "description": "Show OpenCode Go subscription usage in the list",
+          "default": true,
+          "required": false
+        },
+        {
           "name": "ampDisplayMode",
           "type": "dropdown",
           "title": "Amp Display Mode",
@@ -2999,6 +3007,20 @@
           "type": "password",
           "title": "MiniMax API Token (Optional)",
           "description": "Optional fallback token. Usually auto-detected from MINIMAX_API_KEY environment variable (set in ~/.zshrc, ~/.bashrc, etc.).",
+          "required": false
+        },
+        {
+          "name": "opencodegoWorkspaceId",
+          "type": "textfield",
+          "title": "OpenCode Go Workspace ID",
+          "description": "Your OpenCode workspace ID (e.g. wrk_abc123 or just the suffix after wrk_). Found in the OpenCode dashboard URL.",
+          "required": false
+        },
+        {
+          "name": "opencodegoAuthCookie",
+          "type": "password",
+          "title": "OpenCode Go Auth Cookie",
+          "description": "The 'auth' cookie value from your OpenCode session. Open opencode.ai, log in, then copy the 'auth' cookie from DevTools (Application → Cookies).",
           "required": false
         }
       ]
@@ -9944,6 +9966,74 @@
       "preferences": []
     },
     {
+      "name": "arca",
+      "title": "Arca",
+      "description": "Task management where simplicity meets capability",
+      "icon": "extension-icon.png",
+      "author": "ghadeer",
+      "contributors": [],
+      "categories": [
+        "Applications",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/ghadeer/arca",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/arca",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "create-task",
+          "title": "Create Task",
+          "description": "Creates a task in a specific list",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "my-tasks",
+          "title": "My Tasks",
+          "description": "View all tasks assigned to you across all workspaces",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "planned",
+          "title": "Planned Tasks",
+          "description": "View tasks with due or start dates, grouped by date",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "type": "password",
+          "title": "Arca API Key",
+          "description": "Your Arca API key for authenticating requests.",
+          "required": true
+        },
+        {
+          "name": "showCompletedTasks",
+          "type": "checkbox",
+          "title": "Show Completed Tasks",
+          "label": "Show completed & cancelled tasks",
+          "description": "When enabled, completed and cancelled tasks are shown in the My Tasks command.",
+          "default": false,
+          "required": false
+        }
+      ]
+    },
+    {
       "name": "archisteamfarm",
       "title": "ArchiSteamFarm",
       "description": "Interact with your locally hosted ASF instance via Raycast!",
@@ -15150,15 +15240,6 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
-        },
-        {
-          "name": "new-episodes-menubar",
-          "title": "New Episodes Menu Bar",
-          "subtitle": "BetaSeries",
-          "description": "Get alerts for newly released episodes from your active shows",
-          "mode": "menu-bar",
-          "keywords": [],
-          "preferences": []
         }
       ],
       "preferences": [
@@ -15169,15 +15250,6 @@
           "title": "BetaSeries API Key",
           "description": "Your BetaSeries API Key (Developer Key)",
           "placeholder": "Enter your API Key"
-        },
-        {
-          "name": "showMenubarDebug",
-          "type": "checkbox",
-          "required": false,
-          "default": false,
-          "title": "Menu Bar",
-          "label": "Enable debug mode in New Episodes Menu Bar",
-          "description": "Show the debug submenu in the New Episodes Menu Bar command."
         }
       ]
     },
@@ -57298,8 +57370,7 @@
           "name": "openAIAPIKey",
           "type": "password",
           "required": false,
-          "description": "Your OpenAI API Key",
-          "default": ""
+          "description": "Your OpenAI API Key"
         },
         {
           "title": "OpenAI Endpoint",
@@ -57332,8 +57403,7 @@
           "name": "geminiAPIKey",
           "type": "password",
           "required": false,
-          "description": "Your Gemini API Key",
-          "default": ""
+          "description": "Your Gemini API Key"
         },
         {
           "title": "Gemini Endpoint",
@@ -57356,8 +57426,7 @@
           "name": "deepLAuthKey",
           "type": "password",
           "required": false,
-          "description": "Your DeepL Auth Key",
-          "default": ""
+          "description": "Your DeepL Auth Key"
         },
         {
           "title": "DeepL API URL",
@@ -57373,16 +57442,14 @@
           "name": "baiduAppId",
           "type": "textfield",
           "required": false,
-          "description": "Your Baidu App ID",
-          "default": ""
+          "description": "Your Baidu App ID"
         },
         {
           "title": "Baidu App Secret",
           "name": "baiduAppSecret",
           "type": "password",
           "required": false,
-          "description": "Your Baidu App Secret",
-          "default": ""
+          "description": "Your Baidu App Secret"
         },
         {
           "title": "Tencent SecretId",
@@ -57397,8 +57464,7 @@
           "name": "tencentSecretKey",
           "type": "password",
           "required": false,
-          "description": "Your Tencent SecretKey",
-          "default": ""
+          "description": "Your Tencent SecretKey"
         },
         {
           "title": "Volcano Access Key ID",
@@ -57413,16 +57479,14 @@
           "name": "volcanoAccessKeySecret",
           "type": "password",
           "required": false,
-          "description": "Your Volcano Access Key Secret",
-          "default": ""
+          "description": "Your Volcano Access Key Secret"
         },
         {
           "title": "Caiyun Token",
           "name": "caiyunToken",
           "type": "password",
           "required": false,
-          "description": "Your Caiyun Token",
-          "default": ""
+          "description": "Your Caiyun Token"
         }
       ]
     },
@@ -61184,16 +61248,20 @@
     },
     {
       "name": "exa-search",
-      "title": "Exa Search",
-      "description": "AI-powered search that understands your queries and delivers precise, context-aware results quickly",
+      "title": "Exa",
+      "description": "AI-powered search for precise, context-aware results",
       "icon": "icon.png",
       "author": "thomas",
       "contributors": [],
       "categories": [
-        "Data"
+        "Developer Tools",
+        "Web"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "storeUrl": "https://www.raycast.com/thomas/exa-search",
       "source": {
         "type": "github-monorepo",
@@ -61203,9 +61271,17 @@
       },
       "commands": [
         {
+          "name": "ask-exa",
+          "title": "Answer with Exa",
+          "description": "Get a grounded answer from Exa with compact citations.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "open-in-browser",
-          "title": "Open in Browser",
-          "description": "Opens the Exa Search in your browser.",
+          "title": "Exa Search Engine",
+          "description": "Open Exa's search engine in your browser.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -70144,7 +70220,7 @@
           "name": "list-bank-transactions",
           "title": "List Bank Transactions",
           "subtitle": "FreeAgent",
-          "description": "List all bank transactions from FreeAgent",
+          "description": "List all bank transactions from FreeAgent, including explained and unexplained",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -70153,7 +70229,7 @@
           "name": "list-unexplained-transactions",
           "title": "List Unexplained Transactions",
           "subtitle": "FreeAgent",
-          "description": "List unexplained bank transactions that need attention",
+          "description": "List unexplained bank transactions that need attention for bookkeeping",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -158037,7 +158113,8 @@
         "ridemountainpig",
         "meganpearson",
         "alastair_scheuermann",
-        "dangkhoipro"
+        "dangkhoipro",
+        "cblokkeel"
       ],
       "categories": [
         "Productivity"
@@ -158136,6 +158213,15 @@
           "description": "Hide time on the Menu Bar when the timer is stopped",
           "default": true,
           "label": "Hide the time when stopped"
+        },
+        {
+          "name": "hideMenuBarWhenStopped",
+          "type": "checkbox",
+          "required": false,
+          "title": "Hide Menu Bar When Stopped",
+          "description": "Hide the entire menu bar item when the timer is stopped",
+          "default": false,
+          "label": "Hide menu bar when stopped"
         },
         {
           "name": "enableFocusWhileFocused",
@@ -234970,14 +235056,15 @@
     {
       "name": "whois",
       "title": "Whois",
-      "description": "Retrieve whois data.",
+      "description": "Instantly perform WHOIS and RDAP lookups for domains and IP addresses. View registration dates, nameservers, and detailed registrant info.",
       "icon": "extension_icon.png",
       "author": "zavbala",
       "contributors": [
         "snilan",
         "solid-pixel",
         "j3lte",
-        "sebdanielsson"
+        "sebdanielsson",
+        "engeldlgado"
       ],
       "categories": [
         "Web",
@@ -235000,13 +235087,30 @@
         {
           "name": "whois",
           "title": "Whois",
-          "description": "Retrieve whois data",
+          "description": "Lookup detailed WHOIS information for any domain or IP address directly from Raycast or your active browser tab.",
           "mode": "view",
           "keywords": [],
           "preferences": []
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "registrarName",
+          "title": "Preferred Registrar Name",
+          "description": "The name of your preferred domain registrar. If provided along with the search URL, a 'Register' action will appear for available domains.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "e.g. Namecheap"
+        },
+        {
+          "name": "registrarUrl",
+          "title": "Registrar Search URL",
+          "description": "The search URL for your registrar. Use '{domain}' where the domain name should be injected.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "e.g. https://www.namecheap.com/domains/registration/results/?domain={domain}"
+        }
+      ]
     },
     {
       "name": "whoop",
@@ -241001,7 +241105,9 @@
       "description": "Control the Yandex Music tab in browser with your keyboard.",
       "icon": "extension-icon.png",
       "author": "alexstrnik",
-      "contributors": [],
+      "contributors": [
+        "olejech"
+      ],
       "categories": [
         "Media",
         "Applications"
@@ -241820,6 +241926,50 @@
           "required": true
         }
       ]
+    },
+    {
+      "name": "your-name-in-landsat",
+      "title": "Your Name in Landsat",
+      "description": "Generate your name in Landsat using Raycast",
+      "icon": "extension-icon.png",
+      "author": "clins1994",
+      "contributors": [
+        "0xdhrv"
+      ],
+      "categories": [
+        "Fun"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/clins1994/your-name-in-landsat",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/your-name-in-landsat",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "generate-name",
+          "title": "Generate Name",
+          "description": "Generates your name in Landsat",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "show-history",
+          "title": "Show History",
+          "description": "Check and manage your generate history",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "yourls",
