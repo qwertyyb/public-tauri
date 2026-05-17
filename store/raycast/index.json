@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generatedAt": "2026-05-16T19:22:21.451Z",
+  "generatedAt": "2026-05-17T19:25:09.680Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "2dfdd311892ae3128dc58c31307cb524fddcb003"
+    "commit": "6d5ded4b748db6b3447f5637931b94826935b526"
   },
   "count": 2921,
   "extensions": [
@@ -23408,6 +23408,24 @@
           "description": "Cal.com API Key",
           "link": "https://app.cal.com/settings/developer",
           "placeholder": "Cal.com API Key"
+        },
+        {
+          "name": "region",
+          "type": "dropdown",
+          "required": false,
+          "title": "Server Region",
+          "description": "Choose your Cal.com server region. Use Europe if your account is on cal.eu.",
+          "default": "global",
+          "data": [
+            {
+              "title": "Global (cal.com)",
+              "value": "global"
+            },
+            {
+              "title": "Europe (cal.eu)",
+              "value": "eu"
+            }
+          ]
         }
       ]
     },
@@ -77236,7 +77254,7 @@
     {
       "name": "github-trending",
       "title": "GitHub Trending",
-      "description": "Quick access to trending repositories on GitHub.",
+      "description": "Discover trending GitHub repositories by language and time range, then preview, open, or jump into code from Raycast.",
       "icon": "icon.png",
       "author": "mikqi",
       "contributors": [],
@@ -77247,7 +77265,9 @@
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/mikqi/github-trending",
       "source": {
         "type": "github-monorepo",
@@ -77260,7 +77280,7 @@
           "name": "index",
           "title": "Trending Repositories",
           "subtitle": "GitHub",
-          "description": "Quick access to trending repositories on GitHub.",
+          "description": "Explore trending GitHub repositories.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -168201,13 +168221,16 @@
       "contributors": [
         "nagauta",
         "xmok",
-        "danieldeichfuss"
+        "danieldeichfuss",
+        "ridemountainpig"
       ],
       "categories": [
         "Developer Tools"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/coffee-cup/railway",
       "source": {
         "type": "github-monorepo",
@@ -168223,19 +168246,28 @@
           "description": "Search and navigate to your Railway projects",
           "mode": "view",
           "keywords": [],
+          "preferences": [
+            {
+              "name": "railwayApiKey",
+              "type": "password",
+              "title": "Railway API Key",
+              "required": true,
+              "description": "type your Railway api key for auth",
+              "placeholder": "xxxxxxxxxx"
+            }
+          ]
+        },
+        {
+          "name": "railway-templates",
+          "title": "Search Templates",
+          "subtitle": "Railway",
+          "description": "Search Railway templates and deploy them with one click",
+          "mode": "view",
+          "keywords": [],
           "preferences": []
         }
       ],
-      "preferences": [
-        {
-          "name": "railwayApiKey",
-          "type": "password",
-          "title": "Railway API Key",
-          "required": true,
-          "description": "type your Railway api key for auth",
-          "placeholder": "xxxxxxxxxx"
-        }
-      ]
+      "preferences": []
     },
     {
       "name": "rain-radars",
@@ -197242,7 +197274,7 @@
     },
     {
       "name": "spanish-tv-guide",
-      "title": "Spanish Tv Guide",
+      "title": "Spanish TV Guide",
       "description": "Browse the Spanish TV Guide",
       "icon": "app-icon.png",
       "author": "doktor500",
@@ -197251,7 +197283,9 @@
         "Media"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/doktor500/spanish-tv-guide",
       "source": {
         "type": "github-monorepo",
@@ -197262,7 +197296,7 @@
       "commands": [
         {
           "name": "index",
-          "title": "Spanish Tv Guide",
+          "title": "Spanish TV Guide",
           "description": "Displays the Spanish TV Guide",
           "mode": "view",
           "keywords": [],
@@ -200061,7 +200095,8 @@
         "AdrianKokot",
         "validate",
         "xmok",
-        "hugodemenez"
+        "hugodemenez",
+        "alexi.build"
       ],
       "categories": [
         "Media",
