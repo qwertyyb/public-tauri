@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-05-17T19:25:09.680Z",
+  "generatedAt": "2026-05-18T20:02:59.620Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "6d5ded4b748db6b3447f5637931b94826935b526"
+    "commit": "5bf3c0c482e1f688c48558801b30264945bcef3a"
   },
-  "count": 2921,
+  "count": 2926,
   "extensions": [
     {
       "name": "0x0",
@@ -6461,6 +6461,93 @@
       ]
     },
     {
+      "name": "another-boring-piece",
+      "title": "Art Wallpapers",
+      "description": "Another boring piece. Daily.",
+      "icon": "basalt-icon.png",
+      "author": "yevgen_glukhov",
+      "contributors": [
+        "alexi.build"
+      ],
+      "categories": [
+        "Design Tools",
+        "Media"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/yevgen_glukhov/another-boring-piece",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/another-boring-piece",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "index",
+          "title": "Today's Wallpapers",
+          "description": "View and set today's wallpaper",
+          "mode": "view",
+          "keywords": [],
+          "icon": "basalt-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "random-wallpaper",
+          "title": "Set Random Wallpaper",
+          "description": "Set a random wallpaper",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "basalt-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "auto-switch-wallpaper",
+          "title": "Auto Switch Wallpaper",
+          "description": "Switch wallpapers automatically on a schedule",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "basalt-icon.png",
+          "preferences": [
+            {
+              "name": "refreshIntervalSeconds",
+              "type": "dropdown",
+              "title": "Refresh Interval",
+              "description": "How often the wallpaper should change in the background.",
+              "required": false,
+              "default": "3600",
+              "data": [
+                {
+                  "title": "30 Minutes",
+                  "value": "1800"
+                },
+                {
+                  "title": "1 Hour",
+                  "value": "3600"
+                },
+                {
+                  "title": "1 Day",
+                  "value": "86400"
+                }
+              ]
+            },
+            {
+              "name": "notifyOnSwitch",
+              "type": "checkbox",
+              "title": "Notification",
+              "label": "Show HUD when wallpaper changes",
+              "description": "Display a brief on-screen notice with the artwork title each time the wallpaper changes in the background.",
+              "required": false,
+              "default": false
+            }
+          ]
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "search-ansible-documentation",
       "title": "Search Ansible Documentation",
       "description": "Search Ansible Offical Documentation",
@@ -8433,7 +8520,9 @@
         "Developer Tools"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/cali/apple-developer-docs",
       "source": {
         "type": "github-monorepo",
@@ -13709,93 +13798,6 @@
       ]
     },
     {
-      "name": "basalt-wallpapers",
-      "title": "Art Wallpapers.",
-      "description": "Another boring piece. Daily.",
-      "icon": "basalt-icon.png",
-      "author": "yevgen_glukhov",
-      "contributors": [
-        "alexi.build"
-      ],
-      "categories": [
-        "Design Tools",
-        "Media"
-      ],
-      "license": "MIT",
-      "platforms": [
-        "macOS"
-      ],
-      "storeUrl": "https://www.raycast.com/yevgen_glukhov/basalt-wallpapers",
-      "source": {
-        "type": "github-monorepo",
-        "repo": "raycast/extensions",
-        "path": "extensions/basalt-wallpapers",
-        "ref": "main"
-      },
-      "commands": [
-        {
-          "name": "index",
-          "title": "Today's Wallpapers",
-          "description": "View and set today's wallpaper",
-          "mode": "view",
-          "keywords": [],
-          "icon": "basalt-icon.png",
-          "preferences": []
-        },
-        {
-          "name": "random-wallpaper",
-          "title": "Set Random Wallpaper",
-          "description": "Set a random wallpaper",
-          "mode": "no-view",
-          "keywords": [],
-          "icon": "basalt-icon.png",
-          "preferences": []
-        },
-        {
-          "name": "auto-switch-wallpaper",
-          "title": "Auto Switch Wallpaper",
-          "description": "Switch wallpapers automatically on a schedule",
-          "mode": "no-view",
-          "keywords": [],
-          "icon": "basalt-icon.png",
-          "preferences": [
-            {
-              "name": "refreshIntervalSeconds",
-              "type": "dropdown",
-              "title": "Refresh Interval",
-              "description": "How often the wallpaper should change in the background.",
-              "required": false,
-              "default": "3600",
-              "data": [
-                {
-                  "title": "30 Minutes",
-                  "value": "1800"
-                },
-                {
-                  "title": "1 Hour",
-                  "value": "3600"
-                },
-                {
-                  "title": "1 Day",
-                  "value": "86400"
-                }
-              ]
-            },
-            {
-              "name": "notifyOnSwitch",
-              "type": "checkbox",
-              "title": "Notification",
-              "label": "Show HUD when wallpaper changes",
-              "description": "Display a brief on-screen notice with the artwork title each time the wallpaper changes in the background.",
-              "required": false,
-              "default": false
-            }
-          ]
-        }
-      ],
-      "preferences": []
-    },
-    {
       "name": "base-stats",
       "title": "Base Stats",
       "description": "View current gas price and stats for Base",
@@ -14033,7 +14035,8 @@
       "contributors": [
         "iaroslav_naiden",
         "ViGeng",
-        "Sean-fn"
+        "Sean-fn",
+        "0xdhrv"
       ],
       "categories": [
         "System"
@@ -23567,6 +23570,78 @@
       ]
     },
     {
+      "name": "calibre-library",
+      "title": "Calibre Library",
+      "description": "Search your Calibre ebook library by title and author",
+      "icon": "icon.png",
+      "author": "BrunoMonteiro",
+      "contributors": [],
+      "categories": [
+        "Applications"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "1.0.0",
+      "storeUrl": "https://www.raycast.com/BrunoMonteiro/calibre-library",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/calibre-search",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "index",
+          "title": "Search Calibre",
+          "description": "Search for books in your Calibre library",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "add-to-library",
+          "title": "Add to Calibre Library",
+          "description": "Find ebooks on disk and add them to your Calibre library",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "libraryPath",
+          "title": "Library Path",
+          "description": "Path to your Calibre library folder (the one containing metadata.db)",
+          "type": "directory",
+          "required": true
+        },
+        {
+          "name": "searchPath1",
+          "title": "Add Books",
+          "description": "Primary folder to scan for ebook files",
+          "type": "directory",
+          "required": false,
+          "default": "~/Downloads"
+        },
+        {
+          "name": "searchPath2",
+          "title": "Add Books (Optional)",
+          "description": "Additional folder to scan",
+          "type": "directory",
+          "required": false
+        },
+        {
+          "name": "searchPath3",
+          "title": "Add Books (Optional)",
+          "description": "Additional folder to scan",
+          "type": "directory",
+          "required": false
+        }
+      ]
+    },
+    {
       "name": "caltask",
       "title": "CalTask",
       "description": "Track tasks with timer, manage calendar events, AI-powered search, and time reporting",
@@ -31104,6 +31179,73 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "cling",
+      "title": "Cling File Search",
+      "description": "Instant fuzzy search over the whole filesystem using the Cling app",
+      "icon": "extension-icon.png",
+      "author": "alin",
+      "contributors": [],
+      "categories": [
+        "Applications",
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/alin/cling",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/cling",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "fuzzy-search-files",
+          "title": "Fuzzy Search Files",
+          "description": "Searches the entire filesystem using fuzzy queries. Additional search operators: .png .jpg to filter by extension, in:~/Desktop to search in a folder.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "reindex-files",
+          "title": "Reindex Files",
+          "description": "Triggers a full reindexing of the filesystem",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "terminalApp",
+          "title": "Terminal Application",
+          "description": "The terminal app to use for \"Open in Terminal\". Falls back to the Cling app setting, then Terminal.app.",
+          "type": "appPicker",
+          "required": false
+        },
+        {
+          "name": "editorApp",
+          "title": "Editor Application",
+          "description": "The editor app to use for \"Open in Editor\". Falls back to the Cling app setting, then Visual Studio Code.",
+          "type": "appPicker",
+          "required": false
+        },
+        {
+          "name": "shelfApp",
+          "title": "Shelf Application",
+          "description": "The shelf app to use for \"Shelve File\" (e.g. Yoink, Dropover, Dockside). Falls back to the Cling app setting, then auto-detects installed shelf apps.",
+          "type": "appPicker",
+          "required": false
+        }
+      ]
     },
     {
       "name": "raycast-clip",
@@ -39180,7 +39322,12 @@
               "description": "Craft CMS docs version",
               "type": "dropdown",
               "required": true,
+              "default": "5.x",
               "data": [
+                {
+                  "title": "6.x",
+                  "value": "6.x"
+                },
                 {
                   "title": "5.x",
                   "value": "5.x"
@@ -46785,6 +46932,48 @@
       "preferences": []
     },
     {
+      "name": "defuddle",
+      "title": "Defuddle",
+      "description": "Extract readable web pages to Markdown with Defuddle",
+      "icon": "icon.png",
+      "author": "0xdhrv",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/0xdhrv/defuddle",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/defuddle",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "get-markdown",
+          "title": "Get Markdown",
+          "description": "Extract Markdown from a URL",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "recent-markdown",
+          "title": "Recent Markdown",
+          "description": "View and manage recently extracted markdown",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "dekudeals",
       "title": "DekuDeals",
       "description": "Search for deals on DekuDeals.com",
@@ -47482,17 +47671,7 @@
         {
           "name": "current-desktop",
           "title": "Current Desktop",
-          "subtitle": "DesktopRenamer",
           "description": "Show the currently active desktop with live status.",
-          "mode": "no-view",
-          "keywords": [],
-          "preferences": []
-        },
-        {
-          "name": "toggle-space-label-windows",
-          "title": "Toggle Space Label Windows",
-          "subtitle": "DesktopRenamer",
-          "description": "Toggle both Active & Preview Label Windows.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -47500,8 +47679,15 @@
         {
           "name": "rename-current-space",
           "title": "Rename Current Space",
-          "subtitle": "DesktopRenamer",
           "description": "Rename the current space.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "reload-labels",
+          "title": "Reload Space Labels",
+          "description": "Force reload all space label overlay windows.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -47509,7 +47695,6 @@
         {
           "name": "toggle-active-label-window",
           "title": "Toggle Active Label Window",
-          "subtitle": "DesktopRenamer",
           "description": "Toggle the Active Label Window.",
           "mode": "no-view",
           "keywords": [],
@@ -47518,7 +47703,6 @@
         {
           "name": "toggle-preview-label-window",
           "title": "Toggle Preview Label Window",
-          "subtitle": "DesktopRenamer",
           "description": "Toggle the Preview Label Windows.",
           "mode": "no-view",
           "keywords": [],
@@ -47527,23 +47711,55 @@
         {
           "name": "toggle-active-label-window-visibility",
           "title": "Toggle Visible Label Window",
-          "subtitle": "DesktopRenamer",
           "description": "Show/hide the Active Label Window from the desktop.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
         },
         {
+          "name": "list-windows",
+          "title": "List Windows",
+          "description": "List all windows grouped by desktop space and switch to one",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "move-window",
+          "title": "Move Window",
+          "description": "List all desktops and move the active window to one",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "switch-to-desktop",
           "title": "Switch Desktop",
-          "subtitle": "DesktopRenamer",
           "description": "List all desktops and switch to one",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "batch-move-windows",
+          "title": "Batch Move Windows",
+          "description": "Queue multiple window moves and execute them efficiently",
           "mode": "view",
           "keywords": [],
           "preferences": []
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "returnToOriginalSpace",
+          "title": "Return to Original Space",
+          "label": "Enable automatic return",
+          "description": "Automatically return to your original desktop after moving windows to a different desktop.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        }
+      ]
     },
     {
       "name": "deta-space",
@@ -73138,6 +73354,58 @@
       "preferences": []
     },
     {
+      "name": "getcompress",
+      "title": "GetCompress",
+      "description": "Compress PDF, videos, images & GIFs in batches: fast, secure, local",
+      "icon": "icon.png",
+      "author": "petersamokhin",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Media",
+        "Applications"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/petersamokhin/getcompress",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/getcompress",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "open-files",
+          "title": "Import Files",
+          "description": "Open the selected files or folders",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "quick-compress-files",
+          "title": "Compress Files Quickly",
+          "description": "Compress selected files or folders with quick options",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "compress-files",
+          "title": "Compress Files",
+          "description": "Compress selected files or folders with more options",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "getsound",
       "title": "GetSound",
       "description": "Get focused with GetSound.AI",
@@ -77406,7 +77674,9 @@
         "1weiho",
         "pnowy",
         "ridemountainpig",
-        "j3lte"
+        "j3lte",
+        "JonathanXDR",
+        "danilorequena"
       ],
       "categories": [
         "Developer Tools"
@@ -77559,6 +77829,15 @@
               "default": false
             }
           ]
+        },
+        {
+          "name": "pipeline_my",
+          "title": "My Pipelines",
+          "subtitle": "GitLab",
+          "description": "List your most recent GitLab pipelines across projects",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
         },
         {
           "name": "group_my",
@@ -77756,6 +78035,15 @@
               "placeholder": "e.g. WIP,blocked"
             }
           ]
+        },
+        {
+          "name": "oauth_signout",
+          "title": "Sign out of GitLab",
+          "subtitle": "GitLab",
+          "description": "Clear the cached OAuth token. Useful for switching accounts or after a server-side revocation. Has no effect when authentication is set to Personal Access Token.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": [
@@ -77768,13 +78056,40 @@
           "placeholder": "URL of your GitLab instance e.g. https://gitlab.com"
         },
         {
+          "name": "authType",
+          "type": "dropdown",
+          "required": true,
+          "default": "pat",
+          "title": "Authentication",
+          "description": "How to authenticate with GitLab. OAuth is recommended for instances that rotate or revoke Personal Access Tokens (e.g. enterprise GitLab).",
+          "data": [
+            {
+              "title": "Personal Access Token",
+              "value": "pat"
+            },
+            {
+              "title": "OAuth (PKCE)",
+              "value": "oauth"
+            }
+          ]
+        },
+        {
           "name": "token",
           "type": "password",
-          "required": true,
+          "required": false,
           "title": "API Token",
-          "description": "Your GitLab API token. `api` scope for read and write operations, `read_api` when you just want to read only commands.",
+          "description": "Your GitLab Personal Access Token. Required when Authentication is set to Personal Access Token. `api` scope for read and write operations, `read_api` for read-only.",
           "link": "https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html",
-          "placeholder": "Enter your GitLab API token."
+          "placeholder": "Enter your GitLab API token if using PAT"
+        },
+        {
+          "name": "oauthClientId",
+          "type": "textfield",
+          "required": false,
+          "title": "OAuth Application ID",
+          "description": "Application ID of a GitLab OAuth application registered on this instance. Required when Authentication is set to OAuth. Create one under Preferences > Applications with redirect URIs `https://raycast.com/redirect?packageName=Extension` and `https://raycast.com/redirect/extension`, and the `api`, `read_user`, `read_repository` scopes.",
+          "link": "https://docs.gitlab.com/ee/integration/oauth_provider.html",
+          "placeholder": "OAuth Application ID"
         },
         {
           "name": "cirefreshinterval",
@@ -95731,7 +96046,9 @@
         "Developer Tools"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/nkl/incident-io",
       "source": {
         "type": "github-monorepo",
@@ -111724,6 +112041,51 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "launchd-monitor",
+      "title": "Launchd Monitor",
+      "description": "Monitor your macOS launchd jobs from the menu bar. See job status, last run times, failures, and re-run jobs on demand.",
+      "icon": "command-icon.png",
+      "author": "wesbaker",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "System",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/wesbaker/launchd-monitor",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/launchd-monitor",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "menubar",
+          "title": "Launchd Job Status",
+          "subtitle": "Launchd Monitor",
+          "description": "Shows launchd job status in the menu bar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "launchdLabels",
+          "type": "textfield",
+          "required": true,
+          "title": "Launchd Job Labels",
+          "description": "Comma-separated list of launchd job labels to monitor",
+          "placeholder": "com.example.job1, com.example.job2"
+        }
+      ]
     },
     {
       "name": "launchdarkly",
@@ -217785,6 +218147,14 @@
               "required": false
             },
             {
+              "name": "sortByPriority",
+              "type": "checkbox",
+              "label": "Sort tasks by priority",
+              "description": "When enabled, tasks are sorted by priority (highest first), then by their default order.",
+              "default": true,
+              "required": false
+            },
+            {
               "name": "view",
               "type": "dropdown",
               "data": [
@@ -244400,7 +244770,8 @@
         "tm.wrnr",
         "true-real-michael",
         "xmorse",
-        "ivens_joris"
+        "ivens_joris",
+        "FollowTheProcess"
       ],
       "categories": [
         "Developer Tools"
