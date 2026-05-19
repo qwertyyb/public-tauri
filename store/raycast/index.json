@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-05-18T20:02:59.620Z",
+  "generatedAt": "2026-05-19T20:06:20.563Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "5bf3c0c482e1f688c48558801b30264945bcef3a"
+    "commit": "5d59b709733775a501cdf1e63a62bd0759619d59"
   },
-  "count": 2926,
+  "count": 2928,
   "extensions": [
     {
       "name": "0x0",
@@ -21516,7 +21516,10 @@
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "storeUrl": "https://www.raycast.com/amuelli/bring",
       "source": {
         "type": "github-monorepo",
@@ -44709,7 +44712,9 @@
       ],
       "categories": [],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/AntonNiklasson/day-one",
       "source": {
         "type": "github-monorepo",
@@ -50860,7 +50865,7 @@
       "platforms": [
         "macOS"
       ],
-      "version": "1.2.0",
+      "version": "1.3.0",
       "storeUrl": "https://www.raycast.com/Globolo/diskutil-mac",
       "source": {
         "type": "github-monorepo",
@@ -55691,6 +55696,50 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "ducat",
+      "title": "Ducat",
+      "description": "Add transactions to your Ducat account",
+      "icon": "ducat.png",
+      "author": "rahulchowdhury",
+      "contributors": [],
+      "categories": [
+        "Finance"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/rahulchowdhury/ducat",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/ducat",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "record-transaction",
+          "title": "Record Transaction",
+          "subtitle": "Ducat",
+          "description": "Record an expense or income transaction in your Ducat account using natural language",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "integrationKey",
+          "title": "Integration Key",
+          "description": "Create or copy your key from Ducat Settings > Integrations, then paste it here.",
+          "type": "password",
+          "placeholder": "Paste your Raycast integration key from Ducat Settings",
+          "required": true
+        }
+      ]
     },
     {
       "name": "duck-duck-go-search",
@@ -99370,7 +99419,8 @@
       "icon": "extension-icon.png",
       "author": "narghev",
       "contributors": [
-        "YourMCGeek"
+        "YourMCGeek",
+        "heeeyflo"
       ],
       "categories": [
         "Applications",
@@ -108462,6 +108512,56 @@
           "required": true
         }
       ]
+    },
+    {
+      "name": "kind-words",
+      "title": "Kind Words",
+      "description": "Random compliments and gratitude prompts to lift the mood.",
+      "icon": "extension-icon.png",
+      "author": "tim_gailey",
+      "contributors": [],
+      "categories": [
+        "Fun"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/tim_gailey/kind-words",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/kind-words",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "random-compliment",
+          "title": "Random Compliment",
+          "description": "Browse compliments with one preselected at random; filter by tone.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "quick-compliment",
+          "title": "Quick Compliment",
+          "description": "Copy a random compliment instantly.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "gratitude-note",
+          "title": "Gratitude Note",
+          "description": "Browse gratitude prompts with usage notes and opener examples.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "kinopio-inbox",
@@ -130039,7 +130139,9 @@
         "Web"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/kgrhartlage/mui-documentation",
       "source": {
         "type": "github-monorepo",
@@ -137091,7 +137193,8 @@
         "abesto",
         "xmok",
         "pernielsentikaer",
-        "0xdhrv"
+        "0xdhrv",
+        "ridemountainpig"
       ],
       "categories": [
         "Applications",
@@ -181762,14 +181865,17 @@
       "description": "Measure Distance Between Two Points",
       "icon": "icon.png",
       "author": "anwarulislam",
-      "contributors": [],
+      "contributors": [
+        "yusifaliyevpro"
+      ],
       "categories": [
         "Applications",
         "Design Tools"
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/anwarulislam/ruler",
       "source": {
@@ -187934,7 +188040,10 @@
         "Web"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "storeUrl": "https://www.raycast.com/robertoalvarezalonso/servicenow",
       "source": {
         "type": "github-monorepo",
@@ -187945,8 +188054,16 @@
       "commands": [
         {
           "name": "search",
-          "title": "Search",
-          "description": "Search in ServiceNow, preview search results, and browse your search history.",
+          "title": "Search Text",
+          "description": "Search in ServiceNow. Pass the text you want to search for (or copy it to the clipboard) to jump straight to results; otherwise browse your search history and search inline.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-code",
+          "title": "Search Code",
+          "description": "Search inside ServiceNow scripts (business rules, script includes, client scripts, UI scripts, etc.) using the Code Search API. Pass a term to jump straight to results, or open the form to enter one. Requires the sn_codesearch plugin in the instance.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -187954,15 +188071,7 @@
         {
           "name": "manage-instance-profiles",
           "title": "Manage Instance Profiles",
-          "description": "Configure and mange profiles for your ServiceNow instances.",
-          "mode": "view",
-          "keywords": [],
-          "preferences": []
-        },
-        {
-          "name": "quick-search",
-          "title": "Quick Search",
-          "description": "Quickly search within a specific ServiceNow instance profile by entering a search term. If no instance name or alias is provided, it will use the selected instance profile.",
+          "description": "Configure and manage profiles to connect to your ServiceNow instances.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -187978,15 +188087,15 @@
         {
           "name": "open-instance",
           "title": "Open Instance",
-          "description": "Open a ServiceNow instance in the browser. If an instance name or alias is provided, it will open that instance; otherwise, it will open the currently selected instance.",
+          "description": "Open a ServiceNow instance in the browser. If an instance URL or alias is provided, it will open that instance; otherwise, it will open the currently selected instance.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
         },
         {
           "name": "open-current-page-instance",
-          "title": "Open Current Page in Instance",
-          "description": "Open the current ServiceNow page in any instance defined in your instance profiles. If no instance name or alias is provided, it will open the page in the selected instance profile.",
+          "title": "Open Current Page in Another Instance",
+          "description": "Open the current ServiceNow page in any instance defined in your instance profiles. If no instance URL or alias is provided, it will open the page in the selected instance profile.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -188009,16 +188118,8 @@
         },
         {
           "name": "search-resources",
-          "title": "Search Resources",
-          "description": "Search across various ServiceNow resources, including documentation, blogs, guides, learning materials, and more.",
-          "mode": "no-view",
-          "keywords": [],
-          "preferences": []
-        },
-        {
-          "name": "login-to-instance",
-          "title": "Login to Instance",
-          "description": "Log in to the selected instance using the credentials from the selected profile.",
+          "title": "Search Developer Portal",
+          "description": "Search the ServiceNow Developer Portal across documentation, API references, blogs, learning content, and Share apps.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -188049,8 +188150,29 @@
         },
         {
           "name": "search-sysid",
-          "title": "Search sys_id",
-          "description": "Search for a sys_id. Admins only",
+          "title": "Find Record by Sys ID",
+          "description": "Find the record that owns a given Sys ID and open it. Admins only.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "find-references",
+          "title": "Find Record References",
+          "description": "Find tables and columns where a record is referenced. Requires an admin profile (uses /sys.scripts.do).",
+          "mode": "view",
+          "keywords": [
+            "reference",
+            "references",
+            "where-used",
+            "sys_dictionary"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "cancel-my-transactions",
+          "title": "Cancel My Transactions",
+          "description": "Stop a long-running transaction that has locked you out of your ServiceNow session, without opening a new browser or private window. If no instance URL or alias is provided, uses the currently selected instance.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -204408,7 +204530,46 @@
           "preferences": []
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "creativity",
+          "title": "Creativity",
+          "description": "Choose how creative the AI should be.",
+          "type": "dropdown",
+          "default": "0.5",
+          "data": [
+            {
+              "value": "0",
+              "title": "None"
+            },
+            {
+              "value": "0.5",
+              "title": "Low"
+            },
+            {
+              "value": "1",
+              "title": "Medium"
+            },
+            {
+              "value": "1.5",
+              "title": "High"
+            },
+            {
+              "value": "2",
+              "title": "Maximum"
+            }
+          ],
+          "required": false
+        },
+        {
+          "name": "language",
+          "title": "Language",
+          "description": "Define the language which Raycast AI should use to answer video questions.",
+          "type": "textfield",
+          "default": "english",
+          "required": false
+        }
+      ]
     },
     {
       "name": "summation",
