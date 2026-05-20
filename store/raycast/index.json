@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-05-19T20:06:20.563Z",
+  "generatedAt": "2026-05-20T20:36:40.831Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "5d59b709733775a501cdf1e63a62bd0759619d59"
+    "commit": "f0782929cfccb741709d7e5c9558680fe7757927"
   },
-  "count": 2928,
+  "count": 2939,
   "extensions": [
     {
       "name": "0x0",
@@ -4892,6 +4892,41 @@
           "required": false
         }
       ]
+    },
+    {
+      "name": "align-rtl",
+      "title": "Align RTL",
+      "description": "Paste selected text as right-aligned rich RTL content in editors that need paragraph-level RTL alignment.",
+      "icon": "align-rtl-icon.png",
+      "author": "jberrebi",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/jberrebi/align-rtl",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/align-rtl",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "index",
+          "title": "Align RTL",
+          "subtitle": "Paste right-aligned rich RTL content",
+          "description": "Paste selected text or clipboard content with a rich HTML RTL payload for paragraph-level right alignment.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "align-rtl-icon.png",
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "alist-downloder",
@@ -13991,6 +14026,42 @@
       "preferences": []
     },
     {
+      "name": "bash-commands",
+      "title": "Bash Commands",
+      "description": "A quick reference for bash commands with search, and categories.",
+      "icon": "bash-commands-icon.png",
+      "author": "koala1206",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Documentation",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/koala1206/bash-commands",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/bash-commands",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-bash-commands",
+          "title": "Search Bash Commands",
+          "description": "Quick access to bash commands. Search, filter by category, and copy.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "battery-health",
       "title": "Battery Health",
       "description": "Shows live information about the battery in your Mac!",
@@ -19044,7 +19115,6 @@
         "samuel_ivarsson",
         "gaspihabif",
         "marinsokol",
-        "jose-elias-alvarez",
         "krambono",
         "clins1994",
         "naokiiida",
@@ -47968,6 +48038,82 @@
       ]
     },
     {
+      "name": "dev-servers",
+      "title": "Dev Servers",
+      "description": "Project-grouped dashboard to manage dev servers. Detects the framework (Next, Svelte, Astro, Vite) and restarts with the right package manager (npm, pnpm, yarn, bun). Kill individually or by project, open in browser, copy URLs, and track uptime.",
+      "icon": "extension-icon.png",
+      "author": "tavlean",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/tavlean/dev-servers",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/dev-servers",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "index",
+          "title": "Dev Servers",
+          "description": "List and manage running dev servers",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "terminalApp",
+              "title": "Terminal App",
+              "type": "appPicker",
+              "description": "Which terminal to open when using \"Open in Terminal\". Defaults to macOS Terminal if unset.",
+              "required": false
+            },
+            {
+              "name": "showFullPath",
+              "title": "Project Display",
+              "type": "checkbox",
+              "label": "Show full directory path",
+              "description": "Show the full path instead of the project name",
+              "default": false,
+              "required": false
+            },
+            {
+              "name": "refreshInterval",
+              "title": "Refresh Interval",
+              "type": "dropdown",
+              "description": "How often to refresh the server list",
+              "default": "5",
+              "required": false,
+              "data": [
+                {
+                  "title": "2 seconds",
+                  "value": "2"
+                },
+                {
+                  "title": "5 seconds",
+                  "value": "5"
+                },
+                {
+                  "title": "10 seconds",
+                  "value": "10"
+                },
+                {
+                  "title": "30 seconds",
+                  "value": "30"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "dev-to",
       "title": "DEV Community",
       "description": "Search and create articles to DEV Community. Read saved article list",
@@ -66186,6 +66332,54 @@
       "preferences": []
     },
     {
+      "name": "fillerama",
+      "title": "Fillerama",
+      "description": "Generate filler text using quotes from Futurama, The Simpsons, Monty Python, Arrested Development, Dexter, Doctor Who, and Star Wars.",
+      "icon": "extension-icon.png",
+      "author": "pryley",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "version": "1.0.0",
+      "storeUrl": "https://www.raycast.com/pryley/fillerama",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/fillerama",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "generate-filler",
+          "title": "Generate Filler Text",
+          "subtitle": "Fillerama",
+          "description": "Pick a show and sentence count, then paste into the active app.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "logo-text.png",
+          "preferences": []
+        },
+        {
+          "name": "generate-headline",
+          "title": "Generate Filler Headline",
+          "subtitle": "Fillerama",
+          "description": "Pick a show, then paste a headline into the active app.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "logo-headline.png",
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "finary",
       "title": "Finary",
       "description": "Fastest way to explore your Finary Portfolio & Investments.",
@@ -77719,7 +77913,6 @@
         "heavyrisem",
         "constantins2001",
         "pernielsentikaer",
-        "tane_van_wifferen",
         "1weiho",
         "pnowy",
         "ridemountainpig",
@@ -78728,6 +78921,112 @@
           "title": "Show HUD",
           "default": false,
           "required": false
+        }
+      ]
+    },
+    {
+      "name": "globalping",
+      "title": "Globalping",
+      "description": "Run ping, traceroute, MTR, DNS and HTTP tests from 3700+ probes distributed worldwide. Powered by the Globalping network.",
+      "icon": "globalping.png",
+      "author": "valentin_denis",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/valentin_denis/globalping",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/globalping",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "ping",
+          "title": "Ping",
+          "subtitle": "Globalping",
+          "description": "Ping a target from multiple locations worldwide and compare latency results.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "dns",
+          "title": "DNS",
+          "subtitle": "Globalping",
+          "description": "Resolve DNS records from multiple locations worldwide.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "http",
+          "title": "HTTP",
+          "subtitle": "Globalping",
+          "description": "Perform HTTP requests from multiple locations worldwide.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "mtr",
+          "title": "MTR",
+          "subtitle": "Globalping",
+          "description": "Run MTR tests combining traceroute and ping from multiple locations worldwide.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "traceroute",
+          "title": "Traceroute",
+          "subtitle": "Globalping",
+          "description": "Run traceroute tests from multiple locations worldwide.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "probeCount",
+          "title": "Default Probe Count",
+          "description": "Global number of probes to use across all Globalping commands.",
+          "type": "dropdown",
+          "required": true,
+          "default": "5",
+          "data": [
+            {
+              "title": "1 probe",
+              "value": "1"
+            },
+            {
+              "title": "3 probes",
+              "value": "3"
+            },
+            {
+              "title": "5 probes",
+              "value": "5"
+            },
+            {
+              "title": "10 probes",
+              "value": "10"
+            },
+            {
+              "title": "20 probes",
+              "value": "20"
+            },
+            {
+              "title": "50 probes",
+              "value": "50"
+            }
+          ]
         }
       ]
     },
@@ -99141,13 +99440,18 @@
       "description": "This is an extension plugin for converting, validating, and calculating IP subnets. (net, mask, netmask, ip2long, long2ip, cidr, ipv4, ipv6 & geoLocation)",
       "icon": "extension_icon.png",
       "author": "meguoe",
-      "contributors": [],
+      "contributors": [
+        "darkintaqt"
+      ],
       "categories": [
         "Developer Tools",
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "storeUrl": "https://www.raycast.com/meguoe/ip-tools",
       "source": {
         "type": "github-monorepo",
@@ -108880,9 +109184,11 @@
       "name": "klack",
       "title": "Klack",
       "description": "Control Klack for macOS with Raycast",
-      "icon": "klack.png",
+      "icon": "icon.png",
       "author": "henrikruscon",
-      "contributors": [],
+      "contributors": [
+        "jace"
+      ],
       "categories": [
         "Applications",
         "Media",
@@ -108901,48 +109207,119 @@
       },
       "commands": [
         {
-          "name": "toggleKlack",
+          "name": "toggle",
           "title": "Toggle Klack",
           "subtitle": "Klack",
-          "description": "Toggles Klack",
+          "description": "Toggles Klack on or off",
           "mode": "no-view",
-          "keywords": [],
+          "keywords": [
+            "toggle"
+          ],
           "preferences": []
         },
         {
-          "name": "setSwitchSet",
+          "name": "turn-on",
+          "title": "Turn Klack on",
+          "subtitle": "Klack",
+          "description": "Explicitly enables Klack",
+          "mode": "no-view",
+          "keywords": [
+            "enable"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "turn-off",
+          "title": "Turn Klack off",
+          "subtitle": "Klack",
+          "description": "Explicitly disables Klack",
+          "mode": "no-view",
+          "keywords": [
+            "disable",
+            "mute"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "wake-up",
+          "title": "Wake Klack",
+          "subtitle": "Klack",
+          "description": "Wakes Klack from sleep",
+          "mode": "no-view",
+          "keywords": [
+            "sleep"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "set-switch",
           "title": "Set Switch Set",
           "subtitle": "Klack",
-          "description": "Sets Switch Set",
+          "description": "Pick a mechanical-switch sound set",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "switch",
+            "sound",
+            "pack"
+          ],
           "preferences": []
         },
         {
-          "name": "setSoftVolume",
+          "name": "set-volume",
+          "title": "Set Volume",
+          "subtitle": "Klack",
+          "description": "Pick a volume between 0 and 100",
+          "mode": "view",
+          "keywords": [
+            "loudness"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "set-soft-volume",
           "title": "Set Volume to Soft",
           "subtitle": "Klack",
-          "description": "Sets Volume to Soft (30%)",
+          "description": "Sets volume to Soft (30%)",
           "mode": "no-view",
-          "keywords": [],
+          "keywords": [
+            "quiet"
+          ],
           "preferences": []
         },
         {
-          "name": "setBalancedVolume",
+          "name": "set-balanced-volume",
           "title": "Set Volume to Balanced",
           "subtitle": "Klack",
-          "description": "Sets Volume to Balanced (60%)",
+          "description": "Sets volume to Balanced (60%)",
           "mode": "no-view",
-          "keywords": [],
+          "keywords": [
+            "medium"
+          ],
           "preferences": []
         },
         {
-          "name": "setLoudVolume",
+          "name": "set-loud-volume",
           "title": "Set Volume to Loud",
           "subtitle": "Klack",
-          "description": "Sets Volume to Loud (90%)",
+          "description": "Sets volume to Loud (90%)",
           "mode": "no-view",
-          "keywords": [],
+          "keywords": [
+            "high"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "stats",
+          "title": "Klack Stats",
+          "subtitle": "Klack",
+          "description": "Live keystroke, ding, click, and favourite switch counts",
+          "mode": "view",
+          "keywords": [
+            "stats",
+            "statistics",
+            "usage",
+            "keystrokes"
+          ],
           "preferences": []
         }
       ],
@@ -126855,6 +127232,64 @@
           "title": "API Base URL",
           "description": "Custom API base URL (optional, for development)",
           "placeholder": "https://my.minttr.com"
+        }
+      ]
+    },
+    {
+      "name": "miraie-ac-control",
+      "title": "MirAIe AC Control",
+      "description": "Control Panasonic MirAIe air conditioners from Raycast.",
+      "icon": "extension_icon.png",
+      "author": "ayush_saini",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/ayush_saini/miraie-ac-control",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/miraie-ac-control",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "list-devices",
+          "title": "View Devices",
+          "description": "View and control your Panasonic MirAIe air conditioners",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "menu-bar",
+          "title": "Menu Bar Control",
+          "description": "Control your Panasonic MirAIe air conditioners from the menu bar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "username",
+          "type": "textfield",
+          "required": true,
+          "title": "Mobile Number / Email",
+          "description": "Your MirAIe account mobile number or email address",
+          "placeholder": "e.g., +91xxxxxxxxxx or user@email.com"
+        },
+        {
+          "name": "password",
+          "type": "password",
+          "required": true,
+          "title": "Password",
+          "description": "Your MirAIe account password"
         }
       ]
     },
@@ -151479,6 +151914,72 @@
       ]
     },
     {
+      "name": "paypal-invoices",
+      "title": "PayPal Invoices",
+      "description": "Create and send PayPal invoices without leaving Raycast.",
+      "icon": "extension-icon.png",
+      "author": "ethananderstandable",
+      "contributors": [],
+      "categories": [
+        "Finance"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/ethananderstandable/paypal-invoices",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/paypal-invoices",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "create-invoice",
+          "title": "Create Invoice",
+          "description": "Create a PayPal invoice and copy the shareable link.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "my-invoices",
+          "title": "My Invoices",
+          "description": "View and manage invoices created on this machine.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "clientId",
+          "title": "PayPal Client ID",
+          "description": "Your PayPal REST API Client ID",
+          "type": "password",
+          "required": true
+        },
+        {
+          "name": "clientSecret",
+          "title": "PayPal Client Secret",
+          "description": "Your PayPal REST API Client Secret",
+          "type": "password",
+          "required": true
+        },
+        {
+          "name": "sandboxMode",
+          "title": "Sandbox Mode",
+          "description": "Enable this when testing with PayPal sandbox credentials. Disable for real invoices.",
+          "type": "checkbox",
+          "label": "Use PayPal Sandbox",
+          "default": false,
+          "required": false
+        }
+      ]
+    },
+    {
       "name": "paystack",
       "title": "Paystack",
       "description": "Manage your Paystack account effortlessly in Raycast—check balances, search transactions, generate links, issue refunds, and track revenue—all from your keyboard.",
@@ -161360,7 +161861,17 @@
           "preferences": []
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "autoStartPowerToys",
+          "type": "checkbox",
+          "required": false,
+          "title": "Auto-start settings",
+          "label": "Auto-start PowerToys",
+          "description": "Attempt to start PowerToys before executing a tool",
+          "default": true
+        }
+      ]
     },
     {
       "name": "premier-league",
@@ -165874,6 +166385,109 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "qq-mail",
+      "title": "QQ Mail",
+      "description": "View and manage your QQ Mail inbox",
+      "icon": "icon.png",
+      "author": "ariesly15",
+      "contributors": [],
+      "categories": [
+        "Communication"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/ariesly15/qq-mail",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/qq-mail",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "list-emails",
+          "title": "Browse Email",
+          "subtitle": "QQ Mail",
+          "description": "View and manage your QQ Mail emails",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "compose-email",
+          "title": "Compose Email",
+          "subtitle": "QQ Mail",
+          "description": "Compose and send a new email",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "username",
+          "title": "QQ Email Address",
+          "description": "Your QQ email address (e.g. 123456@qq.com)",
+          "type": "textfield",
+          "required": true
+        },
+        {
+          "name": "password",
+          "title": "Authorization Code",
+          "description": "QQ Mail authorization code (not your QQ password). Get it from QQ Mail Settings → Account → POP3/IMAP/SMTP",
+          "type": "password",
+          "required": true
+        },
+        {
+          "name": "emailsToLoad",
+          "title": "Emails to Load",
+          "description": "Number of emails to load per page",
+          "type": "dropdown",
+          "required": false,
+          "default": "20",
+          "data": [
+            {
+              "title": "20",
+              "value": "20"
+            },
+            {
+              "title": "50",
+              "value": "50"
+            },
+            {
+              "title": "100",
+              "value": "100"
+            },
+            {
+              "title": "200",
+              "value": "200"
+            }
+          ]
+        },
+        {
+          "name": "composeFormat",
+          "title": "Compose Format",
+          "description": "Format for composing emails",
+          "type": "dropdown",
+          "required": false,
+          "default": "markdown",
+          "data": [
+            {
+              "title": "Markdown (HTML)",
+              "value": "markdown"
+            },
+            {
+              "title": "Plain Text",
+              "value": "plaintext"
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "qq-music-controls",
@@ -178369,6 +178983,73 @@
       "preferences": []
     },
     {
+      "name": "reka-ui",
+      "title": "Reka UI",
+      "description": "Browse Reka UI documentation via Raycast",
+      "icon": "extension-icon.png",
+      "author": "twirl",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Documentation"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/twirl/reka-ui",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/reka-ui",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-components",
+          "title": "Search Components",
+          "description": "Search components provided by Reka UI",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "description",
+          "label": "Show description",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "description": "Show the description section in component metadata panel"
+        },
+        {
+          "name": "features",
+          "label": "Show features",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "description": "Show the features section in component metadata panel"
+        },
+        {
+          "name": "anatomy",
+          "label": "Show anatomy",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "description": "Show the anatomy section in component metadata panel"
+        },
+        {
+          "name": "ghPat",
+          "title": "GitHub PAT",
+          "type": "password",
+          "required": false,
+          "description": "GitHub personal access token (PAT) to prevent rate-limiting"
+        }
+      ]
+    },
+    {
       "name": "relagit",
       "title": "RelaGit",
       "description": "Interact with your RelaGit projects, straight from Raycast.",
@@ -188486,6 +189167,41 @@
       ]
     },
     {
+      "name": "seventv-search",
+      "title": "7TV Emotes Search",
+      "description": "Search, preview, copy, and paste 7TV emotes from Raycast.",
+      "icon": "icon.png",
+      "author": "Paranjayy",
+      "contributors": [],
+      "categories": [
+        "Media"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "version": "1.0.0",
+      "storeUrl": "https://www.raycast.com/Paranjayy/seventv-search",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/seventv-search",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search",
+          "title": "Search Emotes",
+          "description": "Find any 7TV emote",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "sf-symbols-search",
       "title": "SF Symbols Search",
       "description": "Search and copy SF Symbols",
@@ -196897,7 +197613,9 @@
         "Fun"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/AntonNiklasson/sonos",
       "source": {
         "type": "github-monorepo",
@@ -245555,6 +246273,96 @@
           "description": "Comma-separated list of 'true' or 'false' values indicating if each instance is production",
           "type": "textfield",
           "required": false
+        }
+      ]
+    },
+    {
+      "name": "zenmux-manager",
+      "title": "ZenMux Manager",
+      "description": "Monitor ZenMux usage, manage account links, and ask Raycast AI about ZenMux.",
+      "icon": "extension-icon.png",
+      "author": "abnershang",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/abnershang/zenmux-manager",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/zenmux-manager",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "usage-status",
+          "title": "ZenMux Status",
+          "description": "Show ZenMux quota and PAYG balance inline in Raycast.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "statusDisplay",
+              "title": "Status Display",
+              "description": "Choose what the Raycast command subtitle should show. Quota options apply only to subscribed accounts.",
+              "type": "dropdown",
+              "required": true,
+              "default": "payg-both-left",
+              "data": [
+                {
+                  "title": "PAYG + Both Quotas Left",
+                  "value": "payg-both-left"
+                },
+                {
+                  "title": "PAYG + Both Quotas Used",
+                  "value": "payg-both-used"
+                },
+                {
+                  "title": "PAYG + 5-hour Left",
+                  "value": "payg-5h-left"
+                },
+                {
+                  "title": "PAYG + 5-hour Used",
+                  "value": "payg-5h-used"
+                },
+                {
+                  "title": "PAYG + 7-day Left",
+                  "value": "payg-7d-left"
+                },
+                {
+                  "title": "PAYG + 7-day Used",
+                  "value": "payg-7d-used"
+                },
+                {
+                  "title": "PAYG Only",
+                  "value": "payg-only"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "show-details",
+          "title": "Show ZenMux Usage",
+          "description": "Monitor ZenMux subscription quota and PAYG credit balance.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "managementApiKey",
+          "title": "Platform API Key",
+          "description": "Create one from ZenMux Console > Platform API. Standard API keys are not accepted by the account endpoints.",
+          "type": "password",
+          "required": true,
+          "placeholder": "Your ZenMux Platform API key"
         }
       ]
     },
