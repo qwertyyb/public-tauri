@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-05-20T20:36:40.831Z",
+  "generatedAt": "2026-05-21T20:09:21.301Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "f0782929cfccb741709d7e5c9558680fe7757927"
+    "commit": "628860323aab71df786edd379d2b5716d48e4039"
   },
-  "count": 2939,
+  "count": 2943,
   "extensions": [
     {
       "name": "0x0",
@@ -15672,6 +15672,211 @@
           "required": true,
           "title": "Better Uptime API Key",
           "description": "You can find this API Key in the Better Uptime dashboard."
+        }
+      ]
+    },
+    {
+      "name": "betteraudio",
+      "title": "BetterAudio",
+      "description": "Control BetterAudio from Raycast — per-app volume, EQ, device routing, media controls, and more.",
+      "icon": "extension-icon.png",
+      "author": "rokartur",
+      "contributors": [],
+      "categories": [
+        "Media",
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/rokartur/betteraudio",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/betteraudio",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "manage-apps",
+          "title": "Manage Apps",
+          "subtitle": "BetterAudio",
+          "description": "View and control per-app audio — volume, mute, EQ, and device routing.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-manage-apps.png",
+          "preferences": []
+        },
+        {
+          "name": "list-devices",
+          "title": "List Devices",
+          "subtitle": "BetterAudio",
+          "description": "View all audio devices and set the default output or input device.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-devices.png",
+          "preferences": []
+        },
+        {
+          "name": "set-volume",
+          "title": "Set Volume",
+          "subtitle": "BetterAudio",
+          "description": "Set the system output volume to a specific level.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-volume-set.png",
+          "preferences": []
+        },
+        {
+          "name": "volume-up",
+          "title": "Volume Up",
+          "subtitle": "BetterAudio",
+          "description": "Increase system volume by one step.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "command-volume-up.png",
+          "preferences": []
+        },
+        {
+          "name": "volume-down",
+          "title": "Volume Down",
+          "subtitle": "BetterAudio",
+          "description": "Decrease system volume by one step.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "command-volume-down.png",
+          "preferences": []
+        },
+        {
+          "name": "toggle-mute",
+          "title": "Toggle Mute",
+          "subtitle": "BetterAudio",
+          "description": "Toggle system input mute on or off.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "command-toggle-mute.png",
+          "preferences": []
+        },
+        {
+          "name": "toggle-silent-mode",
+          "title": "Toggle Silent Mode",
+          "subtitle": "BetterAudio",
+          "description": "Toggle silent mode on or off.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "command-silent-mode.png",
+          "preferences": []
+        },
+        {
+          "name": "cycle-device",
+          "title": "Cycle Output Device",
+          "subtitle": "BetterAudio",
+          "description": "Switch to the next output device in your priority list.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "command-cycle-device.png",
+          "preferences": []
+        },
+        {
+          "name": "now-playing",
+          "title": "Now Playing",
+          "subtitle": "BetterAudio",
+          "description": "Show current media playback information.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-now-playing.png",
+          "preferences": []
+        },
+        {
+          "name": "play-pause",
+          "title": "Play / Pause",
+          "subtitle": "BetterAudio",
+          "description": "Toggle media playback.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "command-play-pause.png",
+          "preferences": []
+        },
+        {
+          "name": "next-track",
+          "title": "Next Track",
+          "subtitle": "BetterAudio",
+          "description": "Skip to the next track.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "command-next-track.png",
+          "preferences": []
+        },
+        {
+          "name": "previous-track",
+          "title": "Previous Track",
+          "subtitle": "BetterAudio",
+          "description": "Skip to the previous track.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "command-prev-track.png",
+          "preferences": []
+        },
+        {
+          "name": "apply-profile",
+          "title": "Apply Profile",
+          "subtitle": "BetterAudio",
+          "description": "Apply a saved audio routing profile.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-profile.png",
+          "preferences": []
+        },
+        {
+          "name": "bluetooth-devices",
+          "title": "Bluetooth Devices",
+          "subtitle": "BetterAudio",
+          "description": "View connected Bluetooth audio devices and battery levels.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-bluetooth.png",
+          "preferences": []
+        },
+        {
+          "name": "status",
+          "title": "Status",
+          "subtitle": "BetterAudio",
+          "description": "Show BetterAudio application status overview.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-status.png",
+          "preferences": []
+        },
+        {
+          "name": "toggle-panel",
+          "title": "Toggle Panel",
+          "subtitle": "BetterAudio",
+          "description": "Toggle the BetterAudio menu bar panel.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "command-toggle-panel.png",
+          "preferences": []
+        },
+        {
+          "name": "menu-bar",
+          "title": "Menu Bar",
+          "subtitle": "BetterAudio",
+          "description": "Persistent menu bar item showing current volume and quick audio controls.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "icon": "command-toggle-panel.png",
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "cliPath",
+          "title": "CLI Path",
+          "description": "Custom path to the betteraudio CLI binary. Leave empty for auto-detection.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "/usr/local/bin/betteraudio"
         }
       ]
     },
@@ -144439,6 +144644,51 @@
       ]
     },
     {
+      "name": "open-props",
+      "title": "Open Props",
+      "description": "Search and copy CSS custom properties from the Open Props design system.",
+      "icon": "extension-icon.png",
+      "author": "tm.wrnr",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Documentation"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/tm.wrnr/open-props",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/open-props",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-css-variables",
+          "title": "Search CSS Variables",
+          "subtitle": "Open Props",
+          "description": "Search and copy Open Props CSS custom properties.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-colors",
+          "title": "Search Colors",
+          "subtitle": "Open Props",
+          "description": "Search and copy Open Props colors.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "open_targets",
       "title": "Open Targets",
       "description": "An (unofficial) entry point to the Open Targets ecosystem.",
@@ -173148,6 +173398,40 @@
           "name": "index",
           "title": "Protect Link",
           "description": "Protect your link with a password",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "raycast-manual",
+      "title": "Raycast Manual",
+      "description": "Browse and search the Raycast Manual without leaving Raycast.",
+      "icon": "extension-icon.png",
+      "author": "ridemountainpig",
+      "contributors": [],
+      "categories": [
+        "Documentation"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/ridemountainpig/raycast-manual",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/raycast-manual",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-raycast-manual",
+          "title": "Search Raycast Manual",
+          "description": "Browse and search pages from the Raycast Manual.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -227157,6 +227441,76 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "unirate-currency",
+      "title": "UniRate Currency",
+      "description": "Convert currencies and look up exchange rates for any date back to 1999, powered by UniRateAPI.",
+      "icon": "command-icon.png",
+      "author": "rob_brown96cc",
+      "contributors": [],
+      "categories": [
+        "Finance",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows",
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/rob_brown96cc/unirate-currency",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/unirate-currency",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "convert",
+          "title": "Convert Currency",
+          "subtitle": "UniRate",
+          "description": "Convert between currencies on today's rate or any historical date.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "rates",
+          "title": "Latest Rates",
+          "subtitle": "UniRate",
+          "description": "Browse latest exchange rates for a chosen base currency.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "api_key",
+          "type": "password",
+          "required": true,
+          "title": "UniRate API Key",
+          "description": "Free API key from https://unirateapi.com/dashboard. The free tier covers latest-rate endpoints; historical and commodities require a Pro key.",
+          "placeholder": "Your UniRate API key"
+        },
+        {
+          "name": "default_base",
+          "type": "textfield",
+          "required": false,
+          "title": "Default Base Currency",
+          "description": "Three-letter ISO code (e.g. USD, EUR, GBP). Used as the initial \"From\" currency.",
+          "default": "USD"
+        },
+        {
+          "name": "decimals",
+          "type": "textfield",
+          "required": false,
+          "title": "Decimals",
+          "description": "Number of decimal places to display in converted amounts.",
+          "default": "4"
+        }
+      ]
     },
     {
       "name": "united-nations",
