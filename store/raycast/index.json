@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-05-21T20:09:21.301Z",
+  "generatedAt": "2026-05-22T20:05:14.723Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "628860323aab71df786edd379d2b5716d48e4039"
+    "commit": "078e2d6cd4d9c25df532c2435444cf696d0734bd"
   },
-  "count": 2943,
+  "count": 2944,
   "extensions": [
     {
       "name": "0x0",
@@ -22816,7 +22816,9 @@
         "Developer Tools"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/mskelton/buildkite",
       "source": {
         "type": "github-monorepo",
@@ -68698,11 +68700,14 @@
       "icon": "flighty.png",
       "author": "hrishabhn",
       "contributors": [
-        "damian_duchnowski"
+        "damian_duchnowski",
+        "effektsvk"
       ],
       "categories": [],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/hrishabhn/flighty",
       "source": {
         "type": "github-monorepo",
@@ -209178,6 +209183,113 @@
       ]
     },
     {
+      "name": "tablepro",
+      "title": "TablePro",
+      "description": "Search TablePro connections, browse schemas and tables, and run SQL from Raycast.",
+      "icon": "icon.png",
+      "author": "ngoquocdat",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "0.1.0",
+      "storeUrl": "https://www.raycast.com/ngoquocdat/tablepro",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/tablepro",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-connections",
+          "title": "Search Connections",
+          "description": "Search and open saved TablePro connections.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-connection",
+          "title": "Open Connection",
+          "description": "Open a connection by name.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "menu-bar-connections",
+          "title": "TablePro Menu Bar",
+          "description": "Show connections in the menu bar.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-schema",
+          "title": "Search Schema",
+          "description": "Search databases and schemas across your connections.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-tables",
+          "title": "Search Tables",
+          "description": "Search tables in a connection.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "recent-tabs",
+          "title": "Recent Tabs",
+          "description": "Show recently opened tabs in TablePro.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "run-query",
+          "title": "Run Query",
+          "description": "Run a SQL query against a connection.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-history",
+          "title": "Search Query History",
+          "description": "Search the TablePro query history.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "pair",
+          "title": "Pair with TablePro",
+          "description": "Pair this extension with TablePro to issue an API token.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "tableProAppPath",
+          "title": "TablePro App",
+          "description": "Path to the TablePro app. Used to detect installation and open the app on demand.",
+          "type": "appPicker",
+          "required": false,
+          "default": "/Applications/TablePro.app"
+        }
+      ]
+    },
+    {
       "name": "tabler",
       "title": "Tabler",
       "description": "Copy & Paste Tabler Icons",
@@ -238896,7 +239008,9 @@
       "description": "Launch and manage Windows Terminal instances",
       "icon": "extension-icon.png",
       "author": "lunaris",
-      "contributors": [],
+      "contributors": [
+        "artistro08"
+      ],
       "categories": [
         "Developer Tools",
         "Productivity",
@@ -238924,7 +239038,17 @@
           "preferences": []
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "openProfilesInQuakeWindow",
+          "title": "Quake Window",
+          "label": "Open profiles in quake window",
+          "description": "When enabled, profile launches (primary action and Open as Administrator) open inside Windows Terminal's quake (drop-down) window.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        }
+      ]
     },
     {
       "name": "windows-to-linux-path",
@@ -240266,7 +240390,8 @@
       "author": "rishabswift",
       "contributors": [
         "thomas",
-        "j3lte"
+        "j3lte",
+        "raazi-muhammed"
       ],
       "categories": [
         "Productivity"
@@ -240592,6 +240717,15 @@
           "required": false,
           "title": "Max Results",
           "type": "textfield"
+        },
+        {
+          "name": "disableHistory",
+          "description": "Disable saving search history",
+          "required": false,
+          "title": "Search History",
+          "label": "Disable search history altogether",
+          "type": "checkbox",
+          "default": false
         }
       ]
     },
@@ -247424,15 +247558,19 @@
       "name": "zod-documentation",
       "title": "Zod Docs",
       "description": "Search Zod docs and open in the browser",
-      "icon": "extension-icon.png",
+      "icon": "zod-4-logo.png",
       "author": "danieldeichfuss",
-      "contributors": [],
+      "contributors": [
+        "ezzylan"
+      ],
       "categories": [
         "Documentation",
         "Developer Tools"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/danieldeichfuss/zod-documentation",
       "source": {
         "type": "github-monorepo",
