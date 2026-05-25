@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-05-24T19:31:15.056Z",
+  "generatedAt": "2026-05-25T19:57:15.045Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "38f0f9e5750acfa157a3acdf5c12858b29e1813b"
+    "commit": "4f5c9b955ed056c6979824612a652abab3f28688"
   },
-  "count": 2945,
+  "count": 2946,
   "extensions": [
     {
       "name": "0x0",
@@ -5779,16 +5779,20 @@
     {
       "name": "amphetamine",
       "title": "Amphetamine",
-      "description": "Controls Amphetamine using Raycast",
+      "description": "Control Amphetamine sleep sessions from Raycast",
       "icon": "icon.png",
       "author": "gstvds",
-      "contributors": [],
-      "categories": [],
+      "contributors": [
+        "mike_dloss"
+      ],
+      "categories": [
+        "System"
+      ],
       "license": "MIT",
       "platforms": [
         "macOS"
       ],
-      "version": "1.0.2",
+      "version": "1.1.0",
       "storeUrl": "https://www.raycast.com/gstvds/amphetamine",
       "source": {
         "type": "github-monorepo",
@@ -5843,9 +5847,9 @@
         },
         {
           "name": "amp-duration",
-          "title": "Start New Session With Duration",
+          "title": "Configure New Session",
           "subtitle": "Amphetamine",
-          "description": "Start a new Session with a Duration",
+          "description": "Start a new session with a duration or until a specific time",
           "mode": "view",
           "keywords": [
             "interval",
@@ -5853,7 +5857,11 @@
             "amp interval",
             "amphetamine",
             "duration",
-            "amp duration"
+            "time",
+            "until",
+            "amp duration",
+            "amp time",
+            "amp until"
           ],
           "preferences": []
         }
@@ -8559,7 +8567,9 @@
       "description": "Search from the Apple Developer documentations",
       "icon": "apple-developer-docs.png",
       "author": "cali",
-      "contributors": [],
+      "contributors": [
+        "2369233838"
+      ],
       "categories": [
         "Developer Tools"
       ],
@@ -25267,7 +25277,8 @@
         "garrick_zhang",
         "pernielsentikaer",
         "raulg",
-        "ridemountainpig"
+        "ridemountainpig",
+        "bendrucker"
       ],
       "categories": [
         "Developer Tools"
@@ -25318,6 +25329,10 @@
                   "value": "todayCost"
                 },
                 {
+                  "title": "Weekly Cost",
+                  "value": "weeklyCost"
+                },
+                {
                   "title": "Monthly Cost",
                   "value": "monthlyCost"
                 },
@@ -25336,6 +25351,10 @@
                 {
                   "title": "Highest Utilization",
                   "value": "utilization"
+                },
+                {
+                  "title": "Block Projection",
+                  "value": "blockProjection"
                 },
                 {
                   "title": "None",
@@ -25417,6 +25436,10 @@
             {
               "title": "Today Usage",
               "value": "today"
+            },
+            {
+              "title": "This Week",
+              "value": "week"
             },
             {
               "title": "Session Usage",
@@ -32548,7 +32571,8 @@
         "teziovsky",
         "xmok",
         "taken",
-        "nbbaier"
+        "nbbaier",
+        "ilian"
       ],
       "categories": [
         "Developer Tools",
@@ -59064,10 +59088,10 @@
       "preferences": []
     },
     {
-      "name": "email-finder",
-      "title": "Email Finder",
+      "name": "mail-finder",
+      "title": "Mail Finder",
       "description": "Find the verified email address of any professional.",
-      "icon": "extension-icon-2.png",
+      "icon": "extension-icon.png",
       "author": "morrissimons",
       "contributors": [],
       "categories": [
@@ -59079,7 +59103,7 @@
         "macOS",
         "Windows"
       ],
-      "storeUrl": "https://www.raycast.com/morrissimons/email-finder",
+      "storeUrl": "https://www.raycast.com/morrissimons/mail-finder",
       "source": {
         "type": "github-monorepo",
         "repo": "raycast/extensions",
@@ -59088,9 +59112,9 @@
       },
       "commands": [
         {
-          "name": "email-finder",
-          "title": "Person Email-Finder",
-          "subtitle": "Email-Finder.org",
+          "name": "mail-finder",
+          "title": "Find Email",
+          "subtitle": "Mail Finder",
           "description": "Search for name and domain to find an email",
           "mode": "view",
           "keywords": [],
@@ -59098,8 +59122,8 @@
         },
         {
           "name": "search-history",
-          "title": "Email Finder History",
-          "subtitle": "Email-Finder.org",
+          "title": "Search History",
+          "subtitle": "Mail Finder",
           "description": "Browse past email searches, rerun them, or clear history",
           "mode": "view",
           "keywords": [],
@@ -59107,8 +59131,8 @@
         },
         {
           "name": "company-employees",
-          "title": "Company Employees Search",
-          "subtitle": "Email-Finder.org",
+          "title": "Browse Employees",
+          "subtitle": "Mail Finder",
           "description": "Search by company domain to list employees grouped by department",
           "mode": "view",
           "keywords": [],
@@ -72850,7 +72874,7 @@
       "platforms": [
         "macOS"
       ],
-      "version": "1.0.1",
+      "version": "1.0.2",
       "storeUrl": "https://www.raycast.com/yannglt/gather",
       "source": {
         "type": "github-monorepo",
@@ -78452,6 +78476,15 @@
               "required": false,
               "title": "Reviews Labels",
               "placeholder": "e.g. Human Review Required,Ready for Review"
+            },
+            {
+              "name": "hideArchived",
+              "description": "Hide merge requests from archived projects",
+              "type": "checkbox",
+              "required": false,
+              "label": "Hide Archived Projects",
+              "title": "Filtering",
+              "default": false
             }
           ]
         },
@@ -78494,6 +78527,15 @@
               "required": false,
               "title": "Exclude Labels",
               "placeholder": "e.g. WIP,blocked"
+            },
+            {
+              "name": "hideArchived",
+              "description": "Hide issues from archived projects",
+              "type": "checkbox",
+              "required": false,
+              "label": "Hide Archived Projects",
+              "title": "Filtering",
+              "default": false
             }
           ]
         },
@@ -87658,13 +87700,17 @@
       "description": "Raycast extention for hakuna.ch. Get your personal API token from app.hakuna.ch/token.",
       "icon": "icon.png",
       "author": "fratoro",
-      "contributors": [],
+      "contributors": [
+        "cmdr"
+      ],
       "categories": [
         "Web",
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/fratoro/hakuna",
       "source": {
         "type": "github-monorepo",
@@ -87674,41 +87720,74 @@
       },
       "commands": [
         {
-          "name": "start-timer",
-          "title": "Start Timer",
-          "description": "Start a Hakuna timer",
-          "mode": "no-view",
+          "name": "timer",
+          "title": "Timer",
+          "description": "Start, update or stop the Hakuna timer",
+          "mode": "view",
           "keywords": [],
           "preferences": []
         },
         {
-          "name": "stop-timer",
-          "title": "Stop Timer",
-          "description": "Stop the running Hakuna timer",
-          "mode": "no-view",
+          "name": "time-entry",
+          "title": "Enter Time",
+          "description": "Add a new time entry or start a timer",
+          "mode": "view",
           "keywords": [],
           "preferences": []
         },
         {
-          "name": "get-worktime",
-          "title": "Get Today's Time Balance",
-          "description": "Get today's total worktime, including active timer",
-          "mode": "no-view",
+          "name": "projects",
+          "title": "Projects",
+          "description": "List projects",
+          "mode": "view",
           "keywords": [],
           "preferences": []
         },
         {
-          "name": "get-overtime",
-          "title": "Get Overtime",
-          "description": "Get total overtime",
-          "mode": "no-view",
+          "name": "tasks",
+          "title": "Tasks",
+          "description": "List all tasks",
+          "mode": "view",
           "keywords": [],
           "preferences": []
         },
         {
-          "name": "get-vacation-days",
-          "title": "Get Vacation Days",
-          "description": "Get used and remaining vacation days",
+          "name": "time-entries",
+          "title": "Time Entries",
+          "description": "View today's time entries",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "menubar",
+          "title": "Hakuna Overview",
+          "description": "Show today's worktime and overall overview in the menu bar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "profile",
+          "title": "Profiles",
+          "description": "View your overtime and remaining vacation days",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "absences",
+          "title": "Absences",
+          "description": "List your absences for the current year",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "clear-cache",
+          "title": "Clear Cache",
+          "subtitle": "Hakuna",
+          "description": "Clears locally cached data (projects, tasks, users, etc.). Use this if data appears outdated after changes made directly in Hakuna.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -87721,20 +87800,6 @@
           "required": true,
           "title": "Hakuna API Token",
           "description": "Your Hakuna API token"
-        },
-        {
-          "name": "defaultTaskId",
-          "type": "textfield",
-          "required": true,
-          "title": "Default Task ID",
-          "description": "The default task ID to use when starting a timer"
-        },
-        {
-          "name": "defaultProjectId",
-          "type": "textfield",
-          "required": false,
-          "title": "Default Project ID (optional)",
-          "description": "The default project ID to use when starting a timer"
         }
       ]
     },
@@ -90532,6 +90597,210 @@
           "description": "Convert hex string to binary",
           "mode": "no-view",
           "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "heyclaude",
+      "title": "HeyClaude",
+      "description": "Search and copy Claude agents, MCP servers, skills, hooks, rules, commands, guides, and statuslines from HeyClaude.",
+      "icon": "icon.png",
+      "author": "jsonbored",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "1.0.0",
+      "storeUrl": "https://www.raycast.com/jsonbored/heyclaude",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/heyclaude",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search",
+          "title": "Search HeyClaude",
+          "description": "Browse HeyClaude entries and copy install commands, configs, or full usable assets.",
+          "mode": "view",
+          "keywords": [
+            "claude",
+            "mcp",
+            "agents",
+            "skills",
+            "hooks",
+            "commands"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "search-agents",
+          "title": "Search Agents",
+          "description": "Browse HeyClaude Claude agents and copy reusable agent assets.",
+          "mode": "view",
+          "keywords": [
+            "agents",
+            "claude",
+            "ai"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "search-mcp",
+          "title": "Search MCP Servers",
+          "description": "Browse HeyClaude MCP servers and copy install or config details.",
+          "mode": "view",
+          "keywords": [
+            "mcp",
+            "servers",
+            "claude"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "search-tools",
+          "title": "Search Tools",
+          "description": "Browse HeyClaude AI tools and open source or documentation links.",
+          "mode": "view",
+          "keywords": [
+            "tools",
+            "ai",
+            "claude"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "search-skills",
+          "title": "Search Skills",
+          "description": "Browse HeyClaude agent skills and copy package guidance.",
+          "mode": "view",
+          "keywords": [
+            "skills",
+            "agents",
+            "claude"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "search-rules",
+          "title": "Search Rules",
+          "description": "Browse HeyClaude AI coding rules and copy rule content.",
+          "mode": "view",
+          "keywords": [
+            "rules",
+            "cursor",
+            "agents"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "search-commands",
+          "title": "Search Commands",
+          "description": "Browse HeyClaude slash commands and copy command assets.",
+          "mode": "view",
+          "keywords": [
+            "commands",
+            "slash",
+            "claude"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "search-hooks",
+          "title": "Search Hooks",
+          "description": "Browse HeyClaude Claude Code hooks and copy hook assets.",
+          "mode": "view",
+          "keywords": [
+            "hooks",
+            "claude",
+            "automation"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "search-guides",
+          "title": "Search Guides",
+          "description": "Browse HeyClaude guides and open reference pages.",
+          "mode": "view",
+          "keywords": [
+            "guides",
+            "docs",
+            "claude"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "search-collections",
+          "title": "Search Collections",
+          "description": "Browse curated HeyClaude collections.",
+          "mode": "view",
+          "keywords": [
+            "collections",
+            "curated",
+            "ai"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "search-statuslines",
+          "title": "Search Statuslines",
+          "description": "Browse HeyClaude Claude Code statusline configurations.",
+          "mode": "view",
+          "keywords": [
+            "statuslines",
+            "claude",
+            "terminal"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "jobs",
+          "title": "Browse HeyClaude Jobs",
+          "description": "Browse active HeyClaude jobs, review role details, and open external apply links.",
+          "mode": "view",
+          "keywords": [
+            "jobs",
+            "claude",
+            "ai",
+            "mcp",
+            "agents"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "submit-content",
+          "title": "Submit New Content",
+          "description": "Create a reviewed HeyClaude content submission with fields that map to the website and GitHub issue forms.",
+          "mode": "view",
+          "keywords": [
+            "submit",
+            "content",
+            "issue",
+            "github",
+            "registry"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "get-involved",
+          "title": "Get Involved with HeyClaude",
+          "description": "Open HeyClaude contribution, newsletter, GitHub, jobs, API, and community links.",
+          "mode": "view",
+          "keywords": [
+            "contribute",
+            "newsletter",
+            "github",
+            "jobs",
+            "support"
+          ],
           "preferences": []
         }
       ],
@@ -102565,7 +102834,8 @@
         "dima-m711",
         "dgrzedzielski",
         "perasite",
-        "hemang_kinra"
+        "hemang_kinra",
+        "kubarom"
       ],
       "categories": [],
       "license": "MIT",
@@ -102633,6 +102903,15 @@
           "required": false,
           "title": "Use Frecency sorting for projects",
           "description": "Use Raycast's built in frecency sorting to order the list of projects",
+          "default": true,
+          "label": "Enabled"
+        },
+        {
+          "name": "showGitBranch",
+          "type": "checkbox",
+          "required": false,
+          "title": "Show Git Branch",
+          "description": "Show the current git branch next to projects that live in a git repository",
           "default": true,
           "label": "Enabled"
         }
@@ -108047,7 +108326,9 @@
       ],
       "categories": [],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/eluce2/list-keyboard-maestro-macros",
       "source": {
         "type": "github-monorepo",
@@ -233209,7 +233490,8 @@
         "roberto.cinetto",
         "emiliocantuc",
         "raxityo",
-        "yusifaliyevpro"
+        "yusifaliyevpro",
+        "jkker"
       ],
       "categories": [],
       "license": "MIT",
@@ -233236,7 +233518,7 @@
         {
           "name": "open-with-vscode",
           "title": "Open with Visual Studio Code",
-          "description": "Open the currently selected Finder item with VS Code",
+          "description": "Open the currently selected file manager item with VS Code",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
