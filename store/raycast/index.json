@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-05-25T19:57:15.045Z",
+  "generatedAt": "2026-05-26T20:33:53.576Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "4f5c9b955ed056c6979824612a652abab3f28688"
+    "commit": "02c9e67f83404eb9a257d65f3a2c47effe30424b"
   },
-  "count": 2946,
+  "count": 2951,
   "extensions": [
     {
       "name": "0x0",
@@ -16864,6 +16864,60 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "bilibili-search",
+      "title": "Bilibili Search",
+      "description": "Search Bilibili videos with autosuggestions",
+      "icon": "command-icon.png",
+      "author": "55b",
+      "contributors": [],
+      "categories": [
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/55b/bilibili-search",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/bilibili-search",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "index",
+          "title": "Bilibili Search",
+          "subtitle": "Bilibili Search",
+          "description": "Search for videos, anime, live streams and users on Bilibili",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": [
+            {
+              "name": "rememberSearchHistory",
+              "title": "Remember Search History",
+              "description": "Enable this to locally store your Bilibili search history.",
+              "type": "checkbox",
+              "label": "Remember search history",
+              "required": false,
+              "default": false
+            },
+            {
+              "name": "useClipboardFallback",
+              "title": "Use Clipboard Fallback",
+              "description": "When no text is selected, fall back to using clipboard content for search.",
+              "type": "checkbox",
+              "label": "Use clipboard content as fallback",
+              "required": false,
+              "default": false
+            }
+          ]
         }
       ],
       "preferences": []
@@ -40362,6 +40416,126 @@
       "preferences": []
     },
     {
+      "name": "croc-transfer",
+      "title": "Croc Transfer",
+      "description": "Send and receive files securely using croc",
+      "icon": "extension-icon.png",
+      "author": "wilton",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/wilton/croc-transfer",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/croc-transfer",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "send-file",
+          "title": "Send File",
+          "subtitle": "croc",
+          "description": "Send files or folders to another computer via croc",
+          "mode": "view",
+          "keywords": [
+            "send",
+            "transfer",
+            "share",
+            "croc",
+            "file"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "receive-file",
+          "title": "Receive File",
+          "subtitle": "croc",
+          "description": "Receive files by entering a croc code phrase",
+          "mode": "view",
+          "keywords": [
+            "receive",
+            "download",
+            "get",
+            "croc",
+            "file"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "transfer-history",
+          "title": "Transfer History",
+          "subtitle": "croc",
+          "description": "View past croc transfers and re-send files",
+          "mode": "view",
+          "keywords": [
+            "history",
+            "log",
+            "recent",
+            "croc",
+            "transfer"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "quick-send",
+          "title": "Quick Send",
+          "subtitle": "croc",
+          "description": "Send selected Finder files via croc without opening a window",
+          "mode": "no-view",
+          "keywords": [
+            "send",
+            "quick",
+            "croc",
+            "file",
+            "finder"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "crocPath",
+          "title": "croc Binary Path",
+          "description": "Path to the croc binary. Leave empty to auto-detect.",
+          "type": "textfield",
+          "required": false,
+          "default": ""
+        },
+        {
+          "name": "downloadDirectory",
+          "title": "Download Directory",
+          "description": "Directory where received files are saved. Files are placed directly in this folder.",
+          "type": "directory",
+          "required": false,
+          "default": "~/Downloads/Share"
+        },
+        {
+          "name": "autoAccept",
+          "title": "Auto Accept",
+          "description": "Automatically accept incoming files without confirmation.",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "label": "Auto-accept incoming transfers"
+        },
+        {
+          "name": "customRelay",
+          "title": "Custom Relay Server",
+          "description": "Custom relay server address. Leave empty to use the default.",
+          "type": "textfield",
+          "required": false,
+          "default": ""
+        }
+      ]
+    },
+    {
       "name": "cron",
       "title": "Cron",
       "description": "A companion for Cron (cron.re)",
@@ -48314,15 +48488,6 @@
               "required": false
             },
             {
-              "name": "showFullPath",
-              "title": "Project Display",
-              "type": "checkbox",
-              "label": "Show full directory path",
-              "description": "Show the full path instead of the project name",
-              "default": false,
-              "required": false
-            },
-            {
               "name": "refreshInterval",
               "title": "Refresh Interval",
               "type": "dropdown",
@@ -48347,6 +48512,48 @@
                   "value": "30"
                 }
               ]
+            },
+            {
+              "name": "showFullPath",
+              "title": "Project Display",
+              "type": "checkbox",
+              "label": "Show full directory path",
+              "description": "Show the full path instead of the project name",
+              "default": false,
+              "required": false
+            },
+            {
+              "name": "showUptime",
+              "title": "Row Accessories",
+              "type": "checkbox",
+              "label": "Show uptime",
+              "description": "Show how long each server has been running",
+              "default": true,
+              "required": false
+            },
+            {
+              "name": "showBranch",
+              "type": "checkbox",
+              "label": "Show git branch",
+              "description": "Show the current git branch next to each server when the project is a git repo",
+              "default": true,
+              "required": false
+            },
+            {
+              "name": "showTool",
+              "type": "checkbox",
+              "label": "Show framework tag",
+              "description": "Show the framework / tool tag (Vite, SvelteKit, Astro, etc.) on each row",
+              "default": true,
+              "required": false
+            },
+            {
+              "name": "showLocalUrl",
+              "type": "checkbox",
+              "label": "Show localhost URL with custom domain",
+              "description": "When a custom domain (e.g. via portless) points at a dev server, also show the localhost:PORT pill alongside it",
+              "default": true,
+              "required": false
             }
           ]
         }
@@ -56616,6 +56823,42 @@
           "name": "index",
           "title": "Generate Font-size Using Clamp",
           "description": "Copy the generated 'clamp' function to your clipboard",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "e18e-module-replacements",
+      "title": "e18e Module Replacements",
+      "description": "Search and browse e18e's curated list of modern npm package replacements.",
+      "icon": "extension-icon.png",
+      "author": "tm.wrnr",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Documentation"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/tm.wrnr/e18e-module-replacements",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/e18e-module-replacements",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-module-replacements",
+          "title": "Search Module Replacements",
+          "subtitle": "e18e Module Replacements",
+          "description": "Find module replacements for your codebase.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -69900,14 +70143,17 @@
       "description": "Convert fonts to TTF, WOFF, WOFF2, and EOT formats directly from Raycast",
       "icon": "extension-icon.png",
       "author": "meshal",
-      "contributors": [],
+      "contributors": [
+        "ridemountainpig"
+      ],
       "categories": [
         "Developer Tools",
         "Design Tools"
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/meshal/font-converter",
       "source": {
@@ -96097,39 +96343,6 @@
           "description": "Compress images with ImageOptim",
           "mode": "no-view",
           "keywords": [],
-          "preferences": []
-        }
-      ],
-      "preferences": []
-    },
-    {
-      "name": "images-compression",
-      "title": "Images Compression",
-      "description": "Compress the selected images in Finder with Zipic.",
-      "icon": "zipic-icon.png",
-      "author": "okooo5km",
-      "contributors": [],
-      "categories": [
-        "Applications"
-      ],
-      "license": "MIT",
-      "platforms": [],
-      "storeUrl": "https://www.raycast.com/okooo5km/images-compression",
-      "source": {
-        "type": "github-monorepo",
-        "repo": "raycast/extensions",
-        "path": "extensions/images-compression",
-        "ref": "main"
-      },
-      "commands": [
-        {
-          "name": "compressImages",
-          "title": "Compress Images",
-          "subtitle": "Zipic",
-          "description": "Compress the selected images in Finder with Zipic.",
-          "mode": "no-view",
-          "keywords": [],
-          "icon": "zipic-icon.png",
           "preferences": []
         }
       ],
@@ -157473,6 +157686,120 @@
               "value": "MixtraL_8x7B"
             }
           ]
+        }
+      ]
+    },
+    {
+      "name": "pinwork",
+      "title": "Pinwork",
+      "description": "Manage your tasks with Pinwork - a GTD-inspired task management app",
+      "icon": "extension-icon.png",
+      "author": "adapting.tech",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Applications"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/adapting.tech/pinwork",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/pinwork",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "show-today",
+          "title": "Show Today",
+          "subtitle": "Pinwork",
+          "description": "View tasks scheduled for today",
+          "mode": "view",
+          "keywords": [
+            "tasks",
+            "today",
+            "focus"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "show-inbox",
+          "title": "Show Inbox",
+          "subtitle": "Pinwork",
+          "description": "View unscheduled tasks in your inbox",
+          "mode": "view",
+          "keywords": [
+            "tasks",
+            "inbox",
+            "capture"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "show-next",
+          "title": "Show Next",
+          "subtitle": "Pinwork",
+          "description": "View upcoming tasks for the next few days",
+          "mode": "view",
+          "keywords": [
+            "tasks",
+            "next",
+            "upcoming"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "quick-add",
+          "title": "Quick Add Task",
+          "subtitle": "Pinwork",
+          "description": "Add a new task using natural language",
+          "mode": "view",
+          "keywords": [
+            "add",
+            "create",
+            "new",
+            "task"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "search-tasks",
+          "title": "Search Tasks",
+          "subtitle": "Pinwork",
+          "description": "Search across all your tasks",
+          "mode": "view",
+          "keywords": [
+            "search",
+            "find",
+            "tasks"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "show-projects",
+          "title": "Show Projects",
+          "subtitle": "Pinwork",
+          "description": "View all projects and their tasks",
+          "mode": "view",
+          "keywords": [
+            "projects",
+            "list"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "showCompletedTasks",
+          "type": "checkbox",
+          "default": false,
+          "title": "Show Completed Tasks",
+          "label": "Show completed tasks",
+          "description": "Include recently completed tasks in list views",
+          "required": false
         }
       ]
     },
@@ -230338,6 +230665,41 @@
       ]
     },
     {
+      "name": "utc-workbench",
+      "title": "UTC Workbench",
+      "description": "Timestamp interpretation and timeline reconstruction for developer workflows",
+      "icon": "icon.png",
+      "author": "dfrancour",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "version": "1.0.0",
+      "storeUrl": "https://www.raycast.com/dfrancour/utc-workbench",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/utc-workbench",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "utc-workbench",
+          "title": "UTC Workbench",
+          "description": "Interpret timestamps and reconstruct event timelines",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "utm-campaign-builder",
       "title": "UTM Campaign Builder",
       "description": "Create a campaign URL with UTM attributes",
@@ -242253,8 +242615,8 @@
     },
     {
       "name": "world-cup",
-      "title": "FIFA World Cup Qatar 2022™",
-      "description": "See all FIFA World Cup Qatar 2022™ matches",
+      "title": "FIFA World Cup 2026™",
+      "description": "See all FIFA World Cup 2026™ matches",
       "icon": "command-icon.png",
       "author": "isma",
       "contributors": [
@@ -242266,7 +242628,10 @@
         "Fun"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "storeUrl": "https://www.raycast.com/isma/world-cup",
       "source": {
         "type": "github-monorepo",
@@ -247699,6 +248064,61 @@
           "default": "10"
         }
       ]
+    },
+    {
+      "name": "zipic",
+      "title": "Zipic",
+      "description": "Compress the selected images in Finder with Zipic.",
+      "icon": "zipic-icon.png",
+      "author": "okooo5km",
+      "contributors": [],
+      "categories": [
+        "Applications"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/okooo5km/zipic",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/zipic",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "compressImages",
+          "title": "Compress Images",
+          "subtitle": "Zipic",
+          "description": "Compress the selected images in Finder with Zipic using app settings.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "zipic-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "compressImagesWithOptions",
+          "title": "Compress Images with Options",
+          "subtitle": "Zipic",
+          "description": "Configure compression options before compressing selected images with Zipic.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "zipic-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "compressImagesWithPreset",
+          "title": "Compress Images with Preset",
+          "subtitle": "Zipic",
+          "description": "Choose a preset to compress selected images with Zipic.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "zipic-icon.png",
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "zipline",
