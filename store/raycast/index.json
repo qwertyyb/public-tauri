@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generatedAt": "2026-05-27T20:32:17.395Z",
+  "generatedAt": "2026-05-28T20:38:17.123Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "b60a827d44019e5cf0c183f801d74f7e8b8b854f"
+    "commit": "ced5fe3b8f85be0f7bc304a13e0a3c14f9b844f8"
   },
   "count": 2957,
   "extensions": [
@@ -7547,6 +7547,38 @@
           "title": "Explain Directory",
           "description": "Explain the directory using Apfel",
           "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "ocr-file",
+          "title": "Read Text from File",
+          "description": "Extract text from a file using auge",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "ocr-clipboard",
+          "title": "Read Text from Clipboard",
+          "description": "Extract text from the image in your clipboard using auge",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "ocr-qr",
+          "title": "Scan QR Code / Barcode",
+          "description": "Decode a QR code or barcode from clipboard or a file using auge",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "ocr-screen",
+          "title": "Read Text from Screen Area",
+          "description": "Select a screen region and extract text to clipboard using auge",
+          "mode": "no-view",
           "keywords": [],
           "preferences": []
         }
@@ -22129,7 +22161,7 @@
     {
       "name": "browser-history",
       "title": "Browser History",
-      "description": "Search and open tabs from history in Chrome, Firefox, Safari, Edge, Brave, Vivaldi, Arc, Opera, Iridium, Orion and Sidekick.",
+      "description": "Search and open tabs from history in Chrome, Firefox, Safari, Edge, Brave, Vivaldi, Arc, Opera, Iridium, Orion, Sidekick and Helium.",
       "icon": "icon.png",
       "author": "crisboarna",
       "contributors": [
@@ -22219,6 +22251,10 @@
                   "value": "Dia"
                 },
                 {
+                  "title": "Helium",
+                  "value": "Helium"
+                },
+                {
                   "title": "Comet",
                   "value": "Comet"
                 },
@@ -22290,6 +22326,10 @@
                 {
                   "title": "Dia",
                   "value": "Dia"
+                },
+                {
+                  "title": "Helium",
+                  "value": "Helium"
                 },
                 {
                   "title": "Comet",
@@ -22409,6 +22449,14 @@
               "label": "Dia"
             },
             {
+              "name": "enableHelium",
+              "type": "checkbox",
+              "required": false,
+              "description": "Enable Helium history to show up in results",
+              "default": false,
+              "label": "Helium"
+            },
+            {
               "name": "enableComet",
               "type": "checkbox",
               "required": false,
@@ -22519,6 +22567,14 @@
               "title": "Dia Profile Path",
               "description": "Path to Dia profile folder. Leave empty to use default profile. Default at /Users/username/Library/Application Support/Dia/User Data/Default",
               "placeholder": "/Users/username/Library/Application Support/Dia/User Data/Default"
+            },
+            {
+              "name": "profilePathHelium",
+              "type": "textfield",
+              "required": false,
+              "title": "Helium Profile Path",
+              "description": "Path to Helium profile folder. Leave empty to use default profile. Default at /Users/username/Library/Application Support/Helium/Default",
+              "placeholder": "/Users/username/Library/Application Support/Helium/Default"
             },
             {
               "name": "profilePathComet",
@@ -49559,7 +49615,9 @@
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/vietanhlehuu/devutils",
       "source": {
         "type": "github-monorepo",
@@ -101367,7 +101425,26 @@
           "description": "Edit the selected file(s) in iTerm using $EDITOR",
           "mode": "view",
           "keywords": [],
-          "preferences": []
+          "preferences": [
+            {
+              "name": "windowOrTab",
+              "type": "dropdown",
+              "required": false,
+              "title": "Open Behavior",
+              "description": "Choose whether to open in a new window or a new tab",
+              "default": "new-window",
+              "data": [
+                {
+                  "title": "New Window",
+                  "value": "new-window"
+                },
+                {
+                  "title": "New Tab",
+                  "value": "new-tab"
+                }
+              ]
+            }
+          ]
         },
         {
           "name": "open-iterm-here",
@@ -104445,7 +104522,9 @@
       "contributors": [],
       "categories": [],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/sven/jira-search",
       "source": {
         "type": "github-monorepo",
@@ -165372,6 +165451,24 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "export-prompts",
+          "title": "Export Prompts",
+          "subtitle": "Prompt Stash",
+          "description": "Export all prompts to a JSON file in your Downloads folder",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "import-prompts",
+          "title": "Import Prompts",
+          "subtitle": "Prompt Stash",
+          "description": "Import prompts from a Prompt Stash JSON export file",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": [
@@ -221619,7 +221716,9 @@
         "Applications"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/Haojen/toggle-desktop-visibility",
       "source": {
         "type": "github-monorepo",
@@ -230214,16 +230313,14 @@
           "title": "Access Key",
           "description": "Get your API key from https://unsplash.com/oauth/applications",
           "type": "password",
-          "required": true,
-          "placeholder": "XXX...XX"
+          "required": true
         },
         {
           "name": "secretKey",
           "title": "Secret Key",
           "description": "Get your secret key from https://unsplash.com/oauth/applications",
           "type": "password",
-          "required": true,
-          "placeholder": "XXX...XX"
+          "required": true
         },
         {
           "name": "gridItemSize",
@@ -230329,23 +230426,23 @@
               "value": "none"
             },
             {
-              "title": "10 minute",
+              "title": "10 minutes",
               "value": "10 minute"
             },
             {
-              "title": "20 minute",
+              "title": "20 minutes",
               "value": "20 minute"
             },
             {
-              "title": "30 minute",
+              "title": "30 minutes",
               "value": "30 minute"
             },
             {
-              "title": "40 minute",
+              "title": "40 minutes",
               "value": "40 minute"
             },
             {
-              "title": "50 minute",
+              "title": "50 minutes",
               "value": "50 minute"
             },
             {
@@ -230353,91 +230450,91 @@
               "value": "1 hour"
             },
             {
-              "title": "2 hour",
+              "title": "2 hours",
               "value": "2 hour"
             },
             {
-              "title": "3 hour",
+              "title": "3 hours",
               "value": "3 hour"
             },
             {
-              "title": "4 hour",
+              "title": "4 hours",
               "value": "4 hour"
             },
             {
-              "title": "5 hour",
+              "title": "5 hours",
               "value": "5 hour"
             },
             {
-              "title": "6 hour",
+              "title": "6 hours",
               "value": "6 hour"
             },
             {
-              "title": "7 hour",
+              "title": "7 hours",
               "value": "7 hour"
             },
             {
-              "title": "8 hour",
+              "title": "8 hours",
               "value": "8 hour"
             },
             {
-              "title": "9 hour",
+              "title": "9 hours",
               "value": "9 hour"
             },
             {
-              "title": "10 hour",
+              "title": "10 hours",
               "value": "10 hour"
             },
             {
-              "title": "11 hour",
+              "title": "11 hours",
               "value": "11 hour"
             },
             {
-              "title": "12 hour",
+              "title": "12 hours",
               "value": "12 hour"
             },
             {
-              "title": "13 hour",
+              "title": "13 hours",
               "value": "13 hour"
             },
             {
-              "title": "14 hour",
+              "title": "14 hours",
               "value": "14 hour"
             },
             {
-              "title": "15 hour",
+              "title": "15 hours",
               "value": "15 hour"
             },
             {
-              "title": "16 hour",
+              "title": "16 hours",
               "value": "16 hour"
             },
             {
-              "title": "17 hour",
+              "title": "17 hours",
               "value": "17 hour"
             },
             {
-              "title": "18 hour",
+              "title": "18 hours",
               "value": "18 hour"
             },
             {
-              "title": "19 hour",
+              "title": "19 hours",
               "value": "19 hour"
             },
             {
-              "title": "20 hour",
+              "title": "20 hours",
               "value": "20 hour"
             },
             {
-              "title": "21 hour",
+              "title": "21 hours",
               "value": "21 hour"
             },
             {
-              "title": "22 hour",
+              "title": "22 hours",
               "value": "22 hour"
             },
             {
-              "title": "23 hour",
+              "title": "23 hours",
               "value": "23 hour"
             },
             {
@@ -230445,31 +230542,31 @@
               "value": "1 day"
             },
             {
-              "title": "2 day",
+              "title": "2 days",
               "value": "2 day"
             },
             {
-              "title": "3 day",
+              "title": "3 days",
               "value": "3 day"
             },
             {
-              "title": "4 day",
+              "title": "4 days",
               "value": "4 day"
             },
             {
-              "title": "5 day",
+              "title": "5 days",
               "value": "5 day"
             },
             {
-              "title": "6 day",
+              "title": "6 days",
               "value": "6 day"
             },
             {
-              "title": "7 day",
+              "title": "7 days",
               "value": "7 day"
             },
             {
-              "title": "14 day",
+              "title": "14 days",
               "value": "14 day"
             }
           ]
@@ -237444,7 +237541,7 @@
     {
       "name": "warp",
       "title": "Warp",
-      "description": "Open Warp tabs/windows and Launch Configurations.",
+      "description": "Open Warp tabs, windows, and Tab Configs.",
       "icon": "warp-icon.png",
       "author": "joetannenbaum",
       "contributors": [
@@ -237473,8 +237570,8 @@
       "commands": [
         {
           "name": "launch-config",
-          "title": "Open Launch Configuration",
-          "description": "Open a Warp Launch Configuration.",
+          "title": "Open Tab Config",
+          "description": "Open a Warp Tab Config or legacy Launch Configuration.",
           "mode": "view",
           "keywords": [],
           "preferences": []
