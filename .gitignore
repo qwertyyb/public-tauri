@@ -43,3 +43,5 @@ test-results/
 # VitePress local cache and build output
 docs/.vitepress/cache
 docs/.vitepress/dist
+
+.appstoreconnect

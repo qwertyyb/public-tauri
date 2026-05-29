@@ -69,12 +69,23 @@ jobs:
         echo "CERT_ID=$CERT_ID" >> $GITHUB_ENV
         echo "Certificate imported."
 
+    - name: Write Private Key File
+      env:
+        APPLE_API_KEY_CONTENT_BASE64: ${{ secrets.APPLE_API_KEY_CONTENT_BASE64 }}
+        APPLE_API_KEY_PATH: ${{ secrets.APPLE_API_KEY_PATH }}
+      run: |
+        echo $APPLE_API_KEY_CONTENT_BASE64 | base64 --decode > $APPLE_API_KEY_PATH
+        echo "Private key file written."
+
     - name: Build the app
       run: pnpm run app:build
       env:
         TAURI_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
         TAURI_KEY_PASSWORD: ${{ secrets.TAURI_KEY_PASSWORD }}
         APPLE_SIGNING_IDENTITY: Developer ID Application
+        APPLE_API_KEY_PATH: ${{ secrets.APPLE_API_KEY_PATH }}
+        APPLE_API_ISSUER: ${{ secrets.APPLE_API_ISSUER }}
+        APPLE_API_KEY: ${{ secrets.APPLE_API_KEY }}
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
