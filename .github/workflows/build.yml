@@ -72,10 +72,9 @@ jobs:
     - name: Write Private Key File
       env:
         APPLE_API_KEY_CONTENT_BASE64: ${{ secrets.APPLE_API_KEY_CONTENT_BASE64 }}
-        APPLE_API_KEY_PATH: ${{ secrets.APPLE_API_KEY_PATH }}
       run: |
         mkdir -p .appstoreconnect
-        echo $APPLE_API_KEY_CONTENT_BASE64 | base64 --decode > $APPLE_API_KEY_PATH
+        echo $APPLE_API_KEY_CONTENT_BASE64 | base64 --decode > .appstoreconnect/private-key.p8
         echo "Private key file written."
 
     - name: Build the app
@@ -84,7 +83,7 @@ jobs:
         TAURI_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
         TAURI_KEY_PASSWORD: ${{ secrets.TAURI_KEY_PASSWORD }}
         APPLE_SIGNING_IDENTITY: Developer ID Application
-        APPLE_API_KEY_PATH: ${{ secrets.APPLE_API_KEY_PATH }}
+        APPLE_API_KEY_PATH: .appstoreconnect/private-key.p8
         APPLE_API_ISSUER: ${{ secrets.APPLE_API_ISSUER }}
         APPLE_API_KEY: ${{ secrets.APPLE_API_KEY }}
 
