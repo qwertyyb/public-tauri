@@ -30,7 +30,7 @@
   "devDependencies": {
     "@public-tauri/api": "workspace:^",
     "gemoji": "^8.1.0",
-    "tsdown": "catalog:plugin"
+    "tsdown": "catalog:"
   },
   "private": true
 }

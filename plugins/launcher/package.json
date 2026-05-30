@@ -21,7 +21,7 @@
   "devDependencies": {
     "socket.io-client": "^4.8.1",
     "@public-tauri/api": "workspace:^",
-    "tsdown": "catalog:plugin"
+    "tsdown": "catalog:"
   },
   "private": true
 }

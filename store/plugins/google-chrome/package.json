@@ -67,6 +67,6 @@
   },
   "devDependencies": {
     "@public-tauri/api": "workspace:^",
-    "tsdown": "catalog:plugin"
+    "tsdown": "catalog:"
   }
 }

@@ -15,15 +15,15 @@ export default defineConfig([
     copy: [
       {
         from: `${PROJECT_DIR}/node_modules/.pnpm/@nut-tree-fork+libnut-darwin@2.7.5/node_modules/@nut-tree-fork/libnut-darwin/build/Release/libnut.node`,
-        to: `${DIR_PATH}/build/libnut.node`,
+        to: `${DIR_PATH}/build/`,
       },
       {
         from: `${DIR_PATH}/node_modules/better-sqlite3/build/Release/better_sqlite3.node`,
-        to: `${DIR_PATH}/build/better_sqlite3.node`,
+        to: `${DIR_PATH}/build/`,
       },
       {
         from: `${PROJECT_DIR}/node_modules/.pnpm/@nut-tree-fork+node-mac-permissions@2.2.1/node_modules/@nut-tree-fork/node-mac-permissions/build/Release/permissions.node`,
-        to: `${DIR_PATH}/build/permissions.node`,
+        to: `${DIR_PATH}/build/`,
       },
     ],
   },

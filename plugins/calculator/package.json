@@ -45,7 +45,7 @@
   "devDependencies": {
     "@public-tauri/api": "workspace:^",
     "mathjs": "^14.6.0",
-    "tsdown": "catalog:plugin",
+    "tsdown": "catalog:",
     "@public-tauri/schema": "workspace:^"
   },
   "private": true

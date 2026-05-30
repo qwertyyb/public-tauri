@@ -72,7 +72,7 @@ function generatePackageJson(options: ScaffoldOptions): string {
     pkg.scripts.build = 'tsdown';
     pkg.devDependencies = {
       ...pkg.devDependencies,
-      tsdown: '^0.21.7',
+      tsdown: '^0.22.1',
     };
   } else {
     pkg.scripts = {
