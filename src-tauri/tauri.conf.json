@@ -8,7 +8,8 @@
   },
   "bundle": {
     "macOS": {
-      "minimumSystemVersion": "14.6"
+      "minimumSystemVersion": "14.6",
+      "entitlements": "Entitlements.plist"
     },
     "active": true,
     "targets": "all",
