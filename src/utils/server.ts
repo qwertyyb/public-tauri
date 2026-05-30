@@ -4,35 +4,14 @@ import path from 'path-browserify';
 
 const SERVER_PORT = 2345;
 
-const command = Command.sidecar('node-v24.11.1', ['$RESOURCE/_up_/src-node/dist/index.cjs']);
-
 const logger = {
   info: (...args: any[]) => console.info('%c NodeJS Server', 'color:red;font-weight:bold;background:yellow;', ...args),
   warn: (...args: any[]) => console.warn('%c NodeJS Server', 'color:red;font-weight:bold;background:yellow;', ...args),
   error: (...args: any[]) => console.error('%c NodeJS Server', 'color:red;font-weight:bold;background:yellow;', ...args),
 };
 
-command.stdout.on('data', (data) => {
-  logger.info('stdout', data.toString());
-});
-command.on('close', () => {
-  logger.warn('closed');
-});
-command.on('error', (error) => {
-  logger.error('error', error);
-});
-command.stderr.on('data', (data) => {
-  logger.error('stderr', data.toString());
-});
-
 const createCommand = async () => {
   console.log('resourceDir', await resourceDir());
-  // const entryPath = import.meta.env.DEV ? '../src-node/dist/index.cjs' : path.join(await resourceDir(), '_up_/src-node/dist/index.cjs');
-  // const entryPath = path.join(await resourceDir(), '_up_/src-node/dist/index.cjs');
-  // console.log('entryPath', entryPath);
-  // const command = Command.sidecar('binaries/node-v24.11.1', [entryPath], {
-  //   env: { LSUIElement: '1' },
-  // });
   let command: Command<string>;
 
   if (import.meta.env.DEV) {
@@ -50,9 +29,14 @@ const createCommand = async () => {
       logger.error('stderr', data.toString());
     });
   } else {
-    const entryPath = path.join(await resourceDir(), '_up_/src-node/dist/index.cjs');
-    console.log('entryPath', entryPath);
-    command = Command.sidecar('node-v24.11.1', [entryPath], {
+    const resDir = await resourceDir();
+    const entryPath = path.join(resDir, '_up_/src-node/dist/index.cjs');
+    // shellx 以 unlocked 模式初始化（init(true)），spawn 时直接 Command::new(program) 执行原始
+    // program 字符串，完全跳过 sidecar / scope 解析。因此 'binaries/node-v24.11.1' 会被当成相对
+    // 路径而 ENOENT。这里必须传 node 可执行文件的绝对路径：Resources 同级的 MacOS 目录。
+    const nodePath = path.join(resDir, '../MacOS/node-v24.11.1');
+    logger.info('entryPath', entryPath, 'nodePath', nodePath);
+    command = Command.create(nodePath, [entryPath], {
       env: { LSUIElement: '1' },
     });
   }

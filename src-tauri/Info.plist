@@ -5,20 +5,19 @@
   <!-- 其他默认配置（Tauri 会自动合并，无需重复） -->
   <key>LSUIElement</key>
   <true/>
-  <!-- 配置 ATS 例外 -->
+  <!-- 配置 ATS：本地 NodeJS 服务以 http://<plugin-id>.plugin.localhost:2345 形式提供插件资源。
+       .localhost 这种保留 TLD 的多级子域名用 NSExceptionDomains 不可靠，且 NSAllowsLocalNetworking
+       不覆盖带点的 .localhost 子域，故直接关闭 ATS 全局限制（Developer ID/公证应用，非 App Store，允许）。 -->
   <key>NSAppTransportSecurity</key>
   <dict>
-    <key>NSExceptionDomains</key>
-    <dict>
-      <!-- 针对 plugin.localhost 的例外 -->
-      <key>plugin.localhost</key>
-      <dict>
-        <key>NSIncludesSubdomains</key>
-        <true/>
-        <key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
-        <true/>
-      </dict>
-    </dict>
+    <key>NSAllowsArbitraryLoads</key>
+    <true/>
+    <!-- 关键：插件资源是 WKWebView 网页内容（wujie 动态 import http://*.plugin.localhost:2345 的脚本）
+         发起的请求，必须用这个专用键放行 web content 的 ATS，否则只设 NSAllowsArbitraryLoads 不生效 -->
+    <key>NSAllowsArbitraryLoadsInWebContent</key>
+    <true/>
+    <key>NSAllowsLocalNetworking</key>
+    <true/>
   </dict>
 </dict>
 </plist>
