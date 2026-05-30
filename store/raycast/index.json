@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generatedAt": "2026-05-29T20:40:21.256Z",
+  "generatedAt": "2026-05-30T19:43:32.510Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "b6c718ad84b8dd36e44b1273b79fc57463c0c4f7"
+    "commit": "427cf26de9bfbb0737d073fc6df7138c0af5d28a"
   },
   "count": 2958,
   "extensions": [
@@ -217756,13 +217756,17 @@
       "description": "do tiktoken encode and decode",
       "icon": "command-icon.png",
       "author": "Envl",
-      "contributors": [],
+      "contributors": [
+        "ilian"
+      ],
       "categories": [
         "Developer Tools",
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/Envl/tiktoken",
       "source": {
         "type": "github-monorepo",
@@ -217797,7 +217801,7 @@
           "description": "set the default encoding",
           "required": true,
           "type": "dropdown",
-          "default": "cl100k_base",
+          "default": "o200k_base",
           "data": [
             {
               "title": "gpt2",
@@ -217818,6 +217822,10 @@
             {
               "title": "cl100k_base",
               "value": "cl100k_base"
+            },
+            {
+              "title": "o200k_base",
+              "value": "o200k_base"
             }
           ]
         }
