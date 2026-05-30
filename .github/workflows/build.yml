@@ -77,16 +77,15 @@ jobs:
         echo $APPLE_API_KEY_CONTENT_BASE64 | base64 --decode > .appstoreconnect/private-key.p8
         echo "Private key file written."
 
-    # 仅构建并签主壳，公证留到补签嵌套二进制之后再做
+    # 仅构建、不签名（不传 APPLE_SIGNING_IDENTITY，Tauri 便不会签任何二进制）；
+    # 所有签名统一放到后续步骤里 inside-out 处理
     - name: Build the app
       run: pnpm run app:build
       env:
         TAURI_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
         TAURI_KEY_PASSWORD: ${{ secrets.TAURI_KEY_PASSWORD }}
-        APPLE_SIGNING_IDENTITY: ${{ env.CERT_ID }}
 
-    # Tauri 不会逐个签 Resources 里的 .node（含 src-node 与各插件）与 sidecar，
-    # 这里 inside-out 补签，确保公证通过且第三方插件 .node 能被加载
+    # 统一 inside-out 签名：内层 Mach-O → sidecar → 主程序 → 外层 .app
     - name: Sign bundled native binaries
       env:
         SIGN_ID: ${{ env.CERT_ID }}
@@ -96,23 +95,31 @@ jobs:
         APP=$(/usr/bin/find "${{ github.workspace }}/src-tauri/target/release/bundle/macos" -maxdepth 1 -name '*.app' | head -n1)
         if [ -z "$APP" ]; then echo "未找到 .app 产物"; exit 1; fi
         NAME=$(basename "$APP" .app)
-        echo "Signing nested binaries in $APP"
+        echo "Signing $APP inside-out"
 
-        # 1) 内层动态库 / native addon
-        /usr/bin/find "$APP" \( -name '*.node' -o -name '*.dylib' -o -name '*.so' \) -print0 \
+        # 1) 内层动态库 / native addon：仅对真实 Mach-O 文件签名
+        #    注意 src-node/build 下部分产物是「同名目录里再套一个 .node」，-type f 可跳过目录本身
+        /usr/bin/find "$APP" -type f \( -name '*.node' -o -name '*.dylib' -o -name '*.so' \) -print0 \
           | while IFS= read -r -d '' f; do
-              codesign --force --options runtime --timestamp --sign "$SIGN_ID" "$f"
+              if file -b "$f" | grep -q 'Mach-O'; then
+                codesign --force --options runtime --timestamp --sign "$SIGN_ID" "$f"
+              else
+                echo "skip non-Mach-O: $f"
+              fi
             done
 
-        # 2) Contents/MacOS 下的 sidecar 可执行（主程序除外，例如 node-v24.11.1）
+        # 2) sidecar 可执行（如 node-v24.11.1，主程序除外）：V8 JIT 需要 entitlements
         /usr/bin/find "$APP/Contents/MacOS" -type f ! -name "$NAME" -print0 \
           | while IFS= read -r -d '' f; do
-              codesign --force --options runtime --timestamp --sign "$SIGN_ID" "$f"
+              codesign --force --options runtime --timestamp \
+                --entitlements "$ENTITLEMENTS" --sign "$SIGN_ID" "$f"
             done
 
-        # 3) 主程序（带 entitlements），4) 外层 .app（最后签）
+        # 3) 主程序（带 entitlements）
         codesign --force --options runtime --timestamp \
           --entitlements "$ENTITLEMENTS" --sign "$SIGN_ID" "$APP/Contents/MacOS/$NAME"
+
+        # 4) 外层 .app 最后封口
         codesign --force --options runtime --timestamp \
           --entitlements "$ENTITLEMENTS" --sign "$SIGN_ID" "$APP"
 
