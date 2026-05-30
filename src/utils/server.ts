@@ -4,7 +4,7 @@ import path from 'path-browserify';
 
 const SERVER_PORT = 2345;
 
-const command = Command.sidecar('binaries/node-v24.11.1', ['$RESOURCE/_up_/src-node/dist/index.cjs']);
+const command = Command.sidecar('node-v24.11.1', ['$RESOURCE/_up_/src-node/dist/index.cjs']);
 
 const logger = {
   info: (...args: any[]) => console.info('%c NodeJS Server', 'color:red;font-weight:bold;background:yellow;', ...args),
@@ -52,7 +52,7 @@ const createCommand = async () => {
   } else {
     const entryPath = path.join(await resourceDir(), '_up_/src-node/dist/index.cjs');
     console.log('entryPath', entryPath);
-    command = Command.sidecar('binaries/node-v24.11.1', [entryPath], {
+    command = Command.sidecar('node-v24.11.1', [entryPath], {
       env: { LSUIElement: '1' },
     });
   }
