@@ -1,0 +1,32 @@
+[package]
+name = "tauri-plugin-double-modifier-shortcut"
+version = "0.1.0"
+edition = "2021"
+description = "Tauri plugin for double-press modifier key global shortcuts"
+links = "tauri-plugin-double-modifier-shortcut"
+
+[lib]
+name = "tauri_plugin_double_modifier_shortcut"
+path = "src/lib.rs"
+
+[dependencies]
+tauri = { version = "2", default-features = false }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+log = "0.4"
+thiserror = "2"
+
+# macOS：用 NSEvent 的 .flagsChanged 全局/本地监听（仅修饰键、无键值内容），无需辅助功能授权
+[target.'cfg(target_os = "macos")'.dependencies]
+objc2-app-kit = { version = "0.3.2", features = ["NSEvent", "block2"] }
+block2 = "0.6"
+
+# 其它平台：保留 uiohook（CGEventTap 等价物），行为不变
+[target.'cfg(not(target_os = "macos"))'.dependencies]
+uiohook-rs = "0.2.6"
+
+[target.'cfg(not(any(target_os = "android", target_os = "ios")))'.dependencies]
+tauri-plugin = { version = "2", features = ["build"] }
+
+[build-dependencies]
+tauri-plugin = { version = "2", features = ["build"] }

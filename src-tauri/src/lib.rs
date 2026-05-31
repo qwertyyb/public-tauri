@@ -39,7 +39,7 @@ pub fn run() {
         .plugin(tauri_plugin_shellx::init(true))
         .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_global_shortcut::Builder::new().build())
-        .plugin(tauri_plugin_double_tap_shortcut::init())
+        .plugin(tauri_plugin_double_modifier_shortcut::init())
         .plugin(tauri_nspanel::init())
         .invoke_handler(tauri::generate_handler![
             monitor::get_all_monitors,

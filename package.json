@@ -43,7 +43,7 @@
     "@public-tauri/api": "workspace:^",
     "@public-tauri/core": "workspace:^",
     "@public-tauri/icon": "workspace:^",
-    "@public-tauri/plugin-double-tap-shortcut": "workspace:^",
+    "@public-tauri/plugin-double-modifier-shortcut": "workspace:^",
     "@public-tauri/raycast-convert": "workspace:^",
     "@public-tauri/schema": "workspace:^",
     "@tauri-apps/api": "^2.10.1",

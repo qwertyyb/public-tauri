@@ -13,7 +13,7 @@
     "@public-tauri/plugin-calculator",
     "@public-tauri/plugin-clipboard",
     "@public-tauri/plugin-confetti",
-    "@public-tauri/plugin-double-tap-shortcut",
+    "@public-tauri/plugin-double-modifier-shortcut",
     "@public-tauri/plugin-emoji",
     "@public-tauri/plugin-launcher",
     "@public-tauri/plugin-mdn",

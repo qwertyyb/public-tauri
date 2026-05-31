@@ -1,7 +1,7 @@
 {
-  "name": "@public-tauri/plugin-double-tap-shortcut",
+  "name": "@public-tauri/plugin-double-modifier-shortcut",
   "version": "0.1.0",
-  "description": "Tauri plugin for double-tap modifier key global shortcuts",
+  "description": "Tauri plugin for double-press modifier key global shortcuts",
   "type": "module",
   "main": "./src/index.ts",
   "types": "./src/index.ts",

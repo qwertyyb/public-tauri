@@ -2,8 +2,8 @@
 
 [default]
 description = """
-No features are enabled by default for the double-tap-shortcut plugin.
-The double-tap shortcuts can be inherently dangerous and it is
+No features are enabled by default for the double-modifier-shortcut plugin.
+The double-modifier shortcuts can be inherently dangerous and it is
 application specific if specific shortcuts should be registered or unregistered.
 """
 

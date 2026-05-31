@@ -170,8 +170,8 @@
     "autostart:allow-disable",
     "autostart:allow-enable",
     "autostart:allow-is-enabled",
-    "double-tap-shortcut:allow-register",
-    "double-tap-shortcut:allow-unregister",
+    "double-modifier-shortcut:allow-register",
+    "double-modifier-shortcut:allow-unregister",
     "dialog:default",
     "process:allow-exit",
     "upload:default"

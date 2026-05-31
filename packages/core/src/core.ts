@@ -284,7 +284,7 @@ export const permissions = {
   /// Check all permissions status at once
   checkAll: (): Promise<PermissionsStatus> => invoke('check_permissions'),
 
-  /// Check accessibility permission (for double-tap shortcut)
+  /// Check accessibility permission (for double-modifier shortcut)
   checkAccessibility: (): Promise<PermissionStatus> => invoke('check_accessibility_permission'),
 
   /// Check AppleScript permission (for controlling other apps)

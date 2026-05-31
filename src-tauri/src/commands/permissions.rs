@@ -184,7 +184,7 @@ pub fn check_permissions() -> PermissionsStatus {
     }
 }
 
-/// Check if accessibility permission is granted (for double-tap shortcut)
+/// Check if accessibility permission is granted (for double-modifier shortcut)
 #[tauri::command]
 pub fn check_accessibility_permission() -> PermissionStatus {
     platform::check_accessibility()

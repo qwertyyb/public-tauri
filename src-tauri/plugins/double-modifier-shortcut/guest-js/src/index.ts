@@ -4,7 +4,7 @@
  * @module
  * @example
  * ```typescript
- * import { register, unregister, unregisterAll, isRegistered } from '@public-tauri/plugin-double-tap-shortcut';
+ * import { register, unregister, unregisterAll, isRegistered } from '@public-tauri/plugin-double-modifier-shortcut';
  *
  * // Register a single double-tap shortcut
  * await register('Meta+Meta', (event) => {
@@ -24,13 +24,13 @@
 
 import { invoke, Channel } from '@tauri-apps/api/core'
 
-export interface DoubleTapEvent {
+export interface DoubleModifierEvent {
   /** The shortcut string that triggered this event (e.g., "Meta+Meta") */
   shortcut: string
 }
 
 /** Handler callback type for double-tap events */
-export type DoubleTapHandler = (event: DoubleTapEvent) => void
+export type DoubleModifierHandler = (event: DoubleModifierEvent) => void
 
 /**
  * Register a double-tap modifier key shortcut or a list of shortcuts.
@@ -48,12 +48,12 @@ export type DoubleTapHandler = (event: DoubleTapEvent) => void
  */
 async function register(
   shortcuts: string | string[],
-  handler: DoubleTapHandler,
+  handler: DoubleModifierHandler,
 ): Promise<void> {
-  const channel = new Channel<DoubleTapEvent>()
+  const channel = new Channel<DoubleModifierEvent>()
   channel.onmessage = handler
 
-  return await invoke('plugin:double-tap-shortcut|register', {
+  return await invoke('plugin:double-modifier-shortcut|register', {
     shortcuts: Array.isArray(shortcuts) ? shortcuts : [shortcuts],
     handler: channel,
   })
@@ -67,7 +67,7 @@ async function register(
  * @since 0.1.0
  */
 async function unregister(shortcuts: string | string[]): Promise<void> {
-  return await invoke('plugin:double-tap-shortcut|unregister', {
+  return await invoke('plugin:double-modifier-shortcut|unregister', {
     shortcuts: Array.isArray(shortcuts) ? shortcuts : [shortcuts],
   })
 }
@@ -78,7 +78,7 @@ async function unregister(shortcuts: string | string[]): Promise<void> {
  * @since 0.1.0
  */
 async function unregisterAll(): Promise<void> {
-  return await invoke('plugin:double-tap-shortcut|unregister_all', {})
+  return await invoke('plugin:double-modifier-shortcut|unregister_all', {})
 }
 
 /**
@@ -90,7 +90,7 @@ async function unregisterAll(): Promise<void> {
  * @since 0.1.0
  */
 async function isRegistered(shortcut: string): Promise<boolean> {
-  return await invoke('plugin:double-tap-shortcut|is_registered', { shortcut })
+  return await invoke('plugin:double-modifier-shortcut|is_registered', { shortcut })
 }
 
 export { register, unregister, unregisterAll, isRegistered }

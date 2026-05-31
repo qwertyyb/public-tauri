@@ -4666,7 +4666,7 @@ dependencies = [
  "tauri-plugin-clipboard",
  "tauri-plugin-deep-link",
  "tauri-plugin-dialog",
- "tauri-plugin-double-tap-shortcut",
+ "tauri-plugin-double-modifier-shortcut",
  "tauri-plugin-fs",
  "tauri-plugin-global-shortcut",
  "tauri-plugin-opener",
@@ -6583,10 +6583,12 @@ dependencies = [
 ]
 
 [[package]]
-name = "tauri-plugin-double-tap-shortcut"
+name = "tauri-plugin-double-modifier-shortcut"
 version = "0.1.0"
 dependencies = [
+ "block2",
  "log",
+ "objc2-app-kit",
  "serde",
  "serde_json",
  "tauri",

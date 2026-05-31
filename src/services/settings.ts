@@ -1,4 +1,4 @@
-import { register, unregister } from '@public-tauri/plugin-double-tap-shortcut';
+import { register, unregister } from '@public-tauri/plugin-double-modifier-shortcut';
 import { storage, mainWindow, permissions } from '@public-tauri/core';
 import { isTauri } from '@tauri-apps/api/core';
 import { getPlugins as getAllPlugins } from '@/plugin/manager';
@@ -62,7 +62,7 @@ export const updateMainShortcut = async (shortcut?: string) => {
   await registerMainShortcut(shortcut);
 };
 
-/// Check if accessibility permission is granted for double-tap shortcut
+/// Check if accessibility permission is granted for double-modifier shortcut
 export const checkAccessibilityPermission = async (): Promise<PermissionCheckResult> => {
   const permissionStatus = await permissions.checkAccessibility();
   return {

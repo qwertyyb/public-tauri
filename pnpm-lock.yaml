@@ -32,9 +32,9 @@ importers:
       '@public-tauri/icon':
         specifier: workspace:^
         version: link:packages/icon
-      '@public-tauri/plugin-double-tap-shortcut':
+      '@public-tauri/plugin-double-modifier-shortcut':
         specifier: workspace:^
-        version: link:src-tauri/plugins/double-tap-shortcut/guest-js
+        version: link:src-tauri/plugins/double-modifier-shortcut/guest-js
       '@public-tauri/raycast-convert':
         specifier: workspace:^
         version: link:packages/raycast-convert
@@ -642,7 +642,7 @@ importers:
         specifier: ^5.9.2
         version: 5.9.2
 
-  src-tauri/plugins/double-tap-shortcut/guest-js:
+  src-tauri/plugins/double-modifier-shortcut/guest-js:
     dependencies:
       '@public-tauri/api':
         specifier: workspace:^
