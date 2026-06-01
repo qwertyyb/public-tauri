@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-05-31T19:41:13.914Z",
+  "generatedAt": "2026-06-01T21:55:00.346Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "427cf26de9bfbb0737d073fc6df7138c0af5d28a"
+    "commit": "ba88d46726a9362ea439ba5614623fe5761a412f"
   },
-  "count": 2958,
+  "count": 2962,
   "extensions": [
     {
       "name": "0x0",
@@ -2809,6 +2809,67 @@
               "value": "error"
             }
           ]
+        }
+      ]
+    },
+    {
+      "name": "agent-ecosystem-map",
+      "title": "Agent Ecosystem Map",
+      "description": "Unified map of your AI coding config — skills, agents, MCP servers, rules across Claude Code, Codex, Gemini CLI, Cursor, Windsurf, Copilot",
+      "icon": "extension-icon.png",
+      "author": "spyrae",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/spyrae/agent-ecosystem-map",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/agent-ecosystem-map",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-ecosystem",
+          "title": "Search Ecosystem",
+          "subtitle": "Agent Ecosystem Map",
+          "description": "Search and browse all AI coding assets — skills, agents, MCP servers, rules, and instructions",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "agents",
+          "title": "Agents",
+          "subtitle": "Agent Ecosystem Map",
+          "description": "Browse subagent definitions configured in your AI coding tools",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "rules",
+          "title": "Rules",
+          "subtitle": "Agent Ecosystem Map",
+          "description": "Browse rules configured in Claude Code, Cursor, and Windsurf",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "projectPath",
+          "type": "directory",
+          "required": false,
+          "title": "Project Directory",
+          "description": "Path to your project for scanning project-level config files (.cursor/rules, .windsurf/rules, AGENTS.md, CLAUDE.md, etc.)",
+          "placeholder": "~/Projects/my-app"
         }
       ]
     },
@@ -29100,6 +29161,141 @@
       "preferences": []
     },
     {
+      "name": "chinese-converter",
+      "title": "Chinese Converter",
+      "description": "Convert number input into Chinese formatted text, including uppercase RMB amount text.",
+      "icon": "icon.png",
+      "author": "tofrankie",
+      "contributors": [],
+      "categories": [
+        "Finance"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "version": "1.0.0",
+      "storeUrl": "https://www.raycast.com/tofrankie/chinese-converter",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/chinese-converter",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "convert-number-to-rmb",
+          "title": "Convert Number to RMB",
+          "description": "Convert number to uppercase Chinese RMB text.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "autoReadClipboard",
+              "title": "Auto Read Clipboard",
+              "label": "Read clipboard content and fill the search box on launch",
+              "description": "When enabled, if no number is provided through the command argument, the command reads clipboard text on launch and converts it automatically.",
+              "type": "checkbox",
+              "required": false,
+              "default": false
+            },
+            {
+              "name": "roundingMode",
+              "title": "Rounding Mode",
+              "description": "How to handle   extra decimal digits beyond the specified places.",
+              "type": "dropdown",
+              "required": false,
+              "default": "4",
+              "data": [
+                {
+                  "title": "四舍五入 / Round Half Up",
+                  "value": "4"
+                },
+                {
+                  "title": "五舍六入 / Round Half Down",
+                  "value": "5"
+                },
+                {
+                  "title": "向上取整 / Round Up",
+                  "value": "0"
+                },
+                {
+                  "title": "向下取整 / Round Down",
+                  "value": "1"
+                },
+                {
+                  "title": "向正无穷取整 / Round Ceil",
+                  "value": "2"
+                },
+                {
+                  "title": "向负无穷取整 / Round Floor",
+                  "value": "3"
+                },
+                {
+                  "title": "银行家舍入 / Round Half Even",
+                  "value": "6"
+                },
+                {
+                  "title": "半正无穷取整 / Round Half Ceil",
+                  "value": "7"
+                },
+                {
+                  "title": "半负无穷取整 / Round Half Floor",
+                  "value": "8"
+                }
+              ]
+            },
+            {
+              "name": "unOmitYuan",
+              "title": "Always Show Yuan",
+              "label": "不足一元时也显示「元」，如零元叁角贰分",
+              "description": "不足一元时也显示「元」，如 0.32 → 零元叁角贰分。",
+              "type": "checkbox",
+              "required": false,
+              "default": false
+            },
+            {
+              "name": "preferTraditionalYuan",
+              "title": "Use Traditional Yuan",
+              "label": "使用「圆」替代「元」",
+              "description": "开启后使用「圆」，默认使用「元」。",
+              "type": "checkbox",
+              "required": false,
+              "default": false
+            },
+            {
+              "name": "forceZheng",
+              "title": "Append Zheng",
+              "label": "到角位（无分）时在末尾加「整」，如壹元贰角整",
+              "description": "到角位（无分）时在末尾加「整」，如 1.2 → 壹元贰角整。",
+              "type": "checkbox",
+              "required": false,
+              "default": false
+            },
+            {
+              "name": "preferSimpleZheng",
+              "title": "Use Simple Zheng",
+              "label": "使用「正」替代「整」",
+              "description": "开启后使用「正」，默认使用「整」。",
+              "type": "checkbox",
+              "required": false,
+              "default": false
+            },
+            {
+              "name": "moneyPrefix",
+              "title": "Custom Prefix",
+              "description": "在结果前添加自定义文字，如「人民币壹元贰角叁分」。",
+              "type": "textfield",
+              "required": false,
+              "default": ""
+            }
+          ]
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "chinese-lottery",
       "title": "Chinese Lottery",
       "description": "Check the results of China Welfare Lottery and Sports Lottery",
@@ -48537,13 +48733,6 @@
           "keywords": [],
           "preferences": [
             {
-              "name": "terminalApp",
-              "title": "Terminal App",
-              "type": "appPicker",
-              "description": "Which terminal to open when using \"Open in Terminal\". Defaults to macOS Terminal if unset.",
-              "required": false
-            },
-            {
               "name": "refreshInterval",
               "title": "Refresh Interval",
               "type": "dropdown",
@@ -48612,9 +48801,50 @@
               "required": false
             }
           ]
+        },
+        {
+          "name": "start",
+          "title": "Start Dev Server",
+          "description": "Start a dev server from a Finder selection, a recent project, or any folder you pick",
+          "mode": "view",
+          "keywords": [
+            "spawn",
+            "boot",
+            "launch",
+            "run",
+            "recent"
+          ],
+          "preferences": [
+            {
+              "name": "autoOpenInBrowser",
+              "title": "After Start",
+              "type": "checkbox",
+              "label": "Open in browser when the port binds",
+              "description": "Once the new dev server starts listening, automatically open its URL in your default browser",
+              "default": false,
+              "required": false
+            },
+            {
+              "name": "confirmMultiStart",
+              "title": "Confirmations",
+              "type": "checkbox",
+              "label": "Confirm when starting multiple folders at once",
+              "description": "Show a confirmation alert before spawning more than one dev server from a multi-folder Finder selection",
+              "default": true,
+              "required": false
+            }
+          ]
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "terminalApp",
+          "title": "Terminal App",
+          "type": "appPicker",
+          "description": "Which terminal to open when using \"Open in Terminal\". Defaults to macOS Terminal if unset.",
+          "required": false
+        }
+      ]
     },
     {
       "name": "dev-to",
@@ -75738,6 +75968,123 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "gist-rocket",
+      "title": "Gist Rocket",
+      "description": "Publish HTML or Markdown as a live web page in one keystroke. Powered by GitHub Gists.",
+      "icon": "icon.png",
+      "author": "tgrecojs",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/tgrecojs/gist-rocket",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/gist-rocket",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "publish-page",
+          "title": "Publish Page",
+          "description": "Publish the HTML or Markdown on your clipboard as a live web page.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "publish-from-file",
+          "title": "Publish from File",
+          "description": "Pick an .html / .md file (or a folder with index.html) and publish it as a live web page.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "my-pages",
+          "title": "My Pages",
+          "description": "Browse, open, update, and delete pages you've published.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "hostBaseUrl",
+          "title": "Host Base URL",
+          "description": "Where published pages are served. Leave default to use the public Gisthost service.",
+          "type": "textfield",
+          "required": false,
+          "default": "https://gisthost.github.io/?"
+        },
+        {
+          "name": "defaultVisibility",
+          "title": "Default Visibility",
+          "description": "New pages default to this visibility. Both public and secret render the same; secret is unlisted but not encrypted.",
+          "type": "dropdown",
+          "required": false,
+          "default": "secret",
+          "data": [
+            {
+              "title": "Secret (unlisted)",
+              "value": "secret"
+            },
+            {
+              "title": "Public",
+              "value": "public"
+            }
+          ]
+        },
+        {
+          "name": "defaultMarkdownTheme",
+          "title": "Default Markdown Theme",
+          "description": "Theme applied when rendering Markdown to HTML.",
+          "type": "dropdown",
+          "required": false,
+          "default": "light",
+          "data": [
+            {
+              "title": "Light",
+              "value": "light"
+            },
+            {
+              "title": "Dark",
+              "value": "dark"
+            },
+            {
+              "title": "Auto (system)",
+              "value": "auto"
+            }
+          ]
+        },
+        {
+          "name": "autoOpenAfterPublish",
+          "title": "After Publish",
+          "label": "Open the hosted URL in your browser",
+          "description": "Automatically open the published page in your browser after publishing.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "copyUrlAfterPublish",
+          "title": "After Publish",
+          "label": "Copy the hosted URL to your clipboard",
+          "description": "Automatically copy the published page URL to your clipboard after publishing.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        }
+      ]
     },
     {
       "name": "gistly",
@@ -105425,22 +105772,7 @@
           "preferences": []
         }
       ],
-      "preferences": [
-        {
-          "name": "email",
-          "title": "Email",
-          "description": "Your Joey account email",
-          "type": "textfield",
-          "required": true
-        },
-        {
-          "name": "password",
-          "title": "Password",
-          "description": "Your Joey account password",
-          "type": "password",
-          "required": true
-        }
-      ]
+      "preferences": []
     },
     {
       "name": "johnny-decimal",
@@ -114498,7 +114830,10 @@
         "Web"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "storeUrl": "https://www.raycast.com/justin0u0/leetcode",
       "source": {
         "type": "github-monorepo",
@@ -114580,6 +114915,15 @@
               "value": "go"
             }
           ]
+        },
+        {
+          "name": "showProblemStats",
+          "title": "Problem Stats",
+          "label": "Show difficulty, likes, dislikes, and acceptance rate",
+          "description": "If enabled, the problem's difficulty, likes, dislikes, and acceptance stats are shown above and below the problem description.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
         }
       ]
     },
@@ -134432,7 +134776,8 @@
         "hsuq",
         "pernielsentikaer",
         "ViGeng",
-        "sebdanielsson"
+        "sebdanielsson",
+        "greiner-petter"
       ],
       "categories": [
         "System",
@@ -134459,6 +134804,14 @@
           "keywords": [
             "internet"
           ],
+          "preferences": []
+        },
+        {
+          "name": "menubar",
+          "title": "IP in Menu Bar",
+          "description": "Display my IP address in the menu bar",
+          "mode": "menu-bar",
+          "keywords": [],
           "preferences": []
         }
       ],
@@ -142824,7 +143177,8 @@
       "contributors": [
         "elfitaflores",
         "xmok",
-        "ggon"
+        "ggon",
+        "tongy"
       ],
       "categories": [
         "Productivity"
@@ -142864,6 +143218,14 @@
           "title": "Add Task",
           "description": "Add a new task to Obsidian",
           "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "quick-add-task",
+          "title": "Quick Add Task",
+          "description": "Quickly add a new task to Obsidian",
+          "mode": "no-view",
           "keywords": [],
           "preferences": []
         },
@@ -159301,6 +159663,56 @@
       "preferences": []
     },
     {
+      "name": "pivot",
+      "title": "Pivot",
+      "description": "Bulk-change the default macOS app for many file extensions at once.",
+      "icon": "command-icon.png",
+      "author": "codythatsmee",
+      "contributors": [],
+      "categories": [
+        "System",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/codythatsmee/pivot",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/pivot",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "pivot-apps",
+          "title": "Pivot Apps",
+          "description": "Pick extensions, pick an app, remap them all.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "manage-presets",
+          "title": "Manage Presets",
+          "description": "Create, edit, duplicate, delete extension presets.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "undo-last-pivot",
+          "title": "Undo Last Pivot",
+          "description": "Restore the previous default handlers from the last pivot.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "pixabay",
       "title": "Pixabay",
       "description": "Search Images and Videos on pixabay.com",
@@ -160784,7 +161196,7 @@
     {
       "name": "plexus",
       "title": "Plexus - Localhost Search",
-      "description": "Discover and manage all running Node.js development servers on your localhost with smart project detection, framework identification, and quick access.",
+      "description": "Discover and manage all running localhost web servers (Node, PHP, Python, and more) with smart project detection, framework identification, WSL support, and quick access.",
       "icon": "logo.png",
       "author": "RensHoogendam",
       "contributors": [
@@ -160793,9 +161205,10 @@
       "categories": [],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
-      "version": "1.1.0",
+      "version": "1.2.0",
       "storeUrl": "https://www.raycast.com/RensHoogendam/plexus",
       "source": {
         "type": "github-monorepo",
@@ -165086,6 +165499,20 @@
         }
       ],
       "preferences": [
+        {
+          "name": "apiKey",
+          "title": "API Key",
+          "description": "From your app at producthunt.com/v2/oauth/applications. Optional — blank uses the basic feed.",
+          "type": "password",
+          "required": false
+        },
+        {
+          "name": "apiSecret",
+          "title": "API Secret",
+          "description": "From the same Product Hunt app page.",
+          "type": "password",
+          "required": false
+        },
         {
           "name": "username",
           "title": "Username",
@@ -196982,7 +197409,8 @@
         "elwin_liu",
         "pernielsentikaer",
         "kayo_timoteo",
-        "alexi.build"
+        "alexi.build",
+        "alastair_scheuermann"
       ],
       "categories": [
         "Developer Tools"
@@ -197041,6 +197469,14 @@
           "label": "Opt out of Skills CLI telemetry",
           "description": "Opt out of anonymous usage data collected by the underlying Skills CLI for commands run through this extension. The extension itself does not collect telemetry data.",
           "type": "checkbox",
+          "required": false
+        },
+        {
+          "name": "defaultAgents",
+          "title": "Default Agents",
+          "description": "Agents pre-selected when installing a skill. Enter comma-separated display names exactly as shown in the agent picker, e.g. \"Claude Code, Windsurf\". Leave empty to start with no agents pre-selected.",
+          "placeholder": "e.g., Claude Code, Windsurf",
+          "type": "textfield",
           "required": false
         }
       ]
@@ -235925,8 +236361,8 @@
           "name": "sourceLanguage",
           "type": "dropdown",
           "required": true,
-          "title": "Source Language",
-          "description": "The language you want to translate from",
+          "title": "Default Source Language",
+          "description": "Used before you pick a language pair from the Translate dropdown",
           "default": "en",
           "data": [
             {
@@ -236003,8 +236439,8 @@
           "name": "targetLanguage",
           "type": "dropdown",
           "required": true,
-          "title": "Target Language",
-          "description": "The language you want to translate to",
+          "title": "Default Target Language",
+          "description": "Used before you pick a language pair from the Translate dropdown",
           "default": "uk",
           "data": [
             {
@@ -236084,6 +236520,24 @@
           "title": "Read Clipboard on Open",
           "label": "Enable",
           "description": "If enabled, prefill a suggestion only when clipboard content is a safe single word"
+        },
+        {
+          "name": "translationModel",
+          "type": "textfield",
+          "required": false,
+          "title": "Translation Model",
+          "description": "Gemini model ID for translation (e.g. gemini-2.5-flash, gemini-3-flash-preview). Leave blank to use the default. Override if your model is deprecated.",
+          "default": "gemini-3-flash-preview",
+          "placeholder": "gemini-3-flash-preview"
+        },
+        {
+          "name": "ttsModel",
+          "type": "textfield",
+          "required": false,
+          "title": "Text-to-Speech Model",
+          "description": "Gemini TTS model ID for word pronunciation. Leave blank to use the default. Override if your model is deprecated.",
+          "default": "gemini-3.1-flash-tts-preview",
+          "placeholder": "gemini-3.1-flash-tts-preview"
         }
       ]
     },
