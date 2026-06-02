@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-01T21:55:00.346Z",
+  "generatedAt": "2026-06-02T21:24:48.103Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "ba88d46726a9362ea439ba5614623fe5761a412f"
+    "commit": "0facd281e134a137e8b315a83daf49fcd4045aec"
   },
-  "count": 2962,
+  "count": 2964,
   "extensions": [
     {
       "name": "0x0",
@@ -25534,6 +25534,24 @@
               ]
             },
             {
+              "name": "menuBarIconStyle",
+              "type": "dropdown",
+              "required": false,
+              "title": "Menu Bar Icon Style",
+              "description": "Choose whether the menu bar icon uses the extension artwork or a native monochrome Raycast icon",
+              "default": "color",
+              "data": [
+                {
+                  "title": "Color",
+                  "value": "color"
+                },
+                {
+                  "title": "Monochrome",
+                  "value": "monochrome"
+                }
+              ]
+            },
+            {
               "name": "showRemainingUsage",
               "type": "dropdown",
               "required": false,
@@ -34855,7 +34873,8 @@
         "zakj",
         "Visual-Studio-Coder",
         "Katsuba",
-        "alexi.build"
+        "alexi.build",
+        "mbuvarp"
       ],
       "categories": [],
       "license": "MIT",
@@ -75390,7 +75409,8 @@
         "seanparkross",
         "YourMCGeek",
         "thomas",
-        "tim_gailey"
+        "tim_gailey",
+        "clins1994"
       ],
       "categories": [
         "Media",
@@ -75511,6 +75531,14 @@
             {
               "title": "View GIF Details",
               "value": "viewDetails"
+            },
+            {
+              "title": "Copy GIF Square",
+              "value": "copySquareGif"
+            },
+            {
+              "title": "Paste GIF Square",
+              "value": "pasteSquareGif"
             },
             {
               "title": "Copy Page Link",
@@ -118718,6 +118746,39 @@
       "preferences": []
     },
     {
+      "name": "lockdock",
+      "title": "Lockdock",
+      "description": "Lock the macOS Dock to a specific display",
+      "icon": "extension-icon.png",
+      "author": "mishamyrt",
+      "contributors": [],
+      "categories": [
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/mishamyrt/lockdock",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/lockdock",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "pin",
+          "title": "Pin Dock",
+          "description": "Pin Dock to specific display",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "lodash",
       "title": "Lodash",
       "description": "Search Lodash documentation",
@@ -138161,6 +138222,113 @@
           ]
         }
       ]
+    },
+    {
+      "name": "nibit",
+      "title": "Nibit",
+      "description": "Push to and from your Android phone with Nibit, a Raycast-style productivity layer.",
+      "icon": "icon.png",
+      "author": "jfox",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Communication"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/jfox/nibit",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/nibit",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "inbox",
+          "title": "Inbox",
+          "description": "Browse recent encrypted pushes from your Nibit devices.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "send-push",
+          "title": "Send Push",
+          "description": "Send encrypted text or a URL to your Nibit devices.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "send-file",
+          "title": "Send File",
+          "description": "Send an encrypted file to your Nibit devices.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "latest-push",
+          "title": "Latest Push",
+          "description": "Open the newest received push with context-aware actions.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "paste-latest-push",
+          "title": "Paste Latest Push",
+          "description": "Paste the newest text push directly.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "copy-latest-push",
+          "title": "Copy Latest Push",
+          "description": "Copy the newest push directly.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-latest-push",
+          "title": "Open Latest Push",
+          "description": "Open the newest push directly.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "refresh-inbox",
+          "title": "Refresh Inbox",
+          "description": "Sync pending encrypted pushes into the local Raycast inbox.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "sign-out",
+          "title": "Sign out",
+          "description": "Sign out of Nibit and clear local Raycast sync state.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "nicnames",
@@ -235607,6 +235775,10 @@
               "value": "Cursor"
             },
             {
+              "title": "IBM Bob",
+              "value": "IBM Bob"
+            },
+            {
               "title": "Kiro",
               "value": "Kiro"
             },
@@ -243681,7 +243853,9 @@
         "Other"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "version": "1.1.0",
       "storeUrl": "https://www.raycast.com/Katatsu/wordreference",
       "source": {
