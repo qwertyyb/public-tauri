@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-04T20:31:12.824Z",
+  "generatedAt": "2026-06-05T20:08:35.547Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "8d135596fd64ea889891d527affcdaf0eb45606b"
+    "commit": "2fa6769a5705d481ac3c1cdd5334e4d3a9fcf9f5"
   },
-  "count": 2970,
+  "count": 2974,
   "extensions": [
     {
       "name": "0x0",
@@ -75867,6 +75867,24 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "favorites",
+          "title": "Browse Favorite GIFs",
+          "description": "Browse and search your favorite GIFs across all services",
+          "mode": "view",
+          "keywords": [],
+          "icon": "favorites-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "recents",
+          "title": "Browse Recent GIFs",
+          "description": "Browse and search your recently used GIFs across all services",
+          "mode": "view",
+          "keywords": [],
+          "icon": "recents-icon.png",
+          "preferences": []
         }
       ],
       "preferences": [
@@ -87159,7 +87177,7 @@
     {
       "name": "gram",
       "title": "Gram",
-      "description": "Raycast Extension for Gram",
+      "description": "The easiest way to use Gram on Mac. Access projects and manage extensions from the comfort of Raycast.",
       "icon": "icon.png",
       "author": "justyt65",
       "contributors": [],
@@ -98279,6 +98297,80 @@
       ]
     },
     {
+      "name": "imgbed-uploader",
+      "title": "ImgBed Uploader",
+      "description": "Upload copied screenshots or copied image files to a configurable ImgBed endpoint.",
+      "icon": "extension-icon.png",
+      "author": "andy",
+      "contributors": [],
+      "categories": [
+        "Media",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/andy/imgbed-uploader",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/imgbed-uploader",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "upload-clipboard-image",
+          "title": "Upload Clipboard Image",
+          "subtitle": "ImgBed",
+          "description": "Upload the current clipboard image to ImgBed and copy the returned URL.",
+          "mode": "no-view",
+          "keywords": [
+            "image",
+            "screenshot",
+            "upload",
+            "imgbed",
+            "picture"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "baseUrl",
+          "type": "textfield",
+          "required": true,
+          "title": "ImgBed Base URL",
+          "description": "Base URL of the ImgBed service.",
+          "placeholder": "https://example.com"
+        },
+        {
+          "name": "authCode",
+          "type": "password",
+          "required": true,
+          "title": "Auth Code",
+          "description": "Value sent with the authCode request header."
+        },
+        {
+          "name": "uploadChannel",
+          "type": "textfield",
+          "required": true,
+          "title": "Upload Channel",
+          "description": "ImgBed uploadChannel query parameter.",
+          "default": "cfr2"
+        },
+        {
+          "name": "autoRetry",
+          "type": "checkbox",
+          "required": false,
+          "title": "Auto Retry",
+          "label": "Enable auto retry",
+          "description": "ImgBed autoRetry query parameter.",
+          "default": false
+        }
+      ]
+    },
+    {
       "name": "imgur",
       "title": "Imgur",
       "description": "Upload Media & View Images directly from Raycast",
@@ -109207,7 +109299,8 @@
       "contributors": [
         "kdurek",
         "edequalsawesome",
-        "chrismessina"
+        "chrismessina",
+        "mitsimi"
       ],
       "categories": [
         "Web"
@@ -122127,7 +122220,8 @@
         "ViGeng",
         "dante",
         "5z99tsb75z",
-        "xilopaint"
+        "xilopaint",
+        "clins1994"
       ],
       "categories": [
         "Applications",
@@ -223774,6 +223868,118 @@
       "preferences": []
     },
     {
+      "name": "tokentrack",
+      "title": "Token Track",
+      "description": "Track Token Usage across AI editors - Codex, Claude Code, Cursor.",
+      "icon": "extension-icon.png",
+      "author": "liel_azulay",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/liel_azulay/tokentrack",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/tokentrack",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "dashboard",
+          "title": "Token Dashboard",
+          "description": "View token usage across Codex, Claude Code, and Cursor.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "codexPath",
+          "title": "Codex Data Path",
+          "description": "Path to the local Codex data directory.",
+          "type": "textfield",
+          "default": "~/.codex",
+          "required": true
+        },
+        {
+          "name": "claudePath",
+          "title": "Claude Code Data Path",
+          "description": "Path to the local Claude Code data directory.",
+          "type": "textfield",
+          "default": "~/.claude",
+          "required": true
+        },
+        {
+          "name": "cursorPath",
+          "title": "Cursor Data Path",
+          "description": "Path to the local Cursor application support directory.",
+          "type": "textfield",
+          "default": "~/Library/Application Support/Cursor",
+          "required": true
+        },
+        {
+          "name": "claudeBudget",
+          "title": "Claude Monthly Budget ($)",
+          "description": "Monthly Anthropic spend cap. Shorter periods are prorated.",
+          "type": "textfield",
+          "default": "300",
+          "required": false
+        },
+        {
+          "name": "codexBudget",
+          "title": "Codex Weekly Budget ($)",
+          "description": "Weekly Codex spend cap. Month and today are derived from it.",
+          "type": "textfield",
+          "default": "100",
+          "required": false
+        },
+        {
+          "name": "cursorBudget",
+          "title": "Cursor Monthly Budget ($)",
+          "description": "Monthly Cursor spend cap. Shorter periods are prorated.",
+          "type": "textfield",
+          "default": "300",
+          "required": false
+        },
+        {
+          "name": "currency",
+          "title": "Currency",
+          "description": "Currency code used to format estimated spend.",
+          "type": "textfield",
+          "default": "USD",
+          "required": true
+        },
+        {
+          "name": "defaultSource",
+          "title": "Default Source",
+          "description": "Provider shown first when opening the dashboard.",
+          "type": "dropdown",
+          "default": "claude",
+          "required": false,
+          "data": [
+            {
+              "title": "Claude Code",
+              "value": "claude"
+            },
+            {
+              "title": "Codex",
+              "value": "codex"
+            },
+            {
+              "title": "Cursor",
+              "value": "cursor"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "tomito-controls",
       "title": "Tomito Controls",
       "description": "Control the Tomito app, a Pomodoro timer for macOS",
@@ -242977,6 +243183,57 @@
       ]
     },
     {
+      "name": "wipet",
+      "title": "Wip.et",
+      "description": "Ship every day. Log done's and todos to your wip.et feed without leaving the keyboard. Pick projects with #-autocomplete, attach screenshots, post in one shortcut.",
+      "icon": "command-icon.png",
+      "author": "robimez",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/robimez/wipet",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/wipet",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "post",
+          "title": "Ship It",
+          "subtitle": "wip.et",
+          "description": "Post a done or todo entry to your wip.et feed.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiUrl",
+          "title": "API URL",
+          "description": "Base URL of the wip.et API. Use https://s.wip.et unless you're self-hosting.",
+          "type": "textfield",
+          "required": true,
+          "default": "https://s.wip.et"
+        },
+        {
+          "name": "apiKey",
+          "title": "API Key",
+          "description": "Generate one at https://wip.et/settings/api-keys (pick \"raycast\").",
+          "type": "password",
+          "required": true
+        }
+      ]
+    },
+    {
       "name": "wireguard",
       "title": "Wireguard",
       "description": "Control Wireguard connections.",
@@ -247712,6 +247969,66 @@
       ]
     },
     {
+      "name": "yandex-telemost",
+      "title": "Yandex Telemost",
+      "description": "Create and join Yandex Telemost meetings directly from Raycast. Requires macOS — uses AppleScript to automate your browser.",
+      "icon": "extension-icon.png",
+      "author": "egor_chuzhin",
+      "contributors": [],
+      "categories": [
+        "Communication"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/egor_chuzhin/yandex-telemost",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/yandex-telemost",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "new-meeting",
+          "title": "New Meeting",
+          "subtitle": "Yandex Telemost",
+          "description": "Create a new Yandex Telemost meeting and copy the link to clipboard",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "new-meeting-refocus",
+          "title": "New Meeting and Refocus",
+          "subtitle": "Yandex Telemost",
+          "description": "Create a new Yandex Telemost meeting, copy the link, and return focus to the previous app",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "join-meeting",
+          "title": "Join Meeting",
+          "subtitle": "Yandex Telemost",
+          "description": "Join a Yandex Telemost meeting by link or code",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "browser",
+          "title": "Preferred Browser",
+          "description": "Browser to open Telemost in. If not set, uses the currently active browser.",
+          "type": "appPicker",
+          "required": false
+        }
+      ]
+    },
+    {
       "name": "yap",
       "title": "Yap",
       "description": "Post on socials in a single click",
@@ -250105,7 +250422,8 @@
         "Zheckan",
         "Diwanshumidha",
         "vmrjnvc",
-        "gareth_price"
+        "gareth_price",
+        "CaffeineCat"
       ],
       "categories": [
         "Applications",
