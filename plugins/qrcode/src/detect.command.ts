@@ -1,4 +1,4 @@
-import { type ICommand, type IListViewCommand, AsyncFile, utils, dialog, clipboard, mainWindow, screen, channel } from '@public-tauri/api';
+import { type ICommand, type IListViewCommand, AsyncFile, dialog, clipboard, mainWindow, channel } from '@public-tauri/api';
 
 const createClipboardItem = (text: string) => {
   const item: ICommand = {
@@ -26,13 +26,25 @@ const detectClipboard = async (): Promise<string[]> => {
   return texts;
 };
 
+// const detectScreen = async (): Promise<string[]> => {
+//   try {
+//     await mainWindow.hide();
+//     const cursorPosition = await utils.getMousePosition();
+//     const monitor = await screen.monitorFromPoint(cursorPosition.x, cursorPosition.y);
+//     const imgbase64 = await screen.capture(monitor.id);
+//     console.log('detectScreen', imgbase64);
+//     const texts = (await channel.invoke<string[]>('detect', imgbase64)) || [];
+//     return texts;
+//   } catch (err) {
+//     console.error(err);
+//     return [];
+//   }
+// };
+
 const detectScreen = async (): Promise<string[]> => {
   try {
     await mainWindow.hide();
-    const cursorPosition = await utils.getMousePosition();
-    const monitor = await screen.monitorFromPoint(cursorPosition.x, cursorPosition.y);
-    const imgbase64 = await screen.capture(monitor.id);
-    const texts = (await channel.invoke<string[]>('detect', imgbase64)) || [];
+    const texts = (await channel.invoke<string[]>('detectScreen')) || [];
     return texts;
   } catch (err) {
     console.error(err);
