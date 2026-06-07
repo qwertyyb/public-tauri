@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-06T19:48:05.388Z",
+  "generatedAt": "2026-06-07T19:47:47.748Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "e7c04a122cdde3ed58bf5184e2424808153644ad"
+    "commit": "9db8d587901daac48b71096c83514ac996183bf0"
   },
   "count": 2974,
   "extensions": [
@@ -8903,7 +8903,8 @@
         "juan_saldana",
         "andreaselia",
         "fhf1121",
-        "charlesharries"
+        "charlesharries",
+        "janosorcsik"
       ],
       "categories": [],
       "license": "MIT",
@@ -8973,6 +8974,15 @@
               "type": "textfield",
               "default": "25",
               "description": "The maximum number of notes to display in the menu bar",
+              "required": false
+            },
+            {
+              "name": "openSeparately",
+              "title": "Note actions",
+              "type": "checkbox",
+              "default": false,
+              "label": "Open notes in separate windows by default",
+              "description": "Pressing ⏎ will open notes in separate windows by default",
               "required": false
             }
           ]
@@ -92695,6 +92705,32 @@
           "preferences": []
         },
         {
+          "name": "trending",
+          "title": "Trending Resources",
+          "description": "Browse trending HeyClaude resources from public registry signals.",
+          "mode": "view",
+          "keywords": [
+            "trending",
+            "popular",
+            "claude",
+            "discovery"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "recent-updates",
+          "title": "Recent Updates",
+          "description": "Browse recently added or updated HeyClaude registry entries.",
+          "mode": "view",
+          "keywords": [
+            "recent",
+            "updates",
+            "changelog",
+            "claude"
+          ],
+          "preferences": []
+        },
+        {
           "name": "jobs",
           "title": "Browse HeyClaude Jobs",
           "description": "Browse active HeyClaude jobs, review role details, and open external apply links.",
@@ -92711,12 +92747,12 @@
         {
           "name": "submit-content",
           "title": "Submit New Content",
-          "description": "Create a reviewed HeyClaude content submission with fields that map to the website and GitHub issue forms.",
+          "description": "Create a reviewed HeyClaude content submission with fields that map to the website and PR-first gate.",
           "mode": "view",
           "keywords": [
             "submit",
             "content",
-            "issue",
+            "pr",
             "github",
             "registry"
           ],
@@ -104680,12 +104716,17 @@
       "description": "Find Movies and Shows on your Jellyfin Instance",
       "icon": "command-icon.png",
       "author": "d2a",
-      "contributors": [],
+      "contributors": [
+        "tonka3000"
+      ],
       "categories": [
         "Media"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "storeUrl": "https://www.raycast.com/d2a/jellyfin",
       "source": {
         "type": "github-monorepo",
@@ -170361,6 +170402,7 @@
           "description": "Generate a QR code from text or URL",
           "mode": "view",
           "keywords": [],
+          "icon": "generate-qr-icon.png",
           "preferences": [
             {
               "name": "primaryAction",
@@ -170409,6 +170451,7 @@
           "description": "Generate a QR code from clipboard content",
           "mode": "view",
           "keywords": [],
+          "icon": "clipboard-icon.png",
           "preferences": []
         },
         {
@@ -170418,10 +170461,20 @@
           "description": "Generate a QR code from selection content",
           "mode": "view",
           "keywords": [],
+          "icon": "selection-icon.png",
           "preferences": []
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "defaultColor",
+          "title": "Default QR Color",
+          "description": "Default foreground color (hex) for generated QR codes",
+          "type": "textfield",
+          "required": false,
+          "default": "#000000"
+        }
+      ]
     },
     {
       "name": "qrcp",
@@ -178289,7 +178342,7 @@
           "name": "add-from-finder",
           "title": "Add from Finder",
           "subtitle": "zoxide",
-          "description": "Add the directory of the selected folder in Finder to zoxide. If there is no selection the directory of the open finder window will be used.",
+          "description": "Add the directory of the selected folder in Finder to zoxide. If there is no Finder selection or open window, a folder picker is shown.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -178297,8 +178350,26 @@
       ],
       "preferences": [
         {
+          "name": "search-mode",
+          "title": "Search Mode",
+          "description": "Full Path (fuzzy): filters your whole zoxide list with fzf, matching anywhere in the path (requires fzf). Folder Name (strict): a pure zoxide method that re-queries zoxide on each keystroke, matching the folder name with its native ranking.",
+          "type": "dropdown",
+          "required": true,
+          "default": "fuzzy",
+          "data": [
+            {
+              "title": "Full Path (fuzzy)",
+              "value": "fuzzy"
+            },
+            {
+              "title": "Folder Name (strict)",
+              "value": "zoxide"
+            }
+          ]
+        },
+        {
           "name": "open-in",
-          "title": "Open directories in",
+          "title": "Open Directories in",
           "description": "Choose the application to open directories with.",
           "type": "appPicker",
           "required": true,
@@ -178306,8 +178377,26 @@
           "placeholder": "Select an application"
         },
         {
+          "name": "open-in-terminal",
+          "title": "Terminal Application",
+          "description": "Application used by the \"Open in Terminal\" action.",
+          "type": "appPicker",
+          "required": true,
+          "default": "Terminal",
+          "placeholder": "Select a terminal application"
+        },
+        {
+          "name": "open-in-editor",
+          "title": "Editor Application",
+          "description": "Application used by the \"Open in Editor\" action.",
+          "type": "appPicker",
+          "required": true,
+          "default": "TextEdit",
+          "placeholder": "Select an editor application"
+        },
+        {
           "name": "addl-paths",
-          "title": "Additional path directories",
+          "title": "Additional Path Directories",
           "description": "Additional directories to prepend to the $PATH variable when using zoxide and other commands. Uses path syntax, e.g. `/usr/bin:/bin`.",
           "type": "textfield",
           "required": false
@@ -223921,6 +224010,14 @@
           "mode": "no-view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "menu-bar-budget",
+          "title": "Budget Menu Bar",
+          "description": "Show Claude, Codex, and Cursor budget usage in the menu bar.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": [
@@ -250168,7 +250265,8 @@
         "true-real-michael",
         "xmorse",
         "ivens_joris",
-        "FollowTheProcess"
+        "FollowTheProcess",
+        "justyt65"
       ],
       "categories": [
         "Developer Tools"
