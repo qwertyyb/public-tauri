@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-07T19:47:47.748Z",
+  "generatedAt": "2026-06-08T20:32:41.293Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "9db8d587901daac48b71096c83514ac996183bf0"
+    "commit": "8c54fe97aea4ecf903fe3072477859320ec5e92a"
   },
-  "count": 2974,
+  "count": 2977,
   "extensions": [
     {
       "name": "0x0",
@@ -21029,6 +21029,68 @@
           "type": "textfield",
           "default": "25000000000",
           "required": true
+        }
+      ]
+    },
+    {
+      "name": "bookface",
+      "title": "Bookface",
+      "description": "Search Bookface and chat with the YC Agent from Raycast.",
+      "icon": "extension-icon.png",
+      "author": "chrismessina",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "News"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/chrismessina/bookface",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/bookface",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search",
+          "title": "Search YC",
+          "subtitle": "Bookface",
+          "description": "Search Bookface for companies, people, and posts.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "ask",
+          "title": "Ask YC Agent",
+          "subtitle": "Bookface",
+          "description": "Ask the YC agent questions about the network, investors, fundraising, and more.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "account",
+          "title": "YC Account",
+          "subtitle": "Bookface",
+          "description": "Show the currently logged-in Bookface account.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "ycPath",
+          "type": "textfield",
+          "required": false,
+          "title": "yc CLI Path",
+          "description": "Optional absolute path to the yc binary. If empty, the extension searches $PATH for yc or ycp, then falls back to ~/.local/bin, /opt/homebrew/bin, and /usr/local/bin.",
+          "placeholder": "/Users/you/.local/bin/yc"
         }
       ]
     },
@@ -46038,6 +46100,134 @@
             {
               "title": "Months + Days",
               "value": "months"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "daytona",
+      "title": "Daytona",
+      "description": "Create Daytona sandboxes and run code directly from Raycast.",
+      "icon": "icon.png",
+      "author": "jurajstefanic",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/jurajstefanic/daytona",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/daytona",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "create-sandbox",
+          "title": "Create Sandbox",
+          "description": "Create a new Daytona sandbox.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "run-code",
+          "title": "Run Code",
+          "description": "Run code in a Daytona sandbox.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "create-snapshot",
+          "title": "Create Snapshot",
+          "description": "Create a Daytona snapshot from a base image.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "instant-sandbox",
+          "title": "Instant Sandbox",
+          "description": "Instantly create a default Daytona sandbox.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "read-documentation",
+          "title": "Read Documentation",
+          "description": "Read Daytona documentation.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-dashboard",
+          "title": "Open Dashboard",
+          "description": "Open Daytona dashboard.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "web-terminal",
+          "title": "Web Terminal",
+          "description": "Open Daytona web terminal for a sandbox.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "manage-sandboxes",
+          "title": "Manage Sandboxes",
+          "description": "View and manage Daytona sandboxes.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "title": "API Key",
+          "description": "Your Daytona API key.",
+          "type": "password",
+          "required": true
+        },
+        {
+          "name": "apiUrl",
+          "title": "API URL",
+          "description": "Daytona API URL.",
+          "type": "textfield",
+          "required": false,
+          "default": "https://app.daytona.io/api"
+        },
+        {
+          "name": "target",
+          "title": "Default Target",
+          "description": "Default region target for new sandboxes.",
+          "type": "dropdown",
+          "required": false,
+          "default": "auto",
+          "data": [
+            {
+              "title": "Auto",
+              "value": "auto"
+            },
+            {
+              "title": "US",
+              "value": "us"
+            },
+            {
+              "title": "EU",
+              "value": "eu"
             }
           ]
         }
@@ -208683,6 +208873,321 @@
       ]
     },
     {
+      "name": "subscription-manager",
+      "title": "Subscription Manager",
+      "description": "Track and manage all your recurring subscriptions",
+      "icon": "subscription-icon.png",
+      "author": "shivraj-roy",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Finance"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/shivraj-roy/subscription-manager",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/subscription-manager",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "manage-subscription",
+          "title": "Manage Subscription",
+          "description": "Calendar view with monthly billing overview",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "analytics",
+          "title": "Subscription Analytics",
+          "description": "Spending breakdown and insights across your subscriptions",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "add-subscription",
+          "title": "Add Subscription",
+          "description": "Add a new subscription",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "subscription-list",
+          "title": "All Subscriptions",
+          "description": "View and manage all your subscriptions",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "notification-background",
+          "title": "Subscription Notifications",
+          "description": "Sends reminders before your subscriptions bill",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "menubar",
+          "title": "Subscriptions Menubar",
+          "description": "Monthly total and upcoming bills in the menu bar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "showTotalIn",
+              "title": "Show Monthly Total",
+              "description": "Where to display the monthly total",
+              "type": "dropdown",
+              "required": false,
+              "default": "dropdown",
+              "data": [
+                {
+                  "title": "Beside icon",
+                  "value": "title"
+                },
+                {
+                  "title": "In dropdown",
+                  "value": "dropdown"
+                }
+              ]
+            },
+            {
+              "name": "dropdownContent",
+              "title": "Show in Menu",
+              "description": "Content to display when opening the menubar",
+              "type": "dropdown",
+              "required": false,
+              "default": "upcoming",
+              "data": [
+                {
+                  "title": "Full month",
+                  "value": "full-month"
+                },
+                {
+                  "title": "Upcoming only",
+                  "value": "upcoming"
+                },
+                {
+                  "title": "Minimal",
+                  "value": "minimal"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "preferences": [
+        {
+          "name": "primaryCurrency",
+          "title": "Primary Currency",
+          "description": "Main currency for totals",
+          "type": "dropdown",
+          "required": false,
+          "default": "INR",
+          "data": [
+            {
+              "title": "🇮🇳 Indian Rupee (INR)",
+              "value": "INR"
+            },
+            {
+              "title": "🇺🇸 US Dollar (USD)",
+              "value": "USD"
+            },
+            {
+              "title": "🇪🇺 Euro (EUR)",
+              "value": "EUR"
+            },
+            {
+              "title": "🇬🇧 British Pound (GBP)",
+              "value": "GBP"
+            },
+            {
+              "title": "🇯🇵 Japanese Yen (JPY)",
+              "value": "JPY"
+            },
+            {
+              "title": "🇦🇺 Australian Dollar (AUD)",
+              "value": "AUD"
+            },
+            {
+              "title": "🇨🇦 Canadian Dollar (CAD)",
+              "value": "CAD"
+            },
+            {
+              "title": "🇸🇬 Singapore Dollar (SGD)",
+              "value": "SGD"
+            },
+            {
+              "title": "🇧🇷 Brazilian Real (BRL)",
+              "value": "BRL"
+            },
+            {
+              "title": "🇨🇭 Swiss Franc (CHF)",
+              "value": "CHF"
+            },
+            {
+              "title": "🇨🇳 Chinese Yuan (CNY)",
+              "value": "CNY"
+            },
+            {
+              "title": "🇭🇰 Hong Kong Dollar (HKD)",
+              "value": "HKD"
+            },
+            {
+              "title": "🇮🇩 Indonesian Rupiah (IDR)",
+              "value": "IDR"
+            },
+            {
+              "title": "🇰🇷 South Korean Won (KRW)",
+              "value": "KRW"
+            },
+            {
+              "title": "🇲🇽 Mexican Peso (MXN)",
+              "value": "MXN"
+            },
+            {
+              "title": "🇲🇾 Malaysian Ringgit (MYR)",
+              "value": "MYR"
+            },
+            {
+              "title": "🇳🇴 Norwegian Krone (NOK)",
+              "value": "NOK"
+            },
+            {
+              "title": "🇳🇿 New Zealand Dollar (NZD)",
+              "value": "NZD"
+            },
+            {
+              "title": "🇵🇭 Philippine Peso (PHP)",
+              "value": "PHP"
+            },
+            {
+              "title": "🇸🇪 Swedish Krona (SEK)",
+              "value": "SEK"
+            },
+            {
+              "title": "🇹🇭 Thai Baht (THB)",
+              "value": "THB"
+            },
+            {
+              "title": "🇹🇷 Turkish Lira (TRY)",
+              "value": "TRY"
+            },
+            {
+              "title": "🇿🇦 South African Rand (ZAR)",
+              "value": "ZAR"
+            }
+          ]
+        },
+        {
+          "name": "roundingEnabled",
+          "title": "Rounding",
+          "description": "Hide decimal places",
+          "type": "checkbox",
+          "required": false,
+          "default": false,
+          "label": "Rounding"
+        },
+        {
+          "name": "abbreviateNumbers",
+          "title": "Abbreviated Numbers",
+          "description": "Show compact format like 99.9K",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "label": "Abbreviated Numbers"
+        },
+        {
+          "name": "firstReminderDays",
+          "title": "First Reminder",
+          "description": "Days before billing date to notify",
+          "type": "dropdown",
+          "required": false,
+          "default": "1",
+          "data": [
+            {
+              "title": "Disabled",
+              "value": "disabled"
+            },
+            {
+              "title": "Same day",
+              "value": "0"
+            },
+            {
+              "title": "1 day before",
+              "value": "1"
+            },
+            {
+              "title": "3 days before",
+              "value": "3"
+            },
+            {
+              "title": "7 days before",
+              "value": "7"
+            }
+          ]
+        },
+        {
+          "name": "firstReminderTime",
+          "title": "First Reminder Time",
+          "description": "Notification time in 24h format (e.g. 09:00)",
+          "type": "textfield",
+          "required": false,
+          "default": "09:00",
+          "placeholder": "09:00"
+        },
+        {
+          "name": "secondReminderDays",
+          "title": "Second Reminder",
+          "description": "Optional second reminder before billing date",
+          "type": "dropdown",
+          "required": false,
+          "default": "disabled",
+          "data": [
+            {
+              "title": "Disabled",
+              "value": "disabled"
+            },
+            {
+              "title": "Same day",
+              "value": "0"
+            },
+            {
+              "title": "1 day before",
+              "value": "1"
+            },
+            {
+              "title": "3 days before",
+              "value": "3"
+            },
+            {
+              "title": "7 days before",
+              "value": "7"
+            }
+          ]
+        },
+        {
+          "name": "secondReminderTime",
+          "title": "Second Reminder Time",
+          "description": "Notification time in 24h format (e.g. 18:00)",
+          "type": "textfield",
+          "required": false,
+          "default": "18:00",
+          "placeholder": "18:00"
+        }
+      ]
+    },
+    {
       "name": "substack",
       "title": "Substack",
       "description": "Search Substack posts and profiles from Raycast",
@@ -237921,21 +238426,105 @@
           "description": "If enabled, prefill a suggestion only when clipboard content is a safe single word"
         },
         {
+          "name": "translationModelPreset",
+          "type": "dropdown",
+          "required": true,
+          "title": "Translation Model",
+          "description": "Gemini model used for translation. Use the custom model field only if you need an ID not listed here.",
+          "default": "gemini-3.5-flash",
+          "data": [
+            {
+              "title": "Gemini 3.5 Flash",
+              "value": "gemini-3.5-flash"
+            },
+            {
+              "title": "Gemini 3.1 Flash-Lite",
+              "value": "gemini-3.1-flash-lite"
+            },
+            {
+              "title": "Gemini 3.1 Pro Preview",
+              "value": "gemini-3.1-pro-preview"
+            },
+            {
+              "title": "Gemini 3 Flash Preview",
+              "value": "gemini-3-flash-preview"
+            },
+            {
+              "title": "Gemini 2.5 Flash",
+              "value": "gemini-2.5-flash"
+            },
+            {
+              "title": "Gemini 2.5 Flash-Lite",
+              "value": "gemini-2.5-flash-lite"
+            },
+            {
+              "title": "Gemini 2.5 Pro",
+              "value": "gemini-2.5-pro"
+            }
+          ]
+        },
+        {
           "name": "translationModel",
           "type": "textfield",
           "required": false,
-          "title": "Translation Model",
-          "description": "Gemini model ID for translation (e.g. gemini-2.5-flash, gemini-3-flash-preview). Leave blank to use the default. Override if your model is deprecated.",
-          "default": "gemini-3-flash-preview",
-          "placeholder": "gemini-3-flash-preview"
+          "title": "Custom Translation Model ID",
+          "description": "Optional advanced override. Use an unprefixed ID, for example gemini-3.5-flash. Reasoning controls are applied only for recognized models.",
+          "placeholder": "gemini-3.5-flash"
+        },
+        {
+          "name": "reasoningLevel",
+          "type": "dropdown",
+          "required": true,
+          "title": "Reasoning Level",
+          "description": "Controls Gemini reasoning for translations. Minimum is fastest: it disables thinking where supported; Pro models use their lowest supported reasoning level.",
+          "default": "none",
+          "data": [
+            {
+              "title": "Minimum (fastest)",
+              "value": "none"
+            },
+            {
+              "title": "Low",
+              "value": "low"
+            },
+            {
+              "title": "Medium",
+              "value": "medium"
+            },
+            {
+              "title": "High",
+              "value": "high"
+            }
+          ]
+        },
+        {
+          "name": "ttsModelPreset",
+          "type": "dropdown",
+          "required": true,
+          "title": "Text-to-Speech Model",
+          "description": "Gemini model used for word pronunciation. Use the custom model field only if you need an ID not listed here.",
+          "default": "gemini-3.1-flash-tts-preview",
+          "data": [
+            {
+              "title": "Gemini 3.1 Flash TTS Preview",
+              "value": "gemini-3.1-flash-tts-preview"
+            },
+            {
+              "title": "Gemini 2.5 Flash Preview TTS",
+              "value": "gemini-2.5-flash-preview-tts"
+            },
+            {
+              "title": "Gemini 2.5 Pro Preview TTS",
+              "value": "gemini-2.5-pro-preview-tts"
+            }
+          ]
         },
         {
           "name": "ttsModel",
           "type": "textfield",
           "required": false,
-          "title": "Text-to-Speech Model",
-          "description": "Gemini TTS model ID for word pronunciation. Leave blank to use the default. Override if your model is deprecated.",
-          "default": "gemini-3.1-flash-tts-preview",
+          "title": "Custom Text-to-Speech Model ID",
+          "description": "Optional advanced override. Use an unprefixed ID, for example gemini-3.1-flash-tts-preview.",
           "placeholder": "gemini-3.1-flash-tts-preview"
         }
       ]
