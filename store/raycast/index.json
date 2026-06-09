@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-08T20:32:41.293Z",
+  "generatedAt": "2026-06-09T20:21:57.289Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "8c54fe97aea4ecf903fe3072477859320ec5e92a"
+    "commit": "d41335c3373b5fd3a32669a7888385dc0c7ccb6b"
   },
-  "count": 2977,
+  "count": 2981,
   "extensions": [
     {
       "name": "0x0",
@@ -16350,6 +16350,47 @@
       ]
     },
     {
+      "name": "betterstack-utils",
+      "title": "BetterStack Utils",
+      "description": "View your BetterStack Primary on-call schedule",
+      "icon": "extension-icon.png",
+      "author": "doktor500",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/doktor500/betterstack-utils",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/betterstack-utils",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "on-call-schedule",
+          "title": "On Call Schedule",
+          "description": "Shows a 3-month on-call grid for the Primary schedule",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiToken",
+          "title": "API Token",
+          "description": "Your BetterStack API token",
+          "type": "password",
+          "required": true
+        }
+      ]
+    },
+    {
       "name": "bettertouchtool",
       "title": "BetterTouchTool",
       "description": "Run BTT actions from Raycast",
@@ -20273,6 +20314,50 @@
       ]
     },
     {
+      "name": "blackr",
+      "title": "Blackr",
+      "description": "Turn your main display black for quick screen cleaning.",
+      "icon": "icon.png",
+      "author": "li_jin",
+      "contributors": [],
+      "categories": [
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "1.0.0",
+      "storeUrl": "https://www.raycast.com/li_jin/blackr",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/blackr",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "blackr",
+          "title": "Blackr",
+          "description": "Cover the main display with a black cleaning screen.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "durationSeconds",
+              "title": "Cleaning Duration",
+              "description": "How long Blackr should stay active before exiting automatically, in seconds.",
+              "type": "textfield",
+              "required": false,
+              "default": "60",
+              "placeholder": "60"
+            }
+          ]
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "blip-raycast",
       "title": "Blip",
       "description": "Send files and folders to Blip from Raycast.",
@@ -21462,9 +21547,9 @@
     },
     {
       "name": "brand-dev",
-      "title": "Brand.dev",
-      "description": "Get a company's brand logos, colors, slogan, socials, and more.",
-      "icon": "brand-dev-purple.png",
+      "title": "Context.dev (formerly Brand.dev)",
+      "description": "Web Scraping & Crawl API for AI Agents",
+      "icon": "context-dev.png",
       "author": "xmok",
       "contributors": [],
       "categories": [
@@ -21495,7 +21580,7 @@
         {
           "name": "retrieve-brands",
           "title": "Retrieve Brands",
-          "description": "Get a company's brand logos, colors, slogan, socials, and more",
+          "description": "Get comprehensive brand data by domain, company name, email, or stock ticker",
           "mode": "view",
           "keywords": [],
           "preferences": [
@@ -21532,8 +21617,8 @@
         {
           "name": "api_key",
           "title": "API Key",
-          "description": "API Key from Brand.dev Dashboard",
-          "placeholder": "brand__XXX...xX",
+          "description": "API Key from Context.dev Dashboard",
+          "placeholder": "brand__XXX... / ctxt_secret_xx...",
           "required": true,
           "type": "password"
         }
@@ -114349,11 +114434,14 @@
       "author": "gbarba",
       "contributors": [
         "FezVrasta",
-        "garrill"
+        "garrill",
+        "kalaschnik"
       ],
       "categories": [],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "version": "0.0.2",
       "storeUrl": "https://www.raycast.com/gbarba/large-type",
       "source": {
@@ -114375,6 +114463,14 @@
           "name": "show-clipboard",
           "title": "Show Clipboard",
           "description": "Show the current clipboard in large type",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "show-selected-text",
+          "title": "Show Selected Text",
+          "description": "Show the selected text of the frontmost application in large type",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -117904,7 +118000,8 @@
         "joeb",
         "itsmingjie",
         "xmok",
-        "0xdhrv"
+        "0xdhrv",
+        "erikjs"
       ],
       "categories": [
         "Developer Tools",
@@ -118147,6 +118244,14 @@
           "description": "The maximum number of issues to fetch from the Linear API at once. Be careful when changing this, as too large a number can cause you to exceed your API rate limit and/or cause heap memory errors.",
           "type": "textfield",
           "default": "50",
+          "required": false
+        },
+        {
+          "name": "labelsLimit",
+          "title": "API Label Limit",
+          "description": "The maximum number of labels to fetch from the Linear API per team. Increase this value if some labels are missing when creating or editing issues.",
+          "type": "textfield",
+          "default": "100",
           "required": false
         },
         {
@@ -171233,6 +171338,63 @@
       ]
     },
     {
+      "name": "quick-airdrop",
+      "title": "Quick AirDrop",
+      "description": "Trigger the macOS AirDrop sheet for files, URLs, and clipboard contents — straight from Raycast",
+      "icon": "extension-icon.png",
+      "author": "ridemountainpig",
+      "contributors": [],
+      "categories": [
+        "Applications"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/ridemountainpig/quick-airdrop",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/quick-airdrop",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "airdrop-selected-file",
+          "title": "AirDrop Selected File",
+          "description": "AirDrop the file(s) currently selected in Finder",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "airdrop-clipboard",
+          "title": "AirDrop Clipboard",
+          "description": "AirDrop whatever is on the clipboard — file, URL, or text",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "airdrop-browser-tab",
+          "title": "AirDrop Browser Tab",
+          "description": "AirDrop the URL of the active browser tab",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "airdrop-selected-text",
+          "title": "AirDrop Selected Text",
+          "description": "AirDrop the text currently selected in the frontmost app",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "quick-call",
       "title": "Quick Phone Call",
       "description": "Make a phone call with the default telephone app.",
@@ -203676,6 +203838,142 @@
       "preferences": []
     },
     {
+      "name": "spokenly",
+      "title": "Spokenly",
+      "description": "Control Spokenly speech-to-text: dictation, transcription history, file transcription, model selection, and quick commands",
+      "icon": "spokenly.png",
+      "author": "mattiacolombomc",
+      "contributors": [
+        "pernielsentikaer"
+      ],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/mattiacolombomc/spokenly",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/spokenly",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "toggle-dictation",
+          "title": "Toggle Dictation",
+          "subtitle": "Spokenly",
+          "description": "Start Spokenly's main dictation prompt",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "copy-last-transcript",
+          "title": "Copy Last Transcript",
+          "subtitle": "Spokenly",
+          "description": "Copy the most recent transcription to clipboard",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "paste-last-transcript",
+          "title": "Paste Last Transcript",
+          "subtitle": "Spokenly",
+          "description": "Paste the most recent transcription into the active app",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-transcripts",
+          "title": "Search Transcripts",
+          "subtitle": "Spokenly",
+          "description": "Browse, copy, reveal and delete transcription history",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "transcribe-file",
+          "title": "Transcribe File",
+          "subtitle": "Spokenly",
+          "description": "Transcribe an audio or video file through Spokenly",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-history-folder",
+          "title": "Open History Folder",
+          "subtitle": "Spokenly",
+          "description": "Reveal the Spokenly history directory in Finder",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-last-recording",
+          "title": "Open Last Recording",
+          "subtitle": "Spokenly",
+          "description": "Reveal the most recent recording in Finder",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "select-model",
+          "title": "Select Dictation Model",
+          "subtitle": "Spokenly",
+          "description": "Switch the active dictation transcription model",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "select-file-model",
+          "title": "Select File Transcription Model",
+          "subtitle": "Spokenly",
+          "description": "Switch the model used to transcribe files",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "run-quick-command",
+          "title": "Run Quick Command",
+          "subtitle": "Spokenly",
+          "description": "Trigger one of your Spokenly quick commands",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "mcpPort",
+          "title": "MCP Server Port",
+          "description": "Port where Spokenly's MCP server listens (default 51089)",
+          "type": "textfield",
+          "default": "51089",
+          "placeholder": "51089",
+          "required": false
+        },
+        {
+          "name": "useShortcutFallback",
+          "title": "Toggle Dictation Fallback",
+          "label": "Simulate the global shortcut instead of using the URL scheme",
+          "description": "Use System Events to replay your Spokenly dictation shortcut. Required if the URL scheme cannot stop an in-progress dictation. Needs Accessibility permission for Raycast.",
+          "type": "checkbox",
+          "default": false,
+          "required": false
+        }
+      ]
+    },
+    {
       "name": "spoqify",
       "title": "Spoqify",
       "description": "Spoqify is an MIT-licensed dead-simple service that allows you to access Spotify playlists like an anonymous user",
@@ -210423,16 +210721,7 @@
           "mode": "view",
           "keywords": [],
           "icon": "superwhisper-light-icon.png",
-          "preferences": [
-            {
-              "name": "recordingDir",
-              "title": "Recording Directory",
-              "description": "Directory configured to store recording files",
-              "type": "directory",
-              "required": false,
-              "default": "~/Documents/superwhisper/recordings"
-            }
-          ]
+          "preferences": []
         },
         {
           "name": "copy-last-history",
@@ -210522,7 +210811,16 @@
           "preferences": []
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "recordingDir",
+          "title": "Recording Directory",
+          "description": "Directory configured to store recording files",
+          "type": "directory",
+          "required": false,
+          "default": "~/Documents/superwhisper/recordings"
+        }
+      ]
     },
     {
       "name": "surf-check",
@@ -232206,8 +232504,10 @@
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
-      "version": "0.2.0",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "0.3.0",
       "storeUrl": "https://www.raycast.com/dax42/universal-inbox",
       "source": {
         "type": "github-monorepo",
