@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-10T20:46:32.705Z",
+  "generatedAt": "2026-06-11T20:36:07.977Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "6b6fc1a4a08dfc2a3ff54db5b337e386a4b97f81"
+    "commit": "efb2983da3e713f54dfb85c0f2ae3a5c43fb8a79"
   },
-  "count": 2988,
+  "count": 2995,
   "extensions": [
     {
       "name": "0x0",
@@ -34601,6 +34601,95 @@
       ]
     },
     {
+      "name": "cobalt-finance",
+      "title": "Cobalt Finance",
+      "description": "Access your Cobalt finances from Raycast.",
+      "icon": "extension-icon.png",
+      "author": "sriket_komali",
+      "contributors": [],
+      "categories": [
+        "Finance",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/sriket_komali/cobalt-finance",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/cobalt-finance",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "transactions",
+          "title": "Recent Transactions",
+          "description": "Browse and search your recent Cobalt transactions",
+          "mode": "view",
+          "keywords": [
+            "cobalt",
+            "transactions",
+            "spending"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "recurring",
+          "title": "Recurring Transactions",
+          "description": "Active subscriptions, bills, and recurring income",
+          "mode": "view",
+          "keywords": [
+            "cobalt",
+            "recurring",
+            "subscriptions",
+            "bills"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "accounts",
+          "title": "Accounts",
+          "description": "Connected bank and credit accounts with current balances",
+          "mode": "view",
+          "keywords": [
+            "cobalt",
+            "accounts",
+            "balance",
+            "balances",
+            "bank",
+            "credit"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiUrl",
+          "type": "textfield",
+          "required": false,
+          "title": "API URL",
+          "description": "Cobalt API base URL",
+          "default": "https://api.cobaltpf.com"
+        },
+        {
+          "name": "brandfetchClientId",
+          "type": "textfield",
+          "required": false,
+          "title": "Brandfetch Client ID",
+          "description": "Optional. Provide your own Brandfetch client ID to render merchant logos via the Brandfetch CDN. Leave blank to fall back to generic icons."
+        },
+        {
+          "name": "logoDevToken",
+          "type": "textfield",
+          "required": false,
+          "title": "Logo.dev Publishable Token",
+          "description": "Used for recurring/subscription brand logos via logo.dev (matches web)"
+        }
+      ]
+    },
+    {
       "name": "cocart-docs",
       "title": "CoCart Docs",
       "description": "Search CoCart API documentation quickly, copy URLs, or open them in your browser.",
@@ -51540,7 +51629,7 @@
           "name": "open-url",
           "title": "Open URL in Dia",
           "subtitle": "Dia",
-          "description": "Open a URL in a new Dia tab. Falls back to clipboard or Google search.",
+          "description": "Open a URL in a new Dia tab. Falls back to clipboard or the configured search engine.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -51562,6 +51651,36 @@
             {
               "title": "Open in New Tab",
               "value": "open"
+            }
+          ]
+        },
+        {
+          "name": "searchEngine",
+          "type": "dropdown",
+          "title": "Search Engine",
+          "description": "Search engine used for Search Dia suggestions and query fallback actions.",
+          "required": false,
+          "default": "google",
+          "data": [
+            {
+              "title": "Google",
+              "value": "google"
+            },
+            {
+              "title": "Kagi",
+              "value": "kagi"
+            },
+            {
+              "title": "DuckDuckGo",
+              "value": "duckduckgo"
+            },
+            {
+              "title": "Brave Search",
+              "value": "brave"
+            },
+            {
+              "title": "Bing",
+              "value": "bing"
             }
           ]
         }
@@ -66230,6 +66349,91 @@
       ]
     },
     {
+      "name": "figa",
+      "title": "Figa",
+      "description": "Access your Figa workspace from Raycast.",
+      "icon": "icon.png",
+      "author": "figa",
+      "contributors": [],
+      "categories": [
+        "Finance",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "version": "0.1.0",
+      "storeUrl": "https://www.raycast.com/figa/figa",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/figa",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "show-workspace-context",
+          "title": "Show Workspace Context",
+          "description": "Validate the configured Figa API key and show workspace context.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-expenses",
+          "title": "Search Expenses",
+          "description": "Search current-month Figa expenses and quick views.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "show-monthly-summary",
+          "title": "Show Monthly Summary",
+          "description": "Review recent monthly expense totals for the current workspace.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "create-expense",
+          "title": "Create Expense",
+          "description": "Create a Figa expense in the current workspace.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-categories",
+          "title": "Search Categories",
+          "description": "Search Figa categories for the current workspace.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-recipients",
+          "title": "Search Recipients",
+          "description": "Search Figa recipients for the current workspace.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "title": "API Key",
+          "description": "Figa workspace API key. Create a dedicated key in workspace settings.",
+          "type": "password",
+          "required": true,
+          "placeholder": "et_live_..."
+        }
+      ]
+    },
+    {
       "name": "figlet",
       "title": "FIGlet",
       "description": "Generate a FIGlet",
@@ -68683,7 +68887,9 @@
       "description": "Get online in 60 seconds with our AI powered website builder. Showcase your brand, schedule appointments, and sell products all at your fingertip.",
       "icon": "extension-icon.png",
       "author": "mblode",
-      "contributors": [],
+      "contributors": [
+        "pernielsentikaer"
+      ],
       "categories": [
         "Web"
       ],
@@ -68720,7 +68926,7 @@
           "title": "API Key",
           "description": "Your Fingertip API key for authentication. Get it at https://fingertip.com/account/api",
           "type": "password",
-          "required": true
+          "required": false
         }
       ]
     },
@@ -103192,6 +103398,41 @@
       "preferences": []
     },
     {
+      "name": "is-it-alive",
+      "title": "Is It Alive?",
+      "description": "Monitor status pages and check if your favorite services are operational.",
+      "icon": "extension-icon.png",
+      "author": "alerix",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Data"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/alerix/is-it-alive",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/is-it-alive",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "check-status-pages",
+          "title": "Check Status Pages",
+          "description": "View live status, active incidents, and uptime history for monitored sites",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "is-it-toxic-to",
       "title": "Is It Toxic To?",
       "description": "Check if a plant is toxic to an animal",
@@ -129407,7 +129648,9 @@
       "description": "Command for Office Products",
       "icon": "msoffice.png",
       "author": "tonka3000",
-      "contributors": [],
+      "contributors": [
+        "firewall-code"
+      ],
       "categories": [
         "Productivity"
       ],
@@ -187567,6 +187810,63 @@
       "preferences": []
     },
     {
+      "name": "rut-generator",
+      "title": "RUT Generator",
+      "description": "Generate valid Chilean RUTs for development and testing.",
+      "icon": "icon.png",
+      "author": "esteban03",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/esteban03/rut-generator",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/rut-generator",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "generate-rut",
+          "title": "Generate RUT",
+          "description": "Generate a list of valid Chilean RUTs and copy them to the clipboard.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "defaultFormat",
+              "title": "Default Format",
+              "description": "Format used when generating RUTs.",
+              "type": "dropdown",
+              "required": true,
+              "default": "dots",
+              "data": [
+                {
+                  "title": "With dots and dash (12.345.678-5)",
+                  "value": "dots"
+                },
+                {
+                  "title": "Without dots, with dash (12345678-5)",
+                  "value": "dash"
+                },
+                {
+                  "title": "Without dots or dash (123456785)",
+                  "value": "plain"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "sabnzbd",
       "title": "SABnzbd",
       "description": "Manage SABnzbd locally",
@@ -196789,6 +197089,39 @@
       "preferences": []
     },
     {
+      "name": "simple-draw",
+      "title": "Simple Draw",
+      "description": "Annotate clipboard images with drawing tools",
+      "icon": "command-icon.png",
+      "author": "duduzeta",
+      "contributors": [],
+      "categories": [
+        "Design Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/duduzeta/simple-draw",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/simple-draw",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "simple-draw",
+          "title": "Simple Draw",
+          "description": "Open clipboard image in a drawing canvas",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "simple-http",
       "title": "Simple Http",
       "description": "A simplistic local Http server",
@@ -200046,6 +200379,76 @@
       ]
     },
     {
+      "name": "sleevy",
+      "title": "Sleevy - Manage Your Bookmarks",
+      "description": "Add, view, and delete items from Sleevy",
+      "icon": "extension-icon.png",
+      "author": "onnokh",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows",
+        "macOS"
+      ],
+      "version": "1.0.0",
+      "storeUrl": "https://www.raycast.com/onnokh/sleevy",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/sleevy",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "sleeve-it",
+          "title": "Sleeve It",
+          "description": "Save URL from clipboard to your Sleevy",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "your-library",
+          "title": "Your Library",
+          "subtitle": "Sleevy",
+          "description": "Show all your saved items",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiUrl",
+          "title": "API URL",
+          "description": "The base URL for the Sleevy API",
+          "type": "textfield",
+          "required": true,
+          "default": "https://api.sleevy.app",
+          "placeholder": "https://api.sleevy.app"
+        },
+        {
+          "name": "webUrl",
+          "title": "Web URL",
+          "description": "The base URL for the Sleevy web app (used during Connect). Leave empty to derive from API URL.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "https://sleevy.app"
+        },
+        {
+          "name": "sourceName",
+          "title": "Source Name",
+          "description": "A name for this device (e.g. Work Laptop). Defaults to your computer name if empty.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "e.g. Work Laptop"
+        }
+      ]
+    },
+    {
       "name": "slowed-reverb",
       "title": "Slowed + Reverb",
       "description": "Turn any song into a Slowed + Reverb version",
@@ -200291,6 +200694,95 @@
           "description": "When enabled, German umlauts will be converted to their proper transliterations instead of single characters (ä→ae, ö→oe, ü→ue, ß→ss)",
           "default": false,
           "required": false
+        }
+      ]
+    },
+    {
+      "name": "slurm",
+      "title": "Slurm",
+      "description": "Manage Slurm jobs across multiple clusters and inspect utilization from Raycast",
+      "icon": "icon.png",
+      "author": "p-koenig",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/p-koenig/slurm",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/slurm",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "manage-jobs",
+          "title": "My Slurm Jobs",
+          "subtitle": "Slurm",
+          "description": "List your Slurm jobs for all active clusters.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "resources",
+          "title": "HPC Info",
+          "subtitle": "Slurm",
+          "description": "Hardware information for all active clusters.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "node-utilization",
+          "title": "HPC Util",
+          "subtitle": "Slurm",
+          "description": "Live per-node CPU load, memory utilization and GPU availability.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "all-jobs",
+          "title": "All Slurm Jobs",
+          "subtitle": "Slurm",
+          "description": "List all Slurm jobs for all active clusters.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "menu-bar",
+          "title": "Slurm Menu Bar",
+          "subtitle": "Slurm",
+          "description": "Show running and pending job counts in the macOS menu bar for all active clusters.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "select-cluster",
+          "title": "Select Clusters",
+          "subtitle": "Slurm",
+          "description": "Select the active SSH hosts and authenticate.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "controlPersist",
+          "title": "Session Timeout",
+          "description": "SSH timeout value (e.g. 10m, 1h, 24h).",
+          "type": "textfield",
+          "required": false,
+          "default": "12h"
         }
       ]
     },
@@ -209609,7 +210101,9 @@
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/sublime.app/sublime",
       "source": {
         "type": "github-monorepo",
@@ -246875,7 +247369,9 @@
       "description": "Quickly find a word translation using WordReference",
       "icon": "icon.png",
       "author": "Katatsu",
-      "contributors": [],
+      "contributors": [
+        "eddieb"
+      ],
       "categories": [
         "Productivity",
         "Web",
@@ -246885,7 +247381,7 @@
       "platforms": [
         "macOS"
       ],
-      "version": "1.1.0",
+      "version": "1.1.2",
       "storeUrl": "https://www.raycast.com/Katatsu/wordreference",
       "source": {
         "type": "github-monorepo",
