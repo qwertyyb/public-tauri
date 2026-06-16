@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-15T21:18:39.181Z",
+  "generatedAt": "2026-06-16T21:18:36.945Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "29ebb5d048cc635c0e27cb54d5ddc8f1d7cc8556"
+    "commit": "17887d719e4d42e0332a08b3f6286164b859a03c"
   },
-  "count": 3000,
+  "count": 3002,
   "extensions": [
     {
       "name": "0x0",
@@ -42525,7 +42525,9 @@
       "description": "Keep an eye on Bitcoin (BTC), Ethereum (ETH), and other cryptocurrency prices and more directly from your system menu bar",
       "icon": "command-icon.png",
       "author": "gutenye",
-      "contributors": [],
+      "contributors": [
+        "zampa"
+      ],
       "categories": [
         "Finance"
       ],
@@ -42607,18 +42609,34 @@
         {
           "name": "source",
           "title": "Source",
-          "description": "Source to use for fetching the price",
+          "description": "Preferred source for fetching the price. If it's unavailable, the extension automatically falls back to the other sources.",
           "type": "dropdown",
           "required": false,
-          "default": "CryptoCompare",
+          "default": "Binance",
           "data": [
-            {
-              "title": "CryptoCompare",
-              "value": "CryptoCompare"
-            },
             {
               "title": "Binance",
               "value": "Binance"
+            },
+            {
+              "title": "CoinGecko",
+              "value": "CoinGecko"
+            },
+            {
+              "title": "OKX",
+              "value": "OKX"
+            },
+            {
+              "title": "Coinbase",
+              "value": "Coinbase"
+            },
+            {
+              "title": "Kraken",
+              "value": "Kraken"
+            },
+            {
+              "title": "CryptoCompare (needs API key)",
+              "value": "CryptoCompare"
             }
           ]
         },
@@ -42628,6 +42646,13 @@
           "description": "Coins to enable, default is BTC | ETH BNB SOL XRP",
           "type": "textfield",
           "default": "BTC | ETH BNB SOL XRP",
+          "required": false
+        },
+        {
+          "name": "cryptoCompareApiKey",
+          "title": "CryptoCompare API Key",
+          "description": "Optional. A free CryptoCompare (CCData) API key. Only needed to use CryptoCompare as a source — its public API now requires a key.",
+          "type": "password",
           "required": false
         }
       ]
@@ -103740,7 +103765,8 @@
         "jose-elias-alvarez",
         "luka_nola",
         "thomas",
-        "metrovoc"
+        "metrovoc",
+        "ches"
       ],
       "categories": [
         "Applications",
@@ -123147,6 +123173,76 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "mach-triage",
+      "title": "Mach Triage",
+      "description": "Triage Jira, Linear, and GitHub tickets without leaving Raycast. Search, check your Today board, change status, add comments, and log work — all routed through the Mach Triage desktop app on your local machine. No cloud. No latency. No context switching.",
+      "icon": "icon.png",
+      "author": "MikeWhob",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/MikeWhob/mach-triage",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/mach-triage",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-tickets",
+          "title": "Search Tickets",
+          "subtitle": "Mach Triage",
+          "description": "Full-text search across your active workspace. Finds by key, title, or description.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "today-board",
+          "title": "Today Board",
+          "subtitle": "Mach Triage",
+          "description": "Your Active / Stuck / Next / Done lanes — same board, keyboard-first.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "status",
+          "title": "Mach Triage Status",
+          "subtitle": "Mach Triage",
+          "description": "Health check. Confirms the desktop app bridge is running and authenticated.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "bridgeUrl",
+          "type": "textfield",
+          "required": false,
+          "title": "Bridge URL",
+          "description": "Mach Triage local bridge URL (e.g. http://127.0.0.1:17847). Copy from Mach Triage Settings → Raycast.",
+          "default": "http://127.0.0.1:17847"
+        },
+        {
+          "name": "bridgeToken",
+          "type": "password",
+          "required": true,
+          "title": "Bridge Token",
+          "description": "Generated in Mach Triage Settings when Raycast integration is enabled."
+        }
+      ]
     },
     {
       "name": "macos-tweaks",
@@ -150470,7 +150566,9 @@
       "description": "Browse, search, and manage your OpenCode sessions",
       "icon": "extension-icon.png",
       "author": "mike182uk",
-      "contributors": [],
+      "contributors": [
+        "mormubis"
+      ],
       "categories": [
         "Developer Tools"
       ],
@@ -150487,10 +150585,20 @@
       },
       "commands": [
         {
-          "name": "index",
-          "title": "List Sessions",
-          "description": "Browse all OpenCode sessions with search and filtering",
+          "name": "search-sessions",
+          "title": "Search Sessions",
+          "subtitle": "OpenCode",
+          "description": "Browse sessions with search, see active status, resume in terminal",
           "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "new-session",
+          "title": "New Session",
+          "subtitle": "OpenCode",
+          "description": "Start a fresh OpenCode conversation in any project directory",
+          "mode": "no-view",
           "keywords": [],
           "preferences": []
         }
@@ -150503,6 +150611,40 @@
           "title": "Database Path",
           "description": "Override OpenCode database path (defaults to ~/.local/share/opencode/opencode.db)",
           "placeholder": "~/.local/share/opencode/opencode.db"
+        },
+        {
+          "name": "terminal",
+          "title": "Terminal",
+          "description": "Terminal application to open OpenCode sessions in. Auto-detect picks the first running terminal.",
+          "type": "dropdown",
+          "required": false,
+          "default": "auto",
+          "data": [
+            {
+              "title": "Auto-detect",
+              "value": "auto"
+            },
+            {
+              "title": "iTerm2",
+              "value": "iterm2"
+            },
+            {
+              "title": "Terminal.app",
+              "value": "terminal"
+            },
+            {
+              "title": "Warp",
+              "value": "warp"
+            },
+            {
+              "title": "Ghostty",
+              "value": "ghostty"
+            },
+            {
+              "title": "Kitty",
+              "value": "kitty"
+            }
+          ]
         }
       ]
     },
@@ -179372,7 +179514,8 @@
       "icon": "store-updates-icon.png",
       "author": "chrismessina",
       "contributors": [
-        "alexi.build"
+        "alexi.build",
+        "Undolog"
       ],
       "categories": [
         "Productivity"
@@ -179398,6 +179541,15 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "store-updates-menu-bar",
+          "title": "Store Updates Menu Bar",
+          "subtitle": "Raycast Store Updates",
+          "description": "Show new and updated Raycast Store extensions in the menu bar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": [
@@ -179409,6 +179561,13 @@
           "type": "checkbox",
           "required": false,
           "default": false
+        },
+        {
+          "name": "githubToken",
+          "title": "GitHub Token",
+          "description": "Optional GitHub personal access token. The extension reads merged pull requests from the GitHub API to detect extension updates and removals; without a token this is capped at 60 requests/hour. A classic token with no scopes (public read only) raises the limit to 5,000 requests/hour. Create one at github.com/settings/tokens.",
+          "type": "password",
+          "required": false
         }
       ]
     },
@@ -200348,6 +200507,15 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "update-all-skills",
+          "title": "Update All Skills",
+          "subtitle": "Skills",
+          "description": "Update all installed skills",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": [
@@ -207193,7 +207361,8 @@
         "validate",
         "xmok",
         "hugodemenez",
-        "alexi.build"
+        "alexi.build",
+        "shivraj-roy"
       ],
       "categories": [
         "Media",
@@ -232272,6 +232441,114 @@
       ]
     },
     {
+      "name": "txtodo",
+      "title": "TXTodo",
+      "description": "Manage tasks in todo.txt plain-text format from Raycast",
+      "icon": "extension-icon.png",
+      "author": "lacasa",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/lacasa/txtodo",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/txtodo",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "tasks",
+          "title": "Show Tasks",
+          "description": "View, complete, edit, and prioritize tasks from todo.txt",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "quick-add",
+          "title": "Add Task",
+          "description": "Quickly add a task with inline description, priority, and due date",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "show-completed",
+          "title": "Show Completed Tasks",
+          "description": "View completed tasks still in todo.txt",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "show-archived",
+          "title": "Show Archived Tasks",
+          "description": "View tasks archived to done.txt",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "menu-bar",
+          "title": "Refresh Menu Bar",
+          "description": "Re-read todo.txt and refresh the menu bar item (the icon itself lives in the macOS menu bar)",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle-menu-bar",
+          "title": "Toggle Menu Bar",
+          "description": "Show or hide the TXTodo icon in the macOS menu bar",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "todoPath",
+          "title": "Todo File",
+          "description": "Path to your todo.txt file",
+          "type": "textfield",
+          "required": false,
+          "default": "~/todo.txt"
+        },
+        {
+          "name": "donePath",
+          "title": "Done File",
+          "description": "Path to your done.txt file (archived completed tasks)",
+          "type": "textfield",
+          "required": false,
+          "default": "~/done.txt"
+        },
+        {
+          "name": "archiveOnComplete",
+          "title": "Archive Behavior",
+          "description": "Move tasks to done.txt the moment they're marked complete",
+          "label": "Auto-archive on complete",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "autoStampCreationDate",
+          "title": "Creation Date",
+          "description": "Automatically prepend today's date to new tasks",
+          "label": "Auto-stamp creation date on new tasks",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        }
+      ]
+    },
+    {
       "name": "tyme-3-time-tracker",
       "title": "Tyme 3 Time Tracker",
       "description": "Interact with Tyme 3 to track your time",
@@ -247941,16 +248218,17 @@
       "icon": "icon.png",
       "author": "Katatsu",
       "contributors": [
-        "eddieb"
+        "eddieb",
+        "0xdhrv"
       ],
       "categories": [
         "Productivity",
-        "Web",
-        "Other"
+        "Web"
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "version": "1.1.2",
       "storeUrl": "https://www.raycast.com/Katatsu/wordreference",
