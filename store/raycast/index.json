@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-16T21:18:36.945Z",
+  "generatedAt": "2026-06-17T20:30:04.836Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "17887d719e4d42e0332a08b3f6286164b859a03c"
+    "commit": "2094b9de3b839fe6b73ef34a65e631d5d9e63a73"
   },
-  "count": 3002,
+  "count": 3003,
   "extensions": [
     {
       "name": "0x0",
@@ -2085,7 +2085,9 @@
         "Data"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/rocksack/advanced-replace",
       "source": {
         "type": "github-monorepo",
@@ -2101,6 +2103,174 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "quick-slot-1",
+          "title": "Quick Slot 1",
+          "subtitle": "Regex Replace",
+          "description": "Run the regex entry assigned to Quick Slot 1. Assign it from \"Extract and Replace Text\", then give this command a hotkey.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "resultType",
+              "title": "Result Action",
+              "description": "What to do with the transformed text.",
+              "type": "dropdown",
+              "required": false,
+              "default": "paste",
+              "data": [
+                {
+                  "title": "Paste",
+                  "value": "paste"
+                },
+                {
+                  "title": "Copy",
+                  "value": "copy"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "quick-slot-2",
+          "title": "Quick Slot 2",
+          "subtitle": "Regex Replace",
+          "description": "Run the regex entry assigned to Quick Slot 2. Assign it from \"Extract and Replace Text\", then give this command a hotkey.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "resultType",
+              "title": "Result Action",
+              "description": "What to do with the transformed text.",
+              "type": "dropdown",
+              "required": false,
+              "default": "paste",
+              "data": [
+                {
+                  "title": "Paste",
+                  "value": "paste"
+                },
+                {
+                  "title": "Copy",
+                  "value": "copy"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "quick-slot-3",
+          "title": "Quick Slot 3",
+          "subtitle": "Regex Replace",
+          "description": "Run the regex entry assigned to Quick Slot 3. Assign it from \"Extract and Replace Text\", then give this command a hotkey.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "resultType",
+              "title": "Result Action",
+              "description": "What to do with the transformed text.",
+              "type": "dropdown",
+              "required": false,
+              "default": "paste",
+              "data": [
+                {
+                  "title": "Paste",
+                  "value": "paste"
+                },
+                {
+                  "title": "Copy",
+                  "value": "copy"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "quick-slot-4",
+          "title": "Quick Slot 4",
+          "subtitle": "Regex Replace",
+          "description": "Run the regex entry assigned to Quick Slot 4. Assign it from \"Extract and Replace Text\", then give this command a hotkey.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "resultType",
+              "title": "Result Action",
+              "description": "What to do with the transformed text.",
+              "type": "dropdown",
+              "required": false,
+              "default": "paste",
+              "data": [
+                {
+                  "title": "Paste",
+                  "value": "paste"
+                },
+                {
+                  "title": "Copy",
+                  "value": "copy"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "quick-slot-5",
+          "title": "Quick Slot 5",
+          "subtitle": "Regex Replace",
+          "description": "Run the regex entry assigned to Quick Slot 5. Assign it from \"Extract and Replace Text\", then give this command a hotkey.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "resultType",
+              "title": "Result Action",
+              "description": "What to do with the transformed text.",
+              "type": "dropdown",
+              "required": false,
+              "default": "paste",
+              "data": [
+                {
+                  "title": "Paste",
+                  "value": "paste"
+                },
+                {
+                  "title": "Copy",
+                  "value": "copy"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "quick-slot-6",
+          "title": "Quick Slot 6",
+          "subtitle": "Regex Replace",
+          "description": "Run the regex entry assigned to Quick Slot 6. Assign it from \"Extract and Replace Text\", then give this command a hotkey.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "resultType",
+              "title": "Result Action",
+              "description": "What to do with the transformed text.",
+              "type": "dropdown",
+              "required": false,
+              "default": "paste",
+              "data": [
+                {
+                  "title": "Paste",
+                  "value": "paste"
+                },
+                {
+                  "title": "Copy",
+                  "value": "copy"
+                }
+              ]
+            }
+          ]
         }
       ],
       "preferences": []
@@ -11071,6 +11241,41 @@
           ]
         }
       ]
+    },
+    {
+      "name": "asafamos-accessibility-scanner",
+      "title": "AsafAmos — Accessibility Scanner",
+      "description": "Scan any URL for WCAG 2.1 / 2.2 AA accessibility violations and browse axe-core results in Raycast.",
+      "icon": "command-icon.png",
+      "author": "asafamos",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/asafamos/asafamos-accessibility-scanner",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/asafamos-accessibility-scanner",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "scan",
+          "title": "Scan URL for Accessibility",
+          "description": "Run an axe-core scan against any public URL and show violations.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "asana",
@@ -61440,13 +61645,17 @@
       "description": "Empties your screenshot folder within a configurable time period.",
       "icon": "empty-screenshot-folder.png",
       "author": "chanceaclark",
-      "contributors": [],
+      "contributors": [
+        "mrpunkin"
+      ],
       "categories": [
         "System",
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/chanceaclark/empty-screenshots",
       "source": {
         "type": "github-monorepo",
@@ -61463,11 +61672,20 @@
           "keywords": [],
           "preferences": [
             {
+              "name": "useMacOSDefaults",
+              "description": "Use the screenshot folder and file naming conventions from the macOS Screenshot app",
+              "type": "checkbox",
+              "required": false,
+              "title": "macOS Screenshot App",
+              "default": false,
+              "label": "Use settings from macOS Screenshot app"
+            },
+            {
               "name": "screenshotFolder",
-              "description": "Location where you save your screenshots",
+              "description": "Location where you save your screenshots. Required when not using the macOS Screenshot app settings.",
               "type": "textfield",
               "required": true,
-              "title": "Screenshot folder",
+              "title": "Screenshot Folder",
               "default": "~/Desktop"
             },
             {
@@ -61475,9 +61693,13 @@
               "description": "Number of days to keep screenshots for",
               "type": "dropdown",
               "required": true,
-              "title": "Keep history for",
+              "title": "Delete Screenshots Older Than",
               "default": "30",
               "data": [
+                {
+                  "title": "All screenshots",
+                  "value": "0"
+                },
                 {
                   "title": "24 hours",
                   "value": "1"
@@ -61491,7 +61713,7 @@
                   "value": "30"
                 },
                 {
-                  "title": "3 Month",
+                  "title": "3 Months",
                   "value": "90"
                 }
               ]
@@ -74214,7 +74436,9 @@
       "description": "Fuzzy-search files by full path to reach the right item instantly.",
       "icon": "extension-icon.png",
       "author": "erykksc",
-      "contributors": [],
+      "contributors": [
+        "gilitos92"
+      ],
       "categories": [
         "Productivity",
         "System"
@@ -172000,7 +172224,8 @@
         "MatteoGauthier",
         "seewhy",
         "ridemountainpig",
-        "dangkhoipro"
+        "dangkhoipro",
+        "stefan.imbesi"
       ],
       "categories": [],
       "license": "MIT",
@@ -226069,6 +226294,14 @@
           "preferences": []
         },
         {
+          "name": "createTimeEntry",
+          "title": "Quickstart New Timer",
+          "description": "Start a new time entry from a global hotkey.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "updateTimeEntry",
           "title": "Update Time Entry",
           "description": "Update the description, project, tags of recent time entries.",
@@ -239869,7 +240102,8 @@
         "emiliocantuc",
         "raxityo",
         "yusifaliyevpro",
-        "jkker"
+        "jkker",
+        "sillashead"
       ],
       "categories": [],
       "license": "MIT",
@@ -239990,6 +240224,10 @@
             {
               "title": "Visual Studio Code - Insiders",
               "value": "Code - Insiders"
+            },
+            {
+              "title": "Devin",
+              "value": "Devin"
             },
             {
               "title": "Windsurf",
@@ -248901,7 +249139,8 @@
       "author": "isma",
       "contributors": [
         "djpowers",
-        "pernielsentikaer"
+        "pernielsentikaer",
+        "brunocbreis"
       ],
       "categories": [
         "News",
@@ -248928,6 +249167,235 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "menubar",
+          "title": "World Cup Menu Bar",
+          "subtitle": "FIFA World Cup",
+          "description": "Shows the live match score in the menu bar with a dropdown of every fixture",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "score-subtitle",
+          "title": "World Cup Live Score",
+          "subtitle": "FIFA World Cup",
+          "description": "Shows the live score under the command name, and alerts you when a goal is scored",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "country",
+              "title": "Your Country",
+              "description": "Goals are celebratory (⚽🎉) unless scored against this team (⚽😭)",
+              "type": "dropdown",
+              "required": false,
+              "default": "",
+              "data": [
+                {
+                  "title": "None",
+                  "value": ""
+                },
+                {
+                  "title": "Argentina",
+                  "value": "ARG"
+                },
+                {
+                  "title": "Australia",
+                  "value": "AUS"
+                },
+                {
+                  "title": "Austria",
+                  "value": "AUT"
+                },
+                {
+                  "title": "Belgium",
+                  "value": "BEL"
+                },
+                {
+                  "title": "Brazil",
+                  "value": "BRA"
+                },
+                {
+                  "title": "Canada",
+                  "value": "CAN"
+                },
+                {
+                  "title": "Cape Verde",
+                  "value": "CPV"
+                },
+                {
+                  "title": "Chile",
+                  "value": "CHI"
+                },
+                {
+                  "title": "Colombia",
+                  "value": "COL"
+                },
+                {
+                  "title": "Costa Rica",
+                  "value": "CRC"
+                },
+                {
+                  "title": "Croatia",
+                  "value": "CRO"
+                },
+                {
+                  "title": "Côte d'Ivoire",
+                  "value": "CIV"
+                },
+                {
+                  "title": "Czechia",
+                  "value": "CZE"
+                },
+                {
+                  "title": "Denmark",
+                  "value": "DEN"
+                },
+                {
+                  "title": "Ecuador",
+                  "value": "ECU"
+                },
+                {
+                  "title": "Egypt",
+                  "value": "EGY"
+                },
+                {
+                  "title": "England",
+                  "value": "ENG"
+                },
+                {
+                  "title": "France",
+                  "value": "FRA"
+                },
+                {
+                  "title": "Germany",
+                  "value": "GER"
+                },
+                {
+                  "title": "Ghana",
+                  "value": "GHA"
+                },
+                {
+                  "title": "Iran",
+                  "value": "IRN"
+                },
+                {
+                  "title": "Italy",
+                  "value": "ITA"
+                },
+                {
+                  "title": "Japan",
+                  "value": "JPN"
+                },
+                {
+                  "title": "Jordan",
+                  "value": "JOR"
+                },
+                {
+                  "title": "Mexico",
+                  "value": "MEX"
+                },
+                {
+                  "title": "Morocco",
+                  "value": "MAR"
+                },
+                {
+                  "title": "Netherlands",
+                  "value": "NED"
+                },
+                {
+                  "title": "New Zealand",
+                  "value": "NZL"
+                },
+                {
+                  "title": "Nigeria",
+                  "value": "NGA"
+                },
+                {
+                  "title": "Norway",
+                  "value": "NOR"
+                },
+                {
+                  "title": "Panama",
+                  "value": "PAN"
+                },
+                {
+                  "title": "Paraguay",
+                  "value": "PAR"
+                },
+                {
+                  "title": "Peru",
+                  "value": "PER"
+                },
+                {
+                  "title": "Poland",
+                  "value": "POL"
+                },
+                {
+                  "title": "Portugal",
+                  "value": "POR"
+                },
+                {
+                  "title": "Qatar",
+                  "value": "QAT"
+                },
+                {
+                  "title": "Saudi Arabia",
+                  "value": "KSA"
+                },
+                {
+                  "title": "Scotland",
+                  "value": "SCO"
+                },
+                {
+                  "title": "Senegal",
+                  "value": "SEN"
+                },
+                {
+                  "title": "Serbia",
+                  "value": "SRB"
+                },
+                {
+                  "title": "South Africa",
+                  "value": "RSA"
+                },
+                {
+                  "title": "South Korea",
+                  "value": "KOR"
+                },
+                {
+                  "title": "Spain",
+                  "value": "ESP"
+                },
+                {
+                  "title": "Switzerland",
+                  "value": "SUI"
+                },
+                {
+                  "title": "Tunisia",
+                  "value": "TUN"
+                },
+                {
+                  "title": "United States",
+                  "value": "USA"
+                },
+                {
+                  "title": "Uruguay",
+                  "value": "URU"
+                },
+                {
+                  "title": "Uzbekistan",
+                  "value": "UZB"
+                },
+                {
+                  "title": "Wales",
+                  "value": "WAL"
+                }
+              ]
+            }
+          ]
         }
       ],
       "preferences": []
