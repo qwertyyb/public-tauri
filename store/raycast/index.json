@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-17T20:30:04.836Z",
+  "generatedAt": "2026-06-18T20:59:45.841Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "2094b9de3b839fe6b73ef34a65e631d5d9e63a73"
+    "commit": "b1f5a90ffd31feb46c2f70d51328783f87a48680"
   },
-  "count": 3003,
+  "count": 3006,
   "extensions": [
     {
       "name": "0x0",
@@ -52526,6 +52526,136 @@
       ]
     },
     {
+      "name": "dida365",
+      "title": "Dida365",
+      "description": "Control Dida365 tasks from Raycast on Windows.",
+      "icon": "dida365-icon.png",
+      "author": "max",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/max/dida365",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/dida365",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "add-task",
+          "title": "Add Task",
+          "subtitle": "Dida365",
+          "description": "Create a Dida365 task with date, priority, notes, and reminder.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "dida365-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "tasks",
+          "title": "Tasks",
+          "subtitle": "Dida365",
+          "description": "View Dida365 tasks and mark them as complete.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "dida365-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "today-tasks",
+          "title": "Today Tasks",
+          "subtitle": "Dida365",
+          "description": "View and complete tasks due today.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "dida365-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "postpone-task",
+          "title": "Postpone Task",
+          "subtitle": "Dida365",
+          "description": "Move an existing task to another date.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "dida365-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "clipboard-to-task",
+          "title": "Clipboard to Task",
+          "subtitle": "Dida365",
+          "description": "Create a Dida365 task from clipboard text.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "dida365-icon.png",
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiToken",
+          "title": "Dida365 API Token",
+          "description": "Generate it in Dida365 Web -> Settings -> Account & Security -> API Token / Bearer Token.",
+          "type": "password",
+          "required": false
+        },
+        {
+          "name": "timeZone",
+          "title": "Time Zone",
+          "description": "Used to create and compare due dates. Defaults to your system time zone; choose Asia/Shanghai for Dida365 China accounts.",
+          "type": "dropdown",
+          "required": false,
+          "default": "system",
+          "data": [
+            {
+              "title": "System Default",
+              "value": "system"
+            },
+            {
+              "title": "China Standard Time",
+              "value": "Asia/Shanghai"
+            },
+            {
+              "title": "UTC",
+              "value": "UTC"
+            },
+            {
+              "title": "US Eastern",
+              "value": "America/New_York"
+            },
+            {
+              "title": "US Pacific",
+              "value": "America/Los_Angeles"
+            },
+            {
+              "title": "Central Europe",
+              "value": "Europe/Berlin"
+            },
+            {
+              "title": "United Kingdom",
+              "value": "Europe/London"
+            },
+            {
+              "title": "Japan",
+              "value": "Asia/Tokyo"
+            },
+            {
+              "title": "Singapore",
+              "value": "Asia/Singapore"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "diff-checker",
       "title": "Diff Checker",
       "description": "Compare content of two texts",
@@ -84847,8 +84977,8 @@
       ],
       "preferences": [
         {
-          "name": "lang1",
-          "title": "Primary Language",
+          "name": "langFrom",
+          "title": "Translate from",
           "description": "Preferred language to translate from",
           "required": true,
           "type": "dropdown",
@@ -85857,9 +85987,1019 @@
           ]
         },
         {
+          "name": "lang1",
+          "title": "Primary Language",
+          "description": "Preferred primary language to translate to",
+          "required": true,
+          "type": "dropdown",
+          "default": "en",
+          "data": [
+            {
+              "title": "Auto-Detect",
+              "value": "auto"
+            },
+            {
+              "title": "Abkhaz",
+              "value": "ab"
+            },
+            {
+              "title": "Acehnese",
+              "value": "ace"
+            },
+            {
+              "title": "Acholi",
+              "value": "ach"
+            },
+            {
+              "title": "Afar",
+              "value": "aa"
+            },
+            {
+              "title": "Afrikaans",
+              "value": "af"
+            },
+            {
+              "title": "Albanian",
+              "value": "sq"
+            },
+            {
+              "title": "Alur",
+              "value": "alz"
+            },
+            {
+              "title": "Amharic",
+              "value": "am"
+            },
+            {
+              "title": "Arabic",
+              "value": "ar"
+            },
+            {
+              "title": "Armenian",
+              "value": "hy"
+            },
+            {
+              "title": "Assamese",
+              "value": "as"
+            },
+            {
+              "title": "Avar",
+              "value": "av"
+            },
+            {
+              "title": "Awadhi",
+              "value": "awa"
+            },
+            {
+              "title": "Aymara",
+              "value": "ay"
+            },
+            {
+              "title": "Azerbaijani",
+              "value": "az"
+            },
+            {
+              "title": "Balinese",
+              "value": "ban"
+            },
+            {
+              "title": "Baluchi",
+              "value": "bal"
+            },
+            {
+              "title": "Bambara",
+              "value": "bm"
+            },
+            {
+              "title": "Baoulé",
+              "value": "bci"
+            },
+            {
+              "title": "Bashkir",
+              "value": "ba"
+            },
+            {
+              "title": "Basque",
+              "value": "eu"
+            },
+            {
+              "title": "Batak Karo",
+              "value": "btx"
+            },
+            {
+              "title": "Batak Simalungun",
+              "value": "bts"
+            },
+            {
+              "title": "Batak Toba",
+              "value": "bbc"
+            },
+            {
+              "title": "Belarusian",
+              "value": "be"
+            },
+            {
+              "title": "Bemba",
+              "value": "bem"
+            },
+            {
+              "title": "Bengali",
+              "value": "bn"
+            },
+            {
+              "title": "Betawi",
+              "value": "bew"
+            },
+            {
+              "title": "Bhojpuri",
+              "value": "bho"
+            },
+            {
+              "title": "Bikol",
+              "value": "bik"
+            },
+            {
+              "title": "Bosnian",
+              "value": "bs"
+            },
+            {
+              "title": "Breton",
+              "value": "br"
+            },
+            {
+              "title": "Bulgarian",
+              "value": "bg"
+            },
+            {
+              "title": "Buryat",
+              "value": "bua"
+            },
+            {
+              "title": "Cantonese",
+              "value": "yue"
+            },
+            {
+              "title": "Catalan",
+              "value": "ca"
+            },
+            {
+              "title": "Cebuano",
+              "value": "ceb"
+            },
+            {
+              "title": "Chamorro",
+              "value": "ch"
+            },
+            {
+              "title": "Chechen",
+              "value": "ce"
+            },
+            {
+              "title": "Chichewa",
+              "value": "ny"
+            },
+            {
+              "title": "Chinese (Simplified)",
+              "value": "zh-CN"
+            },
+            {
+              "title": "Chinese (Traditional)",
+              "value": "zh-TW"
+            },
+            {
+              "title": "Chuukese",
+              "value": "chk"
+            },
+            {
+              "title": "Chuvash",
+              "value": "cv"
+            },
+            {
+              "title": "Corsican",
+              "value": "co"
+            },
+            {
+              "title": "Crimean Tatar (Cyrillic)",
+              "value": "crh"
+            },
+            {
+              "title": "Crimean Tatar (Latin)",
+              "value": "crh-Latn"
+            },
+            {
+              "title": "Croatian",
+              "value": "hr"
+            },
+            {
+              "title": "Czech",
+              "value": "cs"
+            },
+            {
+              "title": "Danish",
+              "value": "da"
+            },
+            {
+              "title": "Dari",
+              "value": "fa-AF"
+            },
+            {
+              "title": "Dhivehi",
+              "value": "dv"
+            },
+            {
+              "title": "Dinka",
+              "value": "din"
+            },
+            {
+              "title": "Dogri",
+              "value": "doi"
+            },
+            {
+              "title": "Dombe",
+              "value": "dov"
+            },
+            {
+              "title": "Dutch",
+              "value": "nl"
+            },
+            {
+              "title": "Dyula",
+              "value": "dyu"
+            },
+            {
+              "title": "Dzongkha",
+              "value": "dz"
+            },
+            {
+              "title": "English",
+              "value": "en"
+            },
+            {
+              "title": "Esperanto",
+              "value": "eo"
+            },
+            {
+              "title": "Estonian",
+              "value": "et"
+            },
+            {
+              "title": "Ewe",
+              "value": "ee"
+            },
+            {
+              "title": "Faroese",
+              "value": "fo"
+            },
+            {
+              "title": "Fijian",
+              "value": "fj"
+            },
+            {
+              "title": "Filipino",
+              "value": "tl"
+            },
+            {
+              "title": "Finnish",
+              "value": "fi"
+            },
+            {
+              "title": "Fon",
+              "value": "fon"
+            },
+            {
+              "title": "French",
+              "value": "fr"
+            },
+            {
+              "title": "French (Canada)",
+              "value": "fr-CA"
+            },
+            {
+              "title": "Frisian",
+              "value": "fy"
+            },
+            {
+              "title": "Friulian",
+              "value": "fur"
+            },
+            {
+              "title": "Fulani",
+              "value": "ff"
+            },
+            {
+              "title": "Ga",
+              "value": "gaa"
+            },
+            {
+              "title": "Galician",
+              "value": "gl"
+            },
+            {
+              "title": "Georgian",
+              "value": "ka"
+            },
+            {
+              "title": "German",
+              "value": "de"
+            },
+            {
+              "title": "Greek",
+              "value": "el"
+            },
+            {
+              "title": "Guarani",
+              "value": "gn"
+            },
+            {
+              "title": "Gujarati",
+              "value": "gu"
+            },
+            {
+              "title": "Haitian Creole",
+              "value": "ht"
+            },
+            {
+              "title": "Hakha Chin",
+              "value": "cnh"
+            },
+            {
+              "title": "Hausa",
+              "value": "ha"
+            },
+            {
+              "title": "Hawaiian",
+              "value": "haw"
+            },
+            {
+              "title": "Hebrew",
+              "value": "iw"
+            },
+            {
+              "title": "Hiligaynon",
+              "value": "hil"
+            },
+            {
+              "title": "Hindi",
+              "value": "hi"
+            },
+            {
+              "title": "Hmong",
+              "value": "hmn"
+            },
+            {
+              "title": "Hungarian",
+              "value": "hu"
+            },
+            {
+              "title": "Hunsrik",
+              "value": "hrx"
+            },
+            {
+              "title": "Iban",
+              "value": "iba"
+            },
+            {
+              "title": "Icelandic",
+              "value": "is"
+            },
+            {
+              "title": "Igbo",
+              "value": "ig"
+            },
+            {
+              "title": "Ilocano",
+              "value": "ilo"
+            },
+            {
+              "title": "Indonesian",
+              "value": "id"
+            },
+            {
+              "title": "Inuktut (Latin)",
+              "value": "iu-Latn"
+            },
+            {
+              "title": "Inuktut (Syllabics)",
+              "value": "iu"
+            },
+            {
+              "title": "Irish",
+              "value": "ga"
+            },
+            {
+              "title": "Italian",
+              "value": "it"
+            },
+            {
+              "title": "Jamaican Patois",
+              "value": "jam"
+            },
+            {
+              "title": "Japanese",
+              "value": "ja"
+            },
+            {
+              "title": "Javanese",
+              "value": "jv"
+            },
+            {
+              "title": "Jingpo",
+              "value": "kac"
+            },
+            {
+              "title": "Kalaallisut",
+              "value": "kl"
+            },
+            {
+              "title": "Kannada",
+              "value": "kn"
+            },
+            {
+              "title": "Kanuri",
+              "value": "kr"
+            },
+            {
+              "title": "Kapampangan",
+              "value": "pam"
+            },
+            {
+              "title": "Kazakh",
+              "value": "kk"
+            },
+            {
+              "title": "Khasi",
+              "value": "kha"
+            },
+            {
+              "title": "Khmer",
+              "value": "km"
+            },
+            {
+              "title": "Kiga",
+              "value": "cgg"
+            },
+            {
+              "title": "Kikongo",
+              "value": "kg"
+            },
+            {
+              "title": "Kinyarwanda",
+              "value": "rw"
+            },
+            {
+              "title": "Kituba",
+              "value": "ktu"
+            },
+            {
+              "title": "Kokborok",
+              "value": "trp"
+            },
+            {
+              "title": "Komi",
+              "value": "kv"
+            },
+            {
+              "title": "Konkani",
+              "value": "gom"
+            },
+            {
+              "title": "Korean",
+              "value": "ko"
+            },
+            {
+              "title": "Krio",
+              "value": "kri"
+            },
+            {
+              "title": "Kurdish (Kurmanji)",
+              "value": "ku"
+            },
+            {
+              "title": "Kurdish (Sorani)",
+              "value": "ckb"
+            },
+            {
+              "title": "Kyrgyz",
+              "value": "ky"
+            },
+            {
+              "title": "Lao",
+              "value": "lo"
+            },
+            {
+              "title": "Latgalian",
+              "value": "ltg"
+            },
+            {
+              "title": "Latin",
+              "value": "la"
+            },
+            {
+              "title": "Latvian",
+              "value": "lv"
+            },
+            {
+              "title": "Ligurian",
+              "value": "lij"
+            },
+            {
+              "title": "Limburgish",
+              "value": "li"
+            },
+            {
+              "title": "Lingala",
+              "value": "ln"
+            },
+            {
+              "title": "Lithuanian",
+              "value": "lt"
+            },
+            {
+              "title": "Lombard",
+              "value": "lmo"
+            },
+            {
+              "title": "Luganda",
+              "value": "lg"
+            },
+            {
+              "title": "Luo",
+              "value": "luo"
+            },
+            {
+              "title": "Luxembourgish",
+              "value": "lb"
+            },
+            {
+              "title": "Macedonian",
+              "value": "mk"
+            },
+            {
+              "title": "Madurese",
+              "value": "mad"
+            },
+            {
+              "title": "Maithili",
+              "value": "mai"
+            },
+            {
+              "title": "Makassar",
+              "value": "mak"
+            },
+            {
+              "title": "Malagasy",
+              "value": "mg"
+            },
+            {
+              "title": "Malay",
+              "value": "ms"
+            },
+            {
+              "title": "Malay (Jawi)",
+              "value": "ms-Arab"
+            },
+            {
+              "title": "Malayalam",
+              "value": "ml"
+            },
+            {
+              "title": "Maltese",
+              "value": "mt"
+            },
+            {
+              "title": "Mam",
+              "value": "mam"
+            },
+            {
+              "title": "Manx",
+              "value": "gv"
+            },
+            {
+              "title": "Maori",
+              "value": "mi"
+            },
+            {
+              "title": "Marathi",
+              "value": "mr"
+            },
+            {
+              "title": "Marshallese",
+              "value": "mh"
+            },
+            {
+              "title": "Marwadi",
+              "value": "mwr"
+            },
+            {
+              "title": "Mauritian Creole",
+              "value": "mfe"
+            },
+            {
+              "title": "Meadow Mari",
+              "value": "chm"
+            },
+            {
+              "title": "Meiteilon (Manipuri)",
+              "value": "mni-Mtei"
+            },
+            {
+              "title": "Minang",
+              "value": "min"
+            },
+            {
+              "title": "Mizo",
+              "value": "lus"
+            },
+            {
+              "title": "Mongolian",
+              "value": "mn"
+            },
+            {
+              "title": "Myanmar (Burmese)",
+              "value": "my"
+            },
+            {
+              "title": "NKo",
+              "value": "bm-Nkoo"
+            },
+            {
+              "title": "Nahuatl (Eastern Huasteca)",
+              "value": "nhe"
+            },
+            {
+              "title": "Ndau",
+              "value": "ndc-ZW"
+            },
+            {
+              "title": "Ndebele (South)",
+              "value": "nr"
+            },
+            {
+              "title": "Nepalbhasa (Newari)",
+              "value": "new"
+            },
+            {
+              "title": "Nepali",
+              "value": "ne"
+            },
+            {
+              "title": "Norwegian",
+              "value": "no"
+            },
+            {
+              "title": "Nuer",
+              "value": "nus"
+            },
+            {
+              "title": "Occitan",
+              "value": "oc"
+            },
+            {
+              "title": "Odia (Oriya)",
+              "value": "or"
+            },
+            {
+              "title": "Oromo",
+              "value": "om"
+            },
+            {
+              "title": "Ossetian",
+              "value": "os"
+            },
+            {
+              "title": "Pangasinan",
+              "value": "pag"
+            },
+            {
+              "title": "Papiamento",
+              "value": "pap"
+            },
+            {
+              "title": "Pashto",
+              "value": "ps"
+            },
+            {
+              "title": "Persian",
+              "value": "fa"
+            },
+            {
+              "title": "Polish",
+              "value": "pl"
+            },
+            {
+              "title": "Portuguese (Brazil)",
+              "value": "pt"
+            },
+            {
+              "title": "Portuguese (Portugal)",
+              "value": "pt-PT"
+            },
+            {
+              "title": "Punjabi (Gurmukhi)",
+              "value": "pa"
+            },
+            {
+              "title": "Punjabi (Shahmukhi)",
+              "value": "pa-Arab"
+            },
+            {
+              "title": "Quechua",
+              "value": "qu"
+            },
+            {
+              "title": "Qʼeqchiʼ",
+              "value": "kek"
+            },
+            {
+              "title": "Romani",
+              "value": "rom"
+            },
+            {
+              "title": "Romanian",
+              "value": "ro"
+            },
+            {
+              "title": "Rundi",
+              "value": "rn"
+            },
+            {
+              "title": "Russian",
+              "value": "ru"
+            },
+            {
+              "title": "Sami (North)",
+              "value": "se"
+            },
+            {
+              "title": "Samoan",
+              "value": "sm"
+            },
+            {
+              "title": "Sango",
+              "value": "sg"
+            },
+            {
+              "title": "Sanskrit",
+              "value": "sa"
+            },
+            {
+              "title": "Santali (Latin)",
+              "value": "sat-Latn"
+            },
+            {
+              "title": "Santali (Ol Chiki)",
+              "value": "sat"
+            },
+            {
+              "title": "Scots Gaelic",
+              "value": "gd"
+            },
+            {
+              "title": "Sepedi",
+              "value": "nso"
+            },
+            {
+              "title": "Serbian",
+              "value": "sr"
+            },
+            {
+              "title": "Sesotho",
+              "value": "st"
+            },
+            {
+              "title": "Seychellois Creole",
+              "value": "crs"
+            },
+            {
+              "title": "Shan",
+              "value": "shn"
+            },
+            {
+              "title": "Shona",
+              "value": "sn"
+            },
+            {
+              "title": "Sicilian",
+              "value": "scn"
+            },
+            {
+              "title": "Silesian",
+              "value": "szl"
+            },
+            {
+              "title": "Sindhi",
+              "value": "sd"
+            },
+            {
+              "title": "Sinhala",
+              "value": "si"
+            },
+            {
+              "title": "Slovak",
+              "value": "sk"
+            },
+            {
+              "title": "Slovenian",
+              "value": "sl"
+            },
+            {
+              "title": "Somali",
+              "value": "so"
+            },
+            {
+              "title": "Spanish",
+              "value": "es"
+            },
+            {
+              "title": "Sundanese",
+              "value": "su"
+            },
+            {
+              "title": "Susu",
+              "value": "sus"
+            },
+            {
+              "title": "Swahili",
+              "value": "sw"
+            },
+            {
+              "title": "Swati",
+              "value": "ss"
+            },
+            {
+              "title": "Swedish",
+              "value": "sv"
+            },
+            {
+              "title": "Tahitian",
+              "value": "ty"
+            },
+            {
+              "title": "Tajik",
+              "value": "tg"
+            },
+            {
+              "title": "Tamazight",
+              "value": "ber-Latn"
+            },
+            {
+              "title": "Tamazight (Tifinagh)",
+              "value": "ber"
+            },
+            {
+              "title": "Tamil",
+              "value": "ta"
+            },
+            {
+              "title": "Tatar",
+              "value": "tt"
+            },
+            {
+              "title": "Telugu",
+              "value": "te"
+            },
+            {
+              "title": "Tetum",
+              "value": "tet"
+            },
+            {
+              "title": "Thai",
+              "value": "th"
+            },
+            {
+              "title": "Tibetan",
+              "value": "bo"
+            },
+            {
+              "title": "Tigrinya",
+              "value": "ti"
+            },
+            {
+              "title": "Tiv",
+              "value": "tiv"
+            },
+            {
+              "title": "Tok Pisin",
+              "value": "tpi"
+            },
+            {
+              "title": "Tongan",
+              "value": "to"
+            },
+            {
+              "title": "Tshiluba",
+              "value": "lua"
+            },
+            {
+              "title": "Tsonga",
+              "value": "ts"
+            },
+            {
+              "title": "Tswana",
+              "value": "tn"
+            },
+            {
+              "title": "Tulu",
+              "value": "tcy"
+            },
+            {
+              "title": "Tumbuka",
+              "value": "tum"
+            },
+            {
+              "title": "Turkish",
+              "value": "tr"
+            },
+            {
+              "title": "Turkmen",
+              "value": "tk"
+            },
+            {
+              "title": "Tuvan",
+              "value": "tyv"
+            },
+            {
+              "title": "Twi",
+              "value": "ak"
+            },
+            {
+              "title": "Udmurt",
+              "value": "udm"
+            },
+            {
+              "title": "Ukrainian",
+              "value": "uk"
+            },
+            {
+              "title": "Urdu",
+              "value": "ur"
+            },
+            {
+              "title": "Uyghur",
+              "value": "ug"
+            },
+            {
+              "title": "Uzbek",
+              "value": "uz"
+            },
+            {
+              "title": "Venda",
+              "value": "ve"
+            },
+            {
+              "title": "Venetian",
+              "value": "vec"
+            },
+            {
+              "title": "Vietnamese",
+              "value": "vi"
+            },
+            {
+              "title": "Waray",
+              "value": "war"
+            },
+            {
+              "title": "Welsh",
+              "value": "cy"
+            },
+            {
+              "title": "Wolof",
+              "value": "wo"
+            },
+            {
+              "title": "Xhosa",
+              "value": "xh"
+            },
+            {
+              "title": "Yakut",
+              "value": "sah"
+            },
+            {
+              "title": "Yiddish",
+              "value": "yi"
+            },
+            {
+              "title": "Yoruba",
+              "value": "yo"
+            },
+            {
+              "title": "Yucatec Maya",
+              "value": "yua"
+            },
+            {
+              "title": "Zapotec",
+              "value": "zap"
+            },
+            {
+              "title": "Zulu",
+              "value": "zu"
+            }
+          ]
+        },
+        {
           "name": "lang2",
           "title": "Secondary Language",
-          "description": "Preferred language to translate to",
+          "description": "Preferred secondary language to translate to",
           "required": true,
           "type": "dropdown",
           "default": "en",
@@ -135338,6 +136478,68 @@
       "preferences": []
     },
     {
+      "name": "move-cursor-next-display",
+      "title": "Move Cursor Displays",
+      "description": "Move the macOS mouse cursor between displays with relative-position and center modes.",
+      "icon": "icon.png",
+      "author": "johnwick",
+      "contributors": [],
+      "categories": [
+        "System",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/johnwick/move-cursor-next-display",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/move-cursor-next-display",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "move-cursor-next-display",
+          "title": "Move Cursor to Next Display",
+          "description": "Move the mouse cursor to the next display.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "move-cursor-previous-display",
+          "title": "Move Cursor to Previous Display",
+          "description": "Move the mouse cursor to the previous display.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "move-cursor-next-display-center",
+          "title": "Move Cursor to Next Display Center",
+          "description": "Move the mouse cursor to the center of the next display.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "move-cursor-previous-display-center",
+          "title": "Move Cursor to Previous Display Center",
+          "description": "Move the mouse cursor to the center of the previous display.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "mozeidon",
       "title": "Mozeidon",
       "description": "Search, open tabs and bookmarks in Firefox via Mozeidon add-on",
@@ -150791,7 +151993,8 @@
       "icon": "extension-icon.png",
       "author": "mike182uk",
       "contributors": [
-        "mormubis"
+        "mormubis",
+        "0xdhrv"
       ],
       "categories": [
         "Developer Tools"
@@ -233996,6 +235199,87 @@
           "title": "API Key",
           "description": "Your Ultrahuman API authorization key",
           "placeholder": "Enter your Ultrahuman API key"
+        }
+      ]
+    },
+    {
+      "name": "ultrahuman-insights",
+      "title": "Ultrahuman Insights",
+      "description": "Smart insights, AI tools, and trend charts for your Ultrahuman Ring AIR.",
+      "icon": "extension-icon.png",
+      "author": "aryan_rustagi",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/aryan_rustagi/ultrahuman-insights",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/ultrahuman-insights",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "menu-bar",
+          "title": "Menu Bar Sleep Score",
+          "description": "Show last night's Ultrahuman sleep score in the macOS menu bar, color-coded by status.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "today",
+          "title": "Today's Health",
+          "description": "View every available Ultrahuman metric for today with smart insights and 7-day deltas.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "sleep",
+          "title": "Sleep Detail",
+          "description": "Last night's sleep score, stages, vitals, and quality breakdown.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "hrv",
+          "title": "HRV & Heart Rate",
+          "description": "Today's HRV and resting heart rate with 7-day trend charts.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "recovery",
+          "title": "Recovery & Movement",
+          "description": "Recovery, Movement, and Sleep indices with daily trends and personalised insights.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "trends",
+          "title": "7-Day Trends",
+          "description": "Per-day history for every Ultrahuman metric over the last 7 days.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiToken",
+          "title": "API Token",
+          "description": "Your Ultrahuman Partner API token (from partner.ultrahuman.com)",
+          "type": "password",
+          "required": true
         }
       ]
     },
