@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-18T20:59:45.841Z",
+  "generatedAt": "2026-06-19T20:03:36.868Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "b1f5a90ffd31feb46c2f70d51328783f87a48680"
+    "commit": "63b18998dda8cf9bf1181992470abf46cc0b8250"
   },
-  "count": 3006,
+  "count": 3011,
   "extensions": [
     {
       "name": "0x0",
@@ -6179,6 +6179,36 @@
           "keywords": [],
           "icon": "list-android.png",
           "preferences": []
+        },
+        {
+          "name": "search-docs",
+          "title": "Search Android Docs",
+          "subtitle": "Android",
+          "description": "Search the official Android docs and read them as rendered markdown",
+          "mode": "view",
+          "keywords": [],
+          "icon": "search-docs.png",
+          "preferences": []
+        },
+        {
+          "name": "capture-screenshot",
+          "title": "Capture Screenshot",
+          "subtitle": "Android",
+          "description": "Capture a screenshot of a connected device, preview it, and save or copy it",
+          "mode": "view",
+          "keywords": [],
+          "icon": "capture-screenshot.png",
+          "preferences": []
+        },
+        {
+          "name": "create-project",
+          "title": "Create Project",
+          "subtitle": "Android",
+          "description": "Scaffold a new Android project from an official template and open it in Android Studio",
+          "mode": "view",
+          "keywords": [],
+          "icon": "create-project.png",
+          "preferences": []
         }
       ],
       "preferences": [
@@ -6206,6 +6236,22 @@
           "type": "textfield",
           "required": true,
           "default": "~/.android/avd"
+        },
+        {
+          "title": "Android CLI Path",
+          "name": "androidCliPath",
+          "description": "Optional path to the `android` binary. Leave blank to auto-detect.",
+          "type": "textfield",
+          "required": false,
+          "default": ""
+        },
+        {
+          "title": "Screenshot Folder",
+          "name": "screenshotFolder",
+          "description": "Where captured screenshots are auto-saved.",
+          "type": "directory",
+          "required": false,
+          "default": "~/Downloads"
         }
       ]
     },
@@ -79324,10 +79370,10 @@
             },
             {
               "name": "includeRecentlyClosed",
-              "description": "Show recently closed issues",
+              "description": "Include closed issues in selected categories",
               "type": "checkbox",
               "required": false,
-              "label": "Recently Closed",
+              "label": "Include Closed",
               "default": false
             }
           ]
@@ -79368,19 +79414,27 @@
               "default": true
             },
             {
+              "name": "includeOwnedRepositories",
+              "description": "Show pull requests in repositories you own",
+              "type": "checkbox",
+              "required": false,
+              "label": "Owned Repositories",
+              "default": true
+            },
+            {
+              "name": "includeAccessibleRepositories",
+              "description": "Show pull requests in all repositories your account can access",
+              "type": "checkbox",
+              "required": false,
+              "label": "Accessible Repositories",
+              "default": false
+            },
+            {
               "name": "includeAssigned",
               "description": "Show pull requests assigned to you",
               "type": "checkbox",
               "required": false,
               "label": "Assigned",
-              "default": true
-            },
-            {
-              "name": "includeMentioned",
-              "description": "Show pull requests where you are mentioned",
-              "type": "checkbox",
-              "required": false,
-              "label": "Mentioned",
               "default": true
             },
             {
@@ -79400,20 +79454,20 @@
               "default": false
             },
             {
-              "name": "includeRecentlyClosed",
-              "description": "Show recently closed pull requests",
+              "name": "includeMentioned",
+              "description": "Show pull requests where you are mentioned",
               "type": "checkbox",
               "required": false,
-              "label": "Recently Closed",
-              "default": false
+              "label": "Mentioned",
+              "default": true
             },
             {
-              "name": "includeOwnedRepositories",
-              "description": "Show pull requests in repositories you own",
+              "name": "includeRecentlyClosed",
+              "description": "Include closed pull requests in selected categories",
               "type": "checkbox",
               "required": false,
-              "label": "Owned Repositories",
-              "default": true
+              "label": "Include Closed",
+              "default": false
             }
           ]
         },
@@ -79529,6 +79583,24 @@
           "label": "IntelliJ IDEA",
           "default": true,
           "required": false
+        },
+        {
+          "name": "cloneProtocol",
+          "title": "Clone Protocol",
+          "description": "Protocol to use for clone-with-editor actions",
+          "type": "dropdown",
+          "default": "https",
+          "required": false,
+          "data": [
+            {
+              "title": "SSH",
+              "value": "ssh"
+            },
+            {
+              "title": "HTTPS",
+              "value": "https"
+            }
+          ]
         }
       ]
     },
@@ -98912,6 +98984,139 @@
       "preferences": []
     },
     {
+      "name": "ibm-bob-recent-projects",
+      "title": "IBM Bob",
+      "description": "Control IBM Bob directly from Raycast - Search and open recent projects, handle extensions and commands.",
+      "icon": "bob-icon.png",
+      "author": "fbuetler",
+      "contributors": [],
+      "categories": [
+        "Applications",
+        "Developer Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/fbuetler/ibm-bob-recent-projects",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/ibm-bob-recent-projects",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "index",
+          "title": "Search Recent Projects",
+          "subtitle": "IBM Bob",
+          "description": "Search and open recent projects from IBM Bob.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-with-bob",
+          "title": "Open with IBM Bob",
+          "subtitle": "IBM Bob",
+          "description": "Opens the currently selected Finder item with IBM Bob.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-new-window",
+          "title": "Open New Window",
+          "subtitle": "IBM Bob",
+          "description": "Opens a new IBM Bob window.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "extensions",
+          "title": "Show Installed Extensions",
+          "description": "Manage Installed Extensions",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "install-extension",
+          "title": "Install Extension",
+          "description": "Install Extensions from the IBM Bob Marketplace",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "layout",
+          "title": "View Layout",
+          "type": "dropdown",
+          "required": false,
+          "default": "list",
+          "description": "Select the layout of the view",
+          "data": [
+            {
+              "value": "list",
+              "title": "List"
+            },
+            {
+              "value": "grid",
+              "title": "Grid"
+            }
+          ]
+        },
+        {
+          "name": "keepSectionOrder",
+          "type": "checkbox",
+          "title": "Advanced",
+          "required": false,
+          "label": "Keep Section Order",
+          "default": false,
+          "description": "Keep the order of the sections while searching folders, files, etc."
+        },
+        {
+          "name": "closeOtherWindows",
+          "type": "checkbox",
+          "title": "Usability",
+          "required": false,
+          "label": "Close Other IBM Bob Windows",
+          "default": false,
+          "description": "Close other IBM Bob windows when opening a project"
+        },
+        {
+          "name": "terminalApp",
+          "type": "appPicker",
+          "default": "com.apple.Terminal",
+          "required": false,
+          "title": "Terminal App",
+          "description": "Select which Terminal App to use when opening with a terminal"
+        },
+        {
+          "name": "showGitBranch",
+          "type": "checkbox",
+          "title": "Git Integration",
+          "required": false,
+          "label": "Show Git Branch",
+          "default": true,
+          "description": "Display the current Git branch for files and folders in Git repositories"
+        },
+        {
+          "name": "gitBranchColor",
+          "type": "textfield",
+          "title": "Git Integration Color",
+          "required": false,
+          "label": "Git Branch Color",
+          "default": "",
+          "description": "Hexadecimal color code for Git branch tag (e.g., #00FF00). Leave empty to use default green"
+        }
+      ]
+    },
+    {
       "name": "icd10-lookup",
       "title": "ICD10 Lookup",
       "description": "Shows matching ICD10 codes based on disease name input. Uses NLM's ICD10 API.",
@@ -114567,6 +114772,110 @@
       ]
     },
     {
+      "name": "kobbe",
+      "title": "Kobbe",
+      "description": "Inspect Kobbe analytics from Raycast.",
+      "icon": "extension-icon.png",
+      "author": "michael_Andreuzza",
+      "contributors": [],
+      "categories": [
+        "Data"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/michael_Andreuzza/kobbe",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/kobbe",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-sites",
+          "title": "Search Sites",
+          "description": "Search Kobbe sites and open analytics.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "site-overview",
+          "title": "Site Overview",
+          "description": "View overview metrics for a Kobbe site.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "top-pages",
+          "title": "Top Pages",
+          "description": "View top pages for a Kobbe site.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "revenue",
+          "title": "Revenue",
+          "description": "View revenue for a Kobbe site.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiToken",
+          "title": "API Token",
+          "description": "Create a token in Kobbe Settings -> Agent access.",
+          "type": "password",
+          "required": true
+        },
+        {
+          "name": "baseUrl",
+          "title": "Kobbe Base URL",
+          "description": "Use the default unless you self-host Kobbe.",
+          "type": "textfield",
+          "required": true,
+          "default": "https://app.kobbe.io"
+        },
+        {
+          "name": "defaultRange",
+          "title": "Default Range",
+          "description": "Default analytics range for overview commands.",
+          "type": "dropdown",
+          "required": true,
+          "default": "7d",
+          "data": [
+            {
+              "title": "Today",
+              "value": "today"
+            },
+            {
+              "title": "Last 24 hours",
+              "value": "24h"
+            },
+            {
+              "title": "Last 7 days",
+              "value": "7d"
+            },
+            {
+              "title": "Last 30 days",
+              "value": "30d"
+            },
+            {
+              "title": "All time",
+              "value": "all"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "kofa",
       "title": "Kofa",
       "description": "Quickly capture tasks into Kofa, the minimalist todo and day planner.",
@@ -124607,6 +124916,63 @@
           "description": "Generated in Mach Triage Settings when Raycast integration is enabled."
         }
       ]
+    },
+    {
+      "name": "macos-appearance-changer",
+      "title": "macOS Appearance Changer",
+      "description": "Create and apply custom macOS appearance profiles with wallpaper, icon style, and dark mode",
+      "icon": "extension-icon.png",
+      "author": "huzef44",
+      "contributors": [],
+      "categories": [
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/huzef44/macos-appearance-changer",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/macos-appearance-changer",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "apply-profile",
+          "title": "Apply Profile",
+          "description": "Apply a saved appearance profile",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "create-profile",
+          "title": "Create Profile",
+          "description": "Create a new appearance profile",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle-profiles",
+          "title": "Toggle Profiles",
+          "description": "Quickly toggle between two appearance profiles",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "configure-toggle",
+          "title": "Configure Toggle Pair",
+          "description": "Choose which two profiles to toggle between",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "macos-tweaks",
@@ -180087,6 +180453,267 @@
       "preferences": []
     },
     {
+      "name": "raycast-mimo-tts",
+      "title": "MiMo TTS",
+      "description": "Read selected or clipboard text aloud with Xiaomi MiMo TTS — Chinese and English voices, fine-grained style controls, and chunked long-text playback.",
+      "icon": "command-icon.png",
+      "author": "xianwei_zhang",
+      "contributors": [],
+      "categories": [
+        "Media",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "1.0.0",
+      "storeUrl": "https://www.raycast.com/xianwei_zhang/raycast-mimo-tts",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/raycast-mimo-tts",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "quick-read",
+          "title": "Quick Read",
+          "subtitle": "MiMo TTS",
+          "description": "Read selected text, or clipboard text if no selection is available. Trigger again to stop.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "read-with-voice",
+          "title": "Read with Voice",
+          "subtitle": "MiMo TTS",
+          "description": "Browse MiMo voices and read selected or clipboard text aloud.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "select-voice",
+          "title": "Set Quick Read Voice",
+          "subtitle": "MiMo TTS",
+          "description": "Choose and preview the MiMo voice used by Quick Read.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "tts-studio",
+          "title": "TTS Studio",
+          "subtitle": "MiMo TTS",
+          "description": "Generate and play MiMo speech from typed, selected, or pasted text, with voice, emotion, and style controls.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "design-voice",
+          "title": "Design Voice",
+          "subtitle": "MiMo TTS",
+          "description": "Generate a custom MiMo voice from a one-sentence description (MiMo-V2.5-TTS-VoiceDesign). Supports auto-optimized sample text.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "clone-voice",
+          "title": "Clone Voice",
+          "subtitle": "MiMo TTS",
+          "description": "Replicate a voice from an mp3 or wav sample (≤10 MB) and read your text aloud (MiMo-V2.5-TTS-VoiceClone).",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "setup-voice-defaults",
+          "title": "Setup Voice Defaults",
+          "subtitle": "MiMo TTS",
+          "description": "Configure the default MiMo model, voice, speech rate, style prompt, and token-plan base URL.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "stop-reading",
+          "title": "Stop Reading",
+          "subtitle": "MiMo TTS",
+          "description": "Stop the current MiMo TTS playback.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "speed-up-reading",
+          "title": "Speed up Reading",
+          "subtitle": "MiMo TTS",
+          "description": "Increase reading speed by 0.25× for the next playback.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "slow-down-reading",
+          "title": "Slow Down Reading",
+          "subtitle": "MiMo TTS",
+          "description": "Decrease reading speed by 0.25× for the next playback.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "playback-status",
+          "title": "Reading Status",
+          "subtitle": "MiMo TTS",
+          "description": "Menu-bar status of the current MiMo TTS reading with playback and speed controls.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "mimoApiKey",
+          "type": "password",
+          "required": true,
+          "title": "MiMo Token Plan API Key",
+          "description": "MiMo Token Plan API key. Must start with tp-, not sk-.",
+          "placeholder": "tp-..."
+        },
+        {
+          "name": "mimoTokenPlanBaseUrl",
+          "type": "textfield",
+          "required": false,
+          "title": "Token Plan Base URL",
+          "description": "Override the MiMo Token Plan endpoint. Leave empty to use the default.",
+          "default": "https://token-plan-cn.xiaomimimo.com/v1",
+          "placeholder": "https://token-plan-cn.xiaomimimo.com/v1"
+        },
+        {
+          "name": "mimoModel",
+          "type": "dropdown",
+          "required": false,
+          "title": "Model",
+          "description": "MiMo TTS model used for synthesis.",
+          "default": "mimo-v2.5-tts",
+          "data": [
+            {
+              "title": "MiMo-V2.5-TTS (Recommended)",
+              "value": "mimo-v2.5-tts"
+            },
+            {
+              "title": "MiMo-V2-TTS (Legacy)",
+              "value": "mimo-v2-tts"
+            }
+          ]
+        },
+        {
+          "name": "mimoDefaultVoice",
+          "type": "dropdown",
+          "required": false,
+          "title": "Default Voice",
+          "description": "Default voice for Quick Read and other commands. Uses an explicit voice because MiMo Default is region-dependent.",
+          "default": "Chloe",
+          "data": [
+            {
+              "title": "Mia (English Female, Natural)",
+              "value": "Mia"
+            },
+            {
+              "title": "Chloe (English Female, Expressive)",
+              "value": "Chloe"
+            },
+            {
+              "title": "Milo (English Male, Warm)",
+              "value": "Milo"
+            },
+            {
+              "title": "Dean (English Male, Grounded)",
+              "value": "Dean"
+            },
+            {
+              "title": "Bingtang (Chinese Female, Clear)",
+              "value": "冰糖"
+            },
+            {
+              "title": "Moli (Chinese Female, Soft)",
+              "value": "茉莉"
+            },
+            {
+              "title": "Soda (Chinese Male, Bright)",
+              "value": "苏打"
+            },
+            {
+              "title": "Baihua (Chinese Male, Steady)",
+              "value": "白桦"
+            }
+          ]
+        },
+        {
+          "name": "mimoSpeechRate",
+          "type": "dropdown",
+          "required": false,
+          "title": "Default Speech Rate",
+          "description": "Baseline reading rate. Speed up / slow down commands override this for the current session.",
+          "default": "0",
+          "data": [
+            {
+              "title": "0.5x (Slow)",
+              "value": "-50"
+            },
+            {
+              "title": "0.75x (Relaxed)",
+              "value": "-25"
+            },
+            {
+              "title": "1.0x (Normal)",
+              "value": "0"
+            },
+            {
+              "title": "1.25x (Brisk)",
+              "value": "25"
+            },
+            {
+              "title": "1.5x (Fast)",
+              "value": "50"
+            },
+            {
+              "title": "1.75x (Very Brisk)",
+              "value": "75"
+            },
+            {
+              "title": "2.0x (Very Fast)",
+              "value": "100"
+            }
+          ]
+        },
+        {
+          "name": "mimoStylePrompt",
+          "type": "textfield",
+          "required": false,
+          "title": "Default Style Prompt",
+          "description": "Optional natural-language direction sent to MiMo for every reading.",
+          "placeholder": "e.g., Read with a calm, scholarly tone."
+        }
+      ]
+    },
+    {
       "name": "raycast-monkeytype-theme",
       "title": "Raycast MonkeyType Theme Explorer",
       "description": "This \"Raycast MonkeyType Theme\" extension provides MonkeyType themes for Raycast.",
@@ -189984,6 +190611,93 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "saasflow",
+      "title": "SaaSFlow",
+      "description": "Track MRR, browse customers and transactions, and ask AI questions about your SaaSFlow data — without leaving Raycast.",
+      "icon": "extension-icon.png",
+      "author": "alexander.peiniger",
+      "contributors": [],
+      "categories": [
+        "Finance",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/alexander.peiniger/saasflow",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/saasflow",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "menu-bar",
+          "title": "MRR & Cash",
+          "description": "Show current MRR and cash balance in the menu bar, refreshed every 15 minutes.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "mrrType",
+              "title": "MRR variant",
+              "description": "Which MRR figure to show. CMRR (committed MRR) is the default — it includes every active recurring contract, even when invoicing hasn't started yet. MRR counts only what's currently invoicing.",
+              "type": "dropdown",
+              "required": false,
+              "default": "cmrr",
+              "data": [
+                {
+                  "title": "Committed MRR (CMRR)",
+                  "value": "cmrr"
+                },
+                {
+                  "title": "MRR",
+                  "value": "mrr"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "switch-company",
+          "title": "Switch Company",
+          "description": "Pick which company other SaaSFlow commands and AI tools act on.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "sign-out",
+          "title": "Sign out",
+          "description": "Clear stored SaaSFlow OAuth tokens and the active-company selection.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiBaseUrl",
+          "title": "API base URL",
+          "description": "Override the SaaSFlow API base URL. Leave blank for production (https://api.saasflow.com).",
+          "type": "textfield",
+          "required": false,
+          "default": "https://api.saasflow.com",
+          "placeholder": "https://api.saasflow.com"
+        },
+        {
+          "name": "apiKey",
+          "title": "API key (fallback)",
+          "description": "Personal API key from the SaaSFlow dashboard. Used when OAuth isn't available; OAuth takes precedence when both are set.",
+          "type": "password",
+          "required": false,
+          "placeholder": "sf_..."
+        }
+      ]
     },
     {
       "name": "sabnzbd",
@@ -217970,6 +218684,14 @@
           "mode": "no-view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "open_selected_issues",
+          "title": "Open Selected Issues",
+          "description": "Opens the selected issues in your default browser",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": [
@@ -227167,7 +227889,8 @@
         "chialiyun",
         "jakoss",
         "yashpatel21",
-        "alexi.build"
+        "alexi.build",
+        "0xdhrv"
       ],
       "categories": [
         "Productivity"
@@ -232585,7 +233308,9 @@
       "description": "Manage ephemeral workspace directories for experiments. A Raycast port of tobi/try.",
       "icon": "icon.png",
       "author": "wuyuxiangX",
-      "contributors": [],
+      "contributors": [
+        "chrismessina"
+      ],
       "categories": [
         "Developer Tools"
       ],
@@ -235208,13 +235933,17 @@
       "description": "Smart insights, AI tools, and trend charts for your Ultrahuman Ring AIR.",
       "icon": "extension-icon.png",
       "author": "aryan_rustagi",
-      "contributors": [],
+      "contributors": [
+        "0xdhrv"
+      ],
       "categories": [
+        "Data",
         "Productivity"
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/aryan_rustagi/ultrahuman-insights",
       "source": {
@@ -247570,7 +248299,9 @@
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/vikas-bansal/windsurf",
       "source": {
         "type": "github-monorepo",
@@ -250456,10 +251187,41 @@
           "name": "menubar",
           "title": "World Cup Menu Bar",
           "subtitle": "FIFA World Cup",
-          "description": "Shows the live match score in the menu bar with a dropdown of every fixture",
+          "description": "Shows the live match score in the menu bar with a dropdown of the day's fixtures",
           "mode": "menu-bar",
           "keywords": [],
-          "preferences": []
+          "preferences": [
+            {
+              "name": "daysToShow",
+              "title": "Days to Show",
+              "description": "How wide a window of fixtures to list in the dropdown, centered on today.",
+              "type": "dropdown",
+              "required": false,
+              "default": "0",
+              "data": [
+                {
+                  "title": "Today only",
+                  "value": "0"
+                },
+                {
+                  "title": "Yesterday to tomorrow",
+                  "value": "1"
+                },
+                {
+                  "title": "Last & next 3 days",
+                  "value": "3"
+                },
+                {
+                  "title": "Last & next week",
+                  "value": "7"
+                },
+                {
+                  "title": "All matches",
+                  "value": "all"
+                }
+              ]
+            }
+          ]
         },
         {
           "name": "score-subtitle",
