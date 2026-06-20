@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-19T20:03:36.868Z",
+  "generatedAt": "2026-06-20T19:53:39.369Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "63b18998dda8cf9bf1181992470abf46cc0b8250"
+    "commit": "4acbf986b707b51c399d6f986c73e4ff2149dacf"
   },
-  "count": 3011,
+  "count": 3012,
   "extensions": [
     {
       "name": "0x0",
@@ -37141,7 +37141,8 @@
         "anwarulislam",
         "yusifaliyevpro",
         "elibattistoni",
-        "clins1994"
+        "clins1994",
+        "just_me"
       ],
       "categories": [
         "Design Tools"
@@ -37180,7 +37181,7 @@
         {
           "name": "extract-color",
           "title": "Extract Color from Selected Image",
-          "description": "Extract colors from the selected File Manager image",
+          "description": "Extract colors from the selected File Explorer image",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -183804,6 +183805,171 @@
               "title": "Welsh"
             }
           ]
+        }
+      ]
+    },
+    {
+      "name": "read-my-screen",
+      "title": "Read My Screen",
+      "description": "AI screenshot and browser reader: OCR, explain errors, summarize pages, and review UI with GPT-4o, Claude, or Gemini. Use region, window, or full-screen capture; clipboard images; local files; or the active browser tab. Bring your own API keys — requests go straight to OpenAI, Anthropic, or Google.",
+      "icon": "extension-icon.png",
+      "author": "erbilnas",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "1.0.0",
+      "storeUrl": "https://www.raycast.com/erbilnas/read-my-screen",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/read-my-screen",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "analyze-screen",
+          "title": "Read My Screen",
+          "description": "Main command: capture your screen (region, window, full screen, or clipboard image) or read the current browser tab as text. Vision and text models; follow-up chat; session history.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "quick-clipboard",
+          "title": "Quick: Clipboard Image",
+          "subtitle": "Read My Screen",
+          "description": "One shortcut: analyze the file-backed image on your clipboard with your default model — fast OCR, error help, or UI notes.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "quick-browser",
+          "title": "Quick: Browser Page",
+          "subtitle": "Read My Screen",
+          "description": "One shortcut: summarize or question the active browser tab (Chrome, Safari, Arc, Dia, Edge, and more) using page text.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "analyze-file",
+          "title": "Analyze Image File",
+          "subtitle": "Read My Screen",
+          "description": "Open a PNG, JPEG, WebP, or GIF from disk; analyze with AI and continue the conversation in chat.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "session-history",
+          "title": "Session History",
+          "subtitle": "Read My Screen",
+          "description": "Reopen saved analyses (with screen thumbnails), continue chats, and manage past sessions.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "openaiApiKey",
+          "title": "OpenAI API key",
+          "description": "Used when an OpenAI model is selected. From platform.openai.com",
+          "type": "password",
+          "required": false
+        },
+        {
+          "name": "anthropicApiKey",
+          "title": "Anthropic API key",
+          "description": "Used when a Claude model is selected. From console.anthropic.com",
+          "type": "password",
+          "required": false
+        },
+        {
+          "name": "geminiApiKey",
+          "title": "Google Gemini API key",
+          "description": "Used when a Gemini model is selected. From aistudio.google.com/apikey",
+          "type": "password",
+          "required": false
+        },
+        {
+          "name": "model",
+          "title": "Model",
+          "description": "Provider and model (vision for screenshots, text for browser pages). Use the matching API key.",
+          "type": "dropdown",
+          "required": false,
+          "default": "openai:gpt-4o-mini",
+          "data": [
+            {
+              "title": "OpenAI — GPT-4o mini",
+              "value": "openai:gpt-4o-mini"
+            },
+            {
+              "title": "OpenAI — GPT-4o",
+              "value": "openai:gpt-4o"
+            },
+            {
+              "title": "OpenAI — GPT-4.1 mini",
+              "value": "openai:gpt-4.1-mini"
+            },
+            {
+              "title": "OpenAI — GPT-4.1",
+              "value": "openai:gpt-4.1"
+            },
+            {
+              "title": "Anthropic — Claude Sonnet 4",
+              "value": "anthropic:claude-sonnet-4-20250514"
+            },
+            {
+              "title": "Anthropic — Claude Haiku 4.5",
+              "value": "anthropic:claude-haiku-4-5-20251001"
+            },
+            {
+              "title": "Google — Gemini 2.5 Flash",
+              "value": "gemini:gemini-2.5-flash"
+            },
+            {
+              "title": "Google — Gemini 2.5 Pro",
+              "value": "gemini:gemini-2.5-pro"
+            },
+            {
+              "title": "Google — Gemini 2.0 Flash",
+              "value": "gemini:gemini-2.0-flash"
+            }
+          ]
+        },
+        {
+          "name": "defaultPrompt",
+          "title": "Default instructions",
+          "description": "Pre-filled analysis instructions in the form (you can edit each run).",
+          "type": "textfield",
+          "required": false,
+          "default": "Describe what you see on the screen. Call out any text, UI elements, errors, or notable details."
+        },
+        {
+          "name": "showTokenUsage",
+          "title": "Token usage",
+          "description": "When the provider returns usage data, show estimated input/output tokens in toasts and the chat header.",
+          "type": "checkbox",
+          "required": false,
+          "default": false,
+          "label": "Show estimated token usage"
+        },
+        {
+          "name": "showEstimatedCost",
+          "title": "Estimated API cost",
+          "description": "Show approximate USD next to token counts using public list prices (your invoice may differ). Requires token usage to be enabled.",
+          "type": "checkbox",
+          "required": false,
+          "default": false,
+          "label": "Show estimated cost (USD)"
         }
       ]
     },
