@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-20T19:53:39.369Z",
+  "generatedAt": "2026-06-21T20:01:00.041Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "4acbf986b707b51c399d6f986c73e4ff2149dacf"
+    "commit": "b39f8342d0a21b1ad9d9e4219b370aac57aa49c7"
   },
-  "count": 3012,
+  "count": 3013,
   "extensions": [
     {
       "name": "0x0",
@@ -109979,6 +109979,78 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "json-to-gcf-converter",
+      "title": "JSON to GCF Converter",
+      "description": "Convert JSON data into GCF (Graph Compact Format) instantly. 53-71% fewer tokens than JSON, 90.7% LLM comprehension accuracy.",
+      "icon": "extension-icon.png",
+      "author": "blackwell-systems",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/blackwell-systems/json-to-gcf-converter",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/json-to-gcf-converter",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "convert-json",
+          "title": "Convert JSON to GCF",
+          "subtitle": "GCF Format",
+          "description": "Convert JSON to GCF format for LLM-optimized token usage",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "defaultAction",
+          "type": "dropdown",
+          "required": false,
+          "title": "Default Action",
+          "description": "Choose whether to copy the result or paste it to the active application by default.",
+          "default": "copy",
+          "data": [
+            {
+              "title": "Copy to Clipboard",
+              "value": "copy"
+            },
+            {
+              "title": "Paste to Active App",
+              "value": "paste"
+            }
+          ]
+        },
+        {
+          "name": "inputSource",
+          "type": "dropdown",
+          "required": false,
+          "title": "Input Source",
+          "description": "Choose whether to try selected text first or always use clipboard.",
+          "default": "auto",
+          "data": [
+            {
+              "title": "Auto (Selection then Clipboard)",
+              "value": "auto"
+            },
+            {
+              "title": "Clipboard Only",
+              "value": "clipboard"
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "json-to-go",
