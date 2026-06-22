@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-21T20:01:00.041Z",
+  "generatedAt": "2026-06-22T21:14:21.396Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "b39f8342d0a21b1ad9d9e4219b370aac57aa49c7"
+    "commit": "860db965cf00d3db0624b2f331f97e19071b55db"
   },
-  "count": 3013,
+  "count": 3017,
   "extensions": [
     {
       "name": "0x0",
@@ -20569,9 +20569,10 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
-      "version": "1.0.0",
+      "version": "1.1.0",
       "storeUrl": "https://www.raycast.com/li_jin/blackr",
       "source": {
         "type": "github-monorepo",
@@ -40792,6 +40793,57 @@
           "required": false
         }
       ]
+    },
+    {
+      "name": "cortisol-meter",
+      "title": "Cortisol Meter",
+      "description": "Manually track cortisol as low, medium, or high from Raycast and the macOS menu bar.",
+      "icon": "icon.png",
+      "author": "smexey",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "version": "0.0.2",
+      "storeUrl": "https://www.raycast.com/smexey/cortisol-meter",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/cortisol-meter",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "increase-cortisol",
+          "title": "Increase Cortisol",
+          "description": "Move the cortisol bucket up one level.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "lower-cortisol",
+          "title": "Lower Cortisol",
+          "description": "Move the cortisol bucket down one level.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "cortisol-menu-bar",
+          "title": "Cortisol Menu Bar",
+          "description": "Show the current cortisol bucket in the macOS menu bar.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "cosmic-bookmarks",
@@ -72130,7 +72182,9 @@
       "description": "Organize files in Downloads or any custom folder by automatically sorting them into categorized subfolders",
       "icon": "folder_organizer.png",
       "author": "madushanj",
-      "contributors": [],
+      "contributors": [
+        "tcyt56vdyc"
+      ],
       "categories": [
         "Productivity",
         "System"
@@ -72151,7 +72205,7 @@
           "name": "clean-downloads-folder",
           "title": "Organize Downloads Folder",
           "description": "Sort files in Downloads folder into organized categories",
-          "mode": "no-view",
+          "mode": "view",
           "keywords": [],
           "icon": "download_folder.png",
           "preferences": []
@@ -72160,7 +72214,7 @@
           "name": "organize-custom-folder",
           "title": "Organize Custom Folder",
           "description": "Choose any folder and organize its files into categorized subfolders",
-          "mode": "no-view",
+          "mode": "view",
           "keywords": [],
           "icon": "custom_folder.png",
           "preferences": []
@@ -72172,6 +72226,15 @@
           "mode": "view",
           "keywords": [],
           "icon": "change_categories.png",
+          "preferences": []
+        },
+        {
+          "name": "delete-empty-folders",
+          "title": "Delete Empty Folders",
+          "description": "Choose a folder and recursively delete its empty subfolders",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "delete_folder.png",
           "preferences": []
         }
       ],
@@ -73370,6 +73433,66 @@
           "title": "Search Emotes",
           "subtitle": "FrankerFaceZ",
           "description": "Search for your favorite FrankerFaceZ emotes.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "frc-programming",
+      "title": "FRC Programming",
+      "description": "An all-in-one Raycast extension for FRC developers to instantly access WPILib docs and handle frequent unit conversions.",
+      "icon": "extension-icon.png",
+      "author": "helloGithub326",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Documentation",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/helloGithub326/frc-programming",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/frc-programming",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "wpilib-java-documentation",
+          "title": "Search WPILib Java Documentation",
+          "description": "Search and browse WPILib's Java API classes and methods.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "wpilib-cpp-documentation",
+          "title": "Search WPILib C++ Documentation",
+          "description": "Search and browse WPILib's C++ API classes.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "status-light-reference",
+          "title": "FRC Status Light Reference",
+          "description": "Quickly jump to WPILib's reference page for decoding status light patterns on FRC hardware.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "frc-unit-converter",
+          "title": "FRC Unit Converter",
+          "description": "Convert between common FRC units like velocities or forces.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -82005,7 +82128,9 @@
       "contributors": [],
       "categories": [],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/saschaeggi/gitlab-docs",
       "source": {
         "type": "github-monorepo",
@@ -82036,6 +82161,15 @@
           "name": "pajamas",
           "title": "Search Design System",
           "description": "Search Pajamas components.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "pajamas-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "svgs",
+          "title": "Search Icons",
+          "description": "Search GitLab SVG icons.",
           "mode": "view",
           "keywords": [],
           "icon": "pajamas-icon.png",
@@ -153891,6 +154025,15 @@
       },
       "commands": [
         {
+          "name": "command-bar",
+          "title": "Command Bar",
+          "subtitle": "Orion",
+          "description": "Search tabs, bookmarks, history, reading list, and the web in one place",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "bookmarks",
           "title": "Search Orion Bookmarks",
           "description": "Browse your bookmarks",
@@ -153942,6 +154085,41 @@
           "type": "checkbox",
           "required": false,
           "default": false
+        },
+        {
+          "name": "searchEngine",
+          "title": "Search Engine",
+          "description": "Engine used for the Command Bar's live suggestions and web-search fallback",
+          "type": "dropdown",
+          "required": false,
+          "default": "duckduckgo",
+          "data": [
+            {
+              "title": "DuckDuckGo",
+              "value": "duckduckgo"
+            },
+            {
+              "title": "Google",
+              "value": "google"
+            },
+            {
+              "title": "Brave",
+              "value": "brave"
+            },
+            {
+              "title": "Kagi (no autocomplete)",
+              "value": "kagi"
+            }
+          ]
+        },
+        {
+          "name": "autoCloseLauncherTabs",
+          "title": "Command Bar",
+          "label": "Auto-close launcher tabs",
+          "description": "When the Command Bar opens, close leftover blank tabs created when Orion's homepage / new-tab is set to the Command Bar deeplink",
+          "type": "checkbox",
+          "required": false,
+          "default": true
         }
       ]
     },
@@ -154011,13 +154189,18 @@
       "description": "Raycast extension to perform OSINT web check against a url",
       "icon": "extension_icon.png",
       "author": "gksander",
-      "contributors": [],
+      "contributors": [
+        "jergensturdley"
+      ],
       "categories": [
         "Developer Tools",
         "Security"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "storeUrl": "https://www.raycast.com/gksander/osint-web-check",
       "source": {
         "type": "github-monorepo",
@@ -154029,13 +154212,149 @@
         {
           "name": "osint-web-check",
           "title": "OSINT Web Check",
-          "description": "Performs a check against a given URL",
+          "description": "Deep-dive URL checks plus external OSINT platform lookups (VirusTotal, Shodan, etc.)",
           "mode": "view",
           "keywords": [],
           "preferences": []
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "enable_virustotal",
+          "title": "Enable VirusTotal",
+          "description": "Show VirusTotal in search results",
+          "type": "checkbox",
+          "default": true,
+          "required": false,
+          "label": "Enabled"
+        },
+        {
+          "name": "enable_alienvault",
+          "title": "Enable AlienVault OTX",
+          "description": "Show AlienVault OTX in search results",
+          "type": "checkbox",
+          "default": true,
+          "required": false,
+          "label": "Enabled"
+        },
+        {
+          "name": "enable_pulsedive",
+          "title": "Enable Pulsedive",
+          "description": "Show Pulsedive in search results",
+          "type": "checkbox",
+          "default": true,
+          "required": false,
+          "label": "Enabled"
+        },
+        {
+          "name": "enable_opentip",
+          "title": "Enable Kaspersky OpenTIP",
+          "description": "Show Kaspersky OpenTIP in search results",
+          "type": "checkbox",
+          "default": true,
+          "required": false,
+          "label": "Enabled"
+        },
+        {
+          "name": "enable_abuseipdb",
+          "title": "Enable AbuseIPDB",
+          "description": "Show AbuseIPDB in search results",
+          "type": "checkbox",
+          "default": true,
+          "required": false,
+          "label": "Enabled"
+        },
+        {
+          "name": "enable_shodan",
+          "title": "Enable Shodan",
+          "description": "Show Shodan in search results",
+          "type": "checkbox",
+          "default": true,
+          "required": false,
+          "label": "Enabled"
+        },
+        {
+          "name": "enable_ipinfo",
+          "title": "Enable ipinfo.io",
+          "description": "Show ipinfo.io in search results",
+          "type": "checkbox",
+          "default": true,
+          "required": false,
+          "label": "Enabled"
+        },
+        {
+          "name": "enable_greynoise",
+          "title": "Enable GreyNoise",
+          "description": "Show GreyNoise in search results",
+          "type": "checkbox",
+          "default": true,
+          "required": false,
+          "label": "Enabled"
+        },
+        {
+          "name": "enable_urlscan",
+          "title": "Enable URLScan.io",
+          "description": "Show URLScan.io in search results",
+          "type": "checkbox",
+          "default": true,
+          "required": false,
+          "label": "Enabled"
+        },
+        {
+          "name": "enable_webcheck",
+          "title": "Enable WebCheck",
+          "description": "Show WebCheck in search results",
+          "type": "checkbox",
+          "default": true,
+          "required": false,
+          "label": "Enabled"
+        },
+        {
+          "name": "enable_whois",
+          "title": "Enable WHOIS",
+          "description": "Show WHOIS in search results",
+          "type": "checkbox",
+          "default": true,
+          "required": false,
+          "label": "Enabled"
+        },
+        {
+          "name": "enable_malwarebazaar",
+          "title": "Enable MalwareBazaar",
+          "description": "Show MalwareBazaar in search results",
+          "type": "checkbox",
+          "default": true,
+          "required": false,
+          "label": "Enabled"
+        },
+        {
+          "name": "enable_censys",
+          "title": "Enable Censys",
+          "description": "Show Censys in search results",
+          "type": "checkbox",
+          "default": true,
+          "required": false,
+          "label": "Enabled"
+        },
+        {
+          "name": "enable_crtsh",
+          "title": "Enable crt.sh",
+          "description": "Show crt.sh in search results",
+          "type": "checkbox",
+          "default": true,
+          "required": false,
+          "label": "Enabled"
+        },
+        {
+          "name": "copy_on_open",
+          "title": "Copy IOC on Open",
+          "description": "Automatically copy the IOC to the clipboard when opening a search result",
+          "type": "checkbox",
+          "default": false,
+          "required": false,
+          "label": "Enabled"
+        }
+      ]
     },
     {
       "name": "osquery",
@@ -191507,6 +191826,47 @@
       "preferences": []
     },
     {
+      "name": "sanity-icons",
+      "title": "Sanity Icons",
+      "description": "Browse, copy, and download Sanity Icons",
+      "icon": "extension_icon.png",
+      "author": "spratch",
+      "contributors": [
+        "zavbala",
+        "bensomething",
+        "bendrucker",
+        "alexi.build"
+      ],
+      "categories": [
+        "Web",
+        "Design Tools",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/spratch/sanity-icons",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/sanity-icons",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "index",
+          "title": "Show Sanity Icons",
+          "description": "Browse and search all available Sanity icons",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "sap-logon",
       "title": "SAP GUI Connector",
       "description": "Quickly connect to SAP systems with saved credentials",
@@ -222492,6 +222852,59 @@
       ]
     },
     {
+      "name": "the-matrix",
+      "title": "The Matrix",
+      "description": "Summon and dismiss a Matrix rain overlay from Raycast.",
+      "icon": "the-matrix-icon.png",
+      "author": "clins1994",
+      "contributors": [],
+      "categories": [
+        "Fun"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/clins1994/the-matrix",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/the-matrix",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "blue-pill",
+          "title": "Take a Blue Pill",
+          "subtitle": "Start the Matrix rain overlay",
+          "description": "Start a click-through Matrix rain overlay with optional procedural audio.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "red-pill",
+          "title": "Take a Red Pill",
+          "subtitle": "Stop the Matrix rain overlay",
+          "description": "Stop the Matrix rain overlay with a reverse fade-out and exit sound.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "soundsOn",
+          "title": "Audio enabled",
+          "label": "Audio enabled",
+          "description": "Play procedural sounds when entering, idling in, and leaving the Matrix.",
+          "type": "checkbox",
+          "default": true,
+          "required": true
+        }
+      ]
+    },
+    {
       "name": "the-matrix-of-destiny",
       "title": "The Matrix of Destiny",
       "description": "Quickly go to a date on the Matrix of Destiny",
@@ -241274,7 +241687,7 @@
         "macOS",
         "Windows"
       ],
-      "version": "1.3.5",
+      "version": "1.3.6",
       "storeUrl": "https://www.raycast.com/hoando/vietnamese-calendar",
       "source": {
         "type": "github-monorepo",
