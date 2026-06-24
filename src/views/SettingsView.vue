@@ -290,12 +290,16 @@ import { getSettings, updateSettings, getPlugins, updateMainShortcut, checkAllPe
 import { onPageEnter, useRouter } from '@/router';
 import { updateCommandSettings, updateCommandShortcut, updatePluginPreferences, updatePluginSettings } from '@/plugin/manager';
 import { openCommandPreferences, openPluginPreferences } from '@/plugin/utils';
+import { BUILTIN_PLUGINS } from '@/plugin/builtin';
+import { INNER_PLUGIN_NAMES } from '@/plugin/constants';
 import {
   getDevPluginPathList,
   getStorePluginPathList,
   isPluginPathInDevList,
+  isPluginPathInRaycastList,
   isPluginPathInStoreList,
   registerPluginFromLocalPath,
+  uninstallRaycastStorePlugin,
   uninstallStorePlugin,
   unregisterDevPluginFromLocalPath,
 } from '@/services/store';
@@ -343,8 +347,9 @@ const devPluginPathList = ref<string[]>([]);
 const storePluginPathList = ref<string[]>([]);
 
 const isPathInDevList = (p: string) => Boolean(p) && devPluginPathList.value.some(d => normalizePath(d) === normalizePath(p));
-const isPathInStoreList = (p: string) => Boolean(p) && storePluginPathList.value.some(s => normalizePath(s) === normalizePath(p));
-const canRemovePlugin = (plugin: IRunningPlugin) => isPathInDevList(plugin.path) || isPathInStoreList(plugin.path);
+const isBuiltinPlugin = (plugin: IRunningPlugin) => BUILTIN_PLUGINS.has(plugin.manifest.name)
+  || (INNER_PLUGIN_NAMES as readonly string[]).includes(plugin.manifest.name);
+const canRemovePlugin = (plugin: IRunningPlugin) => !isBuiltinPlugin(plugin);
 
 const settings = ref<{
   launchAtLogin: boolean,
@@ -497,19 +502,36 @@ const onImportDevPlugin = async () => {
 };
 
 const onRemovePluginClick = async (_index: number, plugin: IRunningPlugin) => {
-  if (await isPluginPathInDevList(plugin.path)) {
-    await unregisterDevPluginFromLocalPath(plugin.path);
+  if (isBuiltinPlugin(plugin)) {
+    showToast('内置插件无法从此处移除');
+    return;
+  }
+  const { path, manifest } = plugin;
+  if (await isPluginPathInDevList(path)) {
+    await unregisterDevPluginFromLocalPath(path);
     showToast('已移除开发插件');
     refreshSettings();
     return;
   }
-  if (await isPluginPathInStoreList(plugin.path)) {
-    await uninstallStorePlugin(plugin.manifest.name);
+  if (await isPluginPathInStoreList(path)) {
+    await uninstallStorePlugin(manifest.name);
     showToast('插件移除成功');
     refreshSettings();
     return;
   }
-  showToast('内置插件无法从此处移除');
+  if (await isPluginPathInRaycastList(path)) {
+    await uninstallRaycastStorePlugin(manifest.name);
+    showToast('插件移除成功');
+    refreshSettings();
+    return;
+  }
+  if (path) {
+    await unregisterDevPluginFromLocalPath(path);
+    showToast('插件已移除');
+    refreshSettings();
+    return;
+  }
+  showToast('无法移除此插件');
 };
 
 const openPrfsView = async (plugin: string, command?: string) => {

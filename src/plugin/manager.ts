@@ -70,6 +70,7 @@ export const registerPlugin = async (pluginPath: string) => {
     }
     if (!isDisabled && (html || template === 'listView' || manifest.main)) {
       let entryUrl = getEntryUrl(name, '/index.html');
+      console.log('entryUrl', entryUrl);
       if (html) {
         entryUrl = /^https?:\/\//.test(html) ? html : getEntryUrl(name, path.join('/', html));
       }

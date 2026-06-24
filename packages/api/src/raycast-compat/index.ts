@@ -39,7 +39,20 @@ export type RaycastContext = {
   commandMode?: 'no-view' | 'view';
 };
 
-let currentContext: RaycastContext = {};
+/** tsdown 会把 @raycast/api 打进 server 与各 command chunk，模块级变量不共享；用 globalThis 存上下文。 */
+const RAYCAST_CONTEXT_GLOBAL_KEY = '__publicTauriRaycastContext__';
+
+type GlobalWithRaycastContext = typeof globalThis & {
+  [RAYCAST_CONTEXT_GLOBAL_KEY]?: RaycastContext;
+};
+
+const readRaycastContext = (): RaycastContext => (
+  (globalThis as GlobalWithRaycastContext)[RAYCAST_CONTEXT_GLOBAL_KEY] ?? {}
+);
+
+const writeRaycastContext = (next: RaycastContext) => {
+  (globalThis as GlobalWithRaycastContext)[RAYCAST_CONTEXT_GLOBAL_KEY] = next;
+};
 
 const unsupported = (name: string) => {
   throw new Error(`[raycast-api] ${name} is not supported in the no-view compatibility layer`);
@@ -48,7 +61,7 @@ const unsupported = (name: string) => {
 const shellQuote = (value: string) => `'${value.split('\'').join('\'\\\'\'')}'`;
 const pathLikeToString = (value: PathLike) => (value instanceof URL ? fileURLToPath(value) : value.toString());
 
-const getSupportPath = () => currentContext.supportPath || path.join(process.cwd(), '.raycast-compat');
+const getSupportPath = () => readRaycastContext().supportPath || path.join(process.cwd(), '.raycast-compat');
 
 const readJsonFileSync = <T>(filePath: string, fallback: T): T => {
   try {
@@ -90,17 +103,18 @@ const toRaycastApplication = (value: unknown): Application | null => {
 };
 
 export const __setRaycastContext = (context: RaycastContext) => {
-  currentContext = {
-    ...currentContext,
+  const current = readRaycastContext();
+  writeRaycastContext({
+    ...current,
     ...context,
     preferences: {
-      ...currentContext.preferences,
+      ...current.preferences,
       ...context.preferences,
     },
-  };
+  });
 };
 
-export const __getRaycastContext = () => currentContext;
+export const __getRaycastContext = () => readRaycastContext();
 
 const formatToastBody = (title: string, message?: string) => (
   [title, message].filter(Boolean).join('\n')
@@ -395,24 +409,28 @@ export const confirmAlert = async (options: {
 /** @deprecated 使用 {@link getPreferenceValues} */
 export const preferences = {
   get(name: string) {
-    return currentContext.preferences?.[name];
+    return readRaycastContext().preferences?.[name];
   },
   set(name: string, value: unknown) {
-    currentContext.preferences = { ...currentContext.preferences, [name]: value };
+    const current = readRaycastContext();
+    writeRaycastContext({
+      ...current,
+      preferences: { ...current.preferences, [name]: value },
+    });
   },
 };
 
-export const getPreferenceValues = <T extends PreferenceValues = PreferenceValues>(): T => (currentContext.preferences || {}) as T;
+export const getPreferenceValues = <T extends PreferenceValues = PreferenceValues>(): T => (readRaycastContext().preferences || {}) as T;
 
 export const environment = {
   get extensionName() {
-    return currentContext.pluginName || '';
+    return readRaycastContext().pluginName || '';
   },
   get commandName() {
-    return currentContext.commandName || '';
+    return readRaycastContext().commandName || '';
   },
   get assetsPath() {
-    return currentContext.assetsPath || path.join(process.cwd(), 'assets');
+    return readRaycastContext().assetsPath || path.join(process.cwd(), 'assets');
   },
   get supportPath() {
     return getSupportPath();
@@ -421,10 +439,10 @@ export const environment = {
     return process.env.NODE_ENV !== 'production';
   },
   get commandMode() {
-    return currentContext.commandMode || 'no-view';
+    return readRaycastContext().commandMode || 'no-view';
   },
   get launchType() {
-    return currentContext.launchType || LaunchType.UserInitiated;
+    return readRaycastContext().launchType || LaunchType.UserInitiated;
   },
   get appearance() {
     return 'light';
@@ -456,7 +474,7 @@ export const LocalStorage = {
   },
   async allItems<T extends Record<string, StorageValue> = Record<string, StorageValue>>(): Promise<T> {
     const items = await storage.allItems('') as Record<string, StorageValue>;
-    const pluginName = currentContext.pluginName;
+    const { pluginName } = readRaycastContext();
     if (!pluginName) {
       return items as T;
     }
@@ -598,22 +616,24 @@ export const launchCommand = (options: {
   },
 });
 export const updateCommandMetadata = (metadata: { subtitle?: string | null } = {}) => {
-  if (!currentContext.commandName) {
+  const ctx = readRaycastContext();
+  if (!ctx.commandName) {
     throw new Error('[raycast-api] updateCommandMetadata requires a command context');
   }
   if (!Object.prototype.hasOwnProperty.call(metadata, 'subtitle')) {
     return Promise.resolve();
   }
-  const originalCommand = currentContext.commands?.find(command => command.name === currentContext.commandName);
+  const originalCommand = ctx.commands?.find(command => command.name === ctx.commandName);
   const subtitle = metadata.subtitle === null ? originalCommand?.subtitle : metadata.subtitle;
-  return updateCommand(currentContext.commandName, { subtitle });
+  return updateCommand(ctx.commandName, { subtitle });
 };
 export const openExtensionPreferences = () => openPluginPreferences();
 export const openCommandPreferences = () => {
-  if (!currentContext.commandName) {
+  const ctx = readRaycastContext();
+  if (!ctx.commandName) {
     throw new Error('[raycast-api] openCommandPreferences requires a command context');
   }
-  return openPublicCommandPreferences(currentContext.commandName);
+  return openPublicCommandPreferences(ctx.commandName);
 };
 
 export { List } from './components/List';

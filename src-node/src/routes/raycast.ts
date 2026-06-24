@@ -91,7 +91,8 @@ router.post('/convert', async (ctx) => {
       inputDir: resolvedIn,
       outputDir: resolvedOut,
       build: body.build !== false,
-      mode: 'development',
+      // mode: 'development',
+      mode: 'production',
     });
     ctx.body = { ok: true, report };
   } catch (e) {
