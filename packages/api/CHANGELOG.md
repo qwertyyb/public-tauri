@@ -1,5 +1,11 @@
 # @public-tauri/api
 
+## 1.1.1
+
+### Patch Changes
+
+- 修复 assetsPath 的问题
+
 ## 1.1.0
 
 ### Minor Changes
