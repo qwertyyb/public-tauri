@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-23T20:21:34.417Z",
+  "generatedAt": "2026-06-24T20:07:42.783Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "824eb135b0bbf26af269bbcf6500e70008b22eec"
+    "commit": "36e3547f514bd751ee2bf3187f4e80a763dbca66"
   },
-  "count": 3021,
+  "count": 3028,
   "extensions": [
     {
       "name": "0x0",
@@ -3933,6 +3933,454 @@
           "description": "Track your AI premium requests usage and compare it with the remaining % of working days in the current month to see if you are ahead or behind.",
           "mode": "view",
           "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "ai-voice-studio",
+      "title": "AI Voice Studio",
+      "description": "Read and generate speech from Raycast with Alibaba Cloud Qwen-TTS, Xiaomi MiMo, and OpenAI voices, speed control, and focused provider defaults.",
+      "icon": "command-icon.png",
+      "author": "xianwei_zhang",
+      "contributors": [],
+      "categories": [
+        "Media",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "1.0.0",
+      "storeUrl": "https://www.raycast.com/xianwei_zhang/ai-voice-studio",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/ai-voice-studio",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "quick-read",
+          "title": "Quick Read",
+          "subtitle": "AI Voice Studio",
+          "description": "Read selected text, or clipboard text if no selection is available, with the default TTS provider. Trigger again to stop.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "setup-voice-defaults",
+          "title": "Setup Voice Defaults",
+          "subtitle": "AI Voice Studio",
+          "description": "Configure the default provider, model, voice, speed, and provider defaults in a focused Raycast form.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "test-voice-setup",
+          "title": "Test Voice Setup",
+          "subtitle": "AI Voice Studio",
+          "description": "Synthesize and play a short sample with the current default provider to verify API access, latency, and playback.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "qwen-quick-read",
+          "title": "Quick Read with Qwen-TTS",
+          "subtitle": "Qwen-TTS",
+          "description": "Read selected or clipboard text with your default Qwen-TTS voice. Run again to stop playback.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "qwen-read-with-voice",
+          "title": "Read with Qwen-TTS Voice",
+          "subtitle": "Qwen-TTS",
+          "description": "Browse Qwen-TTS voices and read selected or clipboard text aloud.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "qwen-select-voice",
+          "title": "Set Qwen-TTS Quick Read Voice",
+          "subtitle": "Qwen-TTS",
+          "description": "Choose and preview the Qwen-TTS voice used by Quick Read when Qwen-TTS is the default provider.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "tts-studio",
+          "title": "TTS Studio",
+          "subtitle": "MiMo",
+          "description": "Generate and play MiMo speech from typed, selected, or pasted text, with voice, emotion, and style controls.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "mimo-quick-read",
+          "title": "Quick Read with MiMo",
+          "subtitle": "MiMo",
+          "description": "Read selected or clipboard text with your default MiMo voice. Run again to stop playback.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "mimo-read-with-voice",
+          "title": "Read with MiMo Voice",
+          "subtitle": "MiMo",
+          "description": "Browse MiMo voices and read selected or clipboard text aloud.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "mimo-select-voice",
+          "title": "Set MiMo Quick Read Voice",
+          "subtitle": "MiMo",
+          "description": "Choose and preview the MiMo voice used by Quick Read when MiMo is the default provider.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "openai-tts-studio",
+          "title": "OpenAI TTS Studio",
+          "subtitle": "OpenAI",
+          "description": "Generate and play OpenAI speech from typed, selected, or pasted text, with voice, tone, delivery, and style controls.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "openai-quick-read",
+          "title": "Quick Read with OpenAI",
+          "subtitle": "OpenAI",
+          "description": "Read selected or clipboard text with your default OpenAI voice. Run again to stop playback.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "openai-read-with-voice",
+          "title": "Read with OpenAI Voice",
+          "subtitle": "OpenAI",
+          "description": "Browse OpenAI voices and read selected or clipboard text aloud.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "openai-select-voice",
+          "title": "Set OpenAI Quick Read Voice",
+          "subtitle": "OpenAI",
+          "description": "Choose and preview the OpenAI voice used by Quick Read when OpenAI is the default provider.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "stop-reading",
+          "title": "Stop Reading",
+          "subtitle": "AI Voice Studio",
+          "description": "Stop the current TTS playback.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "speed-up-reading",
+          "title": "Increase Reading Speed",
+          "subtitle": "AI Voice Studio",
+          "description": "Increase reading speed by 0.25x for the default provider.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "slow-down-reading",
+          "title": "Decrease Reading Speed",
+          "subtitle": "AI Voice Studio",
+          "description": "Decrease reading speed by 0.25x for the default provider.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "qwen-status",
+          "title": "Qwen-TTS Reading Status",
+          "subtitle": "Qwen-TTS",
+          "description": "Show Qwen-TTS playback status, speed, and controls in the menu bar.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "mimo-status",
+          "title": "MiMo Reading Status",
+          "subtitle": "MiMo",
+          "description": "Show MiMo playback status, speed, and controls in the menu bar.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "openai-status",
+          "title": "OpenAI Reading Status",
+          "subtitle": "OpenAI",
+          "description": "Show OpenAI playback status, speed, and controls in the menu bar.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "mimoApiKey",
+          "type": "password",
+          "required": false,
+          "title": "MiMo Token Plan API Key",
+          "description": "MiMo Token Plan key.",
+          "placeholder": "tp-..."
+        },
+        {
+          "name": "openaiApiKey",
+          "type": "password",
+          "required": false,
+          "title": "OpenAI API Key",
+          "description": "OpenAI Speech API key.",
+          "placeholder": "sk-..."
+        },
+        {
+          "name": "dashscopeApiKey",
+          "type": "password",
+          "required": false,
+          "title": "Qwen DashScope API Key",
+          "description": "Qwen DashScope API key (Alibaba Cloud Model Studio) for Qwen-TTS.",
+          "placeholder": "sk-..."
+        }
+      ]
+    },
+    {
+      "name": "aimeflux",
+      "title": "AimeFlux",
+      "description": "Control the AimeFlux CLI from Raycast.",
+      "icon": "icon-512.png",
+      "author": "erdiegoant",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/erdiegoant/aimeflux",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/aimeflux",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "start-dictation",
+          "title": "Start Dictation",
+          "subtitle": "AimeFlux",
+          "description": "Start AimeFlux dictation with optional mode and LLM cleanup.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "stop-dictation",
+          "title": "Stop Dictation",
+          "subtitle": "AimeFlux",
+          "description": "Stop the active AimeFlux dictation session.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "toggle-llm-cleanup",
+          "title": "Toggle LLM Cleanup",
+          "subtitle": "AimeFlux",
+          "description": "Toggle the global AimeFlux LLM cleanup setting.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "process-text",
+          "title": "Process Text",
+          "subtitle": "AimeFlux",
+          "description": "Run one-off text processing with your configured AimeFlux modes.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "browse-history",
+          "title": "Browse History",
+          "subtitle": "AimeFlux",
+          "description": "Browse AimeFlux history with inline mode filtering and item actions.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "copy-latest-history-item",
+          "title": "Copy Latest History Item",
+          "subtitle": "AimeFlux",
+          "description": "Copy the newest history item from AimeFlux.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "paste-latest-history-item",
+          "title": "Paste Latest History Item",
+          "subtitle": "AimeFlux",
+          "description": "Paste the newest history item into the frontmost application.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "import-text-into-history",
+          "title": "Import Text into History",
+          "subtitle": "AimeFlux",
+          "description": "Import inline text into AimeFlux history.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "show-current-mode",
+          "title": "Show Current Mode",
+          "subtitle": "AimeFlux",
+          "description": "Show the active manual mode and switch to another one.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "set-current-mode",
+          "title": "Set Current Mode",
+          "subtitle": "AimeFlux",
+          "description": "Change the active manual mode by name or ID.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "show-mode",
+          "title": "Show Mode",
+          "subtitle": "AimeFlux",
+          "description": "Inspect a mode with prompt, vocabulary, and replacement details.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "list-installed-models",
+          "title": "List Installed Models",
+          "subtitle": "AimeFlux",
+          "description": "Browse installed Whisper models and remove models that are not in active use.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "list-replacements",
+          "title": "List Replacements",
+          "subtitle": "AimeFlux",
+          "description": "Browse configured replacements and remove them in context.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "add-replacement",
+          "title": "Add Replacement",
+          "subtitle": "AimeFlux",
+          "description": "Add a global or mode-specific deterministic replacement.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "list-rule-packages",
+          "title": "List Rule Packages",
+          "subtitle": "AimeFlux",
+          "description": "Browse installed community rule packages.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "list-mode-packages",
+          "title": "List Mode Packages",
+          "subtitle": "AimeFlux",
+          "description": "Browse installed community mode packages.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "list-watch-folders",
+          "title": "List Watch Folders",
+          "subtitle": "AimeFlux",
+          "description": "Inspect configured AimeFlux watch folders.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
           "preferences": []
         }
       ],
@@ -21656,6 +22104,50 @@
           "description": "Your Botpress Workspace ID",
           "type": "textfield",
           "required": true
+        }
+      ]
+    },
+    {
+      "name": "bouncer-email-verifier",
+      "title": "Bouncer Email Verifier",
+      "description": "Verify email deliverability with Bouncer from Raycast",
+      "icon": "icon.png",
+      "author": "eKamran",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/eKamran/bouncer-email-verifier",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/bouncer-email-verifier",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "verify-email",
+          "title": "Bouncer",
+          "description": "Verify an email address with Bouncer",
+          "mode": "view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "type": "password",
+          "required": true,
+          "title": "Bouncer API Key",
+          "description": "Stored securely by Raycast and used for Bouncer requests."
         }
       ]
     },
@@ -53428,6 +53920,49 @@
           "placeholder": "dop_v1_xxx..xxx"
         }
       ]
+    },
+    {
+      "name": "dinopass",
+      "title": "DinoPass",
+      "description": "Generate passwords from dinopass.com",
+      "icon": "command-icon.png",
+      "author": "campo",
+      "contributors": [],
+      "categories": [
+        "Security",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/campo/dinopass",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/dinopass",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "simple-password",
+          "title": "Generate Simple Password",
+          "description": "Generate a simple, easy-to-remember password from dinopass.com",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "strong-password",
+          "title": "Generate Strong Password",
+          "description": "Generate a strong password from dinopass.com",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "directadmin-reseller",
@@ -93942,6 +94477,76 @@
       "preferences": []
     },
     {
+      "name": "hdr-toggle",
+      "title": "HDR Toggle",
+      "description": "Toggle Windows HDR on individual monitors instead of all displays at once.",
+      "icon": "extension-icon.png",
+      "author": "abdullah_shabib",
+      "contributors": [],
+      "categories": [
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/abdullah_shabib/hdr-toggle",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/hdr-toggle",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "toggle-hdr",
+          "title": "Toggle HDR",
+          "subtitle": "Per-Monitor HDR",
+          "description": "List HDR-capable monitors and toggle HDR on each one independently. Assign monitors to shortcut slots here.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle-hdr-1",
+          "title": "Toggle HDR – Shortcut 1",
+          "subtitle": "Per-Monitor HDR",
+          "description": "Toggle HDR on the monitor assigned to Shortcut 1. Assign a monitor in the Toggle HDR command, then give this command a hotkey in Raycast.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle-hdr-2",
+          "title": "Toggle HDR – Shortcut 2",
+          "subtitle": "Per-Monitor HDR",
+          "description": "Toggle HDR on the monitor assigned to Shortcut 2. Assign a monitor in the Toggle HDR command, then give this command a hotkey in Raycast.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle-hdr-3",
+          "title": "Toggle HDR – Shortcut 3",
+          "subtitle": "Per-Monitor HDR",
+          "description": "Toggle HDR on the monitor assigned to Shortcut 3. Assign a monitor in the Toggle HDR command, then give this command a hotkey in Raycast.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle-hdr-4",
+          "title": "Toggle HDR – Shortcut 4",
+          "subtitle": "Per-Monitor HDR",
+          "description": "Toggle HDR on the monitor assigned to Shortcut 4. Assign a monitor in the Toggle HDR command, then give this command a hotkey in Raycast.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "hdri-library",
       "title": "HDRI Library",
       "description": "Browse and download high-quality HDRI images from Poly Haven.",
@@ -127169,6 +127774,48 @@
       "preferences": []
     },
     {
+      "name": "manglish-keyboard",
+      "title": "Manglish Keyboard",
+      "description": "Write in Manglish — transliterate English phonetics to Malayalam script.",
+      "icon": "extension-icon.png",
+      "author": "mohammed_sherin_mohammed",
+      "contributors": [],
+      "categories": [
+        "Communication"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/mohammed_sherin_mohammed/manglish-keyboard",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/manglish-keyboard",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "type-in-manglish",
+          "title": "Type in Manglish",
+          "description": "Transliterate English phonetics to Malayalam",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "history",
+          "title": "Browse Manglish History",
+          "description": "Browse recent transliterations",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "manifest-viewer",
       "title": "Manifest Viewer",
       "description": "View and navigate HLS/DASH manifest files with keyboard navigation to child variant playlists",
@@ -127820,7 +128467,7 @@
       "platforms": [
         "macOS"
       ],
-      "version": "1.2.2",
+      "version": "1.2.3",
       "storeUrl": "https://www.raycast.com/ewilderj/markdown-converter",
       "source": {
         "type": "github-monorepo",
@@ -169362,7 +170009,7 @@
     {
       "name": "posthog",
       "title": "PostHog",
-      "description": "Open the web app, search for projects, persons, feature flags, and cohorts.",
+      "description": "Open the web app, search PostHog resources, and run read-only analytics with AI tools.",
       "icon": "posthog-logo.png",
       "author": "david_newell",
       "contributors": [],
@@ -169371,7 +170018,10 @@
         "Developer Tools"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "storeUrl": "https://www.raycast.com/david_newell/posthog",
       "source": {
         "type": "github-monorepo",
@@ -169383,6 +170033,7 @@
         {
           "name": "feature-flags",
           "title": "Feature Flags",
+          "subtitle": "PostHog",
           "description": "Search your feature flags on PostHog.",
           "mode": "view",
           "keywords": [],
@@ -169391,6 +170042,7 @@
         {
           "name": "cohorts",
           "title": "Cohorts",
+          "subtitle": "PostHog",
           "description": "Search cohorts on PostHog and open them in the web app.",
           "mode": "view",
           "keywords": [],
@@ -169399,6 +170051,7 @@
         {
           "name": "dashboards",
           "title": "Dashboards",
+          "subtitle": "PostHog",
           "description": "Search dashboards on PostHog and open them in the web app.",
           "mode": "view",
           "keywords": [],
@@ -169407,6 +170060,7 @@
         {
           "name": "persons",
           "title": "Search Persons",
+          "subtitle": "PostHog",
           "description": "Search persons on PostHog and open their profile.",
           "mode": "view",
           "keywords": [],
@@ -169415,6 +170069,7 @@
         {
           "name": "projects",
           "title": "Projects",
+          "subtitle": "PostHog",
           "description": "List and open your projects.",
           "mode": "view",
           "keywords": [],
@@ -169425,29 +170080,38 @@
         {
           "name": "personalAPIKey",
           "type": "password",
-          "required": true,
+          "required": false,
           "title": "Personal API Key",
-          "description": "Your personal API key for PostHog.",
-          "link": "https://app.posthog.com/me/settings",
-          "placeholder": "Enter your personal API key"
+          "description": "Your phx_ personal API key for PostHog. Project keys starting with phc_ are ignored by AI tools.",
+          "link": "https://us.posthog.com/me/settings",
+          "placeholder": "phx_..."
         },
         {
           "name": "dataRegionURL",
           "type": "dropdown",
-          "required": true,
+          "required": false,
           "title": "Data Region",
           "description": "The region where your PostHog account is hosted.",
           "data": [
             {
               "title": "US",
-              "value": "https://app.posthog.com"
+              "value": "https://us.posthog.com"
             },
             {
               "title": "EU",
               "value": "https://eu.posthog.com"
             }
           ],
-          "placeholder": "Pick a region"
+          "placeholder": "Pick a region",
+          "default": "https://us.posthog.com"
+        },
+        {
+          "name": "defaultProjectId",
+          "type": "textfield",
+          "required": false,
+          "title": "Default Project ID",
+          "description": "Optional project ID to use when AI tools are called without an explicit projectId.",
+          "placeholder": "e.g. 62292"
         }
       ]
     },
@@ -192492,8 +193156,8 @@
         {
           "name": "connect",
           "title": "Connect to SAP System",
-          "description": "Quick connect to a specific SAP system",
-          "mode": "no-view",
+          "description": "Search by customer and connect to a SAP system",
+          "mode": "view",
           "keywords": [],
           "preferences": []
         },
@@ -234854,14 +235518,19 @@
     {
       "name": "tuple",
       "title": "Tuple",
-      "description": "Initiate pairing sessions in Tuple.",
-      "icon": "tuple.png",
-      "author": "inxilpro",
+      "description": "Browse and call contacts, control your active call, and search transcripts from your Tuple pair programming sessions.",
+      "icon": "extension-icon.png",
+      "author": "stephendolan",
       "contributors": [],
-      "categories": [],
+      "categories": [
+        "Developer Tools",
+        "Communication"
+      ],
       "license": "MIT",
-      "platforms": [],
-      "storeUrl": "https://www.raycast.com/inxilpro/tuple",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/stephendolan/tuple",
       "source": {
         "type": "github-monorepo",
         "repo": "raycast/extensions",
@@ -234870,16 +235539,87 @@
       },
       "commands": [
         {
-          "name": "index",
-          "title": "Start a Pairing Session",
-          "subtitle": "Tuple",
-          "description": "Start pairing sessions in Tuple.",
+          "name": "search-contacts",
+          "title": "Search Contacts",
+          "description": "Browse your contacts and start a call.",
           "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "active-call",
+          "title": "Active Call",
+          "description": "Show and control your active call from the menu bar.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-calls",
+          "title": "Search Calls",
+          "description": "Browse recent calls, search what was said, and ask AI about them.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-rooms",
+          "title": "Search Rooms",
+          "description": "Browse your personal and team rooms, see who's in them, and join.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "join-personal-room",
+          "title": "Join Personal Room",
+          "description": "Join your most recent personal room.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "auto-title-summary",
+          "title": "Generate Title & Summary",
+          "description": "Generate and save a title & summary for your most recent call with AI — applied immediately, no review.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle-mute",
+          "title": "Toggle Mute",
+          "description": "Mute or unmute your microphone in the active call.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "hang-up",
+          "title": "End Call",
+          "description": "Hang up the active call.",
+          "mode": "no-view",
           "keywords": [],
           "preferences": []
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "tuplePath",
+          "title": "Tuple CLI Path",
+          "description": "Path to the tuple CLI executable. Leave blank to auto-detect (/opt/homebrew/bin then /usr/local/bin); set this only if you installed it elsewhere.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "/usr/local/bin/tuple"
+        },
+        {
+          "name": "exportDirectory",
+          "title": "Transcript Export Folder",
+          "description": "Where exported transcripts are saved. Defaults to your Downloads folder.",
+          "type": "directory",
+          "required": false
+        }
+      ]
     },
     {
       "name": "turso",
@@ -248605,7 +249345,8 @@
       "icon": "extension_icon.png",
       "author": "louishuyng",
       "contributors": [
-        "xmok"
+        "xmok",
+        "0xdhrv"
       ],
       "categories": [
         "Developer Tools"
@@ -250048,6 +250789,152 @@
           "type": "checkbox",
           "defaultValue": false,
           "required": false
+        }
+      ]
+    },
+    {
+      "name": "wise-lens",
+      "title": "Wise Lens",
+      "description": "A clear overview of your Wise balances in Raycast: spending, combined total and live rates.",
+      "icon": "extension-icon.png",
+      "author": "jorgetoh",
+      "contributors": [],
+      "categories": [
+        "Finance",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/jorgetoh/wise-lens",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/wise-lens",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "dashboard",
+          "title": "Dashboard",
+          "subtitle": "Wise",
+          "description": "A summary of your account with balances by currency, a combined converted total, spending this month and over the last 30 days, and recent activity.",
+          "mode": "view",
+          "keywords": [
+            "wise",
+            "balance",
+            "bank",
+            "finance"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "transactions",
+          "title": "Transactions",
+          "subtitle": "Wise",
+          "description": "Browse and search your activity grouped by day, with filters for incoming, outgoing, completed and this month.",
+          "mode": "view",
+          "keywords": [
+            "wise",
+            "transactions",
+            "activity",
+            "movements",
+            "tx"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "balance",
+          "title": "Balance",
+          "subtitle": "Wise",
+          "description": "Your balance and spending this month, right in the menu bar.",
+          "mode": "menu-bar",
+          "keywords": [
+            "wise",
+            "menubar"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiToken",
+          "type": "password",
+          "required": true,
+          "title": "Wise API Token",
+          "description": "Read-only Personal Token. Create it in Wise: Your account → Connect and manage apps → Developer tools → API tokens. Encrypted in Raycast's local database.",
+          "placeholder": "wise_pt_..."
+        },
+        {
+          "name": "displayCurrency",
+          "type": "textfield",
+          "required": false,
+          "default": "",
+          "title": "Display Currency",
+          "description": "ISO 4217 code (EUR, USD, GBP...). If set, an aggregated total converted to this currency is shown."
+        },
+        {
+          "name": "fxTargetCurrency",
+          "type": "textfield",
+          "required": false,
+          "default": "",
+          "title": "Secondary Currency (FX)",
+          "description": "Show conversion from displayCurrency to this currency (e.g. THB). Leave empty to disable."
+        },
+        {
+          "name": "numberFormat",
+          "type": "dropdown",
+          "required": false,
+          "default": "en-US",
+          "title": "Number Format",
+          "description": "How monetary amounts are displayed (thousands/decimal separators and symbol position).",
+          "data": [
+            {
+              "title": "1,234.56",
+              "value": "en-US"
+            },
+            {
+              "title": "1.234,56",
+              "value": "de-DE"
+            },
+            {
+              "title": "1 234,56",
+              "value": "fr-FR"
+            },
+            {
+              "title": "1'234.56",
+              "value": "de-CH"
+            }
+          ]
+        },
+        {
+          "name": "hideZeroBalances",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "title": "Empty Accounts",
+          "label": "Hide accounts and jars with zero balance",
+          "description": "When enabled, accounts with a zero balance are not shown in the dashboard or menu bar."
+        },
+        {
+          "name": "hideMenuBarBalance",
+          "type": "checkbox",
+          "required": false,
+          "default": false,
+          "title": "Menu Bar Privacy",
+          "label": "Hide balance amount from the menu bar",
+          "description": "Show only the Wise icon in the menu bar. The amount is still visible after clicking it."
+        },
+        {
+          "name": "useSampleData",
+          "type": "checkbox",
+          "required": false,
+          "default": false,
+          "title": "Sample Data",
+          "label": "Show sample data instead of calling the Wise API",
+          "description": "Display a built-in anonymised dataset and make zero network calls. Useful for previews and screenshots."
         }
       ]
     },
