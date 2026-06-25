@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-24T20:07:42.783Z",
+  "generatedAt": "2026-06-25T20:22:08.224Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "36e3547f514bd751ee2bf3187f4e80a763dbca66"
+    "commit": "282ce32b77738c139f4b0f20d02af832be3a5886"
   },
-  "count": 3028,
+  "count": 3031,
   "extensions": [
     {
       "name": "0x0",
@@ -21011,7 +21011,9 @@
       "description": "Turn your main display black for quick screen cleaning.",
       "icon": "icon.png",
       "author": "li_jin",
-      "contributors": [],
+      "contributors": [
+        "0xdhrv"
+      ],
       "categories": [
         "System"
       ],
@@ -21020,7 +21022,7 @@
         "macOS",
         "Windows"
       ],
-      "version": "1.1.0",
+      "version": "1.2.0",
       "storeUrl": "https://www.raycast.com/li_jin/blackr",
       "source": {
         "type": "github-monorepo",
@@ -39872,7 +39874,8 @@
       "author": "nielsvanrijn",
       "contributors": [
         "yusifaliyevpro",
-        "ridemountainpig"
+        "ridemountainpig",
+        "cedric25"
       ],
       "categories": [
         "Developer Tools",
@@ -53663,7 +53666,7 @@
     {
       "name": "diff-view",
       "title": "Diff View",
-      "description": "Compare the last two entries of your clipboard in VS Code or Cursor",
+      "description": "Compare the last two entries of your clipboard, or two selected files, in VS Code, Cursor, or VSCodium",
       "icon": "extension-icon.png",
       "author": "kalaschnik",
       "contributors": [],
@@ -53672,7 +53675,9 @@
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/kalaschnik/diff-view",
       "source": {
         "type": "github-monorepo",
@@ -53684,7 +53689,15 @@
         {
           "name": "diff-view",
           "title": "Show Diff View",
-          "description": "Compare the last two entries of your clipboard in VS Code or Cursor",
+          "description": "Compare the last two entries of your clipboard in VS Code, Cursor, or VSCodium",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-with-editor",
+          "title": "Open with Editor",
+          "description": "Compare the two files selected in Finder in your preferred editor",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -53706,6 +53719,10 @@
             {
               "title": "Cursor",
               "value": "cursor"
+            },
+            {
+              "title": "VSCodium",
+              "value": "codium"
             }
           ]
         }
@@ -74262,6 +74279,74 @@
           "required": true,
           "title": "Alchemy API Key",
           "placeholder": "z241XEoGLXVfJ_avjhucsj6_nwdzWNPc"
+        }
+      ]
+    },
+    {
+      "name": "foxhop",
+      "title": "Fox Hop",
+      "description": "Focus a specific Firefox tab from anywhere — manage your tab targets and generate per-tab hotkey scripts.",
+      "icon": "extension-icon.png",
+      "author": "kud",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/kud/foxhop",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/foxhop",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "list-tabs",
+          "title": "List Tabs",
+          "description": "List, focus, and manage your saved Firefox tab targets",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "foxhopPath",
+          "type": "textfield",
+          "title": "foxhop CLI path",
+          "description": "Path to the foxhop binary (leave as 'foxhop' if on PATH)",
+          "default": "foxhop",
+          "required": false
+        },
+        {
+          "name": "browser",
+          "type": "dropdown",
+          "title": "Firefox app",
+          "description": "Which Firefox app to foreground when focusing a tab",
+          "default": "Firefox Nightly",
+          "required": false,
+          "data": [
+            {
+              "title": "Firefox",
+              "value": "Firefox"
+            },
+            {
+              "title": "Firefox Nightly",
+              "value": "Firefox Nightly"
+            },
+            {
+              "title": "Firefox Developer Edition",
+              "value": "Firefox Developer Edition"
+            },
+            {
+              "title": "Firefox Beta",
+              "value": "Firefox Beta"
+            }
+          ]
         }
       ]
     },
@@ -114933,7 +115018,8 @@
         "validate",
         "dead_hikikomori",
         "mateus_badalotti",
-        "jomifepe"
+        "jomifepe",
+        "0xdhrv"
       ],
       "categories": [],
       "license": "MIT",
@@ -124030,7 +124116,7 @@
               "type": "dropdown",
               "title": "Open Method",
               "description": "Choose how Raycast opens the verse in Logos.",
-              "defaultValue": "ref.ly URL",
+              "defaultValue": "logosres scheme",
               "required": true,
               "data": [
                 {
@@ -176354,7 +176440,9 @@
         "Other"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/Noamko/quick-latex",
       "source": {
         "type": "github-monorepo",
@@ -191707,6 +191795,161 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "rom-launcher",
+      "title": "ROM Launcher",
+      "description": "Launch your retro game collection with cover art, achievements, and play stats - supports RetroArch, MAME, DuckStation, and more.",
+      "icon": "rllogo.png",
+      "author": "glct26",
+      "contributors": [],
+      "categories": [
+        "Applications"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/glct26/rom-launcher",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/rom-launcher",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "index",
+          "title": "Browse ROMs",
+          "description": "View your game library, check achievements, and launch games",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "manage-libraries",
+          "title": "Manage Libraries",
+          "description": "Add and configure ROM folders and emulator cores",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "retroarchPath",
+          "title": "RetroArch Executable",
+          "description": "Select the RetroArch application or executable file.",
+          "type": "file",
+          "required": false
+        },
+        {
+          "name": "coresPath",
+          "type": "directory",
+          "required": false,
+          "title": "RetroArch Cores Directory",
+          "description": "Select the folder containing libretro cores (Leave empty if using default Windows folder structure)"
+        },
+        {
+          "name": "mamePath",
+          "title": "MAME Executable",
+          "description": "Select the standalone MAME executable file.",
+          "type": "file",
+          "required": false
+        },
+        {
+          "name": "openEmuPath",
+          "title": "OpenEmu App",
+          "description": "Select the OpenEmu.app file (macOS only).",
+          "type": "file",
+          "required": false
+        },
+        {
+          "name": "duckstationPath",
+          "title": "DuckStation Executable",
+          "description": "Select the standalone DuckStation application or executable file.",
+          "type": "file",
+          "required": false
+        },
+        {
+          "name": "dolphinPath",
+          "title": "Dolphin Executable",
+          "description": "Select the standalone Dolphin application or executable file.",
+          "type": "file",
+          "required": false
+        },
+        {
+          "name": "pcsx2Path",
+          "title": "PCSX2 Executable",
+          "description": "Select the standalone PCSX2 executable file.",
+          "type": "file",
+          "required": false
+        },
+        {
+          "name": "ppssppPath",
+          "title": "PPSSPP Executable",
+          "description": "Select the standalone PPSSPP executable file.",
+          "type": "file",
+          "required": false
+        },
+        {
+          "name": "showDetails",
+          "title": "View Options",
+          "label": "Show Game Details",
+          "description": "Show cover arts and game details in a side panel. Disabling saves bandwidth.",
+          "type": "checkbox",
+          "default": true,
+          "required": false
+        },
+        {
+          "name": "retroAchievementsUsername",
+          "title": "RetroAchievements Username",
+          "description": "Your RetroAchievements.org username (optional).",
+          "type": "textfield",
+          "required": false
+        },
+        {
+          "name": "retroAchievementsApiKey",
+          "title": "RetroAchievements API Key",
+          "description": "Your RetroAchievements.org Web API Key (optional).",
+          "type": "password",
+          "required": false
+        },
+        {
+          "name": "updateInterval",
+          "title": "Database Update Frequency",
+          "description": "How often to update the background ROM database (approx. 5-10 MB per sync).",
+          "type": "dropdown",
+          "default": "monthly",
+          "required": false,
+          "data": [
+            {
+              "title": "Daily",
+              "value": "daily"
+            },
+            {
+              "title": "Weekly",
+              "value": "weekly"
+            },
+            {
+              "title": "Monthly",
+              "value": "monthly"
+            },
+            {
+              "title": "Never (Manual Only)",
+              "value": "never"
+            }
+          ]
+        },
+        {
+          "name": "customDatabaseUrl",
+          "title": "Custom Database URL",
+          "description": "Optional: Override the default database URL with your own JSON link.",
+          "type": "textfield",
+          "required": false
+        }
+      ]
     },
     {
       "name": "rounding-number",
@@ -229707,7 +229950,8 @@
         "dedalusj",
         "xmok",
         "Hadi04",
-        "nikord"
+        "nikord",
+        "cbrplx"
       ],
       "categories": [
         "Applications",
@@ -229800,6 +230044,15 @@
           "description": "Automatically parse dates and tags",
           "default": false,
           "label": "Automatically parse dates and tags"
+        },
+        {
+          "name": "useConfetti",
+          "type": "checkbox",
+          "required": false,
+          "title": "Celebrate With Confetti",
+          "description": "Throw Raycast confettis on task completion",
+          "default": false,
+          "label": "Throw Raycast confettis on task completion"
         }
       ]
     },
@@ -242727,6 +242980,87 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "vibelet-search",
+      "title": "Vibelet Search",
+      "description": "Search and resume Claude Code and Codex sessions (CLI + Desktop apps) by title or content.",
+      "icon": "command-icon.png",
+      "author": "leyang",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/leyang/vibelet-search",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/vibelet-search",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-sessions",
+          "title": "Vibelet Search",
+          "subtitle": "Sessions",
+          "description": "Search Claude Code and Codex sessions across CLI and Desktop apps",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "defaultTerminal",
+          "type": "dropdown",
+          "title": "Default Terminal",
+          "description": "Terminal app used to open resume commands",
+          "required": false,
+          "default": "Terminal",
+          "data": [
+            {
+              "title": "Terminal.app",
+              "value": "Terminal"
+            },
+            {
+              "title": "iTerm",
+              "value": "iTerm"
+            },
+            {
+              "title": "Ghostty",
+              "value": "Ghostty"
+            },
+            {
+              "title": "Warp",
+              "value": "Warp"
+            },
+            {
+              "title": "WezTerm",
+              "value": "WezTerm"
+            }
+          ]
+        },
+        {
+          "name": "claudeBinary",
+          "type": "textfield",
+          "title": "Claude CLI Path",
+          "description": "Path or name of the Claude Code CLI (default: claude)",
+          "required": false,
+          "default": "claude"
+        },
+        {
+          "name": "codexBinary",
+          "type": "textfield",
+          "title": "Codex CLI Path",
+          "description": "Path or name of the Codex CLI (default: codex)",
+          "required": false,
+          "default": "codex"
+        }
+      ]
     },
     {
       "name": "video-call-reactions",
