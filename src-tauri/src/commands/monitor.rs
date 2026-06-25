@@ -83,7 +83,7 @@ pub fn capture(window: tauri::Window, monitor_id: Option<u32>) -> Result<String,
     };
 
     let image = monitor.capture_image().map_err(|e| e.to_string())?;
-    print!("截图耗时: {:?}", start.elapsed());
+    println!("截图耗时: {:?}", start.elapsed());
 
     let mut buffer = Cursor::new(Vec::new());
     image
