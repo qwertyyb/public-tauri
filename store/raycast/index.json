@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-25T20:22:08.224Z",
+  "generatedAt": "2026-06-26T20:06:08.661Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "282ce32b77738c139f4b0f20d02af832be3a5886"
+    "commit": "28cc16c21dd5350f3b977bc2e87698fefdff7cca"
   },
-  "count": 3031,
+  "count": 3033,
   "extensions": [
     {
       "name": "0x0",
@@ -84518,7 +84518,8 @@
         "fabitosh",
         "geekyed",
         "dangkhoipro",
-        "0xdhrv"
+        "0xdhrv",
+        "peduarte"
       ],
       "categories": [
         "Productivity",
@@ -84529,7 +84530,7 @@
         "macOS",
         "Windows"
       ],
-      "version": "1.4.3",
+      "version": "1.4.4",
       "storeUrl": "https://www.raycast.com/thomas/google-calendar",
       "source": {
         "type": "github-monorepo",
@@ -149717,6 +149718,40 @@
           "label": "Delete the original file"
         }
       ]
+    },
+    {
+      "name": "oh-shoot",
+      "title": "Oh-Shoot",
+      "description": "Search your oh-shoot screenshots by their OCR text and jump straight back into the oh-shoot app.",
+      "icon": "command-icon.png",
+      "author": "nico_pergande",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Applications"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/nico_pergande/oh-shoot",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/oh-shoot",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-screenshots",
+          "title": "Search Screenshots",
+          "description": "Search oh-shoot screenshots by the text recognised inside them (OCR).",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "ohdear",
@@ -224434,6 +224469,15 @@
           "type": "checkbox",
           "default": true,
           "required": true
+        },
+        {
+          "name": "speed",
+          "title": "Speed (ms)",
+          "description": "Matrix rain update interval in milliseconds. Lower is faster. Enter a whole number from 10 to 200.",
+          "type": "textfield",
+          "default": "40",
+          "placeholder": "40",
+          "required": true
         }
       ]
     },
@@ -235860,7 +235904,7 @@
         {
           "name": "tuplePath",
           "title": "Tuple CLI Path",
-          "description": "Path to the tuple CLI executable. Leave blank to auto-detect (/opt/homebrew/bin then /usr/local/bin); set this only if you installed it elsewhere.",
+          "description": "Path to the tuple CLI executable. Leave blank to auto-detect (/usr/local/bin/tuple, then the copy bundled in Tuple.app); set this only if your CLI lives elsewhere.",
           "type": "textfield",
           "required": false,
           "placeholder": "/usr/local/bin/tuple"
@@ -237305,6 +237349,105 @@
           "placeholder": "From typefully.com → Settings → API",
           "type": "password",
           "required": true
+        }
+      ]
+    },
+    {
+      "name": "typeless-companion",
+      "title": "Typeless Companion",
+      "description": "Browse and copy local Typeless transcripts.",
+      "icon": "typeless-icon.png",
+      "author": "arjan.flac",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/arjan.flac/typeless-companion",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/typeless-companion",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "view-history",
+          "title": "Browse History",
+          "description": "Browse, filter, copy, and paste saved Typeless transcripts.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "copy-last-transcript",
+          "title": "Copy Previous Transcript",
+          "description": "Copy the most recent saved Typeless transcript.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "quickMode",
+              "title": "Transcript Type",
+              "description": "Choose which saved Typeless transcript this command copies.",
+              "type": "dropdown",
+              "required": false,
+              "default": "latest",
+              "data": [
+                {
+                  "title": "Latest Transcript",
+                  "value": "latest"
+                },
+                {
+                  "title": "Latest Dictation",
+                  "value": "dictation"
+                },
+                {
+                  "title": "Latest Ask Anything",
+                  "value": "ask-anything"
+                },
+                {
+                  "title": "Latest Translation",
+                  "value": "translation"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "preferences": [
+        {
+          "name": "databasePath",
+          "title": "Database Path",
+          "description": "Override the local Typeless SQLite database path.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "~/Library/Application Support/Typeless/typeless.db"
+        },
+        {
+          "name": "copyWindowBehavior",
+          "title": "Window Behavior On Copy",
+          "description": "What to do with the window when copying a transcript to the clipboard.",
+          "type": "dropdown",
+          "required": false,
+          "default": "close",
+          "data": [
+            {
+              "title": "Keep Open",
+              "value": "keep-open"
+            },
+            {
+              "title": "Close",
+              "value": "close"
+            },
+            {
+              "title": "Close and Exit Command",
+              "value": "close-and-exit-command"
+            }
+          ]
         }
       ]
     },
