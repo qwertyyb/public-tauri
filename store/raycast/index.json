@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-26T20:06:08.661Z",
+  "generatedAt": "2026-06-27T19:44:54.820Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "28cc16c21dd5350f3b977bc2e87698fefdff7cca"
+    "commit": "e43de3eb8e86aa50093d0791ffd366daa6633c1e"
   },
   "count": 3033,
   "extensions": [
@@ -84389,7 +84389,9 @@
       "description": "Search Goodreads books, authors and more",
       "icon": "goodreads-icon.png",
       "author": "puneeth",
-      "contributors": [],
+      "contributors": [
+        "xmok"
+      ],
       "categories": [
         "Media",
         "Web"
@@ -159405,7 +159407,8 @@
         "pernielsentikaer",
         "hnsn",
         "yusifaliyevpro",
-        "xmok"
+        "xmok",
+        "peduarte"
       ],
       "categories": [
         "Productivity",
@@ -159446,6 +159449,40 @@
               "required": false,
               "default": false,
               "label": "Remember numbers and characters"
+            }
+          ]
+        },
+        {
+          "name": "copy-random-password",
+          "title": "Copy Random Password",
+          "description": "Generates a random password and copies it directly to the clipboard.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "length",
+              "title": "Number of characters",
+              "description": "The number of characters in the generated password (5–64).",
+              "type": "textfield",
+              "required": false,
+              "default": "16"
+            },
+            {
+              "name": "useNumbers",
+              "description": "Include numbers in the generated password.",
+              "type": "checkbox",
+              "required": false,
+              "default": true,
+              "title": "Options",
+              "label": "Use numbers"
+            },
+            {
+              "name": "useChars",
+              "description": "Include special characters in the generated password.",
+              "type": "checkbox",
+              "required": false,
+              "default": true,
+              "label": "Use special characters"
             }
           ]
         },
