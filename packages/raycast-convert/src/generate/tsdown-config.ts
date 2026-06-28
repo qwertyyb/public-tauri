@@ -11,13 +11,10 @@ const formatAliasProperty = (aliases: Record<string, string>) => {
 };
 
 /** Server 入口：`@raycast/api` → `@public-tauri/api/raycast` 源码；view 与 no-view 一致。 */
-const getServerAliases = (outputDir: string): Record<string, string> => {
-  const apiSrc = path.join(outputDir, 'node_modules', '@public-tauri', 'api', 'src');
-  return {
-    '@raycast/api': path.join(apiSrc, 'raycast.ts'),
-    '@public-tauri/api/node': path.join(apiSrc, 'node.ts'),
-  };
-};
+const getServerAliases = (_outputDir: string): Record<string, string> => ({
+  '@raycast/api': '@public-tauri/api/raycast',
+  '@raycast/utils': '@public-tauri/api/utils',
+});
 
 export const generateTsdownConfig = (
   options: ResolvedConvertOptions,
