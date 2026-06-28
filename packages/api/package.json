@@ -1,6 +1,6 @@
 {
   "name": "@public-tauri/api",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Public Tauri plugin API for browser, node, and Raycast compatibility layers.",
   "type": "module",
   "sideEffects": false,
@@ -19,7 +19,6 @@
     "./node": "./src/node.ts",
     "./raycast": "./src/raycast.ts",
     "./raycast/node": "./src/raycast.ts",
-    "./raycast/utils": "./src/raycast-utils.ts",
     "./components/*": "./src/components/*"
   },
   "scripts": {
@@ -54,7 +53,6 @@
       "./node": "./dist/node.mjs",
       "./raycast": "./dist/raycast.mjs",
       "./raycast/node": "./dist/raycast.mjs",
-      "./raycast/utils": "./dist/raycast-utils.mjs",
       "./package.json": "./package.json"
     }
   }

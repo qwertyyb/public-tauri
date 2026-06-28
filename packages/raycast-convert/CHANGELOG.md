@@ -1,5 +1,11 @@
 # @public-tauri/raycast-convert
 
+## 1.1.2
+
+### Patch Changes
+
+- refactor: raycast compact
+
 ## 1.1.1
 
 ### Patch Changes

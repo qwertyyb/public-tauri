@@ -13,7 +13,7 @@ const formatAliasProperty = (aliases: Record<string, string>) => {
 /** Server 入口：`@raycast/api` → `@public-tauri/api/raycast` 源码；view 与 no-view 一致。 */
 const getServerAliases = (_outputDir: string): Record<string, string> => ({
   '@raycast/api': '@public-tauri/api/raycast',
-  '@raycast/utils': '@public-tauri/api/utils',
+  // '@raycast/utils': '@public-tauri/api/utils',
 });
 
 export const generateTsdownConfig = (
