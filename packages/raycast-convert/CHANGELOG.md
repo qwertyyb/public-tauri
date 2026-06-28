@@ -1,5 +1,11 @@
 # @public-tauri/raycast-convert
 
+## 1.1.1
+
+### Patch Changes
+
+- 7acbcec: 修复打包问题
+
 ## 1.1.0
 
 ### Minor Changes
