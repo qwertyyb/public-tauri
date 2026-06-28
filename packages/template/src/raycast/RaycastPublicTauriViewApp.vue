@@ -187,12 +187,14 @@ onMounted(() => {
     if (cmd && nextSnapshot.commandName !== cmd) return;
     rawSnapshot = nextSnapshot;
     snapshot.value = hydrateRaycastViewSnapshot(rawSnapshot, hydrateCtx());
+    console.log('snapshot', snapshot.value);
   });
 
   unsubPatch = channel.on('raycast:view:patch', (patches: JsonPatchOp[]) => {
     if (!rawSnapshot) return;
     rawSnapshot = applyJsonPatch(rawSnapshot, patches) as RaycastViewSnapshot;
     snapshot.value = hydrateRaycastViewSnapshot(rawSnapshot, hydrateCtx());
+    console.log('snapshot', snapshot.value);
   });
 
   unsubFormRefHandler = channel.handle('raycast:view:ref-invoke', payload => invokeRefHandle(payload));
