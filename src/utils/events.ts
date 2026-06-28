@@ -31,7 +31,7 @@ export const listenEvents = async () => {
   });
 };
 
-window.addEventListener('unload', () => {
+window.addEventListener('beforeunload', () => {
   unlisten?.();
 });
 

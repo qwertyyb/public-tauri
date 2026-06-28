@@ -78,6 +78,10 @@ export const start = async () => {
     };
     command.stdout.on('data', handler);
     command.once('error', () => reject());
+    command.on('close', () => {
+      console.log('NodeJS Server closed');
+      location.reload();
+    });
     command.spawn().then((result) => {
       console.log('NodeJS Server started');
       process = result;
@@ -91,6 +95,6 @@ export const start = async () => {
 
 export const stop = () => process?.kill();
 
-window.addEventListener('unload', () => {
+window.addEventListener('beforeunload', () => {
   stop();
 });

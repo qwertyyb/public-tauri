@@ -70,110 +70,10 @@
               @click="onImportDevPlugin"
             />
           </div>
-          <ul class="plugin-list">
-            <li
-              v-for="(plugin, index) in plugins"
-              :key="plugin.path + plugin.manifest.name"
-              class="plugin-item"
-            >
-              <div class="plugin-item-self">
-                <UIcon
-                  :name="expand[plugin.manifest.name] ? 'i-lucide-chevron-down' : 'i-lucide-chevron-right'"
-                  class="plugin-expand-icon"
-                  :class="{ hidden: plugin.commands.length <= 0 }"
-                  @click="onExpandPluginClick(plugin)"
-                />
-                <img
-                  :src="plugin.manifest.icon"
-                  alt=""
-                  class="plugin-icon"
-                >
-                <div class="plugin-info">
-                  <h3 class="plugin-title flex items-center">
-                    {{ plugin.manifest.title }}
-                    <UBadge
-                      v-if="isPathInDevList(plugin.path)"
-                      size="xs"
-                      color="warning"
-                      class="dev-plugin-tag"
-                    >
-                      开发
-                    </UBadge>
-                  </h3>
-                  <p class="plugin-subtitle">
-                    {{ plugin.manifest.subtitle }}
-                  </p>
-                </div>
-                <UButton
-                  v-if="plugin.manifest.preferences?.length"
-                  icon="i-lucide-settings"
-                  variant="ghost"
-                  color="neutral"
-                  size="xs"
-                  class="action-item"
-                  @click="openPrfsView(plugin.manifest.name)"
-                />
-                <UButton
-                  v-if="canRemovePlugin(plugin)"
-                  icon="i-lucide-trash-2"
-                  variant="ghost"
-                  color="error"
-                  size="xs"
-                  class="action-item"
-                  @click="onRemovePluginClick(index, plugin)"
-                />
-                <USwitch
-                  class="action-item"
-                  :model-value="plugin.settings?.disabled !== true"
-                  @update:model-value="onPluginDisabledChange($event as boolean, plugin)"
-                />
-              </div>
-              <ul
-                v-if="expand[plugin.manifest.name]"
-                class="command-list"
-              >
-                <li
-                  v-for="command in plugin.commands"
-                  :key="command.name"
-                  class="command-item"
-                >
-                  <img
-                    :src="command.icon"
-                    alt=""
-                    class="command-icon"
-                  >
-                  <div class="command-info">
-                    <h3 class="command-title">
-                      {{ command.title }}
-                    </h3>
-                    <h5 class="command-subtitle">
-                      {{ command.subtitle }}
-                    </h5>
-                  </div>
-                  <div class="action-item">
-                    <UInput
-                      size="sm"
-                      placeholder="别名"
-                      :model-value="plugin.settings?.commands?.[command.name]?.alias ?? ''"
-                      @update:model-value="onCommandChange({ alias: $event }, plugin, command)"
-                    />
-                  </div>
-                  <div class="action-item">
-                    <ShortcutsRecorder
-                      :model-value="plugin.settings?.commands?.[command.name]?.shortcut ?? ''"
-                      @update:model-value="onCommandChange({ shortcut: $event }, plugin, command)"
-                    />
-                  </div>
-                  <div class="action-item">
-                    <USwitch
-                      :model-value="!plugin.settings?.commands?.[command.name]?.disabled"
-                      @update:model-value="onCommandChange({ disabled: !$event }, plugin, command)"
-                    />
-                  </div>
-                </li>
-              </ul>
-            </li>
-          </ul>
+          <PluginList
+            :plugins="plugins"
+            @changed="refreshSettings"
+          />
         </div>
         <div
           v-else-if="curView==='links'"
@@ -284,24 +184,15 @@ import { computed, ref, toRaw, watch } from 'vue';
 import { useColorMode } from '@vueuse/core';
 import PublicLayout from '@/components/PublicLayout.vue';
 import ShortcutsRecorder from '@/components/HotkeyRecorder.vue';
-import type { ICommand as IPluginCommand } from '@public-tauri/schema';
-import type { IRunningPlugin, ICommandSettings } from '@/types/plugin';
-import { getSettings, updateSettings, getPlugins, updateMainShortcut, checkAllPermissions, type PermissionCheckResult } from '@/services/settings';
+import type { IRunningPlugin } from '@/types/plugin';
+import { getSettings, updateSettings, getPlugins, updateMainShortcut, checkAllPermissions } from '@/services/settings';
+import PluginList from '@/components/PluginList.vue';
 import { onPageEnter, useRouter } from '@/router';
-import { updateCommandSettings, updateCommandShortcut, updatePluginPreferences, updatePluginSettings } from '@/plugin/manager';
-import { openCommandPreferences, openPluginPreferences } from '@/plugin/utils';
-import { BUILTIN_PLUGINS } from '@/plugin/builtin';
-import { INNER_PLUGIN_NAMES } from '@/plugin/constants';
+import { updatePluginPreferences } from '@/plugin/manager';
 import {
   getDevPluginPathList,
   getStorePluginPathList,
-  isPluginPathInDevList,
-  isPluginPathInRaycastList,
-  isPluginPathInStoreList,
   registerPluginFromLocalPath,
-  uninstallRaycastStorePlugin,
-  uninstallStorePlugin,
-  unregisterDevPluginFromLocalPath,
 } from '@/services/store';
 import { showToast } from '@/utils/feedback';
 
@@ -346,11 +237,6 @@ const plugins = ref<IRunningPlugin[]>([]);
 const devPluginPathList = ref<string[]>([]);
 const storePluginPathList = ref<string[]>([]);
 
-const isPathInDevList = (p: string) => Boolean(p) && devPluginPathList.value.some(d => normalizePath(d) === normalizePath(p));
-const isBuiltinPlugin = (plugin: IRunningPlugin) => BUILTIN_PLUGINS.has(plugin.manifest.name)
-  || (INNER_PLUGIN_NAMES as readonly string[]).includes(plugin.manifest.name);
-const canRemovePlugin = (plugin: IRunningPlugin) => !isBuiltinPlugin(plugin);
-
 const settings = ref<{
   launchAtLogin: boolean,
   shortcuts: string,
@@ -360,7 +246,6 @@ const settings = ref<{
   shortcuts: '',
   clearTimeout: 90,
 });
-const expand = ref<Record<string, boolean | undefined>>({});
 
 interface ILink {
   trigger: string
@@ -458,30 +343,6 @@ const onClearTimeoutChange = async () => {
   await updateSettings({ clearTimeout: settings.value.clearTimeout });
   refreshSettings();
 };
-const onPluginDisabledChange = async (enabled: boolean, plugin: IRunningPlugin) => {
-  console.log('plugin enabled', enabled);
-  // eslint-disable-next-line no-param-reassign
-  plugin.settings = { ...plugin.settings!, disabled: !enabled };
-  await updatePluginSettings(plugin.manifest.name, { disabled: !enabled });
-  refreshSettings();
-};
-const onCommandChange = async (values: Partial<ICommandSettings>, plugin: IRunningPlugin, command: IPluginCommand) => {
-  if ('shortcut' in values) {
-    updateCommandShortcut(plugin.manifest.name, command.name, values.shortcut);
-    return;
-  }
-  // eslint-disable-next-line no-param-reassign
-  plugin.settings!.commands![command.name] = { ...plugin.settings!.commands![command.name], ...values };
-  await updateCommandSettings(plugin.manifest.name, command.name, { ...values });
-  refreshSettings();
-};
-
-const onExpandPluginClick = (plugin: IRunningPlugin) => {
-  expand.value = {
-    ...expand.value,
-    [plugin.manifest.name]: !expand.value[plugin.manifest.name],
-  };
-};
 const onImportDevPlugin = async () => {
   const { open } = await import('@tauri-apps/plugin-dialog');
   const selected = await open({
@@ -498,51 +359,6 @@ const onImportDevPlugin = async () => {
     refreshSettings();
   } catch (e) {
     showToast(e instanceof Error ? e.message : String(e));
-  }
-};
-
-const onRemovePluginClick = async (_index: number, plugin: IRunningPlugin) => {
-  if (isBuiltinPlugin(plugin)) {
-    showToast('内置插件无法从此处移除');
-    return;
-  }
-  const { path, manifest } = plugin;
-  if (await isPluginPathInDevList(path)) {
-    await unregisterDevPluginFromLocalPath(path);
-    showToast('已移除开发插件');
-    refreshSettings();
-    return;
-  }
-  if (await isPluginPathInStoreList(path)) {
-    await uninstallStorePlugin(manifest.name);
-    showToast('插件移除成功');
-    refreshSettings();
-    return;
-  }
-  if (await isPluginPathInRaycastList(path)) {
-    await uninstallRaycastStorePlugin(manifest.name);
-    showToast('插件移除成功');
-    refreshSettings();
-    return;
-  }
-  if (path) {
-    await unregisterDevPluginFromLocalPath(path);
-    showToast('插件已移除');
-    refreshSettings();
-    return;
-  }
-  showToast('无法移除此插件');
-};
-
-const openPrfsView = async (plugin: string, command?: string) => {
-  if (plugin === 'links') {
-    curView.value = 'links';
-    return;
-  }
-  if (command) {
-    await openCommandPreferences(plugin, command);
-  } else {
-    openPluginPreferences(plugin);
   }
 };
 
