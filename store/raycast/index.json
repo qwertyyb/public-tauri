@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-27T19:44:54.820Z",
+  "generatedAt": "2026-06-28T19:45:55.247Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "e43de3eb8e86aa50093d0791ffd366daa6633c1e"
+    "commit": "cb407ad057af175974d24aade1c3382f568d2cfe"
   },
   "count": 3033,
   "extensions": [
@@ -36679,7 +36679,8 @@
         "Katsuba",
         "alexi.build",
         "mbuvarp",
-        "frederik_obe"
+        "frederik_obe",
+        "bsradcliffe"
       ],
       "categories": [],
       "license": "MIT",
@@ -36762,8 +36763,8 @@
           "name": "caffeinateUntil",
           "title": "Caffeinate Until",
           "subtitle": "Coffee",
-          "description": "Prevent your Mac from sleeping until a certain time",
-          "mode": "no-view",
+          "description": "Prevent your Mac from sleeping until a certain time. Type one like 5pm, or leave the field empty to pick a date and time.",
+          "mode": "view",
           "keywords": [],
           "preferences": []
         },
@@ -133467,33 +133468,7 @@
           "preferences": []
         }
       ],
-      "preferences": [
-        {
-          "name": "apiVersion",
-          "title": "Teams Version",
-          "description": "Classic Teams or New Teams",
-          "type": "dropdown",
-          "data": [
-            {
-              "title": "Classic Teams",
-              "value": "classic"
-            },
-            {
-              "title": "New Teams",
-              "value": "new"
-            }
-          ],
-          "default": "new",
-          "required": true
-        },
-        {
-          "name": "apiToken",
-          "title": "API Token (Classic Teams)",
-          "description": "Get this from your Teams client in Settings → Privacy → Manage API (Only required for Classic Teams)",
-          "type": "textfield",
-          "required": false
-        }
-      ]
+      "preferences": []
     },
     {
       "name": "midas",
@@ -148170,7 +148145,8 @@
         "chris_van_es",
         "vicampuzano",
         "ErBlack",
-        "byheaven"
+        "byheaven",
+        "tofrankie"
       ],
       "categories": [
         "Productivity"
@@ -148180,7 +148156,7 @@
         "macOS",
         "Windows"
       ],
-      "version": "1.0.1",
+      "version": "1.0.2",
       "storeUrl": "https://www.raycast.com/marcjulian/obsidian",
       "source": {
         "type": "github-monorepo",
