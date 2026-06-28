@@ -19,6 +19,7 @@ declare module 'vue' {
     InputBar: typeof import('./src/components/InputBar.vue')['default']
     LoadingBar: typeof import('./src/components/LoadingBar.vue')['default']
     LoadingIcon: typeof import('./src/components/LoadingIcon.vue')['default']
+    PluginList: typeof import('./src/components/PluginList.vue')['default']
     PublicLayout: typeof import('./src/components/PublicLayout.vue')['default']
     ResultItem: typeof import('./src/components/ResultItem.vue')['default']
     ResultItemPreview: typeof import('./src/components/ResultItemPreview.vue')['default']
