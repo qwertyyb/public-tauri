@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-28T19:45:55.247Z",
+  "generatedAt": "2026-06-29T20:13:25.416Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "cb407ad057af175974d24aade1c3382f568d2cfe"
+    "commit": "1bb59c6602e4219c8567b3423193ef4c3c4b507b"
   },
-  "count": 3033,
+  "count": 3037,
   "extensions": [
     {
       "name": "0x0",
@@ -45632,8 +45632,12 @@
       "description": "Quickly open your cyberduck connections",
       "icon": "icon.png",
       "author": "scottaglia",
-      "contributors": [],
-      "categories": [],
+      "contributors": [
+        "xmok"
+      ],
+      "categories": [
+        "Applications"
+      ],
       "license": "MIT",
       "platforms": [
         "macOS"
@@ -75004,6 +75008,74 @@
       ]
     },
     {
+      "name": "from",
+      "title": "From",
+      "description": "Capture thoughts, search your notes and open your daily note in From — the outliner that understands what you write, so capture stays frictionless and fast.",
+      "icon": "command-icon.png",
+      "author": "alberto_lezaun",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/alberto_lezaun/from",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/from",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "create",
+          "title": "Create in from",
+          "subtitle": "From",
+          "description": "Jot down a thought and From files it in today's note as a note, task or event — figuring out the type and date for you, so you just write.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search",
+          "title": "Search from",
+          "subtitle": "From",
+          "description": "Full-text search across your entire From vault and open any note in the Mac app or on the web.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "today",
+          "title": "Open Today's Note",
+          "subtitle": "From",
+          "description": "Jump straight to your daily note in From.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiToken",
+          "title": "API Token",
+          "description": "Your From API token. In From: Settings → Quick capture → Raycast → Copy token.",
+          "type": "password",
+          "required": true
+        },
+        {
+          "name": "baseUrl",
+          "title": "Server",
+          "description": "From server base URL.",
+          "type": "textfield",
+          "required": false,
+          "default": "https://from-server-production.up.railway.app"
+        }
+      ]
+    },
+    {
       "name": "fronius-inverter",
       "title": "Fronius Inverter",
       "description": "A Raycast extension to monitor your Fronius Gen24 inverter with a realtime dashboard and background error monitoring.",
@@ -93081,6 +93153,99 @@
           "description": "Your Habitica API Token (found in Settings → API)",
           "type": "password",
           "required": true
+        }
+      ]
+    },
+    {
+      "name": "habitify-raycast",
+      "title": "Habitify",
+      "description": "Manage Habitify habits from Raycast.",
+      "icon": "icon.png",
+      "author": "razz13",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "version": "0.1.0",
+      "storeUrl": "https://www.raycast.com/razz13/habitify-raycast",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/habitify-raycast",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "index",
+          "title": "Today Habits",
+          "description": "View and manage today's Habitify habits.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "current-time-of-day",
+          "title": "Current Time of Day",
+          "description": "Show habits scheduled for the current time slot.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "areas",
+          "title": "Habit Areas",
+          "description": "Browse habits grouped by area.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "today-stats",
+          "title": "Today Stats",
+          "description": "View today's overview metrics and streaks.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "title": "Habitify API Key",
+          "description": "Create it in Habitify Settings > API. Required for all commands.",
+          "type": "password",
+          "required": true
+        },
+        {
+          "name": "rowColorMode",
+          "title": "Row Color Mode",
+          "description": "Choose how Raycast should tint habit rows.",
+          "type": "dropdown",
+          "required": true,
+          "default": "status",
+          "data": [
+            {
+              "title": "Status Colors",
+              "value": "status"
+            },
+            {
+              "title": "Habit Colors",
+              "value": "habit"
+            },
+            {
+              "title": "Area Colors",
+              "value": "area"
+            },
+            {
+              "title": "Off",
+              "value": "off"
+            }
+          ]
         }
       ]
     },
@@ -152259,12 +152424,17 @@
       "description": "Opens the latest URL from Clipboard if one is found in the latest 6 entries",
       "icon": "icon.png",
       "author": "pernielsentikaer",
-      "contributors": [],
+      "contributors": [
+        "nthnchng"
+      ],
       "categories": [
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "storeUrl": "https://www.raycast.com/pernielsentikaer/open-latest-url-from-clipboard",
       "source": {
         "type": "github-monorepo",
@@ -152328,6 +152498,14 @@
               "label": "Tel",
               "description": "Allow opening Tel URLs",
               "default": true
+            },
+            {
+              "name": "customSchemes",
+              "type": "textfield",
+              "required": false,
+              "title": "Custom URL Schemes",
+              "description": "Comma-separated app deep-link schemes to also allow, e.g. obsidian, slack, vscode",
+              "placeholder": "obsidian, slack, vscode"
             }
           ]
         }
@@ -160876,6 +161054,50 @@
           "title": "Compress Selected PDF Files",
           "description": "This command compresses the selected PDF files in Finder using native PDFKit",
           "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "pdf-expert",
+      "title": "PDF Expert",
+      "description": "Navigate open tabs and recent documents in PDF Expert",
+      "icon": "pdf-expert.png",
+      "author": "mattiacolombomc",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Applications"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/mattiacolombomc/pdf-expert",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/pdf-expert",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-open-tabs",
+          "title": "Search Open Tabs",
+          "subtitle": "PDF Expert",
+          "description": "List all PDFs open in PDF Expert and switch to any tab",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "recent-documents",
+          "title": "Recent Documents",
+          "subtitle": "PDF Expert",
+          "description": "Browse recently opened PDF Expert documents",
+          "mode": "view",
           "keywords": [],
           "preferences": []
         }
@@ -213936,7 +214158,8 @@
       "author": "KevinBatdorf",
       "contributors": [
         "litomore",
-        "taken"
+        "taken",
+        "clins1994"
       ],
       "categories": [
         "Media",
@@ -213963,15 +214186,24 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "search-users",
+          "title": "Search Users",
+          "subtitle": "Steam",
+          "description": "Search Steam users and view public profile information.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": [
         {
           "name": "token",
           "type": "password",
-          "title": "Steam API Key",
-          "description": "Add your API key",
-          "placeholder": "API Key",
+          "title": "Web API Key",
+          "description": "Add your Steam Web API key",
+          "placeholder": "Web API Key",
           "required": false
         },
         {
@@ -217580,7 +217812,9 @@
         "Design Tools"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/kaichi/raycast-svgo",
       "source": {
         "type": "github-monorepo",
@@ -217592,7 +217826,7 @@
         {
           "name": "index",
           "title": "Configure SVGO",
-          "description": "Configure SVGO for all commands",
+          "description": "Configure SVGO plugins for all commands",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -217600,7 +217834,6 @@
         {
           "name": "optimize-string",
           "title": "Optimize SVG String",
-          "subtitle": "SVGO",
           "description": "Reads the clipboard content as plain text and copies the optimized SVG string to the clipboard.",
           "mode": "no-view",
           "keywords": [],
@@ -217618,14 +217851,32 @@
         {
           "name": "optimize-files",
           "title": "Optimize SVG Files",
-          "subtitle": "SVGO",
           "description": "Creates one or multiple optimized SVG files based on the current Finder selection.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "provider",
+          "title": "Optimization Provider",
+          "description": "OXVG is a Rust-based optimizer that is faster on large SVGs but experimental and not a full SVGO clone.",
+          "type": "dropdown",
+          "default": "svgo",
+          "required": false,
+          "data": [
+            {
+              "title": "SVGO (default)",
+              "value": "svgo"
+            },
+            {
+              "title": "OXVG (experimental, fast)",
+              "value": "oxvg"
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "svgr",
@@ -229084,13 +229335,16 @@
       "icon": "tinypng-icon.png",
       "author": "kawamataryo",
       "contributors": [
-        "j3lte"
+        "j3lte",
+        "thuggyduck"
       ],
       "categories": [
         "Developer Tools"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/kawamataryo/tinypng",
       "source": {
         "type": "github-monorepo",
@@ -229104,6 +229358,15 @@
           "title": "Compress Images",
           "subtitle": "TinyPNG",
           "description": "Compress selected images with TinyPNG.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "compressImagesMultipleTimes",
+          "title": "Compress Images Multiple Times",
+          "subtitle": "TinyPNG",
+          "description": "Compress selected images with TinyPNG multiple times.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -232694,7 +232957,8 @@
       "icon": "trakt.png",
       "author": "thesobercoder",
       "contributors": [
-        "vishalbalaji3"
+        "vishalbalaji3",
+        "Berenger"
       ],
       "categories": [
         "Media",
@@ -232713,6 +232977,20 @@
         "ref": "main"
       },
       "commands": [
+        {
+          "name": "search-media",
+          "title": "Search Media",
+          "subtitle": "Trakt Manager",
+          "description": "Search for movies and shows by title",
+          "mode": "view",
+          "keywords": [
+            "movies",
+            "shows",
+            "trakt",
+            "search"
+          ],
+          "preferences": []
+        },
         {
           "name": "movies",
           "title": "Search Movies",
@@ -239727,12 +240005,14 @@
         "Kang",
         "yug2005",
         "xmok",
-        "alexi.build"
+        "alexi.build",
+        "arinbalyan"
       ],
       "categories": [],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/eggsy/unsplash",
       "source": {
@@ -242848,7 +243128,8 @@
         "ridemountainpig",
         "sebdanielsson",
         "1weiho",
-        "thomas-forbes"
+        "thomas-forbes",
+        "0xdhrv"
       ],
       "categories": [],
       "license": "MIT",
@@ -242856,6 +243137,7 @@
         "macOS",
         "Windows"
       ],
+      "version": "2.19.0",
       "storeUrl": "https://www.raycast.com/MaxLeiter/vercast",
       "source": {
         "type": "github-monorepo",
@@ -243042,6 +243324,7 @@
       "platforms": [
         "macOS"
       ],
+      "version": "1.1.0",
       "storeUrl": "https://www.raycast.com/hjm79/vesslo",
       "source": {
         "type": "github-monorepo",
@@ -243072,7 +243355,7 @@
           "name": "bulk-homebrew-update",
           "title": "Bulk Homebrew Update",
           "subtitle": "Vesslo",
-          "description": "Update all Homebrew cask apps at once",
+          "description": "Update eligible Homebrew cask apps from Vesslo",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -247461,14 +247744,18 @@
       "contributors": [
         "andreaselia",
         "j3lte",
-        "chrismessina"
+        "chrismessina",
+        "tofrankie"
       ],
       "categories": [
         "Web",
         "Developer Tools"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "storeUrl": "https://www.raycast.com/pernielsentikaer/wayback-machine",
       "source": {
         "type": "github-monorepo",
@@ -247505,6 +247792,14 @@
           "name": "saveMultiple",
           "title": "Save Multiple to Wayback Machine",
           "description": "Save multiple webpages to Wayback Machine",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-pages",
+          "title": "Search Pages",
+          "description": "Search archived webpages snapshots",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -249927,6 +250222,153 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "wiim-remote",
+      "title": "WiiM Remote",
+      "description": "Control your WiiM device",
+      "icon": "extension-icon.png",
+      "author": "roele",
+      "contributors": [],
+      "categories": [
+        "Media",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/roele/wiim-remote",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/wiim-remote",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "current-track",
+          "title": "Current Track",
+          "description": "Shows the currently playing track",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "play-pause",
+          "title": "Play/Pause",
+          "description": "Toggles playback",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "next-track",
+          "title": "Next Track",
+          "description": "Skips to the next track",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "previous-track",
+          "title": "Previous Track",
+          "description": "Skips to the previous track",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "set-volume",
+          "title": "Set Volume",
+          "description": "Sets the volume to a specific level",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "volume-up",
+          "title": "Turn Volume Up",
+          "description": "Increases the volume",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "volume-down",
+          "title": "Turn Volume Down",
+          "description": "Decreases the volume",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle-mute",
+          "title": "Toggle Mute",
+          "description": "Mutes or unmutes the audio",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "select-preset",
+          "title": "Select Preset",
+          "description": "Switch to a different preset",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "switch-input",
+          "title": "Switch Input",
+          "description": "Switch the audio input source",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle-eq",
+          "title": "Toggle EQ",
+          "description": "Enable or disable the equalizer",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "set-eq-preset",
+          "title": "Set EQ Preset",
+          "description": "Select an equalizer preset",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "select-device",
+          "title": "Select Device",
+          "description": "Choose a WiiM device from the network",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "wiim_device_ip",
+          "type": "textfield",
+          "required": false,
+          "title": "WiiM Device IP Address",
+          "description": "IP address of your WiiM device (e.g. 192.168.1.100). Leave blank to use auto-discovery."
+        },
+        {
+          "name": "wiim_volume_step",
+          "type": "textfield",
+          "required": false,
+          "title": "Volume Step",
+          "description": "How much to adjust volume per step (1–50). Default is 5.",
+          "default": "5"
+        }
+      ]
     },
     {
       "name": "wikipedia",
@@ -257338,7 +257780,8 @@
         "madza",
         "xilopaint",
         "yug2005",
-        "ridemountainpig"
+        "ridemountainpig",
+        "0xdhrv"
       ],
       "categories": [],
       "license": "MIT",
@@ -258496,7 +258939,8 @@
         "xmorse",
         "ivens_joris",
         "FollowTheProcess",
-        "justyt65"
+        "justyt65",
+        "npc203"
       ],
       "categories": [
         "Developer Tools"
@@ -260306,7 +260750,8 @@
       "contributors": [
         "Visual-Studio-Coder",
         "samuelkraft",
-        "jacperegrinedavies"
+        "jacperegrinedavies",
+        "0xdhrv"
       ],
       "categories": [
         "Communication"
