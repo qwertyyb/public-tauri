@@ -10,6 +10,12 @@ const createClipboardItem = (text: string) => {
     matches: [
       { type: 'text', keywords: [''] },
     ],
+    actions: [
+      {
+        name: 'copy-to-clipboard',
+        title: '复制到剪切板',
+      },
+    ],
   };
   return item;
 };
