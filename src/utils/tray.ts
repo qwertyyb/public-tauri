@@ -59,10 +59,15 @@ const options = {
   iconAsTemplate: true,
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 let tray: TrayIcon;
 
 export const createTray = async () => {
   TrayIcon.removeById(options.id).catch(() => {});
   tray = await TrayIcon.new(options);
 };
+
+window.addEventListener('beforeunload', () => {
+  tray?.close();
+  menu?.close();
+});

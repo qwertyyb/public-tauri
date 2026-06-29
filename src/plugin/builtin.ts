@@ -21,14 +21,14 @@ export const BUILTIN_PLUGINS = new Map<string, IRunningPlugin>([
         name: 'settings',
         title: 'Public设置',
         subtitle: 'Public应用设置',
-        icon: '/settings.png',
+        icon: 'settings',
       },
       commands: [
         {
           name: 'settings',
           title: 'Public设置',
           subtitle: 'Public应用设置',
-          icon: '/settings.png',
+          icon: 'settings',
           matches: [
             {
               type: 'text',

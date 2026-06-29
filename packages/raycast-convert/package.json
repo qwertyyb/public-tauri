@@ -1,6 +1,6 @@
 {
   "name": "@public-tauri/raycast-convert",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "description": "Convert Raycast extensions into Public Tauri plugins.",
   "type": "module",
   "files": [

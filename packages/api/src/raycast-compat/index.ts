@@ -197,11 +197,13 @@ export class Toast {
     this._secondaryAction = value;
   }
 
+  // eslint-disable-next-line @typescript-eslint/member-ordering
   async show(): Promise<void> {
     this._hidden = false;
     this.pushHost();
   }
 
+  // eslint-disable-next-line @typescript-eslint/member-ordering
   async hide(): Promise<void> {
     this._hidden = true;
   }
@@ -227,6 +229,7 @@ export class Toast {
   }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace Toast {
   export type Style = (typeof Toast.Style)[keyof typeof Toast.Style];
   export interface Options {

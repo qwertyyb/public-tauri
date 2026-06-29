@@ -27,7 +27,7 @@ function safeUpdateActions(actions: PluginShellAction[]) {
   updateActions(actions);
 }
 
-const filterOn = computed(() => Boolean(props.filtering));
+const filterOn = computed(() => Boolean(props.filtering || props.searchText || props.onSearchTextChange));
 
 const needle = computed(() => (props.searchText ?? '').trim().toLowerCase());
 

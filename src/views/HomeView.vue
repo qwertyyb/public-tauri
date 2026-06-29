@@ -124,6 +124,9 @@ onMounted(async () => {
       focusInput();
     }
   });
+  window.addEventListener('beforeunload', () => {
+    unlistenFocusChange?.();
+  });
 });
 
 onBeforeUnmount(() => {

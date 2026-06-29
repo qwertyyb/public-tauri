@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-24T20:07:42.783Z",
+  "generatedAt": "2026-06-28T19:45:55.247Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "36e3547f514bd751ee2bf3187f4e80a763dbca66"
+    "commit": "cb407ad057af175974d24aade1c3382f568d2cfe"
   },
-  "count": 3028,
+  "count": 3033,
   "extensions": [
     {
       "name": "0x0",
@@ -21011,7 +21011,9 @@
       "description": "Turn your main display black for quick screen cleaning.",
       "icon": "icon.png",
       "author": "li_jin",
-      "contributors": [],
+      "contributors": [
+        "0xdhrv"
+      ],
       "categories": [
         "System"
       ],
@@ -21020,7 +21022,7 @@
         "macOS",
         "Windows"
       ],
-      "version": "1.1.0",
+      "version": "1.2.0",
       "storeUrl": "https://www.raycast.com/li_jin/blackr",
       "source": {
         "type": "github-monorepo",
@@ -36677,7 +36679,8 @@
         "Katsuba",
         "alexi.build",
         "mbuvarp",
-        "frederik_obe"
+        "frederik_obe",
+        "bsradcliffe"
       ],
       "categories": [],
       "license": "MIT",
@@ -36760,8 +36763,8 @@
           "name": "caffeinateUntil",
           "title": "Caffeinate Until",
           "subtitle": "Coffee",
-          "description": "Prevent your Mac from sleeping until a certain time",
-          "mode": "no-view",
+          "description": "Prevent your Mac from sleeping until a certain time. Type one like 5pm, or leave the field empty to pick a date and time.",
+          "mode": "view",
           "keywords": [],
           "preferences": []
         },
@@ -39872,7 +39875,8 @@
       "author": "nielsvanrijn",
       "contributors": [
         "yusifaliyevpro",
-        "ridemountainpig"
+        "ridemountainpig",
+        "cedric25"
       ],
       "categories": [
         "Developer Tools",
@@ -53663,7 +53667,7 @@
     {
       "name": "diff-view",
       "title": "Diff View",
-      "description": "Compare the last two entries of your clipboard in VS Code or Cursor",
+      "description": "Compare the last two entries of your clipboard, or two selected files, in VS Code, Cursor, or VSCodium",
       "icon": "extension-icon.png",
       "author": "kalaschnik",
       "contributors": [],
@@ -53672,7 +53676,9 @@
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/kalaschnik/diff-view",
       "source": {
         "type": "github-monorepo",
@@ -53684,7 +53690,15 @@
         {
           "name": "diff-view",
           "title": "Show Diff View",
-          "description": "Compare the last two entries of your clipboard in VS Code or Cursor",
+          "description": "Compare the last two entries of your clipboard in VS Code, Cursor, or VSCodium",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-with-editor",
+          "title": "Open with Editor",
+          "description": "Compare the two files selected in Finder in your preferred editor",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -53706,6 +53720,10 @@
             {
               "title": "Cursor",
               "value": "cursor"
+            },
+            {
+              "title": "VSCodium",
+              "value": "codium"
             }
           ]
         }
@@ -74266,6 +74284,74 @@
       ]
     },
     {
+      "name": "foxhop",
+      "title": "Fox Hop",
+      "description": "Focus a specific Firefox tab from anywhere — manage your tab targets and generate per-tab hotkey scripts.",
+      "icon": "extension-icon.png",
+      "author": "kud",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/kud/foxhop",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/foxhop",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "list-tabs",
+          "title": "List Tabs",
+          "description": "List, focus, and manage your saved Firefox tab targets",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "foxhopPath",
+          "type": "textfield",
+          "title": "foxhop CLI path",
+          "description": "Path to the foxhop binary (leave as 'foxhop' if on PATH)",
+          "default": "foxhop",
+          "required": false
+        },
+        {
+          "name": "browser",
+          "type": "dropdown",
+          "title": "Firefox app",
+          "description": "Which Firefox app to foreground when focusing a tab",
+          "default": "Firefox Nightly",
+          "required": false,
+          "data": [
+            {
+              "title": "Firefox",
+              "value": "Firefox"
+            },
+            {
+              "title": "Firefox Nightly",
+              "value": "Firefox Nightly"
+            },
+            {
+              "title": "Firefox Developer Edition",
+              "value": "Firefox Developer Edition"
+            },
+            {
+              "title": "Firefox Beta",
+              "value": "Firefox Beta"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "frame-crop-art",
       "title": "Frame Crop - Discover Art for Your TV",
       "description": "Discover & download amazing artwork curated by Frame Crop",
@@ -84304,7 +84390,9 @@
       "description": "Search Goodreads books, authors and more",
       "icon": "goodreads-icon.png",
       "author": "puneeth",
-      "contributors": [],
+      "contributors": [
+        "xmok"
+      ],
       "categories": [
         "Media",
         "Web"
@@ -84433,7 +84521,8 @@
         "fabitosh",
         "geekyed",
         "dangkhoipro",
-        "0xdhrv"
+        "0xdhrv",
+        "peduarte"
       ],
       "categories": [
         "Productivity",
@@ -84444,7 +84533,7 @@
         "macOS",
         "Windows"
       ],
-      "version": "1.4.3",
+      "version": "1.4.4",
       "storeUrl": "https://www.raycast.com/thomas/google-calendar",
       "source": {
         "type": "github-monorepo",
@@ -114933,7 +115022,8 @@
         "validate",
         "dead_hikikomori",
         "mateus_badalotti",
-        "jomifepe"
+        "jomifepe",
+        "0xdhrv"
       ],
       "categories": [],
       "license": "MIT",
@@ -124030,7 +124120,7 @@
               "type": "dropdown",
               "title": "Open Method",
               "description": "Choose how Raycast opens the verse in Logos.",
-              "defaultValue": "ref.ly URL",
+              "defaultValue": "logosres scheme",
               "required": true,
               "data": [
                 {
@@ -133378,33 +133468,7 @@
           "preferences": []
         }
       ],
-      "preferences": [
-        {
-          "name": "apiVersion",
-          "title": "Teams Version",
-          "description": "Classic Teams or New Teams",
-          "type": "dropdown",
-          "data": [
-            {
-              "title": "Classic Teams",
-              "value": "classic"
-            },
-            {
-              "title": "New Teams",
-              "value": "new"
-            }
-          ],
-          "default": "new",
-          "required": true
-        },
-        {
-          "name": "apiToken",
-          "title": "API Token (Classic Teams)",
-          "description": "Get this from your Teams client in Settings → Privacy → Manage API (Only required for Classic Teams)",
-          "type": "textfield",
-          "required": false
-        }
-      ]
+      "preferences": []
     },
     {
       "name": "midas",
@@ -148081,7 +148145,8 @@
         "chris_van_es",
         "vicampuzano",
         "ErBlack",
-        "byheaven"
+        "byheaven",
+        "tofrankie"
       ],
       "categories": [
         "Productivity"
@@ -148091,7 +148156,7 @@
         "macOS",
         "Windows"
       ],
-      "version": "1.0.1",
+      "version": "1.0.2",
       "storeUrl": "https://www.raycast.com/marcjulian/obsidian",
       "source": {
         "type": "github-monorepo",
@@ -149631,6 +149696,40 @@
           "label": "Delete the original file"
         }
       ]
+    },
+    {
+      "name": "oh-shoot",
+      "title": "Oh-Shoot",
+      "description": "Search your oh-shoot screenshots by their OCR text and jump straight back into the oh-shoot app.",
+      "icon": "command-icon.png",
+      "author": "nico_pergande",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Applications"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/nico_pergande/oh-shoot",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/oh-shoot",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-screenshots",
+          "title": "Search Screenshots",
+          "description": "Search oh-shoot screenshots by the text recognised inside them (OCR).",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "ohdear",
@@ -159284,7 +159383,8 @@
         "pernielsentikaer",
         "hnsn",
         "yusifaliyevpro",
-        "xmok"
+        "xmok",
+        "peduarte"
       ],
       "categories": [
         "Productivity",
@@ -159325,6 +159425,40 @@
               "required": false,
               "default": false,
               "label": "Remember numbers and characters"
+            }
+          ]
+        },
+        {
+          "name": "copy-random-password",
+          "title": "Copy Random Password",
+          "description": "Generates a random password and copies it directly to the clipboard.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "length",
+              "title": "Number of characters",
+              "description": "The number of characters in the generated password (5–64).",
+              "type": "textfield",
+              "required": false,
+              "default": "16"
+            },
+            {
+              "name": "useNumbers",
+              "description": "Include numbers in the generated password.",
+              "type": "checkbox",
+              "required": false,
+              "default": true,
+              "title": "Options",
+              "label": "Use numbers"
+            },
+            {
+              "name": "useChars",
+              "description": "Include special characters in the generated password.",
+              "type": "checkbox",
+              "required": false,
+              "default": true,
+              "label": "Use special characters"
             }
           ]
         },
@@ -176354,7 +176488,9 @@
         "Other"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/Noamko/quick-latex",
       "source": {
         "type": "github-monorepo",
@@ -191707,6 +191843,161 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "rom-launcher",
+      "title": "ROM Launcher",
+      "description": "Launch your retro game collection with cover art, achievements, and play stats - supports RetroArch, MAME, DuckStation, and more.",
+      "icon": "rllogo.png",
+      "author": "glct26",
+      "contributors": [],
+      "categories": [
+        "Applications"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/glct26/rom-launcher",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/rom-launcher",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "index",
+          "title": "Browse ROMs",
+          "description": "View your game library, check achievements, and launch games",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "manage-libraries",
+          "title": "Manage Libraries",
+          "description": "Add and configure ROM folders and emulator cores",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "retroarchPath",
+          "title": "RetroArch Executable",
+          "description": "Select the RetroArch application or executable file.",
+          "type": "file",
+          "required": false
+        },
+        {
+          "name": "coresPath",
+          "type": "directory",
+          "required": false,
+          "title": "RetroArch Cores Directory",
+          "description": "Select the folder containing libretro cores (Leave empty if using default Windows folder structure)"
+        },
+        {
+          "name": "mamePath",
+          "title": "MAME Executable",
+          "description": "Select the standalone MAME executable file.",
+          "type": "file",
+          "required": false
+        },
+        {
+          "name": "openEmuPath",
+          "title": "OpenEmu App",
+          "description": "Select the OpenEmu.app file (macOS only).",
+          "type": "file",
+          "required": false
+        },
+        {
+          "name": "duckstationPath",
+          "title": "DuckStation Executable",
+          "description": "Select the standalone DuckStation application or executable file.",
+          "type": "file",
+          "required": false
+        },
+        {
+          "name": "dolphinPath",
+          "title": "Dolphin Executable",
+          "description": "Select the standalone Dolphin application or executable file.",
+          "type": "file",
+          "required": false
+        },
+        {
+          "name": "pcsx2Path",
+          "title": "PCSX2 Executable",
+          "description": "Select the standalone PCSX2 executable file.",
+          "type": "file",
+          "required": false
+        },
+        {
+          "name": "ppssppPath",
+          "title": "PPSSPP Executable",
+          "description": "Select the standalone PPSSPP executable file.",
+          "type": "file",
+          "required": false
+        },
+        {
+          "name": "showDetails",
+          "title": "View Options",
+          "label": "Show Game Details",
+          "description": "Show cover arts and game details in a side panel. Disabling saves bandwidth.",
+          "type": "checkbox",
+          "default": true,
+          "required": false
+        },
+        {
+          "name": "retroAchievementsUsername",
+          "title": "RetroAchievements Username",
+          "description": "Your RetroAchievements.org username (optional).",
+          "type": "textfield",
+          "required": false
+        },
+        {
+          "name": "retroAchievementsApiKey",
+          "title": "RetroAchievements API Key",
+          "description": "Your RetroAchievements.org Web API Key (optional).",
+          "type": "password",
+          "required": false
+        },
+        {
+          "name": "updateInterval",
+          "title": "Database Update Frequency",
+          "description": "How often to update the background ROM database (approx. 5-10 MB per sync).",
+          "type": "dropdown",
+          "default": "monthly",
+          "required": false,
+          "data": [
+            {
+              "title": "Daily",
+              "value": "daily"
+            },
+            {
+              "title": "Weekly",
+              "value": "weekly"
+            },
+            {
+              "title": "Monthly",
+              "value": "monthly"
+            },
+            {
+              "title": "Never (Manual Only)",
+              "value": "never"
+            }
+          ]
+        },
+        {
+          "name": "customDatabaseUrl",
+          "title": "Custom Database URL",
+          "description": "Optional: Override the default database URL with your own JSON link.",
+          "type": "textfield",
+          "required": false
+        }
+      ]
     },
     {
       "name": "rounding-number",
@@ -224191,6 +224482,15 @@
           "type": "checkbox",
           "default": true,
           "required": true
+        },
+        {
+          "name": "speed",
+          "title": "Speed (ms)",
+          "description": "Matrix rain update interval in milliseconds. Lower is faster. Enter a whole number from 10 to 200.",
+          "type": "textfield",
+          "default": "40",
+          "placeholder": "40",
+          "required": true
         }
       ]
     },
@@ -229707,7 +230007,8 @@
         "dedalusj",
         "xmok",
         "Hadi04",
-        "nikord"
+        "nikord",
+        "cbrplx"
       ],
       "categories": [
         "Applications",
@@ -229800,6 +230101,15 @@
           "description": "Automatically parse dates and tags",
           "default": false,
           "label": "Automatically parse dates and tags"
+        },
+        {
+          "name": "useConfetti",
+          "type": "checkbox",
+          "required": false,
+          "title": "Celebrate With Confetti",
+          "description": "Throw Raycast confettis on task completion",
+          "default": false,
+          "label": "Throw Raycast confettis on task completion"
         }
       ]
     },
@@ -235607,7 +235917,7 @@
         {
           "name": "tuplePath",
           "title": "Tuple CLI Path",
-          "description": "Path to the tuple CLI executable. Leave blank to auto-detect (/opt/homebrew/bin then /usr/local/bin); set this only if you installed it elsewhere.",
+          "description": "Path to the tuple CLI executable. Leave blank to auto-detect (/usr/local/bin/tuple, then the copy bundled in Tuple.app); set this only if your CLI lives elsewhere.",
           "type": "textfield",
           "required": false,
           "placeholder": "/usr/local/bin/tuple"
@@ -237052,6 +237362,105 @@
           "placeholder": "From typefully.com → Settings → API",
           "type": "password",
           "required": true
+        }
+      ]
+    },
+    {
+      "name": "typeless-companion",
+      "title": "Typeless Companion",
+      "description": "Browse and copy local Typeless transcripts.",
+      "icon": "typeless-icon.png",
+      "author": "arjan.flac",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/arjan.flac/typeless-companion",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/typeless-companion",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "view-history",
+          "title": "Browse History",
+          "description": "Browse, filter, copy, and paste saved Typeless transcripts.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "copy-last-transcript",
+          "title": "Copy Previous Transcript",
+          "description": "Copy the most recent saved Typeless transcript.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "quickMode",
+              "title": "Transcript Type",
+              "description": "Choose which saved Typeless transcript this command copies.",
+              "type": "dropdown",
+              "required": false,
+              "default": "latest",
+              "data": [
+                {
+                  "title": "Latest Transcript",
+                  "value": "latest"
+                },
+                {
+                  "title": "Latest Dictation",
+                  "value": "dictation"
+                },
+                {
+                  "title": "Latest Ask Anything",
+                  "value": "ask-anything"
+                },
+                {
+                  "title": "Latest Translation",
+                  "value": "translation"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "preferences": [
+        {
+          "name": "databasePath",
+          "title": "Database Path",
+          "description": "Override the local Typeless SQLite database path.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "~/Library/Application Support/Typeless/typeless.db"
+        },
+        {
+          "name": "copyWindowBehavior",
+          "title": "Window Behavior On Copy",
+          "description": "What to do with the window when copying a transcript to the clipboard.",
+          "type": "dropdown",
+          "required": false,
+          "default": "close",
+          "data": [
+            {
+              "title": "Keep Open",
+              "value": "keep-open"
+            },
+            {
+              "title": "Close",
+              "value": "close"
+            },
+            {
+              "title": "Close and Exit Command",
+              "value": "close-and-exit-command"
+            }
+          ]
         }
       ]
     },
@@ -242727,6 +243136,87 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "vibelet-search",
+      "title": "Vibelet Search",
+      "description": "Search and resume Claude Code and Codex sessions (CLI + Desktop apps) by title or content.",
+      "icon": "command-icon.png",
+      "author": "leyang",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/leyang/vibelet-search",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/vibelet-search",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-sessions",
+          "title": "Vibelet Search",
+          "subtitle": "Sessions",
+          "description": "Search Claude Code and Codex sessions across CLI and Desktop apps",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "defaultTerminal",
+          "type": "dropdown",
+          "title": "Default Terminal",
+          "description": "Terminal app used to open resume commands",
+          "required": false,
+          "default": "Terminal",
+          "data": [
+            {
+              "title": "Terminal.app",
+              "value": "Terminal"
+            },
+            {
+              "title": "iTerm",
+              "value": "iTerm"
+            },
+            {
+              "title": "Ghostty",
+              "value": "Ghostty"
+            },
+            {
+              "title": "Warp",
+              "value": "Warp"
+            },
+            {
+              "title": "WezTerm",
+              "value": "WezTerm"
+            }
+          ]
+        },
+        {
+          "name": "claudeBinary",
+          "type": "textfield",
+          "title": "Claude CLI Path",
+          "description": "Path or name of the Claude Code CLI (default: claude)",
+          "required": false,
+          "default": "claude"
+        },
+        {
+          "name": "codexBinary",
+          "type": "textfield",
+          "title": "Codex CLI Path",
+          "description": "Path or name of the Codex CLI (default: codex)",
+          "required": false,
+          "default": "codex"
+        }
+      ]
     },
     {
       "name": "video-call-reactions",

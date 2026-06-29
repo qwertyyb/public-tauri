@@ -47,6 +47,10 @@ export const registerMainShortcut = async (shortcut: string, showPermissionTip =
     mainWindow.center();
   });
 
+  window.addEventListener('beforeunload', () => {
+    unregister(shortcut);
+  });
+
   return { registered: true };
 };
 

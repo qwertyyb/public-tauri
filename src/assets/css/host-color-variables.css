@@ -20,14 +20,12 @@
   /* 玻璃：浅色模式 */
   --public-ui-bg-muted: rgba(0, 0, 0, 0.04);
   --public-ui-bg-elevated: rgba(255, 255, 255, 0.5);
-  --public-ui-bg-accented: rgba(0, 0, 0, 0.06);
   --public-ui-border: rgba(0, 0, 0, 0.1);
   --public-ui-border-muted: rgba(0, 0, 0, 0.06);
   --public-ui-border-accented: rgba(0, 0, 0, 0.16);
 
   /* 浮层（popover / dialog / menu / …） */
   --public-layer-float-bg: rgba(255, 255, 255, 0.85);
-  --public-layer-float-bg-accented: rgba(0, 0, 0, 0.08);
 
   /* 应用壳层 fallback（--ui-border-color 等未就绪时） */
   --public-shell-border-fallback: #e4e4e7;
@@ -72,13 +70,11 @@
   /* 玻璃：深色模式 */
   --public-ui-bg-muted: rgba(255, 255, 255, 0.04);
   --public-ui-bg-elevated: rgba(255, 255, 255, 0.08);
-  --public-ui-bg-accented: rgba(255, 255, 255, 0.12);
   --public-ui-border: rgba(255, 255, 255, 0.1);
   --public-ui-border-muted: rgba(255, 255, 255, 0.06);
   --public-ui-border-accented: rgba(255, 255, 255, 0.18);
 
   --public-layer-float-bg: rgba(40, 40, 45, 0.85);
-  --public-layer-float-bg-accented: rgba(255, 255, 255, 0.14);
 
   --public-shell-border-fallback: #3f3f46;
   --public-shell-divider-fallback: rgba(255, 255, 255, 0.06);
@@ -112,10 +108,9 @@
   --ui-primary: var(--public-primary);
   --ui-text-dimmed: var(--public-text-dimmed);
 
-  --ui-bg: var(--public-ui-bg);
+  /* --ui-bg: var(--public-ui-bg); */
   --ui-bg-muted: var(--public-ui-bg-muted);
   --ui-bg-elevated: var(--public-ui-bg-elevated);
-  --ui-bg-accented: var(--public-ui-bg-accented);
   --ui-border: var(--public-ui-border);
   --ui-border-muted: var(--public-ui-border-muted);
   --ui-border-accented: var(--public-ui-border-accented);
@@ -132,7 +127,6 @@
 [role="tooltip"] {
   --ui-bg: var(--public-layer-float-bg);
   --ui-bg-elevated: var(--public-layer-float-bg);
-  --ui-bg-accented: var(--public-layer-float-bg-accented);
   backdrop-filter: blur(18px) saturate(180%);
   -webkit-backdrop-filter: blur(18px) saturate(180%);
 }
@@ -149,7 +143,6 @@ select {
   --public-opaque-bg: #fff;
   --public-opaque-bg-muted: var(--ui-color-neutral-50);
   --public-opaque-bg-elevated: var(--ui-color-neutral-100);
-  --public-opaque-bg-accented: var(--ui-color-neutral-200);
   --public-opaque-border: var(--ui-color-neutral-200);
   --public-opaque-border-muted: var(--ui-color-neutral-200);
   --public-opaque-border-accented: var(--ui-color-neutral-300);
@@ -157,7 +150,6 @@ select {
   --ui-bg: var(--public-opaque-bg);
   --ui-bg-muted: var(--public-opaque-bg-muted);
   --ui-bg-elevated: var(--public-opaque-bg-elevated);
-  --ui-bg-accented: var(--public-opaque-bg-accented);
   --ui-border: var(--public-opaque-border);
   --ui-border-muted: var(--public-opaque-border-muted);
   --ui-border-accented: var(--public-opaque-border-accented);
@@ -166,7 +158,6 @@ select {
   --public-opaque-bg: var(--ui-color-neutral-900);
   --public-opaque-bg-muted: var(--ui-color-neutral-800);
   --public-opaque-bg-elevated: var(--ui-color-neutral-800);
-  --public-opaque-bg-accented: var(--ui-color-neutral-700);
   --public-opaque-border: var(--ui-color-neutral-800);
   --public-opaque-border-muted: var(--ui-color-neutral-700);
   --public-opaque-border-accented: var(--ui-color-neutral-700);
