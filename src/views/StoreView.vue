@@ -1,5 +1,5 @@
 <template>
-  <PublicLayout>
+  <PublicLayout :main-action="mainAction">
     <template #top>
       <InputBar
         v-model="input"
@@ -13,7 +13,8 @@
     <ResultView
       :results="results"
       class="result-view"
-      @enter="onResultEnter"
+      @select="onResultSelect"
+      @enter="openDetail"
     />
   </PublicLayout>
 </template>
@@ -22,7 +23,7 @@
 import InputBar from '@/components/InputBar.vue';
 import ResultView from '@/components/ResultView.vue';
 import PublicLayout from '@/components/PublicLayout.vue';
-import { ref, watch, onMounted } from 'vue';
+import { ref, watch, onMounted, computed } from 'vue';
 import type { IResultItem } from '@public-tauri/schema';
 import { useRouter } from '@/router';
 import { fetchStorePlugins, searchPlugins, isPluginInstalled, refreshInstalledPlugins } from '@/services/store';
@@ -30,6 +31,7 @@ import type { IStorePlugin } from '@/types/store';
 import { popView } from '@/plugin/utils';
 import { showToast } from '@/utils/feedback';
 import LoadingBar from '@/components/LoadingBar.vue';
+import type { ActionPanelAction } from '@/types/plugin';
 
 const router = useRouter();
 
@@ -38,6 +40,8 @@ const results = ref<IResultItem[]>([]);
 const input = ref<{ keyword: string, files: File[] }>({ keyword: '', files: [] });
 
 let allPlugins: IStorePlugin[] = [];
+const selectedListItem = ref<IResultItem | null>(null);
+
 
 const toResult = (plugin: IStorePlugin): IResultItem => ({
   icon: plugin.icon,
@@ -45,6 +49,10 @@ const toResult = (plugin: IStorePlugin): IResultItem => ({
   subtitle: plugin.manifest.subtitle && isPluginInstalled(plugin.manifest.subtitle) ? '已安装' : plugin.manifest.subtitle || '',
   name: plugin.name,
 });
+
+const onResultSelect = (item: IResultItem | null, _index: number) => {
+  selectedListItem.value = item;
+};
 
 const updateResults = (keyword: string) => {
   if (keyword) {
@@ -61,6 +69,16 @@ watch(input, async (value) => {
   }
 });
 
+const mainAction = computed<ActionPanelAction | undefined>(() => {
+  if (!selectedListItem.value?.name) return undefined;
+  return {
+    name: 'raycast-store-open-detail',
+    title: '查看详情',
+    icon: 'chevron_right',
+    action: () => openDetail(selectedListItem.value),
+  };
+});
+
 onMounted(async () => {
   loading.value = true;
   try {
@@ -75,7 +93,7 @@ onMounted(async () => {
   }
 });
 
-const onResultEnter = (item: IResultItem | null) => {
+const openDetail = (item: IResultItem | null) => {
   if (!item) return;
   router?.pushView('/plugin/store/detail', { name: item.name });
 };
