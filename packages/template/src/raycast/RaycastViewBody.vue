@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, watch } from 'vue';
-import type { RaycastViewSnapshot, SerializedHostListItemNode } from './types';
+import type { RaycastViewSnapshot } from './types';
 import RaycastDetailView from './views/RaycastDetailView.vue';
 import RaycastFormView from './views/RaycastFormView.vue';
 import RaycastListView from './views/RaycastListView.vue';
@@ -11,7 +11,7 @@ const props = withDefaults(
     /** Worker / 宿主报错文案 */
     error?: string | null;
   }>(),
-  { error: null, onSelectItem: undefined, renderMarkdown: undefined },
+  { error: null },
 );
 
 const navigationTitle = computed(() => {
@@ -48,8 +48,7 @@ watch(
     </div>
     <RaycastListView
       v-if="snapshot?.root.type === 'raycast:list'"
-      v-bind="snapshot.root.props"
-      :items="snapshot.root.children as SerializedHostListItemNode[]"
+      :snapshot="snapshot!"
     />
     <RaycastDetailView
       v-else-if="snapshot?.root.type === 'raycast:detail'"
@@ -84,7 +83,7 @@ watch(
   /* --rv-bg: light-dark(#f6f7f9, #1e1e1e); */
   --rv-surface: light-dark(#ffffff, #252526);
   --rv-surface-elevated: light-dark(#f3f4f6, #2d2d30);
-  --rv-border: light-dark(rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.08));
+  --rv-border: light-dark(rgba(0, 0, 0, 0.08), rgba(255, 255, 255, 0.08));
   --rv-text: light-dark(rgba(0, 0, 0, 0.8), rgba(255, 255, 255, 0.8));
   --rv-text-secondary: light-dark(rgba(0, 0, 0, 0.48), rgba(255, 255, 255, 0.48));
   --rv-accent: light-dark(#1f2937, #f7f7f7);

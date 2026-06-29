@@ -26,9 +26,55 @@ export function findListRoot(root: SerializedHostNode): SerializedHostNode | und
   return undefined;
 }
 
+/** 浏览器侧 List 分区（对应 `List.Section` 或裸 `List.Item` 的默认无标题分区） */
+export type RaycastListSectionModel = {
+  title?: string;
+  subtitle?: string;
+  items: SerializedHostListItemNode[];
+};
+
+function listSectionChildItems(section: SerializedHostElementNode): SerializedHostListItemNode[] {
+  return section.children.filter((c): c is SerializedHostListItemNode => c.type === 'raycast:list-item');
+}
+
+/**
+ * 解析 `raycast:list` 子节点：合法直接子元素为 `List.Section` / `List.EmptyView`；
+ * 若存在裸 `List.Item`，合并为一个无 title/subtitle 的默认 Section。
+ */
+export function listSections(list: SerializedHostNode): RaycastListSectionModel[] {
+  if (!isSerializedElement(list) || list.type !== 'raycast:list') return [];
+
+  const sections: RaycastListSectionModel[] = [];
+  let looseItems: SerializedHostListItemNode[] = [];
+
+  const flushLoose = () => {
+    if (looseItems.length === 0) return;
+    sections.push({ items: looseItems });
+    looseItems = [];
+  };
+
+  for (const ch of list.children) {
+    if (ch.type === 'raycast:empty') continue;
+    if (ch.type === 'raycast:list-section' && isSerializedElement(ch)) {
+      flushLoose();
+      sections.push({
+        title: typeof ch.props.title === 'string' ? ch.props.title : undefined,
+        subtitle: typeof ch.props.subtitle === 'string' ? ch.props.subtitle : undefined,
+        items: listSectionChildItems(ch),
+      });
+      continue;
+    }
+    if (ch.type === 'raycast:list-item') {
+      looseItems.push(ch as SerializedHostListItemNode);
+    }
+  }
+
+  flushLoose();
+  return sections;
+}
+
 export function listItems(list: SerializedHostNode): SerializedHostListItemNode[] {
-  if (!isSerializedElement(list)) return [];
-  return list.children.filter((c): c is SerializedHostListItemNode => c.type === 'raycast:list-item');
+  return listSections(list).flatMap(section => section.items);
 }
 
 /** Raycast `List.EmptyView` → 宿主 `raycast:empty`，仅在无列表项时由视图展示 */

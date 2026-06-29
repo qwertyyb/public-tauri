@@ -145,7 +145,6 @@ async function startPluginWorkerInternal(name: string): Promise<void> {
     name: `p:${name}`,
     workerData: { name, modulePath },
     stdout: true,
-    stderr: true,
   });
 
   state.worker = w;

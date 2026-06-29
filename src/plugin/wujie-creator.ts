@@ -223,6 +223,9 @@ export const createWujieApp = (options: CreateWujieOptions): {
     updateSearchBarVisible: (visible: boolean) => {
       events.dispatchEvent(new CustomEvent('updateSearchBarVisible', { detail: { visible } }));
     },
+    updateSearchBarPlaceholder: (placeholder: string) => {
+      events.dispatchEvent(new CustomEvent('updateSearchBarPlaceholder', { detail: { placeholder } }));
+    },
     openPluginPreferences: () => openPluginPreferences(name),
     openCommandPreferences: (command: string) => openCommandPreferences(name, command),
   };

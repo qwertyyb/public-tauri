@@ -10,6 +10,7 @@
         v-if="searchBarVisible"
         v-model="input"
         class="input-bar"
+        :placeholder="searchBarPlaceholder"
         @escape="escapeHandler"
       />
     </template>
@@ -53,6 +54,7 @@ const container = useTemplateRef('wujie');
 
 const searchBarVisible = ref(false);
 const input = ref<{ keyword: string, files: File[] }>({ keyword: '', files: [] });
+const searchBarPlaceholder = ref('search...');
 watch(() => input.value.keyword, (val) => {
   props.events.dispatchEvent(new CustomEvent('search', { detail: { keyword: val } }));
 });
@@ -105,6 +107,10 @@ const escapeHandler = () => {
   popView();
 };
 
+const searchBarPlaceholderHandler = (event: CustomEvent<{ placeholder: string }>) => {
+  searchBarPlaceholder.value = event.detail.placeholder;
+};
+
 onMounted(() => {
   console.log('props', props);
   props.wujie.mount(container.value!);
@@ -119,6 +125,8 @@ onPageEnter(() => {
   props.events.addEventListener('updateSearchBarValue', searchBarValueHandler);
   // @ts-ignore
   props.events.addEventListener('updateNavigationTitle', navigationTitleHandler);
+  // @ts-ignore
+  props.events.addEventListener('updateSearchBarPlaceholder', searchBarPlaceholderHandler);
 });
 
 onPageLeave(() => {
@@ -130,6 +138,8 @@ onPageLeave(() => {
   props.events.removeEventListener('updateSearchBarValue', searchBarValueHandler);
   // @ts-ignore
   props.events.removeEventListener('updateNavigationTitle', navigationTitleHandler);
+  // @ts-ignore
+  props.events.removeEventListener('updateSearchBarPlaceholder', searchBarPlaceholderHandler);
 });
 
 onBeforeUnmount(() => {

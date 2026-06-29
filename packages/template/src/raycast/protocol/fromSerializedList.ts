@@ -7,13 +7,13 @@ import type {
   RaycastListPaginationSerialized,
   RaycastViewSnapshot,
   SerializedHostEmptyNode,
-  SerializedHostListItemNode,
   SerializedHostNode,
 } from '../types';
 import {
   listEmptyViewChild,
-  listItems,
+  listSections,
   raycastListChromeFromSerializedNode,
+  type RaycastListSectionModel,
 } from '../host-tree';
 
 export type RaycastListPaginationView = RaycastListPaginationSerialized & {
@@ -37,8 +37,8 @@ export type RaycastListViewProps = {
   /** Raycast `List.actions`（序列化后的宿主子树，常为 action-panel） */
   actions?: SerializedHostNode;
 
-  /** 等价于 JSX `<List.Item />` 子节点 */
-  items: SerializedHostListItemNode[];
+  /** 等价于 `<List.Section />` 树；裸 `<List.Item />` 会落在无标题的默认分区 */
+  sections: RaycastListSectionModel[];
   /** 等价于 `<List.EmptyView />` */
   emptyView?: SerializedHostEmptyNode;
 
@@ -48,7 +48,7 @@ export type RaycastListViewProps = {
   onSearchTextChange?: (text: string) => void;
 };
 
-export type ExpandRaycastListHandlers = Pick<RaycastListViewProps, 'onSelectionChange' | 'renderMarkdown'> & {
+export type ExpandRaycastListHandlers = Pick<RaycastListViewProps, 'onSelectionChange'> & {
   onSearchTextChange?: (text: string) => void;
   /** 接到 Worker pagination 时用于注入 `pagination.onLoadMore` */
   onPaginationLoadMore?: () => void;
@@ -70,6 +70,54 @@ function mergeSelectedItemId(snapshotId: string | undefined, propsId: string | u
 }
 
 /**
+ * 由 {@link RaycastViewSnapshot}（`root` 须为 `raycast:list`）生成 {@link RaycastListViewProps}。
+ * 含 list 子树展开（sections / emptyView）、快照字段合并与 hydrate 后的 list props。
+ */
+export function resolveRaycastListViewFromSnapshot(
+  snapshot: RaycastViewSnapshot,
+  handlers?: ExpandRaycastListHandlers,
+): RaycastListViewProps | null {
+  const { root } = snapshot;
+  if (root.type !== 'raycast:list') return null;
+
+  const chrome = raycastListChromeFromSerializedNode(root);
+  const sections = listSections(root);
+  const emptyView = listEmptyViewChild(root);
+  const fromProps = root.props as Record<string, unknown>;
+
+  let pagination: RaycastListPaginationView | undefined;
+  if (chrome.pagination) {
+    pagination = { ...chrome.pagination };
+    if (handlers?.onPaginationLoadMore) {
+      pagination.onLoadMore = handlers.onPaginationLoadMore;
+    }
+  }
+
+  return {
+    ...(fromProps as Omit<
+    RaycastListViewProps,
+    'sections' | 'emptyView' | 'onSelectionChange' | 'onSearchTextChange'
+    >),
+    sections,
+    emptyView,
+    searchText: mergeSearchText(snapshot.searchText, chrome.searchTextFromProps),
+    selectedItemId: mergeSelectedItemId(snapshot.selectedItemId, chrome.selectedItemIdFromProps),
+    selectionSessionKey: snapshot.commandName,
+    isLoading: chrome.isLoading,
+    isShowingDetail: chrome.isShowingDetail,
+    filtering: chrome.filtering,
+    ...(chrome.throttle ? { throttle: true as const } : {}),
+    pagination,
+    onSelectionChange:
+      handlers?.onSelectionChange
+      ?? (fromProps.onSelectionChange as RaycastListViewProps['onSelectionChange']),
+    onSearchTextChange:
+      handlers?.onSearchTextChange
+      ?? (fromProps.onSearchTextChange as RaycastListViewProps['onSearchTextChange']),
+  };
+}
+
+/**
  * 由协议树中的 list 节点与当前 snapshot 生成 {@link RaycastListViewProps}。
  */
 export function expandRaycastListViewProps(
@@ -77,35 +125,6 @@ export function expandRaycastListViewProps(
   snapshot: RaycastViewSnapshot | null,
   handlers: ExpandRaycastListHandlers,
 ): RaycastListViewProps | null {
-  if (listNode.type !== 'raycast:list') return null;
-  const chrome = raycastListChromeFromSerializedNode(listNode);
-  const items = listItems(listNode);
-  const emptyView = listEmptyViewChild(listNode);
-
-  let pagination: RaycastListPaginationView | undefined;
-  if (chrome.pagination) {
-    pagination = { ...chrome.pagination };
-    if (handlers.onPaginationLoadMore) {
-      pagination.onLoadMore = handlers.onPaginationLoadMore;
-    }
-  }
-
-  return {
-    navigationTitle: chrome.navigationTitle,
-    searchBarPlaceholder: chrome.searchBarPlaceholder,
-    searchText: mergeSearchText(snapshot?.searchText, chrome.searchTextFromProps),
-    selectedItemId: mergeSelectedItemId(snapshot?.selectedItemId, chrome.selectedItemIdFromProps),
-    selectionSessionKey: snapshot?.commandName ?? '',
-    isLoading: chrome.isLoading,
-    isShowingDetail: chrome.isShowingDetail,
-    filtering: chrome.filtering,
-    ...(chrome.throttle ? { throttle: true as const } : {}),
-    pagination,
-    actions: chrome.actions,
-    items,
-    emptyView,
-    onSelectionChange: handlers.onSelectionChange,
-    onSearchTextChange: handlers.onSearchTextChange,
-    renderMarkdown: handlers.renderMarkdown,
-  };
+  if (listNode.type !== 'raycast:list' || !snapshot) return null;
+  return resolveRaycastListViewFromSnapshot({ ...snapshot, root: listNode }, handlers);
 }

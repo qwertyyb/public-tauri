@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { type PluginShellAction, updateActions } from '@public-tauri/api';
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
-import type { SerializedHostListItemNode } from '../types';
+import type { SerializedHostListItemNode, RaycastViewSnapshot } from '../types';
 import {
   actionDisplayTitle,
   iconPropToDisplay,
   itemActionsForBar,
   itemBusinessId,
 } from '../host-tree';
-import type { RaycastListViewProps } from '../protocol/fromSerializedList';
+import { resolveRaycastListViewFromSnapshot } from '../protocol/fromSerializedList';
 import { coerceSelectedIdForItemIds } from '../view-selection';
 import RaycastDetailMarkdown from '../RaycastDetailMarkdown.vue';
 import RaycastDetailMetadata from '../RaycastDetailMetadata.vue';
@@ -17,7 +17,9 @@ import RaycastIconStrip from '../RaycastIconStrip.vue';
 import RaycastSearchBar from '../RaycastSearchBar.vue';
 import RaycastShortcutBadge from '../RaycastShortcutBadge.vue';
 
-const props = defineProps<RaycastListViewProps>();
+const props = defineProps<{ snapshot: RaycastViewSnapshot }>();
+
+const list = computed(() => resolveRaycastListViewFromSnapshot(props.snapshot)!);
 
 const listRef = ref<HTMLElement | null>(null);
 const searchThrottleTimer = ref<ReturnType<typeof setTimeout> | null>(null);
@@ -27,39 +29,56 @@ function safeUpdateActions(actions: PluginShellAction[]) {
   updateActions(actions);
 }
 
-const filterOn = computed(() => Boolean(props.filtering || props.searchText || props.onSearchTextChange));
+const filterOn = computed(() => Boolean(list.value.filtering || list.value.searchText || list.value.onSearchTextChange));
 
-const needle = computed(() => (props.searchText ?? '').trim().toLowerCase());
+const needle = computed(() => (list.value.searchText ?? '').trim().toLowerCase());
 
-const displayItems = computed(() => {
-  if (!filterOn.value || !needle.value) return props.items;
-  return props.items.filter((item) => {
-    const title = String(item.props.title ?? '').toLowerCase();
-    const sub = item.props.subtitle !== null && item.props.subtitle !== undefined
-      ? String(item.props.subtitle).toLowerCase()
-      : '';
-    const keywords = item.props.keywords as string[] | undefined;
-    const kwHit = keywords?.some(k => String(k).toLowerCase()
-      .includes(needle.value)) ?? false;
-    return title.includes(needle.value) || sub.includes(needle.value) || kwHit;
-  });
+function itemMatchesNeedle(item: SerializedHostListItemNode, q: string): boolean {
+  const title = String(item.props.title ?? '').toLowerCase();
+  const sub = item.props.subtitle !== null && item.props.subtitle !== undefined
+    ? String(item.props.subtitle).toLowerCase()
+    : '';
+  const keywords = item.props.keywords as string[] | undefined;
+  const kwHit = keywords?.some(k => String(k).toLowerCase()
+    .includes(q)) ?? false;
+  return title.includes(q) || sub.includes(q) || kwHit;
+}
+
+const displaySections = computed(() => {
+  const q = filterOn.value && needle.value ? needle.value : '';
+  return list.value.sections
+    .map(sec => ({
+      ...sec,
+      items: q ? sec.items.filter(it => itemMatchesNeedle(it, q)) : sec.items,
+    }))
+    .filter(sec => sec.items.length > 0);
 });
 
-/** 与 Raycast 宿主一致：由列表维护首选 id；`props.selectedItemId` 为 Worker 默认 */
+/** 与 Raycast 宿主一致：由列表维护首选 id；`list.selectedItemId` 为 Worker 默认 */
 const localPreferredId = ref<string | undefined>(undefined);
 
-const visibleItemIds = computed(() => displayItems.value.map(it => itemBusinessId(it)));
+const visibleItemIds = computed(() => displaySections.value.flatMap(sec => sec.items.map(it => itemBusinessId(it))));
 
 const selectedId = computed(() => coerceSelectedIdForItemIds(
   visibleItemIds.value,
   localPreferredId.value,
-  props.selectedItemId,
+  list.value.selectedItemId,
 ) ?? '');
+
+const selectedItem = computed(() => {
+  const id = selectedId.value;
+  if (!id) return undefined;
+  for (const sec of displaySections.value) {
+    const item = sec.items.find(it => itemBusinessId(it) === id);
+    if (item) return item;
+  }
+  return undefined;
+});
 
 watch(
   () => ({
-    sessionKey: props.selectionSessionKey ?? '',
-    workerDefault: props.selectedItemId,
+    sessionKey: list.value.selectionSessionKey ?? '',
+    workerDefault: list.value.selectedItemId,
     visibleSig: visibleItemIds.value.join('\0'),
   }),
   (next, prev) => {
@@ -79,7 +98,7 @@ watch(
 );
 
 function syncHostActionBar() {
-  const item = props.items.find(it => itemBusinessId(it) === selectedId.value);
+  const item = selectedItem.value;
   const selectedActions = item ? itemActionsForBar(item) : [];
   safeUpdateActions(selectedActions.map(action => ({
     name: action.hostId,
@@ -96,32 +115,38 @@ function syncHostActionBar() {
 }
 
 watch(
-  () => [selectedId.value, props.items, props.selectionSessionKey] as const,
+  () => [selectedItem.value, list.value.selectionSessionKey] as const,
   () => {
     syncHostActionBar();
   },
   { immediate: true },
 );
 
-const selectedDetail = computed(() => {
-  const id = selectedId.value;
-  const item = displayItems.value.find(it => itemBusinessId(it) === id);
-  if (!item) return undefined;
-  return item.props.detail?.props;
-});
-const detailColumnVisible = computed(() => props.isShowingDetail || Boolean(selectedDetail.value));
+const selectedDetail = computed(() => selectedItem.value?.props.detail?.props);
+const detailColumnVisible = computed(() => list.value.isShowingDetail || Boolean(selectedDetail.value));
 
-const emptyShown = computed(() => displayItems.value.length === 0 && props.emptyView !== undefined);
+const emptyView = computed(() => {
+  if (displaySections.value.length > 0) return undefined;
+  const node = list.value.emptyView;
+  return {
+    title: node?.props.title as string | undefined,
+    description: node?.props.description as string | undefined,
+  };
+});
 
 const listPagination = computed(() => {
-  const onLoadMore = props.pagination?.onLoadMore;
-  if (typeof onLoadMore !== 'function' || !props.pagination) return undefined;
+  const onLoadMore = list.value.pagination?.onLoadMore;
+  if (typeof onLoadMore !== 'function' || !list.value.pagination) return undefined;
   return {
-    hasMore: props.pagination.hasMore,
-    pageSize: props.pagination.pageSize,
+    hasMore: list.value.pagination.hasMore,
+    pageSize: list.value.pagination.pageSize,
     onLoadMore,
   };
 });
+
+const searchText = computed(() => list.value.searchText);
+const searchBarPlaceholder = computed(() => list.value.searchBarPlaceholder);
+const isLoading = computed(() => list.value.isLoading);
 
 function shortcutAccessory(item: SerializedHostListItemNode) {
   const actions = itemActionsForBar(item);
@@ -131,18 +156,18 @@ function shortcutAccessory(item: SerializedHostListItemNode) {
 
 function selectItem(id: string) {
   localPreferredId.value = id;
-  props.onSelectionChange?.(id);
+  list.value.onSelectionChange?.(id);
 }
 
 function emitSearch(text: string) {
-  if (!props.onSearchTextChange) return;
+  if (!list.value.onSearchTextChange) return;
   if (searchThrottleTimer.value) clearTimeout(searchThrottleTimer.value);
-  if (props.throttle) {
+  if (list.value.throttle) {
     searchThrottleTimer.value = setTimeout(() => {
-      props.onSearchTextChange?.(text);
+      list.value.onSearchTextChange?.(text);
     }, 280);
   } else {
-    props.onSearchTextChange(text);
+    list.value.onSearchTextChange(text);
   }
 }
 
@@ -151,7 +176,7 @@ function onSearchBarUpdate(value: string) {
 }
 
 function onKeyDown(e: KeyboardEvent) {
-  const ids = displayItems.value.map(it => itemBusinessId(it));
+  const ids = visibleItemIds.value;
   if (ids.length === 0) return;
   const cur = Math.max(0, ids.indexOf(selectedId.value));
   if (e.key === 'ArrowDown') {
@@ -166,7 +191,7 @@ function onKeyDown(e: KeyboardEvent) {
 }
 
 watch(
-  [selectedId, () => displayItems.value.length],
+  [selectedId, () => visibleItemIds.value.length],
   () => {
     void nextTick(() => {
       listRef.value?.querySelector<HTMLElement>('.rv-list-item-selected')?.scrollIntoView({
@@ -176,21 +201,14 @@ watch(
   },
 );
 
-const onSearch = (event: CustomEvent<{ value: string }>) => {
-  emitSearch(event.detail.value);
-};
-
 onMounted(() => {
   window.addEventListener('keyup', onKeyDown);
-  window.$wujie?.props?.events.addEventListener('search', onSearch as (_event: Event) => void);
 });
 
 onBeforeUnmount(() => {
   if (searchThrottleTimer.value) clearTimeout(searchThrottleTimer.value);
   safeUpdateActions([]);
   window.removeEventListener('keyup', onKeyDown);
-
-  window.$wujie?.props?.events.removeEventListener('search', onSearch as (_event: Event) => void);
 });
 
 </script>
@@ -200,12 +218,12 @@ onBeforeUnmount(() => {
     class="rv-list-shell"
     :class="{ 'rv-list-no-detail': !detailColumnVisible }"
     data-raycast-list
-    :data-raycast-throttle="props.throttle ? 'true' : undefined"
+    :data-raycast-throttle="list.throttle ? 'true' : undefined"
   >
     <RaycastSearchBar
       :enabled="filterOn"
       :value="searchText ?? ''"
-      :search-bar-placeholder="searchBarPlaceholder"
+      :placeholder="searchBarPlaceholder"
       @update:value="onSearchBarUpdate"
     />
 
@@ -226,43 +244,61 @@ onBeforeUnmount(() => {
       >
         <div class="rv-list-scroll">
           <div
-            v-if="emptyShown && emptyView"
+            v-if="emptyView"
             class="rv-raycast-list-empty-view"
           >
             <RaycastEmptyPanel
-              :title="(emptyView.props.title as string | undefined)"
-              :description="(emptyView.props.description as string | undefined)"
+              :title="emptyView.title"
+              :description="emptyView.description"
             />
           </div>
           <template v-else>
-            <div
-              v-for="item in displayItems"
-              :key="itemBusinessId(item)"
-              type="button"
-              class="rv-list-item"
-              :class="{ 'rv-list-item-selected': itemBusinessId(item) === selectedId }"
-              :data-item-id="itemBusinessId(item)"
-              :aria-current="itemBusinessId(item) === selectedId ? 'true' : undefined"
-              @click="selectItem(itemBusinessId(item))"
+            <template
+              v-for="(section, sectionIndex) in displaySections"
+              :key="sectionIndex"
             >
-              <RaycastIconStrip
-                :icon="iconPropToDisplay(item.props.icon)"
-                :title="String(item.props.title ?? '')"
-              />
-              <span class="rv-list-item-text">
-                <span class="rv-list-item-title">{{ item.props.title ?? '' }}</span>
-                <span
-                  v-if="item.props.subtitle != null"
-                  class="rv-list-item-subtitle"
-                >{{ item.props.subtitle }}</span>
-              </span>
-              <span
-                v-if="shortcutAccessory(item as SerializedHostListItemNode)"
-                class="rv-list-item-accessories"
+              <div
+                v-if="section.title || section.subtitle"
+                class="rv-raycast-list-section-head"
               >
-                <RaycastShortcutBadge :shortcut="shortcutAccessory(item as SerializedHostListItemNode)" />
-              </span>
-            </div>
+                <span
+                  v-if="section.title"
+                  class="rv-raycast-list-section-title"
+                >{{ section.title }}</span>
+                <span
+                  v-if="section.subtitle"
+                  class="rv-raycast-list-section-subtitle"
+                >{{ section.subtitle }}</span>
+              </div>
+              <div
+                v-for="item in section.items"
+                :key="itemBusinessId(item)"
+                type="button"
+                class="rv-list-item"
+                :class="{ 'rv-list-item-selected': itemBusinessId(item) === selectedId }"
+                :data-item-id="itemBusinessId(item)"
+                :aria-current="itemBusinessId(item) === selectedId ? 'true' : undefined"
+                @click="selectItem(itemBusinessId(item))"
+              >
+                <RaycastIconStrip
+                  :icon="iconPropToDisplay(item.props.icon)"
+                  :title="String(item.props.title ?? '')"
+                />
+                <span class="rv-list-item-text">
+                  <span class="rv-list-item-title">{{ item.props.title ?? '' }}</span>
+                  <span
+                    v-if="item.props.subtitle != null"
+                    class="rv-list-item-subtitle"
+                  >{{ item.props.subtitle }}</span>
+                </span>
+                <span
+                  v-if="shortcutAccessory(item as SerializedHostListItemNode)"
+                  class="rv-list-item-accessories"
+                >
+                  <RaycastShortcutBadge :shortcut="shortcutAccessory(item as SerializedHostListItemNode)" />
+                </span>
+              </div>
+            </template>
           </template>
         </div>
         <div
@@ -513,6 +549,27 @@ onBeforeUnmount(() => {
   justify-content: center;
   min-height: 160px;
   padding: 12px;
+}
+
+.rv-raycast-list-section-head {
+  padding: 10px 12px 4px;
+}
+
+.rv-raycast-list-section-title {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--rv-text-secondary);
+}
+
+.rv-raycast-list-section-subtitle {
+  display: block;
+  font-size: 10px;
+  color: var(--rv-text-secondary);
+  opacity: 0.85;
+  margin-top: 2px;
 }
 
 .rv-detail-column {

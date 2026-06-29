@@ -46,7 +46,7 @@
         v-if="!disabled && !keyword"
         class="input-placeholder"
       >
-        {{ placeholder }}
+        {{ placeholderValue }}
       </div>
     </div>
     <div class="input-suffix" />
@@ -65,11 +65,12 @@ const props = defineProps<{
   disabled?: boolean,
   isMainInput?: boolean,
   supportFiles?: boolean,
+  placeholder?: string,
 }>();
 const emits = defineEmits<{ escape: [] }>();
 
 const inputEl = useTemplateRef('input');
-const placeholder = ref('search...');
+const placeholderValue = ref(props.placeholder || 'search...');
 const keyword = ref(modelValue.value.keyword || '');
 
 watch(keyword, (value) => {
@@ -79,6 +80,10 @@ watch(keyword, (value) => {
       keyword: value,
     };
   }
+});
+
+watch(() => props.placeholder, (value) => {
+  placeholderValue.value = value || 'search...';
 });
 
 watch(() => modelValue.value.keyword, (value) => {
@@ -117,7 +122,7 @@ const keyDownHandler = (event: KeyboardEvent) => {
 const fetchPlaceholder = async () => {
   const r = await fetch('https://v1.hitokoto.cn/');
   const json = await r.json();
-  placeholder.value = json?.hitokoto || '欢迎使用 Public App';
+  placeholderValue.value = json?.hitokoto || '欢迎使用 Public App';
 };
 
 const compositionStartHandler = () => {
