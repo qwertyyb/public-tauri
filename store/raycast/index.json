@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-29T20:13:25.416Z",
+  "generatedAt": "2026-06-30T20:14:14.955Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "1bb59c6602e4219c8567b3423193ef4c3c4b507b"
+    "commit": "06006ce095c0bce99b382867229126d6b7e480cc"
   },
-  "count": 3037,
+  "count": 3039,
   "extensions": [
     {
       "name": "0x0",
@@ -453,6 +453,67 @@
           "name": "index",
           "title": "Search 2FA Directory",
           "description": "Search through sites that allow you to enable 2FA.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "2fas-authenticator",
+      "title": "2FAS Authenticator",
+      "description": "Search and copy TOTP codes from 2FAS exports with a Keychain-encrypted local vault",
+      "icon": "extension-icon.png",
+      "author": "Locke",
+      "contributors": [],
+      "categories": [
+        "Security"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/Locke/2fas-authenticator",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/2fas-authenticator",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-otp",
+          "title": "Search OTP",
+          "subtitle": "2FAS",
+          "description": "Search and copy OTP codes from your vault",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "recent-otp",
+          "title": "Recent OTP",
+          "subtitle": "2FAS",
+          "description": "View recently used OTP services",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "import-vault",
+          "title": "Import Vault",
+          "subtitle": "2FAS",
+          "description": "Import a 2FAS export file into your encrypted vault",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "setup",
+          "title": "Setup",
+          "subtitle": "2FAS",
+          "description": "Check vault status and manage configuration",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -7266,7 +7327,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/yevgen_glukhov/another-boring-piece",
       "source": {
@@ -17070,6 +17132,22 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "create-incident",
+          "title": "Create Incident",
+          "description": "File a new BetterStack incident",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "incidents",
+          "title": "Incidents",
+          "description": "View and manage active incidents",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": [
@@ -17079,6 +17157,20 @@
           "description": "Your BetterStack API token",
           "type": "password",
           "required": true
+        },
+        {
+          "name": "teamId",
+          "title": "Team Id",
+          "description": "Your BetterStack team Id. Find it in the URL when viewing your on-call schedule: uptime.betterstack.com/team/t{id}/oncalls",
+          "type": "textfield",
+          "required": false
+        },
+        {
+          "name": "requesterEmail",
+          "title": "Requester Email",
+          "description": "Default e-mail used when creating incidents",
+          "type": "textfield",
+          "required": false
         }
       ]
     },
@@ -47771,13 +47863,17 @@
       "description": "Helps you get information about your dbt Cloud jobs",
       "icon": "icon.png",
       "author": "zsombor-flds",
-      "contributors": [],
+      "contributors": [
+        "xmok"
+      ],
       "categories": [
         "Data",
         "Developer Tools"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/zsombor-flds/dbtcloud",
       "source": {
         "type": "github-monorepo",
@@ -47798,11 +47894,44 @@
       ],
       "preferences": [
         {
+          "name": "dbtCloudEndpoint",
+          "title": "dbt Cloud Endpoint",
+          "description": "Your dbt Cloud Endpoint",
+          "type": "dropdown",
+          "required": true,
+          "placeholder": "dbt Cloud Endpoint",
+          "data": [
+            {
+              "title": "Production (US)",
+              "value": "https://cloud.getdbt.com"
+            },
+            {
+              "title": "Production (US) [w/ Account Prefix]",
+              "value": "https://{account_prefix}.us1.dbt.com"
+            },
+            {
+              "title": "Production (Europe)",
+              "value": "https://emea.dbt.com"
+            },
+            {
+              "title": "Production (AU)",
+              "value": "https://au.dbt.com"
+            }
+          ]
+        },
+        {
+          "name": "dbtCloudAcountPrefix",
+          "title": "dbt Cloud Account Prefix",
+          "description": "Your dbt Cloud Account Prefix",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "dbt Cloud Account Prefix"
+        },
+        {
           "name": "dbtCloudAPIToken",
           "title": "dbt Cloud API Token",
           "description": "Your dbt Cloud API Token",
           "type": "password",
-          "default": "",
           "required": true,
           "placeholder": "dbt Cloud API Token"
         },
@@ -47811,7 +47940,6 @@
           "title": "dbt Cloud Account ID",
           "description": "Your dbt Cloud Account ID",
           "type": "password",
-          "default": "",
           "required": true,
           "placeholder": "dbt Cloud Account ID"
         }
@@ -69711,6 +69839,62 @@
       ]
     },
     {
+      "name": "file-provider-progress",
+      "title": "File Provider Progress",
+      "description": "Show macOS File Provider upload, download, indexing, and health status.",
+      "icon": "icon.png",
+      "author": "finite",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/finite/file-provider-progress",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/file-provider-progress",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "status",
+          "title": "File Provider Progress",
+          "subtitle": "Sync Status",
+          "description": "Show current macOS File Provider sync progress.",
+          "mode": "view",
+          "keywords": [
+            "status",
+            "sync",
+            "file provider progress"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "cliPath",
+          "title": "CLI Path",
+          "description": "Optional path to a custom fp-progress binary. Development defaults to the Swift debug build; production defaults to the bundled binary.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "/path/to/fp-progress"
+        },
+        {
+          "name": "timeoutSeconds",
+          "title": "Probe Timeout",
+          "description": "Maximum time Raycast waits for fp-progress status JSON.",
+          "type": "textfield",
+          "required": false,
+          "default": "30"
+        }
+      ]
+    },
+    {
       "name": "file-tree-generator",
       "title": "File Tree Generator",
       "description": "Generates file tree from text",
@@ -78781,200 +78965,6 @@
             {
               "title": "Ukrainian",
               "value": "uk"
-            }
-          ]
-        },
-        {
-          "name": "tenorLocale",
-          "type": "dropdown",
-          "required": false,
-          "title": "Tenor Locale",
-          "description": "Select the locale for the Tenor API",
-          "default": "en",
-          "data": [
-            {
-              "title": "Albanian",
-              "value": "sq"
-            },
-            {
-              "title": "Arabic",
-              "value": "ar"
-            },
-            {
-              "title": "Belarusian",
-              "value": "be"
-            },
-            {
-              "title": "Bengali",
-              "value": "bn"
-            },
-            {
-              "title": "Bosnian",
-              "value": "bs"
-            },
-            {
-              "title": "Cantonese",
-              "value": "zh_HK"
-            },
-            {
-              "title": "Catalan",
-              "value": "ca"
-            },
-            {
-              "title": "Chinese Simplified",
-              "value": "zh_CN"
-            },
-            {
-              "title": "Chinese Traditional",
-              "value": "zh_TW"
-            },
-            {
-              "title": "Croatian",
-              "value": "hr"
-            },
-            {
-              "title": "Czech",
-              "value": "cs"
-            },
-            {
-              "title": "Danish",
-              "value": "da"
-            },
-            {
-              "title": "Dutch",
-              "value": "nl"
-            },
-            {
-              "title": "English",
-              "value": "en"
-            },
-            {
-              "title": "Farsi",
-              "value": "fa"
-            },
-            {
-              "title": "Filipino",
-              "value": "fil"
-            },
-            {
-              "title": "Finnish",
-              "value": "fi"
-            },
-            {
-              "title": "French",
-              "value": "fr"
-            },
-            {
-              "title": "German",
-              "value": "de"
-            },
-            {
-              "title": "Greek",
-              "value": "el"
-            },
-            {
-              "title": "Hebrew",
-              "value": "he"
-            },
-            {
-              "title": "Hindi",
-              "value": "hi"
-            },
-            {
-              "title": "Hungarian",
-              "value": "hu"
-            },
-            {
-              "title": "Indonesian",
-              "value": "id"
-            },
-            {
-              "title": "Italian",
-              "value": "it"
-            },
-            {
-              "title": "Japanese",
-              "value": "ja"
-            },
-            {
-              "title": "Korean",
-              "value": "ko"
-            },
-            {
-              "title": "Laos",
-              "value": "lo"
-            },
-            {
-              "title": "Malay",
-              "value": "ms"
-            },
-            {
-              "title": "Mongolian",
-              "value": "mn"
-            },
-            {
-              "title": "Norwegian Bokmal",
-              "value": "no"
-            },
-            {
-              "title": "Norwegian Nynorsk",
-              "value": "nn"
-            },
-            {
-              "title": "Polish",
-              "value": "pl"
-            },
-            {
-              "title": "Portuguese",
-              "value": "pt"
-            },
-            {
-              "title": "Romanian",
-              "value": "ro"
-            },
-            {
-              "title": "Russian",
-              "value": "ru"
-            },
-            {
-              "title": "Serbian",
-              "value": "sr"
-            },
-            {
-              "title": "Slovak",
-              "value": "sk"
-            },
-            {
-              "title": "Spanish",
-              "value": "es"
-            },
-            {
-              "title": "Swedish",
-              "value": "sv"
-            },
-            {
-              "title": "Tagalog",
-              "value": "tl"
-            },
-            {
-              "title": "Thai",
-              "value": "th"
-            },
-            {
-              "title": "Turkish",
-              "value": "tr"
-            },
-            {
-              "title": "Ukrainian",
-              "value": "uk"
-            },
-            {
-              "title": "Urdu",
-              "value": "ur"
-            },
-            {
-              "title": "Vietnamese",
-              "value": "vi"
             }
           ]
         },
