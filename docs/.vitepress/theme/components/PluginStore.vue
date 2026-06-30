@@ -135,7 +135,7 @@ function clearSelection() {
 
 /** 在已安装的 Public 桌面客户端中打开该插件的商店详情页（伪协议 deep-link） */
 function installHref(name: string) {
-  return `public://store/${encodeURIComponent(name)}`;
+  return `public://public.qwertyyb.com/store/${encodeURIComponent(name)}`;
 }
 </script>
 
