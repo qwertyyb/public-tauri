@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-30T20:14:14.955Z",
+  "generatedAt": "2026-07-01T20:10:19.536Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "06006ce095c0bce99b382867229126d6b7e480cc"
+    "commit": "b4697af2244b7f7a09c668d8e11aa23f967922d9"
   },
-  "count": 3039,
+  "count": 3041,
   "extensions": [
     {
       "name": "0x0",
@@ -465,7 +465,7 @@
       "title": "2FAS Authenticator",
       "description": "Search and copy TOTP codes from 2FAS exports with a Keychain-encrypted local vault",
       "icon": "extension-icon.png",
-      "author": "Locke",
+      "author": "Lock",
       "contributors": [],
       "categories": [
         "Security"
@@ -474,7 +474,7 @@
       "platforms": [
         "macOS"
       ],
-      "storeUrl": "https://www.raycast.com/Locke/2fas-authenticator",
+      "storeUrl": "https://www.raycast.com/Lock/2fas-authenticator",
       "source": {
         "type": "github-monorepo",
         "repo": "raycast/extensions",
@@ -10206,6 +10206,334 @@
       ]
     },
     {
+      "name": "apple-tv-remote",
+      "title": "Apple TV Remote",
+      "description": "Control your Apple TV from Raycast with a visual remote, app launcher, deep links, and AI commands — no external installs required.",
+      "icon": "command-icon.png",
+      "author": "camschroedes",
+      "contributors": [],
+      "categories": [
+        "Media",
+        "Applications"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/camschroedes/apple-tv-remote",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/apple-tv-remote",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "remote",
+          "title": "Apple TV Remote",
+          "subtitle": "Apple TV",
+          "description": "On-screen remote with d-pad, playback, volume, and text input.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "ask",
+          "title": "Ask Apple TV",
+          "subtitle": "Apple TV",
+          "description": "One-off natural-language commands: pause, open Netflix, play a show.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "setup",
+          "title": "Set up Apple TV",
+          "subtitle": "Apple TV",
+          "description": "Discover and pair with an Apple TV on your network.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "launch-app",
+          "title": "Launch Apple TV App",
+          "subtitle": "Apple TV",
+          "description": "Browse and open apps installed on your Apple TV.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "play-pause",
+          "title": "Play/Pause",
+          "subtitle": "Apple TV",
+          "description": "Toggle playback on your Apple TV.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "home",
+          "title": "Go to Home Screen",
+          "subtitle": "Apple TV",
+          "description": "Jump to the Apple TV home screen.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "menubar",
+          "title": "Apple TV Menu Bar",
+          "subtitle": "Apple TV",
+          "description": "Quick Apple TV controls from your menu bar.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "up",
+          "title": "Up",
+          "subtitle": "Apple TV",
+          "description": "Press Up on the Apple TV remote.",
+          "mode": "no-view",
+          "keywords": [
+            "atv"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "down",
+          "title": "Down",
+          "subtitle": "Apple TV",
+          "description": "Press Down on the Apple TV remote.",
+          "mode": "no-view",
+          "keywords": [
+            "atv"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "left",
+          "title": "Left",
+          "subtitle": "Apple TV",
+          "description": "Press Left on the Apple TV remote.",
+          "mode": "no-view",
+          "keywords": [
+            "atv"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "right",
+          "title": "Right",
+          "subtitle": "Apple TV",
+          "description": "Press Right on the Apple TV remote.",
+          "mode": "no-view",
+          "keywords": [
+            "atv"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "select",
+          "title": "Select",
+          "subtitle": "Apple TV",
+          "description": "Press Select on the Apple TV remote.",
+          "mode": "no-view",
+          "keywords": [
+            "atv",
+            "ok"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "back",
+          "title": "Back",
+          "subtitle": "Apple TV",
+          "description": "Go back (Menu) on the Apple TV.",
+          "mode": "no-view",
+          "keywords": [
+            "atv",
+            "menu"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "volume-up",
+          "title": "Volume up",
+          "subtitle": "Apple TV",
+          "description": "Turn the Apple TV volume up.",
+          "mode": "no-view",
+          "keywords": [
+            "atv",
+            "louder"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "volume-down",
+          "title": "Volume Down",
+          "subtitle": "Apple TV",
+          "description": "Turn the Apple TV volume down.",
+          "mode": "no-view",
+          "keywords": [
+            "atv",
+            "quieter"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "skip-forward",
+          "title": "Skip Forward 10 Seconds",
+          "subtitle": "Apple TV",
+          "description": "Skip forward in the current video.",
+          "mode": "no-view",
+          "keywords": [
+            "atv",
+            "seek"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "skip-back",
+          "title": "Skip Back 10 Seconds",
+          "subtitle": "Apple TV",
+          "description": "Skip backward in the current video.",
+          "mode": "no-view",
+          "keywords": [
+            "atv",
+            "seek",
+            "rewind"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "context-menu",
+          "title": "Open Context Menu",
+          "subtitle": "Apple TV",
+          "description": "Long-press select on the Apple TV to open the context menu for the focused item.",
+          "mode": "no-view",
+          "keywords": [
+            "atv",
+            "hold"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "app-switcher",
+          "title": "App Switcher",
+          "subtitle": "Apple TV",
+          "description": "Open the Apple TV app switcher.",
+          "mode": "no-view",
+          "keywords": [
+            "atv",
+            "multitask"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "control-center",
+          "title": "Control Center",
+          "subtitle": "Apple TV",
+          "description": "Open Control Center on the Apple TV.",
+          "mode": "no-view",
+          "keywords": [
+            "atv"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "sleep",
+          "title": "Sleep Apple TV",
+          "subtitle": "Apple TV",
+          "description": "Put the Apple TV to sleep.",
+          "mode": "no-view",
+          "keywords": [
+            "atv",
+            "off"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "wake",
+          "title": "Wake Apple TV",
+          "subtitle": "Apple TV",
+          "description": "Wake the Apple TV up.",
+          "mode": "no-view",
+          "keywords": [
+            "atv",
+            "on"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "screensaver",
+          "title": "Start Screensaver",
+          "subtitle": "Apple TV",
+          "description": "Start the Apple TV screensaver (can be flaky on some models).",
+          "mode": "no-view",
+          "keywords": [
+            "atv",
+            "aerial"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "type-text",
+          "title": "Type Text on Apple TV",
+          "subtitle": "Apple TV",
+          "description": "Send text into the focused field on the Apple TV (e.g. a search box).",
+          "mode": "no-view",
+          "keywords": [
+            "atv",
+            "keyboard",
+            "input"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "country",
+          "title": "Streaming Country",
+          "description": "Two-letter country code used to find where shows are streaming (e.g. US, AU, GB). Leave blank to auto-detect from your Mac's region.",
+          "type": "textfield",
+          "required": false
+        },
+        {
+          "name": "searchAutomation",
+          "title": "Search Automation",
+          "description": "How far to go after typing a title into Apple TV Search. 'Open top result' stops on the title page so you pick the streaming app. Pressing Play blindly can start the wrong provider.",
+          "type": "dropdown",
+          "default": "open",
+          "required": false,
+          "data": [
+            {
+              "title": "Type the title only",
+              "value": "type"
+            },
+            {
+              "title": "Open top result (recommended)",
+              "value": "open"
+            },
+            {
+              "title": "Open and press Play (may pick the wrong app)",
+              "value": "play"
+            }
+          ]
+        },
+        {
+          "name": "connectTimeout",
+          "title": "Connection Timeout",
+          "description": "How long commands wait to reach the Apple TV (milliseconds).",
+          "type": "textfield",
+          "default": "8000",
+          "required": false
+        }
+      ]
+    },
+    {
       "name": "apply-inline-code",
       "title": "Apply Inline Code",
       "description": "Apply inline code style in common apps and websites",
@@ -11843,7 +12171,8 @@
         "Spacedolphin",
         "tuzemec",
         "xmok",
-        "abcd_ca"
+        "abcd_ca",
+        "nulltrope"
       ],
       "categories": [
         "Productivity"
@@ -31397,7 +31726,9 @@
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/arguiot/circleback",
       "source": {
         "type": "github-monorepo",
@@ -74803,10 +75134,19 @@
           "preferences": []
         },
         {
+          "name": "create-expense",
+          "title": "Create Expense",
+          "subtitle": "FreeAgent",
+          "description": "Create an expense in FreeAgent",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "list-bank-transactions",
           "title": "List Bank Transactions",
           "subtitle": "FreeAgent",
-          "description": "List all bank transactions from FreeAgent, including explained and unexplained",
+          "description": "List all bank transactions from FreeAgent",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -74815,7 +75155,7 @@
           "name": "list-unexplained-transactions",
           "title": "List Unexplained Transactions",
           "subtitle": "FreeAgent",
-          "description": "List unexplained bank transactions that need attention for bookkeeping",
+          "description": "List unexplained bank transactions that need attention",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -78652,7 +78992,8 @@
         "YourMCGeek",
         "thomas",
         "tim_gailey",
-        "clins1994"
+        "clins1994",
+        "0xdhrv"
       ],
       "categories": [
         "Media",
@@ -78967,13 +79308,6 @@
               "value": "uk"
             }
           ]
-        },
-        {
-          "name": "klipyApiKey",
-          "type": "password",
-          "required": false,
-          "title": "Klipy API Key",
-          "description": "API key for Klipy service. Get your key at partner.klipy.com"
         },
         {
           "name": "klipyLocale",
@@ -173754,6 +174088,42 @@
           "mode": "no-view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "setup-chrome-current-profile",
+          "title": "Setup Chrome Current Profile",
+          "subtitle": "Proxyman",
+          "description": "Launch Google Chrome with current profile, HTTP proxy configured to Proxyman, and HTTPS certificate trusted via SPKI pinning",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "setup-chrome-new-profile",
+          "title": "Setup Chrome New Profile",
+          "subtitle": "Proxyman",
+          "description": "Launch Google Chrome with a temporary profile, HTTP proxy configured to Proxyman, and HTTPS certificate trusted via SPKI pinning",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "setup-firefox",
+          "title": "Setup Firefox",
+          "subtitle": "Proxyman",
+          "description": "Launch Firefox with a temporary profile, HTTP proxy configured to Proxyman, and certificate trusted",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "setup-terminal",
+          "title": "Setup Terminal",
+          "subtitle": "Proxyman",
+          "description": "Open a new Terminal window with Proxyman proxy environment variables injected for Node.js, Python, Ruby, and Go",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": []
@@ -229261,6 +229631,69 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "tinyfish-search",
+      "title": "TinyFish Search",
+      "description": "Search the web with TinyFish, open result URLs, and fetch clean page content.",
+      "icon": "icon.png",
+      "author": "pranav_janakiraman",
+      "contributors": [],
+      "categories": [
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/pranav_janakiraman/tinyfish-search",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/tinyfish-search",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search",
+          "title": "Search Web",
+          "description": "Search the web with TinyFish, browse result URLs, and fetch clean page content.",
+          "mode": "view",
+          "keywords": [
+            "tinyfish",
+            "web",
+            "search"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "title": "TinyFish API Key",
+          "description": "Your TinyFish API key. Create one at https://agent.tinyfish.ai/api-keys.",
+          "type": "password",
+          "required": true,
+          "placeholder": "tf_..."
+        },
+        {
+          "name": "location",
+          "title": "Location",
+          "description": "Optional country code for geo-targeted results, for example US, GB, FR, or SG.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "US"
+        },
+        {
+          "name": "language",
+          "title": "Language",
+          "description": "Optional language code for result language, for example en, fr, de, or ja.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "en"
+        }
+      ]
     },
     {
       "name": "tinyimg",
