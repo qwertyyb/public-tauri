@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-01T20:10:19.536Z",
+  "generatedAt": "2026-07-02T19:48:33.832Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "b4697af2244b7f7a09c668d8e11aa23f967922d9"
+    "commit": "9cd3e75dac0c8084a90f3164c14c77e1d1d6667e"
   },
-  "count": 3041,
+  "count": 3042,
   "extensions": [
     {
       "name": "0x0",
@@ -3112,7 +3112,7 @@
     {
       "name": "agent-usage",
       "title": "Agent Usage",
-      "description": "Monitor AI coding agent usage across Amp, Claude, Codex, Copilot, Droid, Gemini, Kimi, Synthetic, Antigravity, z.ai, MiniMax, and OpenCode Go",
+      "description": "Monitor AI coding agent usage across Amp, Claude, Codex, Copilot, Cursor, Droid, Gemini, Kimi, Synthetic, Antigravity, z.ai, MiniMax, and OpenCode Go",
       "icon": "extension-icon.png",
       "author": "thuggyduck",
       "contributors": [
@@ -3186,6 +3186,14 @@
           "type": "checkbox",
           "label": "Show Copilot",
           "description": "Show Copilot usage in the list",
+          "default": true,
+          "required": false
+        },
+        {
+          "name": "showCursor",
+          "type": "checkbox",
+          "label": "Show Cursor",
+          "description": "Show Cursor usage in the list",
           "default": true,
           "required": false
         },
@@ -3276,6 +3284,13 @@
           "type": "password",
           "title": "Copilot Authorization Token (Optional)",
           "description": "Optional fallback OAuth token for Copilot usage. Usually auto-detected from GH_TOKEN or GITHUB_TOKEN (for example from 'gh auth token'). Standard PATs may not work.",
+          "required": false
+        },
+        {
+          "name": "cursorCookieHeader",
+          "type": "password",
+          "title": "Cursor Cookie Header (Optional)",
+          "description": "Optional fallback Cookie header from cursor.com. Usually auto-detected from your local Cursor.app login.",
           "required": false
         },
         {
@@ -14899,6 +14914,115 @@
           "description": "Number of decimals to display.",
           "type": "textfield",
           "default": "6"
+        }
+      ]
+    },
+    {
+      "name": "bangumi",
+      "title": "Bangumi",
+      "description": "A full-featured Bangumi client for Raycast. Manage collections, track progress, search subjects and characters, view daily schedules. Includes AI tools for Raycast AI.",
+      "icon": "extension-icon.png",
+      "author": "maxchang3",
+      "contributors": [],
+      "categories": [
+        "Applications",
+        "Productivity",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows",
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/maxchang3/bangumi",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/bangumi",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "list-collections",
+          "title": "List Collections",
+          "description": "View and update your watching, playing, or reading subjects.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "list-current-collections",
+          "title": "List Current Collections",
+          "description": "View your current watching, playing, or reading subjects.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "daily-calendar",
+          "title": "Daily Calendar",
+          "description": "View the daily airing schedule of anime.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-subjects",
+          "title": "Search Subjects",
+          "description": "Search for anime, games, books, etc. on Bangumi.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-characters",
+          "title": "Search Characters",
+          "description": "Search for characters on Bangumi.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "showBook",
+          "type": "checkbox",
+          "required": false,
+          "description": "Show book subjects in the collection list",
+          "label": "Show Books",
+          "default": true
+        },
+        {
+          "name": "showAnime",
+          "type": "checkbox",
+          "required": false,
+          "description": "Show anime subjects in the collection list",
+          "label": "Show Anime",
+          "default": true
+        },
+        {
+          "name": "showMusic",
+          "type": "checkbox",
+          "required": false,
+          "description": "Show music subjects in the collection list",
+          "label": "Show Music",
+          "default": false
+        },
+        {
+          "name": "showGame",
+          "type": "checkbox",
+          "required": false,
+          "description": "Show game subjects in the collection list",
+          "label": "Show Games",
+          "default": false
+        },
+        {
+          "name": "showReal",
+          "type": "checkbox",
+          "required": false,
+          "description": "Show real-life subjects in the collection list",
+          "label": "Show Real Life",
+          "default": true
         }
       ]
     },
@@ -53957,7 +54081,7 @@
       "title": "Dida365",
       "description": "Control Dida365 tasks from Raycast on Windows.",
       "icon": "dida365-icon.png",
-      "author": "max",
+      "author": "ctacta621",
       "contributors": [],
       "categories": [
         "Productivity"
@@ -53967,7 +54091,7 @@
         "macOS",
         "Windows"
       ],
-      "storeUrl": "https://www.raycast.com/max/dida365",
+      "storeUrl": "https://www.raycast.com/ctacta621/dida365",
       "source": {
         "type": "github-monorepo",
         "repo": "raycast/extensions",
@@ -60305,12 +60429,16 @@
       "description": "Create dynamic font sizes using the 'clamp' CSS function",
       "icon": "clamp-icon.png",
       "author": "nils_hoenson",
-      "contributors": [],
+      "contributors": [
+        "tavlean"
+      ],
       "categories": [
         "Developer Tools"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/nils_hoenson/dynamic-font-size",
       "source": {
         "type": "github-monorepo",
@@ -60321,7 +60449,7 @@
       "commands": [
         {
           "name": "index",
-          "title": "Generate Font-size Using Clamp",
+          "title": "Generate Font-Size Using Clamp",
           "description": "Copy the generated 'clamp' function to your clipboard",
           "mode": "view",
           "keywords": [],
@@ -69838,7 +69966,26 @@
           "description": "Search Figma keyboard shortcuts and copy them to the clipboard",
           "mode": "view",
           "keywords": [],
-          "preferences": []
+          "preferences": [
+            {
+              "name": "platform",
+              "type": "dropdown",
+              "title": "Platform",
+              "description": "Which OS shortcut format to display and copy",
+              "data": [
+                {
+                  "value": "mac",
+                  "title": "macOS"
+                },
+                {
+                  "value": "windows",
+                  "title": "Windows"
+                }
+              ],
+              "default": "mac",
+              "required": false
+            }
+          ]
         }
       ],
       "preferences": []
@@ -201792,12 +201939,16 @@
       "description": "Capture and record your screen using shottr!",
       "icon": "main-icon.png",
       "author": "fernando_barrios",
-      "contributors": [],
+      "contributors": [
+        "CaffeineCat"
+      ],
       "categories": [
         "Applications"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/fernando_barrios/shottr",
       "source": {
         "type": "github-monorepo",
@@ -249757,7 +249908,9 @@
         "Developer Tools"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "version": "1.0.0",
       "storeUrl": "https://www.raycast.com/finjo/whisper-dictation",
       "source": {
@@ -249808,6 +249961,15 @@
           "title": "Configure AI Refinement",
           "subtitle": "Whisper Dictation",
           "description": "Configure AI powered speech refinement",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "dictate-with-prompt",
+          "title": "Dictate with AI Prompt",
+          "subtitle": "Whisper Dictation",
+          "description": "Choose a specific AI prompt for dictation",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -249944,6 +250106,14 @@
           "required": false,
           "placeholder": "llama3.2:latest",
           "default": "llama3.2:latest"
+        },
+        {
+          "name": "scriptCommandsPath",
+          "title": "Script Commands Path",
+          "description": "Path to your Raycast script commands directory. Required to create standalone commands for prompts.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "~/raycast-scripts"
         }
       ]
     },
