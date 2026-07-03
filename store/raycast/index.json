@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-02T19:48:33.832Z",
+  "generatedAt": "2026-07-03T19:45:45.906Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "9cd3e75dac0c8084a90f3164c14c77e1d1d6667e"
+    "commit": "eb6d5bf5175c789b9f2455ba4730b4f476b7ce0b"
   },
-  "count": 3042,
+  "count": 3045,
   "extensions": [
     {
       "name": "0x0",
@@ -10223,7 +10223,7 @@
     {
       "name": "apple-tv-remote",
       "title": "Apple TV Remote",
-      "description": "Control your Apple TV from Raycast with a visual remote, app launcher, deep links, and AI commands — no external installs required.",
+      "description": "Control your Apple TV from Raycast with a visual remote, app launcher, deep links, and AI commands. No external installs required.",
       "icon": "command-icon.png",
       "author": "camschroedes",
       "contributors": [],
@@ -28013,11 +28013,14 @@
       "author": "pgvr",
       "contributors": [
         "Ansub",
-        "stanley_ding"
+        "stanley_ding",
+        "xmok"
       ],
       "categories": [],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/pgvr/chakra-ui-docs",
       "source": {
         "type": "github-monorepo",
@@ -28112,6 +28115,174 @@
           "title": "Change Case",
           "description": "Change the case of the selected text or text in the clipboard",
           "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-camel-case",
+          "title": "Convert to camelCase",
+          "description": "Convert selected text or clipboard to camelCase",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-capital-case",
+          "title": "Convert to Capital Case",
+          "description": "Convert selected text or clipboard to Capital Case",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-constant-case",
+          "title": "Convert to CONSTANT_CASE",
+          "description": "Convert selected text or clipboard to CONSTANT_CASE",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-dot-case",
+          "title": "Convert to dot.case",
+          "description": "Convert selected text or clipboard to dot.case",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-header-case",
+          "title": "Convert to Header-Case",
+          "description": "Convert selected text or clipboard to Header-Case",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-lower-case",
+          "title": "Convert to lower case",
+          "description": "Convert selected text or clipboard to lower case",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-lower-first",
+          "title": "Convert to lower First",
+          "description": "Convert selected text or clipboard to lower First",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-no-case",
+          "title": "Convert to no case",
+          "description": "Convert selected text or clipboard to no case",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-kebab-case",
+          "title": "Convert to kebab-case",
+          "description": "Convert selected text or clipboard to kebab-case",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-kebab-upper-case",
+          "title": "Convert to KEBAB-UPPER-CASE",
+          "description": "Convert selected text or clipboard to KEBAB-UPPER-CASE",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-pascal-case",
+          "title": "Convert to PascalCase",
+          "description": "Convert selected text or clipboard to PascalCase",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-pascal-snake-case",
+          "title": "Convert to Pascal_Snake_Case",
+          "description": "Convert selected text or clipboard to Pascal_Snake_Case",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-path-case",
+          "title": "Convert to path/case",
+          "description": "Convert selected text or clipboard to path/case",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-random-case",
+          "title": "Convert to rAndOm cAsE",
+          "description": "Convert selected text or clipboard to rAndOm cAsE",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-sentence-case",
+          "title": "Convert to Sentence case",
+          "description": "Convert selected text or clipboard to Sentence case",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-snake-case",
+          "title": "Convert to snake_case",
+          "description": "Convert selected text or clipboard to snake_case",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-alternating-case",
+          "title": "Convert to aLtErNaTiNg cAsE",
+          "description": "Convert selected text or clipboard to aLtErNaTiNg cAsE",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-swap-case",
+          "title": "Convert to sWAP cASE",
+          "description": "Convert selected text or clipboard to sWAP cASE",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-title-case",
+          "title": "Convert to Title Case",
+          "description": "Convert selected text or clipboard to Title Case",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-upper-case",
+          "title": "Convert to UPPER CASE",
+          "description": "Convert selected text or clipboard to UPPER CASE",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-upper-first",
+          "title": "Convert to Upper first",
+          "description": "Convert selected text or clipboard to Upper first",
+          "mode": "no-view",
           "keywords": [],
           "preferences": []
         }
@@ -42069,16 +42240,23 @@
     {
       "name": "country-lookup",
       "title": "Country Lookup",
-      "description": "Quickly lookup countries and get informational data",
-      "icon": "command-icon.png",
+      "description": "Search and explore detailed data for every country: flags, capitals, languages, currencies, regions and more, powered by the REST Countries API.",
+      "icon": "extension_iconv1.png",
       "author": "pernielsentikaer",
       "contributors": [
+        "yusifaliyevpro",
         "j3lte",
         "xmok"
       ],
-      "categories": [],
+      "categories": [
+        "Data",
+        "Web"
+      ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "Windows",
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/pernielsentikaer/country-lookup",
       "source": {
         "type": "github-monorepo",
@@ -42089,8 +42267,9 @@
       "commands": [
         {
           "name": "index",
-          "title": "Search Country",
-          "description": "Quickly lookup countries",
+          "title": "Search Countries",
+          "subtitle": "Country Lookup",
+          "description": "Search countries by name, capital, or language and browse rich details like flags, currencies, and regions.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -42098,13 +42277,28 @@
       ],
       "preferences": [
         {
-          "title": "Coat of Arms",
-          "name": "showCoatOfArms",
-          "type": "checkbox",
-          "required": false,
-          "default": true,
-          "label": "Display the Coat of Arms by default",
-          "description": "Show coat of arms, looks amazing but might take some space"
+          "name": "apiKey",
+          "title": "API Key",
+          "description": "Your REST Countries API key. Get one for free at https://restcountries.com/sign-up.",
+          "type": "password",
+          "required": true
+        },
+        {
+          "name": "entriesWithoutIsoCode",
+          "title": "Show Countries",
+          "description": "REST Countries lists a few partially-recognized territories that have no ISO 3166-1 code (for example Abkhazia, South Ossetia and Northern Cyprus). Choose whether to include them. This is based purely on the data source's ISO codes and is not a political stance by this extension or its author.",
+          "type": "dropdown",
+          "required": true,
+          "data": [
+            {
+              "title": "Show All",
+              "value": "show"
+            },
+            {
+              "title": "Hide Disputed Territories",
+              "value": "hide"
+            }
+          ]
         }
       ]
     },
@@ -45641,6 +45835,90 @@
           "label": "Open output image"
         }
       ]
+    },
+    {
+      "name": "cyber-security-pulse",
+      "title": "Cyber Security Pulse",
+      "description": "Latest important cyber security news, ranked by severity.",
+      "icon": "command-icon.png",
+      "author": "goran_breivik",
+      "contributors": [],
+      "categories": [
+        "News"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/goran_breivik/cyber-security-pulse",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/cyber-security-pulse",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "latest-news",
+          "title": "Cyber Security Pulse",
+          "subtitle": "Security news at a glance",
+          "description": "Lists the latest important cyber security news, ranked by severity.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "feeds",
+              "type": "textfield",
+              "required": false,
+              "title": "Feed Sources",
+              "description": "RSS sources to read. Comma-separated; each is Name|url or a bare url. Edit to add/remove. Empty restores the default set.",
+              "default": "BleepingComputer|https://www.bleepingcomputer.com/feed/, The Hacker News|https://feeds.feedburner.com/TheHackersNews, Krebs on Security|https://krebsonsecurity.com/feed/, CISA Alerts|https://www.cisa.gov/cybersecurity-advisories/all.xml, Schneier on Security|https://www.schneier.com/feed/atom/, SANS ISC|https://isc.sans.edu/rssfeed_full.xml"
+            },
+            {
+              "name": "watchlist",
+              "type": "textfield",
+              "required": false,
+              "title": "Priority Watchlist",
+              "description": "Tech to pin in a ⭐ Watched section. Comma-separated; use | for aliases and pkg: for PURLs. e.g. Linux|kernel, Microsoft|windows, pkg:npm/express, OpenSSL",
+              "default": ""
+            },
+            {
+              "name": "extraCritical",
+              "type": "textfield",
+              "required": false,
+              "title": "Extra Critical Keywords",
+              "description": "Comma-separated keywords that also mark an item 🔴 Critical (matched in title or body). Added to the built-in signals.",
+              "default": ""
+            },
+            {
+              "name": "extraHigh",
+              "type": "textfield",
+              "required": false,
+              "title": "Extra High Keywords",
+              "description": "Comma-separated keywords that also mark an item 🟠 High. Added to the built-in signals.",
+              "default": ""
+            },
+            {
+              "name": "extraMedium",
+              "type": "textfield",
+              "required": false,
+              "title": "Extra Medium Keywords",
+              "description": "Comma-separated keywords that also mark an item 🟡 Medium. Added to the built-in signals.",
+              "default": ""
+            },
+            {
+              "name": "denylist",
+              "type": "textfield",
+              "required": false,
+              "title": "Denylist",
+              "description": "Comma-separated keywords to hide. Any item matching one (in title or summary) is removed from the list. e.g. Android, crypto",
+              "default": ""
+            }
+          ]
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "cyberchef",
@@ -51860,6 +52138,24 @@
               "type": "checkbox",
               "label": "Confirm when starting multiple folders at once",
               "description": "Show a confirmation alert before spawning more than one dev server from a multi-folder Finder selection",
+              "default": true,
+              "required": false
+            }
+          ]
+        },
+        {
+          "name": "menubar",
+          "title": "Dev Servers Menu Bar",
+          "description": "See running dev servers in the menu bar; kill, restart, open, or start one from the dropdown",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "showCount",
+              "type": "checkbox",
+              "title": "Menu Bar",
+              "label": "Show running-server count",
+              "description": "Show the number of running dev servers next to the menu bar icon",
               "default": true,
               "required": false
             }
@@ -112804,7 +113100,8 @@
         "joaogf.dev",
         "YourMCGeek",
         "pernielsentikaer",
-        "ridemountainpig"
+        "ridemountainpig",
+        "0xdhrv"
       ],
       "categories": [
         "Data",
@@ -131811,6 +132108,49 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "memo-to-flomo",
+      "title": "MEMO to flomo",
+      "description": "Quickly send Markdown memos to flomo with tag history",
+      "icon": "extension-icon.png",
+      "author": "moose_zhang",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/moose_zhang/memo-to-flomo",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/memo-to-flomo",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "send-memo",
+          "title": "Send MEMO to flomo",
+          "subtitle": "flomo",
+          "description": "Send Markdown memos to flomo",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "api",
+          "title": "MEMO API URL",
+          "description": "Get the API URL from the flomo settings page.",
+          "type": "password",
+          "required": true
+        }
+      ]
     },
     {
       "name": "memorable-generate-password",
@@ -164464,14 +164804,19 @@
       "description": "Show piano chords and scales",
       "icon": "pianoman.png",
       "author": "juhamust",
-      "contributors": [],
+      "contributors": [
+        "0xdhrv"
+      ],
       "categories": [
         "Documentation",
         "Media",
         "Other"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "storeUrl": "https://www.raycast.com/juhamust/pianoman",
       "source": {
         "type": "github-monorepo",
@@ -185224,6 +185569,88 @@
       ]
     },
     {
+      "name": "rayterm",
+      "title": "RayTerm",
+      "description": "The Raycast Terminal Emulator",
+      "icon": "extension-icon.png",
+      "author": "EvanZhouDev",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/EvanZhouDev/rayterm",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/rayterm",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "open-rayterm",
+          "title": "RayTerm",
+          "description": "The Raycast Terminal Emulator",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "shellPath",
+              "title": "Shell Path",
+              "description": "Absolute path to the shell RayTerm should start.",
+              "type": "textfield",
+              "required": false,
+              "default": "/bin/zsh"
+            },
+            {
+              "name": "shellArgs",
+              "title": "Shell Arguments",
+              "description": "Arguments passed to the shell. The default starts an interactive login shell.",
+              "type": "textfield",
+              "required": false,
+              "default": "-il"
+            },
+            {
+              "name": "workingDirectory",
+              "title": "Working Directory",
+              "description": "Directory where the shell starts. Supports ~. Falls back to your home directory if blank or invalid.",
+              "type": "textfield",
+              "required": false,
+              "default": "~"
+            },
+            {
+              "name": "pythonPath",
+              "title": "Python Path",
+              "description": "Python executable used to run the local RayTerm daemon.",
+              "type": "textfield",
+              "required": false,
+              "default": "/usr/bin/python3"
+            },
+            {
+              "name": "terminalColumns",
+              "title": "Terminal Columns",
+              "description": "Column count reported to the shell through COLUMNS and the PTY window size.",
+              "type": "textfield",
+              "required": false,
+              "default": "60"
+            },
+            {
+              "name": "maxTranscriptLines",
+              "title": "Transcript Line Limit",
+              "description": "Maximum rendered terminal lines kept in the Raycast Detail view.",
+              "type": "textfield",
+              "required": false,
+              "default": "4000"
+            }
+          ]
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "raytyping",
       "title": "Raytyping",
       "description": "This extension inspired by monkeytype. For developer who loves typing keyboard and measure their speed of typing skill",
@@ -204698,6 +205125,14 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "zen-mode",
+          "title": "Zen Mode",
+          "description": "Focus on one random non-repeating task from a selected bucket.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": [
@@ -221884,7 +222319,7 @@
       "platforms": [
         "macOS"
       ],
-      "version": "1.0.30",
+      "version": "1.0.46",
       "storeUrl": "https://www.raycast.com/praveenjuge/teak-raycast",
       "source": {
         "type": "github-monorepo",
@@ -221971,8 +222406,8 @@
           "name": "apiKey",
           "title": "API Key",
           "type": "password",
-          "required": true,
-          "description": "Generate in Teak Settings > API Keys, then paste it here."
+          "required": false,
+          "description": "Optional — only if you prefer an API key over browser sign-in. Generate in Teak Settings > Manage API Keys."
         }
       ]
     },
@@ -233532,7 +233967,8 @@
       "author": "thesobercoder",
       "contributors": [
         "vishalbalaji3",
-        "Berenger"
+        "Berenger",
+        "burhanrashid52"
       ],
       "categories": [
         "Media",
