@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-04T19:30:11.379Z",
+  "generatedAt": "2026-07-05T19:41:38.601Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "b3ec61888d4be46172e70dbff7e81c652f8d7c14"
+    "commit": "8a7c4ed452e8a3317919c7d5569dadced2eda2df"
   },
   "count": 3045,
   "extensions": [
@@ -99399,7 +99399,10 @@
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "storeUrl": "https://www.raycast.com/DominicVonk/homey",
       "source": {
         "type": "github-monorepo",
