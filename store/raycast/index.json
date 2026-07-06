@@ -1,22 +1,23 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-05T19:41:38.601Z",
+  "generatedAt": "2026-07-06T20:15:46.619Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "8a7c4ed452e8a3317919c7d5569dadced2eda2df"
+    "commit": "c3d4cd9bb296145e28c1648980b6a700555286a8"
   },
-  "count": 3045,
+  "count": 3049,
   "extensions": [
     {
       "name": "0x0",
       "title": "0x0",
       "description": "Upload files to https://0x0.st.",
-      "icon": "0x0.png",
+      "icon": "icon.png",
       "author": "pseudobun",
       "contributors": [
         "pernielsentikaer",
-        "jatindotdev"
+        "jatindotdev",
+        "0xdhrv"
       ],
       "categories": [
         "Applications",
@@ -24,7 +25,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/pseudobun/0x0",
       "source": {
@@ -42,9 +44,28 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "history",
+          "title": "Upload History",
+          "subtitle": "0x0",
+          "description": "Browse, open, and delete your uploaded files.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "instanceUrl",
+          "type": "textfield",
+          "required": false,
+          "title": "Instance URL",
+          "description": "The 0x0 instance to upload to. Use this to point to a self-hosted instance (including localhost).",
+          "default": "https://0x0.st",
+          "placeholder": "https://0x0.st"
+        }
+      ]
     },
     {
       "name": "1-click-confetti",
@@ -48564,12 +48585,17 @@
       "description": "Search the dbt documentation website https://docs.getdbt.com/",
       "icon": "dbt-icon.png",
       "author": "b-per",
-      "contributors": [],
+      "contributors": [
+        "xmok"
+      ],
       "categories": [
         "Documentation"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "storeUrl": "https://www.raycast.com/b-per/dbt-documentation",
       "source": {
         "type": "github-monorepo",
@@ -95924,6 +95950,50 @@
       ]
     },
     {
+      "name": "heatcheck",
+      "title": "Heat Check",
+      "description": "See what's burning your CPU and spinning your fan",
+      "icon": "extension-icon.png",
+      "author": "kumamaki",
+      "contributors": [],
+      "categories": [
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "0.1.0",
+      "storeUrl": "https://www.raycast.com/kumamaki/heatcheck",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/heatcheck",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "heat-check",
+          "title": "Check Heat",
+          "subtitle": "Heat Check",
+          "description": "See what's burning your CPU and spinning your fan",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "diagnosis",
+          "title": "AI Diagnosis",
+          "subtitle": "Heat Check",
+          "description": "Ask AI to explain what's making your Mac run hot",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "hebrew-date-zmanim",
       "title": "Hebrew Date & Zmanim",
       "description": "Hebrew date converter + full Kosher Zmanim with fuzzy search for Raycast.",
@@ -96141,6 +96211,14 @@
           "name": "search-web",
           "title": "Search Web",
           "description": "Search the web with Helium browser",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-history",
+          "title": "Search History",
+          "description": "Search browsing history from Helium browser",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -104976,6 +105054,48 @@
       ]
     },
     {
+      "name": "integrations-sh",
+      "title": "Integrations.sh",
+      "description": "Search integrations.sh for MCP, OpenAPI, GraphQL, and CLI integration surfaces, and inspect setup and credentials per domain.",
+      "icon": "icon.png",
+      "author": "0xdhrv",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/0xdhrv/integrations-sh",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/integrations-sh",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-integrations",
+          "title": "Search Integrations",
+          "description": "Search integrations.sh for MCP, OpenAPI, GraphQL, and CLI integration surfaces.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "inspect-domain",
+          "title": "Inspect Integration Domain",
+          "description": "Inspect integration surfaces and credentials for a domain.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "intention-clarifier",
       "title": "Intention Clarifier",
       "description": "This Raycast extension helps you articulate your intentions, mood, and reasons behind your tasks. It guides you through a simple form to clarify what you want to achieve, the mindset you need, and why you're doing it. The extension then allows you to either paste this intention directly into your current application or copy it to your clipboard for later use.",
@@ -113095,8 +113215,8 @@
     {
       "name": "jwt-decoder",
       "title": "JWT Decoder",
-      "description": "Decode Your JSON Web Tokens – extract the header and data information from a JWT",
-      "icon": "jwt.png",
+      "description": "Decode Your JSON Web Tokens - extract the header and data information from a JWT",
+      "icon": "icon.png",
       "author": "gdsmith",
       "contributors": [
         "zhhanging",
@@ -127457,10 +127577,12 @@
     {
       "name": "macshot",
       "title": "Macshot",
-      "description": "Trigger macshot URL scheme actions from Raycast.",
+      "description": "Trigger macshot actions from Raycast.",
       "icon": "extension-icon.png",
       "author": "Tien-Lam",
-      "contributors": [],
+      "contributors": [
+        "Zaunei"
+      ],
       "categories": [
         "Applications"
       ],
@@ -127545,6 +127667,14 @@
           "title": "Stop Recording",
           "description": "Open macshot://stop-recording.",
           "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open",
+          "title": "Open File",
+          "description": "Open an image or video file in macshot editor.",
+          "mode": "view",
           "keywords": [],
           "preferences": []
         },
@@ -142517,7 +142647,7 @@
     {
       "name": "navidrome",
       "title": "Navidrome",
-      "description": "Search and browse your Navidrome music library. Find artists, albums, and songs, then open them directly in your browser.",
+      "description": "Search and browse your Navidrome music library. Find artists, albums, songs, and playlists, then open them directly in your browser.",
       "icon": "extension-icon.png",
       "author": "alexandervarney",
       "contributors": [],
@@ -142540,7 +142670,7 @@
           "name": "search",
           "title": "Search",
           "subtitle": "Navidrome",
-          "description": "Search for artists, albums, and songs in your Navidrome library",
+          "description": "Search for artists, albums, songs, and playlists in your Navidrome library",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -142559,6 +142689,15 @@
           "title": "Most Played Albums",
           "subtitle": "Navidrome",
           "description": "Browse your most played albums in Navidrome",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "playlists",
+          "title": "Playlists",
+          "subtitle": "Navidrome",
+          "description": "Browse your Navidrome playlists",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -160908,6 +161047,59 @@
       "preferences": []
     },
     {
+      "name": "paste-rs",
+      "title": "paste.rs - Quick Pastes",
+      "description": "Create anonymous paste.rs links from typed text or your clipboard, and browse recent pastes.",
+      "icon": "icon.png",
+      "author": "0xdhrv",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/0xdhrv/paste-rs",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/paste-rs",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "create-paste",
+          "title": "Create Paste",
+          "subtitle": "paste.rs",
+          "description": "Create a paste from manually entered text and copy the URL",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "paste-clipboard",
+          "title": "Create Paste from Clipboard",
+          "subtitle": "paste.rs",
+          "description": "Create a paste from clipboard text and copy the URL",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "recent-pastes",
+          "title": "Browse Recent Pastes",
+          "subtitle": "paste.rs",
+          "description": "Browse pastes created with Raycast, copy them back, or delete them",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "paste-safely",
       "title": "Paste Safely",
       "description": "Paste with per-app and per-website confirmation policies",
@@ -174450,7 +174642,9 @@
       "description": "Navigate and perform common actions in Proxyman faster",
       "icon": "proxyman-icon.png",
       "author": "noah_tran",
-      "contributors": [],
+      "contributors": [
+        "mattiacolombomc"
+      ],
       "categories": [
         "Developer Tools",
         "Applications"
@@ -183622,8 +183816,8 @@
         {
           "name": "preview-animation",
           "title": "Preview Animation",
-          "subtitle": "Motion Preview",
-          "description": "Quickly preview animation files in selected in Finder. Supports Lottie (JSON and dotLottie) and Rive files.",
+          "subtitle": "Preview a Lottie or Rive Animation",
+          "description": "Quickly preview animation files selected in Finder. Supports Lottie (JSON and dotLottie) and Rive files.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -209863,7 +210057,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/doktor500/spanish-tv-guide",
       "source": {
@@ -215407,6 +215602,76 @@
       ]
     },
     {
+      "name": "stik",
+      "title": "Stik",
+      "description": "Quick capture and browse your Stik notes. Create, search, organize, and manage markdown notes stored locally on your machine.",
+      "icon": "command-icon.png",
+      "author": "0xMassi",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/0xMassi/stik",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/stik",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "quick-capture",
+          "title": "Quick Capture",
+          "description": "Create a new note and save it to a folder",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "search-notes",
+          "title": "Search Notes",
+          "description": "Full-text search across all your Stik notes",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "browse-notes",
+          "title": "Browse Notes",
+          "description": "Browse all notes organized by folder",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-recent",
+          "title": "Open Recent",
+          "description": "Quickly access your 10 most recently modified notes",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "notesDirectory",
+          "title": "Notes Directory",
+          "description": "Path to your Stik notes folder",
+          "type": "textfield",
+          "default": "~/Documents/Stik/",
+          "required": false
+        }
+      ]
+    },
+    {
       "name": "stock-lookup",
       "title": "Stock Lookup",
       "description": "Retrieves stock information from the alphavantage API. Get a free API Key from https://www.alphavantage.co/support/#api-key, or a paid one from https://www.alphavantage.co/premium/",
@@ -218616,7 +218881,8 @@
       "icon": "command-icon.png",
       "author": "1weiho",
       "contributors": [
-        "ridemountainpig"
+        "ridemountainpig",
+        "0xdhrv"
       ],
       "categories": [
         "Design Tools",
@@ -218691,6 +218957,10 @@
                   "title": "Copy SVG Wordmark URL"
                 },
                 {
+                  "value": "copyAstroComponent",
+                  "title": "Copy Astro Component"
+                },
+                {
                   "value": "operation",
                   "title": "Operation"
                 },
@@ -218699,6 +218969,15 @@
                   "title": "SVG Info"
                 }
               ]
+            },
+            {
+              "name": "showWordmark",
+              "title": "Show Wordmark",
+              "description": "Show wordmark SVG copy actions in the action panel",
+              "type": "checkbox",
+              "required": false,
+              "default": true,
+              "label": "Show wordmark actions"
             },
             {
               "name": "defaultPackageManager",
@@ -242199,10 +242478,14 @@
       "description": "Experience the joy of shortening URLs to your heart's desire with Raycast's URL Shortener! Enjoy the convenience of free URL shortening, without the need for an API key or any rate limits. The domains you can use are: tinyurl.com, shrtco.de, 9qr.de, and shiny.link",
       "icon": "command-icon.png",
       "author": "Visual-Studio-Coder",
-      "contributors": [],
+      "contributors": [
+        "xmok"
+      ],
       "categories": [],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/Visual-Studio-Coder/url-shortener",
       "source": {
         "type": "github-monorepo",
@@ -242241,16 +242524,8 @@
               "value": "4"
             },
             {
-              "title": "shrtco.de",
-              "value": "1"
-            },
-            {
-              "title": "9qr.de",
-              "value": "2"
-            },
-            {
-              "title": "shiny.link",
-              "value": "3"
+              "title": "v.gd",
+              "value": "5"
             }
           ]
         },
