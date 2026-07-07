@@ -78,12 +78,14 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue';
+import { computed, ref } from 'vue';
 import PublicLayout from '@/components/PublicLayout.vue';
 import { useRouter, onPageEnter } from '@/router';
 import { fetchStorePlugins, isPluginInstalled, refreshInstalledPlugins, installStorePlugin, isPluginInstalling } from '@/services/store';
 import type { IStorePlugin } from '@/types/store';
 import type { ActionPanelAction } from '@/types/plugin';
+import { showToast } from '@/utils/feedback';
+import { popView } from '@/plugin/utils';
 
 const props = defineProps<{
   name?: string;
@@ -129,10 +131,13 @@ const loadPlugin = async () => {
   await refreshInstalledPlugins();
   const plugins = await fetchStorePlugins();
   plugin.value = plugins.find(p => p.name === props.name);
+  if (!plugin.value) {
+    showToast(`插件${props.name}不存在`);
+    popView();
+  }
 };
 
 onPageEnter(loadPlugin);
-onMounted(loadPlugin);
 </script>
 
 <style lang="scss" scoped>

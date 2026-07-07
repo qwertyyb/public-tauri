@@ -122,7 +122,8 @@ import { ref } from 'vue';
 import { INNER_PLUGIN_NAMES } from '@/plugin/constants';
 import { showToast } from '@/utils/feedback';
 import { BUILTIN_PLUGINS } from '@/plugin/builtin';
-import { isPluginPathInDevList, isPluginPathInRaycastList, isPluginPathInStoreList, uninstallRaycastStorePlugin, uninstallStorePlugin, unregisterDevPluginFromLocalPath } from '@/services/store';
+import { DEV_PLUGIN_PATH_LIST_KEY, isPluginPathInDevList, isPluginPathInRaycastList, isPluginPathInStoreList, uninstallDevPlugin, uninstallRaycastStorePlugin, uninstallStorePlugin } from '@/services/store';
+import { storage } from '@public-tauri/core';
 
 defineProps<{
   plugins: IRunningPlugin[];
@@ -136,15 +137,17 @@ const emits = defineEmits<{
 const expand = ref<Record<string, boolean | undefined>>({});
 const devPluginPathList = ref<string[]>([]);
 
-const normalizePath = (p: string) => p.replace(/\\/g, '/').replace(/\/+$/, '');
+storage.getItem(DEV_PLUGIN_PATH_LIST_KEY).then((list: string[]) => {
+  devPluginPathList.value = list || [];
+});
 
-const isPathInDevList = (p: string) => Boolean(p) && devPluginPathList.value.some(d => normalizePath(d) === normalizePath(p));
+const isPathInDevList = (p: string) => Boolean(p) && devPluginPathList.value.some(d => d === p);
+
 const isBuiltinPlugin = (plugin: IRunningPlugin) => BUILTIN_PLUGINS.has(plugin.manifest.name)
   || (INNER_PLUGIN_NAMES as readonly string[]).includes(plugin.manifest.name);
 const canRemovePlugin = (plugin: IRunningPlugin) => !isBuiltinPlugin(plugin);
 
 const onPluginDisabledChange = async (enabled: boolean, plugin: IRunningPlugin) => {
-  console.log('plugin enabled', enabled);
   // eslint-disable-next-line no-param-reassign
   plugin.settings = { ...plugin.settings!, disabled: !enabled };
   await updatePluginSettings(plugin.manifest.name, { disabled: !enabled });
@@ -175,7 +178,7 @@ const onRemovePluginClick = async (_index: number, plugin: IRunningPlugin) => {
   }
   const { path, manifest } = plugin;
   if (await isPluginPathInDevList(path)) {
-    await unregisterDevPluginFromLocalPath(path);
+    await uninstallDevPlugin(path);
     showToast('已移除开发插件');
     emits('changed');
     return;
@@ -193,7 +196,7 @@ const onRemovePluginClick = async (_index: number, plugin: IRunningPlugin) => {
     return;
   }
   if (path) {
-    await unregisterDevPluginFromLocalPath(path);
+    await uninstallDevPlugin(path);
     showToast('插件已移除');
     emits('changed');
     return;
@@ -219,6 +222,9 @@ const openPrfsView = async (plugin: string, command?: string) => {
   display: flex;
   align-items: center;
   padding: 6px 12px;
+}
+.dev-plugin-tag {
+  margin-left: 6px;
 }
 .command-item {
   padding-left: 44px;

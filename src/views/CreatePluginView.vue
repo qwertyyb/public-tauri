@@ -156,7 +156,7 @@ import { computed, reactive } from 'vue';
 import PublicLayout from '@/components/PublicLayout.vue';
 import type { ActionPanelAction } from '@/types/plugin';
 import { generatePlugin, type PluginMode } from '@/services/scaffold';
-import { registerPluginFromLocalPath } from '@/services/store';
+import { installDevPlugin } from '@/services/store';
 import { showToast } from '@/utils/feedback';
 import { popView } from '@/plugin/utils';
 import { opener } from '@public-tauri/core';
@@ -232,7 +232,7 @@ const doCreate = async () => {
       parentDir: form.parentDir,
     });
     try {
-      await registerPluginFromLocalPath(pluginDir);
+      await installDevPlugin(pluginDir);
     } catch {
       // 插件尚未构建，加载失败是预期行为
     }

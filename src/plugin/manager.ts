@@ -499,9 +499,9 @@ export const init = async () => {
     // 用 !PROD：个别环境（如自动化 WebView）下 import.meta.env.DEV 可能为 false，仍需要 E2E 钩子
     console.warn('import.meta.env.PROD', import.meta.env.PROD, typeof window !== 'undefined');
     if (!import.meta.env.PROD && typeof window !== 'undefined') {
-      const { registerPluginFromLocalPath } = await import('@/services/store');
-      (window as Window & { __PUBLIC_DEV_REGISTER_PLUGIN_PATH__?: (pluginPath: string) => Promise<void> }).__PUBLIC_DEV_REGISTER_PLUGIN_PATH__ = registerPluginFromLocalPath;
-      (window as Window & { __PUBLIC_DEV_RELOAD_PLUGIN_FROM_PATH__?: (pluginPath: string) => Promise<void> }).__PUBLIC_DEV_RELOAD_PLUGIN_FROM_PATH__ = reloadPluginFromLocalPath;
+      const { installDevPlugin } = await import('@/services/store');
+      window.__PUBLIC_DEV_REGISTER_PLUGIN_PATH__ = installDevPlugin;
+      window.__PUBLIC_DEV_RELOAD_PLUGIN_FROM_PATH__ = reloadPluginFromLocalPath;
     }
     if (typeof window !== 'undefined') {
       const { syncDevPluginFileWatchers } = await import('./devPluginHotReload');

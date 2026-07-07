@@ -33,8 +33,8 @@ import PublicLayout from '@/components/PublicLayout.vue';
 import ResultView from '@/components/ResultView.vue';
 import type { IResultItem } from '@public-tauri/schema';
 import type { ActionPanelAction, IRunningPlugin } from '@/types/plugin';
-import { getDevPluginPaths, unloadDevPlugin } from '@/services/store';
-import { showConfirm, showToast } from '@/utils/feedback';
+import { getDevPluginPaths, uninstallDevPlugin } from '@/services/store';
+import { showToast } from '@/utils/feedback';
 import { opener } from '@public-tauri/core';
 import { onPageEnter } from '@/router';
 
@@ -116,37 +116,13 @@ const unloadPlugin = async () => {
   if (!selectedPlugin.value) return;
   const plugin = selectedPlugin.value;
   try {
-    await unloadDevPlugin(plugin.path, plugin.name);
+    await uninstallDevPlugin(plugin.path);
     await showToast(`已卸载: ${plugin.title}`);
     selectedPlugin.value = null;
     await loadPluginList();
   } catch (e) {
     const msg = e instanceof Error ? e.message : String(e);
     await showToast(`卸载失败: ${msg}`);
-  }
-};
-
-const deletePlugin = async () => {
-  if (!selectedPlugin.value) return;
-  const plugin = selectedPlugin.value;
-  try {
-    await showConfirm(
-      `确定要删除插件「${plugin.title}」吗？\n\n这将卸载插件并删除磁盘上的文件:\n${plugin.path}\n\n此操作不可恢复。`,
-      '删除插件',
-    );
-  } catch {
-    return;
-  }
-  try {
-    await unloadDevPlugin(plugin.path, plugin.name);
-    const { remove } = await import('@tauri-apps/plugin-fs');
-    await remove(plugin.path, { recursive: true });
-    await showToast(`已删除: ${plugin.title}`);
-    selectedPlugin.value = null;
-    await loadPluginList();
-  } catch (e) {
-    const msg = e instanceof Error ? e.message : String(e);
-    await showToast(`删除失败: ${msg}`);
   }
 };
 
@@ -166,7 +142,6 @@ const rightActionPanel = computed(() => {
     { name: 'reload', title: '重新加载', icon: 'refresh', action: reloadPlugin },
     { name: 'open', title: '在 Finder 中打开', icon: 'folder_open', action: openInFinder },
     { name: 'unload', title: '卸载', icon: 'remove_circle_outline', styleType: 'warning', action: unloadPlugin },
-    { name: 'delete', title: '删除', icon: 'delete', styleType: 'danger', action: deletePlugin },
   ];
   return { title: '操作', actions };
 });

@@ -7,6 +7,8 @@ import { storage, shell } from '@public-tauri/core';
 import type { IStorePlugin } from '@/types/store';
 import type { RaycastStoreExtension, RaycastStoreIndex } from '@/types/raycast-store';
 import { publicPluginNpmNameForRaycastExtension } from '@/services/raycast-store';
+import { getPlugins, isPluginPathRegistered, registerPlugin, unregisterPlugin } from '@/plugin/manager';
+import type { IRunningPlugin } from '@/types/plugin';
 
 const STORE_URL = 'https://raw.githubusercontent.com/qwertyyb/public-tauri/refs/heads/master/store/index.json';
 
@@ -20,7 +22,6 @@ const installingRaycastExtensionKeys = ref<Set<string>>(new Set());
 const getPluginDirName = (npmPkg: string) => npmPkg;
 
 export const refreshInstalledPlugins = async () => {
-  const { getPlugins } = await import('@/plugin/manager');
   const plugins = getPlugins({ includeDisabledPlugins: true, includeDisabledCommands: true });
   installedPluginNames.value = new Set(plugins.keys());
 };
@@ -163,57 +164,6 @@ export const isPluginPathInStoreList = async (pluginPath: string): Promise<boole
   const n = normalizePathForPrefix(pluginPath);
   const list: string[] = (await storage.getItem(STORE_PLUGIN_PATH_LIST_KEY)) || [];
   return list.some(p => normalizePathForPrefix(p) === n);
-};
-
-/**
- * 从 devPluginPathList 中移除、并从内存中卸载（不删除源目录文件）
- */
-export const unregisterDevPluginFromLocalPath = async (pluginPath: string): Promise<void> => {
-  const { getPlugins, unregisterPlugin } = await import('@/plugin/manager');
-  const n = normalizePathForPrefix(pluginPath);
-  const all = getPlugins({ includeDisabledPlugins: true, includeDisabledCommands: true });
-  for (const [name, p] of all) {
-    if (normalizePathForPrefix(p.path) === n) {
-      unregisterPlugin(name);
-      break;
-    }
-  }
-  await removeDevPluginPath(pluginPath);
-  await refreshInstalledPlugins();
-  void import('@/plugin/devPluginHotReload').then(m => m.syncDevPluginFileWatchers());
-};
-
-export const getDevPluginPaths = async (): Promise<string[]> => (await storage.getItem(DEV_PLUGIN_PATH_LIST_KEY)) || [];
-
-export const unloadDevPlugin = async (pluginPath: string, pluginName: string): Promise<void> => {
-  const { unregisterPlugin } = await import('@/plugin/manager');
-  unregisterPlugin(pluginName);
-  await removeDevPluginPath(pluginPath);
-  await refreshInstalledPlugins();
-};
-
-/**
- * 从任意本地目录加载插件（写入 devPluginPathList，与商店安装的 storePluginPathList 分开）
- */
-export const registerPluginFromLocalPath = async (pluginPath: string): Promise<void> => {
-  const { registerPlugin, isPluginPathRegistered } = await import('@/plugin/manager');
-  if (isPluginPathRegistered(pluginPath)) {
-    throw new Error('该目录对应插件已加载');
-  }
-  const devPaths: string[] = (await storage.getItem(DEV_PLUGIN_PATH_LIST_KEY)) || [];
-  const n = normalizePathForPrefix(pluginPath);
-  if (devPaths.some(p => normalizePathForPrefix(p) === n)) {
-    throw new Error('该目录已在开发插件列表中');
-  }
-  await addDevPluginPath(pluginPath);
-  try {
-    await registerPlugin(pluginPath);
-  } catch (e) {
-    await removeDevPluginPath(pluginPath);
-    throw e;
-  }
-  await refreshInstalledPlugins();
-  void import('@/plugin/devPluginHotReload').then(m => m.syncDevPluginFileWatchers());
 };
 
 const NODE_SERVER_FETCH_EXTENSION_URL = 'http://127.0.0.1:2345/raycast/fetch-extension';
@@ -370,5 +320,49 @@ export const uninstallStorePlugin = async (pluginName: string): Promise<void> =>
   const { unregisterPlugin } = await import('@/plugin/manager');
   unregisterPlugin(pluginName);
   await refreshInstalledPlugins();
+};
+
+
+// ------ developer plugin ------
+/**
+ * 从 devPluginPathList 中移除、并从内存中卸载（不删除源目录文件）
+ */
+export const uninstallDevPlugin = async (pluginPath: string): Promise<void> => {
+  const n = normalizePathForPrefix(pluginPath);
+  const all = getPlugins({ includeDisabledPlugins: true, includeDisabledCommands: true });
+  for (const [name, p] of all) {
+    if (normalizePathForPrefix(p.path) === n) {
+      unregisterPlugin(name);
+      break;
+    }
+  }
+  await removeDevPluginPath(pluginPath);
+  await refreshInstalledPlugins();
+};
+
+export const getDevPluginPaths = async (): Promise<string[]> => (await storage.getItem(DEV_PLUGIN_PATH_LIST_KEY)) || [];
+
+/**
+ * 从任意本地目录加载插件（写入 devPluginPathList，与商店安装的 storePluginPathList 分开）
+ */
+export const installDevPlugin = async (pluginPath: string) => {
+  if (isPluginPathRegistered(pluginPath)) {
+    throw new Error('该目录对应插件已加载');
+  }
+  const devPaths: string[] = (await storage.getItem(DEV_PLUGIN_PATH_LIST_KEY)) || [];
+  const n = normalizePathForPrefix(pluginPath);
+  if (devPaths.some(p => normalizePathForPrefix(p) === n)) {
+    throw new Error('该目录已在开发插件列表中');
+  }
+  let plugin: IRunningPlugin | undefined;
+  try {
+    plugin = await registerPlugin(pluginPath);
+  } catch (e) {
+    await removeDevPluginPath(pluginPath);
+    throw e;
+  }
+  await addDevPluginPath(pluginPath);
+  await refreshInstalledPlugins();
+  return plugin;
 };
 

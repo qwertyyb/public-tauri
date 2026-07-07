@@ -192,7 +192,7 @@ import { updatePluginPreferences } from '@/plugin/manager';
 import {
   getDevPluginPathList,
   getStorePluginPathList,
-  registerPluginFromLocalPath,
+  installDevPlugin,
 } from '@/services/store';
 import { showToast } from '@/utils/feedback';
 
@@ -354,7 +354,7 @@ const onImportDevPlugin = async () => {
   if (selected === null) return;
   const dir = Array.isArray(selected) ? selected[0] : selected;
   try {
-    await registerPluginFromLocalPath(dir);
+    await installDevPlugin(dir);
     showToast(`已加载: ${dir}`);
     refreshSettings();
   } catch (e) {

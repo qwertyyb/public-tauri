@@ -2,46 +2,64 @@ import { isTauri } from '@tauri-apps/api/core';
 import { getCurrentWindow } from '@tauri-apps/api/window';
 import { getCurrent, onOpenUrl } from '@tauri-apps/plugin-deep-link';
 import { popToRoot, pushView } from '@/plugin/utils';
-import { registerPluginFromLocalPath } from '@/services/store';
+import { installDevPlugin } from '@/services/store';
+import { showToast } from './feedback';
+
+type RouteHandler = (url: string, params?: Record<string, string | undefined>) => void;
+
+if (!globalThis.URLPattern) {
+  await import('urlpattern-polyfill');
+}
 
 const SCHEMA_ORIGIN = 'public://public.qwertyyb.com';
 
-async function openStoreDetail(url: URL) {
+const openStoreDetail: RouteHandler = async (_, params) => {
+  if (!params?.name) return;
   const w = getCurrentWindow();
   await w.show();
   await w.setFocus();
   popToRoot({ clearInput: true });
-  let name = url.pathname.match(/^\/store\/([^/]+)/)?.[1];
-  if (!name) return;
+  let { name } = params;
   try {
-    name = decodeURIComponent(name);
+    name = decodeURIComponent(params.name);
   } catch {}
   pushView({ path: '/plugin/store/detail', params: { name } });
-}
+};
 
-const importPlugin = async (url: URL) => {
-  const path = url.searchParams.get('path');
+const importPlugin: RouteHandler = async (url: string) => {
+  const path = new URL(url).searchParams.get('path');
   if (!path) return;
-  await registerPluginFromLocalPath(path);
+  try {
+    const plugin = await installDevPlugin(path);
+    if (!plugin) return;
+    const w = getCurrentWindow();
+    await w.show();
+    await w.setFocus();
+    showToast(`导入开发中插件成功: ${plugin.manifest.title}`);
+  } catch (err) {
+    showToast(`导入开发中插件失败: ${err instanceof Error ? err.message : String(err)}`);
+  }
 };
 
 
-const handlers = [
+const handlers: { pattern: string; handler: RouteHandler }[] = [
   {
-    regexp: /^\/store\/([^/]+)/,
+    pattern: '/store/:name',
     handler: openStoreDetail,
   },
   {
-    regexp: /^\/import/,
+    pattern: '/developer/import',
     handler: importPlugin,
   },
 ];
 
 const handleDeepLinkUrl = async (url: string) => {
   if (!url.startsWith(SCHEMA_ORIGIN)) return;
-  const handler = handlers.find(h => h.regexp.test(url));
-  if (handler) {
-    await handler.handler(new URL(url));
+  for (const handler of handlers) {
+    const match = new URLPattern(handler.pattern, SCHEMA_ORIGIN).exec(url);
+    if (match) {
+      await handler.handler(url, match.pathname.groups);
+    }
   }
 };
 
@@ -59,4 +77,8 @@ export async function initDeepLinks() {
       handleDeepLinkUrl(url);
     });
   });
+}
+
+if (import.meta.env.DEV) {
+  window.__DEEP_LINK_HANDLER = handleDeepLinkUrl;
 }

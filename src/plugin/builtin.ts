@@ -1,7 +1,7 @@
 import type { ICommand, IPluginManifest, IPluginLifecycle } from '@public-tauri/schema';
 import type { IRunningPlugin } from '@/types/plugin';
 import { dialog, mainWindow } from '@public-tauri/core';
-import { registerPluginFromLocalPath } from '@/services/store';
+import { installDevPlugin } from '@/services/store';
 
 // 定义内置插件的配置类型
 export interface IBuiltinPlugin {
@@ -187,7 +187,7 @@ export const BUILTIN_PLUGINS = new Map<string, IRunningPlugin>([
             if (selected === null) return;
             const dir = Array.isArray(selected) ? selected[0] : selected;
             try {
-              await registerPluginFromLocalPath(dir);
+              await installDevPlugin(dir);
               await dialog.showToast(`已加载: ${dir}`);
             } catch (e) {
               const msg = e instanceof Error ? e.message : String(e);
