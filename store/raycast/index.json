@@ -1,22 +1,23 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-29T20:13:25.416Z",
+  "generatedAt": "2026-07-06T20:15:46.619Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "1bb59c6602e4219c8567b3423193ef4c3c4b507b"
+    "commit": "c3d4cd9bb296145e28c1648980b6a700555286a8"
   },
-  "count": 3037,
+  "count": 3049,
   "extensions": [
     {
       "name": "0x0",
       "title": "0x0",
       "description": "Upload files to https://0x0.st.",
-      "icon": "0x0.png",
+      "icon": "icon.png",
       "author": "pseudobun",
       "contributors": [
         "pernielsentikaer",
-        "jatindotdev"
+        "jatindotdev",
+        "0xdhrv"
       ],
       "categories": [
         "Applications",
@@ -24,7 +25,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/pseudobun/0x0",
       "source": {
@@ -42,9 +44,28 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "history",
+          "title": "Upload History",
+          "subtitle": "0x0",
+          "description": "Browse, open, and delete your uploaded files.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "instanceUrl",
+          "type": "textfield",
+          "required": false,
+          "title": "Instance URL",
+          "description": "The 0x0 instance to upload to. Use this to point to a self-hosted instance (including localhost).",
+          "default": "https://0x0.st",
+          "placeholder": "https://0x0.st"
+        }
+      ]
     },
     {
       "name": "1-click-confetti",
@@ -453,6 +474,67 @@
           "name": "index",
           "title": "Search 2FA Directory",
           "description": "Search through sites that allow you to enable 2FA.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "2fas-authenticator",
+      "title": "2FAS Authenticator",
+      "description": "Search and copy TOTP codes from 2FAS exports with a Keychain-encrypted local vault",
+      "icon": "extension-icon.png",
+      "author": "Lock",
+      "contributors": [],
+      "categories": [
+        "Security"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/Lock/2fas-authenticator",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/2fas-authenticator",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-otp",
+          "title": "Search OTP",
+          "subtitle": "2FAS",
+          "description": "Search and copy OTP codes from your vault",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "recent-otp",
+          "title": "Recent OTP",
+          "subtitle": "2FAS",
+          "description": "View recently used OTP services",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "import-vault",
+          "title": "Import Vault",
+          "subtitle": "2FAS",
+          "description": "Import a 2FAS export file into your encrypted vault",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "setup",
+          "title": "Setup",
+          "subtitle": "2FAS",
+          "description": "Check vault status and manage configuration",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -3051,7 +3133,7 @@
     {
       "name": "agent-usage",
       "title": "Agent Usage",
-      "description": "Monitor AI coding agent usage across Amp, Claude, Codex, Copilot, Droid, Gemini, Kimi, Synthetic, Antigravity, z.ai, MiniMax, and OpenCode Go",
+      "description": "Monitor AI coding agent usage across Amp, Claude, Codex, Copilot, Cursor, Droid, Gemini, Kimi, Synthetic, Antigravity, z.ai, MiniMax, and OpenCode Go",
       "icon": "extension-icon.png",
       "author": "thuggyduck",
       "contributors": [
@@ -3125,6 +3207,14 @@
           "type": "checkbox",
           "label": "Show Copilot",
           "description": "Show Copilot usage in the list",
+          "default": true,
+          "required": false
+        },
+        {
+          "name": "showCursor",
+          "type": "checkbox",
+          "label": "Show Cursor",
+          "description": "Show Cursor usage in the list",
           "default": true,
           "required": false
         },
@@ -3215,6 +3305,13 @@
           "type": "password",
           "title": "Copilot Authorization Token (Optional)",
           "description": "Optional fallback OAuth token for Copilot usage. Usually auto-detected from GH_TOKEN or GITHUB_TOKEN (for example from 'gh auth token'). Standard PATs may not work.",
+          "required": false
+        },
+        {
+          "name": "cursorCookieHeader",
+          "type": "password",
+          "title": "Cursor Cookie Header (Optional)",
+          "description": "Optional fallback Cookie header from cursor.com. Usually auto-detected from your local Cursor.app login.",
           "required": false
         },
         {
@@ -7266,7 +7363,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/yevgen_glukhov/another-boring-piece",
       "source": {
@@ -10144,6 +10242,334 @@
       ]
     },
     {
+      "name": "apple-tv-remote",
+      "title": "Apple TV Remote",
+      "description": "Control your Apple TV from Raycast with a visual remote, app launcher, deep links, and AI commands. No external installs required.",
+      "icon": "command-icon.png",
+      "author": "camschroedes",
+      "contributors": [],
+      "categories": [
+        "Media",
+        "Applications"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/camschroedes/apple-tv-remote",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/apple-tv-remote",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "remote",
+          "title": "Apple TV Remote",
+          "subtitle": "Apple TV",
+          "description": "On-screen remote with d-pad, playback, volume, and text input.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "ask",
+          "title": "Ask Apple TV",
+          "subtitle": "Apple TV",
+          "description": "One-off natural-language commands: pause, open Netflix, play a show.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "setup",
+          "title": "Set up Apple TV",
+          "subtitle": "Apple TV",
+          "description": "Discover and pair with an Apple TV on your network.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "launch-app",
+          "title": "Launch Apple TV App",
+          "subtitle": "Apple TV",
+          "description": "Browse and open apps installed on your Apple TV.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "play-pause",
+          "title": "Play/Pause",
+          "subtitle": "Apple TV",
+          "description": "Toggle playback on your Apple TV.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "home",
+          "title": "Go to Home Screen",
+          "subtitle": "Apple TV",
+          "description": "Jump to the Apple TV home screen.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "menubar",
+          "title": "Apple TV Menu Bar",
+          "subtitle": "Apple TV",
+          "description": "Quick Apple TV controls from your menu bar.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "up",
+          "title": "Up",
+          "subtitle": "Apple TV",
+          "description": "Press Up on the Apple TV remote.",
+          "mode": "no-view",
+          "keywords": [
+            "atv"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "down",
+          "title": "Down",
+          "subtitle": "Apple TV",
+          "description": "Press Down on the Apple TV remote.",
+          "mode": "no-view",
+          "keywords": [
+            "atv"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "left",
+          "title": "Left",
+          "subtitle": "Apple TV",
+          "description": "Press Left on the Apple TV remote.",
+          "mode": "no-view",
+          "keywords": [
+            "atv"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "right",
+          "title": "Right",
+          "subtitle": "Apple TV",
+          "description": "Press Right on the Apple TV remote.",
+          "mode": "no-view",
+          "keywords": [
+            "atv"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "select",
+          "title": "Select",
+          "subtitle": "Apple TV",
+          "description": "Press Select on the Apple TV remote.",
+          "mode": "no-view",
+          "keywords": [
+            "atv",
+            "ok"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "back",
+          "title": "Back",
+          "subtitle": "Apple TV",
+          "description": "Go back (Menu) on the Apple TV.",
+          "mode": "no-view",
+          "keywords": [
+            "atv",
+            "menu"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "volume-up",
+          "title": "Volume up",
+          "subtitle": "Apple TV",
+          "description": "Turn the Apple TV volume up.",
+          "mode": "no-view",
+          "keywords": [
+            "atv",
+            "louder"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "volume-down",
+          "title": "Volume Down",
+          "subtitle": "Apple TV",
+          "description": "Turn the Apple TV volume down.",
+          "mode": "no-view",
+          "keywords": [
+            "atv",
+            "quieter"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "skip-forward",
+          "title": "Skip Forward 10 Seconds",
+          "subtitle": "Apple TV",
+          "description": "Skip forward in the current video.",
+          "mode": "no-view",
+          "keywords": [
+            "atv",
+            "seek"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "skip-back",
+          "title": "Skip Back 10 Seconds",
+          "subtitle": "Apple TV",
+          "description": "Skip backward in the current video.",
+          "mode": "no-view",
+          "keywords": [
+            "atv",
+            "seek",
+            "rewind"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "context-menu",
+          "title": "Open Context Menu",
+          "subtitle": "Apple TV",
+          "description": "Long-press select on the Apple TV to open the context menu for the focused item.",
+          "mode": "no-view",
+          "keywords": [
+            "atv",
+            "hold"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "app-switcher",
+          "title": "App Switcher",
+          "subtitle": "Apple TV",
+          "description": "Open the Apple TV app switcher.",
+          "mode": "no-view",
+          "keywords": [
+            "atv",
+            "multitask"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "control-center",
+          "title": "Control Center",
+          "subtitle": "Apple TV",
+          "description": "Open Control Center on the Apple TV.",
+          "mode": "no-view",
+          "keywords": [
+            "atv"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "sleep",
+          "title": "Sleep Apple TV",
+          "subtitle": "Apple TV",
+          "description": "Put the Apple TV to sleep.",
+          "mode": "no-view",
+          "keywords": [
+            "atv",
+            "off"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "wake",
+          "title": "Wake Apple TV",
+          "subtitle": "Apple TV",
+          "description": "Wake the Apple TV up.",
+          "mode": "no-view",
+          "keywords": [
+            "atv",
+            "on"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "screensaver",
+          "title": "Start Screensaver",
+          "subtitle": "Apple TV",
+          "description": "Start the Apple TV screensaver (can be flaky on some models).",
+          "mode": "no-view",
+          "keywords": [
+            "atv",
+            "aerial"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "type-text",
+          "title": "Type Text on Apple TV",
+          "subtitle": "Apple TV",
+          "description": "Send text into the focused field on the Apple TV (e.g. a search box).",
+          "mode": "no-view",
+          "keywords": [
+            "atv",
+            "keyboard",
+            "input"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "country",
+          "title": "Streaming Country",
+          "description": "Two-letter country code used to find where shows are streaming (e.g. US, AU, GB). Leave blank to auto-detect from your Mac's region.",
+          "type": "textfield",
+          "required": false
+        },
+        {
+          "name": "searchAutomation",
+          "title": "Search Automation",
+          "description": "How far to go after typing a title into Apple TV Search. 'Open top result' stops on the title page so you pick the streaming app. Pressing Play blindly can start the wrong provider.",
+          "type": "dropdown",
+          "default": "open",
+          "required": false,
+          "data": [
+            {
+              "title": "Type the title only",
+              "value": "type"
+            },
+            {
+              "title": "Open top result (recommended)",
+              "value": "open"
+            },
+            {
+              "title": "Open and press Play (may pick the wrong app)",
+              "value": "play"
+            }
+          ]
+        },
+        {
+          "name": "connectTimeout",
+          "title": "Connection Timeout",
+          "description": "How long commands wait to reach the Apple TV (milliseconds).",
+          "type": "textfield",
+          "default": "8000",
+          "required": false
+        }
+      ]
+    },
+    {
       "name": "apply-inline-code",
       "title": "Apply Inline Code",
       "description": "Apply inline code style in common apps and websites",
@@ -11781,7 +12207,8 @@
         "Spacedolphin",
         "tuzemec",
         "xmok",
-        "abcd_ca"
+        "abcd_ca",
+        "nulltrope"
       ],
       "categories": [
         "Productivity"
@@ -14512,6 +14939,115 @@
       ]
     },
     {
+      "name": "bangumi",
+      "title": "Bangumi",
+      "description": "A full-featured Bangumi client for Raycast. Manage collections, track progress, search subjects and characters, view daily schedules. Includes AI tools for Raycast AI.",
+      "icon": "extension-icon.png",
+      "author": "maxchang3",
+      "contributors": [],
+      "categories": [
+        "Applications",
+        "Productivity",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows",
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/maxchang3/bangumi",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/bangumi",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "list-collections",
+          "title": "List Collections",
+          "description": "View and update your watching, playing, or reading subjects.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "list-current-collections",
+          "title": "List Current Collections",
+          "description": "View your current watching, playing, or reading subjects.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "daily-calendar",
+          "title": "Daily Calendar",
+          "description": "View the daily airing schedule of anime.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-subjects",
+          "title": "Search Subjects",
+          "description": "Search for anime, games, books, etc. on Bangumi.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-characters",
+          "title": "Search Characters",
+          "description": "Search for characters on Bangumi.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "showBook",
+          "type": "checkbox",
+          "required": false,
+          "description": "Show book subjects in the collection list",
+          "label": "Show Books",
+          "default": true
+        },
+        {
+          "name": "showAnime",
+          "type": "checkbox",
+          "required": false,
+          "description": "Show anime subjects in the collection list",
+          "label": "Show Anime",
+          "default": true
+        },
+        {
+          "name": "showMusic",
+          "type": "checkbox",
+          "required": false,
+          "description": "Show music subjects in the collection list",
+          "label": "Show Music",
+          "default": false
+        },
+        {
+          "name": "showGame",
+          "type": "checkbox",
+          "required": false,
+          "description": "Show game subjects in the collection list",
+          "label": "Show Games",
+          "default": false
+        },
+        {
+          "name": "showReal",
+          "type": "checkbox",
+          "required": false,
+          "description": "Show real-life subjects in the collection list",
+          "label": "Show Real Life",
+          "default": true
+        }
+      ]
+    },
+    {
       "name": "barassistant",
       "title": "Bar Assistant",
       "description": "Search self-hosted BarAssistant API",
@@ -17070,6 +17606,22 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "create-incident",
+          "title": "Create Incident",
+          "description": "File a new BetterStack incident",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "incidents",
+          "title": "Incidents",
+          "description": "View and manage active incidents",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": [
@@ -17079,6 +17631,20 @@
           "description": "Your BetterStack API token",
           "type": "password",
           "required": true
+        },
+        {
+          "name": "teamId",
+          "title": "Team Id",
+          "description": "Your BetterStack team Id. Find it in the URL when viewing your on-call schedule: uptime.betterstack.com/team/t{id}/oncalls",
+          "type": "textfield",
+          "required": false
+        },
+        {
+          "name": "requesterEmail",
+          "title": "Requester Email",
+          "description": "Default e-mail used when creating incidents",
+          "type": "textfield",
+          "required": false
         }
       ]
     },
@@ -27468,11 +28034,14 @@
       "author": "pgvr",
       "contributors": [
         "Ansub",
-        "stanley_ding"
+        "stanley_ding",
+        "xmok"
       ],
       "categories": [],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/pgvr/chakra-ui-docs",
       "source": {
         "type": "github-monorepo",
@@ -27567,6 +28136,174 @@
           "title": "Change Case",
           "description": "Change the case of the selected text or text in the clipboard",
           "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-camel-case",
+          "title": "Convert to camelCase",
+          "description": "Convert selected text or clipboard to camelCase",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-capital-case",
+          "title": "Convert to Capital Case",
+          "description": "Convert selected text or clipboard to Capital Case",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-constant-case",
+          "title": "Convert to CONSTANT_CASE",
+          "description": "Convert selected text or clipboard to CONSTANT_CASE",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-dot-case",
+          "title": "Convert to dot.case",
+          "description": "Convert selected text or clipboard to dot.case",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-header-case",
+          "title": "Convert to Header-Case",
+          "description": "Convert selected text or clipboard to Header-Case",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-lower-case",
+          "title": "Convert to lower case",
+          "description": "Convert selected text or clipboard to lower case",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-lower-first",
+          "title": "Convert to lower First",
+          "description": "Convert selected text or clipboard to lower First",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-no-case",
+          "title": "Convert to no case",
+          "description": "Convert selected text or clipboard to no case",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-kebab-case",
+          "title": "Convert to kebab-case",
+          "description": "Convert selected text or clipboard to kebab-case",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-kebab-upper-case",
+          "title": "Convert to KEBAB-UPPER-CASE",
+          "description": "Convert selected text or clipboard to KEBAB-UPPER-CASE",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-pascal-case",
+          "title": "Convert to PascalCase",
+          "description": "Convert selected text or clipboard to PascalCase",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-pascal-snake-case",
+          "title": "Convert to Pascal_Snake_Case",
+          "description": "Convert selected text or clipboard to Pascal_Snake_Case",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-path-case",
+          "title": "Convert to path/case",
+          "description": "Convert selected text or clipboard to path/case",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-random-case",
+          "title": "Convert to rAndOm cAsE",
+          "description": "Convert selected text or clipboard to rAndOm cAsE",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-sentence-case",
+          "title": "Convert to Sentence case",
+          "description": "Convert selected text or clipboard to Sentence case",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-snake-case",
+          "title": "Convert to snake_case",
+          "description": "Convert selected text or clipboard to snake_case",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-alternating-case",
+          "title": "Convert to aLtErNaTiNg cAsE",
+          "description": "Convert selected text or clipboard to aLtErNaTiNg cAsE",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-swap-case",
+          "title": "Convert to sWAP cASE",
+          "description": "Convert selected text or clipboard to sWAP cASE",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-title-case",
+          "title": "Convert to Title Case",
+          "description": "Convert selected text or clipboard to Title Case",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-upper-case",
+          "title": "Convert to UPPER CASE",
+          "description": "Convert selected text or clipboard to UPPER CASE",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-upper-first",
+          "title": "Convert to Upper first",
+          "description": "Convert selected text or clipboard to Upper first",
+          "mode": "no-view",
           "keywords": [],
           "preferences": []
         }
@@ -31305,7 +32042,9 @@
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/arguiot/circleback",
       "source": {
         "type": "github-monorepo",
@@ -41522,16 +42261,23 @@
     {
       "name": "country-lookup",
       "title": "Country Lookup",
-      "description": "Quickly lookup countries and get informational data",
-      "icon": "command-icon.png",
+      "description": "Search and explore detailed data for every country: flags, capitals, languages, currencies, regions and more, powered by the REST Countries API.",
+      "icon": "extension_iconv1.png",
       "author": "pernielsentikaer",
       "contributors": [
+        "yusifaliyevpro",
         "j3lte",
         "xmok"
       ],
-      "categories": [],
+      "categories": [
+        "Data",
+        "Web"
+      ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "Windows",
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/pernielsentikaer/country-lookup",
       "source": {
         "type": "github-monorepo",
@@ -41542,8 +42288,9 @@
       "commands": [
         {
           "name": "index",
-          "title": "Search Country",
-          "description": "Quickly lookup countries",
+          "title": "Search Countries",
+          "subtitle": "Country Lookup",
+          "description": "Search countries by name, capital, or language and browse rich details like flags, currencies, and regions.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -41551,13 +42298,28 @@
       ],
       "preferences": [
         {
-          "title": "Coat of Arms",
-          "name": "showCoatOfArms",
-          "type": "checkbox",
-          "required": false,
-          "default": true,
-          "label": "Display the Coat of Arms by default",
-          "description": "Show coat of arms, looks amazing but might take some space"
+          "name": "apiKey",
+          "title": "API Key",
+          "description": "Your REST Countries API key. Get one for free at https://restcountries.com/sign-up.",
+          "type": "password",
+          "required": true
+        },
+        {
+          "name": "entriesWithoutIsoCode",
+          "title": "Show Countries",
+          "description": "REST Countries lists a few partially-recognized territories that have no ISO 3166-1 code (for example Abkhazia, South Ossetia and Northern Cyprus). Choose whether to include them. This is based purely on the data source's ISO codes and is not a political stance by this extension or its author.",
+          "type": "dropdown",
+          "required": true,
+          "data": [
+            {
+              "title": "Show All",
+              "value": "show"
+            },
+            {
+              "title": "Hide Disputed Territories",
+              "value": "hide"
+            }
+          ]
         }
       ]
     },
@@ -45096,6 +45858,90 @@
       ]
     },
     {
+      "name": "cyber-security-pulse",
+      "title": "Cyber Security Pulse",
+      "description": "Latest important cyber security news, ranked by severity.",
+      "icon": "command-icon.png",
+      "author": "goran_breivik",
+      "contributors": [],
+      "categories": [
+        "News"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/goran_breivik/cyber-security-pulse",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/cyber-security-pulse",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "latest-news",
+          "title": "Cyber Security Pulse",
+          "subtitle": "Security news at a glance",
+          "description": "Lists the latest important cyber security news, ranked by severity.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "feeds",
+              "type": "textfield",
+              "required": false,
+              "title": "Feed Sources",
+              "description": "RSS sources to read. Comma-separated; each is Name|url or a bare url. Edit to add/remove. Empty restores the default set.",
+              "default": "BleepingComputer|https://www.bleepingcomputer.com/feed/, The Hacker News|https://feeds.feedburner.com/TheHackersNews, Krebs on Security|https://krebsonsecurity.com/feed/, CISA Alerts|https://www.cisa.gov/cybersecurity-advisories/all.xml, Schneier on Security|https://www.schneier.com/feed/atom/, SANS ISC|https://isc.sans.edu/rssfeed_full.xml"
+            },
+            {
+              "name": "watchlist",
+              "type": "textfield",
+              "required": false,
+              "title": "Priority Watchlist",
+              "description": "Tech to pin in a ⭐ Watched section. Comma-separated; use | for aliases and pkg: for PURLs. e.g. Linux|kernel, Microsoft|windows, pkg:npm/express, OpenSSL",
+              "default": ""
+            },
+            {
+              "name": "extraCritical",
+              "type": "textfield",
+              "required": false,
+              "title": "Extra Critical Keywords",
+              "description": "Comma-separated keywords that also mark an item 🔴 Critical (matched in title or body). Added to the built-in signals.",
+              "default": ""
+            },
+            {
+              "name": "extraHigh",
+              "type": "textfield",
+              "required": false,
+              "title": "Extra High Keywords",
+              "description": "Comma-separated keywords that also mark an item 🟠 High. Added to the built-in signals.",
+              "default": ""
+            },
+            {
+              "name": "extraMedium",
+              "type": "textfield",
+              "required": false,
+              "title": "Extra Medium Keywords",
+              "description": "Comma-separated keywords that also mark an item 🟡 Medium. Added to the built-in signals.",
+              "default": ""
+            },
+            {
+              "name": "denylist",
+              "type": "textfield",
+              "required": false,
+              "title": "Denylist",
+              "description": "Comma-separated keywords to hide. Any item matching one (in title or summary) is removed from the list. e.g. Android, crypto",
+              "default": ""
+            }
+          ]
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "cyberchef",
       "title": "CyberChef",
       "description": "The Cyber Swiss Army Knife - a web app for encryption, encoding, compression and data analysis",
@@ -47739,12 +48585,17 @@
       "description": "Search the dbt documentation website https://docs.getdbt.com/",
       "icon": "dbt-icon.png",
       "author": "b-per",
-      "contributors": [],
+      "contributors": [
+        "xmok"
+      ],
       "categories": [
         "Documentation"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "storeUrl": "https://www.raycast.com/b-per/dbt-documentation",
       "source": {
         "type": "github-monorepo",
@@ -47771,13 +48622,17 @@
       "description": "Helps you get information about your dbt Cloud jobs",
       "icon": "icon.png",
       "author": "zsombor-flds",
-      "contributors": [],
+      "contributors": [
+        "xmok"
+      ],
       "categories": [
         "Data",
         "Developer Tools"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/zsombor-flds/dbtcloud",
       "source": {
         "type": "github-monorepo",
@@ -47798,11 +48653,44 @@
       ],
       "preferences": [
         {
+          "name": "dbtCloudEndpoint",
+          "title": "dbt Cloud Endpoint",
+          "description": "Your dbt Cloud Endpoint",
+          "type": "dropdown",
+          "required": true,
+          "placeholder": "dbt Cloud Endpoint",
+          "data": [
+            {
+              "title": "Production (US)",
+              "value": "https://cloud.getdbt.com"
+            },
+            {
+              "title": "Production (US) [w/ Account Prefix]",
+              "value": "https://{account_prefix}.us1.dbt.com"
+            },
+            {
+              "title": "Production (Europe)",
+              "value": "https://emea.dbt.com"
+            },
+            {
+              "title": "Production (AU)",
+              "value": "https://au.dbt.com"
+            }
+          ]
+        },
+        {
+          "name": "dbtCloudAcountPrefix",
+          "title": "dbt Cloud Account Prefix",
+          "description": "Your dbt Cloud Account Prefix",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "dbt Cloud Account Prefix"
+        },
+        {
           "name": "dbtCloudAPIToken",
           "title": "dbt Cloud API Token",
           "description": "Your dbt Cloud API Token",
           "type": "password",
-          "default": "",
           "required": true,
           "placeholder": "dbt Cloud API Token"
         },
@@ -47811,7 +48699,6 @@
           "title": "dbt Cloud Account ID",
           "description": "Your dbt Cloud Account ID",
           "type": "password",
-          "default": "",
           "required": true,
           "placeholder": "dbt Cloud Account ID"
         }
@@ -51281,6 +52168,24 @@
               "required": false
             }
           ]
+        },
+        {
+          "name": "menubar",
+          "title": "Dev Servers Menu Bar",
+          "description": "See running dev servers in the menu bar; kill, restart, open, or start one from the dropdown",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "showCount",
+              "type": "checkbox",
+              "title": "Menu Bar",
+              "label": "Show running-server count",
+              "description": "Show the number of running dev servers next to the menu bar icon",
+              "default": true,
+              "required": false
+            }
+          ]
         }
       ],
       "preferences": [
@@ -53498,7 +54403,7 @@
       "title": "Dida365",
       "description": "Control Dida365 tasks from Raycast on Windows.",
       "icon": "dida365-icon.png",
-      "author": "max",
+      "author": "ctacta621",
       "contributors": [],
       "categories": [
         "Productivity"
@@ -53508,7 +54413,7 @@
         "macOS",
         "Windows"
       ],
-      "storeUrl": "https://www.raycast.com/max/dida365",
+      "storeUrl": "https://www.raycast.com/ctacta621/dida365",
       "source": {
         "type": "github-monorepo",
         "repo": "raycast/extensions",
@@ -59846,12 +60751,16 @@
       "description": "Create dynamic font sizes using the 'clamp' CSS function",
       "icon": "clamp-icon.png",
       "author": "nils_hoenson",
-      "contributors": [],
+      "contributors": [
+        "tavlean"
+      ],
       "categories": [
         "Developer Tools"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/nils_hoenson/dynamic-font-size",
       "source": {
         "type": "github-monorepo",
@@ -59862,7 +60771,7 @@
       "commands": [
         {
           "name": "index",
-          "title": "Generate Font-size Using Clamp",
+          "title": "Generate Font-Size Using Clamp",
           "description": "Copy the generated 'clamp' function to your clipboard",
           "mode": "view",
           "keywords": [],
@@ -69379,7 +70288,26 @@
           "description": "Search Figma keyboard shortcuts and copy them to the clipboard",
           "mode": "view",
           "keywords": [],
-          "preferences": []
+          "preferences": [
+            {
+              "name": "platform",
+              "type": "dropdown",
+              "title": "Platform",
+              "description": "Which OS shortcut format to display and copy",
+              "data": [
+                {
+                  "value": "mac",
+                  "title": "macOS"
+                },
+                {
+                  "value": "windows",
+                  "title": "Windows"
+                }
+              ],
+              "default": "mac",
+              "required": false
+            }
+          ]
         }
       ],
       "preferences": []
@@ -69707,6 +70635,62 @@
           "type": "textfield",
           "default": "node_modules,.git,.vscode,.next,dist,build,.cache,.idea,.DS_Store,__pycache__,target,vendor,coverage,.env,tmp,.tmp,.sass-cache",
           "required": true
+        }
+      ]
+    },
+    {
+      "name": "file-provider-progress",
+      "title": "File Provider Progress",
+      "description": "Show macOS File Provider upload, download, indexing, and health status.",
+      "icon": "icon.png",
+      "author": "finite",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/finite/file-provider-progress",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/file-provider-progress",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "status",
+          "title": "File Provider Progress",
+          "subtitle": "Sync Status",
+          "description": "Show current macOS File Provider sync progress.",
+          "mode": "view",
+          "keywords": [
+            "status",
+            "sync",
+            "file provider progress"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "cliPath",
+          "title": "CLI Path",
+          "description": "Optional path to a custom fp-progress binary. Development defaults to the Swift debug build; production defaults to the bundled binary.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "/path/to/fp-progress"
+        },
+        {
+          "name": "timeoutSeconds",
+          "title": "Probe Timeout",
+          "description": "Maximum time Raycast waits for fp-progress status JSON.",
+          "type": "textfield",
+          "required": false,
+          "default": "30"
         }
       ]
     },
@@ -74619,10 +75603,19 @@
           "preferences": []
         },
         {
+          "name": "create-expense",
+          "title": "Create Expense",
+          "subtitle": "FreeAgent",
+          "description": "Create an expense in FreeAgent",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "list-bank-transactions",
           "title": "List Bank Transactions",
           "subtitle": "FreeAgent",
-          "description": "List all bank transactions from FreeAgent, including explained and unexplained",
+          "description": "List all bank transactions from FreeAgent",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -74631,7 +75624,7 @@
           "name": "list-unexplained-transactions",
           "title": "List Unexplained Transactions",
           "subtitle": "FreeAgent",
-          "description": "List unexplained bank transactions that need attention for bookkeeping",
+          "description": "List unexplained bank transactions that need attention",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -78468,7 +79461,8 @@
         "YourMCGeek",
         "thomas",
         "tim_gailey",
-        "clins1994"
+        "clins1994",
+        "0xdhrv"
       ],
       "categories": [
         "Media",
@@ -78783,207 +79777,6 @@
               "value": "uk"
             }
           ]
-        },
-        {
-          "name": "tenorLocale",
-          "type": "dropdown",
-          "required": false,
-          "title": "Tenor Locale",
-          "description": "Select the locale for the Tenor API",
-          "default": "en",
-          "data": [
-            {
-              "title": "Albanian",
-              "value": "sq"
-            },
-            {
-              "title": "Arabic",
-              "value": "ar"
-            },
-            {
-              "title": "Belarusian",
-              "value": "be"
-            },
-            {
-              "title": "Bengali",
-              "value": "bn"
-            },
-            {
-              "title": "Bosnian",
-              "value": "bs"
-            },
-            {
-              "title": "Cantonese",
-              "value": "zh_HK"
-            },
-            {
-              "title": "Catalan",
-              "value": "ca"
-            },
-            {
-              "title": "Chinese Simplified",
-              "value": "zh_CN"
-            },
-            {
-              "title": "Chinese Traditional",
-              "value": "zh_TW"
-            },
-            {
-              "title": "Croatian",
-              "value": "hr"
-            },
-            {
-              "title": "Czech",
-              "value": "cs"
-            },
-            {
-              "title": "Danish",
-              "value": "da"
-            },
-            {
-              "title": "Dutch",
-              "value": "nl"
-            },
-            {
-              "title": "English",
-              "value": "en"
-            },
-            {
-              "title": "Farsi",
-              "value": "fa"
-            },
-            {
-              "title": "Filipino",
-              "value": "fil"
-            },
-            {
-              "title": "Finnish",
-              "value": "fi"
-            },
-            {
-              "title": "French",
-              "value": "fr"
-            },
-            {
-              "title": "German",
-              "value": "de"
-            },
-            {
-              "title": "Greek",
-              "value": "el"
-            },
-            {
-              "title": "Hebrew",
-              "value": "he"
-            },
-            {
-              "title": "Hindi",
-              "value": "hi"
-            },
-            {
-              "title": "Hungarian",
-              "value": "hu"
-            },
-            {
-              "title": "Indonesian",
-              "value": "id"
-            },
-            {
-              "title": "Italian",
-              "value": "it"
-            },
-            {
-              "title": "Japanese",
-              "value": "ja"
-            },
-            {
-              "title": "Korean",
-              "value": "ko"
-            },
-            {
-              "title": "Laos",
-              "value": "lo"
-            },
-            {
-              "title": "Malay",
-              "value": "ms"
-            },
-            {
-              "title": "Mongolian",
-              "value": "mn"
-            },
-            {
-              "title": "Norwegian Bokmal",
-              "value": "no"
-            },
-            {
-              "title": "Norwegian Nynorsk",
-              "value": "nn"
-            },
-            {
-              "title": "Polish",
-              "value": "pl"
-            },
-            {
-              "title": "Portuguese",
-              "value": "pt"
-            },
-            {
-              "title": "Romanian",
-              "value": "ro"
-            },
-            {
-              "title": "Russian",
-              "value": "ru"
-            },
-            {
-              "title": "Serbian",
-              "value": "sr"
-            },
-            {
-              "title": "Slovak",
-              "value": "sk"
-            },
-            {
-              "title": "Spanish",
-              "value": "es"
-            },
-            {
-              "title": "Swedish",
-              "value": "sv"
-            },
-            {
-              "title": "Tagalog",
-              "value": "tl"
-            },
-            {
-              "title": "Thai",
-              "value": "th"
-            },
-            {
-              "title": "Turkish",
-              "value": "tr"
-            },
-            {
-              "title": "Ukrainian",
-              "value": "uk"
-            },
-            {
-              "title": "Urdu",
-              "value": "ur"
-            },
-            {
-              "title": "Vietnamese",
-              "value": "vi"
-            }
-          ]
-        },
-        {
-          "name": "klipyApiKey",
-          "type": "password",
-          "required": false,
-          "title": "Klipy API Key",
-          "description": "API key for Klipy service. Get your key at partner.klipy.com"
         },
         {
           "name": "klipyLocale",
@@ -95157,6 +95950,50 @@
       ]
     },
     {
+      "name": "heatcheck",
+      "title": "Heat Check",
+      "description": "See what's burning your CPU and spinning your fan",
+      "icon": "extension-icon.png",
+      "author": "kumamaki",
+      "contributors": [],
+      "categories": [
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "0.1.0",
+      "storeUrl": "https://www.raycast.com/kumamaki/heatcheck",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/heatcheck",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "heat-check",
+          "title": "Check Heat",
+          "subtitle": "Heat Check",
+          "description": "See what's burning your CPU and spinning your fan",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "diagnosis",
+          "title": "AI Diagnosis",
+          "subtitle": "Heat Check",
+          "description": "Ask AI to explain what's making your Mac run hot",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "hebrew-date-zmanim",
       "title": "Hebrew Date & Zmanim",
       "description": "Hebrew date converter + full Kosher Zmanim with fuzzy search for Raycast.",
@@ -95374,6 +96211,14 @@
           "name": "search-web",
           "title": "Search Web",
           "description": "Search the web with Helium browser",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-history",
+          "title": "Search History",
+          "description": "Search browsing history from Helium browser",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -98632,7 +99477,10 @@
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "storeUrl": "https://www.raycast.com/DominicVonk/homey",
       "source": {
         "type": "github-monorepo",
@@ -104204,6 +105052,48 @@
           "required": true
         }
       ]
+    },
+    {
+      "name": "integrations-sh",
+      "title": "Integrations.sh",
+      "description": "Search integrations.sh for MCP, OpenAPI, GraphQL, and CLI integration surfaces, and inspect setup and credentials per domain.",
+      "icon": "icon.png",
+      "author": "0xdhrv",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/0xdhrv/integrations-sh",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/integrations-sh",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-integrations",
+          "title": "Search Integrations",
+          "description": "Search integrations.sh for MCP, OpenAPI, GraphQL, and CLI integration surfaces.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "inspect-domain",
+          "title": "Inspect Integration Domain",
+          "description": "Inspect integration surfaces and credentials for a domain.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "intention-clarifier",
@@ -112325,15 +113215,16 @@
     {
       "name": "jwt-decoder",
       "title": "JWT Decoder",
-      "description": "Decode Your JSON Web Tokens – extract the header and data information from a JWT",
-      "icon": "jwt.png",
+      "description": "Decode Your JSON Web Tokens - extract the header and data information from a JWT",
+      "icon": "icon.png",
       "author": "gdsmith",
       "contributors": [
         "zhhanging",
         "joaogf.dev",
         "YourMCGeek",
         "pernielsentikaer",
-        "ridemountainpig"
+        "ridemountainpig",
+        "0xdhrv"
       ],
       "categories": [
         "Data",
@@ -126686,10 +127577,12 @@
     {
       "name": "macshot",
       "title": "Macshot",
-      "description": "Trigger macshot URL scheme actions from Raycast.",
+      "description": "Trigger macshot actions from Raycast.",
       "icon": "extension-icon.png",
       "author": "Tien-Lam",
-      "contributors": [],
+      "contributors": [
+        "Zaunei"
+      ],
       "categories": [
         "Applications"
       ],
@@ -126774,6 +127667,14 @@
           "title": "Stop Recording",
           "description": "Open macshot://stop-recording.",
           "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open",
+          "title": "Open File",
+          "description": "Open an image or video file in macshot editor.",
+          "mode": "view",
           "keywords": [],
           "preferences": []
         },
@@ -131340,6 +132241,49 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "memo-to-flomo",
+      "title": "MEMO to flomo",
+      "description": "Quickly send Markdown memos to flomo with tag history",
+      "icon": "extension-icon.png",
+      "author": "moose_zhang",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/moose_zhang/memo-to-flomo",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/memo-to-flomo",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "send-memo",
+          "title": "Send MEMO to flomo",
+          "subtitle": "flomo",
+          "description": "Send Markdown memos to flomo",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "api",
+          "title": "MEMO API URL",
+          "description": "Get the API URL from the flomo settings page.",
+          "type": "password",
+          "required": true
+        }
+      ]
     },
     {
       "name": "memorable-generate-password",
@@ -141703,7 +142647,7 @@
     {
       "name": "navidrome",
       "title": "Navidrome",
-      "description": "Search and browse your Navidrome music library. Find artists, albums, and songs, then open them directly in your browser.",
+      "description": "Search and browse your Navidrome music library. Find artists, albums, songs, and playlists, then open them directly in your browser.",
       "icon": "extension-icon.png",
       "author": "alexandervarney",
       "contributors": [],
@@ -141726,7 +142670,7 @@
           "name": "search",
           "title": "Search",
           "subtitle": "Navidrome",
-          "description": "Search for artists, albums, and songs in your Navidrome library",
+          "description": "Search for artists, albums, songs, and playlists in your Navidrome library",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -141745,6 +142689,15 @@
           "title": "Most Played Albums",
           "subtitle": "Navidrome",
           "description": "Browse your most played albums in Navidrome",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "playlists",
+          "title": "Playlists",
+          "subtitle": "Navidrome",
+          "description": "Browse your Navidrome playlists",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -160094,6 +161047,59 @@
       "preferences": []
     },
     {
+      "name": "paste-rs",
+      "title": "paste.rs - Quick Pastes",
+      "description": "Create anonymous paste.rs links from typed text or your clipboard, and browse recent pastes.",
+      "icon": "icon.png",
+      "author": "0xdhrv",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/0xdhrv/paste-rs",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/paste-rs",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "create-paste",
+          "title": "Create Paste",
+          "subtitle": "paste.rs",
+          "description": "Create a paste from manually entered text and copy the URL",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "paste-clipboard",
+          "title": "Create Paste from Clipboard",
+          "subtitle": "paste.rs",
+          "description": "Create a paste from clipboard text and copy the URL",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "recent-pastes",
+          "title": "Browse Recent Pastes",
+          "subtitle": "paste.rs",
+          "description": "Browse pastes created with Raycast, copy them back, or delete them",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "paste-safely",
       "title": "Paste Safely",
       "description": "Paste with per-app and per-website confirmation policies",
@@ -163993,14 +164999,19 @@
       "description": "Show piano chords and scales",
       "icon": "pianoman.png",
       "author": "juhamust",
-      "contributors": [],
+      "contributors": [
+        "0xdhrv"
+      ],
       "categories": [
         "Documentation",
         "Media",
         "Other"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "storeUrl": "https://www.raycast.com/juhamust/pianoman",
       "source": {
         "type": "github-monorepo",
@@ -173631,7 +174642,9 @@
       "description": "Navigate and perform common actions in Proxyman faster",
       "icon": "proxyman-icon.png",
       "author": "noah_tran",
-      "contributors": [],
+      "contributors": [
+        "mattiacolombomc"
+      ],
       "categories": [
         "Developer Tools",
         "Applications"
@@ -173761,6 +174774,42 @@
           "title": "Clear Session",
           "subtitle": "Proxyman",
           "description": "Clear the current session in Proxyman",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "setup-chrome-current-profile",
+          "title": "Setup Chrome Current Profile",
+          "subtitle": "Proxyman",
+          "description": "Launch Google Chrome with current profile, HTTP proxy configured to Proxyman, and HTTPS certificate trusted via SPKI pinning",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "setup-chrome-new-profile",
+          "title": "Setup Chrome New Profile",
+          "subtitle": "Proxyman",
+          "description": "Launch Google Chrome with a temporary profile, HTTP proxy configured to Proxyman, and HTTPS certificate trusted via SPKI pinning",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "setup-firefox",
+          "title": "Setup Firefox",
+          "subtitle": "Proxyman",
+          "description": "Launch Firefox with a temporary profile, HTTP proxy configured to Proxyman, and certificate trusted",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "setup-terminal",
+          "title": "Setup Terminal",
+          "subtitle": "Proxyman",
+          "description": "Open a new Terminal window with Proxyman proxy environment variables injected for Node.js, Python, Ruby, and Go",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -182767,8 +183816,8 @@
         {
           "name": "preview-animation",
           "title": "Preview Animation",
-          "subtitle": "Motion Preview",
-          "description": "Quickly preview animation files in selected in Finder. Supports Lottie (JSON and dotLottie) and Rive files.",
+          "subtitle": "Preview a Lottie or Rive Animation",
+          "description": "Quickly preview animation files selected in Finder. Supports Lottie (JSON and dotLottie) and Rive files.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -184715,6 +185764,88 @@
           "required": true
         }
       ]
+    },
+    {
+      "name": "rayterm",
+      "title": "RayTerm",
+      "description": "The Raycast Terminal Emulator",
+      "icon": "extension-icon.png",
+      "author": "EvanZhouDev",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/EvanZhouDev/rayterm",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/rayterm",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "open-rayterm",
+          "title": "RayTerm",
+          "description": "The Raycast Terminal Emulator",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "shellPath",
+              "title": "Shell Path",
+              "description": "Absolute path to the shell RayTerm should start.",
+              "type": "textfield",
+              "required": false,
+              "default": "/bin/zsh"
+            },
+            {
+              "name": "shellArgs",
+              "title": "Shell Arguments",
+              "description": "Arguments passed to the shell. The default starts an interactive login shell.",
+              "type": "textfield",
+              "required": false,
+              "default": "-il"
+            },
+            {
+              "name": "workingDirectory",
+              "title": "Working Directory",
+              "description": "Directory where the shell starts. Supports ~. Falls back to your home directory if blank or invalid.",
+              "type": "textfield",
+              "required": false,
+              "default": "~"
+            },
+            {
+              "name": "pythonPath",
+              "title": "Python Path",
+              "description": "Python executable used to run the local RayTerm daemon.",
+              "type": "textfield",
+              "required": false,
+              "default": "/usr/bin/python3"
+            },
+            {
+              "name": "terminalColumns",
+              "title": "Terminal Columns",
+              "description": "Column count reported to the shell through COLUMNS and the PTY window size.",
+              "type": "textfield",
+              "required": false,
+              "default": "60"
+            },
+            {
+              "name": "maxTranscriptLines",
+              "title": "Transcript Line Limit",
+              "description": "Maximum rendered terminal lines kept in the Raycast Detail view.",
+              "type": "textfield",
+              "required": false,
+              "default": "4000"
+            }
+          ]
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "raytyping",
@@ -201432,12 +202563,16 @@
       "description": "Capture and record your screen using shottr!",
       "icon": "main-icon.png",
       "author": "fernando_barrios",
-      "contributors": [],
+      "contributors": [
+        "CaffeineCat"
+      ],
       "categories": [
         "Applications"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/fernando_barrios/shottr",
       "source": {
         "type": "github-monorepo",
@@ -204184,6 +205319,14 @@
           "name": "add-task",
           "title": "Add Task",
           "description": "Create a new task in SingularityApp",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "zen-mode",
+          "title": "Zen Mode",
+          "description": "Focus on one random non-repeating task from a selected bucket.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -208914,7 +210057,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/doktor500/spanish-tv-guide",
       "source": {
@@ -214458,6 +215602,76 @@
       ]
     },
     {
+      "name": "stik",
+      "title": "Stik",
+      "description": "Quick capture and browse your Stik notes. Create, search, organize, and manage markdown notes stored locally on your machine.",
+      "icon": "command-icon.png",
+      "author": "0xMassi",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/0xMassi/stik",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/stik",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "quick-capture",
+          "title": "Quick Capture",
+          "description": "Create a new note and save it to a folder",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "search-notes",
+          "title": "Search Notes",
+          "description": "Full-text search across all your Stik notes",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "browse-notes",
+          "title": "Browse Notes",
+          "description": "Browse all notes organized by folder",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-recent",
+          "title": "Open Recent",
+          "description": "Quickly access your 10 most recently modified notes",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "notesDirectory",
+          "title": "Notes Directory",
+          "description": "Path to your Stik notes folder",
+          "type": "textfield",
+          "default": "~/Documents/Stik/",
+          "required": false
+        }
+      ]
+    },
+    {
       "name": "stock-lookup",
       "title": "Stock Lookup",
       "description": "Retrieves stock information from the alphavantage API. Get a free API Key from https://www.alphavantage.co/support/#api-key, or a paid one from https://www.alphavantage.co/premium/",
@@ -217667,7 +218881,8 @@
       "icon": "command-icon.png",
       "author": "1weiho",
       "contributors": [
-        "ridemountainpig"
+        "ridemountainpig",
+        "0xdhrv"
       ],
       "categories": [
         "Design Tools",
@@ -217742,6 +218957,10 @@
                   "title": "Copy SVG Wordmark URL"
                 },
                 {
+                  "value": "copyAstroComponent",
+                  "title": "Copy Astro Component"
+                },
+                {
                   "value": "operation",
                   "title": "Operation"
                 },
@@ -217750,6 +218969,15 @@
                   "title": "SVG Info"
                 }
               ]
+            },
+            {
+              "name": "showWordmark",
+              "title": "Show Wordmark",
+              "description": "Show wordmark SVG copy actions in the action panel",
+              "type": "checkbox",
+              "required": false,
+              "default": true,
+              "label": "Show wordmark actions"
             },
             {
               "name": "defaultPackageManager",
@@ -221373,7 +222601,7 @@
       "platforms": [
         "macOS"
       ],
-      "version": "1.0.30",
+      "version": "1.0.46",
       "storeUrl": "https://www.raycast.com/praveenjuge/teak-raycast",
       "source": {
         "type": "github-monorepo",
@@ -221460,8 +222688,8 @@
           "name": "apiKey",
           "title": "API Key",
           "type": "password",
-          "required": true,
-          "description": "Generate in Teak Settings > API Keys, then paste it here."
+          "required": false,
+          "description": "Optional — only if you prefer an API key over browser sign-in. Generate in Teak Settings > Manage API Keys."
         }
       ]
     },
@@ -229273,6 +230501,69 @@
       "preferences": []
     },
     {
+      "name": "tinyfish-search",
+      "title": "TinyFish Search",
+      "description": "Search the web with TinyFish, open result URLs, and fetch clean page content.",
+      "icon": "icon.png",
+      "author": "pranav_janakiraman",
+      "contributors": [],
+      "categories": [
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/pranav_janakiraman/tinyfish-search",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/tinyfish-search",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search",
+          "title": "Search Web",
+          "description": "Search the web with TinyFish, browse result URLs, and fetch clean page content.",
+          "mode": "view",
+          "keywords": [
+            "tinyfish",
+            "web",
+            "search"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "title": "TinyFish API Key",
+          "description": "Your TinyFish API key. Create one at https://agent.tinyfish.ai/api-keys.",
+          "type": "password",
+          "required": true,
+          "placeholder": "tf_..."
+        },
+        {
+          "name": "location",
+          "title": "Location",
+          "description": "Optional country code for geo-targeted results, for example US, GB, FR, or SG.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "US"
+        },
+        {
+          "name": "language",
+          "title": "Language",
+          "description": "Optional language code for result language, for example en, fr, de, or ja.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "en"
+        }
+      ]
+    },
+    {
       "name": "tinyimg",
       "title": "TinyIMG",
       "description": "Compress your images on your own device, with no data sent to our servers.",
@@ -232958,7 +234249,8 @@
       "author": "thesobercoder",
       "contributors": [
         "vishalbalaji3",
-        "Berenger"
+        "Berenger",
+        "burhanrashid52"
       ],
       "categories": [
         "Media",
@@ -241186,10 +242478,14 @@
       "description": "Experience the joy of shortening URLs to your heart's desire with Raycast's URL Shortener! Enjoy the convenience of free URL shortening, without the need for an API key or any rate limits. The domains you can use are: tinyurl.com, shrtco.de, 9qr.de, and shiny.link",
       "icon": "command-icon.png",
       "author": "Visual-Studio-Coder",
-      "contributors": [],
+      "contributors": [
+        "xmok"
+      ],
       "categories": [],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/Visual-Studio-Coder/url-shortener",
       "source": {
         "type": "github-monorepo",
@@ -241228,16 +242524,8 @@
               "value": "4"
             },
             {
-              "title": "shrtco.de",
-              "value": "1"
-            },
-            {
-              "title": "9qr.de",
-              "value": "2"
-            },
-            {
-              "title": "shiny.link",
-              "value": "3"
+              "title": "v.gd",
+              "value": "5"
             }
           ]
         },
@@ -249334,7 +250622,9 @@
         "Developer Tools"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "version": "1.0.0",
       "storeUrl": "https://www.raycast.com/finjo/whisper-dictation",
       "source": {
@@ -249385,6 +250675,15 @@
           "title": "Configure AI Refinement",
           "subtitle": "Whisper Dictation",
           "description": "Configure AI powered speech refinement",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "dictate-with-prompt",
+          "title": "Dictate with AI Prompt",
+          "subtitle": "Whisper Dictation",
+          "description": "Choose a specific AI prompt for dictation",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -249521,6 +250820,14 @@
           "required": false,
           "placeholder": "llama3.2:latest",
           "default": "llama3.2:latest"
+        },
+        {
+          "name": "scriptCommandsPath",
+          "title": "Script Commands Path",
+          "description": "Path to your Raycast script commands directory. Required to create standalone commands for prompts.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "~/raycast-scripts"
         }
       ]
     },
