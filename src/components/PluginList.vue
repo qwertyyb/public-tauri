@@ -122,8 +122,10 @@ import { ref } from 'vue';
 import { INNER_PLUGIN_NAMES } from '@/plugin/constants';
 import { showToast } from '@/utils/feedback';
 import { BUILTIN_PLUGINS } from '@/plugin/builtin';
-import { DEV_PLUGIN_PATH_LIST_KEY, isPluginPathInDevList, isPluginPathInRaycastList, isPluginPathInStoreList, uninstallDevPlugin, uninstallRaycastStorePlugin, uninstallStorePlugin } from '@/services/store';
+import { isPluginPathInRaycastList, isPluginPathInStoreList, uninstallRaycastStorePlugin, uninstallStorePlugin } from '@/services/store';
 import { storage } from '@public-tauri/core';
+import { isPluginPathInDevList, uninstallDevPlugin } from '@/services/developer';
+import { STORAGE_KEY } from '@/const';
 
 defineProps<{
   plugins: IRunningPlugin[];
@@ -137,7 +139,7 @@ const emits = defineEmits<{
 const expand = ref<Record<string, boolean | undefined>>({});
 const devPluginPathList = ref<string[]>([]);
 
-storage.getItem(DEV_PLUGIN_PATH_LIST_KEY).then((list: string[]) => {
+storage.getItem(STORAGE_KEY.DEV_PLUGIN_PATH_LIST).then((list: string[]) => {
   devPluginPathList.value = list || [];
 });
 

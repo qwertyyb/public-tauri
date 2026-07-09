@@ -37,6 +37,7 @@ export const createConvertedPackage = (
     publicPlugin,
     scripts: {
       ...(sourcePackage.scripts || {}),
+      start: 'tsdown --watch --config tsdown.config.ts',
       build: 'tsdown --config tsdown.config.ts',
     },
     dependencies: {

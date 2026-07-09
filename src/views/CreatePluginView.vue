@@ -156,7 +156,7 @@ import { computed, reactive } from 'vue';
 import PublicLayout from '@/components/PublicLayout.vue';
 import type { ActionPanelAction } from '@/types/plugin';
 import { generatePlugin, type PluginMode } from '@/services/scaffold';
-import { installDevPlugin } from '@/services/store';
+import { installDevPlugin } from '@/services/developer';
 import { showToast } from '@/utils/feedback';
 import { popView } from '@/plugin/utils';
 import { opener } from '@public-tauri/core';

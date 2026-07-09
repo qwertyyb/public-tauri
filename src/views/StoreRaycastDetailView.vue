@@ -110,7 +110,6 @@ import {
   installRaycastStoreExtension,
   isPluginInstalled,
   isRaycastExtensionInstalling,
-  refreshInstalledPlugins,
   uninstallRaycastStorePlugin,
 } from '@/services/store';
 import { open } from 'tauri-plugin-shellx-api';
@@ -243,7 +242,6 @@ const rightActionPanel = computed<ActionPanel | undefined>(() => {
 
 const load = async () => {
   if (!props.name) return;
-  await refreshInstalledPlugins();
   index.value = await fetchRaycastStoreIndex();
   ext.value = findRaycastExtensionByName(index.value.extensions, props.name);
 };

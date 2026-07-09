@@ -81,7 +81,7 @@
 import { computed, ref } from 'vue';
 import PublicLayout from '@/components/PublicLayout.vue';
 import { useRouter, onPageEnter } from '@/router';
-import { fetchStorePlugins, isPluginInstalled, refreshInstalledPlugins, installStorePlugin, isPluginInstalling } from '@/services/store';
+import { fetchStorePlugins, isPluginInstalled, installStorePlugin, isPluginInstalling } from '@/services/store';
 import type { IStorePlugin } from '@/types/store';
 import type { ActionPanelAction } from '@/types/plugin';
 import { showToast } from '@/utils/feedback';
@@ -128,7 +128,6 @@ const mainAction = computed<ActionPanelAction | undefined>(() => {
 
 const loadPlugin = async () => {
   if (!props.name) return;
-  await refreshInstalledPlugins();
   const plugins = await fetchStorePlugins();
   plugin.value = plugins.find(p => p.name === props.name);
   if (!plugin.value) {

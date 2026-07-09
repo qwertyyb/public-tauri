@@ -10,6 +10,8 @@ export type HostInvokePayload = {
 
 type Ack = { ok: true, data: unknown } | { ok: false, message: string };
 
+export const getHostSocket = () => getSocket(HOST_NAME);
+
 /**
  * RPC 到 Tauri 主窗体。已在 src-node 中实现的应使用 `runNodeUtilsInvoke` / 同进程 `callPlugin`。
  */

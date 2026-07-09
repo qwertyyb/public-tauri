@@ -26,7 +26,7 @@ import PublicLayout from '@/components/PublicLayout.vue';
 import { ref, watch, onMounted, computed } from 'vue';
 import type { IResultItem } from '@public-tauri/schema';
 import { useRouter } from '@/router';
-import { fetchStorePlugins, searchPlugins, isPluginInstalled, refreshInstalledPlugins } from '@/services/store';
+import { fetchStorePlugins, searchPlugins, isPluginInstalled } from '@/services/store';
 import type { IStorePlugin } from '@/types/store';
 import { popView } from '@/plugin/utils';
 import { showToast } from '@/utils/feedback';
@@ -83,7 +83,6 @@ onMounted(async () => {
   loading.value = true;
   try {
     allPlugins = await fetchStorePlugins();
-    await refreshInstalledPlugins();
     updateResults(input.value.keyword);
   } catch (err) {
     showToast('获取插件 Store 失败');

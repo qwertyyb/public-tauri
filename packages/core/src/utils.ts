@@ -83,6 +83,23 @@ export const registerServerModule = logger.wrap(
   },
 );
 
+export const unregisterServerModule = logger.wrap(
+  'unregisterServerModule',
+  async (name: string) => {
+    const r = await window.fetch(`${SERVER}/api/manager/unregister`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const { errCode, errMsg, data } = await r.json();
+    if (errCode !== 0) {
+      throw new Error(`卸载服务插件${name}失败:${errMsg} ${errCode}`);
+    }
+    return data;
+  },
+);
+
 export const createPluginServerListener = logger.wrap(
   'createPluginServerListener',
   (pluginName: string) => {

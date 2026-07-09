@@ -118,3 +118,7 @@ export const resourceUrl = (urlOrPath: string | undefined, basePath: string) => 
   }
   return convertFileSrc(path);
 };
+
+export function normalizePathForPrefix(p: string): string {
+  return p.replace(/\\/g, '/').replace(/\/+$/, '');
+}

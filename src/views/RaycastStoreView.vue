@@ -29,7 +29,7 @@ import { computed, ref, watch, onMounted } from 'vue';
 import type { IResultItem } from '@public-tauri/schema';
 import type { ActionPanelAction } from '@/types/plugin';
 import { useRouter } from '@/router';
-import { refreshInstalledPlugins, isPluginInstalled } from '@/services/store';
+import { isPluginInstalled } from '@/services/store';
 import {
   fetchRaycastStoreIndex,
   searchRaycastExtensions,
@@ -77,7 +77,6 @@ onMounted(async () => {
   try {
     raycastIndex = await fetchRaycastStoreIndex();
     allRaycast = raycastIndex.extensions;
-    await refreshInstalledPlugins();
     updateResults(input.value.keyword);
   } catch {
     showToast('获取 Raycast 商店索引失败');

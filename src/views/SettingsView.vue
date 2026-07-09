@@ -189,11 +189,8 @@ import { getSettings, updateSettings, getPlugins, updateMainShortcut, checkAllPe
 import PluginList from '@/components/PluginList.vue';
 import { onPageEnter, useRouter } from '@/router';
 import { updatePluginPreferences } from '@/plugin/manager';
-import {
-  getDevPluginPathList,
-  getStorePluginPathList,
-  installDevPlugin,
-} from '@/services/store';
+import { getStorePluginPathList } from '@/services/store';
+import { getDevPluginPathList, installDevPlugin } from '@/services/developer';
 import { showToast } from '@/utils/feedback';
 
 const colorModeState = useColorMode({

@@ -15,6 +15,9 @@ import { start as startServer } from './utils/server';
 import { getSettings, registerMainShortcut } from './services/settings';
 import { connectTauriNodeHostSocket } from './bridge/node-tauri-rpc';
 import { getCurrentWindow } from '@tauri-apps/api/window';
+import './utils/webdriver';
+import { installDevPlugin } from './services/developer.ts';
+import { showToast } from './utils/feedback.ts';
 
 // @ts-expect-error
 window[CORE_API_KEY] = core;
@@ -32,7 +35,20 @@ createTray();
 // registerServerModule / 插件静态资源依赖 Node 服务（127.0.0.1:2345），DEV 与生产均先 startServer 再 init
 startServer()
   .then(() => {
-    connectTauriNodeHostSocket();
+    const socket = connectTauriNodeHostSocket();
+    socket.on('developer:import', async (path: string) => {
+      try {
+        const plugin = await installDevPlugin(path, { reload: true });
+        if (!plugin) return;
+        const w = getCurrentWindow();
+        await w.show();
+        await w.setFocus();
+        showToast(`导入开发中插件成功: ${plugin.manifest.title}`);
+      } catch (err) {
+        showToast(`导入开发中插件失败: ${err instanceof Error ? err.message : String(err)}`);
+      }
+    });
+
     getSettings().then((settings) => {
       registerMainShortcut(settings.shortcuts).then((result) => {
         if (!result.registered) {

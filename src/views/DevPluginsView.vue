@@ -33,10 +33,11 @@ import PublicLayout from '@/components/PublicLayout.vue';
 import ResultView from '@/components/ResultView.vue';
 import type { IResultItem } from '@public-tauri/schema';
 import type { ActionPanelAction, IRunningPlugin } from '@/types/plugin';
-import { getDevPluginPaths, uninstallDevPlugin } from '@/services/store';
+import { getDevPluginPaths, uninstallDevPlugin } from '@/services/developer';
 import { showToast } from '@/utils/feedback';
 import { opener } from '@public-tauri/core';
 import { onPageEnter } from '@/router';
+import { reloadPlugin } from '@/plugin/manager';
 
 interface DevPluginInfo {
   path: string;
@@ -93,12 +94,11 @@ const onEnter = (_item: IResultItem, index: number) => {
   }
 };
 
-const reloadPlugin = async () => {
+const reloadPluginHandler = async () => {
   if (!selectedPlugin.value) return;
   const plugin = selectedPlugin.value;
   try {
-    const { reloadPluginFromLocalPath } = await import('@/plugin/manager');
-    await reloadPluginFromLocalPath(plugin.path);
+    await reloadPlugin(plugin.path);
     await showToast(`已重新加载: ${plugin.title}`);
     await loadPluginList();
   } catch (e) {
@@ -139,7 +139,7 @@ const mainAction = computed<ActionPanelAction | undefined>(() => {
 const rightActionPanel = computed(() => {
   if (!selectedPlugin.value) return undefined;
   const actions: ActionPanelAction[] = [
-    { name: 'reload', title: '重新加载', icon: 'refresh', action: reloadPlugin },
+    { name: 'reload', title: '重新加载', icon: 'refresh', action: reloadPluginHandler },
     { name: 'open', title: '在 Finder 中打开', icon: 'folder_open', action: openInFinder },
     { name: 'unload', title: '卸载', icon: 'remove_circle_outline', styleType: 'warning', action: unloadPlugin },
   ];

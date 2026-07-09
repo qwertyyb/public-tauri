@@ -1,5 +1,6 @@
 import KoaRouter from '@koa/router';
 import { callPlugin, registerPlugin, unregisterPlugin, updatePlugin } from '../plugin/manager';
+import { getHostSocket } from '../plugin/host-bridge';
 
 const router = new KoaRouter({
   prefix: '/api/manager',
@@ -22,6 +23,12 @@ router.post('/unregister', (ctx) => {
 router.post('/updatePlugin', async (ctx) => {
   const { name, modulePath, staticPaths } = ctx.request.body;
   await updatePlugin(name, { modulePath, staticPaths });
+  ctx.ok();
+});
+
+router.post('/developer/import', async (ctx) => {
+  const { path } = ctx.request.body;
+  getHostSocket()?.emit('developer:import', path);
   ctx.ok();
 });
 

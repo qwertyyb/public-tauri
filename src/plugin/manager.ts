@@ -1,5 +1,5 @@
 import path, { join } from 'path-browserify';
-import { globalShortcut, mainWindow, registerServerModule, storage } from '@public-tauri/core';
+import { globalShortcut, mainWindow, registerServerModule, storage, unregisterServerModule } from '@public-tauri/core';
 import { readTextFile } from '@tauri-apps/plugin-fs';
 import { formatCommand, getLocalPath, openCommandPreferences, openPluginPreferences, popView, pushView, resolveIconUrl } from './utils';
 import { set } from 'es-toolkit/compat';
@@ -9,10 +9,10 @@ import { parsePluginConfig, type IPluginManifest, type ICommand as IPluginComman
 import logger from '@/utils/logger';
 import type { IRunningPlugin, IPluginsSettings, IPluginSettings, ICommandSettings } from '@/types/plugin';
 import { BUILTIN_PLUGINS } from './builtin';
-import { DEV_PLUGIN_PATH_LIST_KEY, migratePluginPathListsFromLegacy, RAYCAST_PLUGIN_PATH_LIST_KEY, STORE_PLUGIN_PATH_LIST_KEY } from '@/services/store';
 import { wujiePool } from './wujie-pool';
 import { createWujieApp, destroyWujieApp, getEntryUrl, getTemplatePath } from './wujie-creator';
 import { INNER_PLUGIN_NAMES } from './constants';
+import { STORAGE_KEY } from '@/const';
 
 const plugins: Map<string, IRunningPlugin> = new Map(BUILTIN_PLUGINS);
 let pluginsSettings: IPluginsSettings = {};
@@ -25,13 +25,13 @@ export const whenPluginsReady = new Promise<void>((resolve) => {
 
 const save = () => storage.setItem('pluginsSettings', pluginsSettings);
 
-const checkPluginsRegistered = (path: string) => Array.from(plugins.values()).some(item => item.path === path);
-
 /** 是否已有插件实例使用该磁盘路径（用于避免重复加载） */
-export const isPluginPathRegistered = (pluginPath: string) => checkPluginsRegistered(pluginPath);
+export const isPluginPathRegistered = (pluginPath: string) => Array.from(plugins.values()).some(item => item.path === pluginPath);
+
+export const isPluginRegistered = (name: string): boolean => plugins.has(name);
 
 export const registerPlugin = async (pluginPath: string) => {
-  if (checkPluginsRegistered(pluginPath)) {
+  if (isPluginPathRegistered(pluginPath)) {
     console.warn(`插件已注册,请勿重复注册: ${pluginPath}`);
     return;
   }
@@ -149,21 +149,21 @@ export const registerPlugin = async (pluginPath: string) => {
   }
 };
 
-export const unregisterPlugin = (name: string) => {
+export const unregisterPlugin = async (name: string) => {
   plugins.delete(name);
   destroyWujieApp(name);
+  await unregisterServerModule(name);
 };
 
-/**
- * DEV/WebDriver：先卸载再重新 registerPlugin。
- * 注意：部分环境下动态 import 会缓存同一 URL 的模块，若热重载后仍跑旧插件代码，请重启 `pnpm tauri:dev`。
- */
-export const reloadPluginFromLocalPath = async (pluginPath: string): Promise<void> => {
-  const pkg = JSON.parse(await readTextFile(getLocalPath('./package.json', pluginPath)!));
-  unregisterPlugin(pkg.name);
-  await registerPlugin(pluginPath);
-  const { refreshInstalledPlugins } = await import('@/services/store');
-  await refreshInstalledPlugins();
+export const unregisterPluginByPath = async (pluginPath: string) => {
+  const plugin = Array.from(plugins.values()).find(item => item.path === pluginPath);
+  if (!plugin) return;
+  await unregisterPlugin(plugin.manifest.name);
+};
+
+export const reloadPlugin = async (pluginPath: string): Promise<IRunningPlugin | undefined> => {
+  await unregisterPluginByPath(pluginPath);
+  return registerPlugin(pluginPath);
 };
 
 export const getPlugins = (options?: { includeDisabledPlugins?: boolean, includeDisabledCommands?: boolean }) => {
@@ -440,10 +440,9 @@ const initInnerPlugins = async () => {
 };
 
 const initCustomPlugins = async () => {
-  await migratePluginPathListsFromLegacy();
-  const storePaths: string[] = (await storage.getItem(STORE_PLUGIN_PATH_LIST_KEY)) || [];
-  const raycastPaths: string[] = (await storage.getItem(RAYCAST_PLUGIN_PATH_LIST_KEY)) || [];
-  const devPaths: string[] = (await storage.getItem(DEV_PLUGIN_PATH_LIST_KEY)) || [];
+  const storePaths: string[] = (await storage.getItem(STORAGE_KEY.STORE_PLUGIN_PATH_LIST)) || [];
+  const raycastPaths: string[] = (await storage.getItem(STORAGE_KEY.RAYCAST_PLUGIN_PATH_LIST)) || [];
+  const devPaths: string[] = (await storage.getItem(STORAGE_KEY.DEV_PLUGIN_PATH_LIST)) || [];
   const pluginPathList = [...storePaths, ...raycastPaths, ...devPaths];
   if (!pluginPathList.length) return;
   console.warn('initCustomPlugins pluginPathList', pluginPathList);
@@ -496,22 +495,9 @@ export const init = async () => {
 
     initCommandsShortcut();
   } finally {
-    // 用 !PROD：个别环境（如自动化 WebView）下 import.meta.env.DEV 可能为 false，仍需要 E2E 钩子
-    console.warn('import.meta.env.PROD', import.meta.env.PROD, typeof window !== 'undefined');
-    if (!import.meta.env.PROD && typeof window !== 'undefined') {
-      const { installDevPlugin } = await import('@/services/store');
-      window.__PUBLIC_DEV_REGISTER_PLUGIN_PATH__ = installDevPlugin;
-      window.__PUBLIC_DEV_RELOAD_PLUGIN_FROM_PATH__ = reloadPluginFromLocalPath;
-    }
-    if (typeof window !== 'undefined') {
-      const { syncDevPluginFileWatchers } = await import('./devPluginHotReload');
-      void syncDevPluginFileWatchers();
-    }
     resolvePluginsReady?.();
-    if (typeof window !== 'undefined') {
-      (window as Window & { __PUBLIC_APP_PLUGINS_READY__?: boolean }).__PUBLIC_APP_PLUGINS_READY__ = true;
-      window.dispatchEvent(new CustomEvent('public-app:plugins-ready', { bubbles: true }));
-    }
+    window.__PUBLIC_APP_PLUGINS_READY__ = true;
+    window.dispatchEvent(new CustomEvent('public-app:plugins-ready', { bubbles: true }));
   }
 };
 

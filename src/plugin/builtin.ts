@@ -1,7 +1,7 @@
 import type { ICommand, IPluginManifest, IPluginLifecycle } from '@public-tauri/schema';
 import type { IRunningPlugin } from '@/types/plugin';
 import { dialog, mainWindow } from '@public-tauri/core';
-import { installDevPlugin } from '@/services/store';
+import { installDevPlugin } from '@/services/developer';
 
 // 定义内置插件的配置类型
 export interface IBuiltinPlugin {

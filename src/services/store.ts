@@ -7,26 +7,17 @@ import { storage, shell } from '@public-tauri/core';
 import type { IStorePlugin } from '@/types/store';
 import type { RaycastStoreExtension, RaycastStoreIndex } from '@/types/raycast-store';
 import { publicPluginNpmNameForRaycastExtension } from '@/services/raycast-store';
-import { getPlugins, isPluginPathRegistered, registerPlugin, unregisterPlugin } from '@/plugin/manager';
-import type { IRunningPlugin } from '@/types/plugin';
+import { isPluginRegistered, registerPlugin, unregisterPlugin } from '@/plugin/manager';
+import { normalizePathForPrefix } from '@/utils';
+import { STORAGE_KEY, STORE_URL, NPM_REGISTRY } from '@/const';
 
-const STORE_URL = 'https://raw.githubusercontent.com/qwertyyb/public-tauri/refs/heads/master/store/index.json';
-
-const NPM_REGISTRY = 'https://registry.npmjs.org';
-
-const installedPluginNames = ref<Set<string>>(new Set());
 const installingPluginNames = ref<Set<string>>(new Set());
 /** Raycast 商店扩展目录名（索引 `name`） */
 const installingRaycastExtensionKeys = ref<Set<string>>(new Set());
 
 const getPluginDirName = (npmPkg: string) => npmPkg;
 
-export const refreshInstalledPlugins = async () => {
-  const plugins = getPlugins({ includeDisabledPlugins: true, includeDisabledCommands: true });
-  installedPluginNames.value = new Set(plugins.keys());
-};
-
-export const isPluginInstalled = (name: string): boolean => installedPluginNames.value.has(name);
+export const isPluginInstalled = (name: string): boolean => isPluginRegistered(name);
 
 export const isPluginInstalling = (name: string): boolean => installingPluginNames.value.has(name);
 
@@ -59,110 +50,49 @@ const getCustomPluginsDir = async () => {
   return join(appDir, 'plugins');
 };
 
-/** 商店下载并解压到的插件目录列表（Node storage key） */
-export const STORE_PLUGIN_PATH_LIST_KEY = 'storePluginPathList';
-/** Raycast 插件转换后在本地安装的路径列表（与 npm 商店安装分离） */
-export const RAYCAST_PLUGIN_PATH_LIST_KEY = 'raycastPluginPathList';
-/** 开发中「从本地目录加载」的插件路径列表（与商店分离，便于管理） */
-export const DEV_PLUGIN_PATH_LIST_KEY = 'devPluginPathList';
-/** 旧版单一列表，启动时迁移到上两者后删除 */
-const LEGACY_CUSTOM_PLUGIN_PATH_LIST_KEY = 'customPluginPathList';
-
-function normalizePathForPrefix(p: string): string {
-  return p.replace(/\\/g, '/').replace(/\/+$/, '');
-}
-
-/** 将旧版 customPluginPathList 拆到商店 / 开发两个 key（按路径是否在应用 plugins 目录下区分） */
-export const migratePluginPathListsFromLegacy = async (): Promise<void> => {
-  const legacy: string[] | undefined = await storage.getItem(LEGACY_CUSTOM_PLUGIN_PATH_LIST_KEY);
-  if (!legacy?.length) return;
-
-  const customDir = await getCustomPluginsDir();
-  const base = normalizePathForPrefix(customDir);
-
-  const storePaths: string[] = (await storage.getItem(STORE_PLUGIN_PATH_LIST_KEY)) || [];
-  const devPaths: string[] = (await storage.getItem(DEV_PLUGIN_PATH_LIST_KEY)) || [];
-
-  for (const p of legacy) {
-    const np = normalizePathForPrefix(p);
-    const underStoreDir = np === base || np.startsWith(`${base}/`);
-    if (underStoreDir) {
-      if (!storePaths.includes(p)) storePaths.push(p);
-    } else if (!devPaths.includes(p)) {
-      devPaths.push(p);
-    }
-  }
-
-  await storage.setItem(STORE_PLUGIN_PATH_LIST_KEY, storePaths);
-  await storage.setItem(DEV_PLUGIN_PATH_LIST_KEY, devPaths);
-  await storage.removeItem(LEGACY_CUSTOM_PLUGIN_PATH_LIST_KEY);
-};
-
 const addStorePluginPath = async (pluginPath: string) => {
-  const list: string[] = await storage.getItem(STORE_PLUGIN_PATH_LIST_KEY) || [];
+  const list: string[] = await storage.getItem(STORAGE_KEY.STORE_PLUGIN_PATH_LIST) || [];
   if (!list.includes(pluginPath)) {
     list.push(pluginPath);
-    await storage.setItem(STORE_PLUGIN_PATH_LIST_KEY, list);
+    await storage.setItem(STORAGE_KEY.STORE_PLUGIN_PATH_LIST, list);
   }
 };
 
 const removeStorePluginPath = async (pluginPath: string) => {
-  const list: string[] = await storage.getItem(STORE_PLUGIN_PATH_LIST_KEY) || [];
+  const list: string[] = await storage.getItem(STORAGE_KEY.STORE_PLUGIN_PATH_LIST) || [];
   const n = normalizePathForPrefix(pluginPath);
-  await storage.setItem(STORE_PLUGIN_PATH_LIST_KEY, list.filter(p => normalizePathForPrefix(p) !== n));
+  await storage.setItem(STORAGE_KEY.STORE_PLUGIN_PATH_LIST, list.filter(p => normalizePathForPrefix(p) !== n));
 };
 
-const addDevPluginPath = async (pluginPath: string) => {
-  const list: string[] = await storage.getItem(DEV_PLUGIN_PATH_LIST_KEY) || [];
-  if (list.some(p => normalizePathForPrefix(p) === normalizePathForPrefix(pluginPath))) return;
-  list.push(pluginPath);
-  await storage.setItem(DEV_PLUGIN_PATH_LIST_KEY, list);
-};
-
-export const removeDevPluginPath = async (pluginPath: string) => {
-  const list: string[] = await storage.getItem(DEV_PLUGIN_PATH_LIST_KEY) || [];
-  const n = normalizePathForPrefix(pluginPath);
-  await storage.setItem(DEV_PLUGIN_PATH_LIST_KEY, list.filter(p => normalizePathForPrefix(p) !== n));
-};
-
-export const getDevPluginPathList = async (): Promise<string[]> => (await storage.getItem(DEV_PLUGIN_PATH_LIST_KEY)) || [];
-
-export const getStorePluginPathList = async (): Promise<string[]> => (await storage.getItem(STORE_PLUGIN_PATH_LIST_KEY)) || [];
+export const getStorePluginPathList = async (): Promise<string[]> => (await storage.getItem(STORAGE_KEY.STORE_PLUGIN_PATH_LIST)) || [];
 
 export const addRaycastPluginPath = async (pluginPath: string): Promise<void> => {
-  const list: string[] = await storage.getItem(RAYCAST_PLUGIN_PATH_LIST_KEY) || [];
+  const list: string[] = await storage.getItem(STORAGE_KEY.RAYCAST_PLUGIN_PATH_LIST) || [];
   const n = normalizePathForPrefix(pluginPath);
   if (list.some(p => normalizePathForPrefix(p) === n)) return;
   list.push(pluginPath);
-  await storage.setItem(RAYCAST_PLUGIN_PATH_LIST_KEY, list);
+  await storage.setItem(STORAGE_KEY.RAYCAST_PLUGIN_PATH_LIST, list);
 };
 
 export const removeRaycastPluginPath = async (pluginPath: string): Promise<void> => {
-  const list: string[] = await storage.getItem(RAYCAST_PLUGIN_PATH_LIST_KEY) || [];
+  const list: string[] = await storage.getItem(STORAGE_KEY.RAYCAST_PLUGIN_PATH_LIST) || [];
   const n = normalizePathForPrefix(pluginPath);
-  await storage.setItem(RAYCAST_PLUGIN_PATH_LIST_KEY, list.filter(p => normalizePathForPrefix(p) !== n));
+  await storage.setItem(STORAGE_KEY.RAYCAST_PLUGIN_PATH_LIST, list.filter(p => normalizePathForPrefix(p) !== n));
 };
 
-export const getRaycastPluginPathList = async (): Promise<string[]> => (await storage.getItem(RAYCAST_PLUGIN_PATH_LIST_KEY)) || [];
+export const getRaycastPluginPathList = async (): Promise<string[]> => (await storage.getItem(STORAGE_KEY.RAYCAST_PLUGIN_PATH_LIST)) || [];
 
 export const isPluginPathInRaycastList = async (pluginPath: string): Promise<boolean> => {
   if (!pluginPath) return false;
   const n = normalizePathForPrefix(pluginPath);
-  const list: string[] = (await storage.getItem(RAYCAST_PLUGIN_PATH_LIST_KEY)) || [];
-  return list.some(p => normalizePathForPrefix(p) === n);
-};
-
-export const isPluginPathInDevList = async (pluginPath: string): Promise<boolean> => {
-  if (!pluginPath) return false;
-  const n = normalizePathForPrefix(pluginPath);
-  const list: string[] = (await storage.getItem(DEV_PLUGIN_PATH_LIST_KEY)) || [];
+  const list: string[] = (await storage.getItem(STORAGE_KEY.RAYCAST_PLUGIN_PATH_LIST)) || [];
   return list.some(p => normalizePathForPrefix(p) === n);
 };
 
 export const isPluginPathInStoreList = async (pluginPath: string): Promise<boolean> => {
   if (!pluginPath) return false;
   const n = normalizePathForPrefix(pluginPath);
-  const list: string[] = (await storage.getItem(STORE_PLUGIN_PATH_LIST_KEY)) || [];
+  const list: string[] = (await storage.getItem(STORAGE_KEY.STORE_PLUGIN_PATH_LIST)) || [];
   return list.some(p => normalizePathForPrefix(p) === n);
 };
 
@@ -233,7 +163,6 @@ export const installRaycastStoreExtension = async (
       }
       throw regErr;
     }
-    await refreshInstalledPlugins();
   } finally {
     installingRaycastExtensionKeys.value.delete(extKey);
     if (await exists(workRoot)) {
@@ -254,7 +183,6 @@ export const uninstallRaycastStorePlugin = async (publicNpmPackageName: string):
 
   const { unregisterPlugin } = await import('@/plugin/manager');
   unregisterPlugin(publicNpmPackageName);
-  await refreshInstalledPlugins();
 };
 
 export const installStorePlugin = async (plugin: IStorePlugin): Promise<void> => {
@@ -299,10 +227,7 @@ export const installStorePlugin = async (plugin: IStorePlugin): Promise<void> =>
     await addStorePluginPath(pluginDir);
 
     // 注册插件
-    const { registerPlugin } = await import('@/plugin/manager');
     await registerPlugin(pluginDir);
-
-    installedPluginNames.value.add(npmPkg);
   } finally {
     installingPluginNames.value.delete(npmPkg);
   }
@@ -317,52 +242,5 @@ export const uninstallStorePlugin = async (pluginName: string): Promise<void> =>
   }
   await removeStorePluginPath(pluginDir);
 
-  const { unregisterPlugin } = await import('@/plugin/manager');
   unregisterPlugin(pluginName);
-  await refreshInstalledPlugins();
 };
-
-
-// ------ developer plugin ------
-/**
- * 从 devPluginPathList 中移除、并从内存中卸载（不删除源目录文件）
- */
-export const uninstallDevPlugin = async (pluginPath: string): Promise<void> => {
-  const n = normalizePathForPrefix(pluginPath);
-  const all = getPlugins({ includeDisabledPlugins: true, includeDisabledCommands: true });
-  for (const [name, p] of all) {
-    if (normalizePathForPrefix(p.path) === n) {
-      unregisterPlugin(name);
-      break;
-    }
-  }
-  await removeDevPluginPath(pluginPath);
-  await refreshInstalledPlugins();
-};
-
-export const getDevPluginPaths = async (): Promise<string[]> => (await storage.getItem(DEV_PLUGIN_PATH_LIST_KEY)) || [];
-
-/**
- * 从任意本地目录加载插件（写入 devPluginPathList，与商店安装的 storePluginPathList 分开）
- */
-export const installDevPlugin = async (pluginPath: string) => {
-  if (isPluginPathRegistered(pluginPath)) {
-    throw new Error('该目录对应插件已加载');
-  }
-  const devPaths: string[] = (await storage.getItem(DEV_PLUGIN_PATH_LIST_KEY)) || [];
-  const n = normalizePathForPrefix(pluginPath);
-  if (devPaths.some(p => normalizePathForPrefix(p) === n)) {
-    throw new Error('该目录已在开发插件列表中');
-  }
-  let plugin: IRunningPlugin | undefined;
-  try {
-    plugin = await registerPlugin(pluginPath);
-  } catch (e) {
-    await removeDevPluginPath(pluginPath);
-    throw e;
-  }
-  await addDevPluginPath(pluginPath);
-  await refreshInstalledPlugins();
-  return plugin;
-};
-

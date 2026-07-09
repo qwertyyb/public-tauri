@@ -28,7 +28,7 @@ let socket: ReturnType<typeof io> | null = null;
  */
 export function connectTauriNodeHostSocket() {
   if (socket?.connected) {
-    return;
+    return socket;
   }
   socket = io(SERVER, {
     path: '/socket.io',
@@ -48,4 +48,5 @@ export function connectTauriNodeHostSocket() {
       }
     },
   );
+  return socket;
 }
