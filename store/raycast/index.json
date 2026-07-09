@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-06T20:15:46.619Z",
+  "generatedAt": "2026-07-08T19:51:34.174Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "c3d4cd9bb296145e28c1648980b6a700555286a8"
+    "commit": "6918690d8e5f91c9b9fe7760afc3d91d29c3f6d0"
   },
-  "count": 3049,
+  "count": 3051,
   "extensions": [
     {
       "name": "0x0",
@@ -24617,11 +24617,16 @@
       "description": "Browse Through Thousands of BTTV Emote",
       "icon": "command-icon.png",
       "author": "Aayush9029",
-      "contributors": [],
-      "categories": [],
+      "contributors": [
+        "xmok"
+      ],
+      "categories": [
+        "Fun"
+      ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/Aayush9029/bttv-emote",
       "source": {
@@ -25582,6 +25587,15 @@
           "preferences": []
         },
         {
+          "name": "quick-log",
+          "title": "Quick Log",
+          "subtitle": "Caaals",
+          "description": "Re-log favorites and recent foods in one keystroke, no AI wait",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "browse-diary",
           "title": "Browse Diary",
           "subtitle": "Caaals",
@@ -25589,6 +25603,47 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "log-weight",
+          "title": "Log Weight",
+          "subtitle": "Caaals",
+          "description": "Record today's weight and see your trend",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "today",
+          "title": "Today's Calories in Menu Bar",
+          "subtitle": "Caaals",
+          "description": "Adds a menu bar item with your remaining calories and macros. Running the command activates or refreshes it.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "menuBarStyle",
+              "title": "Menu Bar Display",
+              "description": "How much text to show next to the icon. Smaller styles help on notched MacBooks with crowded menu bars.",
+              "type": "dropdown",
+              "required": false,
+              "default": "full",
+              "data": [
+                {
+                  "title": "Calories + label (743 left)",
+                  "value": "full"
+                },
+                {
+                  "title": "Calories only (743)",
+                  "value": "number"
+                },
+                {
+                  "title": "Icon only",
+                  "value": "icon"
+                }
+              ]
+            }
+          ]
         }
       ],
       "preferences": [
@@ -48703,6 +48758,39 @@
           "placeholder": "dbt Cloud Account ID"
         }
       ]
+    },
+    {
+      "name": "ddev",
+      "title": "DDEV",
+      "description": "This extension lets you access the DDEV projects on your machine and easily start, stop, and snapshot your projects.",
+      "icon": "extension-icon.png",
+      "author": "SuoweiHu",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/SuoweiHu/ddev",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/ddev",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "show-projects",
+          "title": "Show Projects",
+          "description": "List all the available DDEV projects.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "debank",
@@ -85387,7 +85475,8 @@
         "geekyed",
         "dangkhoipro",
         "0xdhrv",
-        "peduarte"
+        "peduarte",
+        "asaf_kfir"
       ],
       "categories": [
         "Productivity",
@@ -137034,7 +137123,7 @@
     },
     {
       "name": "models-dev",
-      "title": "Models Dev",
+      "title": "Models.dev",
       "description": "Explore AI model specifications, pricing, and capabilities from models.dev",
       "icon": "extension-icon.png",
       "author": "carlesandres",
@@ -137045,7 +137134,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/carlesandres/models-dev",
       "source": {
@@ -137057,8 +137147,8 @@
       "commands": [
         {
           "name": "search-models",
-          "title": "Search AI Models",
-          "subtitle": "Models Dev",
+          "title": "Search Models",
+          "subtitle": "Models.dev",
           "description": "Search across all AI models by name, provider, or capability",
           "mode": "view",
           "keywords": [
@@ -137072,9 +137162,9 @@
           "preferences": []
         },
         {
-          "name": "browse-providers",
-          "title": "Search AI Providers",
-          "subtitle": "Models Dev",
+          "name": "search-providers",
+          "title": "Search Providers",
+          "subtitle": "Models.dev",
           "description": "Explore AI providers and their model offerings",
           "mode": "view",
           "keywords": [
@@ -137085,94 +137175,9 @@
             "vendor"
           ],
           "preferences": []
-        },
-        {
-          "name": "find-by-capability",
-          "title": "AI Models by Capability",
-          "subtitle": "Models Dev",
-          "description": "Filter models by multiple capabilities",
-          "mode": "view",
-          "keywords": [
-            "reasoning",
-            "vision",
-            "audio",
-            "tools",
-            "filter"
-          ],
-          "preferences": []
-        },
-        {
-          "name": "pricing-explorer",
-          "title": "AI Models by Price",
-          "subtitle": "Models Dev",
-          "description": "Compare model pricing across providers",
-          "mode": "view",
-          "keywords": [
-            "cost",
-            "pricing",
-            "cheap",
-            "expensive",
-            "budget"
-          ],
-          "preferences": []
-        },
-        {
-          "name": "compare-models",
-          "title": "Compare AI Models",
-          "subtitle": "Models Dev",
-          "description": "Select models to compare side-by-side",
-          "mode": "view",
-          "keywords": [
-            "compare",
-            "diff",
-            "versus",
-            "side-by-side"
-          ],
-          "preferences": []
-        },
-        {
-          "name": "new-models",
-          "title": "New AI Models",
-          "subtitle": "Models Dev",
-          "description": "Browse AI models released recently",
-          "mode": "view",
-          "keywords": [
-            "recent",
-            "new",
-            "latest"
-          ],
-          "preferences": [
-            {
-              "name": "lookbackPeriod",
-              "title": "Lookback period (Days)",
-              "description": "Number of days to consider as recent",
-              "type": "textfield",
-              "default": "7",
-              "required": false
-            }
-          ]
-        },
-        {
-          "name": "background-sync",
-          "title": "Background Sync",
-          "subtitle": "Models Dev",
-          "description": "Refresh model data in the background",
-          "mode": "no-view",
-          "keywords": [],
-          "preferences": []
         }
       ],
-      "preferences": [
-        {
-          "name": "enableBackgroundSync",
-          "title": "Background Sync",
-          "description": "Allow periodic background refresh of models data",
-          "type": "checkbox",
-          "label": "Enable background sync",
-          "default": false,
-          "required": false
-        }
-      ]
+      "preferences": []
     },
     {
       "name": "modify-hash",
@@ -141690,10 +141695,13 @@
     {
       "name": "mymind",
       "title": "mymind",
-      "description": "Manage and add your thoughts to my mind",
+      "description": "Search, save, upload, and organize your mymind library with the official API",
       "icon": "extension-icon.png",
       "author": "arian",
-      "contributors": [],
+      "contributors": [
+        "yannglt",
+        "peduarte"
+      ],
       "categories": [
         "Applications",
         "Productivity"
@@ -141712,45 +141720,146 @@
       },
       "commands": [
         {
-          "name": "search-my-mind",
-          "title": "Search My Mind",
+          "name": "search-mymind",
+          "title": "Search mymind",
           "subtitle": "mymind",
-          "description": "Go through past mind entries",
+          "description": "Search your library, filter by type, and open rich item details",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "mymind",
+            "search",
+            "find",
+            "objects",
+            "library",
+            "details"
+          ],
           "preferences": []
         },
         {
-          "name": "add-a-new-note",
-          "title": "Add a New Note",
+          "name": "search-spaces",
+          "title": "Search Spaces",
           "subtitle": "mymind",
-          "description": "Adds a new note to mymind",
+          "description": "Browse, search, and manage spaces and the items inside them",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "mymind",
+            "spaces",
+            "browse",
+            "folders",
+            "organize",
+            "collections"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "search-tags",
+          "title": "Search Tags",
+          "subtitle": "mymind",
+          "description": "Browse your manual tags and the items inside each tag",
+          "mode": "view",
+          "keywords": [
+            "mymind",
+            "tags",
+            "browse",
+            "labels",
+            "organize"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "save-to-mymind",
+          "title": "Save to mymind",
+          "subtitle": "mymind",
+          "description": "Save links, notes, and files with tags, spaces, and attached notes",
+          "mode": "view",
+          "keywords": [
+            "mymind",
+            "save",
+            "note",
+            "link",
+            "capture",
+            "upload",
+            "file",
+            "image",
+            "pdf",
+            "video"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "show-mymind-menu-bar",
+          "title": "Show mymind Menu Bar",
+          "subtitle": "mymind",
+          "description": "Open quick save and search actions for mymind from the menu bar",
+          "mode": "menu-bar",
+          "keywords": [
+            "mymind",
+            "menu bar",
+            "save",
+            "search",
+            "spaces",
+            "quick access"
+          ],
           "preferences": []
         }
       ],
       "preferences": [
         {
-          "name": "jwt",
+          "name": "accessKeyId",
           "type": "password",
           "required": true,
-          "title": "JWT Token",
-          "description": "Your MyMind JWT token value. Go to https://arian.gg/blog/setup for instructions."
+          "title": "Key ID",
+          "description": "From your mymind Extensions page."
         },
         {
-          "name": "cid",
+          "name": "accessKeySecret",
           "type": "password",
           "required": true,
-          "title": "CID",
-          "description": "Your MyMind CID value. Go to https://arian.gg/blog/setup for instructions."
+          "title": "Your Private Key",
+          "description": "The private key for the same key, shown only once when you created it."
         },
         {
-          "name": "authenticityToken",
-          "type": "password",
+          "name": "accessLevel",
+          "type": "dropdown",
           "required": true,
-          "title": "Authenticity Token",
-          "description": "Your MyMind Authenticity Token value. Go to https://arian.gg/blog/setup for instructions."
+          "title": "Access Level",
+          "description": "Choose the access level for this key.",
+          "data": [
+            {
+              "title": "Read only",
+              "value": "read-only"
+            },
+            {
+              "title": "Full access",
+              "value": "full-access"
+            }
+          ]
+        },
+        {
+          "name": "mediaGridColumns",
+          "type": "dropdown",
+          "required": false,
+          "title": "Media Grid Size",
+          "description": "Set the card size for media grids.",
+          "default": "4",
+          "data": [
+            {
+              "title": "X-Large (3 Columns)",
+              "value": "3"
+            },
+            {
+              "title": "Large (4 Columns)",
+              "value": "4"
+            },
+            {
+              "title": "Medium (5 Columns)",
+              "value": "5"
+            },
+            {
+              "title": "Small (6 Columns)",
+              "value": "6"
+            }
+          ]
         }
       ]
     },
@@ -187570,7 +187679,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/zach/readwise-reader",
       "source": {
@@ -195756,7 +195866,8 @@
       "icon": "scoop.png",
       "author": "zsombor_biro",
       "contributors": [
-        "shubham"
+        "shubham",
+        "Netizen"
       ],
       "categories": [
         "Developer Tools",
@@ -219565,13 +219676,16 @@
       "icon": "icon.png",
       "author": "tiancheng92",
       "contributors": [
-        "xmok"
+        "xmok",
+        "tofrankie"
       ],
       "categories": [
         "Developer Tools"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/tiancheng92/switchhosts",
       "source": {
         "type": "github-monorepo",
@@ -244334,6 +244448,144 @@
           "type": "checkbox",
           "default": false,
           "required": true
+        }
+      ]
+    },
+    {
+      "name": "vaulted",
+      "title": "Vaulted — Secure Secret Sharing",
+      "description": "Zero-knowledge encrypted, self-destructing secret links from your launcher.",
+      "icon": "icon.png",
+      "author": "maxim_novak",
+      "contributors": [],
+      "categories": [
+        "Security",
+        "Developer Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "0.1.0",
+      "storeUrl": "https://www.raycast.com/maxim_novak/vaulted",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/vaulted",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "create-secret",
+          "title": "Create Secret",
+          "subtitle": "Vaulted",
+          "description": "Encrypt text and get a self-destructing share link. Customize views, expiry, and passphrase.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "create-from-clipboard",
+          "title": "Create Secret from Clipboard",
+          "subtitle": "Vaulted",
+          "description": "Encrypt the current clipboard contents with your default settings and copy the share link back.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "view-secret",
+          "title": "View Secret",
+          "subtitle": "Vaulted",
+          "description": "Paste a Vaulted link to decrypt and reveal the secret. Consumes one view.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "host",
+          "title": "Vaulted host",
+          "description": "Base URL of the Vaulted instance. Defaults to https://vaulted.fyi. Use https://... or http://localhost for self-hosted.",
+          "type": "textfield",
+          "required": false,
+          "default": "https://vaulted.fyi"
+        },
+        {
+          "name": "defaultViews",
+          "title": "Default max views",
+          "description": "How many times the secret can be viewed before it's destroyed.",
+          "type": "dropdown",
+          "required": false,
+          "default": "1",
+          "data": [
+            {
+              "title": "1 view",
+              "value": "1"
+            },
+            {
+              "title": "3 views",
+              "value": "3"
+            },
+            {
+              "title": "5 views",
+              "value": "5"
+            },
+            {
+              "title": "10 views",
+              "value": "10"
+            },
+            {
+              "title": "Unlimited (within expiry)",
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "name": "defaultExpiry",
+          "title": "Default expiry",
+          "description": "How long the secret remains available.",
+          "type": "dropdown",
+          "required": false,
+          "default": "24h",
+          "data": [
+            {
+              "title": "1 hour",
+              "value": "1h"
+            },
+            {
+              "title": "24 hours",
+              "value": "24h"
+            },
+            {
+              "title": "7 days",
+              "value": "7d"
+            },
+            {
+              "title": "30 days",
+              "value": "30d"
+            }
+          ]
+        },
+        {
+          "name": "openInBrowser",
+          "title": "Open in browser",
+          "label": "Open the secret link in the browser after creating it",
+          "description": "Useful for visually confirming the link before sending.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "confirmConsume",
+          "title": "Confirm before consuming a view",
+          "label": "Ask before revealing a secret",
+          "description": "Viewing a secret consumes a view. Toggle off if you don't want the confirmation prompt.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
         }
       ]
     },
