@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-08T19:51:34.174Z",
+  "generatedAt": "2026-07-09T20:02:21.130Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "6918690d8e5f91c9b9fe7760afc3d91d29c3f6d0"
+    "commit": "9a79f0f4f0ed27609bb43f63c9e68deae5bc414c"
   },
-  "count": 3051,
+  "count": 3059,
   "extensions": [
     {
       "name": "0x0",
@@ -15957,6 +15957,45 @@
       "preferences": []
     },
     {
+      "name": "bcassessment",
+      "title": "BC Assessment",
+      "description": "Search BC Assessment properties by address.",
+      "icon": "extension-icon.png",
+      "author": "martins",
+      "contributors": [],
+      "categories": [
+        "Finance"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/martins/bcassessment",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/bcassessment",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-address",
+          "title": "Search Address",
+          "description": "Find matching BC Assessment addresses.",
+          "mode": "view",
+          "keywords": [
+            "bcass",
+            "bca",
+            "bcassessment"
+          ],
+          "icon": "extension-icon.png",
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "beancount-meta",
       "title": "Beancount Meta",
       "description": "The more effecient Beancount Bookkeeping way",
@@ -16828,7 +16867,9 @@
         "Developer Tools"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/wyattjoh/beszel",
       "source": {
         "type": "github-monorepo",
@@ -23419,6 +23460,24 @@
           "subtitle": "Brew",
           "description": "Upgrade brew formulae & casks",
           "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "manage-services",
+          "title": "Manage Services",
+          "subtitle": "Brew",
+          "description": "Start, stop & restart Homebrew services",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "services-menu",
+          "title": "Services Menu Bar",
+          "subtitle": "Brew",
+          "description": "Control Homebrew services from the menu bar",
+          "mode": "menu-bar",
           "keywords": [],
           "preferences": []
         },
@@ -51547,6 +51606,48 @@
       "preferences": []
     },
     {
+      "name": "desec",
+      "title": "deSEC",
+      "description": "Modern DNS Hosting for Everyone",
+      "icon": "desec.png",
+      "author": "xmok",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/xmok/desec",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/desec",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "domain-management",
+          "title": "Domain Management",
+          "description": "Manage Domains and RRSets",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "token",
+          "title": "Token",
+          "description": "deSEC Token",
+          "type": "password",
+          "required": true
+        }
+      ]
+    },
+    {
       "name": "design-skills",
       "title": "Design Skills",
       "description": "Browse, preview, and install brand design skills for your AI coding agent.",
@@ -52238,15 +52339,6 @@
           ],
           "preferences": [
             {
-              "name": "autoOpenInBrowser",
-              "title": "After Start",
-              "type": "checkbox",
-              "label": "Open in browser when the port binds",
-              "description": "Once the new dev server starts listening, automatically open its URL in your default browser",
-              "default": false,
-              "required": false
-            },
-            {
               "name": "confirmMultiStart",
               "title": "Confirmations",
               "type": "checkbox",
@@ -52277,6 +52369,15 @@
         }
       ],
       "preferences": [
+        {
+          "name": "autoOpenInBrowser",
+          "title": "After Start",
+          "type": "checkbox",
+          "label": "Open in browser when the port binds",
+          "description": "Once a new dev server starts listening, automatically open its URL in your default browser. Applies whether you start from the Start Dev Server command, the dashboard, or the menu bar.",
+          "default": false,
+          "required": false
+        },
         {
           "name": "terminalApp",
           "title": "Terminal App",
@@ -63162,7 +63263,9 @@
       ],
       "categories": [],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/thomas/elgato-key-light",
       "source": {
         "type": "github-monorepo",
@@ -63171,6 +63274,15 @@
         "ref": "main"
       },
       "commands": [
+        {
+          "name": "configure-target-lights",
+          "title": "Configure Target Lights",
+          "subtitle": "Elgato Key Light",
+          "description": "Choose whether commands control all lights or only selected discovered lights",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
         {
           "name": "discoverLights",
           "title": "Discover Lights",
@@ -63184,7 +63296,7 @@
           "name": "toggle",
           "title": "Toggle Lights",
           "subtitle": "Elgato Key Light",
-          "description": "Toggles all connected Key Lights on or off",
+          "description": "Toggles the targeted Key Lights on or off",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -63193,7 +63305,7 @@
           "name": "increaseBrightness",
           "title": "Increase Brightness",
           "subtitle": "Elgato Key Light",
-          "description": "Increase brightness of Key Light by 5%",
+          "description": "Increase brightness of the targeted Key Lights by 5%",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -63202,7 +63314,7 @@
           "name": "decreaseBrightness",
           "title": "Decrease Brightness",
           "subtitle": "Elgato Key Light",
-          "description": "Decrease brightness of Key Light by 5%",
+          "description": "Decrease brightness of the targeted Key Lights by 5%",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -63211,7 +63323,7 @@
           "name": "increaseTemperature",
           "title": "Warmer Color Temperature",
           "subtitle": "Elgato Key Light",
-          "description": "Make light color warmer (lower Kelvin)",
+          "description": "Make the targeted lights warmer (lower Kelvin)",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -63220,7 +63332,7 @@
           "name": "decreaseTemperature",
           "title": "Cooler Color Temperature",
           "subtitle": "Elgato Key Light",
-          "description": "Make light color cooler (higher Kelvin)",
+          "description": "Make the targeted lights cooler (higher Kelvin)",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -75824,6 +75936,41 @@
       ]
     },
     {
+      "name": "freetogame",
+      "title": "FreeToGame",
+      "description": "Discover the best free-to-play PC games!",
+      "icon": "extension-icon.png",
+      "author": "alexi.build",
+      "contributors": [],
+      "categories": [
+        "Data",
+        "Fun"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows",
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/alexi.build/freetogame",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/freetogame",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-games",
+          "title": "Search Games",
+          "description": "Search the Best Free-To-Play Games with Ease!",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "french-company-search",
       "title": "French Company Search",
       "description": "Search French company information using SIREN/SIRET numbers via INPI API. Get formatted legal details ready for contracts and documents.",
@@ -79242,6 +79389,65 @@
           "required": true,
           "description": "Path to store pictures in repo.",
           "default": "gh-pic"
+        }
+      ]
+    },
+    {
+      "name": "gh-pr-tracker",
+      "title": "GitHub Pull Requests",
+      "description": "Track unread pull request activity across your GitHub or GitHub Enterprise repositories from a single Raycast command.",
+      "icon": "icon.png",
+      "author": "oslen",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "version": "1.0.1",
+      "storeUrl": "https://www.raycast.com/oslen/gh-pr-tracker",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/gh-pr-tracker",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "unread-updates",
+          "title": "View Pull Requests",
+          "subtitle": "GitHub Pull Requests",
+          "description": "Shows unread pull request activity",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "ghHost",
+          "title": "GH Host",
+          "description": "Your GitHub (Enterprise) hostname",
+          "type": "textfield",
+          "required": true
+        },
+        {
+          "name": "token",
+          "title": "Personal Access Token",
+          "description": "A PAT with repo read access",
+          "type": "password",
+          "required": true
+        },
+        {
+          "name": "repos",
+          "title": "Repositories",
+          "description": "Comma-separated list of repositories in owner/repo format",
+          "type": "textfield",
+          "required": true,
+          "placeholder": "owner/repo1, owner/repo2"
         }
       ]
     },
@@ -83585,10 +83791,12 @@
         "heavyrisem",
         "constantins2001",
         "pernielsentikaer",
+        "tane_van_wifferen",
         "1weiho",
         "pnowy",
         "ridemountainpig",
         "j3lte",
+        "ernest0n",
         "JonathanXDR",
         "danilorequena"
       ],
@@ -83727,22 +83935,13 @@
           "preferences": []
         },
         {
-          "name": "project_my",
-          "title": "My Projects",
+          "name": "project_view",
+          "title": "Show Project",
           "subtitle": "GitLab",
-          "description": "My GitLab Projects",
+          "description": "Open GitLab Project",
           "mode": "view",
           "keywords": [],
-          "preferences": [
-            {
-              "name": "active",
-              "description": "Limit by projects that are not archived and not marked for deletion",
-              "type": "checkbox",
-              "required": false,
-              "label": "Search active projects only",
-              "default": false
-            }
-          ]
+          "preferences": []
         },
         {
           "name": "pipeline_my",
@@ -84024,13 +84223,12 @@
           "placeholder": "OAuth Application ID"
         },
         {
-          "name": "cirefreshinterval",
+          "name": "artifactDownloadDirectory",
           "type": "textfield",
           "required": false,
-          "default": "10",
-          "title": "CI Auto Refresh Interval (sec)",
-          "description": "Refresh interval in seconds for CI Pipeline/Job lists. Values between 1-9 are not recommended. 0 mean no auto refresh at all",
-          "placeholder": "10"
+          "title": "Job Artifacts Download Directory",
+          "description": "Folder for downloaded CI job artifacts. Defaults to ~/Downloads when empty.",
+          "placeholder": "~/Downloads"
         },
         {
           "name": "primaryaction",
@@ -84058,14 +84256,6 @@
           "default": false,
           "title": "Behavior",
           "description": "Pop to root after e.g. open the browser"
-        },
-        {
-          "name": "listdetails",
-          "type": "checkbox",
-          "label": "Show details in merge request list",
-          "required": false,
-          "default": false,
-          "description": "Show details in merge request lists via a metadata view"
         },
         {
           "name": "includeEpicAncestor",
@@ -86085,7 +86275,9 @@
       ],
       "categories": [],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/klaa97/gcp-search",
       "source": {
         "type": "github-monorepo",
@@ -104974,7 +105166,8 @@
         "litomore",
         "ridemountainpig",
         "xmok",
-        "Undolog"
+        "Undolog",
+        "tofrankie"
       ],
       "categories": [
         "Fun"
@@ -114299,7 +114492,9 @@
       "description": "Quickly check and manage your Kaneo projects",
       "icon": "kaneo.png",
       "author": "Baldy",
-      "contributors": [],
+      "contributors": [
+        "jeremie_constant"
+      ],
       "categories": [
         "Productivity",
         "Applications"
@@ -114340,6 +114535,15 @@
           "title": "Notifications",
           "subtitle": "Kaneo",
           "description": "List Kaneo notifications",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "my-tasks",
+          "title": "My Tasks",
+          "subtitle": "Kaneo",
+          "description": "List tasks assigned to you",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -123566,7 +123770,9 @@
         "Developer Tools"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/MisakiCoca/link-cleaner",
       "source": {
         "type": "github-monorepo",
@@ -139399,6 +139605,59 @@
           "title": "Attraction Rates",
           "description": "Find the best attraction rates for different mice",
           "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "mouseless",
+      "title": "Mouseless",
+      "description": "Controls the Mouseless app. Only works when using Mouseless v1.0 or later.",
+      "icon": "extension-icon.png",
+      "author": "NextMerge",
+      "contributors": [],
+      "categories": [
+        "Applications"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/NextMerge/mouseless",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/mouseless",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "show-overlay",
+          "title": "Show Overlay",
+          "subtitle": "Mouseless",
+          "description": "Runs `mouseless://show-overlay`",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "enter-free-mode",
+          "title": "Enter Free Mode",
+          "subtitle": "Mouseless",
+          "description": "Runs `mouseless://enter-free-mode`",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "settings",
+          "title": "Open Settings",
+          "subtitle": "Mouseless",
+          "description": "Runs `mouseless://settings`",
+          "mode": "no-view",
           "keywords": [],
           "preferences": []
         }
@@ -191526,7 +191785,7 @@
           "type": "password",
           "placeholder": "re_123456789",
           "description": "API Key From Resend Dashboard",
-          "required": true
+          "required": false
         },
         {
           "name": "sender_name",
@@ -208149,6 +208408,237 @@
       "preferences": []
     },
     {
+      "name": "snipperapp",
+      "title": "SnipperApp",
+      "description": "Search, paste, and capture code snippets from your SnipperApp library and the SnipperApp Hub — with workspaces, favorites, and AI.",
+      "icon": "extension-icon.png",
+      "author": "teologov",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/teologov/snipperapp",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/snipperapp",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-snippets",
+          "title": "Search Snippets",
+          "subtitle": "SnipperApp",
+          "description": "Search your local SnipperApp library and copy, paste, or open a snippet. Filter by workspace, language, or favorites.",
+          "mode": "view",
+          "keywords": [
+            "snippet",
+            "library",
+            "paste",
+            "favorite"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "create-snippet",
+          "title": "Create Snippet",
+          "subtitle": "SnipperApp",
+          "description": "Create a new snippet, prefilled from the clipboard or the current selection. Choose workspace, folder, and language.",
+          "mode": "view",
+          "keywords": [
+            "new",
+            "add",
+            "capture"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "save-clipboard",
+          "title": "Save Clipboard as Snippet",
+          "subtitle": "SnipperApp",
+          "description": "Save the current clipboard contents as a new snippet in your last-used workspace.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "save-selection",
+          "title": "Save Selection as Snippet",
+          "subtitle": "SnipperApp",
+          "description": "Save the selected text in the frontmost app as a new snippet.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "recent-snippets",
+          "title": "Recent Snippets",
+          "subtitle": "SnipperApp",
+          "description": "Your most recently updated snippets, for instant re-access.",
+          "mode": "view",
+          "keywords": [
+            "recent",
+            "latest"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "paste-last",
+          "title": "Paste Last Snippet",
+          "description": "Paste the most recently used snippet into the frontmost app.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-hub",
+          "title": "Search Hub",
+          "subtitle": "SnipperApp Hub",
+          "description": "Search public community snippets on the SnipperApp Hub and add them to your library.",
+          "mode": "view",
+          "keywords": [
+            "hub",
+            "community",
+            "public",
+            "discover"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "browse-trending",
+          "title": "Browse Trending",
+          "subtitle": "SnipperApp Hub",
+          "description": "Browse trending community snippets on the SnipperApp Hub.",
+          "mode": "view",
+          "keywords": [
+            "hub",
+            "trending",
+            "popular"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "snippets-menu-bar",
+          "title": "Snippets Menu Bar",
+          "subtitle": "SnipperApp",
+          "description": "A menu-bar menu of your favorite and recent snippets for one-click copy.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "primaryAction",
+          "title": "Snippet Action: Primary",
+          "description": "The first action in a snippet's action menu.",
+          "type": "dropdown",
+          "required": false,
+          "default": "paste",
+          "data": [
+            {
+              "title": "Paste to Active App",
+              "value": "paste"
+            },
+            {
+              "title": "Copy to Clipboard",
+              "value": "copy"
+            },
+            {
+              "title": "Copy as Markdown",
+              "value": "copyMarkdown"
+            },
+            {
+              "title": "Open in SnipperApp",
+              "value": "open"
+            },
+            {
+              "title": "Show Details",
+              "value": "details"
+            }
+          ]
+        },
+        {
+          "name": "secondaryAction",
+          "title": "Snippet Action: Secondary",
+          "description": "The second action in a snippet's action menu.",
+          "type": "dropdown",
+          "required": false,
+          "default": "copy",
+          "data": [
+            {
+              "title": "Copy to Clipboard",
+              "value": "copy"
+            },
+            {
+              "title": "Paste to Active App",
+              "value": "paste"
+            },
+            {
+              "title": "Copy as Markdown",
+              "value": "copyMarkdown"
+            },
+            {
+              "title": "Open in SnipperApp",
+              "value": "open"
+            },
+            {
+              "title": "Show Details",
+              "value": "details"
+            }
+          ]
+        },
+        {
+          "name": "enableFrecency",
+          "title": "Result Ranking",
+          "label": "Rank by usage (frecency)",
+          "description": "Float your most frequently and recently used snippets to the top.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "showWorkspace",
+          "title": "List Accessories",
+          "label": "Show workspace",
+          "description": "Show the workspace as an accessory in the snippet list.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "showLanguage",
+          "label": "Show language",
+          "description": "Show the language as an accessory in the snippet list.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "trackHubAnalytics",
+          "title": "Hub Analytics",
+          "label": "Send anonymous view/import events to the Hub",
+          "description": "Helps snippet authors see how their snippets are used. No personal data is sent.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "helperPath",
+          "title": "Helper Path",
+          "description": "Absolute path to the snipper-mcp helper inside SnipperApp. Detected automatically; override only if needed.",
+          "placeholder": "Detect automatically",
+          "type": "textfield",
+          "required": false
+        }
+      ]
+    },
+    {
       "name": "snippetslab",
       "title": "SnippetsLab",
       "description": "Search and view contents in your SnippetsLab library.",
@@ -213477,7 +213967,7 @@
         },
         {
           "name": "volumeUp",
-          "title": "Turn Volume Up",
+          "title": "Turn Volume up",
           "subtitle": "Spotify",
           "description": "Turn the volume up by 10%.",
           "mode": "no-view",
@@ -213613,7 +214103,7 @@
           "name": "findLyrics",
           "title": "Find Lyrics",
           "subtitle": "Spotify",
-          "description": "Find and display lyrics for the currently playing song from Genius.",
+          "description": "Find and display lyrics for the currently playing song.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -247595,6 +248085,74 @@
       "preferences": []
     },
     {
+      "name": "vocabulary-builder",
+      "title": "Vocabulary Builder",
+      "description": "Build your vocabulary while learning a new language",
+      "icon": "extension-icon.png",
+      "author": "stefann",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Fun"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/stefann/vocabulary-builder",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/vocabulary-builder",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-words",
+          "title": "Search and Manage Words",
+          "description": "View and manage all words",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "manage-languages",
+          "title": "Manage Languages",
+          "description": "Add, edit and delete your languages",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "statistics-and-overview",
+          "title": "Statistics and Overview",
+          "description": "See statistics for your inputs and overview of all the words per language",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "quick-add",
+          "title": "Quick Add",
+          "description": "Add new words quickly",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "defaultLanguage",
+              "type": "textfield",
+              "title": "Default Language",
+              "description": "Set a default language for quick adding words",
+              "placeholder": "Default Language (e.g. es)",
+              "required": false
+            }
+          ]
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "voice-to-text-windows",
       "title": "Voice-to-Text for Windows",
       "description": "Record speech from your microphone, transcribe it with OpenAI Whisper, and clean it up with AI",
@@ -253496,6 +254054,59 @@
           "placeholder": "A valid ISO-4217 currency code (like GBP, MXN or EUR)",
           "defaultValue": "MXN",
           "required": true
+        }
+      ]
+    },
+    {
+      "name": "wishapp",
+      "title": "WishApp",
+      "description": "Add products to your WishApp wishlists and browse them from Raycast.",
+      "icon": "command-icon.png",
+      "author": "bilal_k",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/bilal_k/wishapp",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/wishapp",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "add-to-wishlist",
+          "title": "Add to Wishlist",
+          "subtitle": "WishApp",
+          "description": "Save a product URL to one of your wishlists.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "my-wishlists",
+          "title": "My Wishlists",
+          "subtitle": "WishApp",
+          "description": "Browse and open your wishlists.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "title": "API Key",
+          "type": "password",
+          "required": true,
+          "description": "Your WishApp API key. Generate one at getwish.app/settings and paste it here.",
+          "placeholder": "wish_…"
         }
       ]
     },
