@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-09T20:02:21.130Z",
+  "generatedAt": "2026-07-10T19:50:06.811Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "9a79f0f4f0ed27609bb43f63c9e68deae5bc414c"
+    "commit": "e759d14d2baf4ebbb752d541becec9b95c5a1ab1"
   },
-  "count": 3059,
+  "count": 3063,
   "extensions": [
     {
       "name": "0x0",
@@ -17211,6 +17211,71 @@
       "preferences": []
     },
     {
+      "name": "better-screenshoot",
+      "title": "Better Screenshoot",
+      "description": "Capture your screen with a built-in editor from Raycast.",
+      "icon": "extension-icon.png",
+      "author": "sriverogalan",
+      "contributors": [],
+      "categories": [
+        "Applications"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/sriverogalan/better-screenshoot",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/better-screenshoot",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "capture-area",
+          "title": "Capture Area",
+          "subtitle": "Better Screenshoot",
+          "description": "Select a region to capture",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "capture-area.png",
+          "preferences": []
+        },
+        {
+          "name": "capture-screen",
+          "title": "Capture Screen",
+          "subtitle": "Better Screenshoot",
+          "description": "Capture the full screen",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "capture-screen.png",
+          "preferences": []
+        },
+        {
+          "name": "capture-window",
+          "title": "Capture Window",
+          "subtitle": "Better Screenshoot",
+          "description": "Capture a specific window",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "capture-window.png",
+          "preferences": []
+        },
+        {
+          "name": "open-history",
+          "title": "Open History",
+          "subtitle": "Better Screenshoot",
+          "description": "Open capture history",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "open-history.png",
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "better-uptime",
       "title": "Better Uptime",
       "description": "Check on your Better Uptime monitors, incidents and heartbeats.",
@@ -27572,24 +27637,6 @@
               ]
             },
             {
-              "name": "showRemainingUsage",
-              "type": "dropdown",
-              "required": false,
-              "title": "Progress Bar Mode",
-              "description": "Whether progress bars show remaining capacity or consumed usage",
-              "default": "remaining",
-              "data": [
-                {
-                  "title": "Remaining",
-                  "value": "remaining"
-                },
-                {
-                  "title": "Consumed",
-                  "value": "consumed"
-                }
-              ]
-            },
-            {
               "name": "progressBarStyle",
               "type": "dropdown",
               "required": false,
@@ -27695,6 +27742,24 @@
             {
               "title": "10 minutes",
               "value": "600"
+            }
+          ]
+        },
+        {
+          "name": "showRemainingUsage",
+          "type": "dropdown",
+          "required": false,
+          "title": "Usage Display Mode",
+          "description": "Whether rate-limit percentages (menu bar title, progress bars, and the command's Usage Limits accessory) show consumed usage or remaining capacity",
+          "default": "consumed",
+          "data": [
+            {
+              "title": "Consumed",
+              "value": "consumed"
+            },
+            {
+              "title": "Remaining",
+              "value": "remaining"
             }
           ]
         },
@@ -36302,18 +36367,11 @@
           "default": "https://api.cobaltpf.com"
         },
         {
-          "name": "brandfetchClientId",
-          "type": "textfield",
+          "name": "apiKey",
+          "type": "password",
           "required": false,
-          "title": "Brandfetch Client ID",
-          "description": "Optional. Provide your own Brandfetch client ID to render merchant logos via the Brandfetch CDN. Leave blank to fall back to generic icons."
-        },
-        {
-          "name": "logoDevToken",
-          "type": "textfield",
-          "required": false,
-          "title": "Logo.dev Publishable Token",
-          "description": "Used for recurring/subscription brand logos via logo.dev (matches web)"
+          "title": "API Key",
+          "description": "Optional. Paste a Cobalt API key (prefix ck_live_) from Settings → API keys to skip OAuth sign-in."
         }
       ]
     },
@@ -87166,7 +87224,8 @@
         "VBenny42",
         "ridemountainpig",
         "jlokos",
-        "YourMCGeek"
+        "YourMCGeek",
+        "alexi.build"
       ],
       "categories": [
         "Web"
@@ -107718,7 +107777,10 @@
       "description": "Monitor status pages and check if your favorite services are operational.",
       "icon": "extension-icon.png",
       "author": "alerix",
-      "contributors": [],
+      "contributors": [
+        "jchristianhall",
+        "danielsequeira"
+      ],
       "categories": [
         "Developer Tools",
         "Data"
@@ -143658,6 +143720,136 @@
           "required": false,
           "title": "Admin Panel URL",
           "description": "Overwrite the default admin panel URL"
+        }
+      ]
+    },
+    {
+      "name": "netease-mail",
+      "title": "NetEase Mail",
+      "description": "Read, search, verify codes, and send NetEase Mail from Raycast.",
+      "icon": "netease-mail.png",
+      "author": "ctacta621",
+      "contributors": [],
+      "categories": [
+        "Communication"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/ctacta621/netease-mail",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/netease-mail",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "setup-guide",
+          "title": "Setup Guide",
+          "subtitle": "NetEase Mail",
+          "description": "Learn how to enable IMAP/SMTP and create a NetEase Mail authorization code.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "netease-mail.png",
+          "preferences": []
+        },
+        {
+          "name": "inbox",
+          "title": "Inbox",
+          "subtitle": "NetEase Mail",
+          "description": "View recent inbox and unread NetEase Mail messages.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "netease-mail.png",
+          "preferences": []
+        },
+        {
+          "name": "search-mail",
+          "title": "Search Mail",
+          "subtitle": "NetEase Mail",
+          "description": "Search recent NetEase Mail messages by subject, sender, and text.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "netease-mail.png",
+          "preferences": []
+        },
+        {
+          "name": "extract-code",
+          "title": "Extract Verification Code",
+          "subtitle": "NetEase Mail",
+          "description": "Find recent verification codes or login links and copy them.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "netease-mail.png",
+          "preferences": []
+        },
+        {
+          "name": "compose-mail",
+          "title": "Compose Mail",
+          "subtitle": "NetEase Mail",
+          "description": "Send a NetEase Mail message through SMTP.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "netease-mail.png",
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "emailAddress",
+          "title": "Email Address",
+          "description": "Your NetEase email address, for example name@163.com.",
+          "type": "textfield",
+          "required": false
+        },
+        {
+          "name": "authorizationCode",
+          "title": "Authorization Code",
+          "description": "The 16-character IMAP/SMTP client authorization code from NetEase Mail settings.",
+          "type": "password",
+          "required": false
+        },
+        {
+          "name": "imapHost",
+          "title": "IMAP Host",
+          "description": "Usually imap.163.com, imap.126.com, or imap.yeah.net.",
+          "type": "textfield",
+          "default": "imap.163.com",
+          "required": false
+        },
+        {
+          "name": "imapPort",
+          "title": "IMAP Port",
+          "description": "Use 993 for SSL IMAP.",
+          "type": "textfield",
+          "default": "993",
+          "required": false
+        },
+        {
+          "name": "smtpHost",
+          "title": "SMTP Host",
+          "description": "Usually smtp.163.com, smtp.126.com, or smtp.yeah.net.",
+          "type": "textfield",
+          "default": "smtp.163.com",
+          "required": false
+        },
+        {
+          "name": "smtpPort",
+          "title": "SMTP Port",
+          "description": "Use 465 for SSL SMTP.",
+          "type": "textfield",
+          "default": "465",
+          "required": false
+        },
+        {
+          "name": "defaultSearchDays",
+          "title": "Default Search Days",
+          "description": "How many recent days to search by default.",
+          "type": "textfield",
+          "default": "14",
+          "required": false
         }
       ]
     },
@@ -184745,6 +184937,208 @@
       ]
     },
     {
+      "name": "raycast-pomodoro-notion",
+      "title": "PomoNotion Raycast Extension",
+      "description": "A Raycast Pomodoro timer with Notion logging, ambient audio, and active-minute tracking.",
+      "icon": "icon.png",
+      "author": "hk_raycast",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/hk_raycast/raycast-pomodoro-notion",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/raycast-pomodoro-notion",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "start-pomodoro",
+          "title": "Start Pomodoro",
+          "description": "Start a new Pomodoro work session.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "pomodoro-status",
+          "title": "Pomodoro Status",
+          "description": "View and control the current Pomodoro session.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "configure-notion",
+          "title": "Configure Notion",
+          "description": "Validate Notion settings and the target database schema.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "pause-pomodoro",
+          "title": "Pause Pomodoro",
+          "description": "Pause the current Pomodoro session.",
+          "mode": "no-view",
+          "keywords": [
+            "pause"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "resume-pomodoro",
+          "title": "Resume Pomodoro",
+          "description": "Resume a paused Pomodoro session.",
+          "mode": "no-view",
+          "keywords": [
+            "resume",
+            "restart"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "timer-elapsed",
+          "title": "Internal: Timer Elapsed",
+          "description": "Internal command for timer completion handling.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "finish-current-session",
+          "title": "Finish Current Session",
+          "description": "Finish the current work or break session.",
+          "mode": "view",
+          "keywords": [
+            "finish",
+            "end"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "discard-session",
+          "title": "Discard Session",
+          "description": "Stop the current session, optionally saving work logs.",
+          "mode": "view",
+          "keywords": [
+            "discard",
+            "reset",
+            "stop"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "notionToken",
+          "title": "Notion Token (Advanced)",
+          "description": "Optional manual setup. Notion Connect access token. OAuth in Configure Notion is recommended for most users.",
+          "type": "password",
+          "required": false,
+          "placeholder": "secret_xxxxx"
+        },
+        {
+          "name": "notionDatabaseId",
+          "title": "Notion Database ID (Advanced)",
+          "description": "Optional manual setup. Database ID for Pomodoro work logs when not using OAuth database selection.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        },
+        {
+          "name": "workMinutes",
+          "title": "Work Minutes",
+          "description": "Work duration in minutes for each session. Default is 25 minutes.",
+          "type": "textfield",
+          "required": true,
+          "default": "25",
+          "placeholder": "25"
+        },
+        {
+          "name": "shortBreakMinutes",
+          "title": "Short Break Minutes",
+          "description": "Short break duration in minutes after most work sessions.",
+          "type": "textfield",
+          "required": true,
+          "default": "5",
+          "placeholder": "5"
+        },
+        {
+          "name": "longBreakMinutes",
+          "title": "Long Break Minutes",
+          "description": "Long break duration in minutes after the configured cycle count.",
+          "type": "textfield",
+          "required": true,
+          "default": "15",
+          "placeholder": "15"
+        },
+        {
+          "name": "longBreakEvery",
+          "title": "Long Break Every",
+          "description": "Number of completed work sessions before starting a long break.",
+          "type": "textfield",
+          "required": true,
+          "default": "4",
+          "placeholder": "4"
+        },
+        {
+          "name": "workSoundFile",
+          "title": "Work Sound File",
+          "description": "Optional audio file to loop during work sessions.",
+          "type": "file",
+          "required": false
+        },
+        {
+          "name": "breakSoundFile",
+          "title": "Break Sound File",
+          "description": "Optional audio file to loop during break sessions.",
+          "type": "file",
+          "required": false
+        },
+        {
+          "name": "alarmSoundFile",
+          "title": "Alarm Sound File",
+          "description": "Optional audio file to play once when a session ends.",
+          "type": "file",
+          "required": false
+        },
+        {
+          "name": "workVolume",
+          "title": "Work Volume",
+          "description": "Playback volume for work audio, from 0 to 100.",
+          "type": "textfield",
+          "required": true,
+          "default": "60",
+          "placeholder": "60"
+        },
+        {
+          "name": "breakVolume",
+          "title": "Break Volume",
+          "description": "Playback volume for break audio, from 0 to 100.",
+          "type": "textfield",
+          "required": true,
+          "default": "50",
+          "placeholder": "50"
+        },
+        {
+          "name": "alarmVolume",
+          "title": "Alarm Volume",
+          "description": "Playback volume for the alarm sound, from 0 to 100.",
+          "type": "textfield",
+          "required": true,
+          "default": "80",
+          "placeholder": "80"
+        }
+      ]
+    },
+    {
       "name": "raycast-port",
       "title": "Raycast Port",
       "description": "This allows you to use Raycast features out of Raycast.",
@@ -210494,6 +210888,48 @@
       ]
     },
     {
+      "name": "spacejump",
+      "title": "SpaceJump",
+      "description": "Switch and manage macOS desktop Spaces with SpaceJump",
+      "icon": "icon.png",
+      "author": "IdeaBridge",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/IdeaBridge/spacejump",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/spacejump",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "list-spaces",
+          "title": "List Spaces",
+          "description": "Show all desktop spaces and switch to one",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "switch-space",
+          "title": "Jump to Space",
+          "description": "Quickly jump to a space by name",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "spacer",
       "title": "Spacer",
       "description": "Name your spaces & more...",
@@ -213608,7 +214044,8 @@
         "xmok",
         "hugodemenez",
         "alexi.build",
-        "shivraj-roy"
+        "shivraj-roy",
+        "ridemountainpig"
       ],
       "categories": [
         "Media",
@@ -227542,7 +227979,7 @@
           "name": "quick-find",
           "title": "Quick Find",
           "subtitle": "Things",
-          "description": "Search across all areas, projects, and to-dos. Requires Full Disk Access granted to Raycast.",
+          "description": "Search across all areas, projects, and to-dos.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -227636,6 +228073,15 @@
           "label": "Group by Project or Area",
           "description": "Group to-dos in lists by their project or area",
           "default": true,
+          "required": false
+        },
+        {
+          "name": "useUnofficialApi",
+          "type": "checkbox",
+          "title": "Unofficial API",
+          "label": "Read directly from Things database",
+          "description": "Requires Full Disk Access for Raycast and uses an unofficial internal format that may break on Things updates.",
+          "default": false,
           "required": false
         }
       ]
