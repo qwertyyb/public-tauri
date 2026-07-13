@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-12T19:21:29.710Z",
+  "generatedAt": "2026-07-13T19:44:46.028Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "e1b47cd2d3daa56a519bbeed81f2f2420e6301ef"
+    "commit": "5e98ea3fce2d4c487a59dfc2f5e3455a7d18564c"
   },
   "count": 3063,
   "extensions": [
@@ -87239,7 +87239,8 @@
         "ridemountainpig",
         "jlokos",
         "YourMCGeek",
-        "alexi.build"
+        "alexi.build",
+        "tofrankie"
       ],
       "categories": [
         "Web"
@@ -187492,7 +187493,7 @@
       "platforms": [
         "macOS"
       ],
-      "version": "1.0.0",
+      "version": "1.1.0",
       "storeUrl": "https://www.raycast.com/erbilnas/read-my-screen",
       "source": {
         "type": "github-monorepo",
@@ -187513,8 +187514,8 @@
           "name": "quick-clipboard",
           "title": "Quick: Clipboard Image",
           "subtitle": "Read My Screen",
-          "description": "One shortcut: analyze the file-backed image on your clipboard with your default model — fast OCR, error help, or UI notes.",
-          "mode": "no-view",
+          "description": "One shortcut: analyze the image on your clipboard with your default model — shows the response immediately.",
+          "mode": "view",
           "keywords": [],
           "preferences": []
         },
@@ -187574,8 +187575,60 @@
           "description": "Provider and model (vision for screenshots, text for browser pages). Use the matching API key.",
           "type": "dropdown",
           "required": false,
-          "default": "openai:gpt-4o-mini",
+          "default": "openai:gpt-5.6-luna",
           "data": [
+            {
+              "title": "OpenAI — GPT-5.6 Sol",
+              "value": "openai:gpt-5.6-sol"
+            },
+            {
+              "title": "OpenAI — GPT-5.6 Terra",
+              "value": "openai:gpt-5.6-terra"
+            },
+            {
+              "title": "OpenAI — GPT-5.6 Luna",
+              "value": "openai:gpt-5.6-luna"
+            },
+            {
+              "title": "OpenAI — GPT-5.5",
+              "value": "openai:gpt-5.5"
+            },
+            {
+              "title": "OpenAI — GPT-5.5 Pro",
+              "value": "openai:gpt-5.5-pro"
+            },
+            {
+              "title": "OpenAI — GPT-5.4",
+              "value": "openai:gpt-5.4"
+            },
+            {
+              "title": "OpenAI — GPT-5.4 mini",
+              "value": "openai:gpt-5.4-mini"
+            },
+            {
+              "title": "OpenAI — GPT-5.4 nano",
+              "value": "openai:gpt-5.4-nano"
+            },
+            {
+              "title": "OpenAI — GPT-5.2",
+              "value": "openai:gpt-5.2"
+            },
+            {
+              "title": "OpenAI — GPT-5.1",
+              "value": "openai:gpt-5.1"
+            },
+            {
+              "title": "OpenAI — GPT-5",
+              "value": "openai:gpt-5"
+            },
+            {
+              "title": "OpenAI — GPT-5 mini",
+              "value": "openai:gpt-5-mini"
+            },
+            {
+              "title": "OpenAI — GPT-5 nano",
+              "value": "openai:gpt-5-nano"
+            },
             {
               "title": "OpenAI — GPT-4o mini",
               "value": "openai:gpt-4o-mini"
@@ -187593,12 +187646,40 @@
               "value": "openai:gpt-4.1"
             },
             {
-              "title": "Anthropic — Claude Sonnet 4",
-              "value": "anthropic:claude-sonnet-4-20250514"
+              "title": "Anthropic — Claude Fable 5",
+              "value": "anthropic:claude-fable-5"
+            },
+            {
+              "title": "Anthropic — Claude Opus 4.8",
+              "value": "anthropic:claude-opus-4-8"
+            },
+            {
+              "title": "Anthropic — Claude Sonnet 5",
+              "value": "anthropic:claude-sonnet-5"
             },
             {
               "title": "Anthropic — Claude Haiku 4.5",
               "value": "anthropic:claude-haiku-4-5-20251001"
+            },
+            {
+              "title": "Anthropic — Claude Sonnet 4",
+              "value": "anthropic:claude-sonnet-4-20250514"
+            },
+            {
+              "title": "Google — Gemini 3.5 Flash",
+              "value": "gemini:gemini-3.5-flash"
+            },
+            {
+              "title": "Google — Gemini 3.1 Flash-Lite",
+              "value": "gemini:gemini-3.1-flash-lite"
+            },
+            {
+              "title": "Google — Gemini 3.1 Pro Preview",
+              "value": "gemini:gemini-3.1-pro-preview"
+            },
+            {
+              "title": "Google — Gemini 3 Flash Preview",
+              "value": "gemini:gemini-3-flash-preview"
             },
             {
               "title": "Google — Gemini 2.5 Flash",
@@ -187607,10 +187688,6 @@
             {
               "title": "Google — Gemini 2.5 Pro",
               "value": "gemini:gemini-2.5-pro"
-            },
-            {
-              "title": "Google — Gemini 2.0 Flash",
-              "value": "gemini:gemini-2.0-flash"
             }
           ]
         },
