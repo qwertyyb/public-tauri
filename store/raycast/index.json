@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-13T19:44:46.028Z",
+  "generatedAt": "2026-07-14T19:42:42.353Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "5e98ea3fce2d4c487a59dfc2f5e3455a7d18564c"
+    "commit": "bf7fe09a27513c3d80ad02cfc7b152af1cc2c284"
   },
   "count": 3063,
   "extensions": [
@@ -6554,7 +6554,8 @@
       "icon": "icon.png",
       "author": "gstvds",
       "contributors": [
-        "mike_dloss"
+        "mike_dloss",
+        "ceyhuncicek"
       ],
       "categories": [
         "System"
@@ -6586,6 +6587,32 @@
             "ampstart"
           ],
           "preferences": []
+        },
+        {
+          "name": "quick-start",
+          "title": "Quick Start Session",
+          "subtitle": "Amphetamine",
+          "description": "Start a keep-awake session by typing the duration inline; leave all fields empty for a session with no time limit",
+          "mode": "no-view",
+          "keywords": [
+            "quick",
+            "amp",
+            "amp quick",
+            "amphetamine",
+            "start",
+            "duration"
+          ],
+          "preferences": [
+            {
+              "name": "displaySleepAllowed",
+              "type": "checkbox",
+              "required": false,
+              "default": false,
+              "title": "Display Sleep",
+              "label": "Allow the display to sleep during the session",
+              "description": "When enabled, the session keeps the Mac awake but lets the display turn off."
+            }
+          ]
         },
         {
           "name": "amp-end",
@@ -34349,7 +34376,8 @@
       "icon": "extension-icon.png",
       "author": "krishna_bhanushali",
       "contributors": [
-        "itninja04"
+        "itninja04",
+        "yemor"
       ],
       "categories": [
         "Productivity",
@@ -60743,24 +60771,6 @@
       ],
       "preferences": [
         {
-          "title": "Retry Count",
-          "name": "retries",
-          "description": "The number of times to retry a failed search (default: 4)",
-          "type": "textfield",
-          "default": "4",
-          "placeholder": "4",
-          "required": false
-        },
-        {
-          "title": "Sleep Time",
-          "name": "sleep",
-          "description": "The time (in milliseconds) to sleep between retries (default: 2000)",
-          "type": "textfield",
-          "default": "2000",
-          "placeholder": "2000",
-          "required": false
-        },
-        {
           "title": "Locale",
           "name": "locale",
           "description": "The locale of the search (default: en-us)",
@@ -71179,7 +71189,8 @@
       "icon": "icon.png",
       "author": "naqet",
       "contributors": [
-        "xmok"
+        "xmok",
+        "uaustudio"
       ],
       "categories": [
         "Developer Tools",
@@ -86270,7 +86281,8 @@
         "erics118",
         "jschmidtcordeiro",
         "NirRosh",
-        "josh_carty"
+        "josh_carty",
+        "smpeotn"
       ],
       "categories": [],
       "license": "MIT",
@@ -115504,13 +115516,16 @@
         "belyakov_am",
         "DannySeidel",
         "pernielsentikaer",
-        "ramith123"
+        "ramith123",
+        "stefann"
       ],
       "categories": [
         "System"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/huzef44/keyboard-brightness",
       "source": {
         "type": "github-monorepo",
@@ -115552,6 +115567,15 @@
           "subtitle": "Enable Keyboard Brightness Menubar",
           "description": "Enable Keyboard Brightness Menubar",
           "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "set-keyboard-brightness",
+          "title": "Set Keyboard Brightness",
+          "subtitle": "Set Keyboard Brightness",
+          "description": "Set Keyboard Brightness to a specific percentage",
+          "mode": "no-view",
           "keywords": [],
           "preferences": []
         }
@@ -121150,15 +121174,15 @@
       "contributors": [
         "xmok",
         "doxxx93",
-        "svenhofman"
+        "svenhofman",
+        "harsh_varshney"
       ],
       "categories": [
         "Web"
       ],
       "license": "MIT",
       "platforms": [
-        "macOS",
-        "Windows"
+        "macOS"
       ],
       "storeUrl": "https://www.raycast.com/justin0u0/leetcode",
       "source": {
@@ -121185,9 +121209,43 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "random-problem",
+          "title": "Pick a Random LeetCode Problem",
+          "subtitle": "LeetCode",
+          "description": "Pick a random LeetCode problem, optionally filtered by difficulty, category, and topic.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "user-profile",
+          "title": "View LeetCode User Profile",
+          "subtitle": "LeetCode",
+          "description": "View solve stats, streak, and contest rating for a username.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "potd-menu-bar",
+          "title": "Daily Challenge Status",
+          "subtitle": "LeetCode",
+          "description": "Menu bar timer showing whether you've solved the daily challenge and how long is left.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": [
+        {
+          "name": "username",
+          "title": "LeetCode Username",
+          "description": "Your LeetCode username. Used by the daily challenge menu bar to check your status, and as the default for the profile command.",
+          "type": "textfield",
+          "required": false
+        },
         {
           "name": "defaultLanguage",
           "title": "Default Programming Language",
@@ -121247,6 +121305,15 @@
           "title": "Problem Stats",
           "label": "Show difficulty, likes, dislikes, and acceptance rate",
           "description": "If enabled, the problem's difficulty, likes, dislikes, and acceptance stats are shown above and below the problem description.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "showProblemRatings",
+          "title": "Problem Ratings",
+          "label": "Show zerotrac difficulty ratings",
+          "description": "If enabled, fetches community difficulty ratings from zerotrac and shows them next to each problem.",
           "type": "checkbox",
           "required": false,
           "default": true
@@ -144207,12 +144274,16 @@
       "description": "Checkout all NYT posts",
       "icon": "icon.png",
       "author": "Antonwy",
-      "contributors": [],
+      "contributors": [
+        "xmok"
+      ],
       "categories": [
         "News"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/Antonwy/new-york-times",
       "source": {
         "type": "github-monorepo",
@@ -144258,7 +144329,8 @@
           "title": "NYT API Key",
           "description": "Your NYT API Key",
           "type": "password",
-          "required": true
+          "required": true,
+          "placeholder": "Ny...xxx"
         }
       ]
     },
@@ -150680,6 +150752,15 @@
           "title": "Manage Core Services",
           "subtitle": "Oracle Cloud",
           "description": "Manage Instances and more",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "email-delivery",
+          "title": "Manage Email Domains and Approved Senders",
+          "subtitle": "Oracle Cloud",
+          "description": "Manage Email Delivery",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -173297,7 +173378,8 @@
       "categories": [],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/ragnor/producthunt",
       "source": {
@@ -173318,28 +173400,6 @@
         }
       ],
       "preferences": [
-        {
-          "name": "apiKey",
-          "title": "API Key",
-          "description": "From your app at producthunt.com/v2/oauth/applications. Optional — blank uses the basic feed.",
-          "type": "password",
-          "required": false
-        },
-        {
-          "name": "apiSecret",
-          "title": "API Secret",
-          "description": "From the same Product Hunt app page.",
-          "type": "password",
-          "required": false
-        },
-        {
-          "name": "username",
-          "title": "Username",
-          "description": "Your Product Hunt username.",
-          "type": "textfield",
-          "required": false,
-          "default": ""
-        },
         {
           "name": "verboseLogging",
           "title": "Debug Logging",
@@ -253737,10 +253797,11 @@
     {
       "name": "winget",
       "title": "WinGet",
-      "description": "Search, install, and upgrade Windows packages via winget",
-      "icon": "winget-main.png",
+      "description": "Search, install, and manage Windows packages with WinGet",
+      "icon": "icon.png",
       "author": "eray_ercan",
       "contributors": [
+        "ilia.raycast",
         "Netizen"
       ],
       "categories": [
@@ -253763,60 +253824,91 @@
           "name": "search",
           "title": "Search Packages",
           "subtitle": "WinGet",
-          "description": "Search for packages in the winget repository and install them",
+          "description": "Search and install WinGet packages",
           "mode": "view",
           "keywords": [],
-          "icon": "winget-search.png",
           "preferences": []
         },
         {
           "name": "installed",
-          "title": "Installed Packages",
+          "title": "Show Installed",
           "subtitle": "WinGet",
-          "description": "List all installed packages with upgrade and uninstall actions",
+          "description": "List installed WinGet packages",
           "mode": "view",
           "keywords": [],
-          "icon": "winget-installed.png",
           "preferences": []
         },
         {
-          "name": "upgrade",
-          "title": "Upgrade Packages",
+          "name": "upgradable",
+          "title": "Show Upgradable",
           "subtitle": "WinGet",
-          "description": "View and upgrade outdated packages",
+          "description": "List packages with available updates",
           "mode": "view",
           "keywords": [],
-          "icon": "winget-upgrade.png",
+          "preferences": []
+        },
+        {
+          "name": "upgrade-all",
+          "title": "Upgrade All Packages",
+          "subtitle": "WinGet",
+          "description": "Upgrade all packages with available updates. Also runs this extension's install/uninstall operations in the background, so keep it enabled.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "export",
+          "title": "Export Packages",
+          "subtitle": "WinGet",
+          "description": "Export installed packages to a JSON file",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "import",
+          "title": "Import Packages",
+          "subtitle": "WinGet",
+          "description": "Import packages from a JSON file",
+          "mode": "view",
+          "keywords": [],
           "preferences": []
         }
       ],
       "preferences": [
         {
           "name": "wingetPath",
-          "title": "Winget Executable Path",
-          "description": "Full path to the winget executable. Leave empty to use the system default.",
           "type": "textfield",
           "required": false,
-          "default": "",
-          "placeholder": "e.g. C:\\Users\\you\\AppData\\Local\\Microsoft\\WindowsApps\\winget.exe"
+          "title": "WinGet Path",
+          "description": "Full path to winget.exe. Leave empty to use winget from PATH (note: Raycast captures PATH at startup).",
+          "placeholder": "C:\\Users\\you\\AppData\\Local\\Microsoft\\WindowsApps\\winget.exe"
         },
         {
-          "name": "runInBackground",
-          "title": "Install / Upgrade",
-          "label": "Run install and upgrade in background",
-          "description": "When enabled, Raycast closes as soon as an install or upgrade starts. The operation continues in the background and a notification appears when it finishes.",
-          "type": "checkbox",
+          "name": "cacheValidityMinutes",
+          "type": "dropdown",
           "required": false,
-          "default": true
-        },
-        {
-          "name": "hideUnmanagedPackages",
-          "title": "Installed Packages",
-          "label": "Hide packages not installed via WinGet or Microsoft Store",
-          "description": "When enabled, packages without a known source are hidden from the Installed Packages list. Note: some WinGet-installed packages may temporarily appear without a source after installation.",
-          "type": "checkbox",
-          "required": false,
-          "default": false
+          "title": "Index Refresh Interval",
+          "description": "How long the package index is considered valid before refreshing",
+          "default": "1440",
+          "data": [
+            {
+              "title": "6 hours",
+              "value": "360"
+            },
+            {
+              "title": "12 hours",
+              "value": "720"
+            },
+            {
+              "title": "1 day",
+              "value": "1440"
+            },
+            {
+              "title": "1 week",
+              "value": "10080"
+            }
+          ]
         }
       ]
     },
@@ -253826,7 +253918,9 @@
       "description": "Launch WinSCP sessions quickly from Raycast.",
       "icon": "extension_icon.png",
       "author": "bossdaily",
-      "contributors": [],
+      "contributors": [
+        "THEN00P"
+      ],
       "categories": [
         "Developer Tools",
         "Applications"
@@ -253860,7 +253954,7 @@
           "required": false,
           "title": "WinSCP Installation Folder",
           "default": "",
-          "description": "The folder where WinSCP is installed, only change this if the program is returning errors. You should find it at C:\\Users\\{user}\\AppData\\Local\\Programs\\WinSCP"
+          "description": "The folder that contains WinSCP.exe. You only need to set this if the extension cannot find WinSCP on its own, since it already looks in the usual install folders and on your PATH."
         }
       ]
     },
