@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-14T19:42:42.353Z",
+  "generatedAt": "2026-07-15T19:28:43.020Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "bf7fe09a27513c3d80ad02cfc7b152af1cc2c284"
+    "commit": "093d9628d6dfe6517bc1dacd0d938ab6cb8cdc86"
   },
-  "count": 3063,
+  "count": 3066,
   "extensions": [
     {
       "name": "0x0",
@@ -3344,6 +3344,14 @@
           "type": "password",
           "title": "OpenCode Go Auth Cookie",
           "description": "The 'auth' cookie value from your OpenCode session. Open opencode.ai, log in, then copy the 'auth' cookie from DevTools (Application → Cookies).",
+          "required": false
+        },
+        {
+          "name": "cacheTtl",
+          "type": "textfield",
+          "title": "Cache Duration (Seconds)",
+          "description": "Cache duration in seconds for remote API requests. Set to 0 to disable caching.",
+          "default": "180",
           "required": false
         }
       ]
@@ -57832,7 +57840,10 @@
         "Finance"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "storeUrl": "https://www.raycast.com/manuel_de_la_torre/dolar-cripto-ar",
       "source": {
         "type": "github-monorepo",
@@ -85748,8 +85759,7 @@
         "geekyed",
         "dangkhoipro",
         "0xdhrv",
-        "peduarte",
-        "asaf_kfir"
+        "peduarte"
       ],
       "categories": [
         "Productivity",
@@ -92319,6 +92329,75 @@
               "value": "gpt-5-nano"
             }
           ]
+        }
+      ]
+    },
+    {
+      "name": "granite",
+      "title": "Granite",
+      "description": "Search, browse, and ask your Granite document vault.",
+      "icon": "extension-icon.png",
+      "author": "Shpigford",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Documentation"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/Shpigford/granite",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/granite",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-vault",
+          "title": "Search Vault",
+          "subtitle": "Granite",
+          "description": "Search your Granite documents and open them.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "ask-vault",
+          "title": "Ask Vault",
+          "subtitle": "Granite",
+          "description": "Ask a question across your vault and get a synthesized answer with sources.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "browse-documents",
+          "title": "Browse Documents",
+          "subtitle": "Granite",
+          "description": "Browse your vault's documents, oldest first, loaded as you scroll.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "title": "API Token",
+          "description": "Your gra_live_… Personal Access Token from Granite → Settings → Developer → Access tokens. Treat it like a password.",
+          "type": "password",
+          "required": true
+        },
+        {
+          "name": "apiBase",
+          "title": "API Base URL",
+          "description": "Override only for development. Defaults to the public Granite Agent API.",
+          "type": "textfield",
+          "required": false,
+          "default": "https://api.granite.co/v1"
         }
       ]
     },
@@ -145694,14 +145773,17 @@
       "author": "devmoath",
       "contributors": [
         "kgrhartlage",
-        "erics118"
+        "erics118",
+        "alankyshum"
       ],
       "categories": [
         "Productivity",
         "System"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/devmoath/night-light",
       "source": {
         "type": "github-monorepo",
@@ -145712,7 +145794,7 @@
       "commands": [
         {
           "name": "turn-night-shift-on",
-          "title": "Turn Night Shift On",
+          "title": "Turn Night Shift on",
           "subtitle": "Night Light",
           "description": "Turn Night Shift on until tomorrow",
           "mode": "no-view",
@@ -145721,7 +145803,7 @@
         },
         {
           "name": "turn-night-shift-off",
-          "title": "Turn Night Shift Off",
+          "title": "Turn Night Shift off",
           "subtitle": "Night Light",
           "description": "Turn Night Shift off",
           "mode": "no-view",
@@ -187780,6 +187862,58 @@
       ]
     },
     {
+      "name": "read-this-later",
+      "title": "Read This Later",
+      "description": "Browse your saved articles and save the current browser tab.",
+      "icon": "icon.png",
+      "author": "shearm",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/shearm/read-this-later",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/read-this-later",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "list-unread",
+          "title": "Show Unread Links",
+          "subtitle": "Read This Later",
+          "description": "Browse your unread saved articles and open them in your browser",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "save-current-tab",
+          "title": "Save Current Tab",
+          "subtitle": "Read This Later",
+          "description": "Save the URL of the frontmost browser tab to Read This Later",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "syncToken",
+          "title": "Sync Token",
+          "description": "Bearer token for the Read Later sync service (the same token your Mac/iOS app uses).",
+          "type": "password",
+          "required": true
+        }
+      ]
+    },
+    {
       "name": "readeck",
       "title": "Readeck",
       "description": "This extension allows you to manage your Readeck bookmarks directly from Raycast. You can add new bookmarks and search through your existing ones effortlessly.",
@@ -187897,19 +188031,18 @@
       "preferences": [
         {
           "name": "rewriteArticleTitles",
-          "title": "Rewrite Article Titles",
+          "title": "AI Features",
           "description": "Generate concise, easy-to-read titles (requires Raycast AI).",
           "type": "checkbox",
-          "label": "Enable",
+          "label": "Rewrite article titles",
           "default": false,
           "required": false
         },
         {
           "name": "enableAISummary",
-          "title": "Automatically Generate Summaries",
           "description": "Automatically summarize articles (requires Raycast AI).",
           "type": "checkbox",
-          "label": "Enable",
+          "label": "Automatically generate summaries",
           "default": false,
           "required": false
         },
@@ -188047,18 +188180,19 @@
         },
         {
           "name": "showArticleImage",
-          "title": "Article Image",
+          "title": "Reader View",
           "description": "Display the article's featured image at the top of the reader view.",
           "type": "checkbox",
-          "label": "Show",
+          "label": "Show article image",
           "default": true,
           "required": false
         },
         {
-          "name": "downloadPath",
-          "title": "Download Path",
-          "description": "Path to save downloaded files. If not set, defaults to Downloads folder.",
-          "type": "directory",
+          "name": "skipPreCheck",
+          "description": "Show reader mode even when a page doesn't look like an article, instead of warning first.",
+          "type": "checkbox",
+          "label": "Always show reader mode",
+          "default": true,
           "required": false
         },
         {
@@ -188066,25 +188200,23 @@
           "title": "Paywall Hopper",
           "description": "Try to retrieve paywalled or member-only content from archive services.",
           "type": "checkbox",
-          "label": "Enable",
+          "label": "Retrieve paywalled content",
           "default": true,
           "required": false
         },
         {
-          "name": "skipPreCheck",
-          "title": "Skip Readability Pre-Check",
-          "description": "Skip the readability pre-check and always show reader mode.",
-          "type": "checkbox",
-          "label": "Skip",
-          "default": true,
+          "name": "downloadPath",
+          "title": "Download Path",
+          "description": "Path to save downloaded files. If not set, defaults to your Downloads folder.",
+          "type": "directory",
           "required": false
         },
         {
           "name": "verboseLogging",
-          "title": "Debug Logging",
+          "title": "Troubleshooting",
           "description": "Enable extra diagnostics for troubleshooting and bug reports.",
           "type": "checkbox",
-          "label": "Enable",
+          "label": "Enable debug logging",
           "default": false,
           "required": false
         }
@@ -189835,6 +189967,65 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "redactcast",
+      "title": "RedactCast",
+      "description": "Reversible PII Masker: Sanitize sensitive data before sending to AI, and restore it locally.",
+      "icon": "extension-icon.png",
+      "author": "Tomokisan",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Security"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/Tomokisan/redactcast",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/redactcast",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "mask-clipboard",
+          "title": "Mask Clipboard",
+          "description": "Replaces sensitive data in the clipboard with placeholders.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "rehydrate-clipboard",
+          "title": "Rehydrate Clipboard",
+          "description": "Restores the original data back into the AI's response.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "force-sync-rules",
+          "title": "Force Sync Team Rules",
+          "description": "Downloads the latest masking rules from your organization.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "teamApiKey",
+          "title": "Team API Key",
+          "description": "B2B Sync Engine API Key to download custom rules.",
+          "type": "password",
+          "required": false
+        }
+      ]
     },
     {
       "name": "reddit-search",
@@ -198426,7 +198617,8 @@
         "dbrooks",
         "YourMCGeek",
         "kodie",
-        "tim.shilov"
+        "tim.shilov",
+        "tofrankie"
       ],
       "categories": [
         "Developer Tools"
@@ -198451,7 +198643,16 @@
           "description": "Search for npm package information. Also view bundlephobia.com cost, the package's README and Snyk vulnerability info",
           "mode": "view",
           "keywords": [],
-          "preferences": []
+          "preferences": [
+            {
+              "name": "size",
+              "type": "textfield",
+              "title": "Page Size",
+              "description": "How many packages to request per page",
+              "required": false,
+              "default": "20"
+            }
+          ]
         },
         {
           "name": "favorites",
@@ -203404,7 +203605,9 @@
         "Communication"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/xmok/shroud-email",
       "source": {
         "type": "github-monorepo",
@@ -207067,6 +207270,15 @@
           "required": false,
           "title": "Proxy URL",
           "type": "textfield"
+        },
+        {
+          "title": "AI Message Signature",
+          "label": "Add “Sent via Raycast” to messages sent with AI",
+          "description": "Show a subtle “Sent via Raycast” note below messages sent by the Send Message and Reply to Thread AI tools.",
+          "name": "showAiMessageSignature",
+          "type": "checkbox",
+          "required": false,
+          "default": true
         },
         {
           "title": "Navigation",
