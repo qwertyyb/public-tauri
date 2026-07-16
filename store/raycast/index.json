@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-15T19:28:43.020Z",
+  "generatedAt": "2026-07-16T19:28:31.458Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "093d9628d6dfe6517bc1dacd0d938ab6cb8cdc86"
+    "commit": "817bcbb22641924c213ca31c34923a30011a33bd"
   },
-  "count": 3066,
+  "count": 3072,
   "extensions": [
     {
       "name": "0x0",
@@ -12051,6 +12051,39 @@
           "name": "lookup",
           "title": "Lookup Code",
           "description": "Get location and current timezone for area codes and country codes",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "area-code-search",
+      "title": "Area Code Search",
+      "description": "Search US area codes by code, city, or state",
+      "icon": "command-icon.png",
+      "author": "mjking",
+      "contributors": [],
+      "categories": [
+        "Communication"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/mjking/area-code-search",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/area-code-search",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "area-code-search",
+          "title": "Search Area Codes",
+          "description": "Search US area codes and copy matching locations",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -37501,6 +37534,129 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "codex-claude-cli",
+      "title": "PromptCast for Claude & Codex",
+      "description": "Send prompts, manage sessions, and control Codex CLI and Claude Code directly from Raycast.",
+      "icon": "extension-icon.png",
+      "author": "WerrySs",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/WerrySs/codex-claude-cli",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/codex-claude-cli",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "codex-claude-cli",
+          "title": "Browse Claude and Codex Chats",
+          "subtitle": "Claude Code & Codex CLI",
+          "description": "Send prompts, manage sessions, and control Codex CLI and Claude Code directly from Raycast.",
+          "mode": "view",
+          "keywords": [
+            "claude",
+            "codex",
+            "chat",
+            "history",
+            "cli",
+            "terminal",
+            "ai"
+          ],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "cli-usage",
+          "title": "View Claude and Codex Usage",
+          "subtitle": "Claude Code & Codex CLI",
+          "description": "View plans, limits, resets, and usage for Claude Code and Codex CLI.",
+          "mode": "view",
+          "keywords": [
+            "claude",
+            "codex",
+            "usage",
+            "limits",
+            "tokens"
+          ],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "cli-usage-menu-bar",
+          "title": "Show Claude and Codex Usage",
+          "subtitle": "Claude Code & Codex CLI",
+          "description": "Show available Claude Code and Codex CLI limits in the menu bar.",
+          "mode": "menu-bar",
+          "keywords": [
+            "claude",
+            "codex",
+            "usage",
+            "menu bar",
+            "limits"
+          ],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "manage-mcps",
+          "title": "Manage MCP Servers",
+          "subtitle": "Claude Code & Codex CLI",
+          "description": "View and manage MCP servers for Claude Code and Codex CLI.",
+          "mode": "view",
+          "keywords": [
+            "claude",
+            "codex",
+            "mcp",
+            "servers",
+            "configuration"
+          ],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "manage-skills",
+          "title": "Manage CLI Skills",
+          "subtitle": "Claude Code & Codex CLI",
+          "description": "View and manage local skills for Claude Code and Codex CLI.",
+          "mode": "view",
+          "keywords": [
+            "claude",
+            "codex",
+            "skills",
+            "agents"
+          ],
+          "icon": "extension-icon.png",
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "claudeHome",
+          "type": "textfield",
+          "required": false,
+          "title": "Claude Data Folder",
+          "description": "Optional. Uses CLAUDE_CONFIG_DIR or ~/.claude when empty.",
+          "placeholder": "~/.claude"
+        },
+        {
+          "name": "codexHome",
+          "type": "textfield",
+          "required": false,
+          "title": "Codex Data Folder",
+          "description": "Optional. Uses CODEX_HOME or ~/.codex when empty.",
+          "placeholder": "~/.codex"
+        }
+      ]
     },
     {
       "name": "codex-manager",
@@ -67460,6 +67616,59 @@
       ]
     },
     {
+      "name": "fal-ai",
+      "title": "Fal.ai",
+      "description": "Generate and retrieve media from any fal.ai model.",
+      "icon": "fal.png",
+      "author": "0xfreddy",
+      "contributors": [],
+      "categories": [
+        "Design Tools",
+        "Developer Tools",
+        "Media"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/0xfreddy/fal-ai",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/fal-ai",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "generate",
+          "title": "Create",
+          "subtitle": "fal.ai",
+          "description": "Search fal.ai models and submit a generation request.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "history",
+          "title": "Generated Assets",
+          "subtitle": "fal.ai",
+          "description": "View and retrieve submitted fal.ai generations.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "title": "fal API Key",
+          "description": "Create one at https://fal.ai/dashboard/keys. The extension sends it as Authorization: Key <value>.",
+          "type": "password",
+          "required": true
+        }
+      ]
+    },
+    {
       "name": "fancy-text",
       "title": "Fancy Text",
       "description": "A fancy text generator to turn your normal text into fancy text",
@@ -72764,13 +72973,17 @@
       "description": "Fix Instagram, Twitter, Reddit and TikTok embeds by using proxy services (e.g. ddinstagram, fxtwitter).",
       "icon": "command-icon.png",
       "author": "eggsy",
-      "contributors": [],
+      "contributors": [
+        "based"
+      ],
       "categories": [
         "Productivity",
         "Other"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/eggsy/fix-link-embeds",
       "source": {
         "type": "github-monorepo",
@@ -72831,7 +73044,7 @@
           "description": "Replace Twitter URLs."
         },
         {
-          "name": "replace",
+          "name": "replaceReddit",
           "label": "Reddit Links",
           "required": false,
           "default": true,
@@ -72845,6 +73058,14 @@
           "default": true,
           "type": "checkbox",
           "description": "Replace TikTok URLs."
+        },
+        {
+          "name": "replaceBluesky",
+          "label": "Bluesky Links",
+          "required": false,
+          "default": true,
+          "type": "checkbox",
+          "description": "Replace Bluesky URLs."
         }
       ]
     },
@@ -94280,6 +94501,82 @@
       "preferences": []
     },
     {
+      "name": "hack-club-cdn",
+      "title": "Hack Club CDN",
+      "description": "Upload files to the Hack Club CDN and manage your uploads from Raycast. Requires a Hack Club account (cdn.hackclub.com) and an API token.",
+      "icon": "extension-icon.png",
+      "author": "garyhtou",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/garyhtou/hack-club-cdn",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/hack-club-cdn",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "upload-clipboard-file",
+          "title": "Upload Clipboard File",
+          "subtitle": "Hack Club CDN · Paste to Upload",
+          "description": "Uploads whatever's on your clipboard (a copied file, a local path, or a link) to the Hack Club CDN and copies the resulting link.",
+          "mode": "view",
+          "keywords": [
+            "clipboard",
+            "paste",
+            "upload",
+            "cdn",
+            "hack club"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "upload-file",
+          "title": "Upload File",
+          "subtitle": "Hack Club CDN · Browse & Upload",
+          "description": "Pick a file from disk or paste its path to upload it to the Hack Club CDN.",
+          "mode": "view",
+          "keywords": [
+            "browse",
+            "file picker",
+            "upload",
+            "cdn",
+            "hack club"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "recent-uploads",
+          "title": "Recent Uploads",
+          "subtitle": "Hack Club CDN",
+          "description": "Browse, copy links from, and delete files you've uploaded from this Mac.",
+          "mode": "view",
+          "keywords": [
+            "history",
+            "cdn",
+            "hack club"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiToken",
+          "title": "API Token",
+          "description": "Get your API token from cdn.hackclub.com/api_keys after signing in with your Hack Club account.",
+          "type": "password",
+          "required": false
+        }
+      ]
+    },
+    {
       "name": "hacker-news",
       "title": "Hacker News",
       "description": "Read the latest stories of Hacker News.",
@@ -111104,7 +111401,8 @@
         "koseduhemak",
         "LunaticMuch",
         "marinsokol",
-        "limonkufu"
+        "limonkufu",
+        "thezaff"
       ],
       "categories": [],
       "license": "MIT",
@@ -111186,7 +111484,7 @@
           "type": "textfield",
           "required": false,
           "title": "Default Included Projects",
-          "description": "Comma-separated project keys or names to include when no @project filter is typed.",
+          "description": "Comma-separated project keys or names to include when no @project filter is typed. Project keys also enable search by issue number.",
           "placeholder": "DEV, IT"
         },
         {
@@ -121173,7 +121471,7 @@
       "name": "leave-time-calculator",
       "title": "Leave Time Calculator",
       "description": "Calculate your leave time based on start time and break duration",
-      "icon": "command-icon.png",
+      "icon": "clock-icon.png",
       "author": "harunonsystem",
       "contributors": [],
       "categories": [
@@ -121197,24 +121495,7 @@
           "description": "Main command. Auto-updates subtitle and opens the editor view",
           "mode": "no-view",
           "keywords": [],
-          "preferences": [
-            {
-              "name": "defaultWorkHours",
-              "type": "textfield",
-              "required": false,
-              "title": "Default Work Hours",
-              "description": "Default work hours per day (e.g., 8, 9)",
-              "default": "8"
-            },
-            {
-              "name": "defaultBreakMinutes",
-              "type": "textfield",
-              "required": false,
-              "title": "Default Break Minutes",
-              "description": "Default break time in minutes (e.g., 60)",
-              "default": "60"
-            }
-          ]
+          "preferences": []
         },
         {
           "name": "calculate-leave-time-view",
@@ -121222,27 +121503,27 @@
           "description": "Internal editor view opened from the main command",
           "mode": "view",
           "keywords": [],
-          "preferences": [
-            {
-              "name": "defaultWorkHours",
-              "type": "textfield",
-              "required": false,
-              "title": "Default Work Hours",
-              "description": "Default work hours per day (e.g., 8, 9)",
-              "default": "8"
-            },
-            {
-              "name": "defaultBreakMinutes",
-              "type": "textfield",
-              "required": false,
-              "title": "Default Break Minutes",
-              "description": "Default break time in minutes (e.g., 60)",
-              "default": "60"
-            }
-          ]
+          "preferences": []
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "defaultWorkHours",
+          "type": "textfield",
+          "required": false,
+          "title": "Default Work Hours",
+          "description": "Default work hours per day (e.g., 8, 9)",
+          "default": "8"
+        },
+        {
+          "name": "defaultBreakMinutes",
+          "type": "textfield",
+          "required": false,
+          "title": "Default Break Minutes",
+          "description": "Default break time in minutes (e.g., 60)",
+          "default": "60"
+        }
+      ]
     },
     {
       "name": "leetcode",
@@ -158248,6 +158529,15 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "communication",
+          "title": "Communication",
+          "subtitle": "OVHcloud",
+          "description": "Messages and Contacts",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": [
@@ -165815,6 +166105,258 @@
           "description": "The directory where your wallpapers are stored",
           "type": "directory",
           "required": true
+        }
+      ]
+    },
+    {
+      "name": "picmal",
+      "title": "Picmal",
+      "description": "Convert and compress images, audio, and video with Picmal — straight from Raycast.",
+      "icon": "extension-icon.png",
+      "author": "albertogalca",
+      "contributors": [],
+      "categories": [
+        "Media"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/albertogalca/picmal",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/picmal",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "convert",
+          "title": "Convert Files",
+          "subtitle": "Picmal",
+          "description": "Convert selected files to another format.",
+          "mode": "view",
+          "keywords": [
+            "picmal",
+            "image",
+            "audio",
+            "video",
+            "webp",
+            "heic",
+            "mp4",
+            "transcode",
+            "ffmpeg",
+            "imagemagick"
+          ],
+          "preferences": [
+            {
+              "name": "defaultFormat",
+              "title": "Default Format",
+              "description": "Format preselected in the Convert form (e.g. webp). Ignored if unsupported.",
+              "type": "textfield",
+              "required": false,
+              "placeholder": "e.g. webp"
+            },
+            {
+              "name": "compressAfterConverting",
+              "title": "Compression",
+              "label": "Compress after converting by default",
+              "description": "Compress the converted output. When off, Convert keeps maximum quality and only changes the format.",
+              "type": "checkbox",
+              "required": false,
+              "default": false
+            }
+          ]
+        },
+        {
+          "name": "compress",
+          "title": "Compress Files",
+          "subtitle": "Picmal",
+          "description": "Compress selected files while keeping their format.",
+          "mode": "view",
+          "keywords": [
+            "picmal",
+            "image",
+            "audio",
+            "video",
+            "shrink",
+            "optimize",
+            "reduce",
+            "size",
+            "preset",
+            "ffmpeg",
+            "imagemagick"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "combine",
+          "title": "Combine PDFs",
+          "subtitle": "Picmal",
+          "description": "Merge two or more PDFs into a single PDF.",
+          "mode": "view",
+          "keywords": [
+            "picmal",
+            "pdf",
+            "merge",
+            "combine",
+            "join",
+            "concatenate",
+            "document"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "merge-audio",
+          "title": "Merge Audio",
+          "subtitle": "Picmal",
+          "description": "Join two or more audio files into one.",
+          "mode": "view",
+          "keywords": [
+            "picmal",
+            "audio",
+            "merge",
+            "join",
+            "concatenate",
+            "combine",
+            "mp3",
+            "wav",
+            "sound"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "combine-videos",
+          "title": "Combine Videos",
+          "subtitle": "Picmal",
+          "description": "Join two or more videos into one.",
+          "mode": "view",
+          "keywords": [
+            "picmal",
+            "video",
+            "combine",
+            "merge",
+            "join",
+            "concatenate",
+            "mp4",
+            "mov",
+            "clip"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "split-pdf",
+          "title": "Split PDF",
+          "subtitle": "Picmal",
+          "description": "Split a PDF into one document per page range.",
+          "mode": "view",
+          "keywords": [
+            "picmal",
+            "pdf",
+            "split",
+            "extract",
+            "pages",
+            "burst",
+            "separate",
+            "document"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "images-to-pdf",
+          "title": "Images to PDF",
+          "subtitle": "Picmal",
+          "description": "Create a multi-page PDF from images, one image per page.",
+          "mode": "view",
+          "keywords": [
+            "picmal",
+            "pdf",
+            "image",
+            "images",
+            "photo",
+            "scan",
+            "document",
+            "convert",
+            "create"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "app-icon",
+          "title": "Generate App Icons",
+          "subtitle": "Picmal",
+          "description": "Generate macOS (.icns), Windows (.ico), and iOS app icons from one image.",
+          "mode": "view",
+          "keywords": [
+            "picmal",
+            "icon",
+            "app icon",
+            "icns",
+            "ico",
+            "appiconset",
+            "ios",
+            "macos",
+            "windows"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "defaultQuality",
+          "title": "Default Quality",
+          "description": "Quality preselected in the Convert and Compress forms.",
+          "type": "dropdown",
+          "required": false,
+          "default": "",
+          "data": [
+            {
+              "title": "Automatic",
+              "value": ""
+            },
+            {
+              "title": "Maximum (100)",
+              "value": "100"
+            },
+            {
+              "title": "High (90)",
+              "value": "90"
+            },
+            {
+              "title": "Balanced (80)",
+              "value": "80"
+            },
+            {
+              "title": "Small (70)",
+              "value": "70"
+            },
+            {
+              "title": "Smaller (60)",
+              "value": "60"
+            },
+            {
+              "title": "Smallest (50)",
+              "value": "50"
+            }
+          ]
+        },
+        {
+          "name": "stripMetadata",
+          "title": "Defaults",
+          "label": "Strip metadata by default",
+          "description": "Remove EXIF/IPTC/XMP metadata unless changed per run.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "overwrite",
+          "title": "",
+          "label": "Overwrite existing files by default",
+          "description": "Replace existing output files unless changed per run.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
         }
       ]
     },
@@ -187863,8 +188405,8 @@
     },
     {
       "name": "read-this-later",
-      "title": "Read This Later",
-      "description": "Browse your saved articles and save the current browser tab.",
+      "title": "Research Sync",
+      "description": "Browse and read your saved articles, and save the current browser tab.",
       "icon": "icon.png",
       "author": "shearm",
       "contributors": [],
@@ -187886,9 +188428,9 @@
       "commands": [
         {
           "name": "list-unread",
-          "title": "Show Unread Links",
-          "subtitle": "Read This Later",
-          "description": "Browse your unread saved articles and open them in your browser",
+          "title": "Show Saved Links",
+          "subtitle": "Research Sync",
+          "description": "Browse your saved articles, read them, and open them in your browser",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -187896,8 +188438,8 @@
         {
           "name": "save-current-tab",
           "title": "Save Current Tab",
-          "subtitle": "Read This Later",
-          "description": "Save the URL of the frontmost browser tab to Read This Later",
+          "subtitle": "Research Sync",
+          "description": "Save the URL of the frontmost browser tab to Research Sync",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -187907,7 +188449,7 @@
         {
           "name": "syncToken",
           "title": "Sync Token",
-          "description": "Bearer token for the Read Later sync service (the same token your Mac/iOS app uses).",
+          "description": "Bearer token for the Research Sync service (the same token your browser extension and iOS app use).",
           "type": "password",
           "required": true
         }
@@ -227883,6 +228425,55 @@
       "preferences": []
     },
     {
+      "name": "thermostats",
+      "title": "Thermostats",
+      "description": "Control your thermostats inside Raycast via Seam",
+      "icon": "extension-icon.png",
+      "author": "humanfriend22",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/humanfriend22/thermostats",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/thermostats",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "thermostat",
+          "title": "Thermostat",
+          "description": "Control your thermostats",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "reset",
+          "title": "Reset",
+          "description": "Erase all cached data",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "seam_apikey",
+          "title": "Seam API Key",
+          "description": "Your Seam API Key to control your thermostats",
+          "type": "password",
+          "required": true
+        }
+      ]
+    },
+    {
       "name": "thesaurus",
       "title": "Thesaurus",
       "description": "Search Merrian-Webster's Thesaurus",
@@ -239661,11 +240252,12 @@
     },
     {
       "name": "twos",
-      "title": "Twos Post",
-      "description": "Add new 'thing' to Twos",
-      "icon": "twos-icon.png",
-      "author": "ekafyi",
+      "title": "Twos",
+      "description": "Capture and organize your lists, to-dos, notes, and reminders in Twos.",
+      "icon": "extension-icon.png",
+      "author": "parker_klein",
       "contributors": [
+        "ekafyi",
         "ridemountainpig"
       ],
       "categories": [
@@ -239676,7 +240268,7 @@
         "macOS",
         "Windows"
       ],
-      "storeUrl": "https://www.raycast.com/ekafyi/twos",
+      "storeUrl": "https://www.raycast.com/parker_klein/twos",
       "source": {
         "type": "github-monorepo",
         "repo": "raycast/extensions",
@@ -239685,9 +240277,28 @@
       },
       "commands": [
         {
-          "name": "index",
-          "title": "Post to Twos",
-          "description": "Add 'thing' to Twos (today or selected date)",
+          "name": "add-thing",
+          "title": "Add Thing",
+          "subtitle": "Twos",
+          "description": "Add a to-do, note, or hyperlink to a list.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-things",
+          "title": "Search Things",
+          "subtitle": "Twos",
+          "description": "Search and browse your things; complete or open them.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "create-list",
+          "title": "Create List",
+          "subtitle": "Twos",
+          "description": "Create a new list.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -239695,20 +240306,11 @@
       ],
       "preferences": [
         {
-          "name": "twosUserId",
-          "type": "textfield",
-          "required": true,
-          "title": "Twos User ID",
-          "description": "Your Twos User ID",
-          "placeholder": "User ID - sent with twosapp.com request payload"
-        },
-        {
-          "name": "twosToken",
+          "name": "apiKey",
+          "title": "API Key",
+          "description": "A Twos API key from Settings → Advanced → API Keys.",
           "type": "password",
-          "required": true,
-          "title": "Twos Token",
-          "description": "Your token",
-          "placeholder": "Token - sent with twosapp.com request payload"
+          "required": true
         }
       ]
     },
