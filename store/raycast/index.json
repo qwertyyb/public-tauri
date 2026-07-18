@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-17T19:26:30.119Z",
+  "generatedAt": "2026-07-18T19:20:06.930Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "7b8d6d07c3188020357d684b4a6ea8d2ab725e8c"
+    "commit": "6b7d722fa0383c824ffe92f799aa96a4ad8caac6"
   },
-  "count": 3074,
+  "count": 3075,
   "extensions": [
     {
       "name": "0x0",
@@ -79768,7 +79768,7 @@
         "macOS",
         "Windows"
       ],
-      "version": "1.0.1",
+      "version": "1.1.0",
       "storeUrl": "https://www.raycast.com/oslen/gh-pr-tracker",
       "source": {
         "type": "github-monorepo",
@@ -79783,6 +79783,15 @@
           "subtitle": "GitHub Pull Requests",
           "description": "Shows unread pull request activity",
           "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "unread-menu-bar",
+          "title": "Unread PR Alert",
+          "subtitle": "GitHub Pull Requests",
+          "description": "Menu bar alert showing how many pull requests have unread changes",
+          "mode": "menu-bar",
           "keywords": [],
           "preferences": []
         }
@@ -123620,7 +123629,8 @@
         "itsmingjie",
         "xmok",
         "0xdhrv",
-        "erikjs"
+        "erikjs",
+        "alexi.build"
       ],
       "categories": [
         "Developer Tools",
@@ -150084,7 +150094,8 @@
         "vicampuzano",
         "ErBlack",
         "byheaven",
-        "tofrankie"
+        "tofrankie",
+        "alexi.build"
       ],
       "categories": [
         "Productivity"
@@ -203567,17 +203578,7 @@
           "preferences": []
         }
       ],
-      "preferences": [
-        {
-          "name": "api_version",
-          "required": false,
-          "title": "Shopify API Version",
-          "description": "The version of the Shopify API to search for.",
-          "type": "textfield",
-          "placeholder": "2025-04",
-          "defaultValue": "2025-04"
-        }
-      ]
+      "preferences": []
     },
     {
       "name": "shopify-developer-changelog",
@@ -217156,7 +217157,9 @@
       "description": "Download and share custom video game assets and personalize your gaming library.",
       "icon": "steamgriddb-icon.png",
       "author": "litomore",
-      "contributors": [],
+      "contributors": [
+        "muhammadrizo"
+      ],
       "categories": [
         "Fun",
         "Media"
@@ -217190,6 +217193,21 @@
           "description": "Get your API key from https://www.steamgriddb.com/profile/preferences/api",
           "type": "password",
           "required": true
+        },
+        {
+          "name": "downloadPath",
+          "description": "Specify the path download images",
+          "type": "directory",
+          "required": false,
+          "title": "Download Path"
+        },
+        {
+          "name": "showInFinderAfterDownload",
+          "description": "Show in Finder/File Explorer after download",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "label": "Show in Finder/File Explorer"
         }
       ]
     },
@@ -227705,6 +227723,47 @@
           "description": "Files will be downloaded here"
         }
       ]
+    },
+    {
+      "name": "the-lot-radio",
+      "title": "The Lot Radio",
+      "description": "Play/pause the audio stream of The Lot Radio",
+      "icon": "thelotradio-logo.png",
+      "author": "evnm",
+      "contributors": [],
+      "categories": [
+        "Media"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/evnm/the-lot-radio",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/the-lot-radio",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "play-pause",
+          "title": "Play or Pause the Lot Radio",
+          "description": "Toggle play/pause on The Lot Radio audio stream",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "schedule",
+          "title": "View Today's Lineup",
+          "description": "See who's playing on The Lot Radio today",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "the-matrix",
