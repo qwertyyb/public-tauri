@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-18T19:20:06.930Z",
+  "generatedAt": "2026-07-19T19:35:12.574Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "6b7d722fa0383c824ffe92f799aa96a4ad8caac6"
+    "commit": "7f5db61f3969810676f52a424c5b197dd178d93d"
   },
-  "count": 3075,
+  "count": 3079,
   "extensions": [
     {
       "name": "0x0",
@@ -37580,6 +37580,123 @@
       "preferences": []
     },
     {
+      "name": "codex",
+      "title": "Codex",
+      "description": "Unofficial Raycast control surface for starting, searching, and managing local Codex threads.",
+      "icon": "extension-icon.png",
+      "author": "asifk",
+      "contributors": [],
+      "categories": [
+        "Applications",
+        "Developer Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/asifk/codex",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/codex",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-threads",
+          "title": "Search Threads",
+          "subtitle": "Codex",
+          "description": "Search, resume, rename, summarize, archive, fork, and export Codex threads.",
+          "mode": "view",
+          "keywords": [
+            "sessions",
+            "history",
+            "resume",
+            "archive",
+            "fork",
+            "summarize"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "new-thread",
+          "title": "New Thread",
+          "subtitle": "Codex",
+          "description": "Start a new Codex thread.",
+          "mode": "no-view",
+          "keywords": [
+            "start",
+            "open",
+            "new"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "new-thread-with-prompt",
+          "title": "New Thread with Prompt",
+          "subtitle": "Codex",
+          "description": "Start a new Codex thread with an initial prompt.",
+          "mode": "view",
+          "keywords": [
+            "start",
+            "prompt",
+            "task"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "new-thread-from-clipboard",
+          "title": "New Thread from Clipboard",
+          "subtitle": "Codex",
+          "description": "Start a new Codex thread using clipboard text as the initial prompt.",
+          "mode": "no-view",
+          "keywords": [
+            "clipboard",
+            "prompt",
+            "start"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "open-codex",
+          "title": "Open Codex",
+          "subtitle": "Codex",
+          "description": "Open the Codex app.",
+          "mode": "no-view",
+          "keywords": [
+            "launch",
+            "app"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "defaultProjectDirectory",
+          "title": "Default Project Directory",
+          "description": "Optional existing local workspace directory to use when starting new Codex threads.",
+          "type": "directory",
+          "required": false
+        },
+        {
+          "name": "projectsDirectory",
+          "title": "Projects Folder",
+          "description": "Optional parent folder to offer project choices when starting a Codex thread with a prompt.",
+          "type": "directory",
+          "required": false
+        },
+        {
+          "name": "codexCliPath",
+          "title": "Codex CLI Path",
+          "description": "Optional absolute path to the Codex CLI. Leave empty to auto-detect.",
+          "type": "textfield",
+          "placeholder": "/opt/homebrew/bin/codex",
+          "required": false
+        }
+      ]
+    },
+    {
       "name": "codex-claude-cli",
       "title": "PromptCast for Claude & Codex",
       "description": "Send prompts, manage sessions, and control Codex CLI and Claude Code directly from Raycast.",
@@ -45861,11 +45978,16 @@
       "icon": "cursors.png",
       "author": "storm",
       "contributors": [
-        "pernielsentikaer"
+        "pernielsentikaer",
+        "chrismessina"
       ],
-      "categories": [],
+      "categories": [
+        "Design Tools"
+      ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/storm/cursors",
       "source": {
         "type": "github-monorepo",
@@ -45928,7 +46050,7 @@
             },
             {
               "title": "7 Columns",
-              "value": "7x"
+              "value": "7"
             },
             {
               "title": "8 Columns",
@@ -182878,6 +183000,250 @@
       "preferences": []
     },
     {
+      "name": "raycast-deskly",
+      "title": "Desk.ly",
+      "description": "Manage your desk.ly desk-sharing bookings",
+      "icon": "deskly-icon.png",
+      "author": "skroll",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/skroll/raycast-deskly",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/raycast-deskly",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "my-bookings",
+          "title": "My Bookings",
+          "description": "Show my upcoming bookings",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "book-a-seat",
+          "title": "Book Seat",
+          "description": "Book a desk.ly seat",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "bookAtMonday",
+              "type": "checkbox",
+              "required": false,
+              "default": true,
+              "label": "Book at Monday",
+              "title": "Weekdays for Booking",
+              "description": "Suggest mondays for booking if enabled"
+            },
+            {
+              "name": "bookAtTuesday",
+              "type": "checkbox",
+              "required": false,
+              "default": true,
+              "label": "Book at Tuesday",
+              "title": "",
+              "description": "Suggest tuesdays for booking if enabled"
+            },
+            {
+              "name": "bookAtWednesday",
+              "type": "checkbox",
+              "required": false,
+              "default": true,
+              "label": "Book at Wednesday",
+              "title": "",
+              "description": "Suggest wednesdays for booking if enabled"
+            },
+            {
+              "name": "bookAtThursday",
+              "type": "checkbox",
+              "required": false,
+              "default": true,
+              "label": "Book at Thursday",
+              "title": "",
+              "description": "Suggest thursdays for booking if enabled"
+            },
+            {
+              "name": "bookAtFriday",
+              "type": "checkbox",
+              "required": false,
+              "default": true,
+              "label": "Book at Friday",
+              "title": "",
+              "description": "Suggest fridays for booking if enabled"
+            },
+            {
+              "name": "bookAtSaturday",
+              "type": "checkbox",
+              "required": false,
+              "default": false,
+              "label": "Book at Saturday",
+              "title": "",
+              "description": "Suggest saturdays for booking if enabled"
+            },
+            {
+              "name": "bookAtSunday",
+              "type": "checkbox",
+              "required": false,
+              "default": false,
+              "label": "Book at Sunday",
+              "title": "",
+              "description": "Suggest sundays for booking if enabled"
+            },
+            {
+              "name": "bookAtTime",
+              "type": "dropdown",
+              "required": true,
+              "default": "full",
+              "title": "Booking Time",
+              "description": "Default booking timeframe for booking a seat",
+              "data": [
+                {
+                  "title": "Full Day",
+                  "value": "full"
+                },
+                {
+                  "title": "Morning",
+                  "value": "morning"
+                },
+                {
+                  "title": "Afternoon",
+                  "value": "afternoon"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "todays-booking",
+          "title": "Today's Booking",
+          "description": "Show today's booking",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "who-is-in-the-office",
+          "title": "Who Is in Office",
+          "description": "See who is in the office today",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiUrl",
+          "type": "textfield",
+          "required": true,
+          "default": "https://app.desk.ly",
+          "title": "API URL",
+          "description": "API URL of your desk.ly instance"
+        },
+        {
+          "name": "refreshToken",
+          "type": "password",
+          "required": true,
+          "title": "Refresh Token",
+          "description": "Valid desk.ly Refresh Token which can be used for API Calls"
+        },
+        {
+          "name": "seatIndicatorColor",
+          "type": "dropdown",
+          "required": false,
+          "default": "blue",
+          "title": "Seat Indicator Color",
+          "description": "Color of the seat indicator dot on the room floor plan",
+          "data": [
+            {
+              "title": "Blue",
+              "value": "blue"
+            },
+            {
+              "title": "Red",
+              "value": "red"
+            },
+            {
+              "title": "Green",
+              "value": "green"
+            },
+            {
+              "title": "Black",
+              "value": "black"
+            }
+          ]
+        },
+        {
+          "name": "seatIndicatorSize",
+          "type": "dropdown",
+          "required": false,
+          "default": "M",
+          "title": "Seat Indicator Size",
+          "description": "Size of the seat indicator dot on the room floor plan",
+          "data": [
+            {
+              "title": "S",
+              "value": "S"
+            },
+            {
+              "title": "M",
+              "value": "M"
+            },
+            {
+              "title": "L",
+              "value": "L"
+            }
+          ]
+        },
+        {
+          "name": "showTime",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "label": "Show Time",
+          "title": "Displayed information",
+          "description": "Show the booking time range as an accessory in the booking list"
+        },
+        {
+          "name": "showLocation",
+          "type": "checkbox",
+          "required": false,
+          "default": false,
+          "label": "Show Location",
+          "title": "",
+          "description": "Which information should be shown in the booking list"
+        },
+        {
+          "name": "showFloor",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "label": "Show Floor",
+          "title": "",
+          "description": "Show the floor name as an accessory in the booking list"
+        },
+        {
+          "name": "showRoom",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "label": "Show Room",
+          "title": "",
+          "description": "Show the room name as an accessory in the booking list"
+        }
+      ]
+    },
+    {
       "name": "raycast-diki",
       "title": "Diki Translate",
       "description": "Diki Translate with autosuggestions",
@@ -197074,7 +197440,9 @@
       "description": "Allows you to schedule Raycast commands to run at specific days, times or intervals ⏰.",
       "icon": "extension-icon.png",
       "author": "cps",
-      "contributors": [],
+      "contributors": [
+        "ridemountainpig"
+      ],
       "categories": [
         "Productivity",
         "System"
@@ -216439,6 +216807,136 @@
           "description": "Show recently used Characters",
           "required": false,
           "default": true
+        }
+      ]
+    },
+    {
+      "name": "starline",
+      "title": "Starline",
+      "description": "Manage your Starline devices. Requires developer account.",
+      "icon": "command-icon.png",
+      "author": "sfominx",
+      "contributors": [],
+      "categories": [
+        "Security"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/sfominx/starline",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/starline",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "devices",
+          "title": "Devices",
+          "description": "List Starline devices you have",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "arm",
+          "title": "Arm",
+          "description": "Arm the default device",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "disarm",
+          "title": "Disarm",
+          "description": "Disarm the default device",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "start_engine",
+          "title": "Start Engine",
+          "description": "Start engine on the default device",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "stop_engine",
+          "title": "Stop Engine",
+          "description": "Stop engine on the default device",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "arm_quietly",
+          "title": "Arm Quietly",
+          "description": "Arm the default device without sound confirmation",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "disarm_quietly",
+          "title": "Disarm Quietly",
+          "description": "Disarm the default device without sound confirmation",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "horn",
+          "title": "Horn",
+          "description": "Send horn command to the default device",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "update_position",
+          "title": "Update Position",
+          "description": "Request position update for the default device",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "AppId",
+          "type": "password",
+          "required": true,
+          "title": "Application ID",
+          "description": "The AppId value seen in the Developer section of a Starline account.",
+          "placeholder": "AppID"
+        },
+        {
+          "name": "Secret",
+          "type": "password",
+          "required": true,
+          "title": "Secret",
+          "description": "The Secret value seen in the Developer section of a Starline account.",
+          "placeholder": "Secret"
+        },
+        {
+          "name": "Login",
+          "required": true,
+          "type": "textfield",
+          "title": "Login",
+          "description": "Your Starline login.",
+          "placeholder": "Login"
+        },
+        {
+          "name": "Password",
+          "type": "password",
+          "required": true,
+          "title": "Password",
+          "description": "Your Starline password.",
+          "placeholder": "Password"
         }
       ]
     },
@@ -242156,7 +242654,8 @@
         "pernielsentikaer",
         "j3lte",
         "xilopaint",
-        "xmok"
+        "xmok",
+        "muhammadrizo"
       ],
       "categories": [],
       "license": "MIT",
@@ -257328,6 +257827,191 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "workflowy",
+      "title": "Workflowy",
+      "description": "Search, capture, and manage your Workflowy account from Raycast.",
+      "icon": "workflowy-icon.png",
+      "author": "rodolfo_lopez",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Applications"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "1.0.0",
+      "storeUrl": "https://www.raycast.com/rodolfo_lopez/workflowy",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/workflowy",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-nodes",
+          "title": "Search Workflowy",
+          "description": "Search all items in your Workflowy account.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "quick-capture",
+          "title": "Quick Capture",
+          "description": "Quickly capture to Workflowy using your default destination and type.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "quick-capture-advanced",
+          "title": "Capture Item",
+          "description": "Capture an item to Workflowy with destination, note, and type controls.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "add-to-today",
+          "title": "Add to Today",
+          "description": "Quickly add a task or note to your Workflowy Today list.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-bookmark",
+          "title": "Open Workflowy Location",
+          "description": "Open a Workflowy shortcut or saved bookmark.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "view-workflowy",
+          "title": "View Workflowy",
+          "description": "Browse a Workflowy location and its child items.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "browse-tags",
+          "title": "Browse Workflowy Tags",
+          "description": "Browse tags from your Workflowy account.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "complete-task",
+          "title": "Complete Workflowy Task",
+          "description": "Mark a Workflowy task complete without leaving Raycast.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "sync-now",
+          "title": "Sync Workflowy Cache",
+          "description": "Force a full sync of your Workflowy account to the local cache.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "title": "Workflowy API Key",
+          "description": "Your Workflowy API key. Find it at workflowy.com/api-key/.",
+          "type": "password",
+          "required": true
+        },
+        {
+          "name": "cacheStaleMinutes",
+          "title": "Cache Refresh Interval (minutes)",
+          "description": "How often to refresh your Workflowy cache in the background. Default: 60.",
+          "type": "textfield",
+          "required": false,
+          "default": "60"
+        },
+        {
+          "name": "capturePosition",
+          "title": "Capture Position",
+          "description": "Where to add new items within a destination.",
+          "type": "dropdown",
+          "required": false,
+          "default": "top",
+          "data": [
+            {
+              "title": "Top",
+              "value": "top"
+            },
+            {
+              "title": "Bottom",
+              "value": "bottom"
+            }
+          ]
+        },
+        {
+          "name": "quickCaptureDefaultTarget",
+          "title": "Quick Capture Default Destination",
+          "description": "Default destination for Quick Capture. Supports Inbox, Today, Workflowy shortcut names, bookmark names, or a full UUID. Defaults to Inbox.",
+          "type": "textfield",
+          "required": false,
+          "default": "inbox"
+        },
+        {
+          "name": "quickCaptureDefaultType",
+          "title": "Quick Capture Default Type",
+          "description": "Default item type for Quick Capture.",
+          "type": "dropdown",
+          "required": false,
+          "default": "todo",
+          "data": [
+            {
+              "title": "Todo",
+              "value": "todo"
+            },
+            {
+              "title": "Bullet",
+              "value": "bullet"
+            }
+          ]
+        },
+        {
+          "name": "viewDefaultTarget",
+          "title": "View Workflowy Default Location",
+          "description": "Default location for View Workflowy. Supports Inbox, Today, Workflowy shortcut names, bookmark names, or a full UUID. Defaults to Inbox.",
+          "type": "textfield",
+          "required": false,
+          "default": "inbox"
+        },
+        {
+          "name": "openWorkflowyLocationTarget",
+          "title": "Open Workflowy Links In",
+          "description": "Choose whether Workflowy links open in the desktop app or web app by default.",
+          "type": "dropdown",
+          "required": false,
+          "default": "app",
+          "data": [
+            {
+              "title": "Desktop App",
+              "value": "app"
+            },
+            {
+              "title": "Web App",
+              "value": "web"
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "workflowy-inbox",
