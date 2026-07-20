@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-19T19:35:12.574Z",
+  "generatedAt": "2026-07-20T20:25:12.601Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "7f5db61f3969810676f52a424c5b197dd178d93d"
+    "commit": "f348847e814874c147213959ef7ee0a47d78d54f"
   },
-  "count": 3079,
+  "count": 3080,
   "extensions": [
     {
       "name": "0x0",
@@ -57872,6 +57872,58 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "docuseal",
+      "title": "DocuSeal",
+      "description": "Open Source Document Signing",
+      "icon": "docuseal.png",
+      "author": "xmok",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Security"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/xmok/docuseal",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/docuseal",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-templates",
+          "title": "Search Templates and Submissions",
+          "description": "Search Templates and Submissions",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "instance_url",
+          "title": "Instance URL",
+          "placeholder": "https://api.docuseal.com",
+          "description": "DocuSeal Instance URL",
+          "type": "textfield",
+          "required": true
+        },
+        {
+          "name": "api_key",
+          "title": "API Key",
+          "placeholder": "xxx...XXX",
+          "description": "DocuSeal API Key",
+          "type": "password",
+          "required": true
+        }
+      ]
     },
     {
       "name": "dodo-payments",
