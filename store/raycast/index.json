@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-20T20:25:12.601Z",
+  "generatedAt": "2026-07-21T19:49:29.462Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "f348847e814874c147213959ef7ee0a47d78d54f"
+    "commit": "ba957de79fa3c9132f2c0486bbe2ac165e325350"
   },
-  "count": 3080,
+  "count": 3083,
   "extensions": [
     {
       "name": "0x0",
@@ -17627,6 +17627,49 @@
           "placeholder": "/usr/local/bin/betteraudio"
         }
       ]
+    },
+    {
+      "name": "bettercapture",
+      "title": "BetterCapture",
+      "description": "Extension to manage BetterCapture",
+      "icon": "icon.png",
+      "author": "qlaffont",
+      "contributors": [],
+      "categories": [
+        "Applications"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/qlaffont/bettercapture",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/bettercapture",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "toggle-record",
+          "title": "Toggle Record",
+          "subtitle": "BetterCapture",
+          "description": "Stop recording, or open content selection to start a new recording",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-recordings",
+          "title": "Open Recordings",
+          "subtitle": "~/Movies/BetterCapture",
+          "description": "Open the BetterCapture recordings folder in Finder",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "betterdiscord-store",
@@ -66344,6 +66387,93 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "everyapi",
+      "title": "EveryAPI",
+      "description": "Use 240+ LLMs through the EveryAPI gateway from Raycast — chat, switch models, and monitor account activity.",
+      "icon": "icon.png",
+      "author": "everyapi_dev",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "version": "0.1.9",
+      "storeUrl": "https://www.raycast.com/everyapi_dev/everyapi",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/everyapi",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "ask",
+          "title": "Ask EveryAPI",
+          "subtitle": "EveryAPI",
+          "description": "Ask any model in your EveryAPI account — Claude, GPT, Gemini, DeepSeek, etc.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-ask.png",
+          "preferences": []
+        },
+        {
+          "name": "account",
+          "title": "Account & Usage",
+          "subtitle": "EveryAPI",
+          "description": "Sign in with OAuth, view your account and wallet, or sign out.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-account.png",
+          "preferences": []
+        },
+        {
+          "name": "switch-model",
+          "title": "Switch Default Model",
+          "subtitle": "EveryAPI",
+          "description": "Set the default model used by Ask EveryAPI.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-models.png",
+          "preferences": []
+        },
+        {
+          "name": "recent-logs",
+          "title": "Recent Requests",
+          "subtitle": "EveryAPI",
+          "description": "List your most recent LLM calls — model, tokens, cost, latency.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-recent.png",
+          "preferences": []
+        },
+        {
+          "name": "channel-health",
+          "title": "Service Status",
+          "subtitle": "EveryAPI",
+          "description": "Live status of upstream AI providers (OpenAI, Anthropic, Google, …) — aggregated from their public status pages by the EveryAPI gateway, with 24h history and active incidents.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-status.png",
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "baseUrl",
+          "type": "textfield",
+          "required": false,
+          "title": "Base URL",
+          "description": "EveryAPI OAuth and API gateway URL. Leave default unless you use a self-hosted deployment.",
+          "default": "https://api.everyapi.ai/v1"
+        }
+      ]
     },
     {
       "name": "everything-search",
@@ -129214,6 +129344,92 @@
       "preferences": []
     },
     {
+      "name": "mailto-link-generator",
+      "title": "Mailto Link Generator",
+      "description": "Build mailto: links with every field — to, cc, bcc, subject and body — then copy them or open a draft.",
+      "icon": "command-icon.png",
+      "author": "stefan.imbesi",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Communication"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/stefan.imbesi/mailto-link-generator",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/mailto-link-generator",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "generate-mailto",
+          "title": "Generate Mailto Link",
+          "description": "Compose a mailto: link from a form, then copy it (raw or as an HTML anchor) or open a draft.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "rememberLastValues",
+              "type": "checkbox",
+              "required": false,
+              "title": "Form",
+              "label": "Remember last-used values between launches",
+              "description": "Off by default — the form opens empty. When on, it restores whatever you last entered.",
+              "default": false
+            },
+            {
+              "name": "defaultCc",
+              "type": "textfield",
+              "required": false,
+              "title": "Default Cc",
+              "description": "Pre-filled into the Cc field of a fresh form. Leave empty for none. Separate multiple addresses with commas.",
+              "placeholder": "team@example.com"
+            },
+            {
+              "name": "defaultBcc",
+              "type": "textfield",
+              "required": false,
+              "title": "Default Bcc",
+              "description": "Pre-filled into the Bcc field of a fresh form. Leave empty for none.",
+              "placeholder": "archive@example.com"
+            },
+            {
+              "name": "signature",
+              "type": "textfield",
+              "required": false,
+              "title": "Signature",
+              "description": "Appended to the body of a fresh form after a \"-- \" delimiter. Leave empty for none. Single-line; use \\n for line breaks.",
+              "placeholder": "Stefan Imbesi · August"
+            },
+            {
+              "name": "outlookHost",
+              "type": "dropdown",
+              "required": false,
+              "title": "Outlook Account",
+              "description": "Which Outlook web app the \"Open in Outlook\" action should target.",
+              "default": "outlook.office.com",
+              "data": [
+                {
+                  "title": "Work or School (outlook.office.com)",
+                  "value": "outlook.office.com"
+                },
+                {
+                  "title": "Personal (outlook.live.com)",
+                  "value": "outlook.live.com"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "mailtrap",
       "title": "Mailtrap",
       "description": "Mailtrap - View Inboxes, Emails, Copy Subjects while marking as Read",
@@ -168964,7 +169180,7 @@
     {
       "name": "planning-center-api-docs",
       "title": "Planning Center API Docs",
-      "description": "Quickly find the docs you need for the Planning Center API.",
+      "description": "Quickly find and copy the docs you need for the Planning Center API.",
       "icon": "pco-logo-blue.png",
       "author": "thomas.harmond",
       "contributors": [],
@@ -168991,15 +169207,6 @@
           "subtitle": "Planning Center (PCO)",
           "description": "Search and open Planning Center (PCO) API documentation pages",
           "mode": "view",
-          "keywords": [],
-          "preferences": []
-        },
-        {
-          "name": "search-on-web",
-          "title": "Search API Docs on Web",
-          "subtitle": "Planning Center (PCO)",
-          "description": "Search the Planning Center (PCO) API docs on the web",
-          "mode": "no-view",
           "keywords": [],
           "preferences": []
         }
@@ -169033,8 +169240,12 @@
           "description": "Calendar version",
           "type": "dropdown",
           "required": false,
-          "default": "2022-07-07",
+          "default": "2026-06-22",
           "data": [
+            {
+              "title": "2026-06-22",
+              "value": "2026-06-22"
+            },
             {
               "title": "2022-07-07",
               "value": "2022-07-07"
@@ -169088,6 +169299,20 @@
           ]
         },
         {
+          "name": "currentVersion",
+          "title": "Current Version",
+          "description": "Current version",
+          "type": "dropdown",
+          "required": false,
+          "default": "2018-08-01",
+          "data": [
+            {
+              "title": "2018-08-01",
+              "value": "2018-08-01"
+            }
+          ]
+        },
+        {
           "name": "givingVersion",
           "title": "Giving Version",
           "description": "Giving version",
@@ -169129,8 +169354,16 @@
           "description": "People version",
           "type": "dropdown",
           "required": false,
-          "default": "2025-07-17",
+          "default": "2026-06-04",
           "data": [
+            {
+              "title": "2026-06-04",
+              "value": "2026-06-04"
+            },
+            {
+              "title": "2025-11-10",
+              "value": "2025-11-10"
+            },
             {
               "title": "2025-07-17",
               "value": "2025-07-17"
@@ -183151,28 +183384,6 @@
               "label": "Book at Sunday",
               "title": "",
               "description": "Suggest sundays for booking if enabled"
-            },
-            {
-              "name": "bookAtTime",
-              "type": "dropdown",
-              "required": true,
-              "default": "full",
-              "title": "Booking Time",
-              "description": "Default booking timeframe for booking a seat",
-              "data": [
-                {
-                  "title": "Full Day",
-                  "value": "full"
-                },
-                {
-                  "title": "Morning",
-                  "value": "morning"
-                },
-                {
-                  "title": "Afternoon",
-                  "value": "afternoon"
-                }
-              ]
             }
           ]
         },
@@ -229782,13 +229993,16 @@
         "viduycheung",
         "Alireza",
         "yakitrak",
-        "ridemountainpig"
+        "ridemountainpig",
+        "harsh_varshney"
       ],
       "categories": [
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/appest/ticktick",
       "source": {
         "type": "github-monorepo",
