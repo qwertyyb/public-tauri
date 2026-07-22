@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-21T19:49:29.462Z",
+  "generatedAt": "2026-07-22T20:35:13.314Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "ba957de79fa3c9132f2c0486bbe2ac165e325350"
+    "commit": "8a86763de866832b915e801b6712c94bd0873fda"
   },
-  "count": 3083,
+  "count": 3092,
   "extensions": [
     {
       "name": "0x0",
@@ -40659,6 +40659,15 @@
           "mode": "no-view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "new-whiteboard",
+          "title": "Create Whiteboard",
+          "subtitle": "Confluence",
+          "description": "Create a new whiteboard.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": []
@@ -40972,6 +40981,77 @@
           "title": "Append to Context",
           "description": "Add new text content to an existing context file. Append information while preserving all previously stored content.",
           "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "contra",
+      "title": "Contra",
+      "description": "Track Contra finances, create and send invoices, and manage freelance projects — right from Raycast.",
+      "icon": "extension-icon.png",
+      "author": "agusdellaquila",
+      "contributors": [],
+      "categories": [
+        "Finance",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/agusdellaquila/contra",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/contra",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "finance",
+          "title": "Finance Dashboard",
+          "subtitle": "Contra",
+          "description": "Balance, revenue, and outstanding invoices.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "projects",
+          "title": "Active Projects",
+          "subtitle": "Contra",
+          "description": "Your active projects and clients.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "messages",
+          "title": "Messages",
+          "subtitle": "Contra",
+          "description": "Client conversations and unread messages.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "create-invoice",
+          "title": "Create Invoice",
+          "subtitle": "Contra",
+          "description": "Draft and send a Contra invoice.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "menubar",
+          "title": "Contra Menu Bar",
+          "description": "Pending balance and next due invoice in your menu bar.",
+          "mode": "menu-bar",
           "keywords": [],
           "preferences": []
         }
@@ -64787,6 +64867,121 @@
       ]
     },
     {
+      "name": "english-irregular-verbs",
+      "title": "English Irregular Verbs",
+      "description": "Quickly look up English irregular verbs (base, past simple, past participle) with fuzzy search, UK/US variants and optional translations in 16 languages.",
+      "icon": "icon.png",
+      "author": "oward",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Documentation"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/oward/english-irregular-verbs",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/english-irregular-verbs",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "index",
+          "title": "Search Irregular Verbs",
+          "subtitle": "English Irregular Verbs",
+          "description": "Search English irregular verbs and copy any of their forms.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "language",
+              "title": "Translation Language",
+              "description": "Language shown in the translation row.",
+              "type": "dropdown",
+              "required": false,
+              "default": "fr",
+              "data": [
+                {
+                  "title": "None",
+                  "value": "none"
+                },
+                {
+                  "title": "Français",
+                  "value": "fr"
+                },
+                {
+                  "title": "Español",
+                  "value": "es"
+                },
+                {
+                  "title": "Italiano",
+                  "value": "it"
+                },
+                {
+                  "title": "Deutsch",
+                  "value": "de"
+                },
+                {
+                  "title": "Português (Brasil)",
+                  "value": "pt"
+                },
+                {
+                  "title": "Nederlands",
+                  "value": "nl"
+                },
+                {
+                  "title": "Svenska",
+                  "value": "sv"
+                },
+                {
+                  "title": "Polski",
+                  "value": "pl"
+                },
+                {
+                  "title": "Русский",
+                  "value": "ru"
+                },
+                {
+                  "title": "Ελληνικά",
+                  "value": "el"
+                },
+                {
+                  "title": "Türkçe",
+                  "value": "tr"
+                },
+                {
+                  "title": "العربية",
+                  "value": "ar"
+                },
+                {
+                  "title": "हिन्दी",
+                  "value": "hi"
+                },
+                {
+                  "title": "中文 (简体)",
+                  "value": "zh"
+                },
+                {
+                  "title": "日本語",
+                  "value": "ja"
+                },
+                {
+                  "title": "한국어",
+                  "value": "ko"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "ens-name-lookup",
       "title": "ENS Name Lookup",
       "description": "Lookup ENS name or address",
@@ -68442,7 +68637,8 @@
       "icon": "icon.png",
       "author": "JonathanSpeek",
       "contributors": [
-        "xmok"
+        "xmok",
+        "btsheehy"
       ],
       "categories": [
         "Developer Tools"
@@ -80072,7 +80268,7 @@
         "macOS",
         "Windows"
       ],
-      "version": "1.1.0",
+      "version": "1.1.1",
       "storeUrl": "https://www.raycast.com/oslen/gh-pr-tracker",
       "source": {
         "type": "github-monorepo",
@@ -80104,9 +80300,11 @@
         {
           "name": "ghHost",
           "title": "GH Host",
-          "description": "Your GitHub (Enterprise) hostname",
+          "description": "GitHub hostname. Leave as github.com unless you use GitHub Enterprise.",
           "type": "textfield",
-          "required": true
+          "required": false,
+          "default": "github.com",
+          "placeholder": "github.com"
         },
         {
           "name": "token",
@@ -80122,6 +80320,24 @@
           "type": "textfield",
           "required": true,
           "placeholder": "owner/repo1, owner/repo2"
+        },
+        {
+          "name": "maxUnreadPrs",
+          "title": "Max Unread PRs",
+          "description": "Maximum number of pull requests with unread activity to show (1–1000). Default 25.",
+          "type": "textfield",
+          "required": false,
+          "default": "25",
+          "placeholder": "25"
+        },
+        {
+          "name": "maxScanPrs",
+          "title": "Max PRs to Scan",
+          "description": "Safety cap on how many pull requests to fetch while finding unread ones on large repositories (1–1000). Higher is more thorough but slower and uses more memory. Default 150.",
+          "type": "textfield",
+          "required": false,
+          "default": "150",
+          "placeholder": "150"
         }
       ]
     },
@@ -86366,17 +86582,7 @@
           "description": "Creates an event in your Google Calendar",
           "mode": "view",
           "keywords": [],
-          "preferences": [
-            {
-              "name": "addSignature",
-              "type": "checkbox",
-              "title": "Advanced",
-              "label": "Add Signature",
-              "description": "Add a signature that the event was created using Raycast to the description of the event",
-              "default": true,
-              "required": false
-            }
-          ]
+          "preferences": []
         },
         {
           "name": "create-quick-event",
@@ -86426,6 +86632,15 @@
         }
       ],
       "preferences": [
+        {
+          "name": "addSignature",
+          "type": "checkbox",
+          "title": "Advanced",
+          "label": "Add Signature",
+          "description": "Add a signature that the event was created using Raycast to the description of the event",
+          "default": true,
+          "required": false
+        },
         {
           "name": "defaultEventDuration",
           "title": "Default Event Duration",
@@ -101969,6 +102184,98 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "hyperliquid",
+      "title": "Hyperliquid",
+      "description": "Browse Hyperliquid perp markets, track your positions and PnL, and pin live prices to your menu bar — all read-only.",
+      "icon": "extension-icon.png",
+      "author": "insuline",
+      "contributors": [],
+      "categories": [
+        "Finance"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/insuline/hyperliquid",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/hyperliquid",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "markets",
+          "title": "Markets",
+          "subtitle": "Hyperliquid",
+          "description": "Browse Hyperliquid perpetual markets with live prices and candlestick charts.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "positions",
+          "title": "My Positions",
+          "subtitle": "Hyperliquid",
+          "description": "View your open Hyperliquid perp positions, PnL and liquidation prices.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "manage-wallets",
+          "title": "Manage Wallets",
+          "subtitle": "Hyperliquid",
+          "description": "Add, label and remove the wallet addresses you want to track.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "prices",
+          "title": "Prices",
+          "subtitle": "Hyperliquid",
+          "description": "Show your favorite tickers and their 24h change in the menu bar.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "defaultInterval",
+          "title": "Default Chart Interval",
+          "description": "Candle interval used when opening a market's detail view.",
+          "type": "dropdown",
+          "required": false,
+          "default": "1h",
+          "data": [
+            {
+              "title": "1 hour",
+              "value": "1h"
+            },
+            {
+              "title": "4 hours",
+              "value": "4h"
+            },
+            {
+              "title": "1 day",
+              "value": "1d"
+            }
+          ]
+        },
+        {
+          "name": "liqAlertDistance",
+          "title": "Liquidation Alert Distance",
+          "description": "Flag a position as at-risk when the mark price is within this percentage of its liquidation price.",
+          "type": "textfield",
+          "required": false,
+          "default": "5"
+        }
+      ]
     },
     {
       "name": "hypersonic",
@@ -127425,6 +127732,100 @@
       "preferences": []
     },
     {
+      "name": "lumen",
+      "title": "Lumen",
+      "description": "Scoped fuzzy file search across your favorite workspaces, with filters and sorting.",
+      "icon": "lumen.png",
+      "author": "kumare_agape",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/kumare_agape/lumen",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/lumen",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "lumen",
+          "title": "Lumen",
+          "subtitle": "Find Anything",
+          "description": "Open the scoped fuzzy search across your workspaces.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "firstLevelSort",
+              "title": "First-Level Order",
+              "description": "How to order a workspace's top level when you enter it.",
+              "type": "dropdown",
+              "required": false,
+              "default": "modified",
+              "data": [
+                {
+                  "title": "Date Modified",
+                  "value": "modified"
+                },
+                {
+                  "title": "Name",
+                  "value": "name"
+                }
+              ]
+            },
+            {
+              "name": "homeExcludeWorkspaces",
+              "title": "Home Search",
+              "label": "Exclude configured workspaces from Home (h)",
+              "description": "Home searches outside your scoped corpus; use a workspace to search inside one.",
+              "type": "checkbox",
+              "required": false,
+              "default": true
+            }
+          ]
+        },
+        {
+          "name": "manage-workspaces",
+          "title": "Manage Workspaces",
+          "description": "Create, edit, and delete Lumen workspaces.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "manage-tools",
+          "title": "Manage Tools",
+          "description": "Edit Lumen categories and their extensions; restore defaults.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "export-workspaces",
+          "title": "Export Workspaces",
+          "description": "Export workspaces to JSON, or import (replaces all).",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "about",
+          "title": "About Lumen",
+          "description": "About Lumen and links to the source and other projects.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "luna-search",
       "title": "Luna Search",
       "description": "Quickly find and open Luna Games",
@@ -145137,6 +145538,206 @@
           "type": "password",
           "required": true,
           "placeholder": "Ny...xxx"
+        }
+      ]
+    },
+    {
+      "name": "next-game",
+      "title": "Next Game",
+      "description": "What to Play Next - Smart Game Picker",
+      "icon": "icon.png",
+      "author": "glct26",
+      "contributors": [],
+      "categories": [
+        "Applications",
+        "Fun"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/glct26/next-game",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/next-game",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "index",
+          "title": "Play Next",
+          "description": "View game recommendations and start your next session",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "manage-skipped",
+          "title": "Manage Skipped Games",
+          "description": "View and unskip games you have hidden from recommendations",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "customSteamPath",
+          "title": "Custom Steam Path",
+          "description": "Optional: Select your main Steam installation directory if it is not in the default location.",
+          "type": "directory",
+          "required": false
+        },
+        {
+          "name": "listLimit",
+          "title": "Recommendation Limit",
+          "description": "Number of games to show in the list.",
+          "type": "dropdown",
+          "default": "10",
+          "required": false,
+          "data": [
+            {
+              "title": "Top 10",
+              "value": "10"
+            },
+            {
+              "title": "Extended (Top 20)",
+              "value": "20"
+            }
+          ]
+        },
+        {
+          "name": "useSteamClient",
+          "type": "checkbox",
+          "title": "Open Steam pages in Steam client",
+          "label": "Use Steam client instead of browser when available",
+          "required": false,
+          "default": false,
+          "description": "If enabled, Steam links will open in the Steam desktop client (steam://). Falls back to browser if unavailable."
+        },
+        {
+          "name": "showOnlyInstalled",
+          "title": "Library Visibility",
+          "label": "Show Only Installed Games",
+          "description": "Hide games not currently installed. (Requires Steam folder read permissions).",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "tasteTimeframe",
+          "title": "Base Recommendations On",
+          "description": "How far back should the algorithm look to determine your current taste?",
+          "type": "dropdown",
+          "default": "180",
+          "required": false,
+          "data": [
+            {
+              "title": "Last 3 Months",
+              "value": "90"
+            },
+            {
+              "title": "Last 6 Months",
+              "value": "180"
+            },
+            {
+              "title": "Last 1 Year",
+              "value": "365"
+            },
+            {
+              "title": "All Time",
+              "value": "all"
+            }
+          ]
+        },
+        {
+          "name": "modeFilter",
+          "title": "Exclusion Filters",
+          "description": "Hide games based on their supported modes.",
+          "type": "dropdown",
+          "default": "all",
+          "required": false,
+          "data": [
+            {
+              "title": "Show All Games",
+              "value": "all"
+            },
+            {
+              "title": "Hide Multiplayer-Only",
+              "value": "hide_multi"
+            },
+            {
+              "title": "Hide Singleplayer-Only",
+              "value": "hide_single"
+            }
+          ]
+        },
+        {
+          "name": "maxAgeYears",
+          "title": "Maximum Game Age",
+          "description": "Hide games older than this many years. (e.g. 5). Leave empty for no limit.",
+          "placeholder": "e.g., 5",
+          "type": "textfield",
+          "required": false
+        },
+        {
+          "name": "blacklistedTags",
+          "title": "Blacklisted Tags",
+          "description": "Hide games containing these tags. Separate with commas (e.g., Anime, VR, Horror).",
+          "placeholder": "e.g., Anime, VR, Horror",
+          "type": "textfield",
+          "required": false
+        },
+        {
+          "name": "requireController",
+          "title": "Hardware & Features",
+          "label": "Require Controller Support",
+          "description": "Only show games with partial or full controller support.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "requireAchievements",
+          "title": "Achievements",
+          "label": "Require Steam Achievements",
+          "description": "Only show games that have Steam Achievements.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "hideFreeToPlay",
+          "title": "Library Cleanup",
+          "label": "Hide Free-to-Play Games",
+          "description": "Hide games tagged as Free to Play.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "vrFilter",
+          "title": "VR Mode",
+          "description": "Filter games based on Virtual Reality support.",
+          "type": "dropdown",
+          "default": "all",
+          "required": false,
+          "data": [
+            {
+              "title": "Show All Games",
+              "value": "all"
+            },
+            {
+              "title": "Hide VR Games",
+              "value": "hide_vr"
+            },
+            {
+              "title": "VR Games Only",
+              "value": "only_vr"
+            }
+          ]
         }
       ]
     },
@@ -168720,6 +169321,69 @@
       ]
     },
     {
+      "name": "pixtuoid",
+      "title": "Pixtuoid",
+      "description": "Manage which AI coding-agent CLIs feed your Pixtuoid office, and launch the floating window — without leaving Raycast.",
+      "icon": "pixtuoid.png",
+      "author": "IvanWng97",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/IvanWng97/pixtuoid",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/pixtuoid",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "manage-sources",
+          "title": "Manage Sources",
+          "description": "List every agent CLI Pixtuoid knows about and connect/disconnect each one.",
+          "mode": "view",
+          "keywords": [
+            "agents",
+            "ai",
+            "claude",
+            "codex",
+            "cursor",
+            "copilot",
+            "office"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "start-floating",
+          "title": "Start Floating Window",
+          "description": "Open the Pixtuoid floating desktop window.",
+          "mode": "no-view",
+          "keywords": [
+            "office",
+            "desktop",
+            "overlay",
+            "pixel"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "binaryPath",
+          "title": "Pixtuoid Binary",
+          "description": "Absolute path to the pixtuoid executable. Leave empty to auto-detect (login-shell PATH, then Homebrew / Cargo / ~/.local/bin).",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "/opt/homebrew/bin/pixtuoid"
+        }
+      ]
+    },
+    {
       "name": "pkg-swap",
       "title": "Pkg Swap",
       "description": "Quickly convert and paste copied npm commands to your preferred package manager",
@@ -170590,7 +171254,8 @@
       "author": "anhthang",
       "contributors": [
         "miguel-felix1",
-        "DanBennett"
+        "DanBennett",
+        "ridemountainpig"
       ],
       "categories": [
         "Data",
@@ -177719,6 +178384,138 @@
           "type": "textfield",
           "required": false,
           "placeholder": "/opt/homebrew/bin/qmd"
+        }
+      ]
+    },
+    {
+      "name": "qobuz",
+      "title": "Qobuz",
+      "description": "Search Qobuz, see what's playing, and manage your favourites and playlists — open anything straight in the Qobuz app.",
+      "icon": "extension-icon.png",
+      "author": "kud",
+      "contributors": [],
+      "categories": [
+        "Media"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/kud/qobuz",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/qobuz",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search",
+          "title": "Search",
+          "subtitle": "Qobuz",
+          "description": "Search Qobuz for albums, artists, and tracks.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-link",
+          "title": "Convert Track Link",
+          "subtitle": "Qobuz",
+          "description": "Copy a Spotify, YouTube Music, or Qobuz track link, then run this to convert it to the other services.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "now-playing",
+          "title": "Now Playing",
+          "subtitle": "Qobuz",
+          "description": "Show the track currently playing in the Qobuz desktop app and copy its link.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "titleLength",
+              "type": "textfield",
+              "title": "Title Length",
+              "description": "Maximum characters shown in the menu bar before truncating.",
+              "default": "45",
+              "required": false
+            }
+          ]
+        },
+        {
+          "name": "favourites",
+          "title": "Favourites",
+          "subtitle": "Qobuz",
+          "description": "Browse your favourite albums, artists, and tracks.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "playlists",
+          "title": "Playlists",
+          "subtitle": "Qobuz",
+          "description": "Browse your Qobuz playlists.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "play",
+          "title": "Play / Pause",
+          "subtitle": "Qobuz",
+          "description": "Toggle play/pause in the Qobuz desktop app.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "next",
+          "title": "Next",
+          "subtitle": "Qobuz",
+          "description": "Skip to the next track.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "previous",
+          "title": "Previous",
+          "subtitle": "Qobuz",
+          "description": "Skip to the previous track.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "forward",
+          "title": "Fast-Forward",
+          "subtitle": "Qobuz",
+          "description": "Fast-forward within the current track.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "rewind",
+          "title": "Rewind",
+          "subtitle": "Qobuz",
+          "description": "Rewind within the current track.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "token",
+          "type": "password",
+          "title": "Qobuz Token",
+          "description": "Your Qobuz user_auth_token (X-User-Auth-Token header from a www.qobuz.com/api.json request). Leave empty to reuse the token from the Qobuz CLI's Keychain entry.",
+          "required": false
         }
       ]
     },
@@ -198465,8 +199262,48 @@
               "value": "ar-SA"
             },
             {
-              "title": "🇸🇦 Arabic, Najdi (Saudi Arabia)",
-              "value": "ars-SA"
+              "title": "🇨🇿 Czech (Czechia)",
+              "value": "cs-CZ"
+            },
+            {
+              "title": "🇩🇰 Danish (Denmark)",
+              "value": "da-DK"
+            },
+            {
+              "title": "🇮🇩 Indonesian (Indonesia)",
+              "value": "id-ID"
+            },
+            {
+              "title": "🇲🇾 Malay (Malaysia)",
+              "value": "ms-MY"
+            },
+            {
+              "title": "🇳🇴 Norwegian Bokmål (Norway)",
+              "value": "nb-NO"
+            },
+            {
+              "title": "🇳🇱 Dutch (Netherlands)",
+              "value": "nl-NL"
+            },
+            {
+              "title": "🇳🇴 Norwegian Nynorsk (Norway)",
+              "value": "nn-NO"
+            },
+            {
+              "title": "🇵🇱 Polish (Poland)",
+              "value": "pl-PL"
+            },
+            {
+              "title": "🇷🇴 Romanian (Romania)",
+              "value": "ro-RO"
+            },
+            {
+              "title": "🇸🇪 Swedish (Sweden)",
+              "value": "sv-SE"
+            },
+            {
+              "title": "🇹🇷 Turkish (Turkey)",
+              "value": "tr-TR"
             }
           ]
         },
@@ -210074,6 +210911,250 @@
           "required": false
         }
       ]
+    },
+    {
+      "name": "snapzy",
+      "title": "Snapzy",
+      "description": "Capture screenshots, record your screen, and manage captures with Snapzy.",
+      "icon": "extension-icon.png",
+      "author": "chkzz",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Applications"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/chkzz/snapzy",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/snapzy",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "capture-fullscreen",
+          "title": "Capture Fullscreen",
+          "subtitle": "Snapzy",
+          "description": "Take a fullscreen screenshot with Snapzy.",
+          "mode": "no-view",
+          "keywords": [
+            "screenshot",
+            "fullscreen",
+            "capture"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "capture-area",
+          "title": "Capture Area",
+          "subtitle": "Snapzy",
+          "description": "Select an area to screenshot with Snapzy.",
+          "mode": "no-view",
+          "keywords": [
+            "screenshot",
+            "area",
+            "selection",
+            "capture"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "capture-application",
+          "title": "Capture Application",
+          "subtitle": "Snapzy",
+          "description": "Capture an application window with Snapzy.",
+          "mode": "no-view",
+          "keywords": [
+            "screenshot",
+            "window",
+            "application",
+            "capture"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "capture-active-window",
+          "title": "Capture Active Window",
+          "subtitle": "Snapzy",
+          "description": "Instantly capture the focused window with Snapzy, no selection step.",
+          "mode": "no-view",
+          "keywords": [
+            "screenshot",
+            "window",
+            "active",
+            "focused",
+            "capture"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "capture-area-annotate",
+          "title": "Capture Area and Annotate",
+          "subtitle": "Snapzy",
+          "description": "Capture an area and open Snapzy annotation tools.",
+          "mode": "no-view",
+          "keywords": [
+            "screenshot",
+            "area",
+            "annotate",
+            "markup"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "capture-scrolling",
+          "title": "Scrolling Capture",
+          "subtitle": "Snapzy",
+          "description": "Start a scrolling screenshot with Snapzy.",
+          "mode": "no-view",
+          "keywords": [
+            "screenshot",
+            "scrolling",
+            "capture"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "capture-ocr",
+          "title": "Capture Text (OCR)",
+          "subtitle": "Snapzy",
+          "description": "Extract text from a screen region with Snapzy OCR.",
+          "mode": "no-view",
+          "keywords": [
+            "ocr",
+            "text",
+            "recognition",
+            "capture"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "capture-object-cutout",
+          "title": "Object Cutout",
+          "subtitle": "Snapzy",
+          "description": "Capture and cut out an object from the screen with Snapzy.",
+          "mode": "no-view",
+          "keywords": [
+            "object",
+            "cutout",
+            "capture",
+            "background removal"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "record-screen",
+          "title": "Record Screen",
+          "subtitle": "Snapzy",
+          "description": "Start screen recording with Snapzy.",
+          "mode": "no-view",
+          "keywords": [
+            "record",
+            "screen",
+            "video"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "record-application",
+          "title": "Record Application",
+          "subtitle": "Snapzy",
+          "description": "Start recording an application window with Snapzy.",
+          "mode": "no-view",
+          "keywords": [
+            "record",
+            "window",
+            "application",
+            "video"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "open-annotate",
+          "title": "Open Annotate",
+          "subtitle": "Snapzy",
+          "description": "Open Snapzy annotation editor.",
+          "mode": "no-view",
+          "keywords": [
+            "annotate",
+            "markup",
+            "editor"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "open-video-editor",
+          "title": "Open Video Editor",
+          "subtitle": "Snapzy",
+          "description": "Open Snapzy Video Editor.",
+          "mode": "no-view",
+          "keywords": [
+            "video",
+            "editor",
+            "recording"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "open-cloud-uploads",
+          "title": "Open Cloud Uploads",
+          "subtitle": "Snapzy",
+          "description": "Open Snapzy Cloud Uploads.",
+          "mode": "no-view",
+          "keywords": [
+            "cloud",
+            "uploads",
+            "s3",
+            "r2"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "open-capture-history",
+          "title": "Open Capture History",
+          "subtitle": "Snapzy",
+          "description": "Open Snapzy Capture History.",
+          "mode": "no-view",
+          "keywords": [
+            "history",
+            "captures",
+            "screenshots",
+            "recent"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "show-shortcuts",
+          "title": "Show Shortcuts",
+          "subtitle": "Snapzy",
+          "description": "Show the Snapzy keyboard shortcuts overlay.",
+          "mode": "no-view",
+          "keywords": [
+            "shortcuts",
+            "keyboard",
+            "help"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "open-settings",
+          "title": "Open Settings",
+          "subtitle": "Snapzy",
+          "description": "Open Snapzy Settings.",
+          "mode": "no-view",
+          "keywords": [
+            "settings",
+            "preferences",
+            "configuration"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "sncftraintimes",
@@ -223960,6 +225041,93 @@
       "preferences": []
     },
     {
+      "name": "tabstack",
+      "title": "Tabstack",
+      "description": "Read, research, and act on the web from your keyboard. Powered by Tabstack.",
+      "icon": "extension_icon.png",
+      "author": "tessak22",
+      "contributors": [],
+      "categories": [
+        "Web",
+        "Developer Tools",
+        "Data"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/tessak22/tabstack",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/tabstack",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "extract",
+          "title": "Extract to Markdown",
+          "description": "Turn any URL into clean Markdown",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "generate",
+          "title": "Analyze a Page",
+          "description": "AI summary and analysis of any URL",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "research",
+          "title": "Research a Question",
+          "description": "Get a cited answer from across the web",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "researchMode",
+              "title": "Depth",
+              "description": "Fast is quicker; Balanced consults more sources",
+              "type": "dropdown",
+              "default": "fast",
+              "required": false,
+              "data": [
+                {
+                  "title": "Fast",
+                  "value": "fast"
+                },
+                {
+                  "title": "Balanced",
+                  "value": "balanced"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "automate",
+          "title": "Automate a Task",
+          "description": "Run a browser agent on a page and read the result",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "title": "Tabstack API Key",
+          "description": "Create one at console.tabstack.ai",
+          "type": "password",
+          "required": true
+        }
+      ]
+    },
+    {
       "name": "tabstash",
       "title": "TabStash",
       "description": "Search, browse, and capture bookmarks with TabStash",
@@ -234320,6 +235488,28 @@
             {
               "title": "Title (descending)",
               "value": "title_descending"
+            }
+          ]
+        },
+        {
+          "name": "groupByPriority",
+          "type": "dropdown",
+          "required": false,
+          "title": "Group by priority",
+          "description": "Controls if task are grouped by priority",
+          "default": "group_todo_completed",
+          "data": [
+            {
+              "title": "Todo and Completed",
+              "value": "group_todo_completed"
+            },
+            {
+              "title": "Todo",
+              "value": "group_todo"
+            },
+            {
+              "title": "Completed",
+              "value": "group_completed"
             }
           ]
         },
