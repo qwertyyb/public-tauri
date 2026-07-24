@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-23T19:43:12.174Z",
+  "generatedAt": "2026-07-24T19:46:16.340Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "008de28300cab61aba71b6776bec7ceee204cb3d"
+    "commit": "f0795cc3855c697ce0d54f1be9f9e4992b88b957"
   },
-  "count": 3100,
+  "count": 3105,
   "extensions": [
     {
       "name": "0x0",
@@ -16052,6 +16052,58 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "bcuninstaller",
+      "title": "BCUninstaller",
+      "description": "List installed software and batch uninstall it through BC Uninstaller from Raycast",
+      "icon": "bcuninstaller-icon.png",
+      "author": "sansaxena789",
+      "contributors": [],
+      "categories": [
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/sansaxena789/bcuninstaller",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/bcuninstaller",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "list-applications",
+          "title": "Uninstall Applications",
+          "description": "Browse installed software and batch uninstall queued apps",
+          "mode": "view",
+          "keywords": [],
+          "icon": "bcuninstaller-icon.png",
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "bcuPath",
+          "type": "textfield",
+          "required": true,
+          "title": "BCU Path",
+          "description": "Path to BCU-console.exe or the BC Uninstaller install folder",
+          "placeholder": "C:\\Program Files\\BCUninstaller"
+        },
+        {
+          "name": "autoRemoveHighConfidenceJunk",
+          "type": "checkbox",
+          "required": false,
+          "title": "Auto-Remove High-Confidence Leftovers",
+          "label": "Enable automatic high-confidence leftover cleanup",
+          "description": "When enabled, batch uninstalls ask BC Uninstaller to automatically remove high-confidence leftover registry entries and other uninstall junk.",
+          "default": false
+        }
+      ]
     },
     {
       "name": "beancount-meta",
@@ -43051,6 +43103,100 @@
             {
               "title": "Hide Disputed Territories",
               "value": "hide"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "cove-cast",
+      "title": "CoveCast",
+      "description": "Copy a token contract address anywhere, hit a hotkey, auto-detect the chain, pick a USD amount, and open the matching Cove Telegram bot deeplink.",
+      "icon": "command-icon.png",
+      "author": "bitski",
+      "contributors": [],
+      "categories": [
+        "Finance"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/bitski/cove-cast",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/cove-cast",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "buy",
+          "title": "Buy",
+          "subtitle": "CoveCast",
+          "description": "Detect the chain for the contract address on your clipboard and open a Cove buy deeplink.",
+          "mode": "view",
+          "keywords": [
+            "cove",
+            "buy",
+            "snipe",
+            "ape",
+            "ca",
+            "token",
+            "telegram",
+            "trade"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "quick-buy",
+          "title": "Quick Buy",
+          "subtitle": "CoveCast",
+          "description": "Instantly buy your Quick Buy amount of the contract address on your clipboard — no UI.",
+          "mode": "no-view",
+          "keywords": [
+            "cove",
+            "quick",
+            "snipe",
+            "ape",
+            "qb",
+            "buy"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "amounts",
+          "title": "Buy Amounts (USD)",
+          "description": "Comma-separated USD amounts. Each must fit Cove's format: max 9999 and at most 4 characters incl. the decimal (e.g. 25, 0.5, 9999 — 100.5 is too long).",
+          "type": "textfield",
+          "required": false,
+          "default": "25,50,100,500"
+        },
+        {
+          "name": "quickBuyAmount",
+          "title": "Quick Buy Amount (USD)",
+          "description": "USD amount Quick Buy fires in one keystroke. Max 9999, at most 4 characters incl. the decimal (e.g. 25, 0.5).",
+          "type": "textfield",
+          "required": false,
+          "default": "25"
+        },
+        {
+          "name": "defaultBuyAction",
+          "title": "Default Buy Action",
+          "description": "What picking an amount does: buy it instantly, or open Cove's buy panel to confirm first.",
+          "type": "dropdown",
+          "required": false,
+          "default": "g",
+          "data": [
+            {
+              "title": "Immediate buy",
+              "value": "g"
+            },
+            {
+              "title": "Market panel",
+              "value": "b"
             }
           ]
         }
@@ -117091,6 +117237,60 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "kesha-voice-kit",
+      "title": "Kesha Voice Kit",
+      "description": "Offline microphone dictation powered by the Kesha Voice Kit CLI. Records locally, transcribes locally, and copies text to your clipboard.",
+      "icon": "extension-icon.png",
+      "author": "drakulavich",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/drakulavich/kesha-voice-kit",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/kesha-voice-kit",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "dictate-to-clipboard",
+          "title": "Dictate to Clipboard",
+          "subtitle": "Kesha Voice Kit",
+          "description": "Record from the default microphone, transcribe locally with Kesha Voice Kit, and copy the transcript to the clipboard.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "keshaBinPath",
+          "title": "Kesha Binary Path",
+          "description": "Absolute path to the `kesha` CLI. Leave blank to auto-detect common global install locations.",
+          "type": "textfield",
+          "required": false,
+          "default": "",
+          "placeholder": "/opt/homebrew/bin/kesha"
+        },
+        {
+          "name": "maxRecordingSeconds",
+          "title": "Max Recording Seconds",
+          "description": "Maximum microphone recording duration before the command stops automatically.",
+          "type": "textfield",
+          "required": false,
+          "default": "300",
+          "placeholder": "300"
+        }
+      ]
     },
     {
       "name": "key-value",
@@ -192846,8 +193046,14 @@
       "description": "Search Reddit, Subreddits, or within Subreddits and list the results in Raycast.",
       "icon": "reddit_icon_512.png",
       "author": "ewlcheng",
-      "contributors": [],
-      "categories": [],
+      "contributors": [
+        "chrismessina"
+      ],
+      "categories": [
+        "Fun",
+        "News",
+        "Web"
+      ],
       "license": "MIT",
       "platforms": [
         "macOS",
@@ -192864,8 +193070,25 @@
         {
           "name": "index",
           "title": "Search Reddit",
-          "description": "Searches Reddit and lists the results with the option to sort, show more, or show the results on Reddit.",
+          "description": "Search Reddit posts and list the results with the option to sort or open them on Reddit.",
           "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-subreddits",
+          "title": "Search Subreddits",
+          "description": "Search for subreddits, then browse or favorite them.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "quick-search-subreddit",
+          "title": "Quick Search Subreddit",
+          "subtitle": "Reddit",
+          "description": "Search within a subreddit and open the results on Reddit.",
+          "mode": "no-view",
           "keywords": [],
           "preferences": []
         }
@@ -192873,11 +193096,20 @@
       "preferences": [
         {
           "name": "resultLimit",
-          "description": "Indicate the number of results to display from your queries. Minimum of 1 and maximum of 100.",
+          "description": "How many results to fetch per search (1–100). A larger fetch costs the same single request and is cached, so you can filter over more results.",
           "type": "textfield",
           "required": false,
-          "title": "Number of results to display (1–100)",
-          "default": "10"
+          "title": "Number of results to fetch (1–100)",
+          "default": "50"
+        },
+        {
+          "name": "verboseLogging",
+          "title": "Debug Logging",
+          "type": "checkbox",
+          "required": false,
+          "description": "Show detailed logs in the console for debugging.",
+          "label": "Enable extra diagnostics in the console",
+          "default": false
         }
       ]
     },
@@ -198065,6 +198297,43 @@
               "description": "Switch between Safari search and Safari search history.",
               "label": "iCloud",
               "default": "Search",
+              "data": [
+                {
+                  "value": "search",
+                  "title": "Search"
+                },
+                {
+                  "value": "searchHistory",
+                  "title": "Search History"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "search-all",
+          "title": "Search Tabs, Bookmarks and History",
+          "subtitle": "Safari",
+          "description": "Search your open tabs, bookmarks and history in one place",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "areRemoteTabsUsed",
+              "type": "checkbox",
+              "required": false,
+              "title": "Devices",
+              "description": "Include iCloud tabs across all your devices",
+              "default": true,
+              "label": "iCloud"
+            },
+            {
+              "name": "fallbackSearchType",
+              "type": "dropdown",
+              "required": false,
+              "title": "Fallback Search",
+              "description": "Switch between Safari search and Safari search history.",
+              "default": "search",
               "data": [
                 {
                   "value": "search",
@@ -209684,6 +209953,95 @@
           "type": "checkbox",
           "default": false,
           "required": false
+        }
+      ]
+    },
+    {
+      "name": "sir-golf",
+      "title": "Sir.golf",
+      "description": "Live golf leaderboards (PGA Tour, LPGA, DP World Tour), the full tour schedule with every major badged and one-tap Add to Calendar, plus season rankings — by sir.golf. Free, no account, no API key.",
+      "icon": "command-icon.png",
+      "author": "julianpaul",
+      "contributors": [],
+      "categories": [
+        "Fun",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/julianpaul/sir-golf",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/sir-golf",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "leaderboard",
+          "title": "Leaderboard",
+          "subtitle": "sir.golf",
+          "description": "Live tournament leaderboard plus season rankings — scoring average, FedEx Cup, wins, money and more — with player details.",
+          "mode": "view",
+          "keywords": [
+            "golf",
+            "leaderboard",
+            "scores",
+            "scoring average",
+            "fedex cup",
+            "rankings",
+            "pga",
+            "lpga",
+            "dp world",
+            "tournament"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "golf-season",
+          "title": "Golf Season",
+          "subtitle": "sir.golf",
+          "description": "The tour schedule — this week, upcoming, and any past season with winners and tournament details.",
+          "mode": "view",
+          "keywords": [
+            "golf",
+            "schedule",
+            "season",
+            "tournaments",
+            "calendar",
+            "winners",
+            "results",
+            "pga",
+            "lpga"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "defaultTour",
+          "title": "Default Tour",
+          "description": "Which tour to show first.",
+          "type": "dropdown",
+          "required": false,
+          "default": "pga",
+          "data": [
+            {
+              "title": "PGA Tour",
+              "value": "pga"
+            },
+            {
+              "title": "LPGA",
+              "value": "lpga"
+            },
+            {
+              "title": "DP World Tour",
+              "value": "eur"
+            }
+          ]
         }
       ]
     },
@@ -231748,6 +232106,68 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "threadlens",
+      "title": "Threadlens",
+      "description": "Search local coding-agent sessions across Codex, Claude Code, Cursor, and more.",
+      "icon": "icon.png",
+      "author": "moinulmoin",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/moinulmoin/threadlens",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/threadlens",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "threadlens",
+          "title": "Search Agent Sessions",
+          "description": "Search local coding-agent sessions with Threadlens.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "threadlensCommand",
+          "title": "Threadlens Command",
+          "description": "Optional path to the threadlens CLI if it isn't on your PATH.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "threadlens",
+          "default": ""
+        },
+        {
+          "name": "threadlensArgs",
+          "title": "Threadlens Args",
+          "description": "Optional args before the Threadlens subcommand.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "--config /path/to/config.toml",
+          "default": ""
+        },
+        {
+          "name": "threadlensCwd",
+          "title": "Working Directory",
+          "description": "Optional cwd for running Threadlens.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "~/Projects",
+          "default": ""
+        }
+      ]
     },
     {
       "name": "threads",
