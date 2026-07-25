@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-24T19:46:16.340Z",
+  "generatedAt": "2026-07-25T19:26:14.119Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "f0795cc3855c697ce0d54f1be9f9e4992b88b957"
+    "commit": "d0d48b5179b443664af36d2e0ddbd463afb85eea"
   },
   "count": 3105,
   "extensions": [
@@ -37746,7 +37746,7 @@
     {
       "name": "codex",
       "title": "Codex",
-      "description": "Unofficial Raycast control surface for starting, searching, and managing local Codex threads.",
+      "description": "Monitor and manage your Codex tasks directly from Raycast.",
       "icon": "extension-icon.png",
       "author": "asifk",
       "contributors": [],
@@ -37777,9 +37777,11 @@
             "sessions",
             "history",
             "resume",
+            "rename",
+            "summarize",
             "archive",
             "fork",
-            "summarize"
+            "export"
           ],
           "preferences": []
         },
@@ -37791,8 +37793,7 @@
           "mode": "no-view",
           "keywords": [
             "start",
-            "open",
-            "new"
+            "create"
           ],
           "preferences": []
         },
@@ -37805,7 +37806,9 @@
           "keywords": [
             "start",
             "prompt",
-            "task"
+            "task",
+            "folder",
+            "directory"
           ],
           "preferences": []
         },
@@ -37825,12 +37828,12 @@
         {
           "name": "open-codex",
           "title": "Open Codex",
-          "subtitle": "Codex",
           "description": "Open the Codex app.",
           "mode": "no-view",
           "keywords": [
             "launch",
-            "app"
+            "app",
+            "chatgpt"
           ],
           "preferences": []
         }
@@ -37838,22 +37841,22 @@
       "preferences": [
         {
           "name": "defaultProjectDirectory",
-          "title": "Default Project Directory",
-          "description": "Optional existing local workspace directory to use when starting new Codex threads.",
+          "title": "Default Working Directory",
+          "description": "Default directory for all new threads.",
           "type": "directory",
           "required": false
         },
         {
           "name": "projectsDirectory",
-          "title": "Projects Folder",
-          "description": "Optional parent folder to offer project choices when starting a Codex thread with a prompt.",
+          "title": "Working Directory Root",
+          "description": "Parent folder whose subfolders appear as working directory choices.",
           "type": "directory",
           "required": false
         },
         {
           "name": "codexCliPath",
           "title": "Codex CLI Path",
-          "description": "Optional absolute path to the Codex CLI. Leave empty to auto-detect.",
+          "description": "Optional absolute path to the Codex CLI. Leave blank for auto-discovery.",
           "type": "textfield",
           "placeholder": "/opt/homebrew/bin/codex",
           "required": false
