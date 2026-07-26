@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-25T19:26:14.119Z",
+  "generatedAt": "2026-07-26T19:27:58.476Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "d0d48b5179b443664af36d2e0ddbd463afb85eea"
+    "commit": "77e82d93594d691fef7842334cdbd761181b7fb9"
   },
-  "count": 3105,
+  "count": 3106,
   "extensions": [
     {
       "name": "0x0",
@@ -53078,7 +53078,7 @@
     {
       "name": "dev-servers",
       "title": "Dev Servers",
-      "description": "Project-grouped dashboard to manage dev servers. Detects the framework (Next, Svelte, Astro, Vite, Shopify) and restarts with the right package manager (npm, pnpm, yarn, bun). Kill individually or by project, open in browser, copy URLs, and track uptime.",
+      "description": "Project-grouped dashboard for every dev server running on your Mac. Start, restart, and kill them without leaving Raycast, with the framework (Next, Svelte, Astro, Vite, Shopify) and package manager (npm, pnpm, yarn, bun) detected for you. Live count and quick actions in your menu bar.",
       "icon": "extension-icon.png",
       "author": "tavlean",
       "contributors": [],
@@ -197314,6 +197314,134 @@
       "preferences": []
     },
     {
+      "name": "rpass",
+      "title": "RPass",
+      "description": "Search, edit, generate, and sync your pass-compatible passwords from Raycast.",
+      "icon": "extension-icon.png",
+      "author": "rxtsel",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Security"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows",
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/rxtsel/rpass",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/rpass",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "vault",
+          "title": "Vault",
+          "subtitle": "RPass",
+          "description": "Browse, decrypt, and copy passwords from your pass-compatible vault.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "new-entry",
+          "title": "New Entry",
+          "subtitle": "RPass",
+          "description": "Generate and insert a new password or passphrase.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "sync-vault",
+          "title": "Sync Vault",
+          "subtitle": "RPass",
+          "description": "Inspect and sync the password store Git repository.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "rpassExecutablePath",
+          "type": "textfield",
+          "title": "rpass Executable Path",
+          "description": "Path to the rpass binary. Leave empty if rpass is in PATH.",
+          "required": false
+        },
+        {
+          "name": "gpgExecutablePath",
+          "type": "textfield",
+          "title": "GPG Executable Path",
+          "description": "Path to the gpg binary. Leave empty to auto-detect Homebrew/system paths.",
+          "required": false
+        },
+        {
+          "name": "passwordStoreDir",
+          "type": "directory",
+          "title": "Password Store Directory",
+          "description": "Path to your password store. Default: ~/.password-store.",
+          "required": false
+        },
+        {
+          "name": "defaultAction",
+          "type": "dropdown",
+          "title": "Default Action",
+          "description": "Primary action when selecting a password entry.",
+          "required": false,
+          "default": "copy",
+          "data": [
+            {
+              "title": "Copy to Clipboard",
+              "value": "copy"
+            },
+            {
+              "title": "Paste in Active App",
+              "value": "paste"
+            }
+          ]
+        },
+        {
+          "name": "clipboardTimeout",
+          "type": "dropdown",
+          "title": "Clear Clipboard After",
+          "description": "Automatically clear the clipboard after copying a password.",
+          "required": false,
+          "default": "45",
+          "data": [
+            {
+              "title": "Never",
+              "value": "0"
+            },
+            {
+              "title": "10 seconds",
+              "value": "10"
+            },
+            {
+              "title": "30 seconds",
+              "value": "30"
+            },
+            {
+              "title": "45 seconds",
+              "value": "45"
+            },
+            {
+              "title": "90 seconds",
+              "value": "90"
+            },
+            {
+              "title": "2 minutes",
+              "value": "120"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "rss-reader",
       "title": "RSS Reader",
       "description": "Browse latest news from your favourite sources",
@@ -261783,7 +261911,7 @@
             {
               "name": "hyphenation",
               "title": "Hyphenation",
-              "description": "When joining lines, remove a trailing hyphen if it appears to be a soft line-break hyphen (e.g., `inter-` + `esting` becomes `interesting`).",
+              "description": "When joining lines, remove a trailing soft hyphen (U+00AD), the invisible character used to mark an optional line break. A regular hyphen is always kept, so compounds like `well-known` stay intact.",
               "type": "checkbox",
               "required": false,
               "default": true,
