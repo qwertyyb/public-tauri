@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-26T19:27:58.476Z",
+  "generatedAt": "2026-07-27T19:56:26.716Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "77e82d93594d691fef7842334cdbd761181b7fb9"
+    "commit": "e4093c5b2abc025c79e3796db7174b3b52e28149"
   },
-  "count": 3106,
+  "count": 3114,
   "extensions": [
     {
       "name": "0x0",
@@ -9463,6 +9463,90 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "apple-container",
+      "title": "Apple Container",
+      "description": "Manage containers, images, and volumes created by Apple's open-source container CLI.",
+      "icon": "command-icon.png",
+      "author": "davireisvieira",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/davireisvieira/apple-container",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/apple-container",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "containers",
+          "title": "Manage Containers",
+          "description": "List, start, stop, inspect, and remove containers",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "images",
+          "title": "Manage Images",
+          "description": "List, pull, tag, run, and remove images",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "volumes",
+          "title": "Manage Volumes",
+          "description": "List, create, inspect, and remove volumes",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "system",
+          "title": "Container System",
+          "description": "View daemon status and disk usage, and start or stop the service",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "running-containers",
+          "title": "Running Containers",
+          "description": "Menu bar item showing running containers",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "containerPath",
+          "title": "Container CLI Path",
+          "description": "Absolute path to the container binary",
+          "type": "textfield",
+          "required": false,
+          "default": "/usr/local/bin/container",
+          "placeholder": "/usr/local/bin/container"
+        },
+        {
+          "name": "autoRefresh",
+          "title": "Auto Refresh",
+          "label": "Auto-refresh lists while open",
+          "description": "Periodically refresh lists while a command is open (uses extra CPU)",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        }
+      ]
     },
     {
       "name": "apple-developer-docs",
@@ -32783,6 +32867,40 @@
           "required": false
         }
       ]
+    },
+    {
+      "name": "claude-artifacts",
+      "title": "Claude Artifacts",
+      "description": "Quickly find and open your Claude Artifacts.",
+      "icon": "extension-icon.png",
+      "author": "chrismessina",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/chrismessina/claude-artifacts",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/claude-artifacts",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-artifacts",
+          "title": "Search Artifacts",
+          "subtitle": "Claude Artifacts",
+          "description": "Quickly find and open Claude Artifacts",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "claude-code-cheatsheet",
@@ -80014,110 +80132,79 @@
         {
           "name": "outputPath",
           "title": "Output Folder",
-          "label": "Where to save exported icons",
           "type": "directory",
           "default": "~/Downloads/",
           "required": true,
-          "description": "Base folder to store exported icons"
+          "description": "Where exported icons are saved. Each app gets its own subfolder."
+        },
+        {
+          "name": "defaultExportSize",
+          "title": "Default Size",
+          "type": "dropdown",
+          "default": "512",
+          "required": false,
+          "description": "Size used by Export Icons. Use Export Icon Size… for a one-off, or Export All Sizes for every size.",
+          "data": [
+            {
+              "title": "16 × 16",
+              "value": "16"
+            },
+            {
+              "title": "32 × 32",
+              "value": "32"
+            },
+            {
+              "title": "48 × 48",
+              "value": "48"
+            },
+            {
+              "title": "64 × 64",
+              "value": "64"
+            },
+            {
+              "title": "128 × 128",
+              "value": "128"
+            },
+            {
+              "title": "256 × 256",
+              "value": "256"
+            },
+            {
+              "title": "512 × 512",
+              "value": "512"
+            },
+            {
+              "title": "1024 × 1024",
+              "value": "1024"
+            }
+          ]
         },
         {
           "name": "formatPng",
-          "title": "Export Formats",
-          "label": "PNG",
+          "title": "PNG",
+          "label": "Export PNG",
           "type": "checkbox",
           "default": true,
           "required": false,
-          "description": "Export icons in PNG format"
+          "description": "Lossless, transparent background. The safe default."
         },
         {
           "name": "formatJpeg",
-          "title": "",
-          "label": "JPEG",
+          "title": "JPEG",
+          "label": "Export JPEG",
           "type": "checkbox",
           "default": false,
           "required": false,
-          "description": "Export icons in JPEG format"
+          "description": "Smaller files, no transparency."
         },
         {
           "name": "formatIcns",
-          "title": "",
-          "label": "ICNS (original)",
+          "title": "ICNS",
+          "label": "Export ICNS",
           "type": "checkbox",
           "default": false,
           "required": false,
-          "description": "Export the original .icns file"
-        },
-        {
-          "name": "size16",
-          "title": "Export Icon Sizes",
-          "label": "16px",
-          "type": "checkbox",
-          "default": false,
-          "required": false,
-          "description": "Export a 16×16 PNG"
-        },
-        {
-          "name": "size32",
-          "title": "",
-          "label": "32px",
-          "type": "checkbox",
-          "default": false,
-          "required": false,
-          "description": "Export a 32×32 PNG"
-        },
-        {
-          "name": "size48",
-          "title": "",
-          "label": "48px",
-          "type": "checkbox",
-          "default": false,
-          "required": false,
-          "description": "Export a 48×48 PNG"
-        },
-        {
-          "name": "size64",
-          "title": "",
-          "label": "64px",
-          "type": "checkbox",
-          "default": false,
-          "required": false,
-          "description": "Export a 64×64 PNG"
-        },
-        {
-          "name": "size128",
-          "title": "",
-          "label": "128px",
-          "type": "checkbox",
-          "default": false,
-          "required": false,
-          "description": "Export a 128×128 PNG"
-        },
-        {
-          "name": "size256",
-          "title": "",
-          "label": "256px",
-          "type": "checkbox",
-          "default": false,
-          "required": false,
-          "description": "Export a 256×256 PNG"
-        },
-        {
-          "name": "size512",
-          "title": "",
-          "label": "512px",
-          "type": "checkbox",
-          "default": true,
-          "required": false,
-          "description": "Export a 512×512 PNG"
-        },
-        {
-          "name": "size1024",
-          "title": "",
-          "label": "1024px",
-          "type": "checkbox",
-          "default": false,
-          "required": false,
-          "description": "Export a 1024×1024 PNG"
+          "description": "The app's original .icns file. Unavailable for apps with Asset Catalogs."
         }
       ]
     },
@@ -85876,6 +85963,40 @@
       "preferences": []
     },
     {
+      "name": "glean-search",
+      "title": "Glean Search",
+      "description": "Search your company's knowledge base via Glean",
+      "icon": "icon.png",
+      "author": "faizhasim",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/faizhasim/glean-search",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/glean-search",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-glean",
+          "title": "Search Glean",
+          "description": "Search company docs via Glean CLI",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "gles-to-malioc",
       "title": "GLES to MaliOC",
       "description": "Compile GLES shader code with MaliOC and get performance stats.",
@@ -85995,6 +86116,131 @@
           ],
           "default": "grid",
           "required": false
+        }
+      ]
+    },
+    {
+      "name": "glimpse",
+      "title": "Glimpse",
+      "description": "Search your dictations, transcribe files, and control Glimpse from Raycast.",
+      "icon": "extension-icon.png",
+      "author": "garon",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Communication"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/garon/glimpse",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/glimpse",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "transcriptions",
+          "title": "Search Transcriptions",
+          "subtitle": "Glimpse",
+          "description": "Search and copy past dictations.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "copy-last",
+          "title": "Copy Last Dictation",
+          "subtitle": "Glimpse",
+          "description": "Copy your latest dictation.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "paste-last",
+          "title": "Paste Last Dictation",
+          "subtitle": "Glimpse",
+          "description": "Paste your latest dictation.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "transcribe-file",
+          "title": "Transcribe File",
+          "subtitle": "Glimpse",
+          "description": "Transcribe an audio or video file.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "transcribe-selection",
+          "title": "Transcribe Selected File",
+          "subtitle": "Glimpse",
+          "description": "Transcribe the file selected in Finder.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "browse-library",
+          "title": "Browse Library",
+          "subtitle": "Glimpse",
+          "description": "Browse and export Library transcripts.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "switch-model",
+          "title": "Switch Speech Model",
+          "subtitle": "Glimpse",
+          "description": "Choose your speech model.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "local-api",
+          "title": "Local API",
+          "subtitle": "Glimpse",
+          "description": "Run a local transcription API.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "add-dictionary-word",
+          "title": "Add Dictionary Word",
+          "subtitle": "Glimpse",
+          "description": "Add a word to your dictionary.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "manage-dictionary",
+          "title": "Manage Dictionary",
+          "subtitle": "Glimpse",
+          "description": "Add and remove dictionary words.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "cliPath",
+          "title": "Glimpse CLI",
+          "description": "Path to the glimpse binary. Leave blank to find it automatically.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "~/.local/bin/glimpse"
         }
       ]
     },
@@ -132897,9 +133143,36 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "toggle-degree-radian-mode",
+          "title": "Toggle Degree/Radian Mode",
+          "description": "Switch trigonometric calculations between degrees and radians",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "angleMode",
+          "title": "Angle Mode",
+          "description": "Choose how trigonometric functions interpret inputs and return inverse-function results.",
+          "type": "dropdown",
+          "required": false,
+          "default": "radians",
+          "data": [
+            {
+              "title": "Radians",
+              "value": "radians"
+            },
+            {
+              "title": "Degrees",
+              "value": "degrees"
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "matter",
@@ -160278,6 +160551,89 @@
       "preferences": []
     },
     {
+      "name": "otty",
+      "title": "Otty",
+      "description": "Control the Otty terminal from Raycast.",
+      "icon": "command-icon.png",
+      "author": "Ethan_Cao",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/Ethan_Cao/otty",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/otty",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "open-in-otty",
+          "title": "Open in Otty",
+          "description": "Open the current Finder directory in a new Otty tab.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "new-window",
+          "title": "New Window",
+          "description": "Open a new Otty window.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "new-tab",
+          "title": "New Tab",
+          "description": "Open a new Otty tab, falling back to a new window if needed.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-directory",
+          "title": "Open Directory",
+          "description": "Open a directory in Otty.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "run-command",
+          "title": "Run Command",
+          "description": "Run a shell command in Otty.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "ssh",
+          "title": "SSH",
+          "description": "Open an SSH target in Otty.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "ottyCliPath",
+          "title": "Otty CLI Path",
+          "description": "Path to the Otty control CLI.",
+          "type": "textfield",
+          "required": true,
+          "default": "/Applications/Otty.app/Contents/MacOS/otty-cli"
+        }
+      ]
+    },
+    {
       "name": "oura",
       "title": "Oura",
       "description": "Get data from your Oura ring experience to keep track of your readiness, sleep, activity, and more.",
@@ -160847,6 +161203,170 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "p00f",
+      "title": "P00f - Ephemeral Clipboard",
+      "description": "Create zero-knowledge, ephemeral p00f links from Raycast.",
+      "icon": "icon.png",
+      "author": "miguel_caetano_dias",
+      "contributors": [],
+      "categories": [
+        "Security",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/miguel_caetano_dias/p00f",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/p00f",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "create-poof",
+          "title": "Create Poof",
+          "description": "Create a p00f link from text.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "poof-selection",
+          "title": "Poof Selection",
+          "description": "Create a p00f link from the selected text.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "poof-clipboard",
+          "title": "Poof Clipboard",
+          "description": "Create a p00f link from clipboard text, one copied file, or a clipboard image such as a screenshot.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "base",
+          "title": "p00f Base URL",
+          "description": "Hosted p00f service or a self-hosted base URL.",
+          "type": "textfield",
+          "required": true,
+          "default": "https://p00f.me"
+        },
+        {
+          "name": "defaultTtl",
+          "title": "Default TTL",
+          "description": "Default time-to-live for quick Poofs.",
+          "type": "dropdown",
+          "required": true,
+          "default": "300000",
+          "data": [
+            {
+              "title": "1 minute",
+              "value": "60000"
+            },
+            {
+              "title": "5 minutes",
+              "value": "300000"
+            },
+            {
+              "title": "1 hour",
+              "value": "3600000"
+            },
+            {
+              "title": "1 day",
+              "value": "86400000"
+            },
+            {
+              "title": "7 days",
+              "value": "604800000"
+            },
+            {
+              "title": "30 days",
+              "value": "2592000000"
+            }
+          ]
+        },
+        {
+          "name": "defaultReveals",
+          "title": "Default Reveal Budget",
+          "description": "Default number of Reveals before a Poof burns.",
+          "type": "dropdown",
+          "required": true,
+          "default": "1",
+          "data": [
+            {
+              "title": "1 Reveal",
+              "value": "1"
+            },
+            {
+              "title": "3 Reveals",
+              "value": "3"
+            },
+            {
+              "title": "10 Reveals",
+              "value": "10"
+            },
+            {
+              "title": "Unlimited until TTL",
+              "value": "-1"
+            }
+          ]
+        },
+        {
+          "name": "defaultRevealAnchored",
+          "title": "Reveal-Anchored TTL",
+          "description": "Start the timer on first Reveal by default.",
+          "type": "checkbox",
+          "required": false,
+          "default": false,
+          "label": "Start the timer on first Reveal"
+        },
+        {
+          "name": "defaultAllowViewerDelete",
+          "title": "Viewer Delete",
+          "description": "Let the viewer delete the Poof by default.",
+          "type": "checkbox",
+          "required": false,
+          "default": false,
+          "label": "Let the viewer delete it"
+        },
+        {
+          "name": "defaultRequireTurnstile",
+          "title": "Reveal Captcha",
+          "description": "Require recipients to solve a browser captcha before Reveal by default.",
+          "type": "checkbox",
+          "required": false,
+          "default": false,
+          "label": "Require captcha on Reveal"
+        },
+        {
+          "name": "openInBrowserAfterCreate",
+          "title": "Open After Create",
+          "description": "Open newly created Poof links in the browser.",
+          "type": "checkbox",
+          "required": false,
+          "default": false,
+          "label": "Open link in browser after create"
+        },
+        {
+          "name": "pasteAfterCreate",
+          "title": "Paste After Create",
+          "description": "Paste the created Link into the frontmost app after copying it.",
+          "type": "checkbox",
+          "required": false,
+          "default": false,
+          "label": "Paste Link into frontmost app"
+        }
+      ]
     },
     {
       "name": "package-tracker",
@@ -182038,6 +182558,151 @@
       "preferences": []
     },
     {
+      "name": "quran-quick-insert",
+      "title": "Quran Quick Insert",
+      "description": "Search, copy, and insert Quran ayahs or ranges.",
+      "icon": "icon.png",
+      "author": "yshalsager",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/yshalsager/quran-quick-insert",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/quran-quick-insert",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-quran",
+          "title": "Search Quran",
+          "description": "Search Quran text or enter an ayah range to copy or paste.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "text_style",
+          "title": "Text Style",
+          "description": "Quran text style used for copied output.",
+          "type": "dropdown",
+          "required": false,
+          "default": "uthmani",
+          "data": [
+            {
+              "title": "Uthmani",
+              "value": "uthmani"
+            },
+            {
+              "title": "Imlai",
+              "value": "imlai"
+            }
+          ]
+        },
+        {
+          "name": "reference_style",
+          "title": "Reference Style",
+          "description": "How ayah references are added to copied output.",
+          "type": "dropdown",
+          "required": false,
+          "default": "arabic",
+          "data": [
+            {
+              "title": "[البقرة: 255]",
+              "value": "arabic"
+            },
+            {
+              "title": "(2:255)",
+              "value": "paren"
+            },
+            {
+              "title": "Quran 2:255",
+              "value": "quran"
+            },
+            {
+              "title": "None",
+              "value": "none"
+            }
+          ]
+        },
+        {
+          "name": "prefix",
+          "title": "Text Prefix",
+          "description": "Optional text before copied ayahs.",
+          "type": "dropdown",
+          "required": false,
+          "default": "none",
+          "data": [
+            {
+              "title": "None",
+              "value": "none"
+            },
+            {
+              "title": "قال تعالى",
+              "value": "qaal"
+            },
+            {
+              "title": "الاستعاذة",
+              "value": "istiadhah"
+            },
+            {
+              "title": "البسملة",
+              "value": "basmalah"
+            }
+          ]
+        },
+        {
+          "name": "simplify_words",
+          "title": "Simplify Search Letters",
+          "label": "Simplify Search Letters",
+          "description": "Match common Arabic letter variants while searching, like ا/أ/إ/آ and و/ؤ.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "use_regex",
+          "title": "Regex Search",
+          "label": "Regex Search",
+          "description": "Treat search input as a regular expression.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "harakat",
+          "title": "Search Harakat",
+          "description": "How search handles Arabic diacritics.",
+          "type": "dropdown",
+          "required": false,
+          "default": "ignore",
+          "data": [
+            {
+              "title": "Ignore Harakat",
+              "value": "ignore"
+            },
+            {
+              "title": "Existing Only",
+              "value": "existing_only"
+            },
+            {
+              "title": "Exact",
+              "value": "exact"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "qutebrowser-tabs",
       "title": "Qutebrowser Tabs",
       "description": "Search and manage qutebrowser tabs",
@@ -193568,6 +194233,99 @@
           "placeholder": "🗓 Daily Log, [[✅ Tasks]]"
         }
       ]
+    },
+    {
+      "name": "reflect-open",
+      "title": "Reflect Open",
+      "description": "Quickly append thoughts and tasks to your Reflect Open daily note.",
+      "icon": "reflect-open.png",
+      "author": "jaseem_ts",
+      "contributors": [],
+      "categories": [
+        "Applications",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/jaseem_ts/reflect-open",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/reflect-open",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "append",
+          "title": "Append to Daily Note",
+          "subtitle": "Reflect Open",
+          "description": "Append a note or task to your Reflect Open daily note.",
+          "mode": "view",
+          "keywords": [
+            "reflect",
+            "reflect open",
+            "daily",
+            "append",
+            "capture"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "quick-append",
+          "title": "Quick Append to Daily Note",
+          "subtitle": "Reflect Open",
+          "description": "Quickly append to your Reflect Open daily note via a command argument or fallback text.",
+          "mode": "no-view",
+          "keywords": [
+            "reflect",
+            "reflect open",
+            "daily",
+            "append",
+            "capture"
+          ],
+          "preferences": [
+            {
+              "name": "isTask",
+              "title": "Capture As",
+              "label": "Add as an open task",
+              "description": "Add the line as an open task instead of a plain bullet.",
+              "type": "checkbox",
+              "required": false,
+              "default": false
+            },
+            {
+              "name": "prependTimestamp",
+              "title": "Timestamp",
+              "label": "Prepend the current time",
+              "description": "Prefix the captured line with the current time.",
+              "type": "checkbox",
+              "required": false,
+              "default": false
+            },
+            {
+              "name": "timestampFormat",
+              "title": "Timestamp Format",
+              "description": "The format of the prepended time.",
+              "type": "dropdown",
+              "data": [
+                {
+                  "title": "12-hour (2:30 PM)",
+                  "value": "12"
+                },
+                {
+                  "title": "24-hour (14:30)",
+                  "value": "24"
+                }
+              ],
+              "default": "12",
+              "required": false
+            }
+          ]
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "refresh-browsers",
