@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-27T19:56:26.716Z",
+  "generatedAt": "2026-07-28T20:16:28.035Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "e4093c5b2abc025c79e3796db7174b3b52e28149"
+    "commit": "0667f4659f63bed49afcdf63fbc8d72cd5eb589e"
   },
-  "count": 3114,
+  "count": 3124,
   "extensions": [
     {
       "name": "0x0",
@@ -2699,7 +2699,8 @@
         "LightQuantum",
         "Mmehdi06",
         "abhiy13",
-        "kim-raaschou-nielsen"
+        "kim-raaschou-nielsen",
+        "zhenpewu"
       ],
       "categories": [
         "Productivity",
@@ -2778,7 +2779,16 @@
           ]
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "aerospaceBin",
+          "title": "Aerospace Binary Path",
+          "description": "Path to the aerospace binary. Leave empty to auto-detect from common locations.",
+          "required": false,
+          "type": "textfield",
+          "placeholder": "/opt/homebrew/bin/aerospace"
+        }
+      ]
     },
     {
       "name": "affine",
@@ -7779,6 +7789,531 @@
           "description": "Opens X/Twitter or Instagram URLs from clipboard via privacy frontends",
           "mode": "no-view",
           "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "anvil",
+      "title": "Anvil",
+      "description": "Navigate Anvil's native developer toolbox from Raycast.",
+      "icon": "icon.png",
+      "author": "alexminator1999",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "1.0.0",
+      "storeUrl": "https://www.raycast.com/alexminator1999/anvil",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/anvil",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-tools",
+          "title": "Search Anvil Tools",
+          "description": "Search Anvil tools and open the selected tool.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-json",
+          "title": "JSON Format/Validate",
+          "subtitle": "Open in Anvil",
+          "description": "Format, beautify, or minify JSON strings",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-timestamp",
+          "title": "Timestamp Converter",
+          "subtitle": "Open in Anvil",
+          "description": "Convert between Unix timestamps, dates, and timezones",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-base64",
+          "title": "Base64 Encode/Decode",
+          "subtitle": "Open in Anvil",
+          "description": "Encode and decode Base64 strings with format variants",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-url",
+          "title": "URL Encode/Decode",
+          "subtitle": "Open in Anvil",
+          "description": "Encode and decode URLs with RFC 3986 and form encoding support",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-jwt",
+          "title": "JWT Debugger",
+          "subtitle": "Open in Anvil",
+          "description": "Decode and verify JWT tokens",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-regexp",
+          "title": "RegExp Tester",
+          "subtitle": "Open in Anvil",
+          "description": "Test and debug regular expressions with live matching",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-uuid",
+          "title": "UUID/ULID Generator",
+          "subtitle": "Open in Anvil",
+          "description": "Generate and decode UUIDs, ULIDs, and other identifiers",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-textdiff",
+          "title": "Text Diff Checker",
+          "subtitle": "Open in Anvil",
+          "description": "Compare two texts and highlight differences",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-yaml",
+          "title": "YAML ↔ JSON",
+          "subtitle": "Open in Anvil",
+          "description": "Convert between YAML and JSON formats with auto-detection",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-numberbase",
+          "title": "Number Base Converter",
+          "subtitle": "Open in Anvil",
+          "description": "Convert between binary, octal, decimal, hexadecimal, and custom bases",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-htmlpreview",
+          "title": "HTML Preview",
+          "subtitle": "Open in Anvil",
+          "description": "Preview and format HTML with live WebView rendering",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-backslashescape",
+          "title": "Backslash Escape/Unescape",
+          "subtitle": "Open in Anvil",
+          "description": "Escape and unescape backslash sequences (\\n, \\t, etc.)",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-htmlentity",
+          "title": "HTML Entity Encode/Decode",
+          "subtitle": "Open in Anvil",
+          "description": "Encode and decode HTML entities with named and numeric formats",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-html-beautify",
+          "title": "HTML Beautify/Minify",
+          "subtitle": "Open in Anvil",
+          "description": "Format and minify HTML documents",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-css-beautify",
+          "title": "CSS Beautify/Minify",
+          "subtitle": "Open in Anvil",
+          "description": "Format and minify CSS stylesheets",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-js-beautify",
+          "title": "JS Beautify/Minify",
+          "subtitle": "Open in Anvil",
+          "description": "Format and minify JavaScript code",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-erb-beautify",
+          "title": "ERB Beautify/Minify",
+          "subtitle": "Open in Anvil",
+          "description": "Format Ruby embedded templates",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-less-beautify",
+          "title": "LESS Beautify/Minify",
+          "subtitle": "Open in Anvil",
+          "description": "Format and minify LESS stylesheets",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-scss-beautify",
+          "title": "SCSS Beautify/Minify",
+          "subtitle": "Open in Anvil",
+          "description": "Format and minify SCSS/Sass stylesheets",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-xml-beautify",
+          "title": "XML Beautify/Minify",
+          "subtitle": "Open in Anvil",
+          "description": "Format and minify XML documents",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-loremipsum",
+          "title": "Lorem Ipsum Generator",
+          "subtitle": "Open in Anvil",
+          "description": "Generate placeholder text, names, emails, and URLs",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-qrcode",
+          "title": "QR Code Reader/Generator",
+          "subtitle": "Open in Anvil",
+          "description": "Generate and read QR codes with templates and error correction",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-stringinspector",
+          "title": "String Inspector",
+          "subtitle": "Open in Anvil",
+          "description": "Analyze string encoding, Unicode, character classes, security, and patterns",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-log-formatter",
+          "title": "Logs Formatter",
+          "subtitle": "Open in Anvil",
+          "description": "Format, inspect, and filter developer logs",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-signing-inspector",
+          "title": "Mac App / Signing Inspector",
+          "subtitle": "Open in Anvil",
+          "description": "Inspect app bundles, Info.plist files, entitlements, signing, and provisioning profiles",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-string-case",
+          "title": "String Case Converter",
+          "subtitle": "Open in Anvil",
+          "description": "Convert text between camelCase, snake_case, kebab-case, title case, and more",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-line-sort-dedupe",
+          "title": "Line Sort & Dedupe",
+          "subtitle": "Open in Anvil",
+          "description": "Sort line-based text, remove duplicates, and normalize whitespace or case",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-cron-job",
+          "title": "Cron Job Parser",
+          "subtitle": "Open in Anvil",
+          "description": "Validate cron expressions and explain each schedule field",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-color-converter",
+          "title": "Color Converter",
+          "subtitle": "Open in Anvil",
+          "description": "Convert HEX, RGB, HSL, HSV, and CMYK colors with palette harmonies",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-random-string",
+          "title": "Random String Generator",
+          "subtitle": "Open in Anvil",
+          "description": "Generate secure random strings with configurable alphabets",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-csv",
+          "title": "JSON ↔ CSV",
+          "subtitle": "Open in Anvil",
+          "description": "Convert between JSON and CSV with auto-detection and configurable delimiters",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-json-to-code",
+          "title": "JSON to Code",
+          "subtitle": "Open in Anvil",
+          "description": "Generate typed models from JSON across Swift, Kotlin, TypeScript, Python, Java, C#, Go, Rust, Dart, and more",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-localization-inspector",
+          "title": "Localization Inspector",
+          "subtitle": "Open in Anvil",
+          "description": "Analyze Android, Apple, and web localization keys, duplicates, placeholders, plurals, and safe rename exports",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-curl-to-code",
+          "title": "CURL to Code",
+          "subtitle": "Open in Anvil",
+          "description": "Convert a cURL command into request code for fetch, axios, Python, Go, PHP, Java, Rust, and more",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-hex-ascii",
+          "title": "Hex ↔ ASCII",
+          "subtitle": "Open in Anvil",
+          "description": "Convert between hexadecimal byte pairs and ASCII text",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-hash",
+          "title": "Hash Generator",
+          "subtitle": "Open in Anvil",
+          "description": "Compute MD2/4/5, SHA-1, SHA-2, SHA-3, Keccak-256 digests with HMAC and verify support",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-certificate-decoder",
+          "title": "X.509 Certificate Decoder",
+          "subtitle": "Open in Anvil",
+          "description": "Decode PEM and DER certificates with subject, issuer, SANs, validity, fingerprints, and warnings",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-htmltojsx",
+          "title": "HTML to JSX",
+          "subtitle": "Open in Anvil",
+          "description": "Convert HTML markup to React-compatible JSX",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-markdownpreview",
+          "title": "Markdown Preview",
+          "subtitle": "Open in Anvil",
+          "description": "Preview Markdown and convert to HTML or HTML + CSS",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-sql-formatter",
+          "title": "SQL Formatter",
+          "subtitle": "Open in Anvil",
+          "description": "Format SQL queries with dialect-aware parsing across MySQL, PostgreSQL, BigQuery, T-SQL and more",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-toml",
+          "title": "TOML Formatter",
+          "subtitle": "Open in Anvil",
+          "description": "Format, minify, validate, and convert TOML to JSON or YAML",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-keypair",
+          "title": "SSH Key Generator",
+          "subtitle": "Open in Anvil",
+          "description": "Generate SSH key pairs (Ed25519, RSA, ECDSA) with OpenSSH public keys, PEM and OpenSSH private keys, fingerprints, and randomart",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-subnet",
+          "title": "IP/Subnet Calculator",
+          "subtitle": "Open in Anvil",
+          "description": "Calculate IPv4 and IPv6 subnets, masks, host ranges, and counts from CIDR or netmask notation",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-otp",
+          "title": "OTP/TOTP Generator",
+          "subtitle": "Open in Anvil",
+          "description": "Generate and validate TOTP and HOTP one-time passwords with QR code export",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-php-array",
+          "title": "PHP Array ↔ JSON",
+          "subtitle": "Open in Anvil",
+          "description": "Convert between PHP array literals and JSON, with var_export output support",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-php-serialize",
+          "title": "PHP Serialize/Unserialize",
+          "subtitle": "Open in Anvil",
+          "description": "Decode and encode PHP serialize() blobs and session data with a typed tree and JSON view",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-command-palette",
+          "title": "Open Anvil Command Palette",
+          "subtitle": "Run in Anvil",
+          "description": "Open Anvil's command palette.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "format-json-clipboard",
+          "title": "Format JSON Clipboard",
+          "subtitle": "Run in Anvil",
+          "description": "Format the latest copied JSON in Anvil and copy the result.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "decode-base64-clipboard",
+          "title": "Decode Base64 Clipboard",
+          "subtitle": "Run in Anvil",
+          "description": "Decode the latest copied Base64 text in Anvil and copy the result.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
           "preferences": []
         }
       ],
@@ -27840,7 +28375,8 @@
         "pernielsentikaer",
         "raulg",
         "ridemountainpig",
-        "bendrucker"
+        "bendrucker",
+        "zeev"
       ],
       "categories": [
         "Developer Tools"
@@ -27939,6 +28475,10 @@
                 {
                   "title": "Monochrome",
                   "value": "monochrome"
+                },
+                {
+                  "title": "Pie Chart",
+                  "value": "pie"
                 }
               ]
             },
@@ -27985,8 +28525,29 @@
                 {
                   "title": "ASCII (#-)",
                   "value": "ascii"
+                },
+                {
+                  "title": "Pies (●)",
+                  "value": "pies"
                 }
               ]
+            },
+            {
+              "name": "menuBarTimeRemaining",
+              "type": "checkbox",
+              "required": false,
+              "label": "Show Time Remaining",
+              "description": "Show 5-hour session time remaining next to the menu bar title",
+              "default": false
+            },
+            {
+              "name": "menuBarTimeRemainingFormat",
+              "type": "textfield",
+              "required": false,
+              "title": "Time Remaining Format",
+              "description": "Format string for time remaining. Placeholders: {h} hours, {m} minutes, {M} total minutes, {h.f} fractional hours. Example: {h}h{m}m → 1h23m",
+              "default": "{h}h{m}m",
+              "placeholder": "e.g., {h}h{m}m or {M}m or {h.f}h"
             }
           ]
         },
@@ -52615,6 +53176,82 @@
       ]
     },
     {
+      "name": "design-file-finder",
+      "title": "Design File Finder",
+      "description": "Search, sort by recency, and launch design project files (.prproj, .psd, .psb, .ai, .aep) across mounted drives.",
+      "icon": "extension-icon.png",
+      "author": "yusoufu",
+      "contributors": [],
+      "categories": [
+        "Design Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/yusoufu/design-file-finder",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/design-file-finder",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-design-files",
+          "title": "Search Design Files",
+          "description": "Find Premiere, Photoshop, Illustrator, and After Effects files across your drives.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "new-from-template",
+          "title": "New from Template",
+          "description": "Create a new Photoshop, Illustrator, After Effects, or Premiere file from a template.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "templatesFolder",
+              "type": "directory",
+              "required": false,
+              "title": "Templates Folder",
+              "description": "Folder of starter .psd/.ai/.aep/.prproj files. Searched recursively."
+            },
+            {
+              "name": "defaultDestination",
+              "type": "directory",
+              "required": false,
+              "title": "Default Destination",
+              "description": "Optional default folder where new projects are created."
+            }
+          ]
+        }
+      ],
+      "preferences": [
+        {
+          "name": "enrichRecency",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "title": "Last Opened Dates",
+          "label": "Use Spotlight \"last opened\" on indexed drives",
+          "description": "Enriches sorting with the real last-opened date on indexed drives. Falls back to modified time when off or unavailable."
+        },
+        {
+          "name": "hideAutoSaves",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "title": "Auto-Save Files",
+          "label": "Hide Adobe auto-save backups",
+          "description": "Filters out files inside \"Auto-Save\" folders (Premiere/After Effects backup churn) so the real projects surface."
+        }
+      ]
+    },
+    {
       "name": "design-skills",
       "title": "Design Skills",
       "description": "Browse, preview, and install brand design skills for your AI coding agent.",
@@ -59887,6 +60524,74 @@
           "description": "Create a personal API key in your Dovetail account settings",
           "link": "https://dovetail.com/settings/user/account",
           "placeholder": "Enter your personal Dovetail API key"
+        }
+      ]
+    },
+    {
+      "name": "downdetector",
+      "title": "Downdetector",
+      "description": "Instantly check if any service is down, see 24h report charts, and report problems — powered by Downdetector.",
+      "icon": "extension-icon.png",
+      "author": "camille_maurel",
+      "contributors": [],
+      "categories": [
+        "Web",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "version": "1.0.0",
+      "storeUrl": "https://www.raycast.com/camille_maurel/downdetector",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/downdetector",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-service",
+          "title": "Check Service Status",
+          "subtitle": "Downdetector",
+          "description": "Search for any service and check its current status, view the 24h report chart, or submit a problem report.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "locale",
+          "title": "Region",
+          "description": "Downdetector region to query",
+          "type": "dropdown",
+          "required": false,
+          "default": "com",
+          "data": [
+            {
+              "title": "Global (downdetector.com)",
+              "value": "com"
+            },
+            {
+              "title": "France (downdetector.fr)",
+              "value": "fr"
+            },
+            {
+              "title": "UK (downdetector.co.uk)",
+              "value": "co.uk"
+            },
+            {
+              "title": "Germany (downdetector.de)",
+              "value": "de"
+            },
+            {
+              "title": "Spain (downdetector.es)",
+              "value": "es"
+            }
+          ]
         }
       ]
     },
@@ -75285,6 +75990,51 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "fmhy-search",
+      "title": "FMHY Search",
+      "description": "Search the FreeMediaHeckYeah database of free resources",
+      "icon": "icon.png",
+      "author": "akshit_mehta",
+      "contributors": [],
+      "categories": [
+        "Web",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/akshit_mehta/fmhy-search",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/fmhy-search",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search",
+          "title": "FMHY Search",
+          "description": "Offline search of FMHY resources and mirrors",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "showNsfw",
+          "type": "checkbox",
+          "required": false,
+          "title": "NSFW Content",
+          "label": "Include NSFW results in search",
+          "description": "If enabled, search results will include NSFW categories and links.",
+          "default": false
+        }
+      ]
     },
     {
       "name": "focus",
@@ -115412,7 +116162,8 @@
         "YourMCGeek",
         "pernielsentikaer",
         "ridemountainpig",
-        "0xdhrv"
+        "0xdhrv",
+        "itggood2420"
       ],
       "categories": [
         "Data",
@@ -115444,6 +116195,14 @@
           "name": "jwt-list",
           "title": "Search Decoded JWT",
           "description": "Search and copy the contents of your JWT",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "debug",
+          "title": "JWT Debugger",
+          "description": "Decode, encode, edit, re-sign, and verify a JSON Web Token",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -126180,6 +126939,56 @@
           "required": true,
           "type": "password",
           "placeholder": "Password..."
+        }
+      ]
+    },
+    {
+      "name": "links-folder",
+      "title": "Links Folder",
+      "description": "Browse link folders and open all links at once, like a browser favorites bar.",
+      "icon": "extension-icon.png",
+      "author": "Francescoparadiso",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/Francescoparadiso/links-folder",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/links-folder",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "explore",
+          "title": "Explore Links",
+          "description": "Navigate and manage your saved links and folders.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "export-links",
+          "title": "Export Links",
+          "description": "Exports your saved links as a JSON file to your Downloads folder.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "linksPath",
+          "title": "Links JSON Path",
+          "description": "Optional absolute path to a custom links.json file.",
+          "type": "textfield",
+          "required": false
         }
       ]
     },
@@ -141960,6 +142769,60 @@
       "preferences": []
     },
     {
+      "name": "mozaika",
+      "title": "Mozaika — Decode Design Systems",
+      "description": "Decode any website's real design system — colors, fonts, type scale and buttons — and search a curated library of shipped product UIs, right from Raycast.",
+      "icon": "icon.png",
+      "author": "sezai_c",
+      "contributors": [],
+      "categories": [
+        "Design Tools",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/sezai_c/mozaika",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/mozaika",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "decode-site",
+          "title": "Decode a Site",
+          "subtitle": "Mozaika",
+          "description": "Decode any website's real design system — colors, fonts, type scale, radii and primary button. Copy it as an agent prompt and build to spec.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-references",
+          "title": "Search Design References",
+          "subtitle": "Mozaika",
+          "description": "Search a curated library of real, shipped product screens and open them in Mozaika.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "mozaikaToken",
+          "title": "Mozaika Token",
+          "label": "Unlimited decodes",
+          "description": "Optional. Paste your Founder/Pro token (mzk_…) from mozaika.design/connect to lift the daily decode limit.",
+          "type": "password",
+          "required": false
+        }
+      ]
+    },
+    {
       "name": "mozeidon",
       "title": "Mozeidon",
       "description": "Search, open tabs and bookmarks in Firefox via Mozeidon add-on",
@@ -145729,6 +146592,49 @@
           "mode": "no-view",
           "keywords": [],
           "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "nepali-typing",
+      "title": "Nepali Typing",
+      "description": "Convert romanized Nepali to Devanagari and paste it anywhere.",
+      "icon": "command-icon.png",
+      "author": "viper_x",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/viper_x/nepali-typing",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/nepali-typing",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "index",
+          "title": "Type in Nepali",
+          "description": "Convert romanized Nepali to Devanagari.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "useOnline",
+              "title": "Online Suggestions",
+              "label": "Use Google suggestions when online",
+              "description": "When on, fetch ranked Devanagari candidates from Google Input Tools. When off, use the offline deterministic engine only.",
+              "type": "checkbox",
+              "required": false,
+              "default": true
+            }
+          ]
         }
       ],
       "preferences": []
@@ -207596,7 +208502,17 @@
           "preferences": []
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "closeMainWindow",
+          "title": "Close Main Window",
+          "description": "If you trigger commands by opening Raycast's main window (instead of keyboard shortcuts), keep this ON to ensure the main window closes before taking a screenshot — otherwise it may appear in the capture. Note: with this ON, you cannot screenshot Raycast's main window itself. If you trigger commands via keyboard shortcuts, set this to OFF — the main window won't open, so there's no need to close it.",
+          "type": "checkbox",
+          "required": true,
+          "default": true,
+          "label": "Close Raycast Main Window before capturing"
+        }
+      ]
     },
     {
       "name": "shroud-email",
@@ -228091,6 +229007,196 @@
       ]
     },
     {
+      "name": "tasknotes",
+      "title": "TaskNotes",
+      "description": "Manage TaskNotes tasks in Obsidian from Raycast.",
+      "icon": "icon.png",
+      "author": "robinradx",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/robinradx/tasknotes",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/tasknotes",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "quick-add-task",
+          "title": "Quick Add Task",
+          "description": "Create a TaskNotes task from natural language.",
+          "mode": "no-view",
+          "keywords": [
+            "natural language",
+            "capture",
+            "inbox"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "switch-default-vault",
+          "title": "Switch Default Vault",
+          "description": "Choose the default vault used by inline Quick Add and Create Task.",
+          "mode": "view",
+          "keywords": [
+            "vault",
+            "default",
+            "switch"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "search-tasks",
+          "title": "Search Tasks",
+          "description": "Search TaskNotes tasks in an Obsidian vault.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "show-agenda",
+          "title": "Show Agenda",
+          "description": "Show open TaskNotes tasks grouped by due and scheduled dates.",
+          "mode": "view",
+          "keywords": [
+            "agenda",
+            "today",
+            "due",
+            "scheduled"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "create-task",
+          "title": "Create Task",
+          "description": "Create a new TaskNotes task in an Obsidian vault.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "vaultPath",
+          "title": "Obsidian Vault or Vaults Folder",
+          "description": "Single-vault mode: your vault folder. Multi-vault mode: the parent folder containing vault folders.",
+          "type": "directory",
+          "required": true
+        },
+        {
+          "name": "vaultMode",
+          "title": "Vault Mode",
+          "description": "Use one vault directly, or scan child folders as separate vaults.",
+          "type": "dropdown",
+          "required": true,
+          "default": "single",
+          "data": [
+            {
+              "title": "Single Vault",
+              "value": "single"
+            },
+            {
+              "title": "Multiple Vaults",
+              "value": "multiple"
+            }
+          ]
+        },
+        {
+          "name": "tasksFolder",
+          "title": "Fallback Tasks Folder",
+          "description": "Used only when TaskNotes settings cannot be read from the vault.",
+          "type": "textfield",
+          "required": true,
+          "default": "TaskNotes/Tasks"
+        },
+        {
+          "name": "storeTitleInFilename",
+          "title": "Fallback Store Title in Filename",
+          "description": "Used only when TaskNotes settings cannot be read from the vault.",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "label": "Omit the title frontmatter property for new tasks"
+        },
+        {
+          "name": "filenameFormat",
+          "title": "Fallback Filename Format",
+          "description": "Used only when TaskNotes settings cannot be read from the vault.",
+          "type": "dropdown",
+          "required": true,
+          "default": "title",
+          "data": [
+            {
+              "title": "Title",
+              "value": "title"
+            },
+            {
+              "title": "Zettelkasten",
+              "value": "zettel"
+            },
+            {
+              "title": "Timestamp",
+              "value": "timestamp"
+            }
+          ]
+        },
+        {
+          "name": "taskTag",
+          "title": "Fallback Task Tag",
+          "description": "Used only when TaskNotes settings cannot be read from the vault.",
+          "type": "textfield",
+          "required": true,
+          "default": "task"
+        },
+        {
+          "name": "taskPropertyName",
+          "title": "Fallback Task Property Name",
+          "description": "Used only when TaskNotes settings cannot be read from the vault.",
+          "type": "textfield",
+          "required": false
+        },
+        {
+          "name": "taskPropertyValue",
+          "title": "Fallback Task Property Value",
+          "description": "Used only when TaskNotes settings cannot be read from the vault.",
+          "type": "textfield",
+          "required": false
+        },
+        {
+          "name": "openStatus",
+          "title": "Fallback Open Status",
+          "description": "Used only when TaskNotes settings cannot be read from the vault.",
+          "type": "textfield",
+          "required": true,
+          "default": "open"
+        },
+        {
+          "name": "doneStatus",
+          "title": "Fallback Done Status",
+          "description": "Used only when TaskNotes settings cannot be read from the vault.",
+          "type": "textfield",
+          "required": true,
+          "default": "done"
+        },
+        {
+          "name": "showCompletedTasks",
+          "title": "Show Completed Tasks",
+          "description": "Show completed tasks in Search Tasks.",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "label": "Include completed tasks in search results"
+        }
+      ]
+    },
+    {
       "name": "taskplane",
       "title": "Taskplane",
       "description": "Manage your tasks for Taskplane right in Raycast",
@@ -230062,6 +231168,102 @@
               "value": "km"
             }
           ]
+        }
+      ]
+    },
+    {
+      "name": "tesla-clips",
+      "title": "Tesla Clips",
+      "description": "Manage Tesla dashcam and Sentry clips — merge split recordings or remove merged outputs.",
+      "icon": "icon.png",
+      "author": "TurboCoder13",
+      "contributors": [],
+      "categories": [
+        "Media",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "1.0.0",
+      "storeUrl": "https://www.raycast.com/TurboCoder13/tesla-clips",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/tesla-clips",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "tesla-clips",
+          "title": "Tesla Clips",
+          "description": "Scan Tesla clip folders, merge split recordings, or remove merged outputs.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "defaultSourcePath",
+          "type": "textfield",
+          "required": false,
+          "title": "Default Source Folder",
+          "description": "Used when no Finder folders are selected.",
+          "placeholder": "/Users/you/Downloads/TeslaClips"
+        },
+        {
+          "name": "outputRootPath",
+          "type": "textfield",
+          "required": false,
+          "title": "Output Root Folder",
+          "description": "Optional. If empty, merged files are written to each event folder under merged/.",
+          "placeholder": "/Users/you/Movies/TeslaMerged"
+        },
+        {
+          "name": "ffmpegPath",
+          "type": "textfield",
+          "required": false,
+          "default": "ffmpeg",
+          "title": "ffmpeg Binary",
+          "description": "Path to ffmpeg executable used for concatenation. If unresolved, common macOS locations are auto-detected."
+        },
+        {
+          "name": "overwriteExisting",
+          "type": "checkbox",
+          "required": false,
+          "default": false,
+          "label": "Overwrite Existing Merged Files",
+          "title": "Overwrite Existing Merged Files",
+          "description": "If enabled, existing merged output files are replaced. Source split clips are not deleted."
+        },
+        {
+          "name": "deleteSourceSegmentsAfterMerge",
+          "type": "checkbox",
+          "required": false,
+          "default": false,
+          "label": "Delete Original Split Clips After Merge",
+          "title": "Delete Original Split Clips After Merge",
+          "description": "Delete source split clips only when a merged output is created successfully."
+        },
+        {
+          "name": "openOutputWhenDone",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "label": "Open Output Folder After Merge",
+          "title": "Open Output Folder After Merge",
+          "description": "Open the first output folder in Finder after completion."
+        },
+        {
+          "name": "enableDebugLogging",
+          "type": "checkbox",
+          "required": false,
+          "default": false,
+          "label": "Enable Debug Logging",
+          "title": "Enable Debug Logging",
+          "description": "Emit verbose logs in Raycast command logs."
         }
       ]
     },
@@ -235376,7 +236578,8 @@
       "icon": "command-icon.png",
       "author": "SuoweiHu",
       "contributors": [
-        "gheorghiuradu"
+        "gheorghiuradu",
+        "mattiacolombomc"
       ],
       "categories": [
         "System"
@@ -235424,6 +236627,45 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "cmd-clean-snapshots",
+          "title": "Clean Local Snapshots",
+          "description": "Reclaim disk space by listing and bulk-deleting local APFS snapshots. macOS creates these when your backup disk is disconnected, silently consuming 50-200GB+ on Macs with limited storage.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "concurrency",
+              "type": "dropdown",
+              "required": true,
+              "title": "Parallel Deletion Threads",
+              "description": "Number of snapshots to delete simultaneously. Higher = faster but more CPU usage.",
+              "default": "3",
+              "data": [
+                {
+                  "title": "1 Thread (Sequential - Slowest, Safest)",
+                  "value": "1"
+                },
+                {
+                  "title": "2 Threads (Conservative)",
+                  "value": "2"
+                },
+                {
+                  "title": "3 Threads (Balanced - Recommended)",
+                  "value": "3"
+                },
+                {
+                  "title": "4 Threads (Aggressive)",
+                  "value": "4"
+                },
+                {
+                  "title": "5 Threads (Maximum - Fastest, Most CPU)",
+                  "value": "5"
+                }
+              ]
+            }
+          ]
         }
       ],
       "preferences": []
@@ -244879,7 +246121,8 @@
       "contributors": [
         "danielferguson",
         "pernielsentikaer",
-        "thomas"
+        "thomas",
+        "0xdhrv"
       ],
       "categories": [
         "Productivity",
@@ -247986,6 +249229,51 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "uploadkit",
+      "title": "UploadKit Image Uploader",
+      "description": "Upload images to UploadKit and copy their CDN URL",
+      "icon": "extension-icon.png",
+      "author": "drumst0ck",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Media"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/drumst0ck/uploadkit",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/uploadkit",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "upload-image",
+          "title": "Upload Image",
+          "subtitle": "UploadKit",
+          "description": "Upload an image and copy its CDN URL",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "title": "UploadKit API Key",
+          "description": "Create an API key in the UploadKit dashboard under Project Settings → API Keys",
+          "type": "password",
+          "required": true,
+          "placeholder": "uk_live_…"
+        }
+      ]
     },
     {
       "name": "uploadthing",
