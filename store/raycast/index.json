@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-28T20:16:28.035Z",
+  "generatedAt": "2026-07-29T19:40:37.840Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "0667f4659f63bed49afcdf63fbc8d72cd5eb589e"
+    "commit": "3eebaef28ae9c424de63cc0fd5c9f9c94f52f865"
   },
-  "count": 3124,
+  "count": 3130,
   "extensions": [
     {
       "name": "0x0",
@@ -13600,6 +13600,58 @@
           "description": "The URL of the server to connect to.",
           "placeholder": "e.g. https://atomicdata.dev",
           "default": "https://atomicdata.dev"
+        }
+      ]
+    },
+    {
+      "name": "atomtick",
+      "title": "AtomTick",
+      "description": "NTP-synchronized atomic reference time as a live analog clock face, with a digital readout underneath.",
+      "icon": "icon.png",
+      "author": "IngoJ",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Fun"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/IngoJ/atomtick",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/atomtick",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "analog-clock",
+          "title": "Analog Clock",
+          "description": "Live analog clock face with a digital readout, rendered from NTP-synchronized atomic time.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "copy-atomic-time",
+          "title": "Copy Atomic Time",
+          "description": "Copy the current NTP-synchronized time to the clipboard as an ISO-8601 timestamp.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "timezoneOverride",
+          "type": "textfield",
+          "title": "Timezone Override",
+          "description": "IANA timezone (e.g. Europe/Berlin) to force a specific timezone. Leave empty to automatically follow your Mac's current system timezone.",
+          "placeholder": "System default",
+          "required": false
         }
       ]
     },
@@ -28364,7 +28416,7 @@
     },
     {
       "name": "ccusage",
-      "title": "Claude Code Usage (ccusage)",
+      "title": "Claude Usage (ccusage)",
       "description": "Monitor Claude Code usage with real-time tracking",
       "icon": "extension-icon.png",
       "author": "nyatinte",
@@ -28395,7 +28447,7 @@
       "commands": [
         {
           "name": "ccusage",
-          "title": "Claude Code Usage",
+          "title": "Claude Usage",
           "subtitle": "ccusage",
           "description": "Monitor Claude Code usage with real-time tracking",
           "mode": "view",
@@ -28404,7 +28456,7 @@
         },
         {
           "name": "menubar-ccusage",
-          "title": "Claude Code Usage in Menu Bar",
+          "title": "Claude Usage in Menu Bar",
           "subtitle": "ccusage",
           "description": "Show Claude Code usage in menu bar",
           "mode": "menu-bar",
@@ -28527,7 +28579,7 @@
                   "value": "ascii"
                 },
                 {
-                  "title": "Pies (●)",
+                  "title": "Pies (◔)",
                   "value": "pies"
                 }
               ]
@@ -28548,6 +28600,62 @@
               "description": "Format string for time remaining. Placeholders: {h} hours, {m} minutes, {M} total minutes, {h.f} fractional hours. Example: {h}h{m}m → 1h23m",
               "default": "{h}h{m}m",
               "placeholder": "e.g., {h}h{m}m or {M}m or {h.f}h"
+            },
+            {
+              "name": "sectionRateLimits",
+              "type": "checkbox",
+              "required": false,
+              "label": "Show Rate Limits",
+              "description": "Show the rate limits section in the menu bar dropdown",
+              "default": true
+            },
+            {
+              "name": "sectionTodayUsage",
+              "type": "checkbox",
+              "required": false,
+              "label": "Show Today's Usage",
+              "description": "Show today's usage section in the menu bar dropdown",
+              "default": true
+            },
+            {
+              "name": "sectionThisWeek",
+              "type": "checkbox",
+              "required": false,
+              "label": "Show This Week",
+              "description": "Show this week's usage section in the menu bar dropdown",
+              "default": true
+            },
+            {
+              "name": "sectionMonthlyUsage",
+              "type": "checkbox",
+              "required": false,
+              "label": "Show Monthly Usage",
+              "description": "Show the monthly usage section in the menu bar dropdown",
+              "default": true
+            },
+            {
+              "name": "sectionTotalUsage",
+              "type": "checkbox",
+              "required": false,
+              "label": "Show Total Usage",
+              "description": "Show the total usage section in the menu bar dropdown",
+              "default": true
+            },
+            {
+              "name": "sectionCurrentBlock",
+              "type": "checkbox",
+              "required": false,
+              "label": "Show Current Block",
+              "description": "Show the current block section in the menu bar dropdown",
+              "default": true
+            },
+            {
+              "name": "sectionWorkingTime",
+              "type": "checkbox",
+              "required": false,
+              "label": "Show Working Time",
+              "description": "Show the working time section in the menu bar dropdown",
+              "default": true
             }
           ]
         },
@@ -98520,6 +98628,68 @@
       "preferences": []
     },
     {
+      "name": "heidisql-sessions",
+      "title": "HeidiSQL Sessions",
+      "description": "Search and launch your HeidiSQL sessions from Raycast.",
+      "icon": "extension-icon.png",
+      "author": "THEN00P",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows",
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/THEN00P/heidisql-sessions",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/heidisql-sessions",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-sessions",
+          "title": "Search Sessions",
+          "subtitle": "HeidiSQL",
+          "description": "Search and launch your HeidiSQL sessions.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "heidiExePath",
+          "title": "HeidiSQL Executable",
+          "description": "Optional. Path to heidisql.exe (Windows) or heidisql.app (macOS). Leave empty to auto-detect: on Windows from PATH, Scoop, or the default install location; on macOS from /Applications or ~/Applications.",
+          "type": "file",
+          "required": false
+        },
+        {
+          "name": "portableMode",
+          "title": "Session Source",
+          "label": "Force portable mode",
+          "description": "Windows only. Portable mode is auto-detected when a portable_settings.txt sits next to the executable (e.g. Scoop installs). Enable this only to force reading from portable_settings.txt when auto-detection can't. Has no effect on macOS, which always reads ~/.config/heidisql/settings.json.",
+          "type": "checkbox",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "showOpenEntry",
+          "title": "Extra Entry",
+          "label": "Show an \"Open HeidiSQL\" entry",
+          "description": "Always show an entry that opens HeidiSQL without a session.",
+          "type": "checkbox",
+          "default": true,
+          "required": false
+        }
+      ]
+    },
+    {
       "name": "height",
       "title": "Height",
       "description": "Search, create and manage tasks and lists in Height directly from Raycast.",
@@ -140144,6 +140314,189 @@
       ]
     },
     {
+      "name": "mobbin",
+      "title": "Mobbin Search",
+      "description": "Search Mobbin screens, flows, and sections from Raycast.",
+      "icon": "icon.png",
+      "author": "noss",
+      "contributors": [],
+      "categories": [
+        "Design Tools",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/noss/mobbin",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/mobbin",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-mobbin",
+          "title": "Search Mobbin",
+          "description": "Search Mobbin screens using natural language.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-selected-text",
+          "title": "Search Selected Text",
+          "description": "Search Mobbin using the selected text from the frontmost app.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-mobbin-flows",
+          "title": "Search Mobbin Flows",
+          "description": "Search multi-step product flows through Mobbin MCP.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-mobbin-sections",
+          "title": "Search Mobbin Sections",
+          "description": "Search website sections through Mobbin MCP.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "authMode",
+          "title": "Authentication Mode",
+          "description": "Choose how the extension should access Mobbin.",
+          "type": "dropdown",
+          "required": true,
+          "default": "oauth-mcp",
+          "data": [
+            {
+              "title": "REST API Key",
+              "value": "api-key"
+            },
+            {
+              "title": "OAuth MCP",
+              "value": "oauth-mcp"
+            }
+          ]
+        },
+        {
+          "name": "apiKey",
+          "title": "Mobbin API Key",
+          "description": "Team or Enterprise API key used for REST API searches.",
+          "type": "password",
+          "required": false,
+          "placeholder": "mobbin_..."
+        },
+        {
+          "name": "defaultPlatform",
+          "title": "Default Platform",
+          "description": "Platform selected when opening search commands.",
+          "type": "dropdown",
+          "required": true,
+          "default": "ios",
+          "data": [
+            {
+              "title": "iOS",
+              "value": "ios"
+            },
+            {
+              "title": "Web",
+              "value": "web"
+            }
+          ]
+        },
+        {
+          "name": "defaultSearchMode",
+          "title": "Default Search Mode",
+          "description": "Deep is slower but better for nuanced natural-language searches.",
+          "type": "dropdown",
+          "required": true,
+          "default": "deep",
+          "data": [
+            {
+              "title": "Deep",
+              "value": "deep"
+            },
+            {
+              "title": "Standard",
+              "value": "standard"
+            }
+          ]
+        },
+        {
+          "name": "defaultImageQuality",
+          "title": "REST Image Quality",
+          "description": "Image quality used for REST API searches.",
+          "type": "dropdown",
+          "required": true,
+          "default": "optimized",
+          "data": [
+            {
+              "title": "Optimized",
+              "value": "optimized"
+            },
+            {
+              "title": "High",
+              "value": "high"
+            }
+          ]
+        },
+        {
+          "name": "defaultMcpImageFormat",
+          "title": "MCP Image Format",
+          "description": "WebP is smaller; JPEG is useful for clients without WebP support.",
+          "type": "dropdown",
+          "required": true,
+          "default": "webp",
+          "data": [
+            {
+              "title": "WebP",
+              "value": "webp"
+            },
+            {
+              "title": "JPEG",
+              "value": "jpg"
+            }
+          ]
+        },
+        {
+          "name": "defaultLimit",
+          "title": "Default Result Limit",
+          "description": "Maximum references requested from Mobbin.",
+          "type": "dropdown",
+          "required": true,
+          "default": "20",
+          "data": [
+            {
+              "title": "10",
+              "value": "10"
+            },
+            {
+              "title": "20",
+              "value": "20"
+            },
+            {
+              "title": "50",
+              "value": "50"
+            },
+            {
+              "title": "100",
+              "value": "100"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "mobile-provisions",
       "title": "Mobile Provisions",
       "description": "Manage and inspect Apple mobile provisioning profiles with detailed information about certificates, entitlements, and provisioned devices",
@@ -146937,7 +147290,8 @@
       "icon": "netease-music.png",
       "author": "chyroc",
       "contributors": [
-        "IceGiraffe"
+        "IceGiraffe",
+        "Anoninz"
       ],
       "categories": [],
       "license": "MIT",
@@ -147002,6 +147356,15 @@
           "title": "Dislike Track",
           "subtitle": "NeteaseMusic",
           "description": "Dislike currently playing track in NeteaseMusic.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "dislike-and-next",
+          "title": "Dislike Track & Next Track",
+          "subtitle": "NeteaseMusic",
+          "description": "Dislike the currently playing track and skip to the next track in NeteaseMusic.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -180318,6 +180681,72 @@
       ]
     },
     {
+      "name": "putty-sessions",
+      "title": "PuTTY Sessions",
+      "description": "Search and launch your saved PuTTY sessions from Raycast.",
+      "icon": "extension-icon.png",
+      "author": "THEN00P",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/THEN00P/putty-sessions",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/putty-sessions",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-sessions",
+          "title": "Search Sessions",
+          "subtitle": "PuTTY",
+          "description": "Search and launch your saved PuTTY sessions.",
+          "mode": "view",
+          "keywords": [
+            "putty",
+            "ssh",
+            "telnet",
+            "session"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "puttyExePath",
+          "title": "PuTTY Executable",
+          "description": "Optional. Path to putty.exe. Leave empty to auto-detect from PATH, Scoop, the registry, or the Start Menu.",
+          "type": "file",
+          "required": false
+        },
+        {
+          "name": "showOpenEntry",
+          "title": "Extra Entry",
+          "label": "Show an \"Open PuTTY\" entry",
+          "description": "Always show an entry that opens PuTTY without a session.",
+          "type": "checkbox",
+          "default": true,
+          "required": false
+        },
+        {
+          "name": "startMaximized",
+          "title": "Window State",
+          "label": "Start sessions maximized",
+          "description": "Launch PuTTY maximized instead of at its saved window size.",
+          "type": "checkbox",
+          "default": false,
+          "required": false
+        }
+      ]
+    },
+    {
       "name": "px-to-rem-converter",
       "title": "PX to Rem Converter",
       "description": "Conversions between PX and REM",
@@ -190487,6 +190916,48 @@
       "preferences": []
     },
     {
+      "name": "raycast-zabbix",
+      "title": "Zabbix",
+      "description": "Manage Zabbix Problems, Hosts, Triggers and Latest Data directly from Raycast. Perform common monitoring and maintenance tasks without opening a browser.",
+      "icon": "icon.png",
+      "author": "massimiliano_pasquini",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows",
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/massimiliano_pasquini/raycast-zabbix",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/raycast-zabbix",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "problems",
+          "title": "Problems",
+          "description": "Show Zabbix Problems",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "hosts",
+          "title": "Hosts",
+          "description": "Show Zabbix Hosts",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "raycast-zoxide",
       "title": "Zoxide",
       "description": "Raycast integration with the zoxide command-line tool by Ajeet D'Souza.",
@@ -198973,6 +199444,39 @@
               "default": true
             }
           ]
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "royal-tsx",
+      "title": "Royal TSX",
+      "description": "Search and connect to Royal TSX connections",
+      "icon": "extension-icon.png",
+      "author": "carceneaux",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/carceneaux/royal-tsx",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/royal-tsx",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "connect",
+          "title": "Connection List",
+          "description": "Search and connect to Royal TSX connections",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": []
