@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-29T19:40:37.840Z",
+  "generatedAt": "2026-07-30T19:48:53.331Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "3eebaef28ae9c424de63cc0fd5c9f9c94f52f865"
+    "commit": "5dbf038c8d1c054ac28c8a0e965d569f202f445c"
   },
-  "count": 3130,
+  "count": 3134,
   "extensions": [
     {
       "name": "0x0",
@@ -14524,6 +14524,41 @@
           ]
         }
       ]
+    },
+    {
+      "name": "average-saham-indonesia",
+      "title": "Average Saham Indonesia",
+      "description": "Calculate your Indonesian stock average price (Average Up / Average Down) instantly, right from Raycast.",
+      "icon": "icon.png",
+      "author": "uluumbch",
+      "contributors": [],
+      "categories": [
+        "Finance"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/uluumbch/average-saham-indonesia",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/average-saham-indonesia",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "average",
+          "title": "Average Saham Indonesia",
+          "subtitle": "Kalkulator Rata-Rata Saham",
+          "description": "Calculate your new average stock price after buying additional shares (Average Up / Average Down)",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "awesome-mac",
@@ -33324,6 +33359,73 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "cl1p",
+      "title": "cl1p.net",
+      "description": "Save text to cl1p.net and copy the resulting URL",
+      "icon": "icon.png",
+      "author": "meslva",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/meslva/cl1p",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/cl1p",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "save",
+          "title": "Save to cl1p.net",
+          "subtitle": "cl1p",
+          "description": "Save text to a cl1p.net title and copy the URL",
+          "mode": "view",
+          "keywords": [
+            "clip",
+            "clipboard",
+            "paste",
+            "pastebin",
+            "share"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "save-selected",
+          "title": "Save Selected Text to cl1p.net",
+          "subtitle": "cl1p",
+          "description": "Save the currently selected text to a cl1p.net note and copy the URL",
+          "mode": "no-view",
+          "keywords": [
+            "clip",
+            "clipboard",
+            "paste",
+            "pastebin",
+            "share",
+            "selected",
+            "selection"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiToken",
+          "title": "API Token",
+          "description": "Your cl1p.net API access token (cl1papitoken), generated from the Preferences page on cl1p.net",
+          "type": "password",
+          "required": true
+        }
+      ]
     },
     {
       "name": "clarify",
@@ -81576,7 +81678,9 @@
       "description": "Track unread pull request activity across your GitHub or GitHub Enterprise repositories from a single Raycast command.",
       "icon": "icon.png",
       "author": "oslen",
-      "contributors": [],
+      "contributors": [
+        "chrismessina"
+      ],
       "categories": [
         "Developer Tools"
       ],
@@ -81585,7 +81689,7 @@
         "macOS",
         "Windows"
       ],
-      "version": "1.1.1",
+      "version": "1.2.0",
       "storeUrl": "https://www.raycast.com/oslen/gh-pr-tracker",
       "source": {
         "type": "github-monorepo",
@@ -81655,6 +81759,33 @@
           "required": false,
           "default": "150",
           "placeholder": "150"
+        },
+        {
+          "name": "alwaysShowMenuBar",
+          "title": "Menu Bar Icon",
+          "label": "Keep the icon visible when everything is read",
+          "description": "By default the menu bar icon appears only when pull requests have unread activity, so it stays out of the way. Enable this to keep it visible at all times.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "useGraphQL",
+          "title": "Faster Fetching",
+          "label": "Use the GraphQL API (experimental)",
+          "description": "Fetch pull request activity over the GraphQL API, which uses far less of your hourly API quota on large repositories. Falls back to the standard API automatically if anything goes wrong — including on GitHub Enterprise servers whose version predates the required API fields.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "verboseLogging",
+          "title": "Verbose Logging",
+          "label": "Enable detailed logging",
+          "description": "Show detailed logs in the console for debugging. Tokens and other sensitive values are redacted automatically.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
         }
       ]
     },
@@ -135481,6 +135612,41 @@
       "preferences": []
     },
     {
+      "name": "meeting-room-check",
+      "title": "Meeting Room Check",
+      "description": "See which meeting rooms are free right now and block one instantly.",
+      "icon": "icon.png",
+      "author": "Ticsi",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/Ticsi/meeting-room-check",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/meeting-room-check",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "list-rooms",
+          "title": "List Meeting Rooms",
+          "subtitle": "Google Calendar",
+          "description": "Lists currently empty rooms and lets you block one for 15/30/60 min.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "mem",
       "title": "Mem",
       "description": "Access Mem functionality through Raycast using the Mem API. The Mem API is still growing and is currently very limited.",
@@ -149873,7 +150039,8 @@
       "contributors": [
         "xmok",
         "0xdhrv",
-        "SConaway"
+        "SConaway",
+        "ridemountainpig"
       ],
       "categories": [
         "Developer Tools"
@@ -180550,7 +180717,9 @@
         "Communication"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/mattstone/pushover",
       "source": {
         "type": "github-monorepo",
@@ -180563,6 +180732,14 @@
           "name": "pushover",
           "title": "Send Pushover Message",
           "description": "Send a notification via Pushover",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "pushover-image",
+          "title": "Send Pushover Image",
+          "description": "Send an image via Pushover",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -230464,7 +230641,9 @@
       "description": "Interact with teleport, the open infrastructure access platform",
       "icon": "icon.png",
       "author": "lamberttraccard",
-      "contributors": [],
+      "contributors": [
+        "bbonnet"
+      ],
       "categories": [
         "Developer Tools",
         "Security"
@@ -230506,7 +230685,57 @@
           "description": "List all databases available in teleport",
           "mode": "view",
           "keywords": [],
-          "preferences": []
+          "preferences": [
+            {
+              "name": "openInNewWindow",
+              "description": "Open each connection in a new window instead of a tab.",
+              "type": "checkbox",
+              "required": false,
+              "title": "Window Behavior",
+              "label": "Open connections in a new window",
+              "default": true
+            },
+            {
+              "name": "colorLocal",
+              "description": "Status-bar hex color for the Local environment.",
+              "type": "textfield",
+              "required": false,
+              "title": "Local Color",
+              "placeholder": "006633"
+            },
+            {
+              "name": "colorTesting",
+              "description": "Status-bar hex color for the Testing environment.",
+              "type": "textfield",
+              "required": false,
+              "title": "Testing Color",
+              "placeholder": "666666"
+            },
+            {
+              "name": "colorDevelopment",
+              "description": "Status-bar hex color for the Development environment.",
+              "type": "textfield",
+              "required": false,
+              "title": "Development Color",
+              "placeholder": "003366"
+            },
+            {
+              "name": "colorStaging",
+              "description": "Status-bar hex color for the Staging environment.",
+              "type": "textfield",
+              "required": false,
+              "title": "Staging Color",
+              "placeholder": "996633"
+            },
+            {
+              "name": "colorProduction",
+              "description": "Status-bar hex color for the Production environment.",
+              "type": "textfield",
+              "required": false,
+              "title": "Production Color",
+              "placeholder": "660000"
+            }
+          ]
         },
         {
           "name": "list-servers",
@@ -245327,6 +245556,71 @@
           "subtitle": "Turso",
           "description": "List databases",
           "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "tutti",
+      "title": "Tutti",
+      "description": "Control Tutti — play the same audio through many output devices at once — from the Raycast launcher.",
+      "icon": "extension-icon.png",
+      "author": "Barrybarrywu",
+      "contributors": [],
+      "categories": [
+        "Media"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/Barrybarrywu/tutti",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/tutti",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "apply-preset",
+          "title": "Apply Preset",
+          "description": "Switch Tutti to one of your saved presets.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle-mute",
+          "title": "Toggle Mute",
+          "description": "Mute or unmute Tutti's whole output.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "set-volume",
+          "title": "Set Volume",
+          "description": "Set Tutti's output volume to a specific percentage.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "volume-up",
+          "title": "Increase Volume",
+          "description": "Raise Tutti's output volume by a fixed step.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "volume-down",
+          "title": "Decrease Volume",
+          "description": "Lower Tutti's output volume by a fixed step.",
+          "mode": "no-view",
           "keywords": [],
           "preferences": []
         }
