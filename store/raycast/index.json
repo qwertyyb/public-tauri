@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-30T19:48:53.331Z",
+  "generatedAt": "2026-07-31T20:51:10.708Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "5dbf038c8d1c054ac28c8a0e965d569f202f445c"
+    "commit": "7806db057c58a6c672301b0b8205b28d444152ae"
   },
-  "count": 3134,
+  "count": 3139,
   "extensions": [
     {
       "name": "0x0",
@@ -32060,14 +32060,18 @@
       "icon": "command-icon.png",
       "author": "joshfarrant",
       "contributors": [
-        "tomassliz"
+        "tomassliz",
+        "muhammadrizo"
       ],
       "categories": [
         "Fun",
         "Web"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "storeUrl": "https://www.raycast.com/joshfarrant/chess-com",
       "source": {
         "type": "github-monorepo",
@@ -35096,6 +35100,72 @@
           "subtitle": "Clipboard",
           "description": "Clears your clipboard right now!",
           "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "clerk",
+      "title": "Clerk",
+      "description": "Interface with Clerk",
+      "icon": "extension-icon.png",
+      "author": "filiph",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/filiph/clerk",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/clerk",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "manage-apps",
+          "title": "Manage Apps",
+          "description": "Add, edit, remove, and activate Clerk instances",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-users",
+          "title": "Search Users",
+          "description": "Search and manage users in the active Clerk instance",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-organizations",
+          "title": "Search Organizations",
+          "description": "Search organizations and manage members in the active Clerk instance",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "invitations",
+          "title": "Invitations",
+          "description": "View and manage invitations in the active Clerk instance",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "access-lists",
+          "title": "Access Lists",
+          "description": "Manage allowlist and blocklist identifiers in the active Clerk instance",
+          "mode": "view",
           "keywords": [],
           "preferences": []
         }
@@ -73066,6 +73136,63 @@
           "type": "textfield",
           "required": false,
           "default": "30"
+        }
+      ]
+    },
+    {
+      "name": "file-tidy",
+      "title": "File Tidy",
+      "description": "Organize folders into type/year-month archives with byte-level duplicate detection and one-step undo",
+      "icon": "icon.png",
+      "author": "fhf1121",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/fhf1121/file-tidy",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/file-tidy",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "tidy-folder",
+          "title": "Tidy Folder",
+          "description": "Preview and archive a folder's files into type/year-month buckets, quarantining byte-identical duplicates",
+          "mode": "view",
+          "keywords": [
+            "organize",
+            "archive",
+            "dedupe"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "undo-tidy",
+          "title": "Undo Last Tidy",
+          "description": "Move the files from the last tidy run back to where they came from",
+          "mode": "view",
+          "keywords": [
+            "revert",
+            "restore"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "defaultDest",
+          "type": "directory",
+          "required": false,
+          "title": "Default Destination",
+          "description": "Used when no destination is picked in the form; leave unset to always pick one explicitly"
         }
       ]
     },
@@ -127187,7 +127314,7 @@
       "platforms": [
         "macOS"
       ],
-      "version": "0.1.1",
+      "version": "0.1.2",
       "storeUrl": "https://www.raycast.com/nader_ikladious/linkinize",
       "source": {
         "type": "github-monorepo",
@@ -181103,7 +181230,8 @@
       "contributors": [
         "timmevandermeer",
         "taken",
-        "Aayush9029"
+        "Aayush9029",
+        "sansaxena789"
       ],
       "categories": [],
       "license": "MIT",
@@ -181142,7 +181270,7 @@
         {
           "name": "address",
           "title": "Web UI Address",
-          "description": "The address where your qBittorrent Web UI is running",
+          "description": "The address where your qBittorrent Web UI is running. If authentication is required, enter your username and password later in Extension Settings.",
           "placeholder": "http://localhost:8080",
           "type": "textfield",
           "required": true
@@ -181150,18 +181278,18 @@
         {
           "name": "username",
           "title": "Username",
-          "description": "Your qBittorrent Web UI username",
+          "description": "Your qBittorrent Web UI username, if authentication is required",
           "placeholder": "admin",
           "type": "textfield",
-          "required": true
+          "required": false
         },
         {
           "name": "password",
           "title": "Password",
-          "description": "Your qBittorrent Web UI password",
+          "description": "Your qBittorrent Web UI password, if authentication is required",
           "type": "password",
           "placeholder": "adminadmin",
-          "required": true
+          "required": false
         },
         {
           "name": "timeout",
@@ -190534,9 +190662,9 @@
       "preferences": [
         {
           "name": "trackReadStatus",
-          "title": "Track Read/Unread Status",
-          "label": "Enable",
-          "description": "When enabled, items can be marked as read and hidden from the list",
+          "title": "Read Status",
+          "label": "Enable read/unread statuses",
+          "description": "Mark items as read and hide them from the list.",
           "type": "checkbox",
           "required": false,
           "default": false
@@ -190544,9 +190672,36 @@
         {
           "name": "githubToken",
           "title": "GitHub Token",
-          "description": "Optional GitHub personal access token. The extension reads merged pull requests from the GitHub API to detect extension updates and removals; without a token this is capped at 60 requests/hour. A classic token with no scopes (public read only) raises the limit to 5,000 requests/hour. Create one at github.com/settings/tokens.",
+          "description": "Optional. Raises the GitHub API limit from 60 to 5,000 requests/hour. A classic token with no scopes is enough.",
           "type": "password",
           "required": false
+        },
+        {
+          "name": "useGraphQL",
+          "title": "GraphQL",
+          "label": "Use GraphQL (experimental)",
+          "description": "Fetch pull requests via GraphQL. Requires a token; falls back to REST without one.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "menuBarScope",
+          "title": "Menu Bar",
+          "description": "Which updates the menu bar counts. Does not affect the main list.",
+          "type": "dropdown",
+          "required": false,
+          "default": "all",
+          "data": [
+            {
+              "title": "All Updates",
+              "value": "all"
+            },
+            {
+              "title": "My Updates (installed only)",
+              "value": "my-updates"
+            }
+          ]
         }
       ]
     },
@@ -202651,6 +202806,122 @@
           "description": "The project will be compressed into ZIP format and copied to the clipboard.",
           "mode": "no-view",
           "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "screenlex",
+      "title": "ScreenLex",
+      "description": "Capture, translate, and manage screenshots with ScreenLex.",
+      "icon": "extension-icon.png",
+      "author": "chunkithwang",
+      "contributors": [],
+      "categories": [
+        "Applications",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/chunkithwang/screenlex",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/screenlex",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "capture-area",
+          "title": "Capture Area",
+          "subtitle": "ScreenLex",
+          "description": "Select and capture an area with ScreenLex.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "capture-area.png",
+          "preferences": []
+        },
+        {
+          "name": "capture-window",
+          "title": "Capture Window",
+          "subtitle": "ScreenLex",
+          "description": "Select and capture a window with ScreenLex.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "capture-window.png",
+          "preferences": []
+        },
+        {
+          "name": "capture-full-screen",
+          "title": "Capture Full Screen",
+          "subtitle": "ScreenLex",
+          "description": "Capture the current display with ScreenLex.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "capture-full-screen.png",
+          "preferences": []
+        },
+        {
+          "name": "translate-area",
+          "title": "Translate Area",
+          "subtitle": "ScreenLex",
+          "description": "Select an area and translate its text with ScreenLex.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "translate-area.png",
+          "preferences": []
+        },
+        {
+          "name": "translate-window",
+          "title": "Translate Window",
+          "subtitle": "ScreenLex",
+          "description": "Select a window and translate its text with ScreenLex.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "translate-window.png",
+          "preferences": []
+        },
+        {
+          "name": "translate-full-screen",
+          "title": "Translate Full Screen",
+          "subtitle": "ScreenLex",
+          "description": "Capture the current display and translate its text with ScreenLex.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "translate-full-screen.png",
+          "preferences": []
+        },
+        {
+          "name": "open-screenlex",
+          "title": "Open ScreenLex",
+          "subtitle": "ScreenLex",
+          "description": "Open the ScreenLex main window.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "open-screenlex.png",
+          "preferences": []
+        },
+        {
+          "name": "open-history",
+          "title": "Open History",
+          "subtitle": "ScreenLex",
+          "description": "Show recent screenshots with ScreenLex.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "open-history.png",
+          "preferences": []
+        },
+        {
+          "name": "open-settings",
+          "title": "Open Settings",
+          "subtitle": "ScreenLex",
+          "description": "Open ScreenLex settings.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "open-settings.png",
           "preferences": []
         }
       ],
@@ -235339,6 +235610,239 @@
       ]
     },
     {
+      "name": "ticktick-plus",
+      "title": "TickTick+",
+      "description": "Manage TickTick tasks, projects, habits, and focus sessions from Raycast.",
+      "icon": "extension-icon.png",
+      "author": "ysrazsingh",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/ysrazsingh/ticktick-plus",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/ticktick-plus",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "today",
+          "title": "Today",
+          "subtitle": "TickTick",
+          "description": "View tasks due today",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "inbox",
+          "title": "Inbox",
+          "subtitle": "TickTick",
+          "description": "View tasks in your inbox",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "next7days",
+          "title": "Next 7 Days",
+          "subtitle": "TickTick",
+          "description": "View upcoming tasks for the next 7 days",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "projects",
+          "title": "Projects",
+          "subtitle": "TickTick",
+          "description": "Browse tasks by project",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "eisenhower",
+          "title": "Eisenhower Matrix",
+          "subtitle": "TickTick",
+          "description": "View tasks by urgency and importance",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "habits",
+          "title": "Habits",
+          "subtitle": "TickTick",
+          "description": "Track and check in your habits",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "pomodoro",
+          "title": "Pomodoro",
+          "subtitle": "TickTick",
+          "description": "Focus timer with TickTick integration",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "search",
+          "title": "Search Tasks",
+          "subtitle": "TickTick",
+          "description": "Search all your TickTick tasks",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "quick-add",
+          "title": "Create Task",
+          "subtitle": "TickTick",
+          "description": "Create a task in TickTick",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "overdue",
+          "title": "Overdue",
+          "subtitle": "TickTick",
+          "description": "View overdue tasks",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "tags",
+          "title": "Tags",
+          "subtitle": "TickTick",
+          "description": "Browse tasks by tag",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "completed",
+          "title": "Completed",
+          "subtitle": "TickTick",
+          "description": "View recently completed tasks",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "filters",
+          "title": "Smart Lists",
+          "subtitle": "TickTick",
+          "description": "View tasks from your TickTick smart lists / filters",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "manage-projects",
+          "title": "Manage Projects",
+          "subtitle": "TickTick",
+          "description": "Create, rename, archive, or delete projects",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "profile",
+          "title": "Profile",
+          "subtitle": "TickTick",
+          "description": "Account overview and productivity stats",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "menu-bar",
+          "title": "Menu Bar",
+          "subtitle": "TickTick",
+          "description": "TickTick status in your menu bar — timer, overdue count, quick actions",
+          "mode": "menu-bar",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "background-check",
+          "title": "Background Alerts",
+          "subtitle": "TickTick",
+          "description": "Checks for overdue tasks and pomodoro completion in the background",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "logout",
+          "title": "Disconnect TickTick Account",
+          "subtitle": "TickTick",
+          "description": "Remove stored OAuth tokens and re-authenticate",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "enableAlerts",
+          "title": "Enable Alerts",
+          "description": "Show overdue/urgent task alerts in the menu bar and background checks",
+          "type": "checkbox",
+          "default": true,
+          "required": false,
+          "label": "Enable"
+        },
+        {
+          "name": "alertOverdue",
+          "title": "Alert Overdue Tasks",
+          "description": "Notify when tasks are past their due date",
+          "type": "checkbox",
+          "default": true,
+          "required": false,
+          "label": "Enable"
+        },
+        {
+          "name": "alertUrgent",
+          "title": "Alert Urgent Tasks",
+          "description": "Notify for high-priority (red) tasks",
+          "type": "checkbox",
+          "default": true,
+          "required": false,
+          "label": "Enable"
+        }
+      ]
+    },
+    {
       "name": "tidal",
       "title": "Tidal",
       "description": "Control Tidal playback and view track info directly from Raycast with seamless integration. PLEASE NOTE 🚨: This extension may be VERY confusing to use if you have not read the documentation. It is highly recommended to do so before installing. (https://www.raycast.com/Ek217/tidal)",
@@ -259740,6 +260244,42 @@
           "title": "WhoSampled Search",
           "description": "Search WhoSampled.com for a song and artists",
           "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "whost",
+      "title": "WHost",
+      "description": "Managing hosts under Windows",
+      "icon": "wHost.png",
+      "author": "abstyle",
+      "contributors": [],
+      "categories": [
+        "Applications",
+        "Productivity",
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/abstyle/whost",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/whost",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "whost",
+          "title": "WHost",
+          "subtitle": "Manage and switch Windows hosts",
+          "description": "Managing hosts under Windows",
+          "mode": "view",
           "keywords": [],
           "preferences": []
         }
