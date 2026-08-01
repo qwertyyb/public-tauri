@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-31T20:51:10.708Z",
+  "generatedAt": "2026-08-01T19:25:26.448Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "7806db057c58a6c672301b0b8205b28d444152ae"
+    "commit": "3b0c72bb82ddef684eeeb9a5d69cb278eecf3efe"
   },
-  "count": 3139,
+  "count": 3140,
   "extensions": [
     {
       "name": "0x0",
@@ -174174,6 +174174,70 @@
           "required": true,
           "description": "Password of the Admin",
           "placeholder": "hunter2"
+        }
+      ]
+    },
+    {
+      "name": "podcast-downloader",
+      "title": "Podcast Downloader",
+      "description": "Find podcast episodes, copy their audio URLs, and download them.",
+      "icon": "podcast-downloader.png",
+      "author": "volkmar_eich",
+      "contributors": [],
+      "categories": [
+        "Media",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/volkmar_eich/podcast-downloader",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/podcast-downloader",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-podcasts",
+          "title": "Find Podcast Episode",
+          "description": "Search podcasts and download or copy episode audio URLs",
+          "mode": "view",
+          "keywords": [
+            "podcast",
+            "episode",
+            "rss",
+            "audio",
+            "download"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "podcastIndexApiKey",
+          "title": "Podcast Index API Key",
+          "description": "Free API key from api.podcastindex.org. Direct RSS works without it.",
+          "type": "password",
+          "required": false
+        },
+        {
+          "name": "podcastIndexApiSecret",
+          "title": "Podcast Index API Secret",
+          "description": "API secret from Podcast Index.",
+          "type": "password",
+          "required": false
+        },
+        {
+          "name": "downloadDirectory",
+          "title": "Download Folder",
+          "description": "Folder where podcast episodes are saved.",
+          "type": "directory",
+          "required": false,
+          "default": "~/Downloads"
         }
       ]
     },
