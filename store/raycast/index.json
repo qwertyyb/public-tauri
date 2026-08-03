@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-02T19:56:01.619Z",
+  "generatedAt": "2026-08-03T19:53:24.383Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "3b0c72bb82ddef684eeeb9a5d69cb278eecf3efe"
+    "commit": "49527d9b1e03c43f7f51251c277e021707770fae"
   },
-  "count": 3140,
+  "count": 3143,
   "extensions": [
     {
       "name": "0x0",
@@ -21849,7 +21849,8 @@
       "icon": "command-icon.png",
       "author": "blessanm86",
       "contributors": [
-        "xmok"
+        "xmok",
+        "0xdhrv"
       ],
       "categories": [
         "Communication"
@@ -43503,7 +43504,7 @@
       "title": "CopyMoveTo",
       "description": "Save time moving files between folders. Define destinations once, use quick commands to copy or move files effortlessly",
       "icon": "extension-icon.png",
-      "author": "Mehdi_Hp",
+      "author": "kumamaki",
       "contributors": [
         "pernielsentikaer",
         "snuki",
@@ -43513,9 +43514,11 @@
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "version": "0.0.1",
-      "storeUrl": "https://www.raycast.com/Mehdi_Hp/copymoveto",
+      "storeUrl": "https://www.raycast.com/kumamaki/copymoveto",
       "source": {
         "type": "github-monorepo",
         "repo": "raycast/extensions",
@@ -52189,7 +52192,8 @@
       "author": "vivek",
       "contributors": [
         "tofrankie",
-        "alexi.build"
+        "alexi.build",
+        "ernest0n"
       ],
       "categories": [
         "Documentation",
@@ -53889,9 +53893,9 @@
           "preferences": []
         },
         {
-          "name": "batch-move-windows",
-          "title": "Batch Move Windows",
-          "description": "Queue multiple window moves and execute them efficiently",
+          "name": "manage-windows",
+          "title": "Manage Windows",
+          "description": "Queue multiple window operations and execute them efficiently",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -89676,7 +89680,8 @@
         "hughlaw",
         "iwex",
         "nexxai",
-        "tim_gailey"
+        "tim_gailey",
+        "0xdhrv"
       ],
       "categories": [
         "Communication"
@@ -89732,6 +89737,24 @@
       ],
       "preferences": [
         {
+          "title": "Open Meetings In",
+          "description": "Choose whether meetings open in your browser or in the installed Google Meet PWA. The link is always resolved through a real browser first and copied to your clipboard either way.",
+          "name": "launchTarget",
+          "type": "dropdown",
+          "required": true,
+          "default": "browser",
+          "data": [
+            {
+              "title": "Preferred Browser",
+              "value": "browser"
+            },
+            {
+              "title": "Google Meet PWA",
+              "value": "pwa"
+            }
+          ]
+        },
+        {
           "title": "Set preferred browser",
           "description": "This allows to override the configuration from the default browser to a specific one when creating the meet. Remember, you have to choose a valid browser",
           "name": "preferredBrowser",
@@ -89739,12 +89762,12 @@
           "required": false
         },
         {
-          "title": "Set timeout (ms) before copying link",
-          "description": "This allows to override the configuration from the default timeout to a specific one in milliseconds when creating the meet",
+          "title": "Meeting link detection timeout (ms)",
+          "description": "How long to keep waiting for Google Meet to generate a link before giving up, in milliseconds. Clamped between 2000 and 30000ms; invalid values fall back to the default.",
           "name": "timeout",
           "type": "textfield",
           "required": false,
-          "default": "500"
+          "default": "8000"
         }
       ]
     },
@@ -104420,7 +104443,8 @@
       "icon": "icon-purple.png",
       "author": "reboot.studio",
       "contributors": [
-        "thomasjost"
+        "thomasjost",
+        "profdorly"
       ],
       "categories": [
         "Developer Tools",
@@ -104428,7 +104452,9 @@
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "version": "2.0.4",
       "storeUrl": "https://www.raycast.com/reboot.studio/hypersonic",
       "source": {
@@ -105258,7 +105284,8 @@
       "icon": "icon.png",
       "author": "sjdonado",
       "contributors": [
-        "ridemountainpig"
+        "ridemountainpig",
+        "0xdhrv"
       ],
       "categories": [
         "Media"
@@ -105367,7 +105394,16 @@
           "preferences": []
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "instanceUrl",
+          "title": "Self-Hosted Instance URL",
+          "description": "Base URL of a self-hosted I Don't Have Spotify instance (e.g. https://idhs.example.com). Leave empty to use the default instance.",
+          "type": "textfield",
+          "placeholder": "https://idonthavespotify.sjdonado.com",
+          "required": false
+        }
+      ]
     },
     {
       "name": "ifanr",
@@ -135657,6 +135693,131 @@
       ]
     },
     {
+      "name": "media-flow",
+      "title": "MediaFlow",
+      "description": "Universal now-playing monitor and audio device switcher for macOS.",
+      "icon": "icon.png",
+      "author": "egorxyz",
+      "contributors": [],
+      "categories": [
+        "Media"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/egorxyz/media-flow",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/media-flow",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "nowPlaying",
+          "title": "Now Playing",
+          "description": "Current media in the menu bar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "mediaDetails",
+          "title": "Media Details",
+          "description": "Rich view of all active media sources",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "searchDevices",
+          "title": "Audio Devices",
+          "description": "List and switch audio input/output devices",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "nextTrack",
+          "title": "Next Track",
+          "description": "Skip to the next track on the active media source",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "previousTrack",
+          "title": "Previous Track",
+          "description": "Go back to the previous track on the active media source",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "togglePlayPause",
+          "title": "Play/Pause",
+          "description": "Toggle play/pause on the active media source",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "openPlayer",
+          "title": "Open Player",
+          "description": "Focus the app window of the active media source",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "copySongName",
+          "title": "Copy Song Name",
+          "description": "Copy the current track title and artist to the clipboard",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "menuBarStyle",
+          "title": "Menu Bar Style",
+          "description": "Show icon with track title, or icon only",
+          "type": "dropdown",
+          "required": false,
+          "default": "iconAndTitle",
+          "data": [
+            {
+              "title": "Icon and Title",
+              "value": "iconAndTitle"
+            },
+            {
+              "title": "Icon Only",
+              "value": "iconOnly"
+            }
+          ]
+        },
+        {
+          "name": "showWhenStopped",
+          "title": "Visibility",
+          "label": "Show menu bar icon when nothing is playing",
+          "description": "Keep the icon visible while no media plays",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "maxTitleLength",
+          "title": "Max Title Length",
+          "description": "Truncate the menu bar title after this many characters",
+          "type": "textfield",
+          "required": false,
+          "default": "30"
+        }
+      ]
+    },
+    {
       "name": "medialister-marketplace-helper",
       "title": "Medialister Marketplace Helper",
       "description": "Medialister is a marketplace where brands can buy advertorial placements in the variety of online media. The extension can help to set up proper filters and sortig options for a particular goal.",
@@ -144113,15 +144274,19 @@
     {
       "name": "multi-links",
       "title": "Open Multiple Links",
-      "description": "Opens all the links from the selected text in the default browser",
+      "description": "Opens all the links from the selected text in the default browser.",
       "icon": "extension-icon.png",
       "author": "wrick17",
-      "contributors": [],
+      "contributors": [
+        "tim_gailey"
+      ],
       "categories": [
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/wrick17/multi-links",
       "source": {
         "type": "github-monorepo",
@@ -144137,9 +144302,77 @@
           "mode": "no-view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "open-links-clipboard",
+          "title": "Open Multiple Links from Clipboard",
+          "description": "Opens all the links from the clipboard text in the default browser",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "history",
+          "title": "Open Multiple Links History",
+          "description": "Browse and replay past batches of links",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "filter",
+          "title": "Filter Multiple Links",
+          "description": "Group extracted links by domain and type; open selected",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "browser",
+          "type": "appPicker",
+          "required": false,
+          "title": "Browser",
+          "description": "Browser to open web URLs in. Default = system default. Local files, mailto:, and custom schemes always use the macOS default handler."
+        },
+        {
+          "name": "openDelayMs",
+          "type": "textfield",
+          "required": false,
+          "default": "50",
+          "title": "Open Delay (ms)",
+          "description": "Milliseconds between opens. 0 = parallel (chunked at 10). Higher values help cold-start apps (Obsidian, VSCode) accept URIs."
+        },
+        {
+          "name": "openAnyUriType",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "label": "Open all URI types (mailto:, file:, custom schemes, local paths)",
+          "title": "URI Types",
+          "description": "When off, only http(s) and www. URLs open. Other extracted types are silently skipped."
+        },
+        {
+          "name": "confirmEnabled",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "label": "Show confirmation when opening many links",
+          "title": "Safety",
+          "description": "When enabled, shows a confirmation dialog with type breakdown and a preview before opening a large batch."
+        },
+        {
+          "name": "confirmThreshold",
+          "type": "textfield",
+          "required": false,
+          "default": "10",
+          "title": "Confirm Threshold",
+          "description": "Show confirmation when extracted link count meets or exceeds this number."
+        }
+      ]
     },
     {
       "name": "multilinks",
@@ -145158,7 +145391,9 @@
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/chad_walters/mutedeck",
       "source": {
         "type": "github-monorepo",
@@ -156437,7 +156672,8 @@
       "contributors": [
         "soulevans07",
         "BalliAsghar",
-        "midskyey"
+        "midskyey",
+        "ernest0n"
       ],
       "categories": [
         "Security",
@@ -156462,6 +156698,15 @@
           "subtitle": "Generate time-based one-time passwords",
           "description": "Generate time-based one-time passwords",
           "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "paste-recent-otp",
+          "title": "Paste Recent OTP",
+          "subtitle": "One Time Password",
+          "description": "Paste the OTP code from the most recently used account into the active app",
+          "mode": "no-view",
           "keywords": [],
           "preferences": []
         }
@@ -213881,7 +214126,8 @@
       "icon": "slugify.png",
       "author": "unreadablename",
       "contributors": [
-        "xmok"
+        "xmok",
+        "teziovsky"
       ],
       "categories": [
         "Developer Tools",
@@ -213889,7 +214135,9 @@
         "Web"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/unreadablename/slugify",
       "source": {
         "type": "github-monorepo",
@@ -213901,7 +214149,7 @@
         {
           "name": "index",
           "title": "Slugify",
-          "description": "Slugify text using different options",
+          "description": "Slugify selected or clipboard text using different options",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -213909,7 +214157,7 @@
         {
           "name": "slugify",
           "title": "Slugify Clipboard",
-          "description": "Overwrite the clipboard contents with an slugified string",
+          "description": "Overwrite the clipboard contents with a slugified string",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -217479,6 +217727,182 @@
           "type": "password",
           "description": "API Secret from the API Key within API Manager",
           "placeholder": "XxX...xxx"
+        }
+      ]
+    },
+    {
+      "name": "spacetime-tracking",
+      "title": "Spacetime Tracking",
+      "description": "Track how much time you spend in each macOS space, with inactivity detection and CSV export.",
+      "icon": "icon.png",
+      "author": "olivier_bossel",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools",
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/olivier_bossel/spacetime-tracking",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/spacetime-tracking",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "tracker",
+          "title": "Menubar",
+          "subtitle": "Spacetime Tracking",
+          "description": "Menu bar tracker: start/stop a session and record time per macOS space.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "sessions",
+          "title": "Sessions",
+          "subtitle": "Spacetime Tracking",
+          "description": "Browse recorded sessions, view per-space breakdowns and export to CSV.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "spaces",
+          "title": "Spaces",
+          "subtitle": "Spacetime Tracking",
+          "description": "List your macOS spaces: switch to one, or rename it. Names are used everywhere time is shown.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "name-current",
+          "title": "Rename Space",
+          "subtitle": "Spacetime Tracking",
+          "description": "Name the space you're currently on.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "setup",
+          "title": "Setup",
+          "subtitle": "Spacetime Tracking",
+          "description": "Apply the macOS settings and permissions the extension needs to switch spaces.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "start-session",
+          "title": "New Session",
+          "subtitle": "Spacetime Tracking",
+          "description": "Start a new time-tracking session (replacing any current one).",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "stop-session",
+          "title": "Stop Session",
+          "subtitle": "Spacetime Tracking",
+          "description": "Stop the active time-tracking session.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "export-last-session",
+          "title": "Export Last Session",
+          "subtitle": "Spacetime Tracking",
+          "description": "Export the most recent session to a CSV file, choosing where to save it.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "inactivityEnabled",
+          "title": "Inactivity Detection",
+          "label": "Pause tracking when idle",
+          "description": "When enabled, tracking pauses automatically after a period of no keyboard/mouse activity.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "inactivityMinutes",
+          "title": "Idle Threshold (minutes)",
+          "description": "How many minutes of inactivity before tracking auto-pauses.",
+          "type": "textfield",
+          "required": false,
+          "default": "10"
+        },
+        {
+          "name": "keepTrackingWhileMedia",
+          "title": "Media Playback",
+          "label": "Keep tracking while media is playing",
+          "description": "Don't auto-pause when an app is playing video/audio or otherwise keeping the display awake (e.g. watching a video or presenting).",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "splitAtMidnight",
+          "title": "Keep Sessions Within One Day",
+          "label": "Split a session at midnight",
+          "description": "When enabled, a session that crosses midnight is stopped at 00:00 and a new session starts at 00:01 (or at your next activity). When disabled, a session may span multiple days.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "autoDailySession",
+          "title": "Automatic Daily Session",
+          "label": "Record a session automatically every day",
+          "description": "Automatically start a new session once a day (when you first use your computer), with no action.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "autoSaveSessions",
+          "title": "Save Sessions to Disk",
+          "label": "Export each session to CSV when it stops",
+          "description": "When a session is stopped (or replaced by a new one), automatically write it as a CSV file to the folder below.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "autoSaveDirectory",
+          "title": "Sessions Folder",
+          "description": "Folder where stopped sessions are saved as CSV. Defaults to Downloads if left empty.",
+          "type": "directory",
+          "required": false
+        },
+        {
+          "name": "autoSaveSubfolders",
+          "title": "Organize by Year/Month",
+          "label": "Save into <year>/<month> subfolders",
+          "description": "Nest saved CSV files under year/month folders, e.g. 2026/07/session-2026-07-06-15h23.csv.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "minSpaceMinutes",
+          "title": "Minimum Space Time (minutes)",
+          "description": "Hide spaces with less than this many minutes from the session breakdown and exported rows. The session total always counts every space. Leave empty to show all spaces.",
+          "type": "textfield",
+          "required": false
         }
       ]
     },
@@ -253264,7 +253688,7 @@
         "macOS",
         "Windows"
       ],
-      "version": "2.19.0",
+      "version": "2.20.0",
       "storeUrl": "https://www.raycast.com/MaxLeiter/vercast",
       "source": {
         "type": "github-monorepo",
@@ -253372,6 +253796,22 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "ai-gateway-leaderboard",
+          "title": "AI Gateway Leaderboard",
+          "description": "Explore popular AI Gateway models and creators",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "ai-gateway-playground",
+          "title": "AI Gateway Playground",
+          "description": "Send a prompt through Vercel AI Gateway",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": [
@@ -253383,6 +253823,15 @@
           "description": "Your Vercel access token",
           "placeholder": "Enter your Access Token",
           "link": "https://vercel.com/account/tokens"
+        },
+        {
+          "name": "aiGatewayApiKey",
+          "type": "password",
+          "required": false,
+          "title": "AI Gateway Inference Key",
+          "description": "A separate inference key created in the Vercel AI Gateway dashboard",
+          "placeholder": "Enter your AI Gateway key",
+          "link": "https://vercel.com/ai-gateway"
         }
       ]
     },
@@ -255033,7 +255482,8 @@
         "raxityo",
         "yusifaliyevpro",
         "jkker",
-        "sillashead"
+        "sillashead",
+        "muhammadrizo"
       ],
       "categories": [],
       "license": "MIT",
@@ -257720,6 +258170,168 @@
           "label": "SFW content only",
           "description": "Always restrict results to SFW content, even when an API key is provided. Disables the purity filter in Search Wallpapers.",
           "default": false
+        }
+      ]
+    },
+    {
+      "name": "wallpaperengine",
+      "title": "WallpaperEngine",
+      "description": "Raycast Extension for controlling WallpaperEngine",
+      "icon": "extension-icon.png",
+      "author": "hunter_dermott",
+      "contributors": [],
+      "categories": [
+        "Applications",
+        "System",
+        "Media"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/hunter_dermott/wallpaperengine",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/wallpaperengine",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "pause",
+          "title": "Pause All Wallpapers",
+          "subtitle": "WallpaperEngine",
+          "description": "Pause all wallpapers",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "play",
+          "title": "Play All Wallpapers",
+          "subtitle": "WallpaperEngine",
+          "description": "Resume all wallpapers from pause or stop",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "stop",
+          "title": "Stop All Wallpapers",
+          "subtitle": "WallpaperEngine",
+          "description": "Stop all wallpapers",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "mute",
+          "title": "Mute All Wallpapers",
+          "subtitle": "WallpaperEngine",
+          "description": "Mute all wallpapers",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "unmute",
+          "title": "Unmute All Wallpapers",
+          "subtitle": "WallpaperEngine",
+          "description": "Unmute all wallpapers",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "hideIcons",
+          "title": "Hide Desktop Icons",
+          "subtitle": "WallpaperEngine",
+          "description": "Hide the desktop icons",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "showIcons",
+          "title": "Show Desktop Icons",
+          "subtitle": "WallpaperEngine",
+          "description": "Show the desktop icons",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "nextWallpaper",
+          "title": "Next Wallpaper",
+          "subtitle": "WallpaperEngine",
+          "description": "Skip to the next wallpaper on a monitor",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "closeWallpaper",
+          "title": "Close Wallpaper",
+          "subtitle": "WallpaperEngine",
+          "description": "Remove wallpaper from a monitor",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "getWallpaper",
+          "title": "Get Current Wallpaper",
+          "subtitle": "WallpaperEngine",
+          "description": "Show current wallpaper for each monitor",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "openWallpaper",
+          "title": "Open Wallpaper",
+          "subtitle": "WallpaperEngine",
+          "description": "Open a specific wallpaper on a monitor",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "openPlaylist",
+          "title": "Open Playlist",
+          "subtitle": "WallpaperEngine",
+          "description": "Open a saved playlist on a monitor",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "openProfile",
+          "title": "Open Profile",
+          "subtitle": "WallpaperEngine",
+          "description": "Apply a saved display profile",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "applyProperties",
+          "title": "Apply Properties",
+          "subtitle": "WallpaperEngine",
+          "description": "Apply wallpaper settings dynamically",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "wallpaperEnginePath",
+          "title": "Wallpaper Engine Path",
+          "description": "Optional path to wallpaper_engine directory (e.g., C:\\Program Files (x86)\\Steam\\steamapps\\common\\wallpaper_engine)",
+          "type": "textfield",
+          "required": false,
+          "label": "Wallpaper Engine Path"
         }
       ]
     },
@@ -264156,7 +264768,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "version": "1.0.0",
       "storeUrl": "https://www.raycast.com/rodolfo_lopez/workflowy",
