@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-05T19:52:41.728Z",
+  "generatedAt": "2026-08-07T00:14:33.965Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "cc25a5d46cc3c0f4e609d090863813a5f4255de3"
+    "commit": "94413547463eabd37e85c1536a94109aa5319a8c"
   },
-  "count": 3153,
+  "count": 3156,
   "extensions": [
     {
       "name": "0x0",
@@ -65945,6 +65945,105 @@
       "preferences": []
     },
     {
+      "name": "elsewhere",
+      "title": "Elsewhere",
+      "description": "Control Elsewhere's spatial soundscapes, Spaces, background music, and volume.",
+      "icon": "extension-icon.png",
+      "author": "yannglt",
+      "contributors": [],
+      "categories": [
+        "Applications",
+        "Media",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/yannglt/elsewhere",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/elsewhere",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "toggle-audio",
+          "title": "Toggle Audio",
+          "subtitle": "Elsewhere",
+          "description": "Play or pause all Elsewhere audio.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "switch-space",
+          "title": "Switch Space",
+          "subtitle": "Elsewhere",
+          "description": "Switch to a different Elsewhere Space.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle-background-music",
+          "title": "Toggle Background Music",
+          "subtitle": "Elsewhere",
+          "description": "Turn Elsewhere's background music on or off.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "switch-background-music",
+          "title": "Switch Background Music",
+          "subtitle": "Elsewhere",
+          "description": "Switch to a different background music track.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "ambience-louder",
+          "title": "Make Ambience Louder",
+          "subtitle": "Elsewhere",
+          "description": "Increase Elsewhere's ambience volume by 10%.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "ambience-quieter",
+          "title": "Make Ambience Quieter",
+          "subtitle": "Elsewhere",
+          "description": "Decrease Elsewhere's ambience volume by 10%.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "music-louder",
+          "title": "Make Music Louder",
+          "subtitle": "Elsewhere",
+          "description": "Increase Elsewhere's music volume by 10%.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "music-quieter",
+          "title": "Make Music Quieter",
+          "subtitle": "Elsewhere",
+          "description": "Decrease Elsewhere's music volume by 10%.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "mail-finder",
       "title": "Mail Finder",
       "description": "Find the verified email address of any professional.",
@@ -88912,7 +89011,8 @@
         "geekyed",
         "dangkhoipro",
         "0xdhrv",
-        "peduarte"
+        "peduarte",
+        "oguma0923"
       ],
       "categories": [
         "Productivity",
@@ -88967,6 +89067,15 @@
           "mode": "view",
           "keywords": [],
           "preferences": [
+            {
+              "name": "showLocation",
+              "type": "checkbox",
+              "title": "Display",
+              "label": "Show location",
+              "description": "Show the event's location as an accessory in the list",
+              "default": false,
+              "required": false
+            },
             {
               "name": "openCommandJoinsMeeting",
               "type": "checkbox",
@@ -162786,6 +162895,10 @@
             {
               "title": "Past Month",
               "value": "past_month"
+            },
+            {
+              "title": "Past 3 Months",
+              "value": "past_3_months"
             }
           ]
         }
@@ -205826,11 +205939,29 @@
           "value": "30"
         },
         {
+          "name": "searchResultsProvider",
+          "type": "dropdown",
+          "data": [
+            {
+              "title": "npmjs.com",
+              "value": "npmjs"
+            },
+            {
+              "title": "npmx.dev",
+              "value": "npmx"
+            }
+          ],
+          "title": "Search Results Provider",
+          "description": "The website used for external package search results",
+          "required": false,
+          "default": "npmjs"
+        },
+        {
           "name": "showLinkToSearchResultsInListView",
           "type": "checkbox",
           "label": "Show link in list view",
-          "title": "Show link to npmjs.com results in list view",
-          "description": "Show link to npmjs.com search results in list view",
+          "title": "Show external search results in list view",
+          "description": "Show a link to the selected search results provider in list view",
           "required": false,
           "value": true,
           "default": true
@@ -212953,13 +213084,16 @@
       "icon": "command-icon.png",
       "author": "Arthals",
       "contributors": [
-        "FrankMao"
+        "FrankMao",
+        "zzh"
       ],
       "categories": [
         "Developer Tools"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/Arthals/simpletexocr",
       "source": {
         "type": "github-monorepo",
@@ -212993,6 +213127,24 @@
           "title": "API Key",
           "description": "API Key from SimpleTex",
           "type": "password"
+        },
+        {
+          "name": "model",
+          "type": "dropdown",
+          "required": true,
+          "title": "Model Selection",
+          "description": "Choose SimpleTex OCR Model(latex_ocr, latex_ocr_turbo)",
+          "default": "latex_ocr",
+          "data": [
+            {
+              "title": "Turbo (cheaper and faster)",
+              "value": "latex_ocr_turbo"
+            },
+            {
+              "title": "LaTeX OCR (more accurate)",
+              "value": "latex_ocr"
+            }
+          ]
         },
         {
           "required": true,
@@ -223863,6 +224015,171 @@
           "placeholder": "/Users/[user folder]/bookmarks.yml or /Users/[user folder]/bookmarks/",
           "required": true,
           "title": "Static Marks YAML File or Folder"
+        }
+      ]
+    },
+    {
+      "name": "status-nerd",
+      "title": "Status Nerd",
+      "description": "Set a funny status on Slack, GitLab and GitHub at once — pick services, roll a random one, or generate with AI.",
+      "icon": "icon.png",
+      "author": "jan_werner",
+      "contributors": [],
+      "categories": [
+        "Communication",
+        "Fun"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/jan_werner/status-nerd",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/status-nerd",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "set-status",
+          "title": "Set Status",
+          "description": "Choose services, pick or AI-generate a status, and set it",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "select-status",
+          "title": "Select Status",
+          "description": "Pick from recent, saved and default statuses",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "random-status",
+          "title": "Random Status",
+          "description": "Set a random status on your default services in one click",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "clear-status",
+          "title": "Clear Status",
+          "description": "Remove your status on all configured services at once",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "meeting-status",
+          "title": "Meeting Status",
+          "description": "Generate a status from your current or next calendar meeting",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "slackToken",
+          "title": "Slack User Token",
+          "description": "xoxp- token with the users.profile:write scope",
+          "type": "password",
+          "required": false
+        },
+        {
+          "name": "gitlabToken",
+          "title": "GitLab Token",
+          "description": "Personal access token with the api scope",
+          "type": "password",
+          "required": false
+        },
+        {
+          "name": "gitlabUrl",
+          "title": "GitLab URL",
+          "description": "Base URL of your GitLab instance",
+          "type": "textfield",
+          "default": "https://gitlab.com",
+          "required": false
+        },
+        {
+          "name": "githubToken",
+          "title": "GitHub Token",
+          "description": "Classic PAT with the user scope (needed for changeUserStatus)",
+          "type": "password",
+          "required": false
+        },
+        {
+          "name": "defaultSlack",
+          "title": "Default Services",
+          "label": "Slack",
+          "description": "Services used by the Random Status command and preselected in Set Status",
+          "type": "checkbox",
+          "default": true,
+          "required": false
+        },
+        {
+          "name": "defaultGitlab",
+          "title": "",
+          "label": "GitLab",
+          "description": "Include GitLab in the default services",
+          "type": "checkbox",
+          "default": true,
+          "required": false
+        },
+        {
+          "name": "defaultGithub",
+          "title": "",
+          "label": "GitHub",
+          "description": "Include GitHub in the default services",
+          "type": "checkbox",
+          "default": true,
+          "required": false
+        },
+        {
+          "name": "calendarIcsUrl",
+          "title": "Calendar ICS URL",
+          "description": "Secret iCal URL (Google Calendar → Settings → Secret address in iCal format). Used by Meeting Status. Grants read access to that calendar — keep it private.",
+          "type": "password",
+          "required": false
+        },
+        {
+          "name": "defaultDuration",
+          "title": "Default Status Duration",
+          "description": "How long a status stays before it clears (GitLab is mapped to its nearest supported bucket)",
+          "type": "dropdown",
+          "default": "until_1730",
+          "required": false,
+          "data": [
+            {
+              "title": "Until 17:30",
+              "value": "until_1730"
+            },
+            {
+              "title": "1 hour",
+              "value": "1h"
+            },
+            {
+              "title": "4 hours",
+              "value": "4h"
+            },
+            {
+              "title": "8 hours",
+              "value": "8h"
+            },
+            {
+              "title": "End of day",
+              "value": "eod"
+            },
+            {
+              "title": "Don't expire",
+              "value": "never"
+            }
+          ]
         }
       ]
     },
@@ -251478,7 +251795,8 @@
         "yug2005",
         "xmok",
         "alexi.build",
-        "arinbalyan"
+        "arinbalyan",
+        "0xdhrv"
       ],
       "categories": [],
       "license": "MIT",
@@ -268201,6 +268519,90 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "xkeen-manager",
+      "title": "XKeen Manager",
+      "description": "Manage the xkeen (Xray) proxy client on Keenetic routers over SSH: status, server profiles, routing rules, backups and health checks",
+      "icon": "extension-icon.png",
+      "author": "vbrs",
+      "contributors": [],
+      "categories": [
+        "System",
+        "Security"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/vbrs/xkeen-manager",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/xkeen-manager",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "xkeen-manager",
+          "title": "XKeen Manager",
+          "description": "Status, restart and logs for xkeen",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "setup-ssh",
+          "title": "Setup SSH Connection",
+          "description": "Wizard to configure passwordless access",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "menubar-status",
+          "title": "XKeen Menu Bar",
+          "description": "XKeen status in the menu bar with quick actions",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "sshHost",
+          "type": "textfield",
+          "required": true,
+          "title": "SSH Connection",
+          "description": "Host alias (from ~/.ssh/config) or user@ip",
+          "default": "xkeen",
+          "placeholder": "xkeen"
+        },
+        {
+          "name": "configDir",
+          "type": "textfield",
+          "required": false,
+          "title": "Config Directory",
+          "description": "Path to active xray configs",
+          "default": "/opt/etc/xray/configs"
+        },
+        {
+          "name": "profilesDir",
+          "type": "textfield",
+          "required": false,
+          "title": "Profiles Directory",
+          "description": "Path to store profiles",
+          "default": "/opt/etc/xray/configs-profiles"
+        },
+        {
+          "name": "proxyTag",
+          "type": "textfield",
+          "required": false,
+          "title": "Proxy Outbound Tag",
+          "description": "Outbound tag for proxy rules created by Quick Add. Leave empty to auto-detect from 04_outbounds.json",
+          "placeholder": "vless-reality"
+        }
+      ]
     },
     {
       "name": "xpf-converter",
