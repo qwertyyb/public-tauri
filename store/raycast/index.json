@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-07T00:14:33.965Z",
+  "generatedAt": "2026-08-07T19:12:01.142Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "94413547463eabd37e85c1536a94109aa5319a8c"
+    "commit": "62382729217aed9f4403df896eab57a157fe5314"
   },
-  "count": 3156,
+  "count": 3157,
   "extensions": [
     {
       "name": "0x0",
@@ -18645,7 +18645,26 @@
           "description": "Stop recording, or open content selection to start a new recording",
           "mode": "no-view",
           "keywords": [],
-          "preferences": []
+          "preferences": [
+            {
+              "name": "toggleAction",
+              "type": "dropdown",
+              "required": false,
+              "title": "Toggle Action",
+              "description": "Choose whether stopping a recording also copies the generated file to the clipboard.",
+              "default": "toggle",
+              "data": [
+                {
+                  "title": "Toggle Recording",
+                  "value": "toggle"
+                },
+                {
+                  "title": "Toggle and Copy File",
+                  "value": "toggle-copy"
+                }
+              ]
+            }
+          ]
         },
         {
           "name": "open-recordings",
@@ -32982,6 +33001,40 @@
           "title": "Chinese Numbers",
           "subtitle": "Chinese Numbers",
           "description": "Chinese Numbers is a Raycast Extension to convert Arabic numbers to Chinese numbers.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "chmod-lookup",
+      "title": "Chmod Lookup",
+      "description": "Convert Unix permissions between numeric (octal) and symbolic notation",
+      "icon": "extension-icon.png",
+      "author": "taha_harradi",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/taha_harradi/chmod-lookup",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/chmod-lookup",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "chmod",
+          "title": "Look up Chmod Mode",
+          "description": "Convert Unix permissions between numeric (octal) and symbolic notation",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -181328,8 +181381,8 @@
     },
     {
       "name": "publico",
-      "title": "Publico",
-      "description": "A Raycast extension to receive the latest news from Público, keeping you informed in real time directly from your command bar.",
+      "title": "Público",
+      "description": "Browse, search, and read the latest news from Público directly from your command bar.",
       "icon": "extension-icon.png",
       "author": "caasols",
       "contributors": [],
@@ -181351,33 +181404,535 @@
       "commands": [
         {
           "name": "view-popular-news",
-          "title": "View Popular News",
-          "subtitle": "Publico",
-          "description": "Shows top news from Publico",
+          "title": "Browse Popular News",
+          "subtitle": "Público",
+          "description": "Browse the most popular articles from Público",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "popular news",
+            "popular",
+            "destaque",
+            "destaques",
+            "mais lidas",
+            "news",
+            "notícias",
+            "noticias"
+          ],
           "preferences": []
         },
         {
           "name": "view-latest-news",
-          "title": "View Latest News",
-          "subtitle": "Publico",
-          "description": "Shows the latest news from Publico",
+          "title": "Browse Latest News",
+          "subtitle": "Público",
+          "description": "Browse the latest articles from Público",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "latest news",
+            "latest",
+            "últimas",
+            "ultimas",
+            "recentes",
+            "news",
+            "notícias",
+            "noticias"
+          ],
           "preferences": []
         },
         {
           "name": "search-news",
-          "title": "Search News",
-          "subtitle": "Publico",
-          "description": "Search for news in Publico",
+          "title": "Browse Topic",
+          "subtitle": "Público",
+          "description": "Browse Público articles by topic, person, place, or team",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "search news",
+            "search",
+            "news",
+            "pesquisa",
+            "notícias",
+            "noticias",
+            "procurar",
+            "topic",
+            "tópico",
+            "topico"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "section-politica",
+          "title": "Browse Politics",
+          "subtitle": "Público",
+          "description": "Browse the latest Politics articles from Público",
+          "mode": "view",
+          "keywords": [
+            "política",
+            "politica",
+            "governo",
+            "parlamento"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "section-mundo",
+          "title": "Browse World",
+          "subtitle": "Público",
+          "description": "Browse the latest World articles from Público",
+          "mode": "view",
+          "keywords": [
+            "mundo",
+            "internacional"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "section-economia",
+          "title": "Browse Economy",
+          "subtitle": "Público",
+          "description": "Browse the latest Economy articles from Público",
+          "mode": "view",
+          "keywords": [
+            "economia",
+            "negócios",
+            "negocios",
+            "finanças",
+            "financas",
+            "business",
+            "dinheiro"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "section-sociedade",
+          "title": "Browse Society",
+          "subtitle": "Público",
+          "description": "Browse the latest Society articles from Público",
+          "mode": "view",
+          "keywords": [
+            "sociedade",
+            "social"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "section-ciencia",
+          "title": "Browse Science",
+          "subtitle": "Público",
+          "description": "Browse the latest Science articles from Público",
+          "mode": "view",
+          "keywords": [
+            "ciência",
+            "ciencia"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "section-tecnologia",
+          "title": "Browse Technology",
+          "subtitle": "Público",
+          "description": "Browse the latest Technology articles from Público",
+          "mode": "view",
+          "keywords": [
+            "tecnologia",
+            "tech"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "section-cultura",
+          "title": "Browse Culture",
+          "subtitle": "Público",
+          "description": "Browse the latest Culture articles from Público",
+          "mode": "view",
+          "keywords": [
+            "cultura",
+            "arte",
+            "cultural"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "section-desporto",
+          "title": "Browse Sports",
+          "subtitle": "Público",
+          "description": "Browse the latest Sports articles from Público",
+          "mode": "view",
+          "keywords": [
+            "desporto",
+            "futebol",
+            "football"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "section-opiniao",
+          "title": "Browse Opinion",
+          "subtitle": "Público",
+          "description": "Browse the latest Opinion articles from Público",
+          "mode": "view",
+          "keywords": [
+            "opinião",
+            "opiniao",
+            "editorial"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "section-local",
+          "title": "Browse Local",
+          "subtitle": "Público",
+          "description": "Browse the latest Local articles from Público",
+          "mode": "view",
+          "keywords": [
+            "local",
+            "regional"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "section-lisboa",
+          "title": "Browse Lisbon",
+          "subtitle": "Público",
+          "description": "Browse the latest Lisbon articles from Público",
+          "mode": "view",
+          "keywords": [
+            "lisboa"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "section-porto",
+          "title": "Browse Porto",
+          "subtitle": "Público",
+          "description": "Browse the latest Porto articles from Público",
+          "mode": "view",
+          "keywords": [
+            "porto",
+            "oporto"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "section-europa",
+          "title": "Browse Europe",
+          "subtitle": "Público",
+          "description": "Browse the latest Europe articles from Público",
+          "mode": "view",
+          "keywords": [
+            "europa",
+            "ue",
+            "eu"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "section-brasil",
+          "title": "Browse Brazil",
+          "subtitle": "Público",
+          "description": "Browse the latest Brazil articles from Público",
+          "mode": "view",
+          "keywords": [
+            "brasil"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "section-media",
+          "title": "Browse Media",
+          "subtitle": "Público",
+          "description": "Browse the latest Media articles from Público",
+          "mode": "view",
+          "keywords": [
+            "media",
+            "comunicação social",
+            "comunicacao social",
+            "imprensa",
+            "jornalismo"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "section-educacao",
+          "title": "Browse Education",
+          "subtitle": "Público",
+          "description": "Browse the latest Education articles from Público",
+          "mode": "view",
+          "keywords": [
+            "educação",
+            "educacao",
+            "escola"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "section-saude",
+          "title": "Browse Health",
+          "subtitle": "Público",
+          "description": "Browse the latest Health articles from Público",
+          "mode": "view",
+          "keywords": [
+            "saúde",
+            "saude",
+            "health",
+            "medicina"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "section-ambiente",
+          "title": "Browse Environment",
+          "subtitle": "Público",
+          "description": "Browse the latest Environment articles from Público",
+          "mode": "view",
+          "keywords": [
+            "ambiente",
+            "clima",
+            "climate"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "section-azul",
+          "title": "Browse Azul",
+          "subtitle": "Público",
+          "description": "Browse the latest Azul articles from Público",
+          "mode": "view",
+          "keywords": [
+            "azul",
+            "oceans",
+            "oceanos",
+            "clima"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "section-ecosfera",
+          "title": "Browse Ecosfera",
+          "subtitle": "Público",
+          "description": "Browse the latest Ecosfera articles from Público",
+          "mode": "view",
+          "keywords": [
+            "ecosfera",
+            "climate",
+            "clima",
+            "sustentabilidade"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "section-parlamento",
+          "title": "Browse Parliament",
+          "subtitle": "Público",
+          "description": "Browse the latest Parliament articles from Público",
+          "mode": "view",
+          "keywords": [
+            "parlamento",
+            "assembleia"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "section-gente",
+          "title": "Browse People",
+          "subtitle": "Público",
+          "description": "Browse the latest People articles from Público",
+          "mode": "view",
+          "keywords": [
+            "gente",
+            "celebridades"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "section-impar",
+          "title": "Browse Ímpar",
+          "subtitle": "Público",
+          "description": "Browse the latest Ímpar articles from Público",
+          "mode": "view",
+          "keywords": [
+            "ímpar",
+            "impar",
+            "lifestyle",
+            "bem-estar"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "section-p3",
+          "title": "Browse P3",
+          "subtitle": "Público",
+          "description": "Browse the latest P3 articles from Público",
+          "mode": "view",
+          "keywords": [
+            "p3",
+            "jovem",
+            "youth"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "section-ipsilon",
+          "title": "Browse Ípsilon",
+          "subtitle": "Público",
+          "description": "Browse the latest Ípsilon articles from Público",
+          "mode": "view",
+          "keywords": [
+            "ípsilon",
+            "ipsilon",
+            "cultura",
+            "música",
+            "musica",
+            "cinema"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "section-fugas",
+          "title": "Browse Fugas",
+          "subtitle": "Público",
+          "description": "Browse the latest Fugas articles from Público",
+          "mode": "view",
+          "keywords": [
+            "fugas",
+            "travel",
+            "viagens",
+            "escapes"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "section-viagens",
+          "title": "Browse Travel",
+          "subtitle": "Público",
+          "description": "Browse the latest Travel articles from Público",
+          "mode": "view",
+          "keywords": [
+            "viagens",
+            "turismo",
+            "travel"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "section-gastronomia",
+          "title": "Browse Food",
+          "subtitle": "Público",
+          "description": "Browse the latest Food articles from Público",
+          "mode": "view",
+          "keywords": [
+            "gastronomia",
+            "comida",
+            "restaurantes"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "section-casa",
+          "title": "Browse Home",
+          "subtitle": "Público",
+          "description": "Browse the latest Home articles from Público",
+          "mode": "view",
+          "keywords": [
+            "casa",
+            "decoração",
+            "decoracao"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "section-automoveis",
+          "title": "Browse Cars",
+          "subtitle": "Público",
+          "description": "Browse the latest Cars articles from Público",
+          "mode": "view",
+          "keywords": [
+            "automóveis",
+            "automoveis",
+            "carros"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "section-multimedia",
+          "title": "Browse Multimedia",
+          "subtitle": "Público",
+          "description": "Browse the latest Multimedia articles from Público",
+          "mode": "view",
+          "keywords": [
+            "multimédia",
+            "multimedia",
+            "vídeo",
+            "video"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "section-videos",
+          "title": "Browse Videos",
+          "subtitle": "Público",
+          "description": "Browse the latest Videos articles from Público",
+          "mode": "view",
+          "keywords": [
+            "vídeos",
+            "videos",
+            "vídeo",
+            "video"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "section-podcasts",
+          "title": "Browse Podcasts",
+          "subtitle": "Público",
+          "description": "Browse the latest Podcasts articles from Público",
+          "mode": "view",
+          "keywords": [
+            "podcasts",
+            "áudio",
+            "audio",
+            "podcast"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "section-fotogaleria",
+          "title": "Browse Photo Gallery",
+          "subtitle": "Público",
+          "description": "Browse the latest Photo Gallery articles from Público",
+          "mode": "view",
+          "keywords": [
+            "fotogaleria",
+            "fotografia",
+            "photos",
+            "photo gallery",
+            "fotos"
+          ],
           "preferences": []
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "maxArticles",
+          "title": "Max Articles",
+          "description": "Maximum number of articles to display in the list",
+          "type": "dropdown",
+          "required": false,
+          "default": "25",
+          "data": [
+            {
+              "title": "10",
+              "value": "10"
+            },
+            {
+              "title": "25",
+              "value": "25"
+            },
+            {
+              "title": "50",
+              "value": "50"
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "publora",
@@ -207908,7 +208463,9 @@
       "description": "Search for TV show ratings and get individual episode ratings, straight from Raycast",
       "icon": "extension-icon.png",
       "author": "muhammadrizo",
-      "contributors": [],
+      "contributors": [
+        "0xdhrv"
+      ],
       "categories": [
         "Media",
         "Web",
@@ -207978,6 +208535,15 @@
               "value": "tmdb"
             }
           ]
+        },
+        {
+          "name": "apiBaseUrl",
+          "description": "Base URL for the IMDxAPI used to search titles and fetch episode ratings. Default: https://api.tiffara.com",
+          "type": "textfield",
+          "required": false,
+          "default": "https://api.tiffara.com",
+          "title": "IMDxAPI Base URL",
+          "placeholder": "https://api.tiffara.com"
         },
         {
           "name": "tmdbAccessToken",
@@ -216859,7 +217425,8 @@
       "icon": "command-icon.png",
       "author": "astronight",
       "contributors": [
-        "stevenokuto"
+        "stevenokuto",
+        "ridemountainpig"
       ],
       "categories": [
         "Developer Tools"
@@ -216916,6 +217483,15 @@
             }
           ],
           "title": "Select primary action"
+        },
+        {
+          "name": "hideFolderInList",
+          "description": "Hide the folder path next to each snippet in the list to give long snippet names more room.",
+          "type": "checkbox",
+          "required": false,
+          "default": false,
+          "title": "Hide Folder in List",
+          "label": "Hide folder"
         },
         {
           "name": "pasteContentScope",
@@ -237492,7 +238068,9 @@
       "description": "Manage TickTick tasks, projects, habits, and focus sessions from Raycast.",
       "icon": "extension-icon.png",
       "author": "ysrazsingh",
-      "contributors": [],
+      "contributors": [
+        "0xdhrv"
+      ],
       "categories": [
         "Productivity"
       ],
@@ -248871,11 +249449,14 @@
         "lunareclipsewasshort",
         "litomore",
         "cristiangrojas",
-        "xmok"
+        "xmok",
+        "0xdhrv"
       ],
       "categories": [],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/cjdenio/two-factor-authentication-code-generator",
       "source": {
         "type": "github-monorepo",
@@ -248912,7 +249493,7 @@
       "preferences": [
         {
           "name": "defaultAction",
-          "description": "Set the default action",
+          "description": "Choose whether Enter copies the code or pastes it into the focused app",
           "type": "dropdown",
           "required": false,
           "title": "Default Action",
@@ -249338,7 +249919,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/frankdilo/typefully",
       "source": {
