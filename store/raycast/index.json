@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-09T19:02:32.122Z",
+  "generatedAt": "2026-08-10T19:12:50.231Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "38c0e1983e233ff463b19cc0dc4b1d83cd7e5f3d"
+    "commit": "b0841385097dde5f8f874cd391c0a299c1d12661"
   },
-  "count": 3157,
+  "count": 3163,
   "extensions": [
     {
       "name": "0x0",
@@ -3143,13 +3143,14 @@
     {
       "name": "agent-usage",
       "title": "Agent Usage",
-      "description": "Monitor AI coding agent usage across Amp, Claude, Codex, Copilot, Cursor, Droid, Gemini, Grok, Kimi, Synthetic, Antigravity, z.ai, MiniMax, and OpenCode Go",
+      "description": "Monitor AI coding agent usage across Amp, Antigravity, Claude, ClinePass, Codex, Copilot, Cursor, Droid, Gemini, Grok, Kimi, MiniMax, OpenCode Go, Synthetic and z.ai",
       "icon": "extension-icon.png",
       "author": "thuggyduck",
       "contributors": [
         "alexi.build",
         "adrianbonpin",
-        "garrick_zhang"
+        "garrick_zhang",
+        "EDM115"
       ],
       "categories": [
         "Productivity"
@@ -3197,10 +3198,26 @@
           "required": false
         },
         {
+          "name": "showAntigravity",
+          "type": "checkbox",
+          "label": "Show Antigravity",
+          "description": "Show Antigravity usage in the list",
+          "default": true,
+          "required": false
+        },
+        {
           "name": "showClaude",
           "type": "checkbox",
           "label": "Show Claude",
           "description": "Show Claude usage in the list",
+          "default": true,
+          "required": false
+        },
+        {
+          "name": "showClinePass",
+          "type": "checkbox",
+          "label": "Show ClinePass",
+          "description": "Show ClinePass usage in the list",
           "default": true,
           "required": false
         },
@@ -3221,11 +3238,25 @@
           "required": false
         },
         {
+          "name": "copilotAuthToken",
+          "type": "password",
+          "title": "Copilot Authorization Token (Optional)",
+          "description": "Optional fallback OAuth token for Copilot usage. Usually auto-detected from GH_TOKEN or GITHUB_TOKEN (for example from 'gh auth token'). Standard PATs may not work.",
+          "required": false
+        },
+        {
           "name": "showCursor",
           "type": "checkbox",
           "label": "Show Cursor",
           "description": "Show Cursor usage in the list",
           "default": true,
+          "required": false
+        },
+        {
+          "name": "cursorCookieHeader",
+          "type": "password",
+          "title": "Cursor Cookie Header (Optional)",
+          "description": "Optional fallback Cookie header from cursor.com. Usually auto-detected from your local Cursor.app login.",
           "required": false
         },
         {
@@ -3261,27 +3292,10 @@
           "required": false
         },
         {
-          "name": "showSynthetic",
-          "type": "checkbox",
-          "label": "Show Synthetic",
-          "description": "Show Synthetic usage in the list",
-          "default": true,
-          "required": false
-        },
-        {
-          "name": "showAntigravity",
-          "type": "checkbox",
-          "label": "Show Antigravity",
-          "description": "Show Antigravity usage in the list",
-          "default": true,
-          "required": false
-        },
-        {
-          "name": "showZai",
-          "type": "checkbox",
-          "label": "Show z.ai (GLM)",
-          "description": "Show z.ai (GLM) usage in the list",
-          "default": true,
+          "name": "kimiAuthToken",
+          "type": "password",
+          "title": "Kimi Authorization Token (Optional)",
+          "description": "Auto-detected from OpenCode login (kimi-for-coding). Fallback: paste the Authorization header value from https://www.kimi.com/code/console DevTools. Format: 'Bearer eyJ...' or just 'eyJ...'",
           "required": false
         },
         {
@@ -3293,53 +3307,18 @@
           "required": false
         },
         {
+          "name": "minimaxApiToken",
+          "type": "password",
+          "title": "MiniMax API Token (Optional)",
+          "description": "Optional fallback token. Usually auto-detected from MINIMAX_API_KEY environment variable (set in ~/.zshrc, ~/.bashrc, etc.).",
+          "required": false
+        },
+        {
           "name": "showOpencodeGo",
           "type": "checkbox",
           "label": "Show OpenCode Go",
           "description": "Show OpenCode Go subscription usage in the list",
           "default": true,
-          "required": false
-        },
-        {
-          "name": "copilotAuthToken",
-          "type": "password",
-          "title": "Copilot Authorization Token (Optional)",
-          "description": "Optional fallback OAuth token for Copilot usage. Usually auto-detected from GH_TOKEN or GITHUB_TOKEN (for example from 'gh auth token'). Standard PATs may not work.",
-          "required": false
-        },
-        {
-          "name": "cursorCookieHeader",
-          "type": "password",
-          "title": "Cursor Cookie Header (Optional)",
-          "description": "Optional fallback Cookie header from cursor.com. Usually auto-detected from your local Cursor.app login.",
-          "required": false
-        },
-        {
-          "name": "kimiAuthToken",
-          "type": "password",
-          "title": "Kimi Authorization Token (Optional)",
-          "description": "Auto-detected from OpenCode login (kimi-for-coding). Fallback: paste the Authorization header value from https://www.kimi.com/code/console DevTools. Format: 'Bearer eyJ...' or just 'eyJ...'",
-          "required": false
-        },
-        {
-          "name": "syntheticApiToken",
-          "type": "password",
-          "title": "Synthetic API Token (Optional)",
-          "description": "Auto-detected from OpenCode login (synthetic). Fallback: paste your Synthetic API key from https://synthetic.new/billing.",
-          "required": false
-        },
-        {
-          "name": "zaiApiToken",
-          "type": "password",
-          "title": "z.ai API Token (Optional)",
-          "description": "Optional fallback token. Usually auto-detected from ZAI_API_KEY or GLM_API_KEY environment variable (set in ~/.zshrc, ~/.bashrc, etc.).",
-          "required": false
-        },
-        {
-          "name": "minimaxApiToken",
-          "type": "password",
-          "title": "MiniMax API Token (Optional)",
-          "description": "Optional fallback token. Usually auto-detected from MINIMAX_API_KEY environment variable (set in ~/.zshrc, ~/.bashrc, etc.).",
           "required": false
         },
         {
@@ -3354,6 +3333,36 @@
           "type": "password",
           "title": "OpenCode Go Auth Cookie",
           "description": "The 'auth' cookie value from your OpenCode session. Open opencode.ai, log in, then copy the 'auth' cookie from DevTools (Application → Cookies).",
+          "required": false
+        },
+        {
+          "name": "showSynthetic",
+          "type": "checkbox",
+          "label": "Show Synthetic",
+          "description": "Show Synthetic usage in the list",
+          "default": true,
+          "required": false
+        },
+        {
+          "name": "syntheticApiToken",
+          "type": "password",
+          "title": "Synthetic API Token (Optional)",
+          "description": "Auto-detected from OpenCode login (synthetic). Fallback: paste your Synthetic API key from https://synthetic.new/billing.",
+          "required": false
+        },
+        {
+          "name": "showZai",
+          "type": "checkbox",
+          "label": "Show z.ai (GLM)",
+          "description": "Show z.ai (GLM) usage in the list",
+          "default": true,
+          "required": false
+        },
+        {
+          "name": "zaiApiToken",
+          "type": "password",
+          "title": "z.ai API Token (Optional)",
+          "description": "Optional fallback token. Usually auto-detected from ZAI_API_KEY or GLM_API_KEY environment variable (set in ~/.zshrc, ~/.bashrc, etc.).",
           "required": false
         },
         {
@@ -7740,10 +7749,37 @@
           "preferences": []
         },
         {
+          "name": "timer",
+          "title": "Execute Timer Command",
+          "subtitle": "Antinote (beta)",
+          "description": "Executes a timer command. This feature is only available in Antinote v2.* (beta)",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "new-note-from-selection",
+          "title": "Create New Note from Selection",
+          "subtitle": "Antinote",
+          "description": "Creates a new note with selected text",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "search-notes",
           "title": "Search Notes",
           "subtitle": "Antinote",
           "description": "Search through existing notes",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-slotted-notes",
+          "title": "Search Slotted Notes",
+          "subtitle": "Antinote (beta)",
+          "description": "Search through existing slotted notes. This feature requires Antinote v2.* (beta)",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -7758,7 +7794,26 @@
           "preferences": []
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "preferBeta",
+          "type": "dropdown",
+          "title": "Antinote Version to Use",
+          "description": "Prefer Beta: If available, the Antinote extension will communicate with the beta version of Antinote. Always use stable version: Regardless of whether the beta is installed or not, only the stable version will be used with the Antinote extension.",
+          "default": "true",
+          "required": false,
+          "data": [
+            {
+              "title": "Prefer beta (v2.*)",
+              "value": "true"
+            },
+            {
+              "title": "Always use stable version (1.*)",
+              "value": "false"
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "antisocials",
@@ -15931,6 +15986,40 @@
           "default": "6"
         }
       ]
+    },
+    {
+      "name": "bang-dream-screenshot-search",
+      "title": "BanG Dream! Screenshot Search",
+      "description": "Search and copy dialogue screenshots from MyGO!!!!! and Ave Mujica.",
+      "icon": "icon.png",
+      "author": "luke_lin",
+      "contributors": [],
+      "categories": [
+        "Media"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/luke_lin/bang-dream-screenshot-search",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/bang-dream-screenshot-search",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-screenshots",
+          "title": "Search Screenshots",
+          "subtitle": "BanG Dream!",
+          "description": "Search BanG Dream! dialogue screenshots and copy images to the clipboard.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "bangumi",
@@ -33009,6 +33098,80 @@
       "preferences": []
     },
     {
+      "name": "chinese-traditional-colors",
+      "title": "Chinese Traditional Colors",
+      "description": "Search, preview, and copy Chinese traditional colors and harmony palettes.",
+      "icon": "icon.png",
+      "author": "RaffeYang",
+      "contributors": [],
+      "categories": [
+        "Design Tools",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/RaffeYang/chinese-traditional-colors",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/chinese-traditional-colors",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-colors",
+          "title": "Chinese Traditional Colors",
+          "description": "Find Chinese traditional colors by name, number, HEX, RGB, HSL, hue, or palette relationship.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "defaultCopyFormat",
+          "title": "Default Copy Format",
+          "description": "Format copied when pressing Enter on a color.",
+          "type": "dropdown",
+          "required": false,
+          "default": "hex",
+          "data": [
+            {
+              "title": "HEX",
+              "value": "hex"
+            },
+            {
+              "title": "RGB",
+              "value": "rgb"
+            },
+            {
+              "title": "CSS RGB",
+              "value": "cssRgb"
+            },
+            {
+              "title": "HSL",
+              "value": "hsl"
+            },
+            {
+              "title": "CSS HSL",
+              "value": "cssHsl"
+            },
+            {
+              "title": "CSS Variable",
+              "value": "cssVariable"
+            },
+            {
+              "title": "JSON",
+              "value": "json"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "chmod-lookup",
       "title": "Chmod Lookup",
       "description": "Convert Unix permissions between numeric (octal) and symbolic notation",
@@ -34147,7 +34310,8 @@
       "author": "stephendolan",
       "contributors": [
         "ridemountainpig",
-        "tim_gailey"
+        "tim_gailey",
+        "secustor"
       ],
       "categories": [
         "Developer Tools",
@@ -34174,6 +34338,24 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "claude-sessions",
+          "title": "Claude Sessions",
+          "subtitle": "Claude Code Launcher",
+          "description": "List, attach, stop, and delete Claude Code sessions and background agents.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "claudeBinaryPath",
+              "title": "Claude CLI Path",
+              "description": "Absolute path to the claude binary. Leave empty to auto-detect (Homebrew, ~/.claude/local, ~/.local/bin, ~/.bun/bin).",
+              "type": "textfield",
+              "required": false,
+              "placeholder": "/opt/homebrew/bin/claude"
+            }
+          ]
         }
       ],
       "preferences": [
@@ -90725,7 +90907,8 @@
         "likid",
         "xmok",
         "brucemakes012",
-        "alexi.build"
+        "alexi.build",
+        "ridemountainpig"
       ],
       "categories": [
         "Web",
@@ -93852,6 +94035,15 @@
               "value": "paste"
             }
           ]
+        },
+        {
+          "name": "prioritizeCrossLanguage",
+          "title": "Result Ordering",
+          "label": "Prioritize cross-language translations",
+          "description": "When the input text is already in one of your target languages, move that same-language result (e.g. English → English) to the bottom. When disabled, results keep your configured target language order.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
         },
         {
           "name": "proxy",
@@ -99870,7 +100062,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/islamtayeb/helium",
       "source": {
@@ -99967,6 +100160,14 @@
               "value": "ecosia"
             }
           ]
+        },
+        {
+          "name": "heliumPath",
+          "title": "Helium Location",
+          "description": "Only needed for portable or non-default installs. Windows: the path to Helium's chrome.exe (for example C:\\Users\\you\\AppData\\Local\\imput\\Helium\\Application\\chrome.exe). macOS: the path to Helium.app. Leave empty to detect it automatically.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "Detected automatically"
         }
       ]
     },
@@ -101780,7 +101981,9 @@
         "Communication"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/Flatroy/hide-mail",
       "source": {
         "type": "github-monorepo",
@@ -102621,7 +102824,8 @@
         "xilopaint",
         "krsntn",
         "mikikiv",
-        "techmaved"
+        "techmaved",
+        "mattiacolombomc"
       ],
       "categories": [
         "Other"
@@ -108616,6 +108820,47 @@
       ]
     },
     {
+      "name": "inoh",
+      "title": "Inoh",
+      "description": "Quickly add vocabulary cards to your Inoh decks",
+      "icon": "extension-icon.png",
+      "author": "tai",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/tai/inoh",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/inoh",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "add-card",
+          "title": "Search Word",
+          "description": "Search and add vocabulary cards to your Inoh deck",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-selected-word",
+          "title": "Search Selected Word",
+          "description": "Look up the selected word in Inoh dictionary",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "inoreader",
       "title": "Inoreader",
       "description": "Browse your Inoreader RSS feed",
@@ -108999,6 +109244,111 @@
           "required": false
         }
       ]
+    },
+    {
+      "name": "install-fonts",
+      "title": "Install Fonts",
+      "description": "Install fonts from Finder selections, folders, or zip files.",
+      "icon": "icon.png",
+      "author": "will_thresher",
+      "contributors": [],
+      "categories": [
+        "Design Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "0.1.0",
+      "storeUrl": "https://www.raycast.com/will_thresher/install-fonts",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/install-fonts",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "install-fonts",
+          "title": "Install Fonts",
+          "description": "Install selected fonts into your Mac user Fonts folder.",
+          "mode": "view",
+          "keywords": [
+            "font",
+            "fonts",
+            "typeface",
+            "install",
+            "zip",
+            "ttf",
+            "otf"
+          ],
+          "preferences": [
+            {
+              "name": "trashSourceAfterInstall",
+              "title": "Clean Up",
+              "label": "Trash source after install",
+              "description": "Move the original font file, folder, or zip to the Trash after a successful install.",
+              "type": "checkbox",
+              "required": false,
+              "default": true
+            },
+            {
+              "name": "duplicateHandling",
+              "title": "Duplicates",
+              "description": "Choose how Install Fonts should handle font files with the same filename as an existing font.",
+              "type": "dropdown",
+              "required": false,
+              "default": "ask",
+              "data": [
+                {
+                  "title": "Ask every time",
+                  "value": "ask"
+                },
+                {
+                  "title": "Skip duplicates",
+                  "value": "skip"
+                },
+                {
+                  "title": "Overwrite duplicates",
+                  "value": "overwrite"
+                },
+                {
+                  "title": "Keep both",
+                  "value": "keep-both"
+                }
+              ]
+            },
+            {
+              "name": "showFinderAfterInstall",
+              "title": "Post Install",
+              "label": "Show Fonts folder after install",
+              "description": "Reveal your user Fonts folder in Finder after a successful install.",
+              "type": "checkbox",
+              "required": false,
+              "default": false
+            },
+            {
+              "name": "fontSelectionMode",
+              "title": "Font Versions",
+              "description": "Choose whether Install Fonts installs every discovered font or asks you to pick a format when mixed font types are found.",
+              "type": "dropdown",
+              "required": false,
+              "default": "ask-when-variants-found",
+              "data": [
+                {
+                  "title": "Install all fonts",
+                  "value": "install-all"
+                },
+                {
+                  "title": "Ask when mixed formats are found",
+                  "value": "ask-when-variants-found"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "installed-extensions",
@@ -139323,6 +139673,66 @@
       "preferences": []
     },
     {
+      "name": "microsoft-tenant-id",
+      "title": "Microsoft Tenant ID",
+      "description": "Find the Microsoft Entra (Azure AD) tenant ID for a domain, email, or URL — or reverse-look up the organization behind a tenant ID.",
+      "icon": "icon.png",
+      "author": "Rediwed",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/Rediwed/microsoft-tenant-id",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/microsoft-tenant-id",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "find-tenant-id",
+          "title": "Find Tenant ID",
+          "description": "Look up the Microsoft Entra tenant ID for a domain, email address, or URL.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "resolve-from-clipboard",
+          "title": "Resolve Tenant ID from Clipboard",
+          "description": "Resolve the tenant ID for the domain in your selection or clipboard and copy it.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "lookup-by-tenant-id",
+          "title": "Find Organization by Tenant ID",
+          "description": "Reverse lookup: find the organization name and default domain for a Microsoft tenant ID. Personal-account tenant IDs need no sign-in; organization tenants use a work or school sign-in.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "clientId",
+          "type": "textfield",
+          "required": false,
+          "title": "Application (Client) ID",
+          "description": "Optional. Leave empty to use the built-in multitenant Entra app registration. Paste your own Application (client) ID to use a registration you control (public client + PKCE, redirect URI https://raycast.com/redirect?packageName=Extension, scope CrossTenantInformation.ReadBasic.All).",
+          "placeholder": "Built-in app (leave empty)"
+        }
+      ]
+    },
+    {
       "name": "midas",
       "title": "Midas",
       "description": "Midas is an AI Agent that manages on-chain trading, voting and more for you.",
@@ -146789,7 +147199,8 @@
       "author": "arian",
       "contributors": [
         "yannglt",
-        "peduarte"
+        "peduarte",
+        "sebastiangonzales"
       ],
       "categories": [
         "Applications",
@@ -198881,6 +199292,14 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "history",
+          "title": "Rename History",
+          "description": "View and undo recent rename operations.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": []
@@ -220918,7 +221337,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/daniyal_master/sportssync",
       "source": {
@@ -233935,6 +234355,49 @@
           ]
         }
       ]
+    },
+    {
+      "name": "ten-four",
+      "title": "Ten Four",
+      "description": "A shelf of clean, copyable snippets pushed from your terminal or Claude Code. \"10-4, copy that\": copy them out of Raycast with pristine formatting, no mangled line breaks.",
+      "icon": "icon.png",
+      "author": "jaymcc",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/jaymcc/ten-four",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/ten-four",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "ten-four",
+          "title": "Ten Four Shelf",
+          "subtitle": "Copy that",
+          "description": "Browse and copy snippets pushed to your shelf",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "install-cli",
+          "title": "Install Ten Four CLI",
+          "description": "Install the `tenfour` command-line tool so your terminal and Claude Code can push snippets",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "tennis-standings",
@@ -274040,7 +274503,16 @@
           "description": "Start a new Zoom meeting.",
           "mode": "no-view",
           "keywords": [],
-          "preferences": []
+          "preferences": [
+            {
+              "name": "personalMeetingId",
+              "title": "Personal Meeting ID",
+              "description": "Use your Zoom Personal Meeting ID when starting a meeting. Leave empty to create a new instant meeting.",
+              "type": "textfield",
+              "placeholder": "1234567890",
+              "required": false
+            }
+          ]
         },
         {
           "name": "upcoming-meetings",
