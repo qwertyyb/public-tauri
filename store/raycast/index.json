@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-11T19:17:55.193Z",
+  "generatedAt": "2026-08-12T19:16:52.144Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "1a16f1521eab96d2017695a9f95f19838732f3cd"
+    "commit": "0e62f7d1cffac7bab0d06caf87c5e85507989804"
   },
-  "count": 3163,
+  "count": 3168,
   "extensions": [
     {
       "name": "0x0",
@@ -20510,6 +20510,46 @@
       ]
     },
     {
+      "name": "bit-parser",
+      "title": "Bit Parser",
+      "description": "Inspect individual bits in fault codes, status words, and flags",
+      "icon": "icon.png",
+      "author": "TwoMental",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/TwoMental/bit-parser",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/bit-parser",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "parse-bit",
+          "title": "Parse Bits",
+          "description": "Parse individual bits from decimal, hexadecimal, or binary values",
+          "mode": "view",
+          "keywords": [
+            "binary",
+            "hex",
+            "bitmask",
+            "fault code",
+            "status word"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "bitaxe-status",
       "title": "Bitaxe Status",
       "description": "Display the status of one or more Bitaxes",
@@ -25728,12 +25768,14 @@
       "icon": "browser-tabs-icon.png",
       "author": "koinzhang",
       "contributors": [
-        "ridemountainpig"
+        "ridemountainpig",
+        "artistro08"
       ],
       "categories": [],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/koinzhang/browser-tabs",
       "source": {
@@ -29338,6 +29380,202 @@
           "title": "API Key",
           "description": "Your Center API key.",
           "placeholder": "See center.app/api/"
+        }
+      ]
+    },
+    {
+      "name": "central-icons",
+      "title": "Central Icons",
+      "description": "Browse, search and export all Central icons — copy or paste SVG, code snippets, or export SVG files.",
+      "icon": "icon.png",
+      "author": "tamino-martinius",
+      "contributors": [],
+      "categories": [
+        "Design Tools",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/tamino-martinius/central-icons",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/central-icons",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-icons",
+          "title": "Search Icons",
+          "description": "Browse and search all Central icons and export them as SVG or code snippets.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "licenseKey",
+          "type": "password",
+          "required": false,
+          "title": "License Key",
+          "description": "Your Central Icons license key (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX). Unlocks unlimited copies — without it, you get 10 free copies. Buy one at centralicons.com."
+        },
+        {
+          "name": "primaryAction",
+          "type": "dropdown",
+          "required": false,
+          "title": "Primary Action",
+          "description": "The action triggered when pressing Enter on an icon.",
+          "default": "copy-svg",
+          "data": [
+            {
+              "title": "Copy SVG",
+              "value": "copy-svg"
+            },
+            {
+              "title": "Paste SVG",
+              "value": "paste-svg"
+            },
+            {
+              "title": "Copy Name",
+              "value": "copy-name"
+            },
+            {
+              "title": "Copy React Snippet",
+              "value": "copy-react"
+            }
+          ]
+        },
+        {
+          "name": "gridColumns",
+          "type": "dropdown",
+          "required": false,
+          "title": "Grid Columns",
+          "description": "Number of columns in the icon grid.",
+          "default": "8",
+          "data": [
+            {
+              "title": "5",
+              "value": "5"
+            },
+            {
+              "title": "6",
+              "value": "6"
+            },
+            {
+              "title": "7",
+              "value": "7"
+            },
+            {
+              "title": "8",
+              "value": "8"
+            }
+          ]
+        },
+        {
+          "name": "fill",
+          "type": "dropdown",
+          "required": false,
+          "title": "Default Style",
+          "description": "Icon style used when the extension launches (can be changed per session via the Style submenu).",
+          "default": "outlined",
+          "data": [
+            {
+              "title": "Outlined",
+              "value": "outlined"
+            },
+            {
+              "title": "Filled",
+              "value": "filled"
+            }
+          ]
+        },
+        {
+          "name": "stroke",
+          "type": "dropdown",
+          "required": false,
+          "title": "Default Stroke Width",
+          "description": "Stroke width used when the extension launches.",
+          "default": "1.5",
+          "data": [
+            {
+              "title": "1px",
+              "value": "1"
+            },
+            {
+              "title": "1.5px",
+              "value": "1.5"
+            },
+            {
+              "title": "2px",
+              "value": "2"
+            }
+          ]
+        },
+        {
+          "name": "radius",
+          "type": "dropdown",
+          "required": false,
+          "title": "Default Corner Radius",
+          "description": "Corner radius used when the extension launches.",
+          "default": "2",
+          "data": [
+            {
+              "title": "0 (sharp)",
+              "value": "0"
+            },
+            {
+              "title": "1",
+              "value": "1"
+            },
+            {
+              "title": "2",
+              "value": "2"
+            },
+            {
+              "title": "3 (round)",
+              "value": "3"
+            }
+          ]
+        },
+        {
+          "name": "join",
+          "type": "dropdown",
+          "required": false,
+          "title": "Default Line Join",
+          "description": "Line join used when the extension launches.",
+          "default": "round",
+          "data": [
+            {
+              "title": "Round",
+              "value": "round"
+            },
+            {
+              "title": "Square",
+              "value": "square"
+            }
+          ]
+        },
+        {
+          "name": "masking",
+          "type": "dropdown",
+          "required": false,
+          "title": "Default Masking",
+          "description": "Masked icons render uniformly with semi-transparent colors (overlap-safe); raw keeps separate paths. Used when the extension launches.",
+          "default": "raw",
+          "data": [
+            {
+              "title": "Raw",
+              "value": "raw"
+            },
+            {
+              "title": "Masked",
+              "value": "masked"
+            }
+          ]
         }
       ]
     },
@@ -43447,7 +43685,9 @@
       "description": "Interact with your Convex projects directly from Raycast",
       "icon": "command-icon.png",
       "author": "devwithbobby",
-      "contributors": [],
+      "contributors": [
+        "noss"
+      ],
       "categories": [
         "Developer Tools",
         "Productivity"
@@ -43524,6 +43764,24 @@
           "subtitle": "Convex",
           "description": "Stream and view function execution logs",
           "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "deployment-health",
+          "title": "Show Deployment Health",
+          "subtitle": "Convex",
+          "description": "Live charts for function calls, failures, cache hits, scheduler lag, crons, and scheduled functions",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "menu-bar-status",
+          "title": "Deployment Status in Menu Bar",
+          "subtitle": "Convex",
+          "description": "Show live deployment vitals in the menu bar and get alerted on function failures",
+          "mode": "menu-bar",
           "keywords": [],
           "preferences": []
         },
@@ -57595,7 +57853,9 @@
         "Developer Tools"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/xmok/directadmin-reseller",
       "source": {
         "type": "github-monorepo",
@@ -57654,6 +57914,14 @@
           "title": "Session",
           "subtitle": "DirectAdmin Reseller",
           "description": "Get session information including usertype and base64 encoded password",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "manage-panels",
+          "title": "Manage Panels (Experimental)",
+          "description": "Manage Multiple DirectAdmin Reseller Panels",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -64583,6 +64851,15 @@
           "mode": "no-view",
           "keywords": [],
           "icon": "ocr.png",
+          "preferences": []
+        },
+        {
+          "name": "favorites",
+          "title": "Favorite Words",
+          "subtitle": "Easydict",
+          "description": "Browse and manage words you saved from Easydict.",
+          "mode": "view",
+          "keywords": [],
           "preferences": []
         }
       ],
@@ -78446,7 +78723,8 @@
         "pernielsentikaer",
         "yusifaliyevpro",
         "ivens_joris",
-        "j3lte"
+        "j3lte",
+        "raycast_0ukl"
       ],
       "categories": [
         "Communication",
@@ -87630,15 +87908,6 @@
               "default": false
             }
           ]
-        },
-        {
-          "name": "oauth_signout",
-          "title": "Sign out of GitLab",
-          "subtitle": "GitLab",
-          "description": "Clear the cached OAuth token. Useful for switching accounts or after a server-side revocation. Has no effect when authentication is set to Personal Access Token.",
-          "mode": "no-view",
-          "keywords": [],
-          "preferences": []
         }
       ],
       "preferences": [
@@ -87651,29 +87920,11 @@
           "placeholder": "URL of your GitLab instance e.g. https://gitlab.com"
         },
         {
-          "name": "authType",
-          "type": "dropdown",
-          "required": true,
-          "default": "pat",
-          "title": "Authentication",
-          "description": "How to authenticate with GitLab. OAuth is recommended for instances that rotate or revoke Personal Access Tokens (e.g. enterprise GitLab).",
-          "data": [
-            {
-              "title": "Personal Access Token",
-              "value": "pat"
-            },
-            {
-              "title": "OAuth (PKCE)",
-              "value": "oauth"
-            }
-          ]
-        },
-        {
           "name": "token",
           "type": "password",
           "required": false,
           "title": "API Token",
-          "description": "Your GitLab Personal Access Token. Required when Authentication is set to Personal Access Token. `api` scope for read and write operations, `read_api` for read-only.",
+          "description": "Your GitLab Personal Access Token. `api` scope for read and write operations, `read_api` for read-only. Leave empty to sign in with OAuth using the Application ID below.",
           "link": "https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html",
           "placeholder": "Enter your GitLab API token if using PAT"
         },
@@ -87682,7 +87933,7 @@
           "type": "textfield",
           "required": false,
           "title": "OAuth Application ID",
-          "description": "Application ID of a GitLab OAuth application registered on this instance. Required when Authentication is set to OAuth. Create one under Preferences > Applications with redirect URIs `https://raycast.com/redirect?packageName=Extension` and `https://raycast.com/redirect/extension`, and the `api`, `read_user`, `read_repository` scopes.",
+          "description": "Application ID of a GitLab OAuth application registered on this instance. Used when the API Token is empty. Create one under Preferences > Applications with redirect URIs `https://raycast.com/redirect?packageName=Extension` and `https://raycast.com/redirect/extension`, and the `api`, `read_user`, `read_repository` scopes.",
           "link": "https://docs.gitlab.com/ee/integration/oauth_provider.html",
           "placeholder": "OAuth Application ID"
         },
@@ -89830,7 +90081,8 @@
         "jschmidtcordeiro",
         "NirRosh",
         "josh_carty",
-        "smpeotn"
+        "smpeotn",
+        "radek_cabaj"
       ],
       "categories": [],
       "license": "MIT",
@@ -119180,13 +119432,21 @@
           "mode": "no-view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "updateKarakeep",
+          "title": "Update Karakeep",
+          "description": "Pull the latest Docker images and restart a local Karakeep instance",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": [
         {
           "name": "language",
           "title": "Language",
-          "description": "Select your preferred language",
+          "description": "Language used for the extension's own interface. Your bookmarks are unaffected.",
           "type": "dropdown",
           "required": false,
           "data": [
@@ -119205,9 +119465,9 @@
           "name": "apiUrl",
           "type": "textfield",
           "required": true,
-          "title": "API Host",
-          "description": "Enter the API host URL",
-          "placeholder": "https://your-karakeep.host.com",
+          "title": "Server URL",
+          "description": "Where your Karakeep instance is reachable, including the port",
+          "placeholder": "http://localhost:3000",
           "default": ""
         },
         {
@@ -119215,17 +119475,17 @@
           "type": "password",
           "required": true,
           "title": "API Key",
-          "description": "Enter your API key",
-          "placeholder": "Enter your Karakeep API key",
+          "description": "Create one in Karakeep under Settings → API Keys",
+          "placeholder": "Paste your Karakeep API key",
           "default": ""
         },
         {
           "name": "linkMainAction",
           "type": "dropdown",
-          "label": "Default Link Action",
-          "title": "Default Link Action",
+          "label": "Opening a Bookmark",
+          "title": "Opening a Bookmark",
           "required": false,
-          "description": "Select the default action when opening a bookmark link",
+          "description": "What ↵ does on a link bookmark",
           "data": [
             {
               "title": "Open in Browser",
@@ -119244,10 +119504,10 @@
         {
           "name": "textMainAction",
           "type": "dropdown",
-          "label": "Default Note Action",
-          "title": "Default Note Action",
+          "label": "Opening a Note",
+          "title": "Opening a Note",
           "required": false,
-          "description": "Select the default action when opening a note",
+          "description": "What ↵ does on a note",
           "data": [
             {
               "title": "View Details",
@@ -119266,17 +119526,17 @@
         {
           "name": "prefillUrlFromBrowser",
           "type": "checkbox",
-          "label": "Prefill URL from Browser",
-          "title": "Prefill URL from Active Browser Tab",
-          "description": "Automatically prefill the URL field with the active browser tab when creating a bookmark",
+          "label": "Use the Current Browser Tab",
+          "title": "Creating Bookmarks",
+          "description": "Fill in the URL from your frontmost tab when creating a bookmark. Requires the Raycast browser extension.",
           "default": true,
           "required": false
         },
         {
-          "label": "Show Website Icon",
+          "label": "Website Icons",
           "name": "showWebsitePreview",
-          "title": "Show Website Icon",
-          "description": "Display website icon in the list",
+          "title": "Bookmark List",
+          "description": "Show each site's favicon in place of a generic link icon",
           "type": "checkbox",
           "default": true,
           "required": false
@@ -119284,9 +119544,8 @@
         {
           "name": "displayBookmarkPreview",
           "type": "checkbox",
-          "label": "Preview Image",
-          "title": "Custom display elements in list view",
-          "description": "Display bookmark preview in the list",
+          "label": "Preview Images",
+          "description": "Show a thumbnail of the page. Each one is fetched and cached, so this can slow a large library.",
           "default": true,
           "required": false
         },
@@ -119294,15 +119553,15 @@
           "name": "displayTags",
           "type": "checkbox",
           "label": "Tags",
-          "description": "Display tags in the list",
+          "description": "Show the tags attached to each bookmark",
           "default": true,
           "required": false
         },
         {
           "name": "displayCreatedAt",
           "type": "checkbox",
-          "label": "Created At",
-          "description": "Display created at in the list",
+          "label": "Date Saved",
+          "description": "Show when the bookmark was added",
           "default": true,
           "required": false
         },
@@ -119310,31 +119569,31 @@
           "name": "displayDescription",
           "type": "checkbox",
           "label": "Description",
-          "description": "Display description in the list",
+          "description": "Show the page description beneath the title",
           "default": true,
           "required": false
         },
         {
           "name": "displayNote",
           "type": "checkbox",
-          "label": "Note",
-          "description": "Display note in the list",
+          "label": "Notes",
+          "description": "Show any note you have attached to the bookmark",
           "default": false,
           "required": false
         },
         {
           "name": "displayBookmarkStatus",
           "type": "checkbox",
-          "label": "Status",
-          "description": "Display bookmark status in the list",
+          "label": "Favorite and Archive Status",
+          "description": "Mark bookmarks that are favorited or archived",
           "default": false,
           "required": false
         },
         {
           "name": "displaySummary",
           "type": "checkbox",
-          "label": "Summary",
-          "description": "Display summary in the list",
+          "label": "AI Summary",
+          "description": "Show Karakeep's generated summary when one exists",
           "default": false,
           "required": false
         },
@@ -119342,9 +119601,9 @@
           "name": "verboseLogging",
           "type": "checkbox",
           "required": false,
-          "title": "Verbose Logging",
-          "label": "Enable detailed logging",
-          "description": "Show detailed logs in the Raycast console for debugging",
+          "title": "Troubleshooting",
+          "label": "Verbose Logging",
+          "description": "Write detailed request and error logs to the Raycast console",
           "default": false
         }
       ]
@@ -141446,6 +141705,84 @@
       "preferences": []
     },
     {
+      "name": "mise-workspace",
+      "title": "Mise Workspace",
+      "description": "Manage your Mise workspace from Raycast",
+      "icon": "mise.png",
+      "author": "disinfeqt",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/disinfeqt/mise-workspace",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/mise-workspace",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "create-task",
+          "title": "Create Task",
+          "description": "Create a new task",
+          "mode": "view",
+          "keywords": [],
+          "icon": "create-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "overview",
+          "title": "Overview",
+          "description": "View tasks grouped by assignee",
+          "mode": "view",
+          "keywords": [],
+          "icon": "overview-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "my-tasks",
+          "title": "My Tasks",
+          "subtitle": "Mise Workspace",
+          "description": "List tasks assigned to me",
+          "mode": "view",
+          "keywords": [],
+          "icon": "list-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "menu-bar",
+          "title": "Show in Menu Bar",
+          "description": "Show in the macOS menu bar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "icon": "list-icon.png",
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "token",
+          "type": "password",
+          "required": true,
+          "title": "API Token",
+          "description": "Personal access token for the Mise API"
+        },
+        {
+          "name": "baseUrl",
+          "type": "textfield",
+          "required": false,
+          "title": "API Base URL (Optional)",
+          "description": "Base URL of your Mise API",
+          "placeholder": "https://api.mise.work"
+        }
+      ]
+    },
+    {
       "name": "mistral",
       "title": "Mistral",
       "description": "An unofficial extension to use Mistral AI from Raycast",
@@ -146686,10 +147023,12 @@
     {
       "name": "mutedeck",
       "title": "MuteDeck",
-      "description": "Control MuteDeck from Raycast",
+      "description": "Control your meetings from Raycast: toggle mute, camera, screen share and recording via MuteDeck, with a live Meeting Deck grid.",
       "icon": "icon.png",
       "author": "chad_walters",
-      "contributors": [],
+      "contributors": [
+        "smitmartijn"
+      ],
       "categories": [
         "Applications",
         "Communication",
@@ -146709,19 +147048,19 @@
       "commands": [
         {
           "name": "show-status",
-          "title": "Show Status",
+          "title": "Meeting Deck",
           "subtitle": "MuteDeck",
-          "description": "Show MuteDeck status and controls",
+          "description": "A live Stream Deck-style grid of your meeting controls.",
           "mode": "view",
           "keywords": [],
-          "icon": "info.png",
+          "icon": "deck.png",
           "preferences": []
         },
         {
           "name": "toggle-microphone",
           "title": "Toggle Microphone",
           "subtitle": "MuteDeck",
-          "description": "Toggle microphone mute/unmute",
+          "description": "Mute or unmute your microphone.",
           "mode": "no-view",
           "keywords": [],
           "icon": "microphone.png",
@@ -146729,19 +147068,39 @@
         },
         {
           "name": "toggle-video",
-          "title": "Toggle Video",
+          "title": "Toggle Camera",
           "subtitle": "MuteDeck",
-          "description": "Toggle camera on/off",
+          "description": "Turn your camera on or off.",
           "mode": "no-view",
           "keywords": [],
           "icon": "camera.png",
           "preferences": []
         },
         {
+          "name": "toggle-share",
+          "title": "Toggle Screen Share",
+          "subtitle": "MuteDeck",
+          "description": "Start or stop sharing your screen.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "share.png",
+          "preferences": []
+        },
+        {
+          "name": "toggle-record",
+          "title": "Toggle Recording",
+          "subtitle": "MuteDeck",
+          "description": "Start or stop the meeting recording.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "record.png",
+          "preferences": []
+        },
+        {
           "name": "leave-meeting",
           "title": "Leave Meeting",
           "subtitle": "MuteDeck",
-          "description": "Leave current meeting",
+          "description": "Leave the current meeting.",
           "mode": "no-view",
           "keywords": [],
           "icon": "door.png",
@@ -146752,42 +147111,27 @@
         {
           "name": "apiEndpoint",
           "type": "textfield",
-          "required": true,
+          "required": false,
           "title": "API Endpoint",
-          "description": "The MuteDeck API endpoint (default: http://localhost:3491)",
-          "default": "http://localhost:3491"
+          "description": "Base URL of the MuteDeck HTTP API.",
+          "default": "http://localhost:3491",
+          "placeholder": "http://localhost:3491"
         },
         {
-          "name": "statusRefreshInterval",
-          "type": "textfield",
-          "required": true,
-          "title": "Status Refresh Interval",
-          "description": "How often to refresh the status display (in seconds)",
-          "default": "1"
-        },
-        {
-          "name": "apiTimeout",
+          "name": "wsEndpoint",
           "type": "textfield",
           "required": false,
-          "title": "API Timeout",
-          "description": "Timeout for API requests in milliseconds",
-          "default": "5000"
-        },
-        {
-          "name": "confirmLeave",
-          "type": "checkbox",
-          "required": false,
-          "title": "Confirm Leave Meeting",
-          "description": "Show confirmation dialog before leaving a meeting",
-          "default": true,
-          "label": "Show confirmation dialog"
+          "title": "WebSocket Endpoint",
+          "description": "MuteDeck WebSocket URL, used for Bring to Front.",
+          "default": "ws://localhost:3492",
+          "placeholder": "ws://localhost:3492"
         },
         {
           "name": "confirmMuteInPresentation",
           "type": "checkbox",
           "required": false,
           "title": "Confirm Mute While Presenting",
-          "description": "Show confirmation dialog before toggling microphone while presenting or recording",
+          "description": "Ask before toggling the microphone while sharing or recording.",
           "default": true,
           "label": "Show confirmation dialog"
         },
@@ -146796,18 +147140,18 @@
           "type": "checkbox",
           "required": false,
           "title": "Confirm Video While Presenting",
-          "description": "Show confirmation dialog before toggling camera while presenting or recording",
+          "description": "Ask before toggling the camera while sharing or recording.",
           "default": true,
           "label": "Show confirmation dialog"
         },
         {
-          "name": "showToasts",
+          "name": "confirmLeave",
           "type": "checkbox",
           "required": false,
-          "title": "Show Toast Notifications",
-          "description": "Show toast notifications for command feedback",
+          "title": "Confirm Leave Meeting",
+          "description": "Ask before leaving a meeting.",
           "default": true,
-          "label": "Show notifications"
+          "label": "Show confirmation dialog"
         }
       ]
     },
@@ -147376,6 +147720,15 @@
               "value": "full-access"
             }
           ]
+        },
+        {
+          "name": "detectContext",
+          "type": "checkbox",
+          "required": false,
+          "title": "Context Detection",
+          "label": "Prefill from the active browser tab and selected text",
+          "description": "Off by default. When enabled, Save to mymind prefills from what you are looking at: selected text becomes a note, and the active browser tab's URL becomes a link. Reading the browser tab asks macOS for permission to control that browser the first time. macOS only.",
+          "default": false
         },
         {
           "name": "mediaGridColumns",
@@ -184492,7 +184845,9 @@
       "description": "Transfer files over Wi-Fi from/to your computer to/from your mobile device by scanning a QR code without leaving Raycast.",
       "icon": "extension-icon.png",
       "author": "yohann84l",
-      "contributors": [],
+      "contributors": [
+        "muhammadrizo"
+      ],
       "categories": [
         "Productivity",
         "Media"
@@ -185965,6 +186320,90 @@
           "required": true
         }
       ]
+    },
+    {
+      "name": "quickforce-salesforce-toolkit",
+      "title": "QuickForce - Salesforce Toolkit",
+      "description": "Keyboard-driven Salesforce toolkit for developers and admins: switch orgs instantly, run SOQL queries, jump to any Setup page, and manage users, all from Raycast.",
+      "icon": "quickforce-icon.png",
+      "author": "kelant",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "version": "1.0.0",
+      "storeUrl": "https://www.raycast.com/kelant/quickforce-salesforce-toolkit",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/quickforce-salesforce-toolkit",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "list-orgs",
+          "title": "Manage Salesforce Orgs",
+          "description": "List all authenticated Salesforce orgs",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "run-soql",
+          "title": "Run SOQL Query",
+          "description": "Execute SOQL queries against your Salesforce org",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-records",
+          "title": "Search Records",
+          "description": "Search across Salesforce objects (Accounts, Contacts, Opportunities, Leads, Cases)",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "user-lookup",
+          "title": "Manage Users",
+          "description": "Search and manage Salesforce users with quick admin actions",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "setup-quick-links",
+          "title": "Setup Quick Access",
+          "description": "Search and open Salesforce Setup pages instantly",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "quick-record-creator",
+          "title": "Create Record",
+          "description": "Create common Salesforce records with minimal fields",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "menu-bar-limits",
+          "title": "Org Limits in Menu Bar",
+          "description": "Show your default org's API and storage limits in the menu bar (enable when needed)",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "quicklinker",
@@ -203058,7 +203497,8 @@
         "1weiho",
         "xmok",
         "niksite",
-        "ojowwalker77"
+        "ojowwalker77",
+        "gumadeiras"
       ],
       "categories": [
         "Applications",
@@ -223948,6 +224388,125 @@
           "default": false,
           "required": false,
           "description": "When enabled, squeezed text is pasted into the active app instead of just being copied to the clipboard."
+        }
+      ]
+    },
+    {
+      "name": "ssh-image-drop",
+      "title": "SSH Image Drop",
+      "description": "Send files, folders, and clipboard images over SSH with a single hotkey, and pull them back — no path typing, the remote path lands on your clipboard. Handy for handing screenshots to remote Claude Code / CLI sessions that can't take an image paste. Passwords are stored in the system credential store (macOS Keychain / Windows DPAPI) by default; SSH key auth is optional.",
+      "icon": "extension-icon.png",
+      "author": "wjsong",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/wjsong/ssh-image-drop",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/ssh-image-drop",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "send-file-to-server",
+          "title": "Send File to Server",
+          "description": "Send files or folders to a server with a picker form (pre-filled from your Finder selection on macOS), or pick a server for clipboard and pull transfers",
+          "mode": "view",
+          "keywords": [
+            "upload",
+            "scp",
+            "transfer",
+            "folder",
+            "claude",
+            "codex"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "send-clipboard-image",
+          "title": "Send Clipboard Image",
+          "description": "Send the clipboard image over SSH and copy the remote path",
+          "mode": "no-view",
+          "keywords": [
+            "screenshot",
+            "paste",
+            "upload",
+            "scp",
+            "claude",
+            "codex",
+            "opencode"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "pull-file",
+          "title": "Pull File from Server",
+          "description": "Download the remote file or folder whose path is in the clipboard, reveal it in the file manager, and copy the local path",
+          "mode": "no-view",
+          "keywords": [
+            "download",
+            "fetch",
+            "sftp",
+            "remote"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "add-server",
+          "title": "Manage Servers",
+          "description": "Add, edit, or delete servers; passwords are stored in the system credential store by default (optional SSH key install)",
+          "mode": "view",
+          "keywords": [
+            "add",
+            "register",
+            "edit",
+            "delete",
+            "host",
+            "ssh config",
+            "keychain"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "remoteDir",
+          "title": "Remote Directory",
+          "description": "Directory on the server where uploaded files are stored (cleared on reboot when under /tmp)",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "/tmp/ssh-image-drop"
+        },
+        {
+          "name": "downloadDir",
+          "title": "Download Directory",
+          "description": "Local directory for pulled files",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "~/Downloads"
+        },
+        {
+          "name": "hideConfigHosts",
+          "title": "Server List",
+          "label": "Hide ~/.ssh/config servers",
+          "description": "Show only managed and recently used servers (your ~/.ssh/config is not modified)",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "pasteTargetApp",
+          "title": "Auto-Paste",
+          "description": "App that receives the remote path after Send Clipboard Image — pasted only if that app is frontmost when the transfer finishes, into whichever field has focus there. Leave unset to only copy the path. File sends and pulls always copy only",
+          "type": "appPicker",
+          "required": false
         }
       ]
     },
@@ -245012,7 +245571,9 @@
       "description": "Control downloads in your TorBox",
       "icon": "torbox.png",
       "author": "baradusov",
-      "contributors": [],
+      "contributors": [
+        "ohivan"
+      ],
       "categories": [
         "Media"
       ],
@@ -259590,7 +260151,9 @@
       "description": "Quick access to your VoiceInk transcriptions",
       "icon": "extension-icon.png",
       "author": "metrovoc",
-      "contributors": [],
+      "contributors": [
+        "pasquale.salza"
+      ],
       "categories": [
         "Productivity"
       ],
