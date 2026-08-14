@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-13T20:19:55.800Z",
+  "generatedAt": "2026-08-14T19:09:07.143Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "49c0c75e3532047cf7f06c6e67b98a9f994bc53a"
+    "commit": "a369ca9784463f7eb9a009bba1aff37477b6fe50"
   },
-  "count": 3175,
+  "count": 3179,
   "extensions": [
     {
       "name": "0x0",
@@ -3143,7 +3143,7 @@
     {
       "name": "agent-usage",
       "title": "Agent Usage",
-      "description": "Monitor AI coding agent usage across Amp, Antigravity, Claude, ClinePass, Codex, Copilot, Cursor, Droid, Gemini, Grok, Kimi, MiniMax, OpenCode Go, Synthetic and z.ai",
+      "description": "Monitor AI coding agent usage across Amp, Antigravity, Claude, ClinePass, Codex, Copilot, Cursor, DeepSeek, Droid, Gemini, Grok, Kimi, MiniMax, OpenCode Go, Synthetic and z.ai",
       "icon": "extension-icon.png",
       "author": "thuggyduck",
       "contributors": [
@@ -3257,6 +3257,21 @@
           "type": "password",
           "title": "Cursor Cookie Header (Optional)",
           "description": "Optional fallback Cookie header from cursor.com. Usually auto-detected from your local Cursor.app login.",
+          "required": false
+        },
+        {
+          "name": "showDeepSeek",
+          "type": "checkbox",
+          "label": "Show DeepSeek",
+          "description": "Show DeepSeek balance in the list",
+          "default": true,
+          "required": false
+        },
+        {
+          "name": "deepseekApiKey",
+          "type": "password",
+          "title": "DeepSeek API Key (Optional)",
+          "description": "Auto-detected from OpenCode login (deepseek) or DEEPSEEK_API_KEY/DEEPSEEK_KEY. Fallback: paste an API key from https://platform.deepseek.com/api_keys.",
           "required": false
         },
         {
@@ -16310,6 +16325,49 @@
       ]
     },
     {
+      "name": "bart-departures",
+      "title": "BART Departures",
+      "description": "View real-time BART departures for a selected station",
+      "icon": "bart.png",
+      "author": "drewkiimon",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "1.0.0",
+      "storeUrl": "https://www.raycast.com/drewkiimon/bart-departures",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/bart-departures",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "index",
+          "title": "BART Departures",
+          "description": "View real-time departures for a BART station",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "type": "password",
+          "required": false,
+          "title": "BART API Key",
+          "description": "Optional. Uses a shared default key if left blank. Request your own at bart.gov/schedules/developers/api",
+          "placeholder": "Override the default BART API key"
+        }
+      ]
+    },
+    {
       "name": "bartender",
       "title": "Bartender",
       "description": "Interact with Bartender and menu bar icon apps",
@@ -18007,6 +18065,14 @@
           "type": "textfield",
           "required": false,
           "default": "Ghostty, Terminal, iTerm2, Alacritty, WezTerm"
+        },
+        {
+          "name": "excludeApps",
+          "title": "Excluded App Names (Comma-Separated)",
+          "description": "Apps that are never tiled, even by Auto Tile All. Example: Music, Photos.",
+          "type": "textfield",
+          "required": false,
+          "default": ""
         },
         {
           "name": "gap",
@@ -39916,7 +39982,6 @@
         "xilopaint",
         "ridemountainpig",
         "zakj",
-        "Visual-Studio-Coder",
         "Katsuba",
         "alexi.build",
         "mbuvarp",
@@ -40077,6 +40142,15 @@
               "value": "paper-cup"
             }
           ]
+        },
+        {
+          "name": "startCaffeinateOnLaunch",
+          "description": "Automatically keep your Mac awake (indefinitely) when Raycast starts. Requires the Caffeinate Status command (15 s interval) or the Caffeinate Status Menu Bar command (1 m interval) to be enabled.",
+          "type": "checkbox",
+          "required": false,
+          "default": false,
+          "title": "Launch",
+          "label": "Start caffeination when Raycast starts"
         }
       ]
     },
@@ -86042,7 +86116,8 @@
         "Undolog",
         "wonbywondev",
         "SandeepBaskaran",
-        "0xdhrv"
+        "0xdhrv",
+        "ernest0n"
       ],
       "categories": [
         "Developer Tools",
@@ -86597,7 +86672,7 @@
           "required": false,
           "title": "Number of search results",
           "description": "For searching repositories, issues, discussions or pull requests, this is the number of results to request. Less will be faster.",
-          "placeholder": "50"
+          "placeholder": "25"
         },
         {
           "name": "baseClonePath",
@@ -86605,6 +86680,24 @@
           "required": false,
           "title": "Default Clone Path",
           "description": "Used by the 'Clone and Open' action. 'Clone with Options' starts here but lets you choose a different directory."
+        },
+        {
+          "name": "vscodeBuild",
+          "type": "dropdown",
+          "required": false,
+          "title": "VS Code Build",
+          "description": "Which editor to use for the Clone in VS Code action. Applies to Search Repositories, My Latest Repositories, and My Starred Repositories.",
+          "default": "vscode",
+          "data": [
+            {
+              "title": "VS Code",
+              "value": "vscode"
+            },
+            {
+              "title": "Cursor",
+              "value": "cursor"
+            }
+          ]
         },
         {
           "name": "repositoryCloneProtocol",
@@ -90831,6 +90924,54 @@
           "description": "Look up stocks by symbol",
           "mode": "view",
           "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "google-find-hub",
+      "title": "Google Find Hub",
+      "description": "Open Google Find Hub from Raycast or the macOS menu bar for quick access to locating, ringing, securing, or erasing Android devices.",
+      "icon": "find-hub.png",
+      "author": "jonah_tweed",
+      "contributors": [],
+      "categories": [
+        "Applications",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/jonah_tweed/google-find-hub",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/google-find-hub",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "google-find-hub-menu-bar",
+          "title": "Google Find Hub Menu Bar",
+          "description": "Access Google Find Hub from the macOS menu bar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-google-find-hub",
+          "title": "Open Google Find Hub",
+          "description": "Open Google Find Hub to locate or ring an Android device",
+          "mode": "no-view",
+          "keywords": [
+            "google",
+            "android",
+            "phone",
+            "find hub",
+            "ring phone"
+          ],
           "preferences": []
         }
       ],
@@ -139244,6 +139385,96 @@
       "preferences": []
     },
     {
+      "name": "metals-prices",
+      "title": "Metals Prices",
+      "description": "Daily gold, silver, platinum and palladium prices per gram by purity, with 1, 3, 6, and 12-month averages.",
+      "icon": "extension-icon.png",
+      "author": "noice_anas",
+      "contributors": [],
+      "categories": [
+        "Finance"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/noice_anas/metals-prices",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/metals-prices",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "metals-prices",
+          "title": "Show Metals Prices",
+          "subtitle": "metals.dev",
+          "description": "Show current gold, silver, platinum and palladium prices per gram and 1/3/6/12-month averages.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "title": "metals.dev API Key",
+          "description": "Your free metals.dev API key. Get one at https://metals.dev/pricing (free tier: 100 requests/month).",
+          "type": "password",
+          "required": true,
+          "placeholder": "Paste your metals.dev API key"
+        },
+        {
+          "name": "currency",
+          "title": "Display Currency",
+          "description": "Currency prices are fetched in and displayed as. Switching currencies costs one API request, then caches for 12h.",
+          "type": "dropdown",
+          "required": false,
+          "default": "SAR",
+          "data": [
+            {
+              "title": "SAR — Saudi Riyal",
+              "value": "SAR"
+            },
+            {
+              "title": "AED — UAE Dirham",
+              "value": "AED"
+            },
+            {
+              "title": "KWD — Kuwaiti Dinar",
+              "value": "KWD"
+            },
+            {
+              "title": "QAR — Qatari Riyal",
+              "value": "QAR"
+            },
+            {
+              "title": "BHD — Bahraini Dinar",
+              "value": "BHD"
+            },
+            {
+              "title": "OMR — Omani Rial",
+              "value": "OMR"
+            },
+            {
+              "title": "USD — US Dollar",
+              "value": "USD"
+            },
+            {
+              "title": "EUR — Euro",
+              "value": "EUR"
+            },
+            {
+              "title": "GBP — British Pound",
+              "value": "GBP"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "metaphor",
       "title": "Metaphor",
       "description": "Search with Metaphor",
@@ -158737,6 +158968,66 @@
       ]
     },
     {
+      "name": "oneko",
+      "title": "Oneko",
+      "description": "Control Oneko, the desktop cat that chases your cursor.",
+      "icon": "icon.png",
+      "author": "miklw",
+      "contributors": [],
+      "categories": [
+        "Fun"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/miklw/oneko",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/oneko",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "toggle",
+          "title": "Toggle Cat",
+          "subtitle": "Oneko",
+          "description": "Show or hide the cat, starting Oneko if needed.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "skin",
+          "title": "Change Skin",
+          "subtitle": "Oneko",
+          "description": "Pick the sprite the cat wears.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "speed",
+          "title": "Set Speed",
+          "subtitle": "Oneko",
+          "description": "Set how fast the cat chases the cursor.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "quit",
+          "title": "Quit Oneko",
+          "description": "Quit the Oneko app.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "onelook-thesaurus",
       "title": "OneLook Thesaurus",
       "description": "A powerful English thesaurus and brainstorming tool that lets you describe what you're looking for in plain terms.",
@@ -173636,7 +173927,8 @@
       "icon": "command-icon.png",
       "author": "HelloImSteven",
       "contributors": [
-        "pernielsentikaer"
+        "pernielsentikaer",
+        "matheuscoelho3006"
       ],
       "categories": [
         "Productivity",
@@ -173644,8 +173936,10 @@
         "System"
       ],
       "license": "MIT",
-      "platforms": [],
-      "version": "1.9.0",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "1.10.0",
       "storeUrl": "https://www.raycast.com/HelloImSteven/pins",
       "source": {
         "type": "github-monorepo",
@@ -173955,6 +174249,14 @@
               "required": false
             }
           ]
+        },
+        {
+          "name": "open-pin-group",
+          "title": "Open Pin Group",
+          "description": "Open all pins in a group",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
         },
         {
           "name": "copy-pins",
@@ -196958,6 +197260,56 @@
               "type": "dropdown",
               "description": "The default location to use when listing content",
               "title": "Default list location"
+            },
+            {
+              "name": "defaultSortBy",
+              "title": "Default sort",
+              "description": "The default sort to use when opening List Documents",
+              "type": "dropdown",
+              "required": false,
+              "default": "last_moved_at",
+              "data": [
+                {
+                  "title": "Date Moved",
+                  "value": "last_moved_at"
+                },
+                {
+                  "title": "Date Saved",
+                  "value": "saved_at"
+                },
+                {
+                  "title": "Date Published",
+                  "value": "published_date"
+                },
+                {
+                  "title": "Date Last Opened",
+                  "value": "last_opened_at"
+                },
+                {
+                  "title": "Author",
+                  "value": "author"
+                },
+                {
+                  "title": "Category",
+                  "value": "category"
+                },
+                {
+                  "title": "Length",
+                  "value": "word_count"
+                },
+                {
+                  "title": "Progress",
+                  "value": "reading_progress"
+                },
+                {
+                  "title": "Title",
+                  "value": "title"
+                },
+                {
+                  "title": "Random",
+                  "value": "random"
+                }
+              ]
             }
           ]
         }
@@ -220090,13 +220442,17 @@
         "andreaselia",
         "anh_nguyen",
         "jor",
-        "n0kovo"
+        "n0kovo",
+        "muhammadrizo"
       ],
       "categories": [
         "Fun"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "storeUrl": "https://www.raycast.com/pernielsentikaer/soundboard",
       "source": {
         "type": "github-monorepo",
@@ -220118,7 +220474,7 @@
           "name": "favorite1",
           "title": "Play Favourite 1",
           "subtitle": "Soundboard",
-          "description": "Plays favorite one",
+          "description": "Plays favourite 1",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -220127,7 +220483,7 @@
           "name": "favorite2",
           "title": "Play Favourite 2",
           "subtitle": "Soundboard",
-          "description": "Plays favorite one",
+          "description": "Plays favourite 2",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -220136,7 +220492,7 @@
           "name": "favorite3",
           "title": "Play Favourite 3",
           "subtitle": "Soundboard",
-          "description": "Plays favorite one",
+          "description": "Plays favourite 3",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -220145,7 +220501,7 @@
           "name": "favorite4",
           "title": "Play Favourite 4",
           "subtitle": "Soundboard",
-          "description": "Plays favorite one",
+          "description": "Plays favourite 4",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -220154,7 +220510,7 @@
           "name": "favorite5",
           "title": "Play Favourite 5",
           "subtitle": "Soundboard",
-          "description": "Plays favorite one",
+          "description": "Plays favourite 5",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -220163,7 +220519,7 @@
           "name": "favorite6",
           "title": "Play Favourite 6",
           "subtitle": "Soundboard",
-          "description": "Plays favorite one",
+          "description": "Plays favourite 6",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -220172,7 +220528,7 @@
           "name": "favorite7",
           "title": "Play Favourite 7",
           "subtitle": "Soundboard",
-          "description": "Plays favorite one",
+          "description": "Plays favourite 7",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -220181,7 +220537,7 @@
           "name": "favorite8",
           "title": "Play Favourite 8",
           "subtitle": "Soundboard",
-          "description": "Plays favorite one",
+          "description": "Plays favourite 8",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -220190,7 +220546,7 @@
           "name": "favorite9",
           "title": "Play Favourite 9",
           "subtitle": "Soundboard",
-          "description": "Plays favorite one",
+          "description": "Plays favourite 9",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -220199,7 +220555,7 @@
           "name": "favorite10",
           "title": "Play Favourite 10",
           "subtitle": "Soundboard",
-          "description": "Plays favorite one",
+          "description": "Plays favourite 10",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -220214,6 +220570,25 @@
           "label": "Close window after sound is triggered",
           "required": false,
           "default": false
+        },
+        {
+          "type": "dropdown",
+          "name": "layout",
+          "label": "Layout",
+          "title": "Layout",
+          "description": "The layout for displaying the sounds",
+          "required": false,
+          "default": "list",
+          "data": [
+            {
+              "title": "List",
+              "value": "list"
+            },
+            {
+              "title": "Grid",
+              "value": "grid"
+            }
+          ]
         }
       ]
     },
@@ -272616,7 +272991,9 @@
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/tiulpin/youtrack",
       "source": {
         "type": "github-monorepo",
