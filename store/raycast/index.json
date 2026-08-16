@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-15T18:45:22.429Z",
+  "generatedAt": "2026-08-16T18:43:56.429Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "62edb5f5b52d28d38c918add66553e827d9cdc4b"
+    "commit": "421f6ca89585205907b896fd57068132cee8f512"
   },
   "count": 3180,
   "extensions": [
@@ -46435,7 +46435,10 @@
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "storeUrl": "https://www.raycast.com/astrit/cron",
       "source": {
         "type": "github-monorepo",
@@ -83241,7 +83244,9 @@
         "Web"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/Whitespace/gg-deals",
       "source": {
         "type": "github-monorepo",
@@ -83257,6 +83262,113 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "search-game",
+          "title": "Search Game",
+          "description": "Search game prices on GG.deals",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": [
+            {
+              "name": "apiKey",
+              "title": "GG.deals API Key",
+              "description": "Your GG.deals API key",
+              "type": "password",
+              "required": true
+            },
+            {
+              "name": "country",
+              "title": "Country / Region",
+              "description": "Region used to retrieve game prices",
+              "type": "dropdown",
+              "required": true,
+              "default": "BR",
+              "data": [
+                {
+                  "title": "🇧🇷 Brazil",
+                  "value": "BR"
+                },
+                {
+                  "title": "🇺🇸 United States",
+                  "value": "US"
+                },
+                {
+                  "title": "🇬🇧 United Kingdom",
+                  "value": "GB"
+                },
+                {
+                  "title": "🇨🇦 Canada",
+                  "value": "CA"
+                },
+                {
+                  "title": "🇦🇷 Argentina",
+                  "value": "AR"
+                },
+                {
+                  "title": "🇲🇽 Mexico",
+                  "value": "MX"
+                },
+                {
+                  "title": "🇵🇹 Portugal",
+                  "value": "PT"
+                },
+                {
+                  "title": "🇪🇸 Spain",
+                  "value": "ES"
+                },
+                {
+                  "title": "🇫🇷 France",
+                  "value": "FR"
+                },
+                {
+                  "title": "🇩🇪 Germany",
+                  "value": "DE"
+                },
+                {
+                  "title": "🇮🇹 Italy",
+                  "value": "IT"
+                },
+                {
+                  "title": "🇵🇱 Poland",
+                  "value": "PL"
+                },
+                {
+                  "title": "🇹🇷 Turkey",
+                  "value": "TR"
+                },
+                {
+                  "title": "🇯🇵 Japan",
+                  "value": "JP"
+                },
+                {
+                  "title": "🇰🇷 South Korea",
+                  "value": "KR"
+                },
+                {
+                  "title": "🇦🇺 Australia",
+                  "value": "AU"
+                },
+                {
+                  "title": "🇨🇱 Chile",
+                  "value": "CL"
+                },
+                {
+                  "title": "🇨🇴 Colombia",
+                  "value": "CO"
+                },
+                {
+                  "title": "🇵🇪 Peru",
+                  "value": "PE"
+                },
+                {
+                  "title": "🇮🇳 India",
+                  "value": "IN"
+                }
+              ]
+            }
+          ]
         }
       ],
       "preferences": []
@@ -90202,7 +90314,8 @@
         "0xdhrv",
         "xmok",
         "hayk_safaryan",
-        "alexi.build"
+        "alexi.build",
+        "oussama_moussaoui"
       ],
       "categories": [],
       "license": "MIT",
@@ -90304,6 +90417,15 @@
           "subtitle": "Google Chrome",
           "description": "Name the currently active Google Chrome window.",
           "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-windows",
+          "title": "Search Windows",
+          "subtitle": "Google Chrome",
+          "description": "List all open windows and focus the selected one.",
+          "mode": "view",
           "keywords": [],
           "preferences": []
         }
@@ -132490,14 +132612,17 @@
       "icon": "icon.png",
       "author": "say4n",
       "contributors": [
-        "j3lte"
+        "j3lte",
+        "xmok"
       ],
       "categories": [
         "Productivity",
         "Developer Tools"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/say4n/mac-app-store-search",
       "source": {
         "type": "github-monorepo",
@@ -134037,7 +134162,9 @@
         "Developer Tools"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/xmok/mailwip",
       "source": {
         "type": "github-monorepo",
@@ -208466,7 +208593,7 @@
           "title": "Search the Web",
           "subtitle": "Search the Web with !bangs",
           "description": "Search the Web using any of the available search engines. Powered by Kagi's Bangs and custom search engines",
-          "mode": "no-view",
+          "mode": "view",
           "keywords": [
             "search",
             "unduck",
@@ -257105,7 +257232,6 @@
           "placeholder": "https://app.vanguardbackup.com/",
           "description": "URL of your Vanguard Instance",
           "required": true,
-          "default": "https://app.vanguardbackup.com/",
           "type": "textfield"
         },
         {
