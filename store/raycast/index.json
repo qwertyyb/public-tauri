@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-16T18:43:56.429Z",
+  "generatedAt": "2026-08-17T18:57:09.494Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "421f6ca89585205907b896fd57068132cee8f512"
+    "commit": "760aaeaa4a527a179fb05bdcd6d2099962783364"
   },
-  "count": 3180,
+  "count": 3185,
   "extensions": [
     {
       "name": "0x0",
@@ -46781,7 +46781,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/niall-maloney/cron-description",
       "source": {
@@ -49651,13 +49652,17 @@
       "author": "pernielsentikaer",
       "contributors": [
         "aljadan",
-        "xmok"
+        "xmok",
+        "0xdhrv"
       ],
       "categories": [
         "Fun"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "storeUrl": "https://www.raycast.com/pernielsentikaer/dad-jokes",
       "source": {
         "type": "github-monorepo",
@@ -51891,7 +51896,8 @@
         "islam_hassan",
         "shashank_rm",
         "heyflorentin",
-        "ridemountainpig"
+        "ridemountainpig",
+        "12ian34"
       ],
       "categories": [],
       "license": "MIT",
@@ -61018,7 +61024,7 @@
     {
       "name": "done-bear",
       "title": "Done Bear",
-      "description": "Search and manage your Done Bear tasks from Raycast",
+      "description": "A local-first GTD task manager for Raycast: capture, search, and complete tasks, plan your Today list, and manage projects — synced with the Done Bear web, desktop, iOS, and CLI apps.",
       "icon": "extension-icon.png",
       "author": "mblode",
       "contributors": [],
@@ -61040,81 +61046,121 @@
         {
           "name": "show-today",
           "title": "Show Today List",
-          "description": "Search and manage your today tasks",
+          "subtitle": "Done Bear",
+          "description": "See and complete the tasks and to-dos you planned for today",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "today",
+            "task",
+            "todo",
+            "to-do",
+            "gtd",
+            "agenda",
+            "due",
+            "plan"
+          ],
           "preferences": []
         },
         {
-          "name": "show-inbox",
-          "title": "Show Inbox List",
-          "description": "Search and manage your inbox tasks",
+          "name": "browse-tasks",
+          "title": "Browse Tasks",
+          "subtitle": "Done Bear",
+          "description": "Open Today, Inbox, Anytime, Upcoming, and Someday from one command",
           "mode": "view",
-          "keywords": [],
-          "preferences": []
-        },
-        {
-          "name": "show-anytime",
-          "title": "Show Anytime List",
-          "description": "Search and manage your anytime tasks",
-          "mode": "view",
-          "keywords": [],
-          "preferences": []
-        },
-        {
-          "name": "show-upcoming",
-          "title": "Show Upcoming List",
-          "description": "Search and manage your upcoming tasks",
-          "mode": "view",
-          "keywords": [],
-          "preferences": []
-        },
-        {
-          "name": "show-someday",
-          "title": "Show Someday List",
-          "description": "Search and manage your someday tasks",
-          "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "browse",
+            "inbox",
+            "anytime",
+            "upcoming",
+            "someday",
+            "task",
+            "todo",
+            "gtd"
+          ],
           "preferences": []
         },
         {
           "name": "search-tasks",
           "title": "Search Tasks",
-          "description": "Search tasks globally across all projects",
+          "subtitle": "Done Bear",
+          "description": "Search all your tasks and to-dos across every project",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "search",
+            "find",
+            "task",
+            "todo",
+            "filter",
+            "gtd"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "quick-add-task",
+          "title": "Create Task",
+          "subtitle": "Done Bear",
+          "description": "Create a task from one sentence with AI, then review every detail",
+          "mode": "view",
+          "keywords": [
+            "quick add",
+            "natural language",
+            "capture",
+            "task",
+            "todo",
+            "tomorrow",
+            "deadline",
+            "reminder"
+          ],
           "preferences": []
         },
         {
           "name": "create-task",
-          "title": "Create Task",
-          "description": "Create a task with all fields",
+          "title": "Create Detailed Task",
+          "subtitle": "Done Bear",
+          "description": "Create a task with a description, dates, project, team, and checklist",
           "mode": "view",
-          "keywords": [],
-          "preferences": []
-        },
-        {
-          "name": "search-projects",
-          "title": "Search Projects",
-          "description": "Search and manage your projects",
-          "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "create",
+            "add",
+            "new",
+            "task",
+            "todo",
+            "details",
+            "checklist",
+            "project",
+            "team"
+          ],
           "preferences": []
         },
         {
           "name": "create-project",
           "title": "Create Project",
-          "description": "Create a new project",
+          "subtitle": "Done Bear",
+          "description": "Create a new project to organize your tasks",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "create",
+            "add",
+            "new",
+            "project",
+            "organize"
+          ],
           "preferences": []
         },
         {
           "name": "menu-bar-today",
           "title": "Show Today in Menu Bar",
-          "description": "See your Today list in the menu bar",
+          "subtitle": "Done Bear",
+          "description": "Keep your Today task list in the macOS menu bar",
           "mode": "menu-bar",
-          "keywords": [],
+          "keywords": [
+            "today",
+            "menu bar",
+            "menubar",
+            "task",
+            "todo",
+            "agenda"
+          ],
           "preferences": []
         }
       ],
@@ -70607,6 +70653,57 @@
       "preferences": []
     },
     {
+      "name": "fabulous",
+      "title": "Fabulous",
+      "description": "List Domains and their DNS Records",
+      "icon": "fabulous.png",
+      "author": "xmok",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/xmok/fabulous",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/fabulous",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "domains",
+          "title": "Domains",
+          "subtitle": "Fabulous",
+          "description": "List Domains and their DNS Records",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "username",
+          "title": "Username",
+          "placeholder": "username",
+          "description": "Your Fabulous Username",
+          "required": true,
+          "type": "textfield"
+        },
+        {
+          "name": "password",
+          "title": "Password",
+          "placeholder": "password",
+          "description": "Your Fabulous Password",
+          "required": true,
+          "type": "password"
+        }
+      ]
+    },
+    {
       "name": "facetime",
       "title": "FaceTime",
       "description": "Make FaceTime calls with Raycast",
@@ -72253,7 +72350,7 @@
       "platforms": [
         "macOS"
       ],
-      "version": "2.0.1",
+      "version": "2.1.0",
       "storeUrl": "https://www.raycast.com/apoorv_khandelwal/fetch-youtube-transcript",
       "source": {
         "type": "github-monorepo",
@@ -112342,7 +112439,7 @@
     {
       "name": "ipcheck-ing",
       "title": "IPCheck",
-      "description": "Show All Your IPs, from Local Network and Multiple Sources",
+      "description": "Show your local and external IPs from multiple sources, look up the location and network behind any IP address, and keep your current IP in the menu bar",
       "icon": "ipchecking.png",
       "author": "jason5ng32",
       "contributors": [],
@@ -112350,7 +112447,10 @@
         "Developer Tools"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "storeUrl": "https://www.raycast.com/jason5ng32/ipcheck-ing",
       "source": {
         "type": "github-monorepo",
@@ -112365,8 +112465,141 @@
           "subtitle": "IPCheck",
           "description": "Show All My IPs",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "ip",
+            "my ip",
+            "public ip",
+            "external ip",
+            "local ip",
+            "ipv4",
+            "ipv6",
+            "what is my ip"
+          ],
           "preferences": []
+        },
+        {
+          "name": "query-ip",
+          "title": "Query IP",
+          "subtitle": "IPCheck",
+          "description": "Look up the location, ISP and network behind any IP address",
+          "mode": "view",
+          "keywords": [
+            "query ip",
+            "search ip",
+            "lookup ip",
+            "ip lookup",
+            "ip info",
+            "geoip",
+            "ip location",
+            "ipv4",
+            "ipv6"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "menubar",
+          "title": "IP in Menu Bar",
+          "subtitle": "IPCheck",
+          "description": "Keep your current external IP in the menu bar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "type": "dropdown",
+              "name": "preferredSource",
+              "title": "IP Source",
+              "description": "Which service to ask for the external IP shown in the menu bar",
+              "default": "getIPFromIPCheck4",
+              "required": false,
+              "data": [
+                {
+                  "title": "IPCheck.ing IPv4",
+                  "value": "getIPFromIPCheck4"
+                },
+                {
+                  "title": "IPCheck.ing IPv6",
+                  "value": "getIPFromIPCheck6"
+                },
+                {
+                  "title": "IPCheck.ing DualStack",
+                  "value": "getIPFromIPCheck64"
+                },
+                {
+                  "title": "Cloudflare IPv4",
+                  "value": "getIPFromCloudflare_V4"
+                },
+                {
+                  "title": "Cloudflare IPv6",
+                  "value": "getIPFromCloudflare_V6"
+                }
+              ]
+            },
+            {
+              "type": "dropdown",
+              "name": "labelStyle",
+              "title": "Menu Bar Label",
+              "description": "How much to show next to the menu bar icon",
+              "default": "flagAndIp",
+              "required": false,
+              "data": [
+                {
+                  "title": "Flag and IP",
+                  "value": "flagAndIp"
+                },
+                {
+                  "title": "Flag Only",
+                  "value": "flag"
+                },
+                {
+                  "title": "IP Only",
+                  "value": "ip"
+                },
+                {
+                  "title": "Icon Only",
+                  "value": "hidden"
+                }
+              ]
+            },
+            {
+              "type": "checkbox",
+              "name": "compactIPv6",
+              "title": "IPv6 Display",
+              "description": "When the label shows an IPv6 address, display only its first two segments to save menu bar space",
+              "label": "Shorten IPv6 addresses in the menu bar",
+              "default": false,
+              "required": false
+            },
+            {
+              "type": "dropdown",
+              "name": "refreshEvery",
+              "title": "Refresh Every",
+              "description": "How often to check for a new external IP in the background",
+              "default": "10",
+              "required": false,
+              "data": [
+                {
+                  "title": "5 minutes",
+                  "value": "5"
+                },
+                {
+                  "title": "10 minutes",
+                  "value": "10"
+                },
+                {
+                  "title": "20 minutes",
+                  "value": "20"
+                },
+                {
+                  "title": "30 minutes",
+                  "value": "30"
+                },
+                {
+                  "title": "60 minutes",
+                  "value": "60"
+                }
+              ]
+            }
+          ]
         }
       ],
       "preferences": [
@@ -112415,16 +112648,8 @@
         {
           "type": "checkbox",
           "name": "getIPFromIPCheck64",
-          "description": "Fetch IP from IPCheck.ing DualStack",
+          "description": "Fetch IP from IPCheck.ing DualStack — shows which protocol your network prefers",
           "label": "IPCheck.ing DualStack",
-          "default": true,
-          "required": false
-        },
-        {
-          "type": "checkbox",
-          "name": "getIPFromIPIP",
-          "description": "Fetch IP from IPIP.net",
-          "label": "IPIP.net",
           "default": true,
           "required": false
         }
@@ -119980,7 +120205,7 @@
           "type": "checkbox",
           "label": "Use the Current Browser Tab",
           "title": "Creating Bookmarks",
-          "description": "Fill in the URL from your frontmost tab when creating a bookmark. Requires the Raycast browser extension.",
+          "description": "Fill in the URL from your frontmost tab when creating a bookmark. Uses the Raycast browser extension when available, and falls back to AppleScript on macOS.",
           "default": true,
           "required": false
         },
@@ -182137,6 +182362,52 @@
       ]
     },
     {
+      "name": "promptty",
+      "title": "Promptty",
+      "description": "Search, paste, and copy prompts from your Promptty library",
+      "icon": "icon.png",
+      "author": "michalkos",
+      "contributors": [],
+      "categories": [
+        "Applications",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "1.0.0",
+      "storeUrl": "https://www.raycast.com/michalkos/promptty",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/promptty",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-promptty",
+          "title": "Search Promptty",
+          "description": "Search, paste, and copy saved prompts",
+          "mode": "view",
+          "keywords": [
+            "prompts",
+            "snippets"
+          ],
+          "preferences": [
+            {
+              "name": "snapshotFile",
+              "title": "Snapshot File",
+              "description": "Optional prompts-v1.json override for troubleshooting access",
+              "type": "file",
+              "required": false
+            }
+          ]
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "pronounce-the-word",
       "title": "Pronounce the Word",
       "description": "Learn to pronounce any word you type",
@@ -216883,6 +217154,65 @@
           "required": false
         }
       ]
+    },
+    {
+      "name": "skills-re",
+      "title": "Skills.re",
+      "description": "Search and manage agent skills from skills.re.",
+      "icon": "extension-icon.png",
+      "author": "escwxyz",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/escwxyz/skills-re",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/skills-re",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-skills",
+          "title": "Search Skills",
+          "description": "Search public skills by keyword.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "ai-search",
+          "title": "AI Search",
+          "description": "Search public skills by meaning with a skills.re API token.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "saved-skills",
+          "title": "Saved Skills",
+          "description": "View and manage your saved skills.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "auth",
+          "title": "Configure API Token",
+          "description": "Generate and configure a skills.re API token.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "skyscanner-flights",
@@ -272793,6 +273123,88 @@
       ]
     },
     {
+      "name": "yerd",
+      "title": "Yerd",
+      "description": "Manage Yerd sites, PHP versions, services, databases, mail and diagnostics from Raycast.",
+      "icon": "extension-icon.png",
+      "author": "kylekanderson",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/kylekanderson/yerd",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/yerd",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "sites",
+          "title": "Search Sites",
+          "description": "Search and manage local Yerd sites.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "php",
+          "title": "Manage PHP & Tools",
+          "description": "Manage PHP versions and dev tools.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "services",
+          "title": "Manage Services & Databases",
+          "description": "Start, stop, and manage services and databases.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "mail",
+          "title": "View Captured Mail",
+          "description": "Browse captured mail from the Yerd mail sink.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "proxies",
+          "title": "Manage Proxies",
+          "description": "Add, remove, and list Yerd proxies.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "status",
+          "title": "Yerd Status & Doctor",
+          "description": "View daemon status and run diagnostics.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "yerdPath",
+          "type": "textfield",
+          "required": false,
+          "title": "Yerd CLI Path",
+          "description": "Absolute path to the yerd binary. Leave empty for auto-detection.",
+          "placeholder": "~/Library/Application Support/io.yerd.Yerd/bin/yerd"
+        }
+      ]
+    },
+    {
       "name": "yield-calculator",
       "title": "Yield Calculator",
       "description": "Calculte your interests, APY / APR using our calculator.",
@@ -276109,6 +276521,48 @@
           "name": "convert-birth-date-to-zodiac-sign",
           "title": "Get Zodiac Sign",
           "description": "Get the zodiac sign and a short archetype description for a date.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "zoho-mail",
+      "title": "Zoho Mail",
+      "description": "Manage Zoho Mail - View Domains, Accounts, Emails and Content",
+      "icon": "zoho-mail.png",
+      "author": "xmok",
+      "contributors": [],
+      "categories": [
+        "Communication"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/xmok/zoho-mail",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/zoho-mail",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "accounts",
+          "title": "View Accounts",
+          "description": "View Accounts, Emails and Content",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "domains",
+          "title": "View Domains",
+          "description": "View Organization Domains",
           "mode": "view",
           "keywords": [],
           "preferences": []
