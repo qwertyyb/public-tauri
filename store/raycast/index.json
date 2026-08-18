@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-17T18:57:09.494Z",
+  "generatedAt": "2026-08-18T19:43:59.513Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "760aaeaa4a527a179fb05bdcd6d2099962783364"
+    "commit": "f38af6030233f08b358478e19e818fc71e58ec9d"
   },
-  "count": 3185,
+  "count": 3192,
   "extensions": [
     {
       "name": "0x0",
@@ -4643,6 +4643,150 @@
           "required": false
         }
       ]
+    },
+    {
+      "name": "airbuddy",
+      "title": "AirBuddy",
+      "description": "Control AirBuddy from Raycast",
+      "icon": "extension-icon.png",
+      "author": "chrismessina",
+      "contributors": [],
+      "categories": [
+        "Applications",
+        "Media",
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/chrismessina/airbuddy",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/airbuddy",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "list-devices",
+          "title": "Devices",
+          "subtitle": "AirBuddy",
+          "description": "Browse nearby devices, batteries, and connection state.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "connect-nearest-headset",
+          "title": "Connect Nearest Headset",
+          "subtitle": "AirBuddy",
+          "description": "Connect to the headset AirBuddy considers closest.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "connect-favorite-headset",
+          "title": "Connect Favorite Headset",
+          "subtitle": "AirBuddy",
+          "description": "Connect to the headset starred as a favorite in AirBuddy.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "disconnect-headset",
+          "title": "Disconnect Headset",
+          "subtitle": "AirBuddy",
+          "description": "Disconnect the currently connected headset.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle-listening-mode",
+          "title": "Toggle Listening Mode",
+          "subtitle": "AirBuddy",
+          "description": "Cycle the listening mode on the current headset.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "set-listening-mode",
+          "title": "Set Listening Mode",
+          "subtitle": "AirBuddy",
+          "description": "Set a specific listening mode on the current headset.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle-spatial-audio",
+          "title": "Toggle Spatial Audio",
+          "subtitle": "AirBuddy",
+          "description": "Toggle Spatial Audio on the current output device.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle-microphone-input",
+          "title": "Toggle Microphone Input",
+          "subtitle": "AirBuddy",
+          "description": "Toggle microphone input routing for the currently connected headset.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle-audio-input-lock",
+          "title": "Toggle Audio Input Lock",
+          "subtitle": "AirBuddy",
+          "description": "Toggle AirBuddy's Audio Input Lock setting.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "show-dashboard",
+          "title": "Show AirBuddy Dashboard",
+          "subtitle": "AirBuddy",
+          "description": "Open AirBuddy's device dashboard.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "cancel-device-connection",
+          "title": "Cancel Device Connection",
+          "subtitle": "AirBuddy",
+          "description": "Cancel a pending headset connection.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle-desktop-widgets-floating",
+          "title": "Toggle Desktop Widgets Floating",
+          "subtitle": "AirBuddy",
+          "description": "Toggle whether AirBuddy's Desktop Widgets float above other windows.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "show-magic-handoff-picker",
+          "title": "Show Magic Handoff Picker",
+          "subtitle": "AirBuddy",
+          "description": "Show AirBuddy's Magic Handoff device picker.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "airplane",
@@ -42193,6 +42337,73 @@
       "preferences": []
     },
     {
+      "name": "commit-sound-controls",
+      "title": "Commit Sounds",
+      "description": "Play custom sounds after Git commits to selected GitHub users or organizations.",
+      "icon": "icon.png",
+      "author": "koushik",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "version": "1.0.0",
+      "storeUrl": "https://www.raycast.com/koushik/commit-sound-controls",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/commit-sound-controls",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "add-commit-sound",
+          "title": "Add Commit Sound",
+          "description": "Upload or link audio for a GitHub account and set its volume.",
+          "mode": "view",
+          "keywords": [
+            "upload",
+            "audio",
+            "sound",
+            "git",
+            "github"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "commit-sound-controls",
+          "title": "Commit Sound Controls",
+          "description": "Enable, disable, test, and inspect Git post-commit sounds.",
+          "mode": "view",
+          "keywords": [
+            "git",
+            "commit",
+            "sound",
+            "producer tag"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "connect-github-account",
+          "title": "Connect GitHub Account",
+          "description": "Connect GitHub to prefill commit sound rules with your account.",
+          "mode": "view",
+          "keywords": [
+            "git",
+            "github",
+            "oauth",
+            "account"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "commit-streak",
       "title": "Commit Streak",
       "description": "Track your GitHub contribution streak in the menu bar. Stay motivated or get reminded.",
@@ -42980,10 +43191,12 @@
     {
       "name": "context7",
       "title": "Context7",
-      "description": "Search Context7 libraries and browse documentation context from Raycast",
+      "description": "Search up-to-date documentation for any library, framework, or SDK — keep the ones you use offline, and ask Raycast AI about them",
       "icon": "extension-icon.png",
       "author": "loris",
-      "contributors": [],
+      "contributors": [
+        "chrismessina"
+      ],
       "categories": [
         "Developer Tools",
         "Documentation"
@@ -43004,7 +43217,15 @@
         {
           "name": "search-libraries",
           "title": "Search Libraries",
-          "description": "Search Context7 libraries and manage favorites",
+          "description": "Search Context7 for a library or documentation source",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "my-libraries",
+          "title": "My Libraries",
+          "description": "Browse your saved libraries and refresh their documentation",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -43012,7 +43233,15 @@
         {
           "name": "search-documentation",
           "title": "Search Documentation",
-          "description": "Search documentation inside a Context7 library",
+          "description": "Search documentation and code snippets inside a Context7 library",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "my-snippets",
+          "title": "My Snippets",
+          "description": "Search the code snippets you saved, across every library",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -43022,9 +43251,18 @@
         {
           "name": "apiKey",
           "type": "password",
-          "required": true,
+          "required": false,
           "title": "Context7 API Key",
-          "description": "API key used to authenticate requests against Context7"
+          "description": "Optional. Without a key, Context7 serves a limited number of anonymous requests per month. Add a key from context7.com/dashboard to raise the limit."
+        },
+        {
+          "name": "verboseLogging",
+          "type": "checkbox",
+          "required": false,
+          "title": "Verbose Logging",
+          "label": "Enable detailed logging",
+          "description": "Show detailed request and response logs in the console for debugging",
+          "default": false
         }
       ]
     },
@@ -56918,7 +57156,8 @@
         "pernielsentikaer",
         "loris",
         "xmok",
-        "heytommy"
+        "heytommy",
+        "christianmagill"
       ],
       "categories": [
         "Productivity"
@@ -66332,7 +66571,8 @@
       "icon": "extension-icon.png",
       "author": "lachie_james",
       "contributors": [
-        "thierrygrimm"
+        "thierrygrimm",
+        "DaleSeo"
       ],
       "categories": [
         "Productivity",
@@ -124416,12 +124656,12 @@
       ],
       "preferences": [
         {
-          "name": "laravel_forge_api_key",
+          "name": "laravel_forge_api_token",
           "type": "password",
           "required": true,
-          "title": "Laravel Forge API Key",
-          "description": "Generate from your Laravel Forge profile",
-          "placeholder": "API Key"
+          "title": "Forge API Token (v2)",
+          "description": "Forge API v1 is retired, so this needs a new v2 token. Create one at forge.laravel.com/profile/api — see the README for the scopes to tick.",
+          "placeholder": "API Token"
         },
         {
           "name": "laravel_forge_ssh_user",
@@ -124433,12 +124673,12 @@
           "placeholder": "SSH User"
         },
         {
-          "name": "laravel_forge_api_key_two",
+          "name": "laravel_forge_api_token_two",
           "type": "password",
           "required": false,
-          "title": "Laravel Forge API Key 2 (optional)",
+          "title": "Forge API Token 2 (optional)",
           "description": "Optionally add a second account.",
-          "placeholder": "API Key (optional)"
+          "placeholder": "API Token (optional)"
         },
         {
           "name": "laravel_forge_ssh_user_two",
@@ -124446,7 +124686,7 @@
           "required": false,
           "title": "Laravel Forge SSH User 2 (optional)",
           "default": "forge",
-          "description": "Change the SSH user to login with ont he second account",
+          "description": "Change the SSH user to login with on the second account",
           "placeholder": "SSH User"
         }
       ]
@@ -155222,6 +155462,40 @@
       "preferences": []
     },
     {
+      "name": "nterm-calculator",
+      "title": "N-Term Grade Calculator",
+      "description": "Calculate Dutch exam grades with the official N-term (CvTE) formula.",
+      "icon": "extension-icon.png",
+      "author": "maarten_boelens",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/maarten_boelens/nterm-calculator",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/nterm-calculator",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "nterm-calculator",
+          "title": "N-Term Grade Calculator",
+          "description": "Calculate Dutch exam grades with the official N-term (CvTE) formula.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "ntfy",
       "title": "Ntfy",
       "description": "Send notifications to your devices using ntfy.sh",
@@ -178242,7 +178516,7 @@
         "litomore",
         "ridemountainpig",
         "meganpearson",
-        "alastair_scheuermann",
+        "alastairsounds",
         "dangkhoipro",
         "cblokkeel"
       ],
@@ -216950,6 +217224,42 @@
       "preferences": []
     },
     {
+      "name": "sitemap",
+      "title": "Sitemap",
+      "description": "Search any website's sitemap and quickly open or copy its pages.",
+      "icon": "extension-icon.png",
+      "author": "alexi.build",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows",
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/alexi.build/sitemap",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/sitemap",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-sitemap",
+          "title": "Search Sitemap",
+          "subtitle": "Sitemap",
+          "description": "Search a website's sitemap and open pages. Provide a URL or use the current browser tab.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "sitespeakai",
       "title": "SiteSpeakAI",
       "description": "Train a chatbot on any website or documentation, then get answers in your command bar.",
@@ -217075,7 +217385,7 @@
         "pernielsentikaer",
         "kayo_timoteo",
         "alexi.build",
-        "alastair_scheuermann"
+        "alastairsounds"
       ],
       "categories": [
         "Developer Tools"
@@ -231738,6 +232048,311 @@
       ]
     },
     {
+      "name": "swinsian-player",
+      "title": "Swinsian Player",
+      "description": "Control Swinsian from Raycast. Play, pause, skip tracks, set ratings, search your library, and see what's playing in your menu bar.",
+      "icon": "extension-icon.png",
+      "author": "deathrashed",
+      "contributors": [],
+      "categories": [
+        "Media",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/deathrashed/swinsian-player",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/swinsian-player",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "nowPlaying",
+          "title": "Now Playing",
+          "subtitle": "Swinsian",
+          "description": "See what's currently playing in Swinsian. Control playback, set rating, copy info, and more.",
+          "mode": "view",
+          "keywords": [
+            "current track",
+            "player",
+            "rating",
+            "metadata"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "nowPlayingMenuBar",
+          "title": "Menu Bar Player",
+          "subtitle": "Swinsian",
+          "description": "See what's currently playing in your Menu Bar. Click for quick controls. Refreshes every 15 seconds.",
+          "mode": "menu-bar",
+          "keywords": [
+            "menu bar",
+            "now playing",
+            "controls"
+          ],
+          "preferences": [
+            {
+              "name": "hideIconWhenIdle",
+              "title": "Appearance",
+              "description": "If enabled, the icon will be hidden when Swinsian is not running or nothing is playing",
+              "type": "checkbox",
+              "label": "Hide icon when idle",
+              "default": false,
+              "required": false
+            },
+            {
+              "name": "hideArtistName",
+              "title": "",
+              "description": "If enabled, the artist's name will be hidden in the Menu Bar",
+              "type": "checkbox",
+              "label": "Hide artist's name",
+              "default": false,
+              "required": false
+            },
+            {
+              "name": "maxTextLength",
+              "title": "Now Playing Text Length",
+              "description": "Maximum number of characters to show for the currently playing track. Leave empty to use default (30).",
+              "type": "textfield",
+              "default": "30",
+              "required": false,
+              "placeholder": "30"
+            },
+            {
+              "name": "showControlsSection",
+              "title": "Menu Sections",
+              "description": "Toggle the visibility of the playback controls section in the menu bar player",
+              "type": "checkbox",
+              "label": "Show Controls",
+              "default": true,
+              "required": false
+            },
+            {
+              "name": "showModesSection",
+              "title": "",
+              "description": "Toggle the visibility of the playback modes (repeat/shuffle) section",
+              "type": "checkbox",
+              "label": "Show Playback Options",
+              "default": true,
+              "required": false
+            },
+            {
+              "name": "showVolumeSection",
+              "title": "",
+              "description": "Toggle the visibility of the volume controls section",
+              "type": "checkbox",
+              "label": "Show Volume Controls",
+              "default": true,
+              "required": false
+            },
+            {
+              "name": "showDiscoverySection",
+              "title": "Action Sections",
+              "description": "Toggle the visibility of web discovery shortcuts in the menu bar player",
+              "type": "checkbox",
+              "label": "Show Discovery",
+              "default": true,
+              "required": false
+            },
+            {
+              "name": "showCopySection",
+              "title": "",
+              "description": "Toggle metadata, files, Last.fm tools, and bundled reports in the menu bar player",
+              "type": "checkbox",
+              "label": "Show Tools",
+              "default": true,
+              "required": false
+            },
+            {
+              "name": "showLastfmSection",
+              "title": "",
+              "description": "Toggle the visibility of Love in Now Playing and Ban in Playback",
+              "type": "checkbox",
+              "label": "Show Last.fm Controls",
+              "default": true,
+              "required": false
+            },
+            {
+              "name": "showOutputSection",
+              "title": "",
+              "description": "Toggle the visibility of the audio device inspector shortcut",
+              "type": "checkbox",
+              "label": "Show Device Inspector",
+              "default": true,
+              "required": false
+            },
+            {
+              "name": "showWindowsSection",
+              "title": "",
+              "description": "Toggle the visibility of Swinsian windows and utility shortcuts",
+              "type": "checkbox",
+              "label": "Show Options",
+              "default": true,
+              "required": false
+            },
+            {
+              "name": "showLibrarySection",
+              "title": "",
+              "description": "Toggle the visibility of the library management actions",
+              "type": "checkbox",
+              "label": "Show Library Maintenance",
+              "default": true,
+              "required": false
+            },
+            {
+              "name": "showOpenCommandsSection",
+              "title": "",
+              "description": "Toggle the visibility of shortcuts that open full Raycast library and playlist commands",
+              "type": "checkbox",
+              "label": "Show Raycast",
+              "default": true,
+              "required": false
+            }
+          ]
+        },
+        {
+          "name": "libraryBrowser",
+          "title": "Browse Library",
+          "subtitle": "Swinsian",
+          "description": "Navigate Swinsian hierarchically by artist, album artist, album, genre, or year. Artist results open albums, then tracks.",
+          "mode": "view",
+          "keywords": [
+            "browse",
+            "artist",
+            "album",
+            "genre",
+            "year"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "search",
+          "title": "Quick Search",
+          "subtitle": "Swinsian",
+          "description": "Quickly find tracks across titles, artists, and albums, then play the selected result.",
+          "mode": "view",
+          "keywords": [
+            "library",
+            "track",
+            "find"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "playlists",
+          "title": "Browse Playlists",
+          "subtitle": "Swinsian",
+          "description": "Browse and play your Swinsian playlists.",
+          "mode": "view",
+          "keywords": [
+            "playlist",
+            "queue"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "addToPlaylist",
+          "title": "Add Track to Playlist",
+          "subtitle": "Swinsian",
+          "description": "Choose a playlist and add the current Swinsian track to it.",
+          "mode": "view",
+          "keywords": [
+            "playlist",
+            "add current track"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "togglePlayPause",
+          "title": "Play/Pause",
+          "subtitle": "Swinsian",
+          "description": "Toggle the playback of the current track.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "next",
+          "title": "Next Track",
+          "subtitle": "Swinsian",
+          "description": "Skip to the next track.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "previous",
+          "title": "Previous Track",
+          "subtitle": "Swinsian",
+          "description": "Skip to the previous track.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "libraryDatabasePath",
+          "title": "Swinsian Library Database",
+          "description": "Optional override for Swinsian's Library.sqlite file. Leave empty to use the standard Application Support location.",
+          "type": "file",
+          "required": false
+        },
+        {
+          "name": "libraryRoot",
+          "title": "Music Folder",
+          "description": "Optional root music folder shown in Browse Library for quick Finder access. Browsing data comes from Swinsian's database above.",
+          "type": "directory",
+          "required": false
+        },
+        {
+          "name": "toolboxHiddenCategories",
+          "title": "Hidden Discovery Categories",
+          "description": "Comma-separated category IDs to hide: databases, streaming, lyrics, covers, social, utilities, lastfm.",
+          "type": "textfield",
+          "label": "Hidden Categories",
+          "default": "",
+          "required": false,
+          "placeholder": "social,lastfm"
+        },
+        {
+          "name": "toolboxHiddenServices",
+          "title": "Hidden Discovery Services",
+          "description": "Comma-separated service IDs to hide. IDs are documented in the README.",
+          "type": "textfield",
+          "label": "Hidden Services",
+          "default": "",
+          "required": false,
+          "placeholder": "facebook,twitter"
+        },
+        {
+          "name": "toolboxCustomServices",
+          "title": "Custom Services",
+          "description": "JSON array of custom links using {artist}, {album}, {track}, {query}, and {type} placeholders.",
+          "type": "textfield",
+          "label": "Custom Discovery Services",
+          "default": "",
+          "required": false,
+          "placeholder": "[{\"title\":\"Example\",\"url\":\"https://example.com/?q={query}\"}]"
+        },
+        {
+          "name": "toolboxLastfmUsername",
+          "title": "Last.fm Username",
+          "description": "Username used by Last.fm statistics, collage, dashboard, and time-capsule services.",
+          "type": "textfield",
+          "label": "Last.fm Username",
+          "default": "",
+          "required": false,
+          "placeholder": "username"
+        }
+      ]
+    },
+    {
       "name": "swipe-photo-cleaner",
       "title": "Swipe Photo Cleaner",
       "description": "Clean your photo library with fast swipe decisions",
@@ -235596,6 +236211,98 @@
       ]
     },
     {
+      "name": "teamwork",
+      "title": "Teamwork",
+      "description": "Search Teamwork tasks and control your Teamwork timer from Raycast",
+      "icon": "icon.png",
+      "author": "defaced",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "version": "0.1.0",
+      "storeUrl": "https://www.raycast.com/defaced/teamwork",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/teamwork",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-tasks",
+          "title": "Search Teamwork Tasks",
+          "description": "Search tasks assigned to you and control timers",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "timer-menu-bar",
+          "title": "Teamwork Timer Menu Bar",
+          "description": "Show the Teamwork timers in the menu bar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "pause-timer",
+          "title": "Pause Active Timer",
+          "description": "Pause the current active Teamwork timer",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "resume-timer",
+          "title": "Resume Timer",
+          "description": "Resume a paused Teamwork timer",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "stop-timer",
+          "title": "Stop and Log Timer",
+          "description": "Stop a Teamwork timer and log the time",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "siteUrl",
+          "type": "textfield",
+          "required": true,
+          "title": "Teamwork Site URL",
+          "description": "For example: https://yourcompany.teamwork.com",
+          "placeholder": "https://yourcompany.teamwork.com"
+        },
+        {
+          "name": "apiToken",
+          "type": "password",
+          "required": true,
+          "title": "Teamwork API Token",
+          "description": "A Teamwork bearer token/API token"
+        },
+        {
+          "name": "recentLimit",
+          "type": "textfield",
+          "required": false,
+          "title": "Recent Tasks Limit",
+          "description": "Number of recent tasks to show (default: 5)",
+          "placeholder": "5",
+          "default": "5"
+        }
+      ]
+    },
+    {
       "name": "techcrunch",
       "title": "TechCrunch",
       "description": "Read the best news from TechCrunch",
@@ -236388,7 +237095,23 @@
           "preferences": []
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "shelfUrl",
+          "title": "Shelf URL",
+          "description": "Optional. Leave blank to keep the shelf in a local file (~/.ten-four.json) on this Mac. Set it to an HTTPS Ten Four shelf service endpoint (for example via tailscale serve). HTTP is only supported for loopback testing.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "https://your-host.ts.net/shelf"
+        },
+        {
+          "name": "shelfToken",
+          "title": "Shelf Token",
+          "description": "Required when Shelf URL is set. Must match TENFOUR_TOKEN on the shelf service.",
+          "type": "password",
+          "required": false
+        }
+      ]
     },
     {
       "name": "tennis-standings",
@@ -240450,6 +241173,98 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "ticker-bar",
+      "title": "Ticker Bar",
+      "description": "Track stocks, crypto, tokens, perpetual futures, and prediction markets from the menu bar.",
+      "icon": "extension-icon.png",
+      "author": "kays0x",
+      "contributors": [],
+      "categories": [
+        "Finance"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/kays0x/ticker-bar",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/ticker-bar",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "menu-bar",
+          "title": "Ticker Bar",
+          "description": "Show market status in the menu bar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-market",
+          "title": "Browse Markets",
+          "description": "Search stocks, crypto, tokens, perpetual futures, and prediction markets",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "manage-watchlist",
+          "title": "Manage Watchlist",
+          "description": "Manage Ticker Bar watchlist and configuration",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "configure-ticker-bar",
+          "title": "Advanced Watchlist Editor",
+          "description": "Bulk edit the Ticker Bar watchlist by asset ID",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "refresh-prices",
+          "title": "Update Market Data",
+          "description": "Fetch fresh quotes and update the Ticker Bar cache",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "currency",
+          "title": "Currency",
+          "description": "Display currency for CoinGecko crypto quotes. Exchange, stock, token, and prediction-market quotes remain in USD.",
+          "type": "dropdown",
+          "required": false,
+          "default": "usd",
+          "data": [
+            {
+              "title": "USD",
+              "value": "usd"
+            },
+            {
+              "title": "CAD",
+              "value": "cad"
+            },
+            {
+              "title": "EUR",
+              "value": "eur"
+            },
+            {
+              "title": "GBP",
+              "value": "gbp"
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "ticktick",
