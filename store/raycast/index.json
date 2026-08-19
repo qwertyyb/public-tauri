@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-18T19:43:59.513Z",
+  "generatedAt": "2026-08-19T20:27:42.455Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "f38af6030233f08b358478e19e818fc71e58ec9d"
+    "commit": "4cbab63d30b09bfd8ad5fec67e017335181c3572"
   },
-  "count": 3192,
+  "count": 3196,
   "extensions": [
     {
       "name": "0x0",
@@ -9340,15 +9340,19 @@
       "icon": "command-icon.png",
       "author": "HunterJi",
       "contributors": [
-        "pernielsentikaer"
+        "pernielsentikaer",
+        "0xdhrv"
       ],
       "categories": [
         "Design Tools",
         "Developer Tools"
       ],
       "license": "MIT",
-      "platforms": [],
-      "version": "1.1.0",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "version": "1.2.0",
       "storeUrl": "https://www.raycast.com/HunterJi/app-icon-generator",
       "source": {
         "type": "github-monorepo",
@@ -13276,6 +13280,119 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "aside",
+      "title": "Aside",
+      "description": "Search and control open tabs, bookmarks, and browser history in Aside",
+      "icon": "extension-icon.png",
+      "author": "asifk",
+      "contributors": [],
+      "categories": [
+        "Applications",
+        "Web",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/asifk/aside",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/aside",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-web",
+          "title": "Search Aside",
+          "subtitle": "Aside",
+          "description": "Search pinned tabs, other open tabs, browser history, and the web from one bar.",
+          "mode": "view",
+          "keywords": [
+            "google",
+            "history",
+            "tabs",
+            "url"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "search-bookmarks",
+          "title": "Search Bookmarks",
+          "subtitle": "Aside",
+          "description": "Search Aside bookmarks and open them in Aside.",
+          "mode": "view",
+          "keywords": [
+            "favorites",
+            "saved",
+            "links"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "search-history",
+          "title": "Search Browser History",
+          "subtitle": "Aside",
+          "description": "Search Aside browsing history and reopen visited pages.",
+          "mode": "view",
+          "keywords": [
+            "visited",
+            "recent",
+            "websites"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "open-new-tab",
+          "title": "Open New Tab",
+          "subtitle": "Aside",
+          "description": "Open a new tab in Aside.",
+          "mode": "no-view",
+          "keywords": [
+            "browser",
+            "create"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "open-new-window",
+          "title": "Open New Window",
+          "subtitle": "Aside",
+          "description": "Open a new Aside window.",
+          "mode": "no-view",
+          "keywords": [
+            "browser",
+            "create"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "open-new-incognito-window",
+          "title": "Open New Incognito Window",
+          "subtitle": "Aside",
+          "description": "Open a new Aside incognito window.",
+          "mode": "no-view",
+          "keywords": [
+            "private",
+            "browser",
+            "create"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "profile",
+          "title": "Aside Profile",
+          "description": "Default profile for bookmarks and history. Switch profiles from command dropdowns.",
+          "type": "textfield",
+          "required": false,
+          "default": "Default"
+        }
+      ]
     },
     {
       "name": "asoiaf",
@@ -58173,6 +58290,72 @@
           "type": "checkbox",
           "label": "Enable",
           "default": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "digikey",
+      "title": "DigiKey",
+      "description": "Get product details from DigiKey",
+      "icon": "digikey.png",
+      "author": "xmok",
+      "contributors": [],
+      "categories": [
+        "Data"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/xmok/digikey",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/digikey",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "get-product-details",
+          "title": "Get Product Details",
+          "description": "Get product details from DigiKey",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "client_id",
+          "title": "Client ID",
+          "type": "textfield",
+          "description": "The client ID for your DigiKey account",
+          "required": true,
+          "placeholder": "XXX...xXX"
+        },
+        {
+          "name": "client_secret",
+          "title": "Client Secret",
+          "type": "password",
+          "description": "The client secret for your DigiKey account",
+          "required": true,
+          "placeholder": "xXX...xXX"
+        },
+        {
+          "name": "account_id",
+          "title": "Account ID",
+          "type": "textfield",
+          "description": "The account ID for your DigiKey account",
+          "required": true,
+          "placeholder": "00000000"
+        },
+        {
+          "name": "is_sandbox",
+          "label": "Is Sandbox",
+          "type": "checkbox",
+          "description": "Is this a sandbox account?",
           "required": false
         }
       ]
@@ -128880,7 +129063,8 @@
         "xmok",
         "0xdhrv",
         "erikjs",
-        "alexi.build"
+        "alexi.build",
+        "samuelkraft"
       ],
       "categories": [
         "Developer Tools",
@@ -139431,6 +139615,73 @@
           "default": true
         }
       ]
+    },
+    {
+      "name": "menucloak",
+      "title": "MenuCloak",
+      "description": "Turn unused application menu space into your current focus",
+      "icon": "extension-icon.png",
+      "author": "dans_huang",
+      "contributors": [],
+      "categories": [
+        "Applications",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "1.0.0",
+      "storeUrl": "https://www.raycast.com/dans_huang/menucloak",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/menucloak",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "set-focus",
+          "title": "Set Focus Text",
+          "description": "Set the focus shown by MenuCloak",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle",
+          "title": "Toggle MenuCloak",
+          "description": "Show or hide the application menu cloak",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "turn-on",
+          "title": "Turn on MenuCloak",
+          "description": "Cover application menus and show your focus",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "turn-off",
+          "title": "Turn off MenuCloak",
+          "description": "Reveal application menus",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-settings",
+          "title": "Open MenuCloak Settings",
+          "description": "Edit focus text and MenuCloak settings",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "mercado-libre",
@@ -154377,7 +154628,8 @@
         "xmok",
         "pernielsentikaer",
         "0xdhrv",
-        "ridemountainpig"
+        "ridemountainpig",
+        "alvesrafa"
       ],
       "categories": [
         "Applications",
@@ -154470,6 +154722,54 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "add-note",
+          "title": "Add Note",
+          "subtitle": "Notion",
+          "description": "Write a quick note into a daily page inside your notes page.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "notes_page_name",
+              "type": "textfield",
+              "title": "Notes Page",
+              "required": false,
+              "default": "NOTES",
+              "description": "Name of the Notion page holding the daily note pages. It is created automatically if you pick a parent page in the form."
+            },
+            {
+              "name": "note_date_format",
+              "type": "textfield",
+              "title": "Date Page Format",
+              "required": false,
+              "default": "yyyy-MM-dd",
+              "description": "date-fns format used as the title of the daily page, e.g. yyyy-MM-dd or 'dd MMM yyyy'."
+            },
+            {
+              "name": "note_style",
+              "type": "dropdown",
+              "title": "Note Style",
+              "required": false,
+              "default": "bulleted",
+              "data": [
+                {
+                  "title": "Bulleted List",
+                  "value": "bulleted"
+                },
+                {
+                  "title": "To-do Checkbox",
+                  "value": "todo"
+                },
+                {
+                  "title": "Plain Paragraph",
+                  "value": "paragraph"
+                }
+              ],
+              "description": "How each note is written to the daily page."
+            }
+          ]
         },
         {
           "name": "add-text-to-page",
@@ -156711,7 +157011,8 @@
         "byheaven",
         "tofrankie",
         "alexi.build",
-        "veilwalker"
+        "veilwalker",
+        "raulkolaric"
       ],
       "categories": [
         "Productivity"
@@ -172538,6 +172839,116 @@
           "description": "Custom API URL (optional)",
           "default": "https://api.phaseo.app/v1",
           "placeholder": "https://api.phaseo.app/v1"
+        }
+      ]
+    },
+    {
+      "name": "phi",
+      "title": "Phi",
+      "description": "Search and control live Phi Spaces and tabs.",
+      "icon": "icon.png",
+      "author": "phibrowser",
+      "contributors": [],
+      "categories": [
+        "Applications",
+        "Productivity",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/phibrowser/phi",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/phi",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-spaces",
+          "title": "Search Spaces",
+          "description": "Search and activate Phi Spaces",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-history",
+          "title": "Search History",
+          "description": "Search your Phi browsing history",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-tabs",
+          "title": "Search Tabs",
+          "description": "Search open tabs, pinned tabs, and bookmarks across all Phi Spaces",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-current-space-tabs",
+          "title": "Search Current Space Tabs",
+          "description": "Search open tabs, pinned tabs, and bookmarks in the current Phi Space",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "phi-actions",
+          "title": "Phi Actions",
+          "description": "Run actions on the active Phi page",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "new-tab",
+          "title": "Open New Tab",
+          "description": "Open a URL or search in Phi",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "new-window",
+          "title": "New Window",
+          "description": "Open a new window",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "new-incognito-window",
+          "title": "New Incognito Window",
+          "description": "Open a new incognito window",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "applicationChannel",
+          "title": "Phi Application",
+          "description": "Use Phi Canary while developing this extension and Phi for production.",
+          "type": "dropdown",
+          "required": false,
+          "default": "stable",
+          "data": [
+            {
+              "title": "Phi Canary",
+              "value": "canary"
+            },
+            {
+              "title": "Phi",
+              "value": "stable"
+            }
+          ]
         }
       ]
     },
@@ -201332,7 +201743,7 @@
         },
         {
           "name": "replace",
-          "title": "Replace File(s) Characters",
+          "title": "Replace in File Names",
           "description": "Replace characters in file(s) names.",
           "mode": "view",
           "keywords": [],
@@ -201341,7 +201752,7 @@
         {
           "name": "advanced-rename",
           "title": "Advanced Batch Rename",
-          "description": "Rename files using a powerful rule-based engine.",
+          "description": "Rename files and folders using a powerful rule-based engine.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -201350,6 +201761,22 @@
           "name": "history",
           "title": "Rename History",
           "description": "View and undo recent rename operations.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "rename-folders",
+          "title": "Rename Folder(s)",
+          "description": "Rename the folders selected in Finder in a batch.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "replace-folders",
+          "title": "Replace in Folder Names",
+          "description": "Replace characters in the names of the selected folders.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -213427,14 +213854,18 @@
       "icon": "short-io-icon.png",
       "author": "koinzhang",
       "contributors": [
-        "xmok"
+        "xmok",
+        "0xdhrv"
       ],
       "categories": [
         "Developer Tools",
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "storeUrl": "https://www.raycast.com/koinzhang/short-io",
       "source": {
         "type": "github-monorepo",
@@ -231832,7 +232263,7 @@
         {
           "name": "index",
           "title": "SVGR",
-          "description": "SVGR lets you transform SVG's into React components everywhere. ",
+          "description": "SVGR lets you transform SVG's into React components everywhere.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -260911,6 +261342,7 @@
         "yusifaliyevpro",
         "jkker",
         "sillashead",
+        "KamilDev",
         "muhammadrizo"
       ],
       "categories": [],
@@ -267666,7 +268098,7 @@
           "name": "upgrade-all",
           "title": "Upgrade All Packages",
           "subtitle": "WinGet",
-          "description": "Upgrade all packages with available updates. Also runs this extension's install/uninstall operations in the background, so keep it enabled.",
+          "description": "Upgrade all packages with available updates",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
