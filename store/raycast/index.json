@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-19T20:27:42.455Z",
+  "generatedAt": "2026-08-20T19:04:48.514Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "4cbab63d30b09bfd8ad5fec67e017335181c3572"
+    "commit": "62513897f5ce1e1f471efd0584ab5b656754d8cf"
   },
-  "count": 3196,
+  "count": 3198,
   "extensions": [
     {
       "name": "0x0",
@@ -15096,7 +15096,7 @@
     {
       "name": "awork",
       "title": "awork",
-      "description": "Search for tasks & projects and log time in awork.",
+      "description": "Search projects and tasks, create tasks, and log time in awork.",
       "icon": "icon.png",
       "author": "hypercode-dev",
       "contributors": [
@@ -15122,7 +15122,7 @@
       "commands": [
         {
           "name": "projects",
-          "title": "Projects",
+          "title": "Search Projects",
           "subtitle": "awork",
           "description": "Search your projects",
           "mode": "view",
@@ -15131,7 +15131,7 @@
         },
         {
           "name": "tasks",
-          "title": "Tasks",
+          "title": "Search Tasks",
           "subtitle": "awork",
           "description": "Search your tasks",
           "mode": "view",
@@ -15143,6 +15143,15 @@
           "title": "Log Time",
           "subtitle": "awork",
           "description": "Log time on a project or task",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "createTask",
+          "title": "Create Task",
+          "subtitle": "awork",
+          "description": "Create a project or private task",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -40256,7 +40265,8 @@
         "alexi.build",
         "mbuvarp",
         "frederik_obe",
-        "bsradcliffe"
+        "bsradcliffe",
+        "aditi_bhagat"
       ],
       "categories": [],
       "license": "MIT",
@@ -44339,7 +44349,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/chizitere_david/cook",
       "source": {
@@ -66648,6 +66659,58 @@
           "mode": "view",
           "keywords": [],
           "icon": "effect-icon.png",
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "ego-lite",
+      "title": "Ego Lite",
+      "description": "Create tabs and search local bookmarks and history in Ego Lite.",
+      "icon": "extension-icon.png",
+      "author": "luobin",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/luobin/ego-lite",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/ego-lite",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "new-tab",
+          "title": "New Tab",
+          "subtitle": "Ego Lite",
+          "description": "Create a new blank Ego Lite tab.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-bookmarks",
+          "title": "Search Bookmarks",
+          "subtitle": "Ego Lite",
+          "description": "Search local Ego Lite bookmarks.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-history",
+          "title": "Search History",
+          "subtitle": "Ego Lite",
+          "description": "Search local Ego Lite browsing history.",
+          "mode": "view",
+          "keywords": [],
           "preferences": []
         }
       ],
@@ -124843,7 +124906,7 @@
           "type": "password",
           "required": true,
           "title": "Forge API Token (v2)",
-          "description": "Forge API v1 is retired, so this needs a new v2 token. Create one at forge.laravel.com/profile/api — see the README for the scopes to tick.",
+          "description": "Generate from your Laravel Forge profile",
           "placeholder": "API Token"
         },
         {
@@ -129064,7 +129127,8 @@
         "0xdhrv",
         "erikjs",
         "alexi.build",
-        "samuelkraft"
+        "samuelkraft",
+        "ray.dhruv"
       ],
       "categories": [
         "Developer Tools",
@@ -139619,7 +139683,7 @@
     {
       "name": "menucloak",
       "title": "MenuCloak",
-      "description": "Turn unused application menu space into your current focus",
+      "description": "Control MenuCloak focus, cloak, and Google Calendar settings",
       "icon": "extension-icon.png",
       "author": "dans_huang",
       "contributors": [],
@@ -139675,7 +139739,7 @@
         {
           "name": "open-settings",
           "title": "Open MenuCloak Settings",
-          "description": "Edit focus text and MenuCloak settings",
+          "description": "Edit focus text or connect Google Calendar",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -162696,11 +162760,12 @@
     {
       "name": "openclaw",
       "title": "OpenClaw",
-      "description": "Chat with your local OpenClaw AI assistant",
+      "description": "Chat with your OpenClaw AI assistant (local or remote gateway)",
       "icon": "icon.png",
       "author": "leveragedrobot",
       "contributors": [
-        "asaph_kotzin"
+        "asaph_kotzin",
+        "RaviTharuma"
       ],
       "categories": [
         "Productivity",
@@ -162779,9 +162844,9 @@
         {
           "name": "token",
           "title": "API Token",
-          "description": "Find in ~/.openclaw/openclaw.json under gateway.auth.token",
+          "description": "gateway.auth.token on the gateway host, or gateway.remote.token on a node (~/.openclaw/openclaw.json). Leave empty to use the file.",
           "type": "password",
-          "required": true
+          "required": false
         },
         {
           "name": "agentId",
@@ -189211,7 +189276,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/xjo_nd/radarr",
       "source": {
@@ -214259,6 +214325,106 @@
           "required": true,
           "default": true,
           "label": "Close Raycast Main Window before capturing"
+        }
+      ]
+    },
+    {
+      "name": "showmd",
+      "title": "ShowMD",
+      "description": "Open your markdown files as readable pages in your browser. Edit them right there, and everything stays on your computer.",
+      "icon": "extension-icon.png",
+      "author": "l0kyurue1",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/l0kyurue1/showmd",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/showmd",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "open",
+          "title": "Open",
+          "description": "Open a recently viewed markdown file, or browse for a folder or file, in ShowMD",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "manage-server",
+          "title": "Manage ShowMD",
+          "description": "View ShowMD's status, start, restart, or stop it",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "edit-settings",
+          "title": "Edit Settings",
+          "description": "Edit ShowMD's settings",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "browse-skills",
+          "title": "Browse Agent Skills",
+          "description": "Browse your installed agent skills in ShowMD",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-selected",
+          "title": "Open Selected",
+          "description": "Open the markdown file or folder selected in Finder or Explorer",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "menu-bar",
+          "title": "Menu Bar",
+          "description": "Show ShowMD's status in the menu bar, with recents and quick controls (macOS only)",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "showmdPath",
+          "title": "ShowMD Path",
+          "description": "Path to the showmd binary. Leave empty to auto-detect it on PATH.",
+          "type": "file",
+          "required": false
+        },
+        {
+          "name": "port",
+          "title": "Port",
+          "description": "Preferred port to check first for ShowMD. ShowMD running on other ports is also found.",
+          "type": "textfield",
+          "required": false,
+          "default": "4321"
+        },
+        {
+          "name": "reuseServer",
+          "title": "Open in Running ShowMD",
+          "description": "Open files in the ShowMD that's already running instead of starting another.",
+          "type": "checkbox",
+          "label": "Open in running ShowMD",
+          "required": false,
+          "default": true
         }
       ]
     },
@@ -252235,7 +252401,7 @@
         {
           "name": "join-personal-room",
           "title": "Join Personal Room",
-          "description": "Join your most recent personal room.",
+          "description": "Join your primary personal room.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
