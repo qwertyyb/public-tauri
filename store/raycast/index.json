@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-20T19:04:48.514Z",
+  "generatedAt": "2026-08-21T18:52:52.770Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "62513897f5ce1e1f471efd0584ab5b656754d8cf"
+    "commit": "37dc079b01c9acedc657bc92664374d3b028fb73"
   },
-  "count": 3198,
+  "count": 3207,
   "extensions": [
     {
       "name": "0x0",
@@ -3143,7 +3143,7 @@
     {
       "name": "agent-usage",
       "title": "Agent Usage",
-      "description": "Monitor AI coding agent usage across Amp, Antigravity, Claude, ClinePass, Codex, Copilot, Cursor, DeepSeek, Droid, Gemini, Grok, Kimi, MiniMax, OpenCode Go, Synthetic and z.ai",
+      "description": "Monitor AI coding agent usage across Amp, Antigravity, Claude, ClinePass, Codex, Copilot, Cursor, DeepSeek, Droid, Gemini, Grok, Kimi, MiniMax, MinimaxCN, OpenCode Go, Synthetic and z.ai",
       "icon": "extension-icon.png",
       "author": "thuggyduck",
       "contributors": [
@@ -3335,6 +3335,21 @@
           "type": "password",
           "title": "MiniMax API Token (Optional)",
           "description": "Optional fallback token. Usually auto-detected from MINIMAX_API_KEY environment variable (set in ~/.zshrc, ~/.bashrc, etc.).",
+          "required": false
+        },
+        {
+          "name": "showMinimaxCN",
+          "type": "checkbox",
+          "label": "Show MinimaxCN",
+          "description": "Show MinimaxCN (MiniMax 国内版) usage in the list",
+          "default": true,
+          "required": false
+        },
+        {
+          "name": "minimaxcnApiToken",
+          "type": "password",
+          "title": "MinimaxCN API Token (Optional)",
+          "description": "Optional fallback token. Usually auto-detected from MINIMAX_CN_API_KEY environment variable (set in ~/.zshrc, ~/.bashrc, etc.).",
           "required": false
         },
         {
@@ -10163,6 +10178,68 @@
       ]
     },
     {
+      "name": "appfreezer",
+      "title": "App Freezer",
+      "description": "Pause and resume macOS applications through the App Freezer native agent.",
+      "icon": "extension-icon.png",
+      "author": "changxu_song",
+      "contributors": [],
+      "categories": [
+        "System",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/changxu_song/appfreezer",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/appfreezer",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "resume-all",
+          "title": "Resume All Apps",
+          "subtitle": "App Freezer",
+          "description": "Resume every application paused by App Freezer",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "quit-app",
+          "title": "Quit App",
+          "subtitle": "App Freezer",
+          "description": "Send a normal Quit request to an application",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "force-quit-app",
+          "title": "Force Quit App",
+          "subtitle": "App Freezer",
+          "description": "Force quit an application after confirmation",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "manage-applications",
+          "title": "Pause or Resume App",
+          "subtitle": "App Freezer",
+          "description": "Search for an application, then pause or resume it",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "appgrid",
       "title": "AppGrid",
       "description": "Smart app launcher with grid view and category grouping",
@@ -10727,10 +10804,10 @@
     },
     {
       "name": "apple-passwords",
-      "title": "Apple Password",
-      "description": "Search Apple Passwords and copy passwords or one-time codes from your local vault.",
-      "icon": "icon.png",
-      "author": "alec-harmon",
+      "title": "Apple Passwords",
+      "description": "Search and manage Apple Passwords from Raycast using the APW CLI.",
+      "icon": "command-icon.png",
+      "author": "bendews",
       "contributors": [],
       "categories": [
         "Security",
@@ -10740,7 +10817,7 @@
       "platforms": [
         "macOS"
       ],
-      "storeUrl": "https://www.raycast.com/alec-harmon/apple-passwords",
+      "storeUrl": "https://www.raycast.com/bendews/apple-passwords",
       "source": {
         "type": "github-monorepo",
         "repo": "raycast/extensions",
@@ -10749,25 +10826,79 @@
       },
       "commands": [
         {
-          "name": "apw",
-          "title": "Search Passwords",
-          "subtitle": "Apple Password",
-          "description": "Search Apple Passwords and copy passwords or one-time codes",
+          "name": "list",
+          "title": "Apple Passwords",
+          "description": "Search your Apple Password items by URL.",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "ap",
+            "apw",
+            "apple",
+            "password",
+            "login"
+          ],
           "preferences": []
         },
         {
-          "name": "clear-cache",
-          "title": "Clear Password Cache",
-          "subtitle": "Apple Password",
-          "description": "Delete the local Apple Password cache file",
-          "mode": "no-view",
-          "keywords": [],
+          "name": "save",
+          "title": "Save Apple Password",
+          "description": "Save a new or updated password to Apple Passwords.",
+          "mode": "view",
+          "keywords": [
+            "ap",
+            "apw",
+            "apple",
+            "password",
+            "save",
+            "new"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "auth",
+          "title": "Authenticate Apple Passwords",
+          "description": "Authenticate the APW daemon by entering the PIN macOS displays.",
+          "mode": "view",
+          "keywords": [
+            "ap",
+            "apw",
+            "apple",
+            "password",
+            "auth",
+            "pair"
+          ],
           "preferences": []
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "default": "/opt/homebrew/bin/apw",
+          "description": "Enter the APW binary path",
+          "name": "cliPathAPW",
+          "placeholder": "e.g., /usr/local/bin/apw",
+          "required": false,
+          "title": "APW CLI path",
+          "type": "textfield"
+        },
+        {
+          "default": false,
+          "description": "Copy secret values instead of filling them at the cursor position",
+          "name": "copySecrets",
+          "required": false,
+          "title": "Copy secrets",
+          "label": "Copy secret values instead of filling them at the cursor position",
+          "type": "checkbox"
+        },
+        {
+          "default": "5",
+          "description": "How long to cache retrieved passwords (in minutes). Set to 0 to disable.",
+          "name": "cacheTimeout",
+          "placeholder": "e.g., 5",
+          "required": false,
+          "title": "Cache Timeout (in minutes)",
+          "type": "textfield"
+        }
+      ]
     },
     {
       "name": "apple-photos",
@@ -14203,7 +14334,7 @@
           "name": "auto-switch-input",
           "title": "Enforce Input Device",
           "subtitle": "Audio Device",
-          "description": "Keeps your default input device and pinned volumes in place. Runs silently in the background every 10 seconds. If you disable this, your default device and pinned volumes will stop being enforced — macOS may switch devices or reset volumes after sleep, Bluetooth reconnects, etc.",
+          "description": "Keeps your default input device and pinned volumes in place. Runs silently in the background every minute. If you disable this, your default device and pinned volumes will stop being enforced — macOS may switch devices or reset volumes after sleep, Bluetooth reconnects, etc.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -14212,7 +14343,7 @@
           "name": "auto-switch-output",
           "title": "Enforce Output Device",
           "subtitle": "Audio Device",
-          "description": "Keeps your default output device and pinned volumes in place. Runs silently in the background every 10 seconds. If you disable this, your default device and pinned volumes will stop being enforced — macOS may switch devices or reset volumes after sleep, Bluetooth reconnects, etc.",
+          "description": "Keeps your default output device and pinned volumes in place. Runs silently in the background every minute. If you disable this, your default device and pinned volumes will stop being enforced — macOS may switch devices or reset volumes after sleep, Bluetooth reconnects, etc.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -28659,6 +28790,68 @@
       ]
     },
     {
+      "name": "capd",
+      "title": "Capd",
+      "description": "Search and capture your Capd library without leaving Raycast.",
+      "icon": "extension-icon.png",
+      "author": "jamie_davenport",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Applications"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/jamie_davenport/capd",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/capd",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search",
+          "title": "Search",
+          "subtitle": "Capd",
+          "description": "Full-text search across everything you have captured.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "capture",
+          "title": "Capture",
+          "subtitle": "Capd",
+          "description": "Save a link, selection, or the clipboard to Capd.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "capdPath",
+          "type": "textfield",
+          "required": false,
+          "title": "Capd Command",
+          "description": "Path to the capd binary. Leave empty to locate capd.app automatically.",
+          "placeholder": "/Applications/capd.app/Contents/MacOS/capd"
+        },
+        {
+          "name": "searchLimit",
+          "type": "textfield",
+          "required": false,
+          "default": "25",
+          "title": "Result Limit",
+          "description": "Maximum number of search results to show.",
+          "placeholder": "25"
+        }
+      ]
+    },
+    {
       "name": "capture",
       "title": "Capture",
       "description": "Quickly create records in Capture with Raycast.",
@@ -42803,6 +42996,73 @@
           "required": true,
           "type": "textfield",
           "placeholder": "tcp"
+        }
+      ]
+    },
+    {
+      "name": "companies-house",
+      "title": "Companies House",
+      "description": "Search the UK Companies House register — companies, officers, filings and charges.",
+      "icon": "extension-icon.png",
+      "author": "aic",
+      "contributors": [],
+      "categories": [
+        "Data",
+        "Finance"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/aic/companies-house",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/companies-house",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-companies",
+          "title": "Search Companies",
+          "subtitle": "Companies House",
+          "description": "Search for UK companies by name or number.",
+          "mode": "view",
+          "keywords": [
+            "company",
+            "business",
+            "ltd",
+            "limited",
+            "registration"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "search-officers",
+          "title": "Search Officers",
+          "subtitle": "Companies House",
+          "description": "Search for company officers and directors by name.",
+          "mode": "view",
+          "keywords": [
+            "director",
+            "officer",
+            "secretary",
+            "person",
+            "appointment"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "title": "API Key",
+          "description": "Your Companies House REST API key. Create a free application key in the developer dashboard.",
+          "type": "password",
+          "required": true,
+          "placeholder": "Your Companies House API key",
+          "link": "https://developer.company-information.service.gov.uk/manage-applications"
         }
       ]
     },
@@ -73041,6 +73301,61 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "fibery-quick-capture",
+      "title": "Fibery Quick Capture",
+      "description": "Quickly capture tasks in any Fibery database",
+      "icon": "fibery-icon.png",
+      "author": "janjezek",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/janjezek/fibery-quick-capture",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/fibery-quick-capture",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "create-task",
+          "title": "Create Fibery Task",
+          "description": "Quickly save a task to Fibery",
+          "mode": "view",
+          "keywords": [
+            "todo",
+            "capture"
+          ],
+          "icon": "fibery-icon.png",
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "workspace",
+          "title": "Fibery Workspace",
+          "description": "Your Fibery workspace name or full URL",
+          "type": "textfield",
+          "required": true,
+          "placeholder": "acme or https://acme.fibery.io"
+        },
+        {
+          "name": "apiToken",
+          "title": "Fibery API Token",
+          "description": "Create one from Workspace menu → API Tokens in Fibery",
+          "type": "password",
+          "required": true,
+          "placeholder": "Paste your API token"
+        }
+      ]
     },
     {
       "name": "fibonacci-sequence",
@@ -129632,6 +129947,101 @@
       ]
     },
     {
+      "name": "link-commands",
+      "title": "Link Commands",
+      "description": "Quicklinks as real files. Turn any link, folder or search into a Script Command you can version, grep and sync — then browse them grouped by environment, brand and category.",
+      "icon": "extension-icon.png",
+      "author": "kud",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/kud/link-commands",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/link-commands",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-link-commands",
+          "title": "Search Link Commands",
+          "subtitle": "Link Commands",
+          "description": "Browse the link commands in your script directories, grouped by environment, brand and category, and run them.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "create-link-command",
+          "title": "Create Link Command",
+          "subtitle": "Link Commands",
+          "description": "Turn a link, a folder or a search URL into a Script Command, with its icon, brand, category and argument header filled in.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "scriptDirectories",
+          "title": "Script Directories",
+          "description": "The folders holding your Script Commands, separated by a comma, a semicolon or a line break. These are the same folders you added under Raycast Settings > Extensions > Script Commands > Add Directories. You have to enter them again here because that list is stored in Raycast's encrypted database, and no public API exposes it — an extension simply cannot read it.",
+          "type": "textfield",
+          "required": true,
+          "placeholder": "~/scripts, ~/work/scripts"
+        },
+        {
+          "name": "showBodyPreview",
+          "title": "Detail Pane",
+          "label": "Show the script source as well as the target",
+          "description": "A link command's facts already sit in the table beside it, so its source is hidden by default — the body is a single open call and its header repeats the metadata. Turn this on to show it anyway. Commands that are not links always show their source.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "groupCommands",
+          "title": "Grouping",
+          "label": "Group commands by environment, brand and category",
+          "description": "Read the naming convention out of each command's title and subtitle — an @environment prefix on the title, a brand and a #category on the subtitle — and use it to build sections and filters. Commands that follow no convention are still listed; they simply have no environment or category.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "terminalApplication",
+          "title": "Terminal",
+          "description": "The application used by the Run in Terminal action, which runs a script with its output left on screen — useful when a command misbehaves and you need to see its errors.",
+          "type": "appPicker",
+          "required": false,
+          "default": "Terminal"
+        },
+        {
+          "name": "defaultAuthor",
+          "title": "Author",
+          "description": "Written into the @raycast.author header of Script Commands you create. Leave empty to omit it.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "Your Name"
+        },
+        {
+          "name": "defaultAuthorURL",
+          "title": "Author URL",
+          "description": "Written into the @raycast.authorURL header of Script Commands you create. Leave empty to omit it.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "https://github.com/you"
+        }
+      ]
+    },
+    {
       "name": "link-transformer",
       "title": "Link Transformer",
       "description": "Link Transformer lets you save, search, and transform links using your own javascript custom actions.",
@@ -131228,6 +131638,77 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "logbook",
+      "title": "Logbook",
+      "description": "Capture and complete your Logbook tasks without leaving Raycast.",
+      "icon": "extension-icon.png",
+      "author": "rushi_gandhi",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/rushi_gandhi/logbook",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/logbook",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "list-tasks",
+          "title": "Search Tasks",
+          "subtitle": "Logbook",
+          "description": "Browse your logbook, mark tasks complete, and delete entries.",
+          "mode": "view",
+          "keywords": [
+            "todo",
+            "journal",
+            "log"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "add-task",
+          "title": "Add Task",
+          "subtitle": "Logbook",
+          "description": "Add a task to your logbook without opening a window.",
+          "mode": "no-view",
+          "keywords": [
+            "create",
+            "new",
+            "todo"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "webUrl",
+          "title": "Web URL",
+          "description": "Where the Logbook web app is hosted. Change this only if you self-host.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "https://logbook.acrosaas.com",
+          "default": "https://logbook.acrosaas.com"
+        },
+        {
+          "name": "apiUrl",
+          "title": "API URL",
+          "description": "Where the Logbook API is hosted. Change this only if you self-host.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "https://api.logbook.acrosaas.com",
+          "default": "https://api.logbook.acrosaas.com"
+        }
+      ]
     },
     {
       "name": "logitech-litra",
@@ -141497,7 +141978,9 @@
         "Communication"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/xmok/migadu",
       "source": {
         "type": "github-monorepo",
@@ -141540,6 +142023,15 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "domains",
+          "title": "Domains",
+          "subtitle": "Migadu",
+          "description": "View Domains in your Migadu Account",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": [
@@ -141554,18 +142046,10 @@
         {
           "name": "api_key",
           "title": "API Key",
-          "placeholder": "f9NGE...vCfA",
+          "placeholder": "xxxxx...xxxx",
           "description": "API Key from Migadu account",
           "required": true,
           "type": "password"
-        },
-        {
-          "name": "domains",
-          "title": "Domains",
-          "placeholder": "example.com,example.org",
-          "description": "Comma-separated list of domains you want to use",
-          "required": true,
-          "type": "textfield"
         }
       ]
     },
@@ -146271,6 +146755,44 @@
           "description": "Creates a post in Pile journaling application",
           "mode": "view",
           "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "mouse-cursor-toggle",
+      "title": "Mouse Cursor Toggle",
+      "description": "Hide or show the macOS mouse cursor from Raycast.",
+      "icon": "cursor.png",
+      "author": "Dhaiwat10",
+      "contributors": [],
+      "categories": [
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/Dhaiwat10/mouse-cursor-toggle",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/mouse-cursor-toggle",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "toggle-cursor",
+          "title": "Toggle Mouse Cursor",
+          "description": "Toggle the visibility of the macOS mouse cursor",
+          "mode": "no-view",
+          "keywords": [
+            "hide",
+            "show",
+            "pointer",
+            "mouse"
+          ],
           "preferences": []
         }
       ],
@@ -185528,6 +186050,66 @@
           "type": "checkbox",
           "default": false,
           "required": false
+        }
+      ]
+    },
+    {
+      "name": "pwpush",
+      "title": "PwPush",
+      "description": "Create secure, expiring password pushes with PwPush. Supports the public service and self-hosted instances.",
+      "icon": "extension-icon.png",
+      "author": "mouxy",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/mouxy/pwpush",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/pwpush",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "create-push",
+          "title": "Create Push",
+          "description": "Create a new PwPush secret link.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "push-history",
+          "title": "Push History",
+          "description": "View recent PwPush secret links.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "serverUrl",
+          "title": "Server URL",
+          "description": "The URL of your PwPush server. Leave empty to use the public https://eu.pwpush.com service.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "https://eu.pwpush.com"
+        },
+        {
+          "name": "apiKey",
+          "title": "API Key",
+          "description": "Your PwPush API key. Required for paid or self-hosted instances with authentication.",
+          "type": "password",
+          "required": false,
+          "placeholder": "Enter your API key"
         }
       ]
     },
@@ -278456,6 +279038,121 @@
           "mode": "no-view",
           "keywords": [],
           "icon": "zoom-chat.png",
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "zoomer",
+      "title": "Zoomer",
+      "description": "Capture screenshots, control recordings, and open Zoomer from Raycast.",
+      "icon": "icon.png",
+      "author": "colindotfun",
+      "contributors": [],
+      "categories": [
+        "Applications"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/colindotfun/zoomer",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/zoomer",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "capture-area",
+          "title": "Capture Area",
+          "description": "Capture a selected area with Zoomer.",
+          "mode": "no-view",
+          "keywords": [
+            "screenshot",
+            "snip",
+            "region",
+            "selection"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "capture-fullscreen",
+          "title": "Capture Full Screen",
+          "description": "Capture your current screen with Zoomer.",
+          "mode": "no-view",
+          "keywords": [
+            "screenshot",
+            "display"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "capture-history",
+          "title": "Capture History",
+          "description": "Open your recent captures in Zoomer.",
+          "mode": "no-view",
+          "keywords": [
+            "recents",
+            "gallery",
+            "history"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "start-recording",
+          "title": "Start Recording",
+          "description": "Start a screen recording with Zoomer.",
+          "mode": "no-view",
+          "keywords": [
+            "record",
+            "video"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "stop-recording",
+          "title": "Stop Recording",
+          "description": "Stop the active screen recording.",
+          "mode": "no-view",
+          "keywords": [
+            "record",
+            "video"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "open-recordings",
+          "title": "Open Recordings",
+          "description": "Open your recent recordings in Zoomer.",
+          "mode": "no-view",
+          "keywords": [
+            "video",
+            "gallery"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "open-screenshots",
+          "title": "Open Screenshots",
+          "description": "Open your recent screenshots in Zoomer.",
+          "mode": "no-view",
+          "keywords": [
+            "gallery",
+            "history"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "open-settings",
+          "title": "Open Settings",
+          "description": "Open a section of Zoomer settings.",
+          "mode": "no-view",
+          "keywords": [
+            "preferences"
+          ],
           "preferences": []
         }
       ],
