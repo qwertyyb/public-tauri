@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-21T18:52:52.770Z",
+  "generatedAt": "2026-08-22T18:45:43.225Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "37dc079b01c9acedc657bc92664374d3b028fb73"
+    "commit": "0390b6a162917d33ebf981a1f9f375b996a8fdd3"
   },
-  "count": 3207,
+  "count": 3208,
   "extensions": [
     {
       "name": "0x0",
@@ -3143,7 +3143,7 @@
     {
       "name": "agent-usage",
       "title": "Agent Usage",
-      "description": "Monitor AI coding agent usage across Amp, Antigravity, Claude, ClinePass, Codex, Copilot, Cursor, DeepSeek, Droid, Gemini, Grok, Kimi, MiniMax, MinimaxCN, OpenCode Go, Synthetic and z.ai",
+      "description": "Monitor AI coding agent usage across AIHubMix, Amp, Antigravity, Claude, ClinePass, Codex, Copilot, Cursor, DeepSeek, Droid, Gemini, Grok, Kimi, MiniMax, MinimaxCN, OpenCode Go, Synthetic and z.ai",
       "icon": "extension-icon.png",
       "author": "thuggyduck",
       "contributors": [
@@ -3151,7 +3151,8 @@
         "adrianbonpin",
         "garrick_zhang",
         "EDM115",
-        "chingweih"
+        "chingweih",
+        "2f6ft9t7t6"
       ],
       "categories": [
         "Productivity"
@@ -3190,9 +3191,24 @@
       ],
       "preferences": [
         {
-          "name": "showAmp",
+          "name": "showAihubmix",
           "type": "checkbox",
           "title": "Visible Agents",
+          "label": "Show AIHubMix",
+          "description": "Show AIHubMix balance in the list",
+          "default": true,
+          "required": false
+        },
+        {
+          "name": "aihubmixApiKey",
+          "type": "password",
+          "title": "AIHubMix Access Key (Optional)",
+          "description": "Copy the Access Key from https://console.aihubmix.com/setting, or set AIHUBMIX_ACCESS_KEY in your shell.",
+          "required": false
+        },
+        {
+          "name": "showAmp",
+          "type": "checkbox",
           "label": "Show Amp",
           "description": "Show Amp usage in the list",
           "default": true,
@@ -21137,7 +21153,8 @@
         "arpitdalal",
         "litomore",
         "AaronMoat",
-        "0xdhrv"
+        "0xdhrv",
+        "siuhinnn"
       ],
       "categories": [],
       "license": "MIT",
@@ -21167,6 +21184,15 @@
           "title": "Search My Open Pull Requests",
           "subtitle": "Bitbucket",
           "description": "Showing open pull requests for the current user",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "searchAllPullRequests",
+          "title": "Search All Open Pull Requests",
+          "subtitle": "Bitbucket",
+          "description": "Showing all open pull requests in the workspace",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -24188,7 +24214,9 @@
         "System"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/that70schris/bonjour",
       "source": {
         "type": "github-monorepo",
@@ -47550,6 +47578,47 @@
       "preferences": []
     },
     {
+      "name": "crt-name",
+      "title": "CRT Name",
+      "description": "Find subdomains indexed by crt.name and see when each one first appeared",
+      "icon": "crt-name-icon.png",
+      "author": "0xdhrv",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Security"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows",
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/0xdhrv/crt-name",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/crt-name",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-apex",
+          "title": "Search Apex",
+          "subtitle": "crt.name",
+          "description": "Find subdomains indexed for an apex domain",
+          "mode": "view",
+          "keywords": [
+            "certificate",
+            "transparency",
+            "ct",
+            "subdomain"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "crunchbase",
       "title": "Crunchbase",
       "description": "Search on Crunchbase companies",
@@ -64499,8 +64568,10 @@
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
-      "version": "1.0.0",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "1.0.1",
       "storeUrl": "https://www.raycast.com/Hugo-Persson/duckduckgo-email",
       "source": {
         "type": "github-monorepo",
@@ -87338,6 +87409,14 @@
               "default": false,
               "label": "Display Owner Names",
               "description": "Display owner name alongside repository name in search results"
+            },
+            {
+              "name": "disableThrottle",
+              "type": "checkbox",
+              "required": false,
+              "default": false,
+              "label": "Disable Throttle",
+              "description": "Disable search input throttling for immediate search on each keystroke"
             }
           ]
         },
@@ -102604,7 +102683,9 @@
       "description": "Chat with your local Hermes AI assistant",
       "icon": "icon.png",
       "author": "dailin4321",
-      "contributors": [],
+      "contributors": [
+        "RaviTharuma"
+      ],
       "categories": [
         "Productivity",
         "Developer Tools"
@@ -102682,14 +102763,14 @@
         {
           "name": "token",
           "title": "API Token",
-          "description": "Find in API_SERVER_KEY environment variable or ~/.hermes/config.yaml",
+          "description": "Bearer token (Hermes API_SERVER_KEY). Required by /v1/models and chat when the server enforces auth.",
           "type": "password",
-          "required": true
+          "required": false
         },
         {
           "name": "modelName",
           "title": "Model Name",
-          "description": "Model identifier for API requests",
+          "description": "Model id for chat requests. Leave empty to use hermes-agent when the server lists it, otherwise the first id from GET /v1/models.",
           "type": "textfield",
           "default": "",
           "required": false
@@ -110465,7 +110546,7 @@
     {
       "name": "inoh",
       "title": "Inoh",
-      "description": "Quickly add vocabulary cards to your Inoh decks",
+      "description": "The vocabulary app for the articulate. Add words to your Inoh decks without leaving Raycast",
       "icon": "extension-icon.png",
       "author": "tai",
       "contributors": [],
@@ -131651,8 +131732,7 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS",
-        "Windows"
+        "macOS"
       ],
       "storeUrl": "https://www.raycast.com/rushi_gandhi/logbook",
       "source": {
@@ -148017,7 +148097,8 @@
         "hrishabhn",
         "bogdan_bucur",
         "xmok",
-        "byheaven"
+        "byheaven",
+        "christianmagill"
       ],
       "categories": [],
       "license": "MIT",
@@ -148310,6 +148391,21 @@
               "required": false
             }
           ]
+        },
+        {
+          "name": "search-apple-music",
+          "title": "Search Apple Music",
+          "subtitle": "Apple Music",
+          "description": "Search the Apple Music catalog for songs and albums, and add them to your library.",
+          "mode": "view",
+          "keywords": [
+            "search",
+            "catalog",
+            "album",
+            "song",
+            "library"
+          ],
+          "preferences": []
         },
         {
           "name": "just-play",
@@ -246891,6 +246987,14 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "search_session_output",
+          "title": "Search Session Output",
+          "description": "Search commands and printed output across the scrollback of all tmux sessions",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": [
@@ -252777,7 +252881,9 @@
       "description": "An extension to access tududi features from Raycast",
       "icon": "extension-icon.png",
       "author": "david_leibovych",
-      "contributors": [],
+      "contributors": [
+        "jcat"
+      ],
       "categories": [
         "Productivity"
       ],
@@ -252833,8 +252939,8 @@
         {
           "name": "today-tasks",
           "title": "Today Tasks",
-          "subtitle": "Tasks that are planned for today",
-          "description": "Focus on Tududi tasks scheduled for completion today",
+          "subtitle": "Tasks in today's plan",
+          "description": "Focus on Tududi tasks in today's plan (planned, in progress, waiting)",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -252845,15 +252951,17 @@
           "name": "apiUrl",
           "type": "textfield",
           "required": true,
-          "title": "API Base URL",
-          "description": "The base URL for the Tududi API"
+          "title": "Tududi URL",
+          "placeholder": "https://tududi.example.com",
+          "description": "Your Tududi instance URL (without /api). Example: https://tududi.example.com"
         },
         {
           "name": "token",
           "type": "password",
           "required": true,
           "title": "API Token",
-          "description": "Your Tududi API token"
+          "placeholder": "tt_xxxxxxxx",
+          "description": "Personal API token from Tududi Settings → API Tokens (starts with tt_)"
         }
       ]
     },
@@ -259342,18 +259450,19 @@
     {
       "name": "val-town",
       "title": "Val Town",
-      "description": "View and run your vals and search others' vals",
+      "description": "Browse your vals, read their logs and traces, and allow Raycast AI to run the ones you choose",
       "icon": "command-icon.png",
       "author": "KevinBatdorf",
       "contributors": [],
       "categories": [
         "Productivity",
         "Developer Tools",
-        "Fun",
         "Web"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/KevinBatdorf/val-town",
       "source": {
         "type": "github-monorepo",
@@ -259366,7 +259475,7 @@
           "name": "search-vals",
           "title": "Search Vals",
           "subtitle": "Val Town",
-          "description": "Search and run vals from your account and others.",
+          "description": "Browse your vals and choose which ones Raycast AI can call.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -259378,8 +259487,8 @@
           "type": "password",
           "required": true,
           "title": "Val Town API Token",
-          "description": "Your API token for Val Town.",
-          "placeholder": "API Token"
+          "description": "Create one at val.town/settings/api",
+          "placeholder": "vt_..."
         }
       ]
     },
