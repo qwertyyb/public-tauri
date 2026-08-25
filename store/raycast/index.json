@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-24T18:55:29.202Z",
+  "generatedAt": "2026-08-25T19:43:19.155Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "f4869582c2159c4471eba778b2d364dd3d2e2469"
+    "commit": "adcf17a65ca955a6f571aec57fd5e85e093bd758"
   },
-  "count": 3219,
+  "count": 3230,
   "extensions": [
     {
       "name": "0x0",
@@ -3427,6 +3427,58 @@
           "description": "Cache duration in seconds for remote API requests. Set to 0 to disable caching.",
           "default": "180",
           "required": false
+        }
+      ]
+    },
+    {
+      "name": "agentcfg",
+      "title": "agentcfg",
+      "description": "Manage agentcfg from Raycast: browse items, sync configs, and check target status.",
+      "icon": "extension-icon.png",
+      "author": "jorgenosberg",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/jorgenosberg/agentcfg",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/agentcfg",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "manage-items",
+          "title": "Manage Items",
+          "subtitle": "agentcfg",
+          "description": "Browse items, see per-target install state, and toggle, install, or sync directly.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "sync-configs",
+          "title": "Sync Configs",
+          "subtitle": "agentcfg",
+          "description": "Run agentcfg sync across all configured agent targets.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "binaryPath",
+          "title": "agentcfg Binary",
+          "description": "Path to the agentcfg binary. Leave empty to auto-detect from common install locations.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "/opt/homebrew/bin/agentcfg"
         }
       ]
     },
@@ -40554,7 +40606,7 @@
     {
       "name": "coffee",
       "title": "Coffee",
-      "description": "Prevent the sleep function on your mac",
+      "description": "Prevent the sleep function on your computer",
       "icon": "logo.png",
       "author": "mooxl",
       "contributors": [
@@ -40570,12 +40622,16 @@
         "mbuvarp",
         "frederik_obe",
         "bsradcliffe",
-        "aditi_bhagat"
+        "aditi_bhagat",
+        "muhammadrizo"
       ],
-      "categories": [],
+      "categories": [
+        "System"
+      ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/mooxl/coffee",
       "source": {
@@ -40589,7 +40645,7 @@
           "name": "caffeinate",
           "title": "Caffeinate",
           "subtitle": "Coffee",
-          "description": "Prevent your Mac from sleeping",
+          "description": "Prevent your computer from sleeping",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -40607,7 +40663,7 @@
           "name": "caffeinateWhile",
           "title": "Caffeinate While",
           "subtitle": "Coffee",
-          "description": "Prevent your Mac from sleeping while a certain app is running",
+          "description": "Prevent your computer from sleeping while a certain app is running",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -40644,7 +40700,7 @@
           "name": "caffeinateFor",
           "title": "Caffeinate for ...",
           "subtitle": "Coffee",
-          "description": "Prevent your Mac from sleeping for a certain time",
+          "description": "Prevent your computer from sleeping for a certain time",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -40653,7 +40709,7 @@
           "name": "caffeinateUntil",
           "title": "Caffeinate Until",
           "subtitle": "Coffee",
-          "description": "Prevent your Mac from sleeping until a certain time. Type one like 5pm, or leave the field empty to pick a date and time.",
+          "description": "Prevent your computer from sleeping until a certain time. Type one like 5pm, or leave the field empty to pick a date and time.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -40695,7 +40751,7 @@
         },
         {
           "name": "preventDisk",
-          "description": "Prevent the disk from sleeping",
+          "description": "Prevent the disk from sleeping. This option is not supported on Windows and will have no effect",
           "type": "checkbox",
           "required": false,
           "default": true,
@@ -40703,7 +40759,7 @@
         },
         {
           "name": "icon",
-          "description": "Select icon set for Menu Bar",
+          "description": "Select icon set for Menu Bar. macOS only",
           "type": "dropdown",
           "required": false,
           "default": "pot",
@@ -40729,7 +40785,7 @@
         },
         {
           "name": "startCaffeinateOnLaunch",
-          "description": "Automatically keep your Mac awake (indefinitely) when Raycast starts. Requires the Caffeinate Status command (15 s interval) or the Caffeinate Status Menu Bar command (1 m interval) to be enabled.",
+          "description": "Automatically keep your computer awake (indefinitely) when Raycast starts. Requires the Caffeinate Status command (15 s interval) or the Caffeinate Status Menu Bar command (1 m interval) to be enabled.",
           "type": "checkbox",
           "required": false,
           "default": false,
@@ -43868,6 +43924,41 @@
           "title": "Contra Menu Bar",
           "description": "Pending balance and next due invoice in your menu bar.",
           "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "contrast-lab",
+      "title": "Contrast Lab",
+      "description": "Check color contrast with WCAG 2 and APCA. Live preview, a one-tap nearest-passing fix, and HEX, RGB, HSL, and OKLCH input.",
+      "icon": "extension-icon.png",
+      "author": "fracazo",
+      "contributors": [],
+      "categories": [
+        "Design Tools",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/fracazo/contrast-lab",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/contrast-lab",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "check-contrast",
+          "title": "Check Contrast",
+          "subtitle": "Contrast Lab",
+          "description": "Check WCAG 2 and APCA contrast and suggest a passing color.",
+          "mode": "view",
           "keywords": [],
           "preferences": []
         }
@@ -58948,6 +59039,167 @@
           "description": "Please enter your DigitalOcean PAT",
           "required": true,
           "placeholder": "dop_v1_xxx..xxx"
+        }
+      ]
+    },
+    {
+      "name": "dimmer",
+      "title": "Dimmer",
+      "description": "Dim every Mac display beyond its minimum brightness.",
+      "icon": "icon.png",
+      "author": "nachotafalla",
+      "contributors": [],
+      "categories": [
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/nachotafalla/dimmer",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/dimmer",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "toggle-dimming",
+          "title": "Toggle Dimmer",
+          "subtitle": "Dimmer",
+          "description": "Turn extra screen dimming on or off.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "dim-more",
+          "title": "Dim More",
+          "subtitle": "Dimmer",
+          "description": "Increase extra screen dimming.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "dim-less",
+          "title": "Dim Less",
+          "subtitle": "Dimmer",
+          "description": "Decrease extra screen dimming.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "set-dim-level",
+          "title": "Set Dim Level",
+          "subtitle": "Dimmer",
+          "description": "Set an exact extra dim level.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "reset-dimming",
+          "title": "Reset Dimmer",
+          "subtitle": "Dimmer",
+          "description": "Immediately remove all Dimmer overlays.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "dimmer-menu",
+          "title": "Dimmer Menu Bar",
+          "subtitle": "Dimmer",
+          "description": "Control Dimmer and see its current level from the menu bar.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "defaultLevel",
+          "title": "Default Dim Level",
+          "description": "The dim level used when Dimmer is turned on.",
+          "type": "dropdown",
+          "required": true,
+          "default": "40",
+          "data": [
+            {
+              "title": "10%",
+              "value": "10"
+            },
+            {
+              "title": "20%",
+              "value": "20"
+            },
+            {
+              "title": "30%",
+              "value": "30"
+            },
+            {
+              "title": "40%",
+              "value": "40"
+            },
+            {
+              "title": "50%",
+              "value": "50"
+            },
+            {
+              "title": "60%",
+              "value": "60"
+            },
+            {
+              "title": "70%",
+              "value": "70"
+            },
+            {
+              "title": "80%",
+              "value": "80"
+            },
+            {
+              "title": "90%",
+              "value": "90"
+            }
+          ]
+        },
+        {
+          "name": "step",
+          "title": "Adjustment Step",
+          "description": "How much Dim More and Dim Less change the dim level.",
+          "type": "dropdown",
+          "required": true,
+          "default": "10",
+          "data": [
+            {
+              "title": "5%",
+              "value": "5"
+            },
+            {
+              "title": "10%",
+              "value": "10"
+            },
+            {
+              "title": "15%",
+              "value": "15"
+            },
+            {
+              "title": "20%",
+              "value": "20"
+            }
+          ]
+        },
+        {
+          "name": "showPercentage",
+          "title": "Menu Bar",
+          "description": "Show the active dim percentage beside the menu bar icon.",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "label": "Show dim percentage"
         }
       ]
     },
@@ -82457,6 +82709,93 @@
       "preferences": []
     },
     {
+      "name": "fx-coding-agent",
+      "title": "Fx Coding Agent",
+      "description": "Run fx coding agent commands, inspect sessions, and delegate work from Raycast AI",
+      "icon": "icon.png",
+      "author": "0xdhrv",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/0xdhrv/fx-coding-agent",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/fx-coding-agent",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-sessions",
+          "title": "Search Sessions",
+          "subtitle": "fx",
+          "description": "Search, inspect, and resume local fx sessions",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "ask-fx",
+          "title": "Ask Fx",
+          "subtitle": "fx",
+          "description": "Run a noninteractive request in a selected workspace",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "start-session",
+          "title": "Open Fx Session",
+          "subtitle": "fx",
+          "description": "Start, resume, or choose an interactive fx session",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "check-fx",
+          "title": "Check Fx Health",
+          "subtitle": "fx",
+          "description": "View fx status and local health checks",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "view-usage",
+          "title": "View Fx Usage",
+          "subtitle": "fx",
+          "description": "View locally recorded fx token usage and spend",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "fxPath",
+          "title": "Fx Executable",
+          "description": "Command name or full path to the fx executable",
+          "type": "textfield",
+          "required": true,
+          "default": "fx",
+          "placeholder": "/Users/you/.local/bin/fx"
+        },
+        {
+          "name": "defaultWorkspace",
+          "title": "Default Workspace",
+          "description": "Optional workspace used by health, usage, and AI tools when a workspace is not supplied",
+          "type": "directory",
+          "required": false
+        }
+      ]
+    },
+    {
       "name": "fxcodex",
       "title": "fxCodex",
       "description": "Manage custom Codex workspaces from Raycast",
@@ -85197,6 +85536,159 @@
           "description": "Pick your editor to open the repository.",
           "type": "appPicker",
           "required": true
+        }
+      ]
+    },
+    {
+      "name": "gif-maker",
+      "title": "GIF Maker",
+      "description": "Convert videos to GIFs with control over size, frame rate, trimming, and compression. Powered by ffmpeg.",
+      "icon": "extension-icon.png",
+      "author": "tristan_gabl",
+      "contributors": [],
+      "categories": [
+        "Media"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/tristan_gabl/gif-maker",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/gif-maker",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "create-gif",
+          "title": "Create GIF",
+          "description": "Convert a video to a GIF with control over size, frame rate, and trimming",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "quick-gif",
+          "title": "Quick GIF from Finder",
+          "description": "Convert the video selected in Finder to a GIF using your default settings",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "defaultSize",
+          "title": "Quick GIF Size",
+          "description": "Longest side of the output, used by Quick GIF from Finder",
+          "type": "dropdown",
+          "required": false,
+          "default": "480",
+          "data": [
+            {
+              "title": "Small (320 px longest side)",
+              "value": "320"
+            },
+            {
+              "title": "Medium (480 px longest side)",
+              "value": "480"
+            },
+            {
+              "title": "Large (800 px longest side)",
+              "value": "800"
+            },
+            {
+              "title": "Original size",
+              "value": "original"
+            }
+          ]
+        },
+        {
+          "name": "defaultFps",
+          "title": "Quick GIF Frame Rate",
+          "description": "Frame rate used by Quick GIF from Finder",
+          "type": "dropdown",
+          "required": false,
+          "default": "15",
+          "data": [
+            {
+              "title": "10 fps",
+              "value": "10"
+            },
+            {
+              "title": "15 fps",
+              "value": "15"
+            },
+            {
+              "title": "24 fps",
+              "value": "24"
+            },
+            {
+              "title": "30 fps",
+              "value": "30"
+            }
+          ]
+        },
+        {
+          "name": "defaultOptimize",
+          "title": "Quick GIF Compression",
+          "description": "gifsicle post-processing used by Quick GIF from Finder. Ignored if gifsicle is not installed.",
+          "type": "dropdown",
+          "required": false,
+          "default": "aggressive",
+          "data": [
+            {
+              "title": "Off",
+              "value": "off"
+            },
+            {
+              "title": "Balanced (~10% smaller)",
+              "value": "balanced"
+            },
+            {
+              "title": "Aggressive (~30% smaller)",
+              "value": "aggressive"
+            },
+            {
+              "title": "Maximum (~45% smaller)",
+              "value": "maximum"
+            }
+          ]
+        },
+        {
+          "name": "defaultDenoise",
+          "title": "Defaults",
+          "label": "Reduce grain",
+          "description": "Whether grain reduction is on by default. Helps on camera footage, not on screen recordings.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "defaultLoop",
+          "label": "Loop forever",
+          "description": "Whether new GIFs loop by default",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "defaultReveal",
+          "label": "Reveal in Finder when done",
+          "description": "Whether to open Finder with the new GIF selected",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "ffmpegPath",
+          "title": "ffmpeg Path",
+          "description": "Optional. Leave blank to auto-detect Homebrew and system locations.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "/opt/homebrew/bin/ffmpeg"
         }
       ]
     },
@@ -109237,7 +109729,10 @@
         "Fun"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "storeUrl": "https://www.raycast.com/ibll/image-wallet",
       "source": {
         "type": "github-monorepo",
@@ -109261,12 +109756,68 @@
           "title": "Wallet Directory",
           "description": "Path to load Wallet from. Leave blank for default.",
           "type": "directory",
-          "required": true
+          "required": false
+        },
+        {
+          "name": "thumbnailLayout",
+          "title": "Thumbnail Layout",
+          "type": "dropdown",
+          "required": false,
+          "default": "inset",
+          "description": "How Card images are laid out inside their grid cell.",
+          "data": [
+            {
+              "title": "Inset (image centred with padding)",
+              "value": "inset"
+            },
+            {
+              "title": "Contain (fill the cell, whole image visible)",
+              "value": "contain"
+            },
+            {
+              "title": "Fill (crop to fill the cell edge to edge)",
+              "value": "fill"
+            }
+          ]
+        },
+        {
+          "name": "gridColumns",
+          "title": "Cards per Row",
+          "type": "dropdown",
+          "required": false,
+          "default": "5",
+          "description": "How many Cards fit across the grid. Fewer columns means larger thumbnails.",
+          "data": [
+            {
+              "title": "3",
+              "value": "3"
+            },
+            {
+              "title": "4",
+              "value": "4"
+            },
+            {
+              "title": "5",
+              "value": "5"
+            },
+            {
+              "title": "6",
+              "value": "6"
+            },
+            {
+              "title": "7",
+              "value": "7"
+            },
+            {
+              "title": "8",
+              "value": "8"
+            }
+          ]
         },
         {
           "name": "videoPreviews",
           "label": "Generate Video Previews",
-          "description": "Should video Cards generate preview images?\n\nCan slow down Wallet when adding videos.\nManually reset previews with ⌘⇧R.",
+          "description": "Should video Cards generate preview images?\n\nCan slow down Wallet when adding videos.\nRequires ffmpeg on your PATH on Windows.\nManually reset previews with the Reset Video Previews action.",
           "type": "checkbox",
           "required": true,
           "default": true
@@ -127495,6 +128046,47 @@
           ]
         }
       ]
+    },
+    {
+      "name": "layoutlock",
+      "title": "LayoutLock",
+      "description": "Save and restore LayoutLock window layouts from Raycast.",
+      "icon": "icon.png",
+      "author": "brkgng",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/brkgng/layoutlock",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/layoutlock",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "restore-layout",
+          "title": "Restore Layout",
+          "description": "Search and request restoration of a saved LayoutLock layout.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "save-current-layout",
+          "title": "Save Current Layout",
+          "description": "Request that LayoutLock save the current window layout.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "lazygit-keybindings",
@@ -152481,6 +153073,49 @@
       ]
     },
     {
+      "name": "new-finder-window",
+      "title": "New Finder Window",
+      "description": "Open a new Finder window on the current macOS Space without switching Spaces.",
+      "icon": "icon.png",
+      "author": "tickmao",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/tickmao/new-finder-window",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/new-finder-window",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "new-finder-window",
+          "title": "Open New Finder Window",
+          "description": "Open a new Finder window on the current macOS Space",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "directory",
+          "title": "Default Directory",
+          "description": "Choose which directory to open. You can also type a path directly.",
+          "type": "directory",
+          "required": true,
+          "default": "~/Downloads"
+        }
+      ]
+    },
+    {
       "name": "new-relic",
       "title": "New Relic",
       "description": "Search Applications, Dashboard, Alerts, and more in New Relic",
@@ -154029,6 +154664,56 @@
           "mode": "no-view",
           "keywords": [],
           "icon": "icon.png",
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "nichefund-business-ideas",
+      "title": "NicheFund Business Ideas",
+      "description": "Discover why MicroSaaS ideas fail and find validated ideas worth building.",
+      "icon": "extension_icon.png",
+      "author": "backlooplabs",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/backlooplabs/nichefund-business-ideas",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/nichefund-business-ideas",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "latest-teardowns",
+          "title": "Latest Teardowns",
+          "description": "Browse the latest NicheFund idea teardowns",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "teardown-of-the-day",
+          "title": "Teardown of the Day",
+          "description": "Read the latest NicheFund teardown",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "random-business-idea",
+          "title": "Random Business Idea",
+          "description": "Discover a random validated business idea",
+          "mode": "view",
+          "keywords": [],
           "preferences": []
         }
       ],
@@ -189222,6 +189907,47 @@
       "preferences": []
     },
     {
+      "name": "quick-quote",
+      "title": "Quick Quote",
+      "description": "Quote selected text as a Markdown blockquote. Built for pasting CLI agent output back into a prompt.",
+      "icon": "extension-icon.png",
+      "author": "kumamaki",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/kumamaki/quick-quote",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/quick-quote",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "quick-quote",
+          "title": "Quick Quote",
+          "description": "Prefix every line of the selection with '> ' and paste it back into the focused app.",
+          "mode": "no-view",
+          "keywords": [
+            "quote",
+            "blockquote",
+            "markdown",
+            "claude",
+            "agent",
+            "prompt"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "quick-references",
       "title": "Quick References",
       "description": "Search and browse Fechin/reference cheat sheets with favorites and offline support.",
@@ -222964,6 +223690,15 @@
       ],
       "preferences": [
         {
+          "name": "instanceName",
+          "title": "Instance Name",
+          "required": false,
+          "description": "A friendly name for your primary Sonarr instance",
+          "type": "textfield",
+          "placeholder": "Main",
+          "default": "Main"
+        },
+        {
           "name": "host",
           "title": "Host",
           "required": true,
@@ -223010,8 +223745,98 @@
           "title": "API Key",
           "required": true,
           "description": "The API key of the Sonarr server",
+          "type": "password",
+          "default": "",
+          "placeholder": "Enter your API key"
+        },
+        {
+          "name": "enableSecondaryInstance",
+          "title": "Second Instance",
+          "required": false,
+          "description": "Add a second Sonarr instance you can switch to from any command",
+          "type": "checkbox",
+          "label": "Enable second Sonarr instance",
+          "default": false
+        },
+        {
+          "name": "secondaryInstanceName",
+          "title": "Second Instance Name",
+          "required": false,
+          "description": "A friendly name for your second Sonarr instance",
+          "type": "textfield",
+          "placeholder": "Remote Server",
+          "default": ""
+        },
+        {
+          "name": "secondaryHost",
+          "title": "Second Instance Host",
+          "required": false,
+          "description": "Hostname or IP of the second Sonarr server, without the port (e.g. 192.168.0.30)",
+          "type": "textfield",
+          "placeholder": "sonarr.example.com",
+          "default": ""
+        },
+        {
+          "name": "secondaryPort",
+          "title": "Second Instance Port",
+          "required": false,
+          "description": "Port of the second Sonarr server (e.g. 8989)",
+          "type": "textfield",
+          "placeholder": "8989",
+          "default": "8989"
+        },
+        {
+          "name": "secondaryBase",
+          "title": "Second Instance URL Base (Optional)",
+          "required": false,
+          "description": "Optional URL base path of the second Sonarr server (e.g. sonarr if your URL is /sonarr)",
           "type": "textfield",
           "default": ""
+        },
+        {
+          "name": "secondaryHttp",
+          "title": "Second Instance Connection Type",
+          "required": false,
+          "description": "Change the connection type for the second Sonarr server",
+          "type": "dropdown",
+          "default": "http",
+          "data": [
+            {
+              "value": "http",
+              "title": "HTTP"
+            },
+            {
+              "value": "https",
+              "title": "HTTPS"
+            }
+          ]
+        },
+        {
+          "name": "secondaryApiKey",
+          "title": "Second Instance API Key",
+          "required": false,
+          "description": "The API key of the second Sonarr server",
+          "type": "password",
+          "placeholder": "Enter the second API key",
+          "default": ""
+        },
+        {
+          "name": "activeInstance",
+          "title": "Active Instance",
+          "required": false,
+          "description": "Which instance commands start on. Switching from a command overrides it until you change this preference again.",
+          "type": "dropdown",
+          "default": "primary",
+          "data": [
+            {
+              "value": "primary",
+              "title": "Primary Instance"
+            },
+            {
+              "value": "secondary",
+              "title": "Second Instance"
+            }
+          ]
         },
         {
           "name": "futureDays",
@@ -250948,6 +251773,201 @@
       "preferences": []
     },
     {
+      "name": "transcribe-audio",
+      "title": "Transcribe Audio",
+      "description": "Transcribe audio and video files with OpenAI, Deepgram, or ElevenLabs. Export to Markdown, plain text, or SRT. FFmpeg is used for format conversion when needed.",
+      "icon": "extension-icon.png",
+      "author": "mouxy",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "1.0.0",
+      "storeUrl": "https://www.raycast.com/mouxy/transcribe-audio",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/transcribe-audio",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "transcribe",
+          "title": "Transcribe Audio",
+          "description": "Transcribe the selected audio or video file.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": [
+            {
+              "name": "defaultProvider",
+              "title": "Default Provider",
+              "description": "Which provider to use by default.",
+              "type": "dropdown",
+              "required": true,
+              "default": "elevenlabs",
+              "data": [
+                {
+                  "title": "ElevenLabs Scribe v2",
+                  "value": "elevenlabs"
+                },
+                {
+                  "title": "Deepgram Nova-3",
+                  "value": "deepgram"
+                },
+                {
+                  "title": "OpenAI gpt-4o-transcribe",
+                  "value": "openai"
+                }
+              ]
+            },
+            {
+              "name": "defaultAudioType",
+              "title": "Default Audio Type",
+              "description": "What kind of recording this is by default.",
+              "type": "dropdown",
+              "required": true,
+              "default": "voice-note",
+              "data": [
+                {
+                  "title": "Voice Note",
+                  "value": "voice-note"
+                },
+                {
+                  "title": "Meeting Recording",
+                  "value": "meeting"
+                },
+                {
+                  "title": "Interview",
+                  "value": "interview"
+                },
+                {
+                  "title": "Lecture / Talk",
+                  "value": "lecture"
+                },
+                {
+                  "title": "Voicemail / Call",
+                  "value": "call"
+                },
+                {
+                  "title": "Podcast / Media",
+                  "value": "podcast"
+                }
+              ]
+            },
+            {
+              "name": "language",
+              "title": "Language",
+              "description": "Leave empty for automatic language detection. Use ISO 639-1 codes (e.g. en, pt, es) where supported.",
+              "type": "textfield",
+              "required": false,
+              "placeholder": "auto"
+            }
+          ]
+        },
+        {
+          "name": "history",
+          "title": "Transcription History",
+          "description": "View and copy recent transcriptions.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "openaiApiKey",
+          "title": "OpenAI API Key",
+          "description": "Used when OpenAI is selected as the transcription provider.",
+          "type": "password",
+          "required": false,
+          "placeholder": "sk-..."
+        },
+        {
+          "name": "deepgramApiKey",
+          "title": "Deepgram API Key",
+          "description": "Used when Deepgram is selected as the transcription provider.",
+          "type": "password",
+          "required": false,
+          "placeholder": "..."
+        },
+        {
+          "name": "elevenlabsApiKey",
+          "title": "ElevenLabs API Key",
+          "description": "Used when ElevenLabs is selected as the transcription provider.",
+          "type": "password",
+          "required": false,
+          "placeholder": "..."
+        },
+        {
+          "name": "historyEnabled",
+          "title": "Save Transcription History",
+          "description": "Store recent transcriptions locally so they can be viewed again later.",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "label": "Keep transcription history"
+        },
+        {
+          "name": "historyRetentionDays",
+          "title": "History Retention",
+          "description": "How long to keep saved transcriptions.",
+          "type": "dropdown",
+          "required": false,
+          "default": "30",
+          "data": [
+            {
+              "title": "7 days",
+              "value": "7"
+            },
+            {
+              "title": "30 days",
+              "value": "30"
+            },
+            {
+              "title": "90 days",
+              "value": "90"
+            },
+            {
+              "title": "1 year",
+              "value": "365"
+            }
+          ]
+        },
+        {
+          "name": "historyMaxEntries",
+          "title": "Maximum History Entries",
+          "description": "Maximum number of transcriptions to keep.",
+          "type": "dropdown",
+          "required": false,
+          "default": "50",
+          "data": [
+            {
+              "title": "10",
+              "value": "10"
+            },
+            {
+              "title": "25",
+              "value": "25"
+            },
+            {
+              "title": "50",
+              "value": "50"
+            },
+            {
+              "title": "100",
+              "value": "100"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "transfer-sh_upload",
       "title": "Transfer.sh Uploader",
       "description": "Upload a file directly to a transfer.sh instance",
@@ -259436,6 +260456,58 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "usb-c-inspector",
+      "title": "USB-C Inspector",
+      "description": "See exactly what your USB-C and MagSafe cables can do — charging watts, data speed, Thunderbolt, and connected devices on every port.",
+      "icon": "extension-icon.png",
+      "author": "thilip_lindseth",
+      "contributors": [],
+      "categories": [
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/thilip_lindseth/usb-c-inspector",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/usb-c-inspector",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "show-ports",
+          "title": "Show All USB-C Ports",
+          "subtitle": "USB-C Inspector",
+          "description": "List every USB-C and MagSafe port with cable, charging, and device diagnostics.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "check-connected-cable",
+          "title": "Check Connected Cables",
+          "subtitle": "USB-C Inspector",
+          "description": "Inspect only the USB-C and MagSafe ports that currently have something plugged in.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "whatcablePath",
+          "title": "WhatCable CLI Path",
+          "description": "Optional absolute path to the whatcable binary. Leave empty to auto-detect or download the official CLI.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "/opt/homebrew/bin/whatcable"
+        }
+      ]
     },
     {
       "name": "useless-facts",
