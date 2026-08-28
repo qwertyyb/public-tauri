@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-26T21:02:21.507Z",
+  "generatedAt": "2026-08-28T02:13:35.316Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "0d0068e88c65036efe7802b9031a4b8926c0da97"
+    "commit": "d4aae99c5e1d7ec19b2341f1058c20adfd3fdc91"
   },
-  "count": 3230,
+  "count": 3231,
   "extensions": [
     {
       "name": "0x0",
@@ -2689,8 +2689,8 @@
     },
     {
       "name": "aerospace",
-      "title": "Aerospace Tiling Window Manager",
-      "description": "Aerospace Tiling Window Manager Extension for Raycast",
+      "title": "AeroSpace Tiling Window Manager",
+      "description": "Control AeroSpace workspaces, windows, shortcuts, and configuration from Raycast",
       "icon": "aerospace-icon.png",
       "author": "limonkufu",
       "contributors": [
@@ -2721,32 +2721,44 @@
       "commands": [
         {
           "name": "showShortcuts",
-          "title": "Show Aerospace Shortcuts",
-          "description": "All of the shortcuts of the aerospace parsed from your config file",
+          "title": "Show AeroSpace Shortcuts",
+          "description": "View and trigger the shortcuts loaded by AeroSpace",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "bindings",
+            "keyboard",
+            "hotkeys"
+          ],
           "preferences": []
         },
         {
           "name": "showConfig",
-          "title": "Show Aerospace Config",
-          "description": "Show config of the aerospace",
+          "title": "Show AeroSpace Config",
+          "description": "View the complete config file and the bindings loaded by AeroSpace",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "toml",
+            "settings",
+            "bindings"
+          ],
           "preferences": []
         },
         {
           "name": "goToWorkspace",
           "title": "Go to Workspace",
-          "description": "Switch to an Aerospace workspace",
+          "description": "Browse AeroSpace workspaces and their open apps",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "desktop",
+            "space",
+            "apps"
+          ],
           "preferences": []
         },
         {
           "name": "shortcutsMenubar",
-          "title": "Enable Aerospace Menubar Shortcuts",
-          "description": "See your Aerospace shortcuts at a glance",
+          "title": "Enable AeroSpace Menu Bar Shortcuts",
+          "description": "View and trigger AeroSpace shortcuts from the menu bar",
           "mode": "menu-bar",
           "keywords": [],
           "preferences": []
@@ -2754,14 +2766,18 @@
         {
           "name": "switchApps",
           "title": "Switch Apps in Workspace",
-          "description": "Switch between the apps opened",
+          "description": "Find, focus, move, and tile open AeroSpace windows",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "windows",
+            "focus",
+            "tile"
+          ],
           "preferences": [
             {
               "name": "defaultWorkspace",
               "title": "Default Search",
-              "description": "Set the default workspace to search: All or focused",
+              "description": "Initial scope before you choose one. The window switcher remembers your latest selection.",
               "required": true,
               "type": "dropdown",
               "default": "focused",
@@ -2769,6 +2785,10 @@
                 {
                   "title": "Focused",
                   "value": "focused"
+                },
+                {
+                  "title": "Visible",
+                  "value": "visible"
                 },
                 {
                   "title": "All",
@@ -2782,11 +2802,38 @@
       "preferences": [
         {
           "name": "aerospaceBin",
-          "title": "Aerospace Binary Path",
-          "description": "Path to the aerospace binary. Leave empty to auto-detect from common locations.",
+          "title": "AeroSpace Binary Path",
+          "description": "Path to the AeroSpace CLI. Leave empty to detect common Homebrew and Nix locations.",
           "required": false,
           "type": "textfield",
           "placeholder": "/opt/homebrew/bin/aerospace"
+        },
+        {
+          "name": "showFullBindings",
+          "title": "Show Full Bindings",
+          "description": "Show bindings from every configured mode. Turn this off to show only the main mode.",
+          "required": false,
+          "type": "checkbox",
+          "default": true,
+          "label": "Include bindings from every mode"
+        },
+        {
+          "name": "showMenuBarExtras",
+          "title": "Show Menu Bar Extras",
+          "description": "Show Quick Actions and Open sections after the top-level binding catalog.",
+          "required": false,
+          "type": "checkbox",
+          "default": true,
+          "label": "Show Quick Actions and Open sections"
+        },
+        {
+          "name": "showWorkspaceName",
+          "title": "Show Workspace Name",
+          "description": "Show the current workspace beside the AeroSpace menu-bar icon.",
+          "required": false,
+          "type": "checkbox",
+          "default": false,
+          "label": "Show the current workspace in the menu bar"
         }
       ]
     },
@@ -3152,7 +3199,7 @@
         "garrick_zhang",
         "EDM115",
         "chingweih",
-        "2f6ft9t7t6"
+        "jalenzz"
       ],
       "categories": [
         "Productivity"
@@ -37453,7 +37500,9 @@
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "version": "0.1.0",
       "storeUrl": "https://www.raycast.com/gdcho/clipsign",
       "source": {
@@ -72431,6 +72480,67 @@
           "description": "Create one at https://fal.ai/dashboard/keys. The extension sends it as Authorization: Key <value>.",
           "type": "password",
           "required": true
+        }
+      ]
+    },
+    {
+      "name": "fan-control",
+      "title": "Fan Control",
+      "description": "View and control your Mac's fan RPM (Apple Silicon) via smctl.",
+      "icon": "icon.png",
+      "author": "samuelbelo",
+      "contributors": [],
+      "categories": [
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/samuelbelo/fan-control",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/fan-control",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "fans",
+          "title": "Control Fans",
+          "subtitle": "Fan Control",
+          "description": "List fans with live RPM and set manual speed or a profile.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "set-fan-speed",
+          "title": "Set Fan Speed",
+          "subtitle": "Fan Control",
+          "description": "Set a manual RPM target for all fans.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "fans-auto",
+          "title": "Set Fans to Auto",
+          "subtitle": "Fan Control",
+          "description": "Return fan control to macOS (automatic mode).",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "smctlPath",
+          "type": "textfield",
+          "title": "Smctl Path",
+          "description": "Full path to the smctl binary. Leave empty to auto-detect (Homebrew locations).",
+          "required": false,
+          "placeholder": "/opt/homebrew/bin/smctl"
         }
       ]
     },
@@ -152820,14 +152930,14 @@
       "description": "View diagnostic information about your network to help figure out why it's playing up.",
       "icon": "command-icon.png",
       "author": "hmarr",
-      "contributors": [
-        "3e9b"
-      ],
+      "contributors": [],
       "categories": [
         "System"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/hmarr/network-diagnostics",
       "source": {
         "type": "github-monorepo",
@@ -158206,7 +158316,9 @@
         "Data"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/andresmorelos/numi",
       "source": {
         "type": "github-monorepo",
@@ -158229,9 +158341,9 @@
           "name": "max_history_elemets",
           "type": "textfield",
           "required": false,
-          "title": "Maximum number of history elements",
+          "title": "Maximum Number of History Elements",
           "placeholder": "10",
-          "description": "The number of elements to save on the history",
+          "description": "The number of elements to keep in the history",
           "default": "10"
         },
         {
@@ -158240,17 +158352,17 @@
           "required": false,
           "label": "Use numi-cli",
           "placeholder": "Use numi-cli",
-          "description": "Use numi-cli instead of the Numi app",
-          "default": false
+          "description": "Query numi-cli instead of the Numi app API. Keep this on: the app API is deprecated and does not work on Numi 3.34. Uncheck it only if you run an older Numi build where Alfred Integration still responds.",
+          "default": true
         },
         {
           "name": "numi_cli_binary_path",
           "type": "textfield",
           "required": false,
-          "title": "Numi CLI bin path if using numi-cli",
+          "title": "Numi CLI Bin Path",
           "placeholder": "/opt/homebrew/bin/numi-cli",
-          "description": "The path to installed numi-cli binary",
-          "default": "/opt/homebrew/bin/numi-cli"
+          "description": "Optional override for the numi-cli binary. Leave empty to auto-detect it from Homebrew or your PATH.",
+          "default": ""
         }
       ]
     },
@@ -158909,6 +159021,7 @@
         "tofrankie",
         "alexi.build",
         "veilwalker",
+        "swhl",
         "raulkolaric"
       ],
       "categories": [
@@ -158919,7 +159032,7 @@
         "macOS",
         "Windows"
       ],
-      "version": "1.0.2",
+      "version": "1.0.3",
       "storeUrl": "https://www.raycast.com/marcjulian/obsidian",
       "source": {
         "type": "github-monorepo",
@@ -189347,7 +189460,9 @@
       "description": "Trigger the macOS AirDrop sheet for files, URLs, and clipboard contents — straight from Raycast",
       "icon": "extension-icon.png",
       "author": "ridemountainpig",
-      "contributors": [],
+      "contributors": [
+        "mattiacolombomc"
+      ],
       "categories": [
         "Applications"
       ],
@@ -189392,6 +189507,30 @@
           "title": "AirDrop Selected Text",
           "description": "AirDrop the text currently selected in the frontmost app",
           "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "copy-last-airdropped-file",
+          "title": "Copy Last AirDropped File",
+          "description": "Copy the most recently AirDropped file to the clipboard",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "paste-last-airdropped-file",
+          "title": "Paste Last AirDropped File",
+          "description": "Paste the most recently AirDropped file into the frontmost app",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-airdropped-files",
+          "title": "Search AirDropped Files",
+          "description": "Browse the files received via AirDrop and copy, paste, or open them",
+          "mode": "view",
           "keywords": [],
           "preferences": []
         }
@@ -211390,6 +211529,10 @@
             {
               "title": "bun",
               "value": "bun"
+            },
+            {
+              "title": "Aube",
+              "value": "aube"
             }
           ],
           "title": "Default Package Manager",
@@ -211417,6 +211560,10 @@
             {
               "title": "bun",
               "value": "bun"
+            },
+            {
+              "title": "Aube",
+              "value": "aube"
             }
           ],
           "title": "Secondary Package Manager",
