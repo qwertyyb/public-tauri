@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-29T01:46:55.913Z",
+  "generatedAt": "2026-08-29T21:00:21.581Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "0f2f3b24233c5cd4824e341d253eac1283b69559"
+    "commit": "6734d85992290066fd31a7f5bee3cca3d3545a1a"
   },
-  "count": 3232,
+  "count": 3233,
   "extensions": [
     {
       "name": "0x0",
@@ -3199,7 +3199,8 @@
         "garrick_zhang",
         "EDM115",
         "chingweih",
-        "jalenzz"
+        "jalenzz",
+        "Jakoss"
       ],
       "categories": [
         "Productivity"
@@ -3312,8 +3313,8 @@
         {
           "name": "copilotAuthToken",
           "type": "password",
-          "title": "Copilot Authorization Token (Optional)",
-          "description": "Optional fallback OAuth token for Copilot usage. Usually auto-detected from GH_TOKEN or GITHUB_TOKEN (for example from 'gh auth token'). Standard PATs may not work.",
+          "title": "Legacy Copilot Token (Optional)",
+          "description": "Existing single-account token. Add named accounts with Manage Accounts. Authentication is auto-detected from GitHub CLI first, then GH_TOKEN or GITHUB_TOKEN. Standard PATs may not work.",
           "required": false
         },
         {
@@ -24473,7 +24474,9 @@
       "contributors": [],
       "categories": [],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/huskii/bookstack",
       "source": {
         "type": "github-monorepo",
@@ -41821,6 +41824,14 @@
           ]
         },
         {
+          "name": "favorite-colors",
+          "title": "Favorite Colors",
+          "description": "View and use your favorite colors",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "generate-colors",
           "title": "Generate Colors",
           "description": "Generate colors using AI",
@@ -44973,7 +44984,9 @@
       "description": "View Servers, Resources, Teams and more",
       "icon": "coolify.png",
       "author": "xmok",
-      "contributors": [],
+      "contributors": [
+        "alextlopez11"
+      ],
       "categories": [
         "Applications",
         "Developer Tools"
@@ -45003,6 +45016,31 @@
           "name": "resources",
           "title": "View Resources",
           "description": "View Resources and start,stop,redeploy",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "menu-bar-deployments",
+          "title": "Menu Bar Deployments",
+          "description": "View recent Coolify deployments in the menu bar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "maxDeployments",
+              "title": "Max Deployments",
+              "description": "The maximum number of deployments to show",
+              "type": "textfield",
+              "required": false,
+              "placeholder": "10"
+            }
+          ]
+        },
+        {
+          "name": "search-deployments",
+          "title": "Search Deployments",
+          "description": "Search recent Coolify deployments",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -67707,6 +67745,39 @@
       "preferences": []
     },
     {
+      "name": "ejection-seat",
+      "title": "Ejection Seat",
+      "description": "Find the processes and files that may be preventing a disk from ejecting.",
+      "icon": "extension-icon.png",
+      "author": "chrismessina",
+      "contributors": [],
+      "categories": [
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/chrismessina/ejection-seat",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/ejection-seat",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "find-ejection-blockers",
+          "title": "Find Ejection Blockers",
+          "description": "Identify processes and open files that may prevent a volume from ejecting.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "ekstraklasa",
       "title": "Ekstraklasa",
       "description": "Stay up to date with the polish football league",
@@ -80110,6 +80181,28 @@
           "required": false,
           "title": "Move Behavior",
           "type": "checkbox"
+        },
+        {
+          "default": "newWindow",
+          "description": "Choose how folders open in Finder: a new window, a new tab of the frontmost window, or the current tab of the frontmost window",
+          "name": "openBehaviour",
+          "required": false,
+          "title": "Open Behavior",
+          "type": "dropdown",
+          "data": [
+            {
+              "title": "Open in New Finder Window",
+              "value": "newWindow"
+            },
+            {
+              "title": "Open in New Finder Tab",
+              "value": "newTab"
+            },
+            {
+              "title": "Open in Current Finder Tab",
+              "value": "currentTab"
+            }
+          ]
         },
         {
           "default": false,
@@ -105590,6 +105683,15 @@
           "preferences": []
         },
         {
+          "name": "entity-settings",
+          "title": "Entity Settings",
+          "subtitle": "Home Assistant",
+          "description": "Manage hidden entities and custom display names",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "customentities",
           "title": "Custom Entities",
           "subtitle": "Home Assistant",
@@ -122159,7 +122261,7 @@
           "label": "Opening a Bookmark",
           "title": "Opening a Bookmark",
           "required": false,
-          "description": "What ↵ does on a link bookmark",
+          "description": "What ↵ does on a URL bookmark",
           "data": [
             {
               "title": "Open in Browser",
@@ -122210,7 +122312,7 @@
           "label": "Website Icons",
           "name": "showWebsitePreview",
           "title": "Bookmark List",
-          "description": "Show each site's favicon in place of a generic link icon",
+          "description": "Show each site's favicon in place of a generic icon",
           "type": "checkbox",
           "default": true,
           "required": false
@@ -124789,10 +124891,34 @@
           "preferences": []
         },
         {
+          "name": "top-sources",
+          "title": "Top Sources",
+          "description": "View top traffic sources for a Kobbe site.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "revenue",
           "title": "Revenue",
           "description": "View revenue for a Kobbe site.",
           "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "setup-health",
+          "title": "Setup Health",
+          "description": "Check tracker and revenue webhook status for a Kobbe site.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "live-visitors",
+          "title": "Live Visitors",
+          "description": "Show visitors currently online in the menu bar.",
+          "mode": "menu-bar",
           "keywords": [],
           "preferences": []
         }
@@ -124812,6 +124938,24 @@
           "type": "textfield",
           "required": true,
           "default": "https://app.kobbe.io"
+        },
+        {
+          "name": "primaryAction",
+          "title": "Primary Action",
+          "description": "What pressing Enter on a site does.",
+          "type": "dropdown",
+          "required": false,
+          "default": "open-dashboard",
+          "data": [
+            {
+              "title": "Open Dashboard in Browser",
+              "value": "open-dashboard"
+            },
+            {
+              "title": "View Overview in Raycast",
+              "value": "view-overview"
+            }
+          ]
         },
         {
           "name": "defaultRange",
@@ -126382,7 +126526,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/KevinBatdorf/laravel-forge",
       "source": {
@@ -126445,6 +126590,15 @@
           "default": "forge",
           "description": "Change the SSH user to login with on the second account",
           "placeholder": "SSH User"
+        },
+        {
+          "name": "laravel_forge_ai_protected_values",
+          "type": "checkbox",
+          "required": false,
+          "default": false,
+          "title": "AI Access",
+          "label": "Let AI read protected values",
+          "description": "Allow probe-api to return values it otherwise withholds, like the deploy script and the deploy URL that needs no sign-in."
         }
       ]
     },
@@ -233367,7 +233521,8 @@
       "icon": "icon.png",
       "author": "pvnkmnk",
       "contributors": [
-        "xmok"
+        "xmok",
+        "Man17"
       ],
       "categories": [
         "Productivity"
@@ -233545,9 +233700,9 @@
         {
           "name": "accessToken",
           "title": "Access Token",
-          "description": "Access Token for the Super Productivity Local REST API",
+          "description": "Access Token for the Super Productivity Local REST API (optional)",
           "type": "password",
-          "required": true,
+          "required": false,
           "placeholder": "xXX...XXX"
         }
       ]
@@ -248227,14 +248382,16 @@
       "author": "kawamataryo",
       "contributors": [
         "j3lte",
-        "thuggyduck"
+        "thuggyduck",
+        "muhammadrizo"
       ],
       "categories": [
         "Developer Tools"
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/kawamataryo/tinypng",
       "source": {
@@ -248289,11 +248446,27 @@
           "default": "./compressed-images"
         },
         {
+          "title": "Resizing Destination Folder Path",
+          "name": "resizeDestinationFolderPath",
+          "description": "Set Destination Folder path used by the Resizing command. Specify an absolute path or a relative path from the target file.",
+          "type": "textfield",
+          "required": true,
+          "default": "./resized-images"
+        },
+        {
           "title": "Options",
+          "name": "saveSingleFileNextToOriginal",
+          "label": "Save Single File Next to Original",
+          "description": "When saving a single image, write the result next to the original file with a suffix (e.g. \"-compressed\") added to its name, instead of using the Destination Folder Path.",
+          "type": "checkbox",
+          "default": true,
+          "required": false
+        },
+        {
           "name": "overwrite",
+          "label": "Overwrite Original Image File",
           "description": "Whether to overwrite the original image file.",
           "type": "checkbox",
-          "label": "Overwrite Original Image File",
           "default": false,
           "required": false
         }
