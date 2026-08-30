@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-29T21:00:21.581Z",
+  "generatedAt": "2026-08-30T21:00:21.537Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "6734d85992290066fd31a7f5bee3cca3d3545a1a"
+    "commit": "fba2f50899e1a363420f69ce508332ae3e42601c"
   },
-  "count": 3233,
+  "count": 3235,
   "extensions": [
     {
       "name": "0x0",
@@ -13556,10 +13556,11 @@
           "name": "search-web",
           "title": "Search Aside",
           "subtitle": "Aside",
-          "description": "Search pinned tabs, other open tabs, browser history, and the web from one bar.",
+          "description": "Search open tabs, bookmarks, browser history, and the web from one bar.",
           "mode": "view",
           "keywords": [
             "google",
+            "bookmarks",
             "history",
             "tabs",
             "url"
@@ -63786,6 +63787,15 @@
               "value": "permaDel"
             }
           ]
+        },
+        {
+          "type": "checkbox",
+          "name": "showDeletingFilename",
+          "label": "Show Deleting Filename",
+          "title": "Show Deleting Filename",
+          "description": "Whether to show the filename being permanently deleted in the confirmation message",
+          "required": false,
+          "default": true
         }
       ]
     },
@@ -78325,6 +78335,162 @@
           "description": "Your Fizzy Account Slug",
           "type": "textfield",
           "required": true
+        }
+      ]
+    },
+    {
+      "name": "flameshot",
+      "title": "Flameshot",
+      "description": "Capture screenshots with Flameshot",
+      "icon": "extension-icon.png",
+      "author": "muhammadrizo",
+      "contributors": [],
+      "categories": [
+        "Media",
+        "Applications"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows",
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/muhammadrizo/flameshot",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/flameshot",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "capture-screen",
+          "title": "Capture Screen",
+          "subtitle": "Flameshot",
+          "description": "Take a screenshot of the screen",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "screen.png",
+          "preferences": [
+            {
+              "name": "copyToClipboard",
+              "label": "Copy to Clipboard",
+              "description": "Copy screenshot to the clipboard after capture",
+              "type": "checkbox",
+              "required": false,
+              "default": true
+            },
+            {
+              "name": "delay",
+              "title": "Delay",
+              "description": "Delay time in milliseconds",
+              "type": "textfield",
+              "required": false,
+              "placeholder": "3000",
+              "default": "0"
+            },
+            {
+              "name": "countdown",
+              "label": "Countdown",
+              "description": "Show countdown for delay",
+              "type": "checkbox",
+              "required": false,
+              "default": true
+            }
+          ]
+        },
+        {
+          "name": "capture-selection",
+          "title": "Capture Selection",
+          "subtitle": "Flameshot",
+          "description": "Take a screenshot of a selected area",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "selection.png",
+          "preferences": [
+            {
+              "name": "copyToClipboard",
+              "label": "Copy to Clipboard",
+              "description": "Copy screenshot to the clipboard after capture",
+              "type": "checkbox",
+              "required": false,
+              "default": true
+            },
+            {
+              "name": "delay",
+              "title": "Delay",
+              "description": "Delay time in milliseconds",
+              "type": "textfield",
+              "required": false,
+              "placeholder": "3000",
+              "default": "0"
+            },
+            {
+              "name": "countdown",
+              "label": "Countdown",
+              "description": "Show countdown for delay",
+              "type": "checkbox",
+              "required": false,
+              "default": true
+            },
+            {
+              "name": "acceptOnSelect",
+              "label": "Accept on Select",
+              "description": "Accept capture as soon as a selection is made",
+              "type": "checkbox",
+              "required": false
+            },
+            {
+              "name": "pin",
+              "description": "Pin the capture to the screen",
+              "type": "checkbox",
+              "required": false,
+              "label": "Pin"
+            }
+          ]
+        },
+        {
+          "name": "capture-all-screens",
+          "title": "Capture All Screens",
+          "subtitle": "Flameshot",
+          "description": "Take screenshots of all screens",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "all-screens.png",
+          "preferences": [
+            {
+              "name": "delay",
+              "title": "Delay",
+              "description": "Delay time in milliseconds",
+              "type": "textfield",
+              "required": false,
+              "placeholder": "3000",
+              "default": "0"
+            },
+            {
+              "name": "countdown",
+              "label": "Countdown",
+              "description": "Show countdown for delay",
+              "type": "checkbox",
+              "required": false,
+              "default": true
+            }
+          ]
+        }
+      ],
+      "preferences": [
+        {
+          "name": "screenshotsFolder",
+          "title": "Screenshots Folder",
+          "description": "Specify the path to your Flameshot screenshots folder",
+          "type": "directory",
+          "required": true
+        },
+        {
+          "name": "cliPath",
+          "description": "Specify the path to the Flameshot CLI",
+          "type": "file",
+          "required": false,
+          "title": "CLI Path"
         }
       ]
     },
@@ -177890,7 +178056,7 @@
     {
       "name": "pinwork",
       "title": "Pinwork",
-      "description": "Manage your tasks with Pinwork - a GTD-inspired task management app",
+      "description": "Capture a complete task in one sentence, then manage Today, Inbox, upcoming tasks, and projects from Raycast",
       "icon": "extension-icon.png",
       "author": "adapting.tech",
       "contributors": [],
@@ -183352,7 +183518,8 @@
       "icon": "icon.png",
       "author": "anhthang",
       "contributors": [
-        "stelo"
+        "stelo",
+        "pernielsentikaer"
       ],
       "categories": [
         "Data",
@@ -183383,7 +183550,15 @@
         {
           "name": "match",
           "title": "Matches",
-          "description": "View fixtures, results, and archives in one place.",
+          "description": "Look back over completed matches, working back through the season.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "fixture",
+          "title": "Fixtures",
+          "description": "Follow matches in progress and browse what is still to come.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -185688,7 +185863,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/izyuumi/proton-pass",
       "source": {
@@ -250490,6 +250666,40 @@
       "preferences": []
     },
     {
+      "name": "toggle-trackpad",
+      "title": "Toggle Trackpad",
+      "description": "Quickly toggle the built-in trackpad behavior when an external mouse or wireless trackpad is connected.",
+      "icon": "extension-icon.png",
+      "author": "ksc73450056",
+      "contributors": [],
+      "categories": [
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/ksc73450056/toggle-trackpad",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/toggle-trackpad",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "toggle-trackpad",
+          "title": "Toggle Trackpad",
+          "subtitle": "System",
+          "description": "Toggle whether the built-in trackpad is ignored when a mouse or wireless trackpad is connected.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "tokenizer",
       "title": "Tokenizer",
       "description": "Quickly count tokens in selected text or clipboard content using popular AI model encodings.",
@@ -281780,6 +281990,14 @@
           "default": false,
           "label": "Use BibTex?",
           "description": "Whether to use BibTex or not?"
+        },
+        {
+          "name": "bibtex_search",
+          "type": "checkbox",
+          "required": false,
+          "default": false,
+          "label": "Search by BibTeX Citation Key",
+          "description": "Match the Better BibTeX citation key (e.g. smith2020quantum) when searching"
         },
         {
           "name": "bibtex_path",
