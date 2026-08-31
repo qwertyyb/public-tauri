@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-30T21:00:21.537Z",
+  "generatedAt": "2026-08-31T22:49:04.540Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "fba2f50899e1a363420f69ce508332ae3e42601c"
+    "commit": "414e251d6240a1aa8809cdc5ad3ded00a23bbe3c"
   },
-  "count": 3235,
+  "count": 3240,
   "extensions": [
     {
       "name": "0x0",
@@ -3039,6 +3039,112 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "agent-browser",
+      "title": "Agent Browser",
+      "description": "Control the agent-browser CLI from Raycast and Raycast AI",
+      "icon": "icon.png",
+      "author": "0xdhrv",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows",
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/0xdhrv/agent-browser",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/agent-browser",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "browse",
+          "title": "Open in Agent Browser",
+          "description": "Open a URL in a visible agent-browser session",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "executablePath",
+          "title": "Agent Browser Executable",
+          "description": "Command name or full path to the agent-browser executable",
+          "type": "textfield",
+          "required": true,
+          "default": "agent-browser",
+          "placeholder": "/opt/homebrew/bin/agent-browser"
+        },
+        {
+          "name": "showBrowserWindow",
+          "title": "Browser Visibility",
+          "description": "Show the browser window when Raycast AI starts an Agent Browser session",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "label": "Open AI sessions in a visible browser window"
+        },
+        {
+          "name": "browserApplication",
+          "title": "Browser Application",
+          "description": "Optional browser for Agent Browser sessions, including Chrome, Brave, Edge, Vivaldi, Dia, and Safari",
+          "type": "appPicker",
+          "required": false
+        },
+        {
+          "name": "browserProfile",
+          "title": "Default Browser Profile or Dia Space",
+          "description": "Optional Chromium profile or Dia space name to use, such as Work, Personal, or BOT",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "Work"
+        },
+        {
+          "name": "browserDataDirectory",
+          "title": "Browser Data Directory",
+          "description": "Optional Chromium user-data directory for browsers whose profiles cannot be located automatically; it must contain Local State",
+          "type": "directory",
+          "required": false
+        },
+        {
+          "name": "postInteractionDelayMs",
+          "title": "Post-Interaction Delay",
+          "description": "Default time to wait after each page interaction before Raycast AI continues",
+          "type": "dropdown",
+          "required": true,
+          "default": "500",
+          "data": [
+            {
+              "title": "No Delay",
+              "value": "0"
+            },
+            {
+              "title": "250 ms",
+              "value": "250"
+            },
+            {
+              "title": "500 ms (Recommended)",
+              "value": "500"
+            },
+            {
+              "title": "1 second",
+              "value": "1000"
+            },
+            {
+              "title": "1.5 seconds",
+              "value": "1500"
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "agent-client-protocol",
@@ -11784,6 +11890,45 @@
               "default": "updated_at_des"
             }
           ]
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "aqua-registry-search",
+      "title": "Aqua Registry Search",
+      "description": "Search the Aqua Registry for CLI tools and copy commands to add them to aqua.yaml",
+      "icon": "extension-icon.png",
+      "author": "raycast_0ukl",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/raycast_0ukl/aqua-registry-search",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/aqua-registry-search",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-aqua-registry",
+          "title": "Search Aqua Registry",
+          "description": "Search the Aqua Registry for CLI tools and packages",
+          "mode": "view",
+          "keywords": [
+            "aqua",
+            "package",
+            "registry",
+            "cli"
+          ],
+          "preferences": []
         }
       ],
       "preferences": []
@@ -40838,12 +40983,19 @@
         },
         {
           "name": "startCaffeinateOnLaunch",
-          "description": "Automatically keep your computer awake (indefinitely) when Raycast starts. Requires the Caffeinate Status command (15 s interval) or the Caffeinate Status Menu Bar command (1 m interval) to be enabled.",
+          "description": "Automatically keep your computer awake (indefinitely) when Raycast starts. Requires the Caffeinate Status command (15 s interval) or the Caffeinate Status Menu Bar command (1 m interval) to be enabled (on macOS)",
           "type": "checkbox",
           "required": false,
           "default": false,
-          "title": "Launch",
           "label": "Start caffeination when Raycast starts"
+        },
+        {
+          "name": "decaffeinatePausesSchedules",
+          "description": "When enabled, decaffeinating while a schedule is running will automatically pause the schedule instead of asking you to pause it first",
+          "type": "checkbox",
+          "required": false,
+          "default": false,
+          "label": "Decaffeinate pauses running schedules"
         }
       ]
     },
@@ -88478,7 +88630,8 @@
         "wonbywondev",
         "SandeepBaskaran",
         "0xdhrv",
-        "ernest0n"
+        "ernest0n",
+        "raycast_0ukl"
       ],
       "categories": [
         "Developer Tools",
@@ -89039,8 +89192,8 @@
           "name": "numberOfResults",
           "type": "textfield",
           "required": false,
-          "title": "Number of search results",
-          "description": "For searching repositories, issues, discussions or pull requests, this is the number of results to request. Less will be faster.",
+          "title": "Search Results per Page",
+          "description": "For repository, issue, discussion, or pull request searches, this is the number of results requested per page. Fewer results per page will load faster.",
           "placeholder": "25"
         },
         {
@@ -110963,6 +111116,28 @@
       ],
       "preferences": [
         {
+          "name": "timeFormat",
+          "type": "dropdown",
+          "title": "Time Format",
+          "description": "Choose how times are displayed.",
+          "data": [
+            {
+              "title": "System Default",
+              "value": "system"
+            },
+            {
+              "title": "12-hour",
+              "value": "12-hour"
+            },
+            {
+              "title": "24-hour",
+              "value": "24-hour"
+            }
+          ],
+          "default": "system",
+          "required": false
+        },
+        {
           "name": "defaultScrubMinutes",
           "type": "dropdown",
           "title": "Arrow Key Scrub Minutes",
@@ -132730,6 +132905,103 @@
       ]
     },
     {
+      "name": "lm-studio",
+      "title": "LM Studio",
+      "description": "Chat with, manage, and search local AI models running in LM Studio.",
+      "icon": "icon.png",
+      "author": "vineeth_sai_narajala",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "1.0.0",
+      "storeUrl": "https://www.raycast.com/vineeth_sai_narajala/lm-studio",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/lm-studio",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "chat",
+          "title": "Chat with LM Studio",
+          "subtitle": "Local AI",
+          "description": "Chat with a local model served by LM Studio",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "quick-ask",
+          "title": "Ask LM Studio",
+          "subtitle": "Local AI",
+          "description": "Ask a local model using text, selected content, screenshots, images, or a JSON schema",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "transform-text",
+          "title": "Transform Text",
+          "subtitle": "LM Studio",
+          "description": "Rewrite, summarize, translate, explain, or correct text with a local model",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "manage-models",
+          "title": "Manage Models",
+          "subtitle": "LM Studio",
+          "description": "Inspect, load, unload, and download local models",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-notes",
+          "title": "Search Notes",
+          "subtitle": "LM Studio",
+          "description": "Semantically search explicitly indexed local notes",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "baseUrl",
+          "title": "Server URL",
+          "description": "The URL of the LM Studio local server",
+          "type": "textfield",
+          "required": true,
+          "default": "http://localhost:1234"
+        },
+        {
+          "name": "apiToken",
+          "title": "API Token",
+          "description": "Optional token when LM Studio authentication is enabled",
+          "type": "password",
+          "required": false,
+          "placeholder": "Leave empty when authentication is disabled"
+        },
+        {
+          "name": "systemPrompt",
+          "title": "System Prompt",
+          "description": "Instructions included at the start of every new conversation",
+          "type": "textfield",
+          "required": false,
+          "default": "You are a helpful assistant."
+        }
+      ]
+    },
+    {
       "name": "loan-calculator",
       "title": "Loan Calculator",
       "description": "Calculate loan payments with customizable terms and payment schedules",
@@ -142179,7 +142451,8 @@
         "hayden_barnes",
         "micha_van_eijk",
         "islamtayeb",
-        "janosorcsik"
+        "janosorcsik",
+        "0xdhrv"
       ],
       "categories": [],
       "license": "MIT",
@@ -143251,11 +143524,12 @@
     {
       "name": "microsoft-teams",
       "title": "Microsoft Teams",
-      "description": "Easily manage your Microsoft Teams presence and status message with this Raycast extension. Search chats and open them in with a keystroke in the Teams app.",
+      "description": "Manage your Microsoft Teams presence and status message. Search for people and chats, open conversations, and start calls.",
       "icon": "teams.png",
       "author": "sven",
       "contributors": [
-        "mSarheed"
+        "mSarheed",
+        "ray.dhruv"
       ],
       "categories": [
         "Applications",
@@ -143263,7 +143537,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/sven/microsoft-teams",
       "source": {
@@ -179595,6 +179870,40 @@
       ]
     },
     {
+      "name": "plaud",
+      "title": "Plaud",
+      "description": "Browse your Plaud AI recorder notes and copy links to them",
+      "icon": "icon.png",
+      "author": "patricklenz",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Media"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/patricklenz/plaud",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/plaud",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-recordings",
+          "title": "Search Recordings",
+          "description": "Browse and search your Plaud recordings",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "plausible-analytics",
       "title": "Plausible Analytics",
       "description": "Get a quick, brief overview of your Plausible Analytics data.",
@@ -182575,6 +182884,49 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "portreaper",
+      "title": "Portreaper",
+      "description": "Find and kill orphaned dev-server processes — the same classification engine as the Portreaper desktop app.",
+      "icon": "command-icon.png",
+      "author": "fhf1121",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/fhf1121/portreaper",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/portreaper",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-ports",
+          "title": "Search Ports",
+          "description": "List listening processes and orphaned dev processes, then terminate the ones nobody owns.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "cliPath",
+          "title": "Portreaper CLI Path",
+          "description": "Leave empty to auto-detect. Set this if the binary lives somewhere unusual.",
+          "type": "textfield",
+          "required": false,
+          "default": ""
+        }
+      ]
     },
     {
       "name": "ports",
@@ -204974,13 +205326,14 @@
     {
       "name": "resend",
       "title": "Resend",
-      "description": "Manage API Keys and Domains, and Send Emails using Resend",
+      "description": "Manage email, contacts, domains, and developer resources with Resend",
       "icon": "resend-extension_icon.png",
       "author": "xmok",
       "contributors": [
         "alexs",
         "peduarte",
-        "pernielsentikaer"
+        "pernielsentikaer",
+        "0xdhrv"
       ],
       "categories": [
         "Communication",
@@ -205021,7 +205374,16 @@
           "name": "emails",
           "title": "Emails",
           "subtitle": "Resend",
-          "description": "View Logged Emails and Send A New Email",
+          "description": "View sent emails, share delivery previews, and send new email",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "received-emails",
+          "title": "Received Emails",
+          "subtitle": "Resend",
+          "description": "Read inbound email and download its attachments",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -205030,7 +205392,7 @@
           "name": "contacts",
           "title": "Contacts",
           "subtitle": "Resend",
-          "description": "View, create, update and delete contacts from your audiences.",
+          "description": "View, create, update, and delete contacts, or organize them in segments",
           "mode": "view",
           "keywords": [],
           "preferences": []
