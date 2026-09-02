@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-01T21:01:00.163Z",
+  "generatedAt": "2026-09-02T21:02:18.936Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "7b8979276d77b724ce032155bbc32046087efe47"
+    "commit": "a6fb0bae62df5b1cf633ef1f9eb4b69c4d25392e"
   },
-  "count": 3244,
+  "count": 3248,
   "extensions": [
     {
       "name": "0x0",
@@ -19917,7 +19917,9 @@
       "description": "Run BTT actions from Raycast",
       "icon": "command-icon.png",
       "author": "dnnsmnstrr",
-      "contributors": [],
+      "contributors": [
+        "kmusick"
+      ],
       "categories": [
         "Applications",
         "Productivity"
@@ -19936,21 +19938,56 @@
       "commands": [
         {
           "name": "trigger",
-          "title": "Run BTT Named Trigger",
-          "subtitle": "Search for and run named trigger in BTT",
-          "description": "Find a named trigger in BetterTouchTool",
+          "title": "Run Named Trigger",
+          "subtitle": "BetterTouchTool",
+          "description": "Find and run named triggers in BetterTouchTool",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "browse-triggers",
+          "title": "Browse Triggers",
+          "subtitle": "BetterTouchTool",
+          "description": "Find and manage configured triggers across BetterTouchTool",
           "mode": "view",
           "keywords": [],
           "preferences": []
         },
         {
           "name": "action",
-          "title": "Run BTT Action",
-          "subtitle": "Search for and run an action in BTT",
-          "description": "Find an action in BetterTouchTool",
+          "title": "Run Action",
+          "subtitle": "BetterTouchTool",
+          "description": "Find and run actions in BetterTouchTool",
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "variables",
+          "title": "Browse Variables",
+          "subtitle": "BetterTouchTool",
+          "description": "Browse BetterTouchTool variables",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "clipboard-manager",
+          "title": "Search Clipboard",
+          "subtitle": "BetterTouchTool",
+          "description": "Search and paste items from BetterTouchTool's Clipboard Manager",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "clipboardCommandWhitelist",
+              "description": "Comma-separated executable names to recognize as terminal commands in addition to the built-in list",
+              "type": "textfield",
+              "required": false,
+              "title": "Custom Terminal Commands"
+            }
+          ]
         }
       ],
       "preferences": [
@@ -19960,6 +19997,36 @@
           "type": "password",
           "required": false,
           "title": "Shared Secret (only required if set in BTT)"
+        },
+        {
+          "name": "bttWebserverPort",
+          "description": "Used as a fallback when the local BTT socket server is unavailable",
+          "type": "textfield",
+          "required": true,
+          "default": "64472",
+          "title": "Webserver Port"
+        },
+        {
+          "name": "triggerResultHandling",
+          "description": "What to do with non-empty results returned by named triggers",
+          "type": "dropdown",
+          "required": true,
+          "default": "ignore",
+          "title": "Named Trigger Results",
+          "data": [
+            {
+              "title": "Ignore",
+              "value": "ignore"
+            },
+            {
+              "title": "Show in Toast",
+              "value": "toast"
+            },
+            {
+              "title": "Copy to Clipboard",
+              "value": "clipboard"
+            }
+          ]
         }
       ]
     },
@@ -24915,6 +24982,128 @@
       "preferences": []
     },
     {
+      "name": "boox-companion",
+      "title": "BOOX Companion",
+      "description": "Browse, transfer files, and capture the screen of BOOX devices over your local network",
+      "icon": "extension-icon.png",
+      "author": "metrovoc",
+      "contributors": [],
+      "categories": [
+        "Applications",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/metrovoc/boox-companion",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/boox-companion",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "boox",
+          "title": "BOOX",
+          "description": "Browse your BOOX library, notes, and storage",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "send-to-boox",
+          "title": "Send to BOOX",
+          "description": "Send files to storage or add documents to the BOOX library",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "quick-send-selected-files",
+          "title": "Quick Send Selected Files",
+          "description": "Send the files selected in Finder to the configured BOOX inbox",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-boox-screen",
+          "title": "Open BOOX Screen",
+          "description": "Open the BOOX screen stream in a native viewer",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "capture-boox-screen",
+          "title": "Capture BOOX Screen",
+          "description": "Copy the current BOOX screen to the clipboard",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "capture-boox-region",
+          "title": "Capture BOOX Region",
+          "description": "Select and copy a region from the current BOOX screen",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "boox-status",
+          "title": "BOOX Status",
+          "description": "Show BOOX status and quick actions in the menu bar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "manualHost",
+          "title": "Device Address",
+          "description": "Optional BOOXDrop address. Leave empty to discover devices automatically. Passwords require HTTPS.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "192.168.1.100 or https://boox.local"
+        },
+        {
+          "name": "password",
+          "title": "BOOXDrop Password",
+          "description": "Optional password configured in BOOXDrop.",
+          "type": "password",
+          "required": false
+        },
+        {
+          "name": "quickSendDirectory",
+          "title": "Quick Send Inbox",
+          "description": "Storage directory used by Quick Send Selected Files.",
+          "type": "textfield",
+          "required": true,
+          "default": "/Download"
+        },
+        {
+          "name": "downloadDirectory",
+          "title": "Download Directory",
+          "description": "Optional local destination. Defaults to Downloads/BOOX.",
+          "type": "directory",
+          "required": false
+        },
+        {
+          "name": "scanVirtualInterfaces",
+          "title": "Network Discovery",
+          "description": "Also scan VPN and virtual private-network interfaces.",
+          "type": "checkbox",
+          "required": false,
+          "default": false,
+          "label": "Scan VPN interfaces"
+        }
+      ]
+    },
+    {
       "name": "bored",
       "title": "Bored",
       "description": "Let's find you something to do!",
@@ -25744,11 +25933,13 @@
         },
         {
           "name": "outdated",
-          "title": "Show Outdated",
+          "title": "Show Upgrades",
           "subtitle": "Brew",
-          "description": "Show outdated brew formulae & casks",
+          "description": "Review available upgrades, choose which to apply, and run it",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "outdated"
+          ],
           "preferences": []
         },
         {
@@ -46404,6 +46595,50 @@
               "value": "hide"
             }
           ]
+        }
+      ]
+    },
+    {
+      "name": "courtlistener-search",
+      "title": "CourtListener Search",
+      "description": "Search CourtListener's free database of US court opinions and open, copy, or cite them without leaving Raycast.",
+      "icon": "icon.png",
+      "author": "cro64",
+      "contributors": [],
+      "categories": [
+        "Web",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/cro64/courtlistener-search",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/courtlistener-search",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-case-law",
+          "title": "Search Case Law",
+          "subtitle": "CourtListener",
+          "description": "Search US court opinions on CourtListener and open the full text in your browser.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiToken",
+          "type": "password",
+          "required": true,
+          "title": "CourtListener API Token",
+          "description": "Get one at courtlistener.com/profile/api-token/",
+          "placeholder": "Your CourtListener API token"
         }
       ]
     },
@@ -99222,7 +99457,7 @@
         {
           "name": "apiKey",
           "title": "API Token",
-          "description": "Your gra_live_… Personal Access Token from Granite → Settings → Developer → Access tokens. Treat it like a password.",
+          "description": "Your gra_live_… Personal Access Token from Granite → Settings → Apps & API → Access tokens. Treat it like a password.",
           "type": "password",
           "required": true
         },
@@ -105416,7 +105651,10 @@
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "storeUrl": "https://www.raycast.com/svenhofman/hidemyemail",
       "source": {
         "type": "github-monorepo",
@@ -121145,6 +121383,57 @@
       "preferences": []
     },
     {
+      "name": "just",
+      "title": "Just",
+      "description": "Quickly access justfile recipes from Raycast",
+      "icon": "command.png",
+      "author": "alastairsounds",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "0.1.0",
+      "storeUrl": "https://www.raycast.com/alastairsounds/just",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/just",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "run-recipe",
+          "title": "Run Recipe",
+          "description": "Run a justfile recipe silently via HUD",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "browse-justfiles",
+          "title": "Browse Justfiles",
+          "description": "Find recipes across your justfiles",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "justfileFolders",
+          "title": "Justfile Folders",
+          "description": "Comma-separated directories to scan for justfiles (e.g. ~/dotfiles, ~/projects). Use Manage Folders in Browse Justfiles to add or remove folders without editing this field.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "~/dotfiles, ~/projects"
+        }
+      ]
+    },
+    {
       "name": "just-breathe",
       "title": "Just Breathe",
       "description": "An instrument for relaxation through breathing",
@@ -126591,6 +126880,15 @@
           "title": "Check Text Instant",
           "description": "Check a text with LanguageTool using the clipboard content and paste the result instantly. The language is detected automatically.",
           "mode": "no-view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "check-selected-text",
+          "title": "Check Selected Text",
+          "description": "Check the selected text, review each correction with the result in view, then replace the selection.",
+          "mode": "view",
           "keywords": [],
           "icon": "extension-icon.png",
           "preferences": []
@@ -153079,6 +153377,136 @@
           "type": "password",
           "placeholder": "xx...xx",
           "description": "API Key from Neon Settings"
+        }
+      ]
+    },
+    {
+      "name": "neovim",
+      "title": "Neovim",
+      "description": "Manage Neovim sessions, plugins, and keymaps from Raycast",
+      "icon": "icon.png",
+      "author": "RG-IL",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/RG-IL/neovim",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/neovim",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-recent-sessions",
+          "title": "Search Recent Sessions",
+          "description": "Search and open recent Neovim sessions",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-with-neovim",
+          "title": "Open with Neovim",
+          "description": "Open selected Finder items in Neovim",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-new-window",
+          "title": "Open New Window",
+          "description": "Open a new Neovim window",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "show-plugins",
+          "title": "Show Installed Plugins",
+          "description": "List installed Neovim plugins",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "neovim-commands",
+          "title": "Neovim Commands",
+          "description": "Search keymaps from your running Neovim config",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "terminalApp",
+          "type": "dropdown",
+          "default": "auto",
+          "required": false,
+          "title": "Terminal App",
+          "description": "Terminal app to launch Neovim in (auto-detects best available)",
+          "data": [
+            {
+              "value": "auto",
+              "title": "Auto-detect"
+            },
+            {
+              "value": "iTerm2",
+              "title": "iTerm2"
+            },
+            {
+              "value": "Ghostty",
+              "title": "Ghostty"
+            },
+            {
+              "value": "kitty",
+              "title": "kitty"
+            },
+            {
+              "value": "Alacritty",
+              "title": "Alacritty"
+            },
+            {
+              "value": "WezTerm",
+              "title": "WezTerm"
+            },
+            {
+              "value": "Terminal",
+              "title": "Terminal.app"
+            }
+          ]
+        },
+        {
+          "name": "nvimPath",
+          "type": "textfield",
+          "default": "nvim",
+          "required": false,
+          "title": "Nvim Path",
+          "description": "Path to the nvim binary (uses PATH by default)"
+        },
+        {
+          "name": "layout",
+          "type": "dropdown",
+          "default": "list",
+          "required": false,
+          "title": "View Layout",
+          "description": "List or Grid layout",
+          "data": [
+            {
+              "value": "list",
+              "title": "List"
+            },
+            {
+              "value": "grid",
+              "title": "Grid"
+            }
+          ]
         }
       ]
     },
@@ -201058,7 +201486,7 @@
     },
     {
       "name": "read-this-later",
-      "title": "Research Sync",
+      "title": "Clipfile",
       "description": "Browse and read your saved articles, and save the current browser tab.",
       "icon": "icon.png",
       "author": "shearm",
@@ -201082,7 +201510,7 @@
         {
           "name": "list-unread",
           "title": "Show Saved Links",
-          "subtitle": "Research Sync",
+          "subtitle": "Clipfile",
           "description": "Browse your saved articles, read them, and open them in your browser",
           "mode": "view",
           "keywords": [],
@@ -201091,8 +201519,8 @@
         {
           "name": "save-current-tab",
           "title": "Save Current Tab",
-          "subtitle": "Research Sync",
-          "description": "Save the URL of the frontmost browser tab to Research Sync",
+          "subtitle": "Clipfile",
+          "description": "Save the URL of the frontmost browser tab to Clipfile",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -201102,7 +201530,7 @@
         {
           "name": "syncToken",
           "title": "Sync Token",
-          "description": "Bearer token for the Research Sync service (the same token your browser extension and iOS app use).",
+          "description": "Bearer token for the Clipfile service (the same token your browser extension and iOS app use).",
           "type": "password",
           "required": true
         }
