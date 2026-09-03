@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-02T21:02:18.936Z",
+  "generatedAt": "2026-09-03T21:00:00.712Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "a6fb0bae62df5b1cf633ef1f9eb4b69c4d25392e"
+    "commit": "1cc40188b6aa474f0b1beb26d4c80f53f15f506e"
   },
-  "count": 3248,
+  "count": 3250,
   "extensions": [
     {
       "name": "0x0",
@@ -29324,7 +29324,8 @@
       "icon": "capacities.png",
       "author": "steffenble",
       "contributors": [
-        "xmok"
+        "xmok",
+        "mikolaj_adamowicz"
       ],
       "categories": [
         "Productivity",
@@ -29568,6 +29569,80 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "capture-quick-notes",
+      "title": "Capture - Quick Notes",
+      "description": "Add, search, and manage notes in Capture without leaving Raycast. Requires Capture 2.15 or later.",
+      "icon": "extension-icon.png",
+      "author": "furkansimsir",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/furkansimsir/capture-quick-notes",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/capture-quick-notes",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "add-capture",
+          "title": "Add Capture",
+          "description": "Add a new Capture item",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "quick-capture",
+          "title": "Quick Capture",
+          "description": "Capture a thought straight from the root search, without opening any window",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "capture-clipboard",
+          "title": "Capture Clipboard",
+          "description": "Save the current clipboard text or file to Capture",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-captures",
+          "title": "Search Captures",
+          "description": "Search, open, archive, and delete Capture items",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "create-list",
+          "title": "Create List",
+          "description": "Create a new list in Capture",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "cliPath",
+          "title": "CLI Path",
+          "description": "Path to the capture-cli executable bundled with Capture 2.15 or later.",
+          "type": "textfield",
+          "required": true,
+          "default": "/Applications/Capture.app/Contents/Helpers/CaptureCLI.app/Contents/MacOS/capture-cli"
+        }
+      ]
     },
     {
       "name": "capture-raycast-metadata",
@@ -53972,7 +54047,8 @@
               "title": "Paste in Frontmost App",
               "value": "paste"
             }
-          ]
+          ],
+          "default": "clipboard"
         },
         {
           "description": "Show transliteration",
@@ -59115,7 +59191,9 @@
         "Web"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/DrChai/dictionary",
       "source": {
         "type": "github-monorepo",
@@ -59134,9 +59212,9 @@
         },
         {
           "name": "fromSelected",
-          "title": "Search From Cursor Selection",
+          "title": "Search from Cursor Selection",
           "description": "Search your current cursor-selected words.",
-          "mode": "view",
+          "mode": "no-view",
           "keywords": [],
           "preferences": []
         }
@@ -59160,8 +59238,8 @@
           "name": "youdaoapiClientId",
           "type": "textfield",
           "required": false,
-          "description": "The client ID to use the Youdao API",
-          "title": "Youdao Client ID"
+          "description": "The application ID to use the Youdao API",
+          "title": "Youdao Application ID"
         }
       ]
     },
@@ -104472,7 +104550,7 @@
         {
           "name": "refreshInterval",
           "title": "Refresh Interval",
-          "description": "How often visible lists and the menu bar refresh.",
+          "description": "How often visible lists and the open menu bar refresh. The menu bar icon also refreshes in the background every minute.",
           "type": "dropdown",
           "required": false,
           "default": "5",
@@ -112177,7 +112255,9 @@
       "description": "Secrets management on autopilot",
       "icon": "infisical.png",
       "author": "xmok",
-      "contributors": [],
+      "contributors": [
+        "aic"
+      ],
       "categories": [
         "Security"
       ],
@@ -152144,6 +152224,131 @@
       "preferences": []
     },
     {
+      "name": "mysql",
+      "title": "MySQL Client",
+      "description": "Connect to MySQL databases — run queries, browse schema, and manage multiple connection profiles.",
+      "icon": "app-icon.png",
+      "author": "itggood2420",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/itggood2420/mysql",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/mysql",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "run-query",
+          "title": "Run Query",
+          "subtitle": "MySQL",
+          "description": "Run a SQL query against a connection and view the results",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "command-palette",
+          "title": "Common Commands",
+          "subtitle": "MySQL",
+          "description": "Run common MySQL commands such as Show Databases or Process List",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "browse-schema",
+          "title": "Browse Schema",
+          "subtitle": "MySQL",
+          "description": "Browse databases, tables, and columns",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "query-history",
+          "title": "Query History",
+          "subtitle": "MySQL",
+          "description": "Browse, re-run, and favorite recent queries",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "manage-connections",
+          "title": "Manage Connections",
+          "subtitle": "MySQL",
+          "description": "Add and edit MySQL connection profiles and pick the default one",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "defaultHost",
+          "type": "textfield",
+          "required": false,
+          "title": "Host",
+          "placeholder": "127.0.0.1",
+          "description": "Fallback connection used only when no connection has been saved yet. For anything beyond a plain local server, use the Manage Connections command."
+        },
+        {
+          "name": "defaultPort",
+          "type": "textfield",
+          "required": false,
+          "title": "Port",
+          "placeholder": "3306",
+          "description": "Port for the fallback connection (defaults to 3306)"
+        },
+        {
+          "name": "defaultUser",
+          "type": "textfield",
+          "required": false,
+          "title": "User",
+          "placeholder": "root",
+          "description": "Username for the fallback connection"
+        },
+        {
+          "name": "defaultPassword",
+          "type": "password",
+          "required": false,
+          "title": "Password",
+          "description": "Password for the fallback connection"
+        },
+        {
+          "name": "defaultSsl",
+          "type": "dropdown",
+          "required": false,
+          "title": "SSL",
+          "default": "off",
+          "description": "TLS mode for the fallback connection",
+          "data": [
+            {
+              "title": "Off",
+              "value": "off"
+            },
+            {
+              "title": "Require (validate certificate)",
+              "value": "require"
+            },
+            {
+              "title": "Require (skip verification)",
+              "value": "insecure"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "n8n",
       "title": "n8n",
       "description": "Control n8n via Raycast.",
@@ -158331,10 +158536,12 @@
     {
       "name": "notra",
       "title": "Notra",
-      "description": "View, manage, and create content with Notra directly from Raycast.",
+      "description": "Explore GEO analytics and manage Notra content directly from Raycast.",
       "icon": "extension-icon.png",
       "author": "dominikdev",
-      "contributors": [],
+      "contributors": [
+        "janburzinski"
+      ],
       "categories": [
         "Developer Tools",
         "Productivity"
@@ -158352,6 +158559,15 @@
         "ref": "main"
       },
       "commands": [
+        {
+          "name": "geo",
+          "title": "View GEO Analytics",
+          "subtitle": "Notra",
+          "description": "Explore visibility, prompts, competitors, content gaps, readiness, scans, and AI traffic",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
         {
           "name": "view-content",
           "title": "List Content",
@@ -158413,8 +158629,8 @@
           "type": "password",
           "required": true,
           "title": "API Key",
-          "description": "Your Notra API key with read & write access",
-          "placeholder": "Enter your read & write Notra API key"
+          "description": "Your organization-scoped Notra API key with read and write access",
+          "placeholder": "Enter your organization-scoped Notra API key"
         }
       ]
     },
@@ -176440,6 +176656,22 @@
           "mode": "no-view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "new-kiosk-window",
+          "title": "New Kiosk Window",
+          "description": "Open a new Kiosk window, optionally with a URL",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "new-incognito-space",
+          "title": "New Incognito Space",
+          "description": "Create and activate a new Incognito Space",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": [
@@ -183593,7 +183825,9 @@
       "description": "Instantly view active routes and their assigned ports.",
       "icon": "extension_icon.png",
       "author": "nbaglivo",
-      "contributors": [],
+      "contributors": [
+        "drewmcdonald"
+      ],
       "categories": [
         "Productivity",
         "Developer Tools"
@@ -183616,10 +183850,37 @@
           "description": "List active routes created by Portless",
           "mode": "view",
           "keywords": [],
-          "preferences": []
+          "preferences": [
+            {
+              "name": "primaryAction",
+              "type": "dropdown",
+              "required": false,
+              "default": "copy",
+              "title": "Primary Action",
+              "description": "Action to run when pressing Enter on a route. The other action moves to Cmd+Enter.",
+              "data": [
+                {
+                  "title": "Copy URL",
+                  "value": "copy"
+                },
+                {
+                  "title": "Open in Browser",
+                  "value": "open"
+                }
+              ]
+            }
+          ]
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "portlessExecutable",
+          "type": "file",
+          "required": false,
+          "title": "Portless Executable",
+          "description": "Pick a Portless executable, such as a project's node_modules/.bin/portless. Leave empty to resolve portless from PATH."
+        }
+      ]
     },
     {
       "name": "portreaper",
@@ -196283,20 +196544,20 @@
                   "value": "default"
                 },
                 {
-                  "title": "Gemini 2.5 Flash-Lite",
-                  "value": "gemini-2.5-flash-lite"
+                  "title": "Gemini 3.1 Flash-Lite",
+                  "value": "gemini-3.1-flash-lite"
                 },
                 {
-                  "title": "Gemini 2.5 Flash",
-                  "value": "gemini-2.5-flash"
+                  "title": "Gemini 3.5 Flash-Lite",
+                  "value": "gemini-3.5-flash-lite"
                 },
                 {
-                  "title": "Gemini 2.5 Pro",
-                  "value": "gemini-2.5-pro"
+                  "title": "Gemini 3.5 Flash",
+                  "value": "gemini-3.5-flash"
                 },
                 {
-                  "title": "Gemini 3.0 Flash",
-                  "value": "gemini-3-flash-preview"
+                  "title": "Gemini 3.7 Flash",
+                  "value": "gemini-3.7-flash"
                 },
                 {
                   "title": "Gemini 3.1 Pro",
@@ -196336,20 +196597,20 @@
                   "value": "default"
                 },
                 {
-                  "title": "Gemini 2.5 Flash-Lite",
-                  "value": "gemini-2.5-flash-lite"
+                  "title": "Gemini 3.1 Flash-Lite",
+                  "value": "gemini-3.1-flash-lite"
                 },
                 {
-                  "title": "Gemini 2.5 Flash",
-                  "value": "gemini-2.5-flash"
+                  "title": "Gemini 3.5 Flash-Lite",
+                  "value": "gemini-3.5-flash-lite"
                 },
                 {
-                  "title": "Gemini 2.5 Pro",
-                  "value": "gemini-2.5-pro"
+                  "title": "Gemini 3.5 Flash",
+                  "value": "gemini-3.5-flash"
                 },
                 {
-                  "title": "Gemini 3.0 Flash",
-                  "value": "gemini-3-flash-preview"
+                  "title": "Gemini 3.7 Flash",
+                  "value": "gemini-3.7-flash"
                 },
                 {
                   "title": "Gemini 3.1 Pro",
@@ -196389,20 +196650,20 @@
                   "value": "default"
                 },
                 {
-                  "title": "Gemini 2.5 Flash-Lite",
-                  "value": "gemini-2.5-flash-lite"
+                  "title": "Gemini 3.1 Flash-Lite",
+                  "value": "gemini-3.1-flash-lite"
                 },
                 {
-                  "title": "Gemini 2.5 Flash",
-                  "value": "gemini-2.5-flash"
+                  "title": "Gemini 3.5 Flash-Lite",
+                  "value": "gemini-3.5-flash-lite"
                 },
                 {
-                  "title": "Gemini 2.5 Pro",
-                  "value": "gemini-2.5-pro"
+                  "title": "Gemini 3.5 Flash",
+                  "value": "gemini-3.5-flash"
                 },
                 {
-                  "title": "Gemini 3.0 Flash",
-                  "value": "gemini-3-flash-preview"
+                  "title": "Gemini 3.7 Flash",
+                  "value": "gemini-3.7-flash"
                 },
                 {
                   "title": "Gemini 3.1 Pro",
@@ -196442,20 +196703,20 @@
                   "value": "default"
                 },
                 {
-                  "title": "Gemini 2.5 Flash-Lite",
-                  "value": "gemini-2.5-flash-lite"
+                  "title": "Gemini 3.1 Flash-Lite",
+                  "value": "gemini-3.1-flash-lite"
                 },
                 {
-                  "title": "Gemini 2.5 Flash",
-                  "value": "gemini-2.5-flash"
+                  "title": "Gemini 3.5 Flash-Lite",
+                  "value": "gemini-3.5-flash-lite"
                 },
                 {
-                  "title": "Gemini 2.5 Pro",
-                  "value": "gemini-2.5-pro"
+                  "title": "Gemini 3.5 Flash",
+                  "value": "gemini-3.5-flash"
                 },
                 {
-                  "title": "Gemini 3.0 Flash",
-                  "value": "gemini-3-flash-preview"
+                  "title": "Gemini 3.7 Flash",
+                  "value": "gemini-3.7-flash"
                 },
                 {
                   "title": "Gemini 3.1 Pro",
@@ -196495,20 +196756,20 @@
                   "value": "default"
                 },
                 {
-                  "title": "Gemini 2.5 Flash-Lite",
-                  "value": "gemini-2.5-flash-lite"
+                  "title": "Gemini 3.1 Flash-Lite",
+                  "value": "gemini-3.1-flash-lite"
                 },
                 {
-                  "title": "Gemini 2.5 Flash",
-                  "value": "gemini-2.5-flash"
+                  "title": "Gemini 3.5 Flash-Lite",
+                  "value": "gemini-3.5-flash-lite"
                 },
                 {
-                  "title": "Gemini 2.5 Pro",
-                  "value": "gemini-2.5-pro"
+                  "title": "Gemini 3.5 Flash",
+                  "value": "gemini-3.5-flash"
                 },
                 {
-                  "title": "Gemini 3.0 Flash",
-                  "value": "gemini-3-flash-preview"
+                  "title": "Gemini 3.7 Flash",
+                  "value": "gemini-3.7-flash"
                 },
                 {
                   "title": "Gemini 3.1 Pro",
@@ -196547,20 +196808,20 @@
                   "value": "default"
                 },
                 {
-                  "title": "Gemini 2.5 Flash-Lite",
-                  "value": "gemini-2.5-flash-lite"
+                  "title": "Gemini 3.1 Flash-Lite",
+                  "value": "gemini-3.1-flash-lite"
                 },
                 {
-                  "title": "Gemini 2.5 Flash",
-                  "value": "gemini-2.5-flash"
+                  "title": "Gemini 3.5 Flash-Lite",
+                  "value": "gemini-3.5-flash-lite"
                 },
                 {
-                  "title": "Gemini 2.5 Pro",
-                  "value": "gemini-2.5-pro"
+                  "title": "Gemini 3.5 Flash",
+                  "value": "gemini-3.5-flash"
                 },
                 {
-                  "title": "Gemini 3.0 Flash",
-                  "value": "gemini-3-flash-preview"
+                  "title": "Gemini 3.7 Flash",
+                  "value": "gemini-3.7-flash"
                 },
                 {
                   "title": "Gemini 3.1 Pro",
@@ -196599,20 +196860,20 @@
                   "value": "default"
                 },
                 {
-                  "title": "Gemini 2.5 Flash-Lite",
-                  "value": "gemini-2.5-flash-lite"
+                  "title": "Gemini 3.1 Flash-Lite",
+                  "value": "gemini-3.1-flash-lite"
                 },
                 {
-                  "title": "Gemini 2.5 Flash",
-                  "value": "gemini-2.5-flash"
+                  "title": "Gemini 3.5 Flash-Lite",
+                  "value": "gemini-3.5-flash-lite"
                 },
                 {
-                  "title": "Gemini 2.5 Pro",
-                  "value": "gemini-2.5-pro"
+                  "title": "Gemini 3.5 Flash",
+                  "value": "gemini-3.5-flash"
                 },
                 {
-                  "title": "Gemini 3.0 Flash",
-                  "value": "gemini-3-flash-preview"
+                  "title": "Gemini 3.7 Flash",
+                  "value": "gemini-3.7-flash"
                 },
                 {
                   "title": "Gemini 3.1 Pro",
@@ -196651,20 +196912,20 @@
                   "value": "default"
                 },
                 {
-                  "title": "Gemini 2.5 Flash-Lite",
-                  "value": "gemini-2.5-flash-lite"
+                  "title": "Gemini 3.1 Flash-Lite",
+                  "value": "gemini-3.1-flash-lite"
                 },
                 {
-                  "title": "Gemini 2.5 Flash",
-                  "value": "gemini-2.5-flash"
+                  "title": "Gemini 3.5 Flash-Lite",
+                  "value": "gemini-3.5-flash-lite"
                 },
                 {
-                  "title": "Gemini 2.5 Pro",
-                  "value": "gemini-2.5-pro"
+                  "title": "Gemini 3.5 Flash",
+                  "value": "gemini-3.5-flash"
                 },
                 {
-                  "title": "Gemini 3.0 Flash",
-                  "value": "gemini-3-flash-preview"
+                  "title": "Gemini 3.7 Flash",
+                  "value": "gemini-3.7-flash"
                 },
                 {
                   "title": "Gemini 3.1 Pro",
@@ -196703,20 +196964,20 @@
                   "value": "default"
                 },
                 {
-                  "title": "Gemini 2.5 Flash-Lite",
-                  "value": "gemini-2.5-flash-lite"
+                  "title": "Gemini 3.1 Flash-Lite",
+                  "value": "gemini-3.1-flash-lite"
                 },
                 {
-                  "title": "Gemini 2.5 Flash",
-                  "value": "gemini-2.5-flash"
+                  "title": "Gemini 3.5 Flash-Lite",
+                  "value": "gemini-3.5-flash-lite"
                 },
                 {
-                  "title": "Gemini 2.5 Pro",
-                  "value": "gemini-2.5-pro"
+                  "title": "Gemini 3.5 Flash",
+                  "value": "gemini-3.5-flash"
                 },
                 {
-                  "title": "Gemini 3.0 Flash",
-                  "value": "gemini-3-flash-preview"
+                  "title": "Gemini 3.7 Flash",
+                  "value": "gemini-3.7-flash"
                 },
                 {
                   "title": "Gemini 3.1 Pro",
@@ -196755,20 +197016,20 @@
                   "value": "default"
                 },
                 {
-                  "title": "Gemini 2.5 Flash-Lite",
-                  "value": "gemini-2.5-flash-lite"
+                  "title": "Gemini 3.1 Flash-Lite",
+                  "value": "gemini-3.1-flash-lite"
                 },
                 {
-                  "title": "Gemini 2.5 Flash",
-                  "value": "gemini-2.5-flash"
+                  "title": "Gemini 3.5 Flash-Lite",
+                  "value": "gemini-3.5-flash-lite"
                 },
                 {
-                  "title": "Gemini 2.5 Pro",
-                  "value": "gemini-2.5-pro"
+                  "title": "Gemini 3.5 Flash",
+                  "value": "gemini-3.5-flash"
                 },
                 {
-                  "title": "Gemini 3.0 Flash",
-                  "value": "gemini-3-flash-preview"
+                  "title": "Gemini 3.7 Flash",
+                  "value": "gemini-3.7-flash"
                 },
                 {
                   "title": "Gemini 3.1 Pro",
@@ -196807,20 +197068,20 @@
                   "value": "default"
                 },
                 {
-                  "title": "Gemini 2.5 Flash-Lite",
-                  "value": "gemini-2.5-flash-lite"
+                  "title": "Gemini 3.1 Flash-Lite",
+                  "value": "gemini-3.1-flash-lite"
                 },
                 {
-                  "title": "Gemini 2.5 Flash",
-                  "value": "gemini-2.5-flash"
+                  "title": "Gemini 3.5 Flash-Lite",
+                  "value": "gemini-3.5-flash-lite"
                 },
                 {
-                  "title": "Gemini 2.5 Pro",
-                  "value": "gemini-2.5-pro"
+                  "title": "Gemini 3.5 Flash",
+                  "value": "gemini-3.5-flash"
                 },
                 {
-                  "title": "Gemini 3.0 Flash",
-                  "value": "gemini-3-flash-preview"
+                  "title": "Gemini 3.7 Flash",
+                  "value": "gemini-3.7-flash"
                 },
                 {
                   "title": "Gemini 3.1 Pro",
@@ -196859,20 +197120,20 @@
                   "value": "default"
                 },
                 {
-                  "title": "Gemini 2.5 Flash-Lite",
-                  "value": "gemini-2.5-flash-lite"
+                  "title": "Gemini 3.1 Flash-Lite",
+                  "value": "gemini-3.1-flash-lite"
                 },
                 {
-                  "title": "Gemini 2.5 Flash",
-                  "value": "gemini-2.5-flash"
+                  "title": "Gemini 3.5 Flash-Lite",
+                  "value": "gemini-3.5-flash-lite"
                 },
                 {
-                  "title": "Gemini 2.5 Pro",
-                  "value": "gemini-2.5-pro"
+                  "title": "Gemini 3.5 Flash",
+                  "value": "gemini-3.5-flash"
                 },
                 {
-                  "title": "Gemini 3.0 Flash",
-                  "value": "gemini-3-flash-preview"
+                  "title": "Gemini 3.7 Flash",
+                  "value": "gemini-3.7-flash"
                 },
                 {
                   "title": "Gemini 3.1 Pro",
@@ -196911,20 +197172,20 @@
                   "value": "default"
                 },
                 {
-                  "title": "Gemini 2.5 Flash-Lite",
-                  "value": "gemini-2.5-flash-lite"
+                  "title": "Gemini 3.1 Flash-Lite",
+                  "value": "gemini-3.1-flash-lite"
                 },
                 {
-                  "title": "Gemini 2.5 Flash",
-                  "value": "gemini-2.5-flash"
+                  "title": "Gemini 3.5 Flash-Lite",
+                  "value": "gemini-3.5-flash-lite"
                 },
                 {
-                  "title": "Gemini 2.5 Pro",
-                  "value": "gemini-2.5-pro"
+                  "title": "Gemini 3.5 Flash",
+                  "value": "gemini-3.5-flash"
                 },
                 {
-                  "title": "Gemini 3.0 Flash",
-                  "value": "gemini-3-flash-preview"
+                  "title": "Gemini 3.7 Flash",
+                  "value": "gemini-3.7-flash"
                 },
                 {
                   "title": "Gemini 3.1 Pro",
@@ -196963,20 +197224,20 @@
                   "value": "default"
                 },
                 {
-                  "title": "Gemini 2.5 Flash-Lite",
-                  "value": "gemini-2.5-flash-lite"
+                  "title": "Gemini 3.1 Flash-Lite",
+                  "value": "gemini-3.1-flash-lite"
                 },
                 {
-                  "title": "Gemini 2.5 Flash",
-                  "value": "gemini-2.5-flash"
+                  "title": "Gemini 3.5 Flash-Lite",
+                  "value": "gemini-3.5-flash-lite"
                 },
                 {
-                  "title": "Gemini 2.5 Pro",
-                  "value": "gemini-2.5-pro"
+                  "title": "Gemini 3.5 Flash",
+                  "value": "gemini-3.5-flash"
                 },
                 {
-                  "title": "Gemini 3.0 Flash",
-                  "value": "gemini-3-flash-preview"
+                  "title": "Gemini 3.7 Flash",
+                  "value": "gemini-3.7-flash"
                 },
                 {
                   "title": "Gemini 3.1 Pro",
@@ -197015,20 +197276,20 @@
                   "value": "default"
                 },
                 {
-                  "title": "Gemini 2.5 Flash-Lite",
-                  "value": "gemini-2.5-flash-lite"
+                  "title": "Gemini 3.1 Flash-Lite",
+                  "value": "gemini-3.1-flash-lite"
                 },
                 {
-                  "title": "Gemini 2.5 Flash",
-                  "value": "gemini-2.5-flash"
+                  "title": "Gemini 3.5 Flash-Lite",
+                  "value": "gemini-3.5-flash-lite"
                 },
                 {
-                  "title": "Gemini 2.5 Pro",
-                  "value": "gemini-2.5-pro"
+                  "title": "Gemini 3.5 Flash",
+                  "value": "gemini-3.5-flash"
                 },
                 {
-                  "title": "Gemini 3.0 Flash",
-                  "value": "gemini-3-flash-preview"
+                  "title": "Gemini 3.7 Flash",
+                  "value": "gemini-3.7-flash"
                 },
                 {
                   "title": "Gemini 3.1 Pro",
@@ -197077,23 +197338,23 @@
           "title": "Model",
           "type": "dropdown",
           "required": false,
-          "default": "gemini-2.5-flash",
+          "default": "gemini-3.7-flash",
           "data": [
             {
-              "title": "Gemini 2.5 Flash-Lite",
-              "value": "gemini-2.5-flash-lite"
+              "title": "Gemini 3.1 Flash-Lite",
+              "value": "gemini-3.1-flash-lite"
             },
             {
-              "title": "Gemini 2.5 Flash",
-              "value": "gemini-2.5-flash"
+              "title": "Gemini 3.5 Flash-Lite",
+              "value": "gemini-3.5-flash-lite"
             },
             {
-              "title": "Gemini 2.5 Pro",
-              "value": "gemini-2.5-pro"
+              "title": "Gemini 3.5 Flash",
+              "value": "gemini-3.5-flash"
             },
             {
-              "title": "Gemini 3.0 Flash",
-              "value": "gemini-3-flash-preview"
+              "title": "Gemini 3.7 Flash",
+              "value": "gemini-3.7-flash"
             },
             {
               "title": "Gemini 3.1 Pro",
@@ -229746,7 +230007,8 @@
         "hugodemenez",
         "alexi.build",
         "shivraj-roy",
-        "ridemountainpig"
+        "ridemountainpig",
+        "clemenzi"
       ],
       "categories": [
         "Media",
@@ -266126,7 +266388,8 @@
         "jkker",
         "sillashead",
         "KamilDev",
-        "muhammadrizo"
+        "muhammadrizo",
+        "Tambouil"
       ],
       "categories": [],
       "license": "MIT",
@@ -272562,11 +272825,16 @@
       "preferences": [
         {
           "name": "primaryAction",
+          "title": "Primary Action",
           "description": "Choose the primary action for a wallpaper",
           "type": "dropdown",
           "required": false,
-          "title": "Primary Action",
+          "default": "previewWallpaper",
           "data": [
+            {
+              "title": "Preview Wallpaper",
+              "value": "previewWallpaper"
+            },
             {
               "title": "Set Wallpaper",
               "value": "setWallpaper"
@@ -273582,7 +273850,8 @@
         "christi4nity",
         "mattiacolombomc",
         "yonn",
-        "traviscooksfdc"
+        "traviscooksfdc",
+        "tim_gailey"
       ],
       "categories": [
         "Productivity",
