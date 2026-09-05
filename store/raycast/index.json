@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-04T20:47:51.900Z",
+  "generatedAt": "2026-09-05T20:18:51.739Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "8a9cc335875faac463995b510564e5a7053b6885"
+    "commit": "a2de6c8cb80780607ed39b554d077a5b71c73a41"
   },
-  "count": 3253,
+  "count": 3258,
   "extensions": [
     {
       "name": "0x0",
@@ -4098,7 +4098,10 @@
         "Data"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "version": "1.0.0",
       "storeUrl": "https://www.raycast.com/JonathanRReed/ai-stats",
       "source": {
@@ -7517,6 +7520,40 @@
           "name": "search-android-version",
           "title": "Search Android Version",
           "description": "Search quickly between Android version, API level, codename.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "andromeld",
+      "title": "AndroMeld",
+      "description": "Search the apps on your Android device and open them on the Mac. Requires AndroMeld for Mac (https://andromeld.catchingnow.com) with a connected device.",
+      "icon": "extension-icon.png",
+      "author": "catchingnow",
+      "contributors": [],
+      "categories": [
+        "Applications"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/catchingnow/andromeld",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/andromeld",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-android-apps",
+          "title": "Search Android Apps",
+          "subtitle": "AndroMeld",
+          "description": "Search the apps on your connected Android device and open them on the Mac.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -126315,6 +126352,68 @@
       ]
     },
     {
+      "name": "kuandohub",
+      "title": "KuandoHUB",
+      "description": "Control your Kuando Busylight through the kuandoHUB HTTP API",
+      "icon": "extension-icon.png",
+      "author": "lyager",
+      "contributors": [],
+      "categories": [
+        "Communication"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/lyager/kuandohub",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/kuandohub",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "set-busy",
+          "title": "Set Busy",
+          "description": "Turn the Busylight red (busy)",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "busy.png",
+          "preferences": []
+        },
+        {
+          "name": "set-available",
+          "title": "Set Available",
+          "description": "Turn the Busylight green (available)",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "available.png",
+          "preferences": []
+        },
+        {
+          "name": "turn-off",
+          "title": "Turn Off Light",
+          "description": "Turn the Busylight off",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "off.png",
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "baseUrl",
+          "type": "textfield",
+          "required": false,
+          "title": "KuandoHUB URL",
+          "description": "Base URL of the kuandoHUB HTTP server (Advanced Settings in kuandoHUB)",
+          "default": "http://localhost:8989",
+          "placeholder": "http://localhost:8989"
+        }
+      ]
+    },
+    {
       "name": "kubectx",
       "title": "kubectx",
       "description": "Switch between clusters from Raycast",
@@ -128774,7 +128873,9 @@
         "Security"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/alex-popov-tech/lastpass",
       "source": {
         "type": "github-monorepo",
@@ -140623,6 +140724,101 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "mealie",
+      "title": "Mealie",
+      "description": "Manage Mealie shopping lists and meal plans, import recipes and search your recipe collection.",
+      "icon": "extension-icon.png",
+      "author": "joschka_rick",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/joschka_rick/mealie",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/mealie",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-recipes",
+          "title": "Search Recipes",
+          "subtitle": "Mealie",
+          "description": "Search your Mealie recipes and open them in the browser.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "add-to-shopping-list",
+          "title": "Add to Shopping List",
+          "subtitle": "Mealie",
+          "description": "Quickly add an item to a Mealie shopping list.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "shopping-lists",
+          "title": "Shopping Lists",
+          "subtitle": "Mealie",
+          "description": "Browse and manage your Mealie shopping lists.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "meal-plan",
+          "title": "Meal Plan",
+          "subtitle": "Mealie",
+          "description": "View and edit your Mealie meal plan for the week.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "import-recipe",
+          "title": "Import Recipe",
+          "subtitle": "Mealie",
+          "description": "Import a recipe into Mealie from a URL.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "mealieUrl",
+          "title": "Mealie URL",
+          "description": "Base URL of your Mealie instance, for example https://mealie.example.org",
+          "type": "textfield",
+          "required": true,
+          "placeholder": "https://mealie.example.org"
+        },
+        {
+          "name": "apiToken",
+          "title": "API Token",
+          "description": "Mealie API token. Create one in Mealie under Settings, API Tokens.",
+          "type": "password",
+          "required": true
+        },
+        {
+          "name": "allowInsecureHttp",
+          "title": "Insecure Connections",
+          "label": "Allow plain HTTP outside localhost",
+          "description": "Only enable this if your Mealie instance is reachable over HTTP inside a trusted network. Your API token is sent unencrypted.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        }
+      ]
     },
     {
       "name": "media-converter",
@@ -195178,7 +195374,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/JonathanRReed/ray-clicker",
       "source": {
@@ -226979,6 +227176,216 @@
       ]
     },
     {
+      "name": "sowiks",
+      "title": "Sowiks: Screenshot & Recording",
+      "description": "Take screenshots and screen recordings with Sowiks — area, window, fullscreen and scrolling capture, OCR text, video and GIF recording, annotation and cloud sharing, straight from Raycast.",
+      "icon": "extension-icon.png",
+      "author": "Holiney",
+      "contributors": [],
+      "categories": [
+        "Applications",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/Holiney/sowiks",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/sowiks",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "capture-area",
+          "title": "Capture Area",
+          "subtitle": "Sowiks",
+          "description": "Select an area of the screen to capture",
+          "mode": "no-view",
+          "keywords": [
+            "screenshot",
+            "snip",
+            "grab",
+            "crop",
+            "region"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "capture-fixed-size",
+          "title": "Capture Fixed Size",
+          "subtitle": "Sowiks",
+          "description": "Capture an area at a preset size",
+          "mode": "no-view",
+          "keywords": [
+            "screenshot",
+            "fixed size",
+            "exact size"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "capture-fullscreen",
+          "title": "Capture Fullscreen",
+          "subtitle": "Sowiks",
+          "description": "Capture the entire screen",
+          "mode": "no-view",
+          "keywords": [
+            "screenshot",
+            "full screen",
+            "whole screen"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "capture-window",
+          "title": "Capture Window",
+          "subtitle": "Sowiks",
+          "description": "Pick a window and capture it",
+          "mode": "no-view",
+          "keywords": [
+            "screenshot",
+            "window",
+            "app screenshot"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "capture-text",
+          "title": "Capture Text",
+          "subtitle": "Sowiks",
+          "description": "Recognize text on screen with OCR",
+          "mode": "no-view",
+          "keywords": [
+            "ocr",
+            "copy text",
+            "text recognition",
+            "read text"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "capture-scrolling",
+          "title": "Scrolling Capture",
+          "subtitle": "Sowiks",
+          "description": "Capture content that extends past the screen",
+          "mode": "no-view",
+          "keywords": [
+            "scrolling screenshot",
+            "long screenshot",
+            "full page"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "self-timer",
+          "title": "Capture with Self-Timer",
+          "subtitle": "Sowiks",
+          "description": "Capture an area after a countdown",
+          "mode": "no-view",
+          "keywords": [
+            "screenshot",
+            "timer",
+            "delayed capture"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "capture-collection",
+          "title": "Capture Collection",
+          "subtitle": "Sowiks",
+          "description": "Capture several shots into one collection",
+          "mode": "no-view",
+          "keywords": [
+            "screenshot",
+            "multiple",
+            "batch"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "record-screen",
+          "title": "Toggle Screen Recording",
+          "subtitle": "Sowiks",
+          "description": "Start or stop a screen recording",
+          "mode": "no-view",
+          "keywords": [
+            "screen recording",
+            "screencast",
+            "video",
+            "gif"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "pause-recording",
+          "title": "Pause or Resume Recording",
+          "subtitle": "Sowiks",
+          "description": "Pause or resume the recording in progress",
+          "mode": "no-view",
+          "keywords": [
+            "screen recording",
+            "pause",
+            "resume"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "unpin-all",
+          "title": "Unpin All",
+          "subtitle": "Sowiks",
+          "description": "Close every pinned screenshot",
+          "mode": "no-view",
+          "keywords": [
+            "screenshot",
+            "pins",
+            "close all"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "open-settings",
+          "title": "Open Settings",
+          "subtitle": "Sowiks",
+          "description": "Open Sowiks settings",
+          "mode": "no-view",
+          "keywords": [
+            "preferences",
+            "settings"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "open-dashboard",
+          "title": "Open Dashboard",
+          "subtitle": "Sowiks",
+          "description": "Open your Sowiks cloud dashboard in the browser",
+          "mode": "no-view",
+          "keywords": [
+            "screenshots",
+            "history",
+            "cloud"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "manage-integrations",
+          "title": "Manage Integrations",
+          "subtitle": "Sowiks",
+          "description": "Manage connected sites on sowiks.com",
+          "mode": "no-view",
+          "keywords": [
+            "integrations",
+            "connected sites"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "spacejump",
       "title": "SpaceJump",
       "description": "Switch and manage macOS desktop Spaces with SpaceJump",
@@ -235207,6 +235614,136 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "sunsama",
+      "title": "Sunsama",
+      "description": "Create, Edit, View, and Delete Tasks in Sunsama",
+      "icon": "extension-icon.png",
+      "author": "artistro08",
+      "contributors": [],
+      "categories": [
+        "Applications",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows",
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/artistro08/sunsama",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/sunsama",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "add-task",
+          "title": "Add Task",
+          "subtitle": "Sunsama",
+          "description": "Add a task to Sunsama, optionally linked to a URL (Trello, GitHub, Todoist, ClickUp, ...)",
+          "mode": "view",
+          "keywords": [
+            "create",
+            "create task",
+            "new task",
+            "todo",
+            "task"
+          ],
+          "icon": "extension-icon.png",
+          "preferences": [
+            {
+              "name": "rememberChannelMinutes",
+              "type": "dropdown",
+              "required": false,
+              "default": "0",
+              "title": "Reuse Last Channel",
+              "description": "Preselect the channel you last created a task in, if you used it recently. Falls back to the default channel after that.",
+              "data": [
+                {
+                  "title": "Off",
+                  "value": "0"
+                },
+                {
+                  "title": "For 3 minutes",
+                  "value": "3"
+                },
+                {
+                  "title": "For 5 minutes",
+                  "value": "5"
+                },
+                {
+                  "title": "For 15 minutes",
+                  "value": "15"
+                },
+                {
+                  "title": "For 1 hour",
+                  "value": "60"
+                }
+              ]
+            },
+            {
+              "name": "defaultPosition",
+              "type": "dropdown",
+              "required": false,
+              "default": "top",
+              "title": "Default Position",
+              "description": "Where new tasks are placed in the day by default.",
+              "data": [
+                {
+                  "title": "Top of day",
+                  "value": "top"
+                },
+                {
+                  "title": "Bottom of day",
+                  "value": "bottom"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "view-today",
+          "title": "View Today's Tasks",
+          "subtitle": "Sunsama",
+          "description": "View, edit, delete, and add subtasks to today's tasks",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": [
+            {
+              "name": "showCompleted",
+              "type": "checkbox",
+              "required": false,
+              "default": false,
+              "label": "Show completed tasks",
+              "description": "Show today's completed tasks (at the bottom of the list)."
+            }
+          ]
+        },
+        {
+          "name": "set-default-channel",
+          "title": "Set Default Channel",
+          "subtitle": "Sunsama",
+          "description": "Choose the channel new tasks default to",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "workspaceUrl",
+          "type": "textfield",
+          "required": false,
+          "title": "Workspace URL",
+          "placeholder": "https://app.sunsama.com/group/your-workspace",
+          "description": "Lets Open in Sunsama jump straight to a task. Copy it from the address bar while Sunsama is open. Without it, Open in Sunsama opens the app's home page."
+        }
+      ]
     },
     {
       "name": "supabase",
