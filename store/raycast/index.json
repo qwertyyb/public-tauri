@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-05T20:18:51.739Z",
+  "generatedAt": "2026-09-06T20:22:58.811Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "a2de6c8cb80780607ed39b554d077a5b71c73a41"
+    "commit": "4110beaf30c80b1d00345ee8f1e21221e77a4c63"
   },
   "count": 3258,
   "extensions": [
@@ -38703,7 +38703,8 @@
         "xmok",
         "taken",
         "nbbaier",
-        "ilian"
+        "ilian",
+        "ray.dhruv"
       ],
       "categories": [
         "Developer Tools",
@@ -38732,10 +38733,82 @@
           "preferences": []
         },
         {
+          "name": "view-zone-analytics",
+          "title": "View Zone Analytics",
+          "subtitle": "Cloudflare",
+          "description": "View traffic, bandwidth, cache, visitor, and threat metrics",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "view-zone-settings",
+          "title": "View Zone Settings",
+          "subtitle": "Cloudflare",
+          "description": "Review SSL, protocol, security, performance, and cache settings",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "view-ssl-certificates",
+          "title": "View SSL Certificates",
+          "subtitle": "Cloudflare",
+          "description": "Inspect certificate status, expiry, hosts, issuer, and validation errors",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-dns-records",
+          "title": "Search DNS Records",
+          "subtitle": "Cloudflare",
+          "description": "Search and edit DNS records across all zones",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "quick-create-dns-record",
+          "title": "Quick Create DNS Record",
+          "subtitle": "Cloudflare",
+          "description": "Create a DNS record in any accessible zone",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "dns-toolkit",
+          "title": "DNS Toolkit",
+          "subtitle": "Cloudflare",
+          "description": "Check DNS health, manage DNSSEC, and import, export, or bulk edit records",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "purge-cache",
+          "title": "Purge Cache",
+          "subtitle": "Cloudflare",
+          "description": "Purge cached content for a zone",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "view-pages",
           "title": "View Pages",
           "subtitle": "Cloudflare",
           "description": "Lists your page projects",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "view-deployments",
+          "title": "View Deployments",
+          "subtitle": "Cloudflare",
+          "description": "View recent Pages and Workers deployments",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -38750,10 +38823,28 @@
           "preferences": []
         },
         {
+          "name": "view-audit-logs",
+          "title": "View Audit Logs",
+          "subtitle": "Cloudflare",
+          "description": "View recent Cloudflare account activity",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "view-workers",
           "title": "View Workers",
           "subtitle": "Cloudflare",
           "description": "Lists your workers",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "view-worker-routes",
+          "title": "View Worker Routes",
+          "subtitle": "Cloudflare",
+          "description": "Inspect route patterns and the Workers attached to them",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -38763,10 +38854,10 @@
         {
           "name": "token",
           "type": "password",
-          "required": true,
-          "title": "API Token",
-          "description": "API token",
-          "placeholder": "Your token"
+          "required": false,
+          "title": "API Token (Optional)",
+          "description": "Use an API token instead of OAuth",
+          "placeholder": "Your API token"
         }
       ]
     },
@@ -39707,7 +39798,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/aelew/cobalt",
       "source": {
