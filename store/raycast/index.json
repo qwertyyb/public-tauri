@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-06T20:22:58.811Z",
+  "generatedAt": "2026-09-07T21:33:32.065Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "4110beaf30c80b1d00345ee8f1e21221e77a4c63"
+    "commit": "80e0b27435acfe057635b12d48544a4f813e4e97"
   },
-  "count": 3258,
+  "count": 3265,
   "extensions": [
     {
       "name": "0x0",
@@ -1954,6 +1954,159 @@
       ]
     },
     {
+      "name": "adjacent",
+      "title": "Adjacent",
+      "description": "Browse, search, and read news on Adjacent prediction markets, indices, and rates.",
+      "icon": "icon.png",
+      "author": "Lucas-Kohorst",
+      "contributors": [],
+      "categories": [
+        "Finance",
+        "News",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "0.1.0",
+      "storeUrl": "https://www.raycast.com/Lucas-Kohorst/adjacent",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/adjacent",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "browse",
+          "title": "Browse",
+          "subtitle": "Adjacent",
+          "description": "Browse events, markets, indices, and rates.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search",
+          "title": "Search",
+          "subtitle": "Adjacent",
+          "description": "Find events, markets, indices, and rates.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "news",
+          "title": "News",
+          "subtitle": "Adjacent",
+          "description": "Latest headlines and related markets. API key required.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "menu-bar",
+          "title": "Menu Bar",
+          "subtitle": "Adjacent",
+          "description": "Live index levels in the menu bar.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "type": "password",
+          "required": false,
+          "title": "API Key",
+          "description": "Optional Adjacent API key (ak_…). Without a key, lists and prices use the 15-minute-delayed public snapshot. News, candles, similar markets, trades, and quotes need a key.",
+          "placeholder": "ak_…"
+        },
+        {
+          "name": "defaultTimeframe",
+          "type": "dropdown",
+          "required": false,
+          "title": "Default Price Window",
+          "description": "Used when opening price history from a detail view.",
+          "default": "30d",
+          "data": [
+            {
+              "title": "15 minutes",
+              "value": "15m"
+            },
+            {
+              "title": "30 minutes",
+              "value": "30m"
+            },
+            {
+              "title": "1 hour",
+              "value": "1h"
+            },
+            {
+              "title": "6 hours",
+              "value": "6h"
+            },
+            {
+              "title": "12 hours",
+              "value": "12h"
+            },
+            {
+              "title": "24 hours",
+              "value": "24h"
+            },
+            {
+              "title": "7 days",
+              "value": "7d"
+            },
+            {
+              "title": "30 days",
+              "value": "30d"
+            },
+            {
+              "title": "90 days",
+              "value": "90d"
+            }
+          ]
+        },
+        {
+          "name": "cycleSeconds",
+          "type": "dropdown",
+          "required": false,
+          "title": "Menu Bar Cycle",
+          "description": "How long each index stays in the menu bar before the next one.",
+          "default": "15",
+          "data": [
+            {
+              "title": "5 seconds",
+              "value": "5"
+            },
+            {
+              "title": "10 seconds",
+              "value": "10"
+            },
+            {
+              "title": "15 seconds",
+              "value": "15"
+            },
+            {
+              "title": "30 seconds",
+              "value": "30"
+            },
+            {
+              "title": "60 seconds",
+              "value": "60"
+            },
+            {
+              "title": "Off",
+              "value": "0"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "ado-search",
       "title": "Azure DevOps Repositories Search",
       "description": "Search through Azure DevOps git repositories and find open Pull Requests",
@@ -3531,17 +3684,10 @@
           "required": false
         },
         {
-          "name": "opencodegoWorkspaceId",
-          "type": "textfield",
-          "title": "OpenCode Go Workspace ID",
-          "description": "Your OpenCode workspace ID (e.g. wrk_abc123 or just the suffix after wrk_). Found in the OpenCode dashboard URL.",
-          "required": false
-        },
-        {
-          "name": "opencodegoAuthCookie",
+          "name": "opencodegoApiKey",
           "type": "password",
-          "title": "OpenCode Go Auth Cookie",
-          "description": "The 'auth' cookie value from your OpenCode session. Open opencode.ai, log in, then copy the 'auth' cookie from DevTools (Application → Cookies).",
+          "title": "OpenCode Go API Key (Optional)",
+          "description": "Auto-detected from OpenCode login. Fallback: paste your OpenCode Zen API key from https://opencode.ai/settings (used to call the zen/go/v1/usage API).",
           "required": false
         },
         {
@@ -11394,7 +11540,8 @@
         "ramith123",
         "sch01ar",
         "0xdhrv",
-        "kendaniels"
+        "kendaniels",
+        "isabhiii"
       ],
       "categories": [
         "Productivity",
@@ -11434,6 +11581,14 @@
               "required": false,
               "label": "Use Time of Day Grouping",
               "description": "When enabled, today's reminders will be grouped by the time of day they are due.",
+              "default": false
+            },
+            {
+              "name": "displayDueDateWithTime",
+              "type": "checkbox",
+              "required": false,
+              "label": "Display Exact Due Time",
+              "description": "When enabled, list items show the exact time (e.g. 10:00 AM) instead of relative time (e.g. 'in 2 hours').",
               "default": false
             }
           ]
@@ -21939,6 +22094,133 @@
       ]
     },
     {
+      "name": "bitcoin-tools",
+      "title": "Bitcoin Tools",
+      "description": "Generate, convert, and inspect Bitcoin SV keys, addresses, scripts, transactions, and market data.",
+      "icon": "bitcoin-tools-app-icon.png",
+      "author": "satchmo",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Finance"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "0.0.1",
+      "storeUrl": "https://www.raycast.com/satchmo/bitcoin-tools",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/bitcoin-tools",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "copy-address-from-wif",
+          "title": "Copy Address from WIF",
+          "description": "Convert a WIF private key to its BSV address and copy it to the clipboard",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "p2pkh-script-from-address",
+          "title": "Create P2PKH Script",
+          "description": "Create a Pay to Public Key Hash locking script from a BSV address",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "address-from-pubkey-hash",
+          "title": "Create Address from Public Key Hash",
+          "description": "Create a BSV address from a 20-byte public key hash",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "generate-address",
+          "title": "Generate BSV Address",
+          "description": "Generate a random BSV address and use the configured output behavior",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "generate-xpub",
+          "title": "Generate BIP32 XPUB",
+          "description": "Generate a random BIP32 extended public key and use the configured output behavior",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "generate-xpriv",
+          "title": "Generate BIP32 XPRIV",
+          "description": "Generate a random BIP32 extended private key and use the configured output behavior",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "generate-private-key",
+          "title": "Generate Private Key (WIF)",
+          "description": "Generate a random WIF private key and use the configured output behavior",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "decode-transaction",
+          "title": "Decode Transaction",
+          "description": "Decode a raw BSV transaction into a readable summary",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "bsv-price-menu-bar",
+          "title": "BSV Price in Menu Bar",
+          "description": "See the current BSV price and block height in the menu bar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "bitcoin-price",
+          "title": "View Bitcoin Price",
+          "subtitle": "BSV",
+          "description": "View current Bitcoin SV market and chain data",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "copy",
+          "description": "Determines whether generated non-secret values are copied to the clipboard. WIF and XPRIV values are always copied.",
+          "type": "checkbox",
+          "default": true,
+          "required": true,
+          "title": "Copy Generated Values",
+          "label": "Copy"
+        },
+        {
+          "name": "insert",
+          "description": "Determines whether generated non-secret values are inserted into the currently focused app. WIF and XPRIV values are never inserted.",
+          "type": "checkbox",
+          "default": false,
+          "required": true,
+          "title": "Insert Generated Values",
+          "label": "Insert"
+        }
+      ]
+    },
+    {
       "name": "bitfinex",
       "title": "Bitfinex",
       "description": "A Raycast extension built for Bitfinex margin funding",
@@ -26574,7 +26856,8 @@
         "msms",
         "0xdhrv",
         "pernielsentikaer",
-        "haneul486"
+        "haneul486",
+        "just_me"
       ],
       "categories": [
         "Web"
@@ -39788,7 +40071,8 @@
       "icon": "command-icon.png",
       "author": "aelew",
       "contributors": [
-        "ripgrim"
+        "ripgrim",
+        "just_me"
       ],
       "categories": [
         "Applications",
@@ -41453,6 +41737,75 @@
           "type": "checkbox",
           "default": true,
           "required": true
+        }
+      ]
+    },
+    {
+      "name": "codex-sessions",
+      "title": "Codex Sessions",
+      "description": "Live Working / Done · Unread status for local Codex sessions — fuzzy-find them from Codex's on-disk state, resume in Desktop or the terminal, and jump between projects",
+      "icon": "extension-icon.png",
+      "author": "jomatsu",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/jomatsu/codex-sessions",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/codex-sessions",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-sessions",
+          "title": "Search Codex Sessions",
+          "description": "Search all local Codex threads and open them in Codex Desktop or the terminal",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-project",
+          "title": "Open Codex Project",
+          "description": "Open a project folder in Codex Desktop, ranked by how often you use it",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "codexCliPath",
+          "type": "textfield",
+          "required": false,
+          "title": "Codex CLI Path",
+          "description": "Absolute path to the codex binary. Leave empty to auto-detect.",
+          "placeholder": "~/.local/bin/codex"
+        },
+        {
+          "name": "terminalApp",
+          "type": "dropdown",
+          "required": false,
+          "default": "Terminal",
+          "title": "Terminal for Resume",
+          "data": [
+            {
+              "title": "Terminal",
+              "value": "Terminal"
+            },
+            {
+              "title": "iTerm",
+              "value": "iTerm"
+            }
+          ],
+          "description": "Terminal application used by Resume in Terminal"
         }
       ]
     },
@@ -108126,7 +108479,8 @@
         "Whitespace",
         "ridemountainpig",
         "splay",
-        "pernielsentikaer"
+        "pernielsentikaer",
+        "just_me"
       ],
       "categories": [
         "Data",
@@ -120468,6 +120822,78 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "jotaid",
+      "title": "Jotaid",
+      "description": "Search your Jotaid notes and send anything you are reading straight to the Inbox.",
+      "icon": "extension-icon.png",
+      "author": "leeron",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Documentation"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/leeron/jotaid",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/jotaid",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-notes",
+          "title": "Search Notes",
+          "subtitle": "Jotaid",
+          "description": "Search your notes by title or content and open them in Jotaid.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "create-note",
+          "title": "Create Note",
+          "subtitle": "Jotaid",
+          "description": "Write a note and file it in your Jotaid Inbox.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "quick-capture",
+          "title": "Quick Capture",
+          "subtitle": "Jotaid",
+          "description": "Send the selected text — or the clipboard — to your Jotaid Inbox without leaving the app you are in.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "searchContent",
+          "title": "Search",
+          "label": "Search note content",
+          "description": "Match the body of a note as well as its title. Turn off to match titles only, which is faster on large libraries.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "showPreview",
+          "title": "List",
+          "label": "Show preview in list",
+          "description": "Render the note next to the list. Turn off for a denser list without the preview pane.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        }
+      ]
     },
     {
       "name": "jotform",
@@ -146533,9 +146959,36 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "toggle-mirroring",
+          "title": "Toggle Mirroring",
+          "description": "Turn display mirroring off if it's on, or on (using your default direction) if it's off. Bind this to a hotkey for instant toggling.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "defaultToggleDirection",
+          "title": "Default Toggle Direction",
+          "description": "Which direction to mirror when Toggle Mirroring turns mirroring on.",
+          "type": "dropdown",
+          "required": false,
+          "default": "mac",
+          "data": [
+            {
+              "title": "Mac → External",
+              "value": "mac"
+            },
+            {
+              "title": "External → Mac",
+              "value": "external"
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "mise-workspace",
@@ -160979,7 +161432,8 @@
         "alexi.build",
         "veilwalker",
         "swhl",
-        "raulkolaric"
+        "raulkolaric",
+        "just_me"
       ],
       "categories": [
         "Productivity"
@@ -181710,7 +182164,9 @@
       "description": "Browse Plex music libraries and control Plexamp playback from Raycast.",
       "icon": "plexamp-icon.png",
       "author": "kendaniels",
-      "contributors": [],
+      "contributors": [
+        "sasch"
+      ],
       "categories": [
         "Media"
       ],
@@ -188038,14 +188494,27 @@
             "storage"
           ],
           "preferences": []
+        },
+        {
+          "name": "manage-servers",
+          "title": "Manage Servers",
+          "subtitle": "Proxmox",
+          "description": "Add, edit or remove Proxmox servers",
+          "mode": "view",
+          "keywords": [
+            "pve",
+            "server",
+            "host"
+          ],
+          "preferences": []
         }
       ],
       "preferences": [
         {
           "name": "serverUrl",
-          "description": "The URL of your Proxmox server",
+          "description": "The URL of your Proxmox server. Additional servers can be added with the Manage Servers command",
           "type": "textfield",
-          "required": true,
+          "required": false,
           "title": "Server URL",
           "placeholder": "https://pve.local:8006"
         },
@@ -188053,7 +188522,7 @@
           "name": "tokenId",
           "description": "The token ID of your Proxmox server",
           "type": "textfield",
-          "required": true,
+          "required": false,
           "title": "Token ID",
           "placeholder": "root@pam!raycast"
         },
@@ -188061,7 +188530,7 @@
           "name": "tokenSecret",
           "description": "The token secret of your Proxmox server",
           "type": "password",
-          "required": true,
+          "required": false,
           "title": "Token Secret",
           "placeholder": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
         }
@@ -194652,7 +195121,8 @@
         "j3lte",
         "stefanmatar",
         "YourMCGeek",
-        "xilopaint"
+        "xilopaint",
+        "just_me"
       ],
       "categories": [
         "Data",
@@ -197064,6 +197534,16 @@
           "preferences": []
         },
         {
+          "name": "setDefaultModel",
+          "title": "Set Default Model",
+          "subtitle": "Google Gemini",
+          "description": "Choose your default Gemini model from the live list of models Google provides",
+          "mode": "view",
+          "keywords": [],
+          "icon": "gemini-icon.png",
+          "preferences": []
+        },
+        {
           "name": "askAI",
           "title": "Ask AI",
           "subtitle": "Google Gemini",
@@ -197072,40 +197552,6 @@
           "keywords": [],
           "icon": "gemini-icon.png",
           "preferences": [
-            {
-              "description": "Which model this command uses.",
-              "name": "model",
-              "title": "Model",
-              "type": "dropdown",
-              "required": false,
-              "default": "default",
-              "data": [
-                {
-                  "title": "Default",
-                  "value": "default"
-                },
-                {
-                  "title": "Gemini 3.1 Flash-Lite",
-                  "value": "gemini-3.1-flash-lite"
-                },
-                {
-                  "title": "Gemini 3.5 Flash-Lite",
-                  "value": "gemini-3.5-flash-lite"
-                },
-                {
-                  "title": "Gemini 3.5 Flash",
-                  "value": "gemini-3.5-flash"
-                },
-                {
-                  "title": "Gemini 3.7 Flash",
-                  "value": "gemini-3.7-flash"
-                },
-                {
-                  "title": "Gemini 3.1 Pro",
-                  "value": "gemini-3.1-pro-preview"
-                }
-              ]
-            },
             {
               "name": "prompt",
               "title": "System Prompt",
@@ -197126,40 +197572,6 @@
           "icon": "chat-icon.png",
           "preferences": [
             {
-              "description": "Which model this command uses by default for new chats.",
-              "name": "model",
-              "title": "Model",
-              "type": "dropdown",
-              "required": false,
-              "default": "default",
-              "data": [
-                {
-                  "title": "Default",
-                  "value": "default"
-                },
-                {
-                  "title": "Gemini 3.1 Flash-Lite",
-                  "value": "gemini-3.1-flash-lite"
-                },
-                {
-                  "title": "Gemini 3.5 Flash-Lite",
-                  "value": "gemini-3.5-flash-lite"
-                },
-                {
-                  "title": "Gemini 3.5 Flash",
-                  "value": "gemini-3.5-flash"
-                },
-                {
-                  "title": "Gemini 3.7 Flash",
-                  "value": "gemini-3.7-flash"
-                },
-                {
-                  "title": "Gemini 3.1 Pro",
-                  "value": "gemini-3.1-pro-preview"
-                }
-              ]
-            },
-            {
               "name": "prompt",
               "title": "System Prompt",
               "description": "The shared system prompt to use for AI Chat.",
@@ -197178,40 +197590,6 @@
           "keywords": [],
           "icon": "screen-icon.png",
           "preferences": [
-            {
-              "description": "Which model this command uses.",
-              "name": "model",
-              "title": "Model",
-              "type": "dropdown",
-              "required": false,
-              "default": "default",
-              "data": [
-                {
-                  "title": "Default",
-                  "value": "default"
-                },
-                {
-                  "title": "Gemini 3.1 Flash-Lite",
-                  "value": "gemini-3.1-flash-lite"
-                },
-                {
-                  "title": "Gemini 3.5 Flash-Lite",
-                  "value": "gemini-3.5-flash-lite"
-                },
-                {
-                  "title": "Gemini 3.5 Flash",
-                  "value": "gemini-3.5-flash"
-                },
-                {
-                  "title": "Gemini 3.7 Flash",
-                  "value": "gemini-3.7-flash"
-                },
-                {
-                  "title": "Gemini 3.1 Pro",
-                  "value": "gemini-3.1-pro-preview"
-                }
-              ]
-            },
             {
               "name": "prompt",
               "title": "System Prompt",
@@ -197232,40 +197610,6 @@
           "icon": "screen-icon.png",
           "preferences": [
             {
-              "description": "Which model this command uses.",
-              "name": "model",
-              "title": "Model",
-              "type": "dropdown",
-              "required": false,
-              "default": "default",
-              "data": [
-                {
-                  "title": "Default",
-                  "value": "default"
-                },
-                {
-                  "title": "Gemini 3.1 Flash-Lite",
-                  "value": "gemini-3.1-flash-lite"
-                },
-                {
-                  "title": "Gemini 3.5 Flash-Lite",
-                  "value": "gemini-3.5-flash-lite"
-                },
-                {
-                  "title": "Gemini 3.5 Flash",
-                  "value": "gemini-3.5-flash"
-                },
-                {
-                  "title": "Gemini 3.7 Flash",
-                  "value": "gemini-3.7-flash"
-                },
-                {
-                  "title": "Gemini 3.1 Pro",
-                  "value": "gemini-3.1-pro-preview"
-                }
-              ]
-            },
-            {
               "name": "prompt",
               "title": "System Prompt",
               "description": "The prompt to use for this command.",
@@ -197285,40 +197629,6 @@
           "icon": "clipboard-icon.png",
           "preferences": [
             {
-              "description": "Which model this command uses.",
-              "name": "model",
-              "title": "Model",
-              "type": "dropdown",
-              "required": false,
-              "default": "default",
-              "data": [
-                {
-                  "title": "Default",
-                  "value": "default"
-                },
-                {
-                  "title": "Gemini 3.1 Flash-Lite",
-                  "value": "gemini-3.1-flash-lite"
-                },
-                {
-                  "title": "Gemini 3.5 Flash-Lite",
-                  "value": "gemini-3.5-flash-lite"
-                },
-                {
-                  "title": "Gemini 3.5 Flash",
-                  "value": "gemini-3.5-flash"
-                },
-                {
-                  "title": "Gemini 3.7 Flash",
-                  "value": "gemini-3.7-flash"
-                },
-                {
-                  "title": "Gemini 3.1 Pro",
-                  "value": "gemini-3.1-pro-preview"
-                }
-              ]
-            },
-            {
               "name": "prompt",
               "title": "System Prompt",
               "description": "The prompt to use for this command.",
@@ -197336,40 +197646,6 @@
           "keywords": [],
           "icon": "summarize-icon.png",
           "preferences": [
-            {
-              "description": "Which model this command uses.",
-              "name": "model",
-              "title": "Model",
-              "type": "dropdown",
-              "required": false,
-              "default": "default",
-              "data": [
-                {
-                  "title": "Default",
-                  "value": "default"
-                },
-                {
-                  "title": "Gemini 3.1 Flash-Lite",
-                  "value": "gemini-3.1-flash-lite"
-                },
-                {
-                  "title": "Gemini 3.5 Flash-Lite",
-                  "value": "gemini-3.5-flash-lite"
-                },
-                {
-                  "title": "Gemini 3.5 Flash",
-                  "value": "gemini-3.5-flash"
-                },
-                {
-                  "title": "Gemini 3.7 Flash",
-                  "value": "gemini-3.7-flash"
-                },
-                {
-                  "title": "Gemini 3.1 Pro",
-                  "value": "gemini-3.1-pro-preview"
-                }
-              ]
-            },
             {
               "name": "prompt",
               "title": "System Prompt",
@@ -197389,40 +197665,6 @@
           "icon": "explain-icon.png",
           "preferences": [
             {
-              "description": "Which model this command uses.",
-              "name": "model",
-              "title": "Model",
-              "type": "dropdown",
-              "required": false,
-              "default": "default",
-              "data": [
-                {
-                  "title": "Default",
-                  "value": "default"
-                },
-                {
-                  "title": "Gemini 3.1 Flash-Lite",
-                  "value": "gemini-3.1-flash-lite"
-                },
-                {
-                  "title": "Gemini 3.5 Flash-Lite",
-                  "value": "gemini-3.5-flash-lite"
-                },
-                {
-                  "title": "Gemini 3.5 Flash",
-                  "value": "gemini-3.5-flash"
-                },
-                {
-                  "title": "Gemini 3.7 Flash",
-                  "value": "gemini-3.7-flash"
-                },
-                {
-                  "title": "Gemini 3.1 Pro",
-                  "value": "gemini-3.1-pro-preview"
-                }
-              ]
-            },
-            {
               "name": "prompt",
               "title": "System Prompt",
               "description": "The prompt to use for this command.",
@@ -197440,40 +197682,6 @@
           "keywords": [],
           "icon": "code-icon.png",
           "preferences": [
-            {
-              "description": "Which model this command uses.",
-              "name": "model",
-              "title": "Model",
-              "type": "dropdown",
-              "required": false,
-              "default": "default",
-              "data": [
-                {
-                  "title": "Default",
-                  "value": "default"
-                },
-                {
-                  "title": "Gemini 3.1 Flash-Lite",
-                  "value": "gemini-3.1-flash-lite"
-                },
-                {
-                  "title": "Gemini 3.5 Flash-Lite",
-                  "value": "gemini-3.5-flash-lite"
-                },
-                {
-                  "title": "Gemini 3.5 Flash",
-                  "value": "gemini-3.5-flash"
-                },
-                {
-                  "title": "Gemini 3.7 Flash",
-                  "value": "gemini-3.7-flash"
-                },
-                {
-                  "title": "Gemini 3.1 Pro",
-                  "value": "gemini-3.1-pro-preview"
-                }
-              ]
-            },
             {
               "name": "prompt",
               "title": "System Prompt",
@@ -197493,40 +197701,6 @@
           "icon": "text-icon.png",
           "preferences": [
             {
-              "description": "Which model this command uses.",
-              "name": "model",
-              "title": "Model",
-              "type": "dropdown",
-              "required": false,
-              "default": "default",
-              "data": [
-                {
-                  "title": "Default",
-                  "value": "default"
-                },
-                {
-                  "title": "Gemini 3.1 Flash-Lite",
-                  "value": "gemini-3.1-flash-lite"
-                },
-                {
-                  "title": "Gemini 3.5 Flash-Lite",
-                  "value": "gemini-3.5-flash-lite"
-                },
-                {
-                  "title": "Gemini 3.5 Flash",
-                  "value": "gemini-3.5-flash"
-                },
-                {
-                  "title": "Gemini 3.7 Flash",
-                  "value": "gemini-3.7-flash"
-                },
-                {
-                  "title": "Gemini 3.1 Pro",
-                  "value": "gemini-3.1-pro-preview"
-                }
-              ]
-            },
-            {
               "name": "prompt",
               "title": "System Prompt",
               "description": "The prompt to use for this command.",
@@ -197544,40 +197718,6 @@
           "keywords": [],
           "icon": "text-icon.png",
           "preferences": [
-            {
-              "description": "Which model this command uses.",
-              "name": "model",
-              "title": "Model",
-              "type": "dropdown",
-              "required": false,
-              "default": "default",
-              "data": [
-                {
-                  "title": "Default",
-                  "value": "default"
-                },
-                {
-                  "title": "Gemini 3.1 Flash-Lite",
-                  "value": "gemini-3.1-flash-lite"
-                },
-                {
-                  "title": "Gemini 3.5 Flash-Lite",
-                  "value": "gemini-3.5-flash-lite"
-                },
-                {
-                  "title": "Gemini 3.5 Flash",
-                  "value": "gemini-3.5-flash"
-                },
-                {
-                  "title": "Gemini 3.7 Flash",
-                  "value": "gemini-3.7-flash"
-                },
-                {
-                  "title": "Gemini 3.1 Pro",
-                  "value": "gemini-3.1-pro-preview"
-                }
-              ]
-            },
             {
               "name": "prompt",
               "title": "System Prompt",
@@ -197597,40 +197737,6 @@
           "icon": "synonym-icon.png",
           "preferences": [
             {
-              "description": "Which model this command uses.",
-              "name": "model",
-              "title": "Model",
-              "type": "dropdown",
-              "required": false,
-              "default": "default",
-              "data": [
-                {
-                  "title": "Default",
-                  "value": "default"
-                },
-                {
-                  "title": "Gemini 3.1 Flash-Lite",
-                  "value": "gemini-3.1-flash-lite"
-                },
-                {
-                  "title": "Gemini 3.5 Flash-Lite",
-                  "value": "gemini-3.5-flash-lite"
-                },
-                {
-                  "title": "Gemini 3.5 Flash",
-                  "value": "gemini-3.5-flash"
-                },
-                {
-                  "title": "Gemini 3.7 Flash",
-                  "value": "gemini-3.7-flash"
-                },
-                {
-                  "title": "Gemini 3.1 Pro",
-                  "value": "gemini-3.1-pro-preview"
-                }
-              ]
-            },
-            {
               "name": "prompt",
               "title": "System Prompt",
               "description": "The prompt to use for this command.",
@@ -197648,40 +197754,6 @@
           "keywords": [],
           "icon": "grammar-icon.png",
           "preferences": [
-            {
-              "description": "Which model this command uses.",
-              "name": "model",
-              "title": "Model",
-              "type": "dropdown",
-              "required": false,
-              "default": "default",
-              "data": [
-                {
-                  "title": "Default",
-                  "value": "default"
-                },
-                {
-                  "title": "Gemini 3.1 Flash-Lite",
-                  "value": "gemini-3.1-flash-lite"
-                },
-                {
-                  "title": "Gemini 3.5 Flash-Lite",
-                  "value": "gemini-3.5-flash-lite"
-                },
-                {
-                  "title": "Gemini 3.5 Flash",
-                  "value": "gemini-3.5-flash"
-                },
-                {
-                  "title": "Gemini 3.7 Flash",
-                  "value": "gemini-3.7-flash"
-                },
-                {
-                  "title": "Gemini 3.1 Pro",
-                  "value": "gemini-3.1-pro-preview"
-                }
-              ]
-            },
             {
               "name": "prompt",
               "title": "System Prompt",
@@ -197701,40 +197773,6 @@
           "icon": "longer-icon.png",
           "preferences": [
             {
-              "description": "Which model this command uses.",
-              "name": "model",
-              "title": "Model",
-              "type": "dropdown",
-              "required": false,
-              "default": "default",
-              "data": [
-                {
-                  "title": "Default",
-                  "value": "default"
-                },
-                {
-                  "title": "Gemini 3.1 Flash-Lite",
-                  "value": "gemini-3.1-flash-lite"
-                },
-                {
-                  "title": "Gemini 3.5 Flash-Lite",
-                  "value": "gemini-3.5-flash-lite"
-                },
-                {
-                  "title": "Gemini 3.5 Flash",
-                  "value": "gemini-3.5-flash"
-                },
-                {
-                  "title": "Gemini 3.7 Flash",
-                  "value": "gemini-3.7-flash"
-                },
-                {
-                  "title": "Gemini 3.1 Pro",
-                  "value": "gemini-3.1-pro-preview"
-                }
-              ]
-            },
-            {
               "name": "prompt",
               "title": "System Prompt",
               "description": "The prompt to use for this command.",
@@ -197753,40 +197791,6 @@
           "icon": "shorten-icon.png",
           "preferences": [
             {
-              "description": "Which model this command uses.",
-              "name": "model",
-              "title": "Model",
-              "type": "dropdown",
-              "required": false,
-              "default": "default",
-              "data": [
-                {
-                  "title": "Default",
-                  "value": "default"
-                },
-                {
-                  "title": "Gemini 3.1 Flash-Lite",
-                  "value": "gemini-3.1-flash-lite"
-                },
-                {
-                  "title": "Gemini 3.5 Flash-Lite",
-                  "value": "gemini-3.5-flash-lite"
-                },
-                {
-                  "title": "Gemini 3.5 Flash",
-                  "value": "gemini-3.5-flash"
-                },
-                {
-                  "title": "Gemini 3.7 Flash",
-                  "value": "gemini-3.7-flash"
-                },
-                {
-                  "title": "Gemini 3.1 Pro",
-                  "value": "gemini-3.1-pro-preview"
-                }
-              ]
-            },
-            {
               "name": "prompt",
               "title": "System Prompt",
               "description": "The prompt to use for this command.",
@@ -197804,40 +197808,6 @@
           "keywords": [],
           "icon": "translate-icon.png",
           "preferences": [
-            {
-              "description": "Which model this command uses.",
-              "name": "model",
-              "title": "Model",
-              "type": "dropdown",
-              "required": false,
-              "default": "default",
-              "data": [
-                {
-                  "title": "Default",
-                  "value": "default"
-                },
-                {
-                  "title": "Gemini 3.1 Flash-Lite",
-                  "value": "gemini-3.1-flash-lite"
-                },
-                {
-                  "title": "Gemini 3.5 Flash-Lite",
-                  "value": "gemini-3.5-flash-lite"
-                },
-                {
-                  "title": "Gemini 3.5 Flash",
-                  "value": "gemini-3.5-flash"
-                },
-                {
-                  "title": "Gemini 3.7 Flash",
-                  "value": "gemini-3.7-flash"
-                },
-                {
-                  "title": "Gemini 3.1 Pro",
-                  "value": "gemini-3.1-pro-preview"
-                }
-              ]
-            },
             {
               "name": "prompt",
               "title": "System Prompt",
@@ -197872,43 +197842,6 @@
           "required": true,
           "title": "Gemini API Key",
           "type": "password"
-        },
-        {
-          "description": "Which model Gemini for Raycast uses by default (unless overriden by individual commands).",
-          "name": "defaultModel",
-          "title": "Model",
-          "type": "dropdown",
-          "required": false,
-          "default": "gemini-3.7-flash",
-          "data": [
-            {
-              "title": "Gemini 3.1 Flash-Lite",
-              "value": "gemini-3.1-flash-lite"
-            },
-            {
-              "title": "Gemini 3.5 Flash-Lite",
-              "value": "gemini-3.5-flash-lite"
-            },
-            {
-              "title": "Gemini 3.5 Flash",
-              "value": "gemini-3.5-flash"
-            },
-            {
-              "title": "Gemini 3.7 Flash",
-              "value": "gemini-3.7-flash"
-            },
-            {
-              "title": "Gemini 3.1 Pro",
-              "value": "gemini-3.1-pro-preview"
-            }
-          ]
-        },
-        {
-          "name": "customModel",
-          "title": "Custom Model",
-          "description": "Custom model in case you use a special model that is not listed in the dropdown. It will override the default model. Keep this empty if you don't have a custom model.",
-          "type": "textfield",
-          "required": false
         },
         {
           "name": "safetyThreshold",
@@ -198910,7 +198843,9 @@
       "icon": "icon.png",
       "author": "massimiliano_pasquini",
       "contributors": [
-        "0xdhrv"
+        "0xdhrv",
+        "ashokbaruaakas",
+        "pernielsentikaer"
       ],
       "categories": [
         "Productivity"
@@ -224398,6 +224333,98 @@
           "type": "password",
           "description": "Your SmartThings Location ID",
           "required": true
+        }
+      ]
+    },
+    {
+      "name": "smry",
+      "title": "Smry",
+      "description": "Save browser tabs and links to your smry Inbox or Later list.",
+      "icon": "icon.png",
+      "author": "smry",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/smry/smry",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/smry",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "save-current-tab",
+          "title": "Save Current Tab",
+          "subtitle": "smry",
+          "description": "Save the active browser tab to your default smry destination",
+          "mode": "no-view",
+          "keywords": [
+            "bookmark",
+            "article",
+            "read later"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "browse-tabs",
+          "title": "Save Browser Tabs",
+          "subtitle": "smry",
+          "description": "Search open browser tabs and save one to smry",
+          "mode": "view",
+          "keywords": [
+            "article",
+            "read later",
+            "save tab"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "save-link",
+          "title": "Save Link",
+          "subtitle": "smry",
+          "description": "Save any public link to your smry Inbox or Later list",
+          "mode": "no-view",
+          "keywords": [
+            "url",
+            "bookmark",
+            "read later"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "defaultSaveStatus",
+          "title": "Default Destination",
+          "description": "Where Save Current Tab and the primary browser-tab action put articles.",
+          "type": "dropdown",
+          "required": false,
+          "default": "later",
+          "data": [
+            {
+              "title": "Later",
+              "value": "later"
+            },
+            {
+              "title": "Inbox",
+              "value": "inbox"
+            }
+          ]
+        },
+        {
+          "name": "apiKey",
+          "title": "API Key",
+          "description": "Create a private key in smry's Developer Console for silent, confirmed saves.",
+          "type": "password",
+          "required": true,
+          "placeholder": "smry_…"
         }
       ]
     },
@@ -263315,6 +263342,41 @@
       "preferences": []
     },
     {
+      "name": "url-designer",
+      "title": "URL Designer",
+      "description": "Collect URL patterns and copy them as an implementation prompt.",
+      "icon": "extension-icon.png",
+      "author": "alexi.build",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows",
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/alexi.build/url-designer",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/url-designer",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "create-prompt",
+          "title": "Create Prompt",
+          "description": "Add URL patterns, then copy them as an implementation prompt.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "url-editor-pro",
       "title": "URL Editor Pro",
       "description": "Parses any URL—including custom schemes—into its components, lets you edit each part. Easily copy the modified URL, save to history or generate a QR code for quick sharing.",
@@ -267115,6 +267177,69 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "visigrid",
+      "title": "VisiGrid",
+      "description": "Spreadsheet powers from your launcher: evaluate Excel formulas against clipboard data, peek inside xlsx/csv/sheet files, and open workbooks — via the VisiGrid CLI.",
+      "icon": "icon.png",
+      "author": "visigrid",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/visigrid/visigrid",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/visigrid",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "quick-calc",
+          "title": "Quick Calc",
+          "subtitle": "VisiGrid",
+          "description": "Run an Excel formula against CSV data from your clipboard.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "peek",
+          "title": "Peek Spreadsheet",
+          "subtitle": "VisiGrid",
+          "description": "Browse recent spreadsheets and preview them as a grid without opening anything.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-workbook",
+          "title": "Open Workbook",
+          "subtitle": "VisiGrid",
+          "description": "Search recent spreadsheet files and open them in VisiGrid.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "vgridPath",
+          "title": "vgrid Path",
+          "description": "Path to the vgrid CLI binary. Leave empty to auto-detect (Homebrew locations).",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "/opt/homebrew/bin/vgrid",
+          "default": ""
+        }
+      ]
     },
     {
       "name": "vision-directory",
