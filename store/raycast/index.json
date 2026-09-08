@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-07T21:33:32.065Z",
+  "generatedAt": "2026-09-08T21:06:54.638Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "80e0b27435acfe057635b12d48544a4f813e4e97"
+    "commit": "5b20a620d151b456888d273afff9c1820c222890"
   },
-  "count": 3265,
+  "count": 3268,
   "extensions": [
     {
       "name": "0x0",
@@ -3449,7 +3449,7 @@
     {
       "name": "agent-usage",
       "title": "Agent Usage",
-      "description": "Monitor AI coding agent usage across AIHubMix, Amp, Antigravity, Claude, ClinePass, Codex, Copilot, Cursor, DeepSeek, Droid, Gemini, Grok, Kimi, MiniMax, MinimaxCN, OpenCode Go, Synthetic and z.ai",
+      "description": "Monitor AI coding agent usage across AIHubMix, Amp, Antigravity, Claude, ClinePass, Codex, Copilot, Cursor, DeepSeek, Droid, Gemini, Grok, Kimi, MiniMax, MinimaxCN, OpenCode Go, OpenRouter, Synthetic and z.ai",
       "icon": "extension-icon.png",
       "author": "thuggyduck",
       "contributors": [
@@ -3459,7 +3459,8 @@
         "EDM115",
         "chingweih",
         "jalenzz",
-        "Jakoss"
+        "Jakoss",
+        "laughing"
       ],
       "categories": [
         "Productivity"
@@ -3688,6 +3689,21 @@
           "type": "password",
           "title": "OpenCode Go API Key (Optional)",
           "description": "Auto-detected from OpenCode login. Fallback: paste your OpenCode Zen API key from https://opencode.ai/settings (used to call the zen/go/v1/usage API).",
+          "required": false
+        },
+        {
+          "name": "showOpenRouter",
+          "type": "checkbox",
+          "label": "Show OpenRouter",
+          "description": "Show OpenRouter credit balance in the list",
+          "default": true,
+          "required": false
+        },
+        {
+          "name": "openrouterApiKey",
+          "type": "password",
+          "title": "OpenRouter API Key (Optional)",
+          "description": "Auto-detected from OpenCode login (openrouter) or OPENROUTER_API_KEY/OPENROUTER_KEY. Fallback: paste a key from https://openrouter.ai/settings/keys. A provisioning key reports account credits; a regular key reports its own limit.",
           "required": false
         },
         {
@@ -14886,7 +14902,9 @@
       "description": "The next gen of CRM",
       "icon": "attio.png",
       "author": "xmok",
-      "contributors": [],
+      "contributors": [
+        "chrismessina"
+      ],
       "categories": [
         "Productivity"
       ],
@@ -14905,50 +14923,114 @@
       "commands": [
         {
           "name": "lists",
-          "title": "Lists",
-          "description": "Modify and add Lists in your workspace",
+          "title": "Search Lists",
+          "description": "Browse the Lists in your workspace",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "crm",
+            "attio"
+          ],
           "preferences": []
         },
         {
           "name": "members-and-teams",
           "title": "Members and Teams",
-          "description": "Manage workspace members and teams, set access levels, and invite new users",
+          "description": "Browse workspace members and their access levels",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "team"
+          ],
           "preferences": []
         },
         {
           "name": "notes",
-          "title": "Notes",
+          "title": "Search Notes",
           "description": "List Workspace Notes",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "crm",
+            "note"
+          ],
           "preferences": []
         },
         {
           "name": "objects",
-          "title": "Objects",
+          "title": "View Objects",
           "description": "List Workspace Objects",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "crm",
+            "records",
+            "companies",
+            "people",
+            "deals"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "people",
+          "title": "Search People",
+          "description": "Browse and edit People in your workspace",
+          "mode": "view",
+          "keywords": [
+            "crm",
+            "contacts"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "companies",
+          "title": "Search Companies",
+          "description": "Browse and edit Companies in your workspace",
+          "mode": "view",
+          "keywords": [
+            "crm",
+            "orgs"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "deals",
+          "title": "Search Deals",
+          "description": "Browse and edit Deals in your workspace",
+          "mode": "view",
+          "keywords": [
+            "crm",
+            "pipeline"
+          ],
           "preferences": []
         },
         {
           "name": "tasks",
-          "title": "Tasks",
+          "title": "Search Tasks",
           "description": "List Workspace Tasks",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "todo",
+            "crm"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "my-tasks",
+          "title": "My Tasks",
+          "description": "Browse tasks assigned to you",
+          "mode": "view",
+          "keywords": [
+            "todo",
+            "mine",
+            "assigned"
+          ],
           "preferences": []
         },
         {
           "name": "webhooks",
-          "title": "Webhooks",
-          "description": "List Workspace Webhooks",
+          "title": "Manage Webhooks",
+          "description": "Configure webhooks and webhook events",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "integrations"
+          ],
           "preferences": []
         }
       ],
@@ -14962,12 +15044,13 @@
           "description": "Attio Access Token"
         },
         {
-          "name": "workspace_slug",
-          "title": "Workspace Slug",
-          "placeholder": "attio",
-          "type": "textfield",
-          "required": true,
-          "description": "Attio Workspace Slug"
+          "name": "verboseLogging",
+          "type": "checkbox",
+          "required": false,
+          "title": "Verbose Logging",
+          "label": "Enable extra diagnostics in the console",
+          "description": "Show detailed logs in the console for debugging.",
+          "default": false
         }
       ]
     },
@@ -26286,7 +26369,7 @@
     {
       "name": "brew",
       "title": "Brew",
-      "description": "Search and install Homebrew formulae",
+      "description": "Search, install and manage Homebrew formulae and casks",
       "icon": "icon.png",
       "author": "nhojb",
       "contributors": [
@@ -26306,7 +26389,10 @@
         "clins1994",
         "alexi.build"
       ],
-      "categories": [],
+      "categories": [
+        "Developer Tools",
+        "System"
+      ],
       "license": "MIT",
       "platforms": [
         "macOS"
@@ -26360,7 +26446,7 @@
         },
         {
           "name": "upgrade",
-          "title": "Upgrade",
+          "title": "Upgrade All",
           "subtitle": "Brew",
           "description": "Upgrade brew formulae & casks",
           "mode": "view",
@@ -26483,18 +26569,19 @@
         },
         {
           "default": false,
-          "description": "Homebrew 5.0 enables parallel downloads by default. Enable this option to disable concurrent downloads if you experience issues.",
+          "description": "Homebrew enables parallel downloads by default. Enable this option to disable concurrent downloads if you experience issues.",
           "label": "Disable concurrent downloads",
           "name": "disableDownloadConcurrency",
           "required": false,
-          "title": "Homebrew 5.0 Options",
+          "title": "Homebrew Options",
           "type": "checkbox"
         },
         {
-          "default": false,
-          "description": "Use Homebrew's internal JSON API.",
-          "label": "Use internal API (experimental)",
-          "name": "useInternalApi",
+          "default": true,
+          "description": "Show pinned formulae and casks at the top of Show Installed and Show Upgrades, rather than at the bottom. Pinned packages are excluded from upgrades until you unpin them.",
+          "label": "Show pinned items at the top of lists",
+          "title": "Lists",
+          "name": "pinnedFirst",
           "required": false,
           "type": "checkbox"
         },
@@ -38631,7 +38718,8 @@
         "constantins2001",
         "xmok",
         "pcamminadi",
-        "riccardogiorato"
+        "riccardogiorato",
+        "tony_gauderman"
       ],
       "categories": [],
       "license": "MIT",
@@ -41378,7 +41466,7 @@
     {
       "name": "codex",
       "title": "Codex",
-      "description": "Monitor and manage your Codex tasks directly from Raycast.",
+      "description": "Monitor and manage your Codex threads, MCPs, projects, and usage directly from Raycast.",
       "icon": "extension-icon.png",
       "author": "asifk",
       "contributors": [],
@@ -41414,6 +41502,49 @@
             "archive",
             "fork",
             "export"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "manage-projects",
+          "title": "Browse Projects",
+          "subtitle": "Codex",
+          "description": "Browse Codex Projects, folders, and assigned threads.",
+          "mode": "view",
+          "keywords": [
+            "projects",
+            "folders",
+            "workspaces",
+            "pinned",
+            "threads"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "usage-stats",
+          "title": "Usage Stats",
+          "subtitle": "Codex",
+          "description": "View Codex rate limits and token usage.",
+          "mode": "view",
+          "keywords": [
+            "limits",
+            "tokens",
+            "quota"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "manage-mcp-servers",
+          "title": "Manage MCP Servers",
+          "subtitle": "Codex",
+          "description": "Inspect and manage MCP servers configured for Codex.",
+          "mode": "view",
+          "keywords": [
+            "mcp",
+            "servers",
+            "tools",
+            "configuration",
+            "oauth"
           ],
           "preferences": []
         },
@@ -41458,6 +41589,29 @@
           "preferences": []
         },
         {
+          "name": "new-thread-from-selected-text",
+          "title": "New Thread from Selected Text",
+          "subtitle": "Codex",
+          "description": "Start a new Codex thread using selected text from the frontmost application as the initial prompt.",
+          "mode": "no-view",
+          "keywords": [
+            "selection",
+            "highlight",
+            "prompt",
+            "start"
+          ],
+          "preferences": [
+            {
+              "name": "selectedTextPromptPrefix",
+              "title": "Prompt Prefix",
+              "description": "Optional text to preface the selection with",
+              "type": "textfield",
+              "placeholder": "Implement this:",
+              "required": false
+            }
+          ]
+        },
+        {
           "name": "open-codex",
           "title": "Open Codex",
           "description": "Open the Codex app.",
@@ -41472,23 +41626,67 @@
       ],
       "preferences": [
         {
+          "name": "newThreadMode",
+          "title": "New Thread Mode",
+          "description": "Which mode to open new threads in (codex, work, or regular chat)",
+          "type": "dropdown",
+          "required": false,
+          "default": "codex",
+          "data": [
+            {
+              "title": "Codex",
+              "value": "codex"
+            },
+            {
+              "title": "ChatGPT Work",
+              "value": "work"
+            },
+            {
+              "title": "ChatGPT Chat",
+              "value": "chat"
+            }
+          ]
+        },
+        {
           "name": "defaultProjectDirectory",
           "title": "Default Working Directory",
-          "description": "Default directory for all new threads.",
+          "description": "Default directory for all new Codex threads",
           "type": "directory",
           "required": false
         },
         {
           "name": "projectsDirectory",
           "title": "Working Directory Root",
-          "description": "Parent folder whose subfolders appear as working directory choices.",
+          "description": "Folder whose subfolders become working directory choices (for example, ~/projects or ~/dev)",
           "type": "directory",
           "required": false
         },
         {
+          "name": "terminalApp",
+          "title": "Terminal App",
+          "description": "Terminal opened by thread actions",
+          "type": "dropdown",
+          "required": false,
+          "default": "terminal",
+          "data": [
+            {
+              "title": "Terminal",
+              "value": "terminal"
+            },
+            {
+              "title": "Ghostty",
+              "value": "ghostty"
+            },
+            {
+              "title": "iTerm2",
+              "value": "iterm"
+            }
+          ]
+        },
+        {
           "name": "codexCliPath",
           "title": "Codex CLI Path",
-          "description": "Optional absolute path to the Codex CLI. Leave blank for auto-discovery.",
+          "description": "Path to the Codex CLI binary (leave blank to auto-detect)",
           "type": "textfield",
           "placeholder": "/opt/homebrew/bin/codex",
           "required": false
@@ -112208,7 +112406,9 @@
       "description": "Visualize and scrub time across multiple time zones",
       "icon": "icon.png",
       "author": "i_idz",
-      "contributors": [],
+      "contributors": [
+        "ridemountainpig"
+      ],
       "categories": [
         "Productivity"
       ],
@@ -112254,6 +112454,28 @@
             }
           ],
           "default": "system",
+          "required": false
+        },
+        {
+          "name": "cityOrder",
+          "type": "dropdown",
+          "title": "City Order",
+          "description": "How cities are ordered. Custom keeps your own arrangement via the Move Up/Down actions.",
+          "data": [
+            {
+              "title": "GMT Offset (West → East)",
+              "value": "offset-asc"
+            },
+            {
+              "title": "GMT Offset (East → West)",
+              "value": "offset-desc"
+            },
+            {
+              "title": "Custom",
+              "value": "custom"
+            }
+          ],
+          "default": "offset-asc",
           "required": false
         },
         {
@@ -129885,16 +130107,17 @@
     {
       "name": "launchdarkly",
       "title": "LaunchDarkly",
-      "description": "A Raycast extension integrating with LaunchDarkly",
+      "description": "Browse LaunchDarkly feature flags, targeting rules, environments and recent changes without leaving Raycast",
       "icon": "launchdarkly-transparent-bg.png",
       "author": "luarmr",
       "contributors": [],
       "categories": [
-        "Applications",
         "Developer Tools"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/luarmr/launchdarkly",
       "source": {
         "type": "github-monorepo",
@@ -129911,6 +130134,15 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "recent-changes",
+          "title": "Recent Changes",
+          "subtitle": "LaunchDarkly",
+          "description": "Browse the audit log of recent feature flag changes in the current project",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": [
@@ -129924,15 +130156,15 @@
         {
           "name": "projectKey",
           "type": "textfield",
-          "title": "LaunchDarkly Project Key",
-          "description": "If left blank, defaults to 'default'.",
+          "title": "Default Project Key",
+          "description": "Project used until you pick another one with the Switch Project action (⌘⇧S). If left blank, defaults to 'default'.",
           "required": false
         },
         {
           "name": "ldApiUrl",
           "type": "textfield",
-          "title": "LaunchDarkly Base URL",
-          "description": "LaunchDarkly API URL (usually should be blank)",
+          "title": "LaunchDarkly Instance URL",
+          "description": "Base URL used for API requests and browser links. Change only for EU (https://app.eu.launchdarkly.com) or self-hosted instances.",
           "defaultValue": "https://app.launchdarkly.com",
           "required": false
         }
@@ -134339,6 +134571,50 @@
           "default": "You are a helpful assistant."
         }
       ]
+    },
+    {
+      "name": "load-bearing-reply",
+      "title": "Load-Bearing Reply",
+      "description": "Paste a confidently over-engineered reply into the frontmost app.",
+      "icon": "load-bearing-reply-icon.png",
+      "author": "chris_deeming",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/chris_deeming/load-bearing-reply",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/load-bearing-reply",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "paste-random-reply",
+          "title": "Paste Random Load-Bearing Reply",
+          "description": "Paste a random confidently over-engineered reply.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "load-bearing-reply-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "browse-replies",
+          "title": "Browse Load-Bearing Replies",
+          "description": "Choose a confidently over-engineered reply to paste.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "load-bearing-reply-icon.png",
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "loan-calculator",
@@ -169136,6 +169412,72 @@
       "preferences": []
     },
     {
+      "name": "orc-pictures",
+      "title": "Orc Pictures",
+      "description": "Search orc reaction GIFs and copy the GIF file to the clipboard for X.",
+      "icon": "icon.png",
+      "author": "orcdev",
+      "contributors": [],
+      "categories": [
+        "Fun",
+        "Media"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/orcdev/orc-pictures",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/orc-pictures",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-gifs",
+          "title": "Search Orc GIFs",
+          "subtitle": "orc.pictures",
+          "description": "Search the catalog and copy a GIF file to the clipboard.",
+          "mode": "view",
+          "keywords": [
+            "gif",
+            "orc",
+            "reaction",
+            "x",
+            "twitter"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "catalogUrl",
+          "title": "Catalog URL",
+          "description": "JSON catalog endpoint. Defaults to the live orc.pictures catalog.",
+          "type": "textfield",
+          "required": false,
+          "default": "https://orc.pictures/catalog.json"
+        },
+        {
+          "name": "siteUrl",
+          "title": "Site URL",
+          "description": "Used to resolve GIF and poster paths.",
+          "type": "textfield",
+          "required": false,
+          "default": "https://orc.pictures"
+        },
+        {
+          "name": "localGifsDirectory",
+          "title": "Local GIFs Folder",
+          "description": "Optional. Point this at public/gifs in the orc.pictures repo to copy files without downloading.",
+          "type": "directory",
+          "required": false
+        }
+      ]
+    },
+    {
       "name": "origami",
       "title": "Origami",
       "description": "Access and control your Origami workspace",
@@ -186327,12 +186669,68 @@
           "default": "1.3.6.1.2.1.1.5.0"
         },
         {
+          "name": "wasteTonerBottleOid",
+          "type": "textfield",
+          "required": false,
+          "title": "OID - Waste Toner Bottle",
+          "description": "Printer-MIB supply level OID for the waste toner bottle",
+          "default": "1.3.6.1.2.1.43.11.1.1.9.1.10"
+        },
+        {
+          "name": "wasteTonerBottleMaxCapacityOid",
+          "type": "textfield",
+          "required": false,
+          "title": "OID - Waste Toner Bottle Max Capacity",
+          "description": "Printer-MIB supply max capacity OID for the waste toner bottle",
+          "default": "1.3.6.1.2.1.43.11.1.1.8.1.10"
+        },
+        {
+          "name": "uptimeOid",
+          "type": "textfield",
+          "required": false,
+          "title": "OID - Uptime",
+          "description": "System uptime OID",
+          "default": "1.3.6.1.2.1.1.3.0"
+        },
+        {
+          "name": "printerGeneralStatusOid",
+          "type": "textfield",
+          "required": false,
+          "title": "OID - General Printer Status",
+          "description": "Host Resources MIB hrPrinterStatus OID",
+          "default": "1.3.6.1.2.1.25.3.5.1.1.1"
+        },
+        {
           "name": "printerStatusOid",
           "type": "textfield",
           "required": false,
-          "title": "OID - Printer Status",
-          "description": "Console display text OID",
+          "title": "OID - Display Message 1",
+          "description": "Printer console display text OID, line 1",
           "default": "1.3.6.1.2.1.43.16.5.1.2.1.1"
+        },
+        {
+          "name": "displayMessage2Oid",
+          "type": "textfield",
+          "required": false,
+          "title": "OID - Display Message 2",
+          "description": "Printer console display text OID, line 2",
+          "default": "1.3.6.1.2.1.43.16.5.1.2.1.2"
+        },
+        {
+          "name": "displayMessage3Oid",
+          "type": "textfield",
+          "required": false,
+          "title": "OID - Display Message 3",
+          "description": "Printer console display text OID, line 3",
+          "default": "1.3.6.1.2.1.43.16.5.1.2.1.3"
+        },
+        {
+          "name": "displayMessage4Oid",
+          "type": "textfield",
+          "required": false,
+          "title": "OID - Display Message 4",
+          "description": "Printer console display text OID, line 4",
+          "default": "1.3.6.1.2.1.43.16.5.1.2.1.4"
         }
       ]
     },
@@ -260645,6 +261043,43 @@
       "preferences": []
     },
     {
+      "name": "ui-component-search",
+      "title": "UI Component Search",
+      "description": "Search and browse components across shadcn/ui, PrimeNG, Angular Material, spartan/ui, Taiga UI, Mantine, React Spectrum, and Chakra UI",
+      "icon": "extension-icon.png",
+      "author": "tomer_meirov",
+      "contributors": [],
+      "categories": [
+        "Documentation",
+        "Developer Tools",
+        "Design Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows",
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/tomer_meirov/ui-component-search",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/ui-component-search",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-components",
+          "title": "Search Components",
+          "subtitle": "UI Components",
+          "description": "Search UI components across shadcn, PrimeNG, Angular Material, spartan, Taiga, React Spectrum, Chakra and more",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "uk-bank-holidays",
       "title": "UK Bank Holidays",
       "description": "Display the upcoming bank holiday information for England and Wales.",
@@ -270673,7 +271108,8 @@
         "xilopaint",
         "ridemountainpig",
         "pernielsentikaer",
-        "proprocrastinator"
+        "proprocrastinator",
+        "bailey_jennings"
       ],
       "categories": [],
       "license": "MIT",
@@ -270721,6 +271157,24 @@
               "required": false,
               "label": "Show Text",
               "default": true
+            },
+            {
+              "name": "menutemperature",
+              "type": "dropdown",
+              "title": "Temperature",
+              "description": "Which temperature to show as menu bar text",
+              "required": false,
+              "default": "actual",
+              "data": [
+                {
+                  "title": "Actual",
+                  "value": "actual"
+                },
+                {
+                  "title": "Feels Like",
+                  "value": "feelslike"
+                }
+              ]
             }
           ]
         }
