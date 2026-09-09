@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-08T21:06:54.638Z",
+  "generatedAt": "2026-09-09T21:19:44.956Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "5b20a620d151b456888d273afff9c1820c222890"
+    "commit": "b69329fc17ae15f4de6f4ab05d1264294a6a8c08"
   },
-  "count": 3268,
+  "count": 3270,
   "extensions": [
     {
       "name": "0x0",
@@ -3495,6 +3495,14 @@
           "mode": "menu-bar",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "refresh-agent-usage",
+          "title": "Refresh Agent Usage",
+          "description": "Refresh cached usage for enabled providers in the background",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": [
@@ -3739,10 +3747,40 @@
         {
           "name": "cacheTtl",
           "type": "textfield",
-          "title": "Cache Duration (Seconds)",
-          "description": "Cache duration in seconds for remote API requests. Set to 0 to disable caching.",
+          "title": "Cache Reads (0 to Disable)",
+          "description": "Set to 0 to disable cache reads. When enabled, the usage screen keeps cached results until manual or background refresh.",
           "default": "180",
           "required": false
+        },
+        {
+          "name": "backgroundRefreshInterval",
+          "type": "dropdown",
+          "title": "Background Refresh Interval",
+          "description": "How often to update cached provider usage. Enable the Refresh Agent Usage command in Raycast to start background updates. Scheduling is approximate.",
+          "default": "1",
+          "required": false,
+          "data": [
+            {
+              "title": "1 Minute",
+              "value": "1"
+            },
+            {
+              "title": "5 Minutes",
+              "value": "5"
+            },
+            {
+              "title": "15 Minutes",
+              "value": "15"
+            },
+            {
+              "title": "30 Minutes",
+              "value": "30"
+            },
+            {
+              "title": "60 Minutes",
+              "value": "60"
+            }
+          ]
         }
       ]
     },
@@ -53429,6 +53467,74 @@
       "preferences": []
     },
     {
+      "name": "dated-folder",
+      "title": "Dated Folder",
+      "description": "Create a folder named after today's date and open it in your terminal",
+      "icon": "command-icon.png",
+      "author": "fhf1121",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/fhf1121/dated-folder",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/dated-folder",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "create-dated-folder",
+          "title": "Create Dated Folder",
+          "subtitle": "Dated Folder",
+          "description": "Create a folder named after today's date inside the configured parent folder and open it in a terminal",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "parentDir",
+          "title": "Parent Folder",
+          "description": "Where dated folders are created. Defaults to a \"temp\" folder on your Desktop when left empty.",
+          "type": "directory",
+          "required": false
+        },
+        {
+          "name": "terminal",
+          "title": "Terminal",
+          "description": "App used to open the new folder. Follows the system default terminal when left empty.",
+          "type": "appPicker",
+          "required": false
+        },
+        {
+          "name": "dateFormat",
+          "title": "Folder Name Format",
+          "description": "Tokens: yyyy, MM, dd, HH, mm, ss. Wrap words in single quotes to keep them literal, e.g. 'summer'-yyyy. Use / to create nested folders, e.g. yyyy/MM/dd.",
+          "type": "textfield",
+          "default": "yyyy-MM-dd",
+          "placeholder": "yyyy-MM-dd",
+          "required": false
+        },
+        {
+          "name": "revealInFinder",
+          "title": "Reveal",
+          "description": "Also reveal the new folder in Finder after opening it in the terminal.",
+          "label": "Reveal the folder in Finder",
+          "type": "checkbox",
+          "default": false,
+          "required": false
+        }
+      ]
+    },
+    {
       "name": "date-format-converter",
       "title": "Date Format Converter",
       "description": "Convert timestamps and datetime strings into various formats.",
@@ -53649,9 +53755,12 @@
       "icon": "day-one.png",
       "author": "AntonNiklasson",
       "contributors": [
-        "bestemic"
+        "bestemic",
+        "Fizzbow"
       ],
-      "categories": [],
+      "categories": [
+        "Productivity"
+      ],
       "license": "MIT",
       "platforms": [
         "macOS"
@@ -65029,6 +65138,24 @@
           "keywords": [],
           "preferences": [
             {
+              "type": "dropdown",
+              "name": "primaryAction",
+              "title": "Primary Action",
+              "description": "The action performed when pressing Enter on a download",
+              "required": false,
+              "default": "open",
+              "data": [
+                {
+                  "title": "Open",
+                  "value": "open"
+                },
+                {
+                  "title": "Copy to Clipboard",
+                  "value": "copy"
+                }
+              ]
+            },
+            {
               "type": "checkbox",
               "name": "showHiddenFiles",
               "label": "Show Hidden Files",
@@ -67997,6 +68124,15 @@
           "preferences": []
         },
         {
+          "name": "manage-providers",
+          "title": "Manage Providers",
+          "subtitle": "Easydict",
+          "description": "Order built-in providers and configure AI providers.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "ocr",
           "title": "OCR Translate",
           "subtitle": "Query text from image",
@@ -68557,17 +68693,17 @@
           "title": "Translation Services",
           "type": "checkbox",
           "name": "enableOpenAITranslate",
-          "label": "OpenAI Translate",
+          "label": "Legacy OpenAI Translate",
           "required": false,
-          "description": "Turn on/off OpenAI Translate. App Key is required.",
+          "description": "Initial enablement for automatic legacy migration. After migration, use Manage Providers.",
           "default": false
         },
         {
           "type": "checkbox",
           "name": "enableGeminiTranslate",
-          "label": "Gemini Translate",
+          "label": "Legacy Gemini Translate",
           "required": false,
-          "description": "Turn on/off Gemini Translate. App Key is required.",
+          "description": "Initial enablement for automatic legacy migration. After migration, use Manage Providers.",
           "default": false
         },
         {
@@ -68643,69 +68779,69 @@
           "default": false
         },
         {
-          "title": "Service List Order",
+          "title": "Legacy Service List Order",
           "name": "servicesOrder",
           "type": "textfield",
           "required": false,
-          "description": "Separate by comma, default is Youao Dictionary, Linguee Dictionary, OpenAI, Gemini, DeepL, Google, Bing, Apple, Baidu, Tencent, Volcano, Youdao, Caiyun",
+          "description": "Separate by comma. Only initializes Manage Providers until a saved provider order exists.",
           "default": "",
           "placeholder": "youdao dictionary, linguee dictionary, openai, gemini, deepl, google, bing, apple, baidu, tencent, volcano, youdao, caiyun"
         },
         {
-          "title": "OpenAI API Key",
+          "title": "Legacy OpenAI API Key",
           "name": "openAIAPIKey",
           "type": "password",
           "required": false,
-          "description": "Your OpenAI API Key"
+          "description": "Import source for automatic migration. After migration, edit the AI provider in Manage Providers."
         },
         {
-          "title": "OpenAI Endpoint",
+          "title": "Legacy OpenAI Endpoint",
           "name": "openAIAPIURL",
           "type": "textfield",
           "required": false,
-          "description": "Custom OpenAI API URL",
+          "description": "Import source for automatic migration. After migration, edit the AI provider in Manage Providers.",
           "default": "https://api.openai.com/v1",
           "placeholder": "https://api.openai.com/v1"
         },
         {
-          "title": "OpenAI Model",
+          "title": "Legacy OpenAI Model",
           "name": "openAIModel",
           "type": "textfield",
           "required": false,
-          "description": "OpenAI Model",
-          "default": "gpt-4o-mini"
+          "description": "Import source for automatic migration. After migration, edit the AI provider in Manage Providers.",
+          "default": "gpt-5.4-mini"
         },
         {
-          "title": "Force max_completion_tokens",
+          "title": "Legacy OpenAI Token Parameter",
           "name": "forceMaxCompletionTokens",
           "type": "checkbox",
-          "label": "Always use max_completion_tokens",
+          "label": "Always Use max_completion_tokens",
           "required": false,
-          "description": "Force using max_completion_tokens instead of max_tokens. Useful for reasoning models (e.g., o1, o3, gpt-5) or providers that require it. May break compatibility with some OpenAI-compatible APIs.",
+          "description": "Import source for automatic migration. After migration, edit the AI provider in Manage Providers.",
           "default": false
         },
         {
-          "title": "Gemini API Key",
+          "title": "Legacy Gemini API Key",
           "name": "geminiAPIKey",
           "type": "password",
           "required": false,
-          "description": "Your Gemini API Key"
+          "description": "Import source for automatic migration. After migration, edit the AI provider in Manage Providers."
         },
         {
-          "title": "Gemini Endpoint",
+          "title": "Legacy Gemini Endpoint",
           "name": "geminiAPIURL",
           "type": "textfield",
           "required": false,
-          "description": "Custom Gemini API URL",
+          "description": "Import source for automatic migration. After migration, edit the AI provider in Manage Providers.",
           "default": "https://generativelanguage.googleapis.com"
         },
         {
-          "title": "Gemini Model",
+          "title": "Legacy Gemini Model",
           "name": "geminiModel",
           "type": "textfield",
           "required": false,
-          "description": "Gemini Model",
-          "default": "gemini-2.5-flash"
+          "description": "Import source for automatic migration. After migration, edit the AI provider in Manage Providers.",
+          "default": "gemini-3.5-flash"
         },
         {
           "title": "DeepL Auth Key",
@@ -81856,13 +81992,17 @@
       "description": "Search locally installed fonts, as displayed in font book.",
       "icon": "extension-icon.png",
       "author": "tnixc",
-      "contributors": [],
+      "contributors": [
+        "mindprint"
+      ],
       "categories": [
         "Design Tools",
         "Developer Tools"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/tnixc/font-search",
       "source": {
         "type": "github-monorepo",
@@ -89884,7 +90024,8 @@
         "SandeepBaskaran",
         "0xdhrv",
         "ernest0n",
-        "raycast_0ukl"
+        "raycast_0ukl",
+        "olafvanmidden"
       ],
       "categories": [
         "Developer Tools",
@@ -210448,7 +210589,8 @@
         "xmok",
         "niksite",
         "ojowwalker77",
-        "gumadeiras"
+        "gumadeiras",
+        "jsonMartin"
       ],
       "categories": [
         "Applications",
@@ -210627,6 +210769,15 @@
           "title": "Close Other Tabs",
           "subtitle": "Safari",
           "description": "Close all Safari tabs except the current one",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "new-window",
+          "title": "New Window",
+          "subtitle": "Safari",
+          "description": "Open a new Safari window",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -228858,7 +229009,8 @@
         "stevensd2m",
         "aliaksandr_zhebit",
         "xilopaint",
-        "alexi.build"
+        "alexi.build",
+        "luarmr"
       ],
       "categories": [
         "Applications",
@@ -234487,6 +234639,127 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "storage-benchmark",
+      "title": "Storage Benchmark",
+      "description": "Benchmark sequential read and write performance for local storage",
+      "icon": "icon.png",
+      "author": "ricoloic",
+      "contributors": [],
+      "categories": [
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/ricoloic/storage-benchmark",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/storage-benchmark",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "run-storage-benchmark",
+          "title": "Run Storage Benchmark",
+          "description": "Benchmark sequential read and write storage performance",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "view-storage-history",
+          "title": "View Storage History",
+          "description": "Review storage benchmark results and baselines",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "benchmarkDirectory",
+          "type": "directory",
+          "required": false,
+          "title": "Default Benchmark Folder",
+          "description": "Optional folder used for benchmark files; defaults to a private cache folder in your home directory"
+        },
+        {
+          "name": "maxTestSizeMiB",
+          "type": "dropdown",
+          "required": false,
+          "title": "Default Maximum Test Data",
+          "description": "Default temporary file limit; individual runs can override it",
+          "default": "256",
+          "data": [
+            {
+              "title": "256 MiB",
+              "value": "256"
+            },
+            {
+              "title": "512 MiB",
+              "value": "512"
+            },
+            {
+              "title": "1 GiB",
+              "value": "1024"
+            },
+            {
+              "title": "2 GiB",
+              "value": "2048"
+            },
+            {
+              "title": "5 GiB",
+              "value": "5120"
+            },
+            {
+              "title": "10 GiB",
+              "value": "10240"
+            },
+            {
+              "title": "25 GiB",
+              "value": "25600"
+            }
+          ]
+        },
+        {
+          "name": "targetDurationSeconds",
+          "type": "dropdown",
+          "required": false,
+          "title": "Default Time Target",
+          "description": "Default duration limit for each measured phase; individual runs can override it",
+          "default": "10",
+          "data": [
+            {
+              "title": "3 seconds",
+              "value": "3"
+            },
+            {
+              "title": "5 seconds",
+              "value": "5"
+            },
+            {
+              "title": "10 seconds",
+              "value": "10"
+            },
+            {
+              "title": "25 seconds",
+              "value": "25"
+            },
+            {
+              "title": "45 seconds",
+              "value": "45"
+            },
+            {
+              "title": "1 minute",
+              "value": "60"
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "storyblok",
@@ -259395,15 +259668,18 @@
     },
     {
       "name": "twitter",
-      "title": "Twitter",
-      "description": "Send and search Tweets",
-      "icon": "logo.png",
+      "title": "X.com",
+      "description": "Browse, search, publish posts, and send direct messages on X",
+      "icon": "extension-icon.png",
       "author": "tonka3000",
       "contributors": [
         "peduarte",
-        "xmok"
+        "xmok",
+        "0xdhrv"
       ],
-      "categories": [],
+      "categories": [
+        "Communication"
+      ],
       "license": "MIT",
       "platforms": [
         "macOS",
@@ -259419,27 +259695,27 @@
       "commands": [
         {
           "name": "timeline",
-          "title": "Recent Tweets",
-          "subtitle": "Twitter",
-          "description": "Show Twitter timeline",
+          "title": "Recent Posts",
+          "subtitle": "X (Twitter)",
+          "description": "Show your X home timeline",
           "mode": "view",
           "keywords": [],
           "preferences": []
         },
         {
           "name": "mytweets",
-          "title": "My Recent Tweets",
-          "subtitle": "Twitter",
-          "description": "Show My Tweets",
+          "title": "My Posts & Analytics",
+          "subtitle": "X (Twitter)",
+          "description": "Show your posts and engagement analytics from the last 30 days",
           "mode": "view",
           "keywords": [],
           "preferences": []
         },
         {
           "name": "send",
-          "title": "Send Tweet",
-          "subtitle": "Twitter",
-          "description": "Send a tweet",
+          "title": "Send Post",
+          "subtitle": "X (Twitter)",
+          "description": "Publish a post to X",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -259447,30 +259723,88 @@
         {
           "name": "user_search",
           "title": "Search User",
-          "subtitle": "Twitter",
-          "description": "Search Twitter User",
+          "subtitle": "X (Twitter)",
+          "description": "Search X users without leaving Raycast",
           "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-posts",
+          "title": "Search Posts",
+          "subtitle": "X (Twitter)",
+          "description": "Search recent X posts from the last seven days",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "bookmarks",
+          "title": "Bookmarks",
+          "subtitle": "X (Twitter)",
+          "description": "Browse bookmarked X posts",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "bookmark-folders",
+          "title": "Bookmark Folders",
+          "subtitle": "X (Twitter)",
+          "description": "Browse X bookmark folders and their saved posts",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "mentions",
+          "title": "Mentions",
+          "subtitle": "X (Twitter)",
+          "description": "Triage posts that mention your X account",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "send-dm",
+          "title": "Send Direct Message",
+          "subtitle": "X (Twitter)",
+          "description": "Send a confirmed 1:1 or group X direct message",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "user-profile",
+          "title": "User Profile",
+          "subtitle": "X (Twitter)",
+          "description": "View an X user profile and their recent posts",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "post-selected-text",
+          "title": "Post Selected Text",
+          "subtitle": "X (Twitter)",
+          "description": "Post the selected text to X",
+          "mode": "no-view",
           "keywords": [],
           "preferences": []
         }
       ],
       "preferences": [
         {
-          "name": "clientid",
-          "type": "password",
-          "title": "OAuth Client ID",
-          "required": false,
-          "default": "",
-          "description": "X OAuth Client ID From Your X Application"
-        },
-        {
           "name": "listwithdetail",
           "type": "checkbox",
-          "label": "Show Tweets inside a Tweets List",
+          "label": "Show the Details Pane by Default",
           "required": false,
           "default": true,
           "title": "List Behavior",
-          "description": "Show Tweets inside a Tweets List directly"
+          "description": "Start post lists with the details pane visible; you can toggle it from the action panel"
         }
       ]
     },
@@ -263407,7 +263741,9 @@
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/ujjwal1998/upnote",
       "source": {
         "type": "github-monorepo",
