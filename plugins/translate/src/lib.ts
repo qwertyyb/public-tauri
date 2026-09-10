@@ -5,4 +5,6 @@ const require = Module.createRequire(import.meta.url);
 
 const addon = require('../build/Release/addon.node');
 
+// console.log(addon.lookupWordHTML('hello'));
+
 export default addon;

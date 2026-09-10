@@ -121,7 +121,8 @@ const translateUseApple = (keyword: string) => new Promise<any[]>((resolve, reje
 const translate = async (keyword: string) => {
   const results = await Promise.all([
     lookupIciba(keyword),
-    lookupFromDict(keyword),
+    // addon 用了主线程API(DCSCopyTextDefinition、TTTDictionary)无法在 worker 中使用
+    // lookupFromDict(keyword),
     translateUseApple(keyword),
   ]);
   return results.flat();
