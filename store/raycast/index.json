@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-09T21:19:44.956Z",
+  "generatedAt": "2026-09-10T20:50:52.194Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "b69329fc17ae15f4de6f4ab05d1264294a6a8c08"
+    "commit": "c3e6ef0ab5c9fe2471bb10467bd4975291820316"
   },
-  "count": 3270,
+  "count": 3272,
   "extensions": [
     {
       "name": "0x0",
@@ -30025,6 +30025,227 @@
       ]
     },
     {
+      "name": "capso",
+      "title": "Capso",
+      "description": "Trigger Capso captures, OCR, recordings, and history directly from Raycast.",
+      "icon": "capso.png",
+      "author": "rcouto",
+      "contributors": [],
+      "categories": [
+        "Applications"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/rcouto/capso",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/capso",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "all-in-one",
+          "title": "All-In-One",
+          "subtitle": "Capso",
+          "description": "Trigger Capso all-in-one capture overlay",
+          "mode": "no-view",
+          "keywords": [
+            "capso",
+            "capture",
+            "all",
+            "overlay"
+          ],
+          "icon": "all-in-one.png",
+          "preferences": []
+        },
+        {
+          "name": "capture-area",
+          "title": "Capture Area",
+          "subtitle": "Capso",
+          "description": "Select and capture screen area",
+          "mode": "no-view",
+          "keywords": [
+            "capso",
+            "capture",
+            "area",
+            "screenshot",
+            "crop"
+          ],
+          "icon": "capture-area.png",
+          "preferences": []
+        },
+        {
+          "name": "capture-fullscreen",
+          "title": "Capture Fullscreen",
+          "subtitle": "Capso",
+          "description": "Capture the entire screen",
+          "mode": "no-view",
+          "keywords": [
+            "capso",
+            "capture",
+            "fullscreen",
+            "screen"
+          ],
+          "icon": "capture-fullscreen.png",
+          "preferences": []
+        },
+        {
+          "name": "capture-window",
+          "title": "Capture Window",
+          "subtitle": "Capso",
+          "description": "Capture a specific application window",
+          "mode": "no-view",
+          "keywords": [
+            "capso",
+            "capture",
+            "window",
+            "app"
+          ],
+          "icon": "capture-window.png",
+          "preferences": []
+        },
+        {
+          "name": "capture-previous-area",
+          "title": "Capture Previous Area",
+          "subtitle": "Capso",
+          "description": "Capture the previously selected screen area",
+          "mode": "no-view",
+          "keywords": [
+            "capso",
+            "capture",
+            "previous",
+            "last",
+            "area",
+            "replay"
+          ],
+          "icon": "capture-previous-area.png",
+          "preferences": []
+        },
+        {
+          "name": "capture-ocr",
+          "title": "Capture Text (OCR)",
+          "subtitle": "Capso",
+          "description": "Extract text directly from screen",
+          "mode": "no-view",
+          "keywords": [
+            "capso",
+            "ocr",
+            "text",
+            "extract"
+          ],
+          "icon": "capture-text.png",
+          "preferences": []
+        },
+        {
+          "name": "capture-recording",
+          "title": "Start Recording",
+          "subtitle": "Capso",
+          "description": "Open Capso screen recording setup",
+          "mode": "no-view",
+          "keywords": [
+            "capso",
+            "record",
+            "video",
+            "screen"
+          ],
+          "icon": "record-screen.png",
+          "preferences": []
+        },
+        {
+          "name": "capture-scrolling",
+          "title": "Scrolling Capture",
+          "subtitle": "Capso",
+          "description": "Capture scrolling webpage or document",
+          "mode": "no-view",
+          "keywords": [
+            "capso",
+            "scroll",
+            "scrolling",
+            "long"
+          ],
+          "icon": "scrolling-capture.png",
+          "preferences": []
+        },
+        {
+          "name": "capture-clipboard",
+          "title": "Capture Area to Clipboard",
+          "subtitle": "Capso",
+          "description": "Capture area and copy directly to clipboard",
+          "mode": "no-view",
+          "keywords": [
+            "capso",
+            "copy",
+            "clipboard"
+          ],
+          "icon": "clipboard.png",
+          "preferences": []
+        },
+        {
+          "name": "capture-annotate",
+          "title": "Capture Area & Annotate",
+          "subtitle": "Capso",
+          "description": "Capture area and open in Capso markup editor",
+          "mode": "no-view",
+          "keywords": [
+            "capso",
+            "annotate",
+            "edit",
+            "markup"
+          ],
+          "icon": "annotate.png",
+          "preferences": []
+        },
+        {
+          "name": "screenshot-history",
+          "title": "Screenshot History",
+          "subtitle": "Capso",
+          "description": "Open Capso capture gallery and history",
+          "mode": "no-view",
+          "keywords": [
+            "capso",
+            "history",
+            "gallery",
+            "recent"
+          ],
+          "icon": "open-history.png",
+          "preferences": []
+        },
+        {
+          "name": "capture-translate",
+          "title": "Capture & Translate",
+          "subtitle": "Capso",
+          "description": "Capture text and translate",
+          "mode": "no-view",
+          "keywords": [
+            "capso",
+            "translate",
+            "ocr",
+            "translation"
+          ],
+          "icon": "capture-translate.png",
+          "preferences": []
+        },
+        {
+          "name": "translate-selected-text",
+          "title": "Translate Selected Text",
+          "subtitle": "Capso",
+          "description": "Translate currently selected text",
+          "mode": "no-view",
+          "keywords": [
+            "capso",
+            "translate",
+            "selection"
+          ],
+          "icon": "capture-translate.png",
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "capture",
       "title": "Capture",
       "description": "Quickly create records in Capture with Raycast.",
@@ -54435,7 +54656,8 @@
         "shashank_rm",
         "heyflorentin",
         "ridemountainpig",
-        "12ian34"
+        "12ian34",
+        "lambegraham"
       ],
       "categories": [],
       "license": "MIT",
@@ -130257,7 +130479,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/luarmr/launchdarkly",
       "source": {
@@ -130298,7 +130521,7 @@
           "name": "projectKey",
           "type": "textfield",
           "title": "Default Project Key",
-          "description": "Project used until you pick another one with the Switch Project action (⌘⇧S). If left blank, defaults to 'default'.",
+          "description": "Project used until you pick another one with the Switch Project action (⌘⇧S on macOS, Ctrl+Shift+S on Windows). If left blank, defaults to 'default'.",
           "required": false
         },
         {
@@ -142991,6 +143214,56 @@
       ]
     },
     {
+      "name": "memestash",
+      "title": "MemeStash",
+      "description": "Search a curated library of images and memes and paste the one you pick into the frontmost app.",
+      "icon": "extension-icon.png",
+      "author": "LunarRed",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Fun"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/LunarRed/memestash",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/memestash",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-memes",
+          "title": "Search MemeStash",
+          "description": "Search your MemeStash library and paste the selected image into the frontmost app.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "add-to-memestash",
+          "title": "Add to MemeStash",
+          "description": "Add an image to your MemeStash library with a name and keywords.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "libraryPath",
+          "title": "Library Folder",
+          "description": "Folder that holds your images and the index.json manifest. Leave empty to use ~/Pictures/MemeStash.",
+          "type": "directory",
+          "required": false
+        }
+      ]
+    },
+    {
       "name": "memo",
       "title": "Memo",
       "description": "All your bookmarks and notes in 1 Notion",
@@ -148415,7 +148688,8 @@
       "icon": "extension.png",
       "author": "thomas",
       "contributors": [
-        "nagauta"
+        "nagauta",
+        "pernielsentikaer"
       ],
       "categories": [],
       "license": "MIT",
@@ -151033,7 +151307,8 @@
       "contributors": [
         "serhii_kravchenko",
         "Laptop765",
-        "kud"
+        "kud",
+        "BryanG02"
       ],
       "categories": [
         "Applications",
@@ -151042,7 +151317,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "version": "1.0.1",
       "storeUrl": "https://www.raycast.com/crisboarna/mozilla-firefox",
@@ -152782,9 +153058,9 @@
       "title": "MuteDeck",
       "description": "Control your meetings from Raycast: toggle mute, camera, screen share and recording via MuteDeck, with a live Meeting Deck grid.",
       "icon": "icon.png",
-      "author": "chad_walters",
+      "author": "smitmartijn",
       "contributors": [
-        "smitmartijn"
+        "chad_walters"
       ],
       "categories": [
         "Applications",
@@ -152795,7 +153071,7 @@
       "platforms": [
         "macOS"
       ],
-      "storeUrl": "https://www.raycast.com/chad_walters/mutedeck",
+      "storeUrl": "https://www.raycast.com/smitmartijn/mutedeck",
       "source": {
         "type": "github-monorepo",
         "repo": "raycast/extensions",
@@ -186098,7 +186374,8 @@
       "icon": "extension-icon.png",
       "author": "LostViking09",
       "contributors": [
-        "Logan-8f"
+        "Logan-8f",
+        "mitsimi"
       ],
       "categories": [
         "Applications",
@@ -186245,6 +186522,16 @@
           "mode": "no-view",
           "keywords": [],
           "icon": "Awake.png",
+          "preferences": []
+        },
+        {
+          "name": "light-switch",
+          "title": "Light Switch",
+          "subtitle": "PowerToys",
+          "description": "Toggle light and dark themes using PowerToys Light Switch",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "Light Switch.png",
           "preferences": []
         }
       ],
@@ -223494,7 +223781,8 @@
         "clins1994",
         "stephlv",
         "artistro08",
-        "andreaselia"
+        "andreaselia",
+        "0xdhrv"
       ],
       "categories": [
         "Communication",
@@ -247836,21 +248124,53 @@
         {
           "name": "download-thread-media",
           "title": "Download Threads Media",
-          "description": "Download threads media with URL",
+          "description": "Download images, videos, and voice posts from a Threads post URL",
           "mode": "no-view",
           "keywords": [],
           "preferences": [
             {
               "name": "mediaDownloadPath",
-              "title": "Video Download Path",
-              "description": "Path to save downloaded media",
+              "title": "Media Download Path",
+              "description": "Directory to save downloaded media (defaults to ~/Downloads)",
               "type": "directory",
               "required": false
+            },
+            {
+              "name": "imageFormat",
+              "title": "Image Format",
+              "description": "Convert downloaded images to your preferred format. macOS only.",
+              "type": "dropdown",
+              "required": false,
+              "default": "original",
+              "data": [
+                {
+                  "title": "Original",
+                  "value": "original"
+                },
+                {
+                  "title": "JPEG",
+                  "value": "jpeg"
+                },
+                {
+                  "title": "PNG",
+                  "value": "png"
+                }
+              ]
             }
           ]
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "verboseLogging",
+          "title": "Debug Logging",
+          "label": "Enable extra diagnostics in the console",
+          "description": "Show detailed logs in the console for debugging.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        }
+      ]
     },
     {
       "name": "threads-video-downloader",
