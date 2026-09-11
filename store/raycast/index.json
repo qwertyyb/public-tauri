@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-10T20:50:52.194Z",
+  "generatedAt": "2026-09-11T20:58:03.467Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "c3e6ef0ab5c9fe2471bb10467bd4975291820316"
+    "commit": "7b9d168e22a7b0461f00b2c452a40ea91726dfbb"
   },
-  "count": 3272,
+  "count": 3289,
   "extensions": [
     {
       "name": "0x0",
@@ -19716,6 +19716,51 @@
       "preferences": []
     },
     {
+      "name": "better-json",
+      "title": "Better JSON Inspector",
+      "description": "Browse, search, decode, and extract nested JSON.",
+      "icon": "better-json-icon.png",
+      "author": "xiaodaiguaray",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "version": "1.0.0",
+      "storeUrl": "https://www.raycast.com/xiaodaiguaray/better-json",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/better-json",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "better-json",
+          "title": "Inspect JSON",
+          "description": "Browse, search, decode, and extract nested JSON.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "showMetadata",
+              "type": "checkbox",
+              "required": false,
+              "title": "Show Detail Metadata",
+              "label": "Show metadata below the formatted JSON preview",
+              "description": "Display additional child counts, source size, and search index statistics. The current path, source, and conversion mode are always visible.",
+              "default": false
+            }
+          ]
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "better-screenshoot",
       "title": "Better Screenshoot",
       "description": "Capture your screen with a built-in editor from Raycast.",
@@ -29285,6 +29330,95 @@
       ]
     },
     {
+      "name": "calliday",
+      "title": "Calliday",
+      "description": "Companion for Calliday, the automatic time tracker for macOS. Requires the Calliday app.",
+      "icon": "icon.png",
+      "author": "yaanisy",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/yaanisy/calliday",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/calliday",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "now",
+          "title": "Current Activity",
+          "subtitle": "Calliday",
+          "description": "What Calliday is tracking right now, with today's total.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "today",
+          "title": "Today's Report",
+          "subtitle": "Calliday",
+          "description": "Today by project, app, and site.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "tomatoes",
+          "title": "Tomatoes",
+          "subtitle": "Calliday",
+          "description": "Today's harvest, run by run — and the one on the vine.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search",
+          "title": "Search Activity",
+          "subtitle": "Calliday",
+          "description": "Find a document or page in your tracked activity, then jump to it on the timeline or open it.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "start-tomato",
+          "title": "Start Tomato",
+          "subtitle": "Calliday",
+          "description": "Plant a pomodoro; Calliday notifies you when it's ripe.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "start-timer",
+          "title": "Start Timer",
+          "subtitle": "Calliday",
+          "description": "Start a manual Calliday timer.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "cliPath",
+          "title": "Calliday CLI Path",
+          "description": "Path to the calliday binary. The default is where the app installs it.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "~/Library/Application Support/Calliday/bin/calliday",
+          "default": "~/Library/Application Support/Calliday/bin/calliday"
+        }
+      ]
+    },
+    {
       "name": "caltask",
       "title": "CalTask",
       "description": "Track tasks with timer, manage calendar events, AI-powered search, and time reporting",
@@ -31923,6 +32057,68 @@
       "preferences": []
     },
     {
+      "name": "ceypay",
+      "title": "CeyPay",
+      "description": "Search CeyPay documentation and API reference — accept crypto payments, settle in Sri Lankan Rupees.",
+      "icon": "icon.png",
+      "author": "kasuncfdo",
+      "contributors": [],
+      "categories": [
+        "Documentation",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/kasuncfdo/ceypay",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/ceypay",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-docs",
+          "title": "Search Docs",
+          "subtitle": "CeyPay",
+          "description": "Search CeyPay guides, integrations, changelog, and reference pages",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-api",
+          "title": "Search API Endpoints",
+          "subtitle": "CeyPay",
+          "description": "Browse the CeyPay REST API — endpoints, parameters, and examples",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-blog",
+          "title": "Search Blog",
+          "subtitle": "CeyPay",
+          "description": "Read the latest CeyPay blog posts — product news, partnerships, and company updates",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "changelog",
+          "title": "Changelog",
+          "subtitle": "CeyPay",
+          "description": "Browse CeyPay product and legal updates, newest first",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "chainscout",
       "title": "Chainscout",
       "description": "Find information about blockchains (powered by Blockscout)",
@@ -32510,7 +32706,8 @@
       "author": "gregoralbrecht",
       "contributors": [
         "emilsharier",
-        "michaelhaar"
+        "michaelhaar",
+        "oh.cactus"
       ],
       "categories": [],
       "license": "MIT",
@@ -33160,15 +33357,6 @@
           "title": "Text-to-Speech",
           "required": false,
           "default": false
-        },
-        {
-          "default": false,
-          "description": "Enable custom model names without selecting from the model API",
-          "label": "Enable custom model name",
-          "name": "isCustomModel",
-          "required": false,
-          "title": "Custom model",
-          "type": "checkbox"
         },
         {
           "default": false,
@@ -42196,6 +42384,97 @@
           "required": true
         }
       ]
+    },
+    {
+      "name": "codex-reset-forecast",
+      "title": "Codex Reset Forecast",
+      "description": "See the 24-hour and 48-hour Codex reset likelihood, announcements, and reset history from codexreset.org. Unofficial and not affiliated with OpenAI.",
+      "icon": "codexreset-icon-transparent.png",
+      "author": "Astatine-213",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/Astatine-213/codex-reset-forecast",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/codex-reset-forecast",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "check-reset-forecast",
+          "title": "Check Reset Forecast",
+          "description": "View the reset outlook, announcements, and sourced reset records from Codex Reset Monitor.",
+          "mode": "view",
+          "keywords": [
+            "codex",
+            "quota",
+            "reset",
+            "forecast",
+            "history"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "reset-history-calendar",
+          "title": "View Reset Calendar",
+          "description": "See confirmed Codex reset days across the current and previous month at a glance.",
+          "mode": "view",
+          "keywords": [
+            "codex",
+            "reset",
+            "history",
+            "calendar",
+            "frequency",
+            "month"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "toggle-reset-forecast-menu-bar",
+          "title": "Show Reset Forecast in Menu Bar",
+          "description": "Show the reset forecast in the menu bar. Configure its display here, or hide it from its menu.",
+          "mode": "menu-bar",
+          "keywords": [
+            "codex",
+            "quota",
+            "reset",
+            "forecast",
+            "menu bar"
+          ],
+          "preferences": [
+            {
+              "name": "menuBarDisplay",
+              "title": "Menu Bar Display",
+              "description": "Show the reset likelihood within 24 or 48 hours, or elapsed time since the last confirmed reset.",
+              "type": "dropdown",
+              "required": false,
+              "default": "likelihood-24h",
+              "data": [
+                {
+                  "title": "Reset Likelihood (24 Hours)",
+                  "value": "likelihood-24h"
+                },
+                {
+                  "title": "Reset Likelihood (48 Hours)",
+                  "value": "likelihood-48h"
+                },
+                {
+                  "title": "Time Since Last Reset",
+                  "value": "last-reset"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "codex-sessions",
@@ -60692,11 +60971,37 @@
       ],
       "preferences": [
         {
+          "name": "acceptLanguage",
+          "title": "Page Language",
+          "description": "Sent as the Accept-Language header. Sites that serve more than one language use it to choose which version Digger analyses; without it they pick for you.",
+          "type": "textfield",
+          "default": "en-US",
+          "required": false
+        },
+        {
+          "name": "prettyPrintCode",
+          "title": "Code Formatting",
+          "label": "Pretty-print JSON and XML when viewing a file",
+          "description": "Re-indent minified files so they are readable. Turn off to see exactly the bytes the server sent — Copy and Download always use the original either way.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        },
+        {
           "name": "verboseLogging",
           "title": "Debug Logging",
-          "description": "Enable extra diagnostics for troubleshooting and bug reports.",
+          "description": "Show detailed logs in the console for debugging.",
           "type": "checkbox",
-          "label": "Enable",
+          "label": "Enable extra diagnostics in the console",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "strictRedaction",
+          "title": "Strict Redaction",
+          "description": "Turn on before reproducing an issue, then share only the new lines.",
+          "type": "checkbox",
+          "label": "Also hide URL query strings and fragments in logs",
           "default": false,
           "required": false
         }
@@ -72775,7 +73080,8 @@
       "author": "anastasiy_safari",
       "contributors": [
         "laurynas_gailius",
-        "marioparaschiv"
+        "marioparaschiv",
+        "just_me"
       ],
       "categories": [
         "Applications",
@@ -82039,6 +82345,248 @@
       "preferences": []
     },
     {
+      "name": "folder-scope",
+      "title": "Folder Scope",
+      "description": "Search the contents of files in your active Finder folder or any folder you select.",
+      "icon": "icon.png",
+      "author": "omer_aydemir",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/omer_aydemir/folder-scope",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/folder-scope",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-content",
+          "title": "Search Content",
+          "description": "Search text inside files in the active Finder folder.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "defaultDirectory",
+          "title": "Default Search Directory",
+          "description": "Used when no Finder directory can be detected.",
+          "type": "directory",
+          "required": false
+        },
+        {
+          "name": "noFinderBehavior",
+          "title": "When No Finder Directory Is Available",
+          "description": "What to do when Finder has no usable selection or window.",
+          "type": "dropdown",
+          "required": false,
+          "default": "home",
+          "data": [
+            {
+              "title": "Ask Me to Pick a Directory",
+              "value": "prompt"
+            },
+            {
+              "title": "Use the Default Search Directory",
+              "value": "default-directory"
+            },
+            {
+              "title": "Use My Home Directory",
+              "value": "home"
+            }
+          ]
+        },
+        {
+          "name": "preferredEngine",
+          "title": "Search Engine",
+          "description": "Automatic tries bundled ripgrep, then system ripgrep, then the built-in Node.js engine.",
+          "type": "dropdown",
+          "required": false,
+          "default": "automatic",
+          "data": [
+            {
+              "title": "Automatic",
+              "value": "automatic"
+            },
+            {
+              "title": "Bundled Ripgrep",
+              "value": "bundled"
+            },
+            {
+              "title": "System Ripgrep",
+              "value": "system"
+            },
+            {
+              "title": "Node.js Fallback",
+              "value": "node"
+            }
+          ]
+        },
+        {
+          "name": "defaultCaseMode",
+          "title": "Default Case Sensitivity",
+          "description": "Smart case is case-insensitive unless the query contains an uppercase letter.",
+          "type": "dropdown",
+          "required": false,
+          "default": "smart",
+          "data": [
+            {
+              "title": "Smart Case",
+              "value": "smart"
+            },
+            {
+              "title": "Case Sensitive",
+              "value": "sensitive"
+            },
+            {
+              "title": "Case Insensitive",
+              "value": "insensitive"
+            }
+          ]
+        },
+        {
+          "name": "defaultSearchMode",
+          "title": "Default Search Mode",
+          "description": "Plain text treats the query literally; regular expression uses ripgrep-style syntax.",
+          "type": "dropdown",
+          "required": false,
+          "default": "text",
+          "data": [
+            {
+              "title": "Plain Text",
+              "value": "text"
+            },
+            {
+              "title": "Regular Expression",
+              "value": "regex"
+            }
+          ]
+        },
+        {
+          "name": "defaultMaxDepth",
+          "title": "Default Search Depth",
+          "description": "Maximum directory depth. Leave empty for unlimited; 1 searches only the current directory.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "Unlimited"
+        },
+        {
+          "name": "maxResults",
+          "title": "Maximum Results",
+          "description": "Stop after this many results.",
+          "type": "textfield",
+          "required": false,
+          "default": "250"
+        },
+        {
+          "name": "maxFileSizeMb",
+          "title": "Maximum File Size (MB)",
+          "description": "Files larger than this are skipped.",
+          "type": "textfield",
+          "required": false,
+          "default": "10"
+        },
+        {
+          "name": "previewContextLines",
+          "title": "Preview Context Lines",
+          "description": "Context lines above and below the matched line (0–10). For example, 1 shows three lines in total. Also used by “Copy Line with Context”.",
+          "type": "textfield",
+          "required": false,
+          "default": "0"
+        },
+        {
+          "name": "showMatchPreview",
+          "title": "Match Preview",
+          "label": "Show the match preview by default",
+          "description": "Start with the detail preview open. Toggle it anytime with “Show/Hide Match Preview” in the action panel.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "searchHiddenFiles",
+          "title": "Hidden Files",
+          "label": "Search hidden files and directories",
+          "description": "Include dotfiles and hidden directories in the search.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "respectIgnoreFiles",
+          "title": "Ignore Files",
+          "label": "Respect .gitignore and other ignore files",
+          "description": "Skip files matched by .gitignore, .ignore, and similar files.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "excludedDirectories",
+          "title": "Excluded Directories",
+          "description": "Comma-separated directory names that are never searched.",
+          "type": "textfield",
+          "required": false,
+          "default": ".git, node_modules, bin, obj, .next, dist, build, Library, .cache, .turbo, DerivedData"
+        },
+        {
+          "name": "includedExtensions",
+          "title": "Default File Extensions",
+          "description": "Comma-separated extensions to search (for example: ts, tsx, md). Leave empty for all files.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "All files"
+        },
+        {
+          "name": "debounceMs",
+          "title": "Search Debounce (ms)",
+          "description": "Delay after typing before the search starts (50–1000 ms).",
+          "type": "textfield",
+          "required": false,
+          "default": "200"
+        },
+        {
+          "name": "preferredEditor",
+          "title": "Preferred Code Editor",
+          "description": "Used by the “Open in Editor” action to jump to the matching line.",
+          "type": "dropdown",
+          "required": false,
+          "default": "vscode",
+          "data": [
+            {
+              "title": "Visual Studio Code",
+              "value": "vscode"
+            },
+            {
+              "title": "Cursor",
+              "value": "cursor"
+            },
+            {
+              "title": "Zed",
+              "value": "zed"
+            },
+            {
+              "title": "Sublime Text",
+              "value": "sublime"
+            },
+            {
+              "title": "JetBrains Rider",
+              "value": "rider"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "folder-search",
       "title": "Folder Search",
       "description": "Search for folders on your Mac",
@@ -85594,6 +86142,57 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "gatus-status",
+      "title": "Gatus Status",
+      "description": "View the status of endpoints monitored by your Gatus instance.",
+      "icon": "gatus-logo.png",
+      "author": "romain_lajeunesse",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/romain_lajeunesse/gatus-status",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/gatus-status",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "list-statuses",
+          "title": "Gatus Statuses",
+          "subtitle": "Gatus",
+          "description": "View the status of your monitored Gatus endpoints.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "gatusUrl",
+          "type": "textfield",
+          "required": true,
+          "title": "Gatus Base URL",
+          "description": "Gatus instance URL (ex: https://status.twin.sh)",
+          "placeholder": "https://status.twin.sh"
+        },
+        {
+          "name": "authToken",
+          "type": "password",
+          "required": false,
+          "title": "Bearer Token (optional)",
+          "description": "If auth is needed"
+        }
+      ]
     },
     {
       "name": "gcp-ip-search",
@@ -95597,13 +96196,14 @@
     {
       "name": "google-tasks",
       "title": "Google Tasks",
-      "description": "Manage Google Tasks from Raycast.",
+      "description": "Manage Google Tasks from Raycast, and ask Raycast AI about them.",
       "icon": "google-tasks.png",
       "author": "elliotdes",
       "contributors": [
         "pernielsentikaer",
         "erik_vandeputte",
-        "ridemountainpig"
+        "ridemountainpig",
+        "sansaxena789"
       ],
       "categories": [
         "Productivity"
@@ -95623,8 +96223,8 @@
       "commands": [
         {
           "name": "view-lists",
-          "title": "View Lists",
-          "description": "View task lists",
+          "title": "View Tasks",
+          "description": "View tasks across your Google Task lists",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -95641,11 +96241,11 @@
       "preferences": [
         {
           "name": "clientId",
-          "type": "password",
+          "type": "textfield",
           "required": true,
-          "title": "OAuth Client ID",
-          "description": "Your OAuth client ID.",
-          "placeholder": "See https://console.developers.google.com/apis/credentials"
+          "title": "Google OAuth Client ID",
+          "description": "One-time setup. This is not an API key. Create an iOS OAuth client with Bundle ID com.raycast.",
+          "placeholder": "123...apps.googleusercontent.com"
         }
       ]
     },
@@ -116766,6 +117366,98 @@
       ]
     },
     {
+      "name": "ipf-os",
+      "title": "iPF OS",
+      "description": "Raise, track, and action iPF OS tickets without leaving your keyboard.",
+      "icon": "extension-icon.png",
+      "author": "joseph_emmanuel",
+      "contributors": [],
+      "categories": [
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows",
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/joseph_emmanuel/ipf-os",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/ipf-os",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-tickets",
+          "title": "Search Tickets",
+          "subtitle": "iPF OS",
+          "description": "Find and act on tickets you watch, are assigned to, or created.",
+          "mode": "view",
+          "keywords": [
+            "ticket",
+            "tickets",
+            "ticketing",
+            "issue",
+            "support",
+            "backlog",
+            "watching"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "create-ticket",
+          "title": "Create Ticket",
+          "subtitle": "iPF OS",
+          "description": "Raise a ticket and route it to the right department, project, or person.",
+          "mode": "view",
+          "keywords": [
+            "ticket",
+            "raise",
+            "report",
+            "bug",
+            "request",
+            "support",
+            "new"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "assigned-tickets",
+          "title": "Assigned Tickets",
+          "subtitle": "iPF OS",
+          "description": "Keeps a count of the open tickets assigned to you in the menu bar, overdue ones first.",
+          "mode": "menu-bar",
+          "keywords": [
+            "ticket",
+            "assigned",
+            "queue",
+            "overdue",
+            "workload"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "baseUrl",
+          "title": "API Gateway",
+          "description": "iPF OS gateway, including the /api/v1 path.",
+          "type": "textfield",
+          "required": false,
+          "default": "https://os.gateway.beagile.africa/api/v1"
+        },
+        {
+          "name": "webAppUrl",
+          "title": "Web App",
+          "description": "Where Connect and Open in iPF OS send you.",
+          "type": "textfield",
+          "required": false,
+          "default": "https://os.web.beagile.africa"
+        }
+      ]
+    },
+    {
       "name": "ipinfo",
       "title": "IP Info",
       "description": "An extension to use ipinfo.io's API to get information about IP addresses",
@@ -125298,6 +125990,74 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "keyboard-layout-search",
+      "title": "Keyboard Layout Search",
+      "description": "Find apps and search the web after typing a query with the wrong keyboard layout.",
+      "icon": "extension-icon.png",
+      "author": "rogovk",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/rogovk/keyboard-layout-search",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/keyboard-layout-search",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "fix-layout",
+          "title": "Fix Keyboard Layout",
+          "description": "Convert a query to US English and find applications or search the web.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "layoutMode",
+          "title": "Source Keyboard Layout",
+          "description": "Automatically detect the source layout or always convert from a specific layout to US English.",
+          "type": "dropdown",
+          "required": true,
+          "default": "auto",
+          "data": [
+            {
+              "title": "Automatic (Recommended)",
+              "value": "auto"
+            },
+            {
+              "title": "Russian — ЙЦУКЕН",
+              "value": "russian"
+            },
+            {
+              "title": "Ukrainian — ЙЦУКЕН",
+              "value": "ukrainian"
+            },
+            {
+              "title": "French — AZERTY",
+              "value": "french"
+            },
+            {
+              "title": "German — QWERTZ",
+              "value": "german"
+            },
+            {
+              "title": "Greek",
+              "value": "greek"
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "input-switcher",
@@ -142879,6 +143639,79 @@
       ]
     },
     {
+      "name": "media-switcher",
+      "title": "Media Switcher",
+      "description": "Quickly switch between media sessions, control playback and adjust volume — all from the keyboard",
+      "icon": "extension-icon.png",
+      "author": "muhammadrizo",
+      "contributors": [],
+      "categories": [
+        "Media",
+        "System",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/muhammadrizo/media-switcher",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/media-switcher",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "switch-media",
+          "title": "Switch Media",
+          "subtitle": "Media Switcher",
+          "description": "Switch between media sessions",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "prevNextTrackShortcuts",
+              "title": "Previous / Next Track Shortcuts",
+              "description": "Choose shortcuts for the \"Previous Track\" and \"Next Track\" actions",
+              "type": "dropdown",
+              "required": false,
+              "data": [
+                {
+                  "title": "⌘ / Ctrl and Square Brackets [ ]",
+                  "value": "squareBrackets"
+                },
+                {
+                  "title": "⌘ / Ctrl and Arrow Keys ← →",
+                  "value": "arrowKeys"
+                }
+              ],
+              "default": "squareBrackets"
+            },
+            {
+              "name": "refreshInterval",
+              "title": "Refresh Interval (seconds)",
+              "description": "How often to auto-refresh the media session list. Set to 0 to disable",
+              "type": "textfield",
+              "required": false,
+              "default": "5",
+              "placeholder": "5"
+            },
+            {
+              "name": "volumeStep",
+              "title": "Volume Step",
+              "description": "How much to increase or decrease the volume by",
+              "type": "textfield",
+              "required": false,
+              "default": "5",
+              "placeholder": "5"
+            }
+          ]
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "medialister-marketplace-helper",
       "title": "Medialister Marketplace Helper",
       "description": "Medialister is a marketplace where brands can buy advertorial placements in the variety of online media. The extension can help to set up proper filters and sortig options for a particular goal.",
@@ -142994,6 +143827,117 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "melanite-search",
+      "title": "Melanite Search",
+      "description": "Search your Melanite library by file name and tag name, with thumbnail previews.",
+      "icon": "extension-icon.png",
+      "author": "masuipeo",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Media"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/masuipeo/melanite-search",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/melanite-search",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-files",
+          "title": "Search Files",
+          "subtitle": "Melanite",
+          "description": "Filter the items of a Melanite library by file name, tag name and memo.",
+          "mode": "view",
+          "keywords": [
+            "melanite",
+            "tag",
+            "library",
+            "file",
+            "thumbnail"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "libraryPath",
+          "type": "directory",
+          "required": true,
+          "title": "Library Folder",
+          "description": "The .melanite folder to read. melanite.db inside it is opened read-only."
+        },
+        {
+          "name": "sortOrder",
+          "type": "dropdown",
+          "required": false,
+          "title": "Sort By",
+          "description": "Order of the results.",
+          "default": "modified",
+          "data": [
+            {
+              "title": "Modified Date (Newest First)",
+              "value": "modified"
+            },
+            {
+              "title": "Imported Date (Newest First)",
+              "value": "imported"
+            },
+            {
+              "title": "Created Date (Newest First)",
+              "value": "created"
+            },
+            {
+              "title": "Name (A → Z)",
+              "value": "name"
+            }
+          ]
+        },
+        {
+          "name": "resultLimit",
+          "type": "dropdown",
+          "required": false,
+          "title": "Result Limit",
+          "description": "Maximum number of items shown at once.",
+          "default": "100",
+          "data": [
+            {
+              "title": "50",
+              "value": "50"
+            },
+            {
+              "title": "100",
+              "value": "100"
+            },
+            {
+              "title": "200",
+              "value": "200"
+            },
+            {
+              "title": "500",
+              "value": "500"
+            }
+          ]
+        },
+        {
+          "name": "searchMemo",
+          "type": "checkbox",
+          "required": false,
+          "title": "Search Scope",
+          "label": "Also match the item memo",
+          "default": true,
+          "description": "Match the search text against the memo in addition to file name and tag name."
+        }
+      ]
     },
     {
       "name": "mem",
@@ -143975,7 +144919,9 @@
       ],
       "categories": [],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/koinzhang/menubar-weather",
       "source": {
         "type": "github-monorepo",
@@ -147679,6 +148625,50 @@
           ]
         }
       ]
+    },
+    {
+      "name": "mise-window-sets",
+      "title": "Mise Window Sets",
+      "description": "Apply saved Mise window Sets from Raycast.",
+      "icon": "icon.png",
+      "author": "carlosaguado04",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/carlosaguado04/mise-window-sets",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/mise-window-sets",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "apply-set",
+          "title": "Apply Set",
+          "subtitle": "Mise",
+          "description": "Pick a saved Mise Set and arrange windows. Applying via layouts:// requires Mise Pro.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "reload-sets",
+          "title": "Reload Sets",
+          "subtitle": "Mise",
+          "description": "Ask Mise to reload Sets from disk (available on Free).",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "mise-workspace",
@@ -178419,6 +179409,87 @@
       ]
     },
     {
+      "name": "phone",
+      "title": "Phone",
+      "description": "Call anyone in your Contacts through your iPhone in two keystrokes via macOS Continuity.",
+      "icon": "extension-icon.png",
+      "author": "amir01",
+      "contributors": [],
+      "categories": [
+        "Communication",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/amir01/phone",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/phone",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "call",
+          "title": "Call",
+          "subtitle": "Continuity",
+          "description": "Search your contacts and call them through your iPhone with one keystroke.",
+          "mode": "view",
+          "keywords": [
+            "phone",
+            "dial",
+            "facetime",
+            "contact",
+            "continuity",
+            "iphone",
+            "ring",
+            "speeddial"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "refresh-contacts",
+          "title": "Refresh Contacts",
+          "subtitle": "Continuity",
+          "description": "Rebuild the cached contacts list from macOS Contacts.",
+          "mode": "no-view",
+          "keywords": [
+            "contacts",
+            "refresh",
+            "sync",
+            "reload"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "defaultAction",
+          "title": "Default Action",
+          "description": "What happens when you press Enter on a contact.",
+          "type": "dropdown",
+          "default": "tel",
+          "required": false,
+          "data": [
+            {
+              "title": "Call (Phone)",
+              "value": "tel"
+            },
+            {
+              "title": "FaceTime Audio",
+              "value": "facetime-audio"
+            },
+            {
+              "title": "FaceTime Video",
+              "value": "facetime"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "phonenumber-in-im",
       "title": "Fast Chat With Phone Number in IM Apps",
       "description": "A Raycast extension enables faster chatting with a target phone number in IM apps like WhatsApp and Telegram, eliminating the need to add contacts beforehand.",
@@ -187804,6 +188875,70 @@
       "preferences": []
     },
     {
+      "name": "project-folders",
+      "title": "Project Folders",
+      "description": "Browse creative project folders and jump to Asana, Google Drive, and Frame.io links.",
+      "icon": "command-icon.png",
+      "author": "hugini",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/hugini/project-folders",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/project-folders",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-projects",
+          "title": "Search Project Folders",
+          "description": "List project folders and open them in Finder or jump to Asana, Drive, or Frame.io.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "resizeFinderWindows",
+          "type": "checkbox",
+          "required": false,
+          "title": "Finder Window Layout",
+          "label": "Move and resize Finder windows when opening folders",
+          "description": "Move the front Finder window to the bottom half of the screen after opening a project or subfolder. Off by default to preserve your layout.",
+          "default": false
+        },
+        {
+          "name": "projectsRoot",
+          "type": "directory",
+          "required": true,
+          "title": "Projects Root",
+          "description": "Root folder containing YYYY/ year subfolders of projects."
+        },
+        {
+          "name": "linkApp",
+          "type": "appPicker",
+          "required": false,
+          "title": "Default Link App",
+          "description": "Application used to open Google Drive, Frame.io, and Magic Link Machine links. Leave empty to use the system default browser."
+        },
+        {
+          "name": "asanaApp",
+          "type": "appPicker",
+          "required": false,
+          "title": "Asana App",
+          "description": "Application used to open Asana links. Pick Asana.app to open natively, or leave empty to use the system default browser."
+        }
+      ]
+    },
+    {
       "name": "project-hub",
       "title": "Project Hub",
       "description": "Quickly access all your project-related links from one place.",
@@ -190569,6 +191704,49 @@
       ]
     },
     {
+      "name": "punch-clock",
+      "title": "Punch Clock",
+      "description": "Track your working hours: set a total work time and break length, then watch a live countdown in the macOS menu bar.",
+      "icon": "icon.png",
+      "author": "FL0R1AN",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/FL0R1AN/punch-clock",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/punch-clock",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "start-timer",
+          "title": "Start Work Timer",
+          "subtitle": "Punch Clock",
+          "description": "Enter your total working time and break length to start the countdown.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "menu-bar",
+          "title": "Work Timer",
+          "subtitle": "Punch Clock",
+          "description": "Shows the live countdown of your remaining working time in the menu bar.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "punto",
       "title": "Punto Switcher",
       "description": "Changes the layout of selected text. Requires Accessibility access",
@@ -191344,7 +192522,7 @@
     },
     {
       "name": "qalc",
-      "title": "Qalccast",
+      "title": "Qalccast - CLI Calculator",
       "description": "Run qalc calculator with Raycast",
       "icon": "extension-icon.png",
       "author": "vlad2305m",
@@ -191355,7 +192533,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/vlad2305m/qalc",
       "source": {
@@ -191367,7 +192546,7 @@
       "commands": [
         {
           "name": "qalc",
-          "title": "Qalccast",
+          "title": "Calculator",
           "description": "Open interactive qalc view.\nRequires one of (qalc executable | qalc path) to be valid.",
           "mode": "view",
           "keywords": [],
@@ -218415,6 +219594,85 @@
       "preferences": []
     },
     {
+      "name": "shell-apps",
+      "title": "Shell Apps",
+      "description": "Create and launch your own shell command shortcuts as apps on Windows",
+      "icon": "icon.png",
+      "author": "Kxrbx",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows"
+      ],
+      "version": "1.0.0",
+      "storeUrl": "https://www.raycast.com/Kxrbx/shell-apps",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/shell-apps",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "shell-apps",
+          "title": "Shell Apps",
+          "description": "Manage and launch your shell command shortcuts",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "create-app",
+          "title": "Create Shell App",
+          "description": "Create a new shell command shortcut",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "defaultTerminal",
+          "type": "dropdown",
+          "required": false,
+          "title": "Default Terminal",
+          "description": "Terminal used by default when creating a new shortcut.",
+          "default": "powershell",
+          "data": [
+            {
+              "title": "PowerShell",
+              "value": "powershell"
+            },
+            {
+              "title": "PowerShell 7",
+              "value": "powershell7"
+            },
+            {
+              "title": "Command Prompt",
+              "value": "cmd"
+            },
+            {
+              "title": "Windows Terminal",
+              "value": "wt"
+            }
+          ]
+        },
+        {
+          "name": "defaultKeepOpen",
+          "type": "checkbox",
+          "required": false,
+          "title": "Keep Window Open",
+          "description": "Keep the terminal window open after the command exits by default.",
+          "default": true,
+          "label": "Keep terminal window open"
+        }
+      ]
+    },
+    {
       "name": "shell-buddy",
       "title": "Shell Buddy",
       "description": "Converts natural language prompts to shell commands with AI",
@@ -228745,6 +230003,89 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "spark-mail",
+      "title": "Spark Mail",
+      "description": "Search, browse, read, and compose Spark email from Raycast via the Spark CLI.",
+      "icon": "icon.png",
+      "author": "keito4",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Communication"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/keito4/spark-mail",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/spark-mail",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search",
+          "title": "Search Mail",
+          "description": "Hybrid keyword + semantic search across your Spark mailbox.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "inbox",
+          "title": "Inbox",
+          "description": "Browse your unified inbox with smart views and load-more.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "calendar",
+          "title": "Calendar",
+          "description": "View your Spark calendar agenda for today, tomorrow, or this week.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "contacts",
+          "title": "Search Contacts",
+          "description": "Look up contacts by name or email and find their messages.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "folders",
+          "title": "Browse Folders",
+          "description": "Browse folders and labels, then drill into their emails.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "compose",
+          "title": "Compose Email",
+          "description": "Draft a new email in Spark (requires Triage access).",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "sparkPath",
+          "type": "textfield",
+          "required": false,
+          "title": "Spark CLI Path",
+          "description": "Absolute path to the spark binary. Leave blank to auto-detect on PATH (/usr/local/bin, /opt/homebrew/bin). Find it with `which spark`.",
+          "placeholder": "/usr/local/bin/spark"
+        }
+      ]
     },
     {
       "name": "spatie-documentation",
@@ -254726,7 +256067,8 @@
         "AntonNiklasson",
         "xmok",
         "merchako",
-        "alexi.build"
+        "alexi.build",
+        "sansaxena789"
       ],
       "categories": [
         "Productivity",
@@ -254734,7 +256076,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/VladCuciureanu/toothpick",
       "source": {
@@ -254937,19 +256280,11 @@
           "placeholder": "Raycast Headphones"
         },
         {
-          "name": "closeOnSuccessfulConnection",
-          "type": "checkbox",
-          "required": true,
-          "title": "Options",
-          "label": "Close window after successful connection.",
-          "description": "If checked, Raycast will close after successfully connecting to a device."
-        },
-        {
           "name": "bluetoothBackend",
           "type": "dropdown",
           "required": false,
-          "title": "Bluetooth Backend",
-          "description": "What tool Toothpick will use for Bluetooth related actions.",
+          "title": "Bluetooth Backend (macOS only)",
+          "description": "What tool Toothpick will use for Bluetooth related actions on macOS.",
           "default": "applescript",
           "data": [
             {
@@ -254966,8 +256301,8 @@
           "name": "blueutilDirectory",
           "type": "textfield",
           "required": false,
-          "title": "Override Blueutil Directory",
-          "description": "Set a custom 'blueutil' location for Toothpick to use.",
+          "title": "Override Blueutil Directory (macOS only)",
+          "description": "Set a custom 'blueutil' location for Toothpick to use on macOS.",
           "placeholder": "/opt/homebrew/bin/blueutil"
         }
       ]
@@ -284775,6 +286110,74 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "zlib-search",
+      "title": "Z-Library",
+      "description": "Search Z-Library and download books, powered by the zlib CLI.",
+      "icon": "icon.png",
+      "author": "materialcritic",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/materialcritic/zlib-search",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/zlib-search",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-books",
+          "title": "Search Books",
+          "subtitle": "Z-Library",
+          "description": "Search Z-Library and download books",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "download-queue",
+          "title": "Download Queue",
+          "subtitle": "Z-Library",
+          "description": "Review and bulk-download books you've saved for later",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "zlibPath",
+          "title": "zlib Binary Path",
+          "description": "Path to the zlib executable. Leave blank to auto-detect (Apple Silicon or Intel Homebrew).",
+          "type": "textfield",
+          "default": "",
+          "required": false
+        },
+        {
+          "name": "downloadDir",
+          "title": "Download Directory",
+          "description": "Where downloaded books are saved",
+          "type": "textfield",
+          "default": "~/Downloads",
+          "required": false
+        },
+        {
+          "name": "zlibDomain",
+          "title": "Z-Library Domain Override",
+          "description": "Optional. Only set this if your saved login session uses a blocked domain (see `zlib doctor --eapi`).",
+          "type": "textfield",
+          "default": "",
+          "required": false
+        }
+      ]
     },
     {
       "name": "znotch",
