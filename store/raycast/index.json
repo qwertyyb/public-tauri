@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-11T20:58:03.467Z",
+  "generatedAt": "2026-09-12T20:33:19.878Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "7b9d168e22a7b0461f00b2c452a40ea91726dfbb"
+    "commit": "3b0778d7fea4046e60061f8df7a1d6f4bf7cd67d"
   },
-  "count": 3289,
+  "count": 3291,
   "extensions": [
     {
       "name": "0x0",
@@ -13641,12 +13641,13 @@
     {
       "name": "are-na",
       "title": "Are.na",
-      "description": "Are.na is a platform for connecting ideas and building knowledge through visual blocks and channels. This Raycast extension allows users to search for channels, blocks, and users on Are.na, as well as create new channels directly from Raycast. Easily discover, explore, and organize content from your Are.na account without leaving your workflow.",
+      "description": "Search and browse Are.na, save blocks, manage channels, and connect ideas with Raycast AI.",
       "icon": "extension-icon.png",
       "author": "alvinkobe",
       "contributors": [
         "xmok",
-        "0xdhrv"
+        "0xdhrv",
+        "ray.dhruv"
       ],
       "categories": [
         "Web"
@@ -13722,6 +13723,24 @@
           "title": "My Channels",
           "subtitle": "Are.na",
           "description": "Browse channels from your Are.na account",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "create-block",
+          "title": "Create Block",
+          "subtitle": "Are.na",
+          "description": "Save a URL or Markdown text to one or more Are.na channels",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-arena",
+          "title": "Open Are.na Link",
+          "subtitle": "Are.na",
+          "description": "Open a channel or block by URL, ID, or slug directly in Raycast",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -15034,6 +15053,42 @@
           "mode": "view",
           "keywords": [
             "crm",
+            "pipeline"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "create-person",
+          "title": "Create Person",
+          "description": "Add a new person to your workspace",
+          "mode": "view",
+          "keywords": [
+            "crm",
+            "new",
+            "contact"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "create-company",
+          "title": "Create Company",
+          "description": "Add a new company to your workspace",
+          "mode": "view",
+          "keywords": [
+            "crm",
+            "new",
+            "org"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "create-deal",
+          "title": "Create Deal",
+          "description": "Add a new deal to your pipeline",
+          "mode": "view",
+          "keywords": [
+            "crm",
+            "new",
             "pipeline"
           ],
           "preferences": []
@@ -152298,7 +152353,8 @@
         "serhii_kravchenko",
         "Laptop765",
         "kud",
-        "BryanG02"
+        "BryanG02",
+        "rockschtar"
       ],
       "categories": [
         "Applications",
@@ -152310,7 +152366,7 @@
         "macOS",
         "Windows"
       ],
-      "version": "1.0.1",
+      "version": "1.1.0",
       "storeUrl": "https://www.raycast.com/crisboarna/mozilla-firefox",
       "source": {
         "type": "github-monorepo",
@@ -180070,12 +180126,15 @@
     {
       "name": "pia-controls",
       "title": "Private Internet Access Controls",
-      "description": "Private Internet Access VPN Controls",
+      "description": "Control the Private Internet Access VPN: connect, disconnect, browse regions with flags, favorites, port forwarding and settings.",
       "icon": "icon.png",
       "author": "yakitrak",
-      "contributors": [],
+      "contributors": [
+        "vxirau"
+      ],
       "categories": [
-        "Security"
+        "Security",
+        "Productivity"
       ],
       "license": "MIT",
       "platforms": [
@@ -180111,7 +180170,7 @@
           "name": "status",
           "title": "Status",
           "subtitle": "PIA Controls",
-          "description": "Displays connection and region status",
+          "description": "Show connection state, region and VPN IP.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -180120,8 +180179,26 @@
           "name": "connectToRegion",
           "title": "Connect to Region",
           "subtitle": "PIA Controls",
-          "description": "Connects to PIA Region",
+          "description": "Browse PIA regions with flags, favorites and recents, and connect to one.",
           "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle",
+          "title": "Toggle Connection",
+          "subtitle": "PIA Controls",
+          "description": "Connect if disconnected, disconnect if connected.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "connect-recent",
+          "title": "Connect Most Recent",
+          "subtitle": "PIA Controls",
+          "description": "Reconnect to the region you used last.",
+          "mode": "no-view",
           "keywords": [],
           "preferences": []
         }
@@ -192892,7 +192969,7 @@
           "name": "convert-link",
           "title": "Convert Track Link",
           "subtitle": "Qobuz",
-          "description": "Copy a Spotify, YouTube Music, or Qobuz track link, then run this to convert it to the other services.",
+          "description": "Convert the track playing in Qobuz — or a Spotify, YouTube Music, or Qobuz track link from the clipboard — to the other services.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -205893,6 +205970,142 @@
           "required": false
         }
       ]
+    },
+    {
+      "name": "record-so",
+      "title": "Record",
+      "description": "Start screen recordings and take screenshots with Record — the dead-simple screen recorder. No signup, no watermark, unlimited length.",
+      "icon": "icon.png",
+      "author": "devrecordso",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Media",
+        "Communication"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/devrecordso/record-so",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/record-so",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "record-screen",
+          "title": "Record Screen",
+          "description": "Start recording your entire screen with the Record desktop app",
+          "mode": "no-view",
+          "keywords": [
+            "screen",
+            "capture",
+            "video",
+            "loom"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "record-window",
+          "title": "Record Window",
+          "description": "Pick a window and start recording it",
+          "mode": "no-view",
+          "keywords": [
+            "window",
+            "capture",
+            "video"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "record-area",
+          "title": "Record Area",
+          "description": "Drag out a custom area of the screen and start recording it",
+          "mode": "no-view",
+          "keywords": [
+            "area",
+            "region",
+            "capture",
+            "video"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "stop-recording",
+          "title": "Stop Recording",
+          "description": "Stop the current recording — the share link opens in your browser",
+          "mode": "no-view",
+          "keywords": [
+            "stop",
+            "finish",
+            "end"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "pause-resume",
+          "title": "Pause or Resume Recording",
+          "description": "Toggle pause on the current recording",
+          "mode": "no-view",
+          "keywords": [
+            "pause",
+            "resume"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "screenshot-area",
+          "title": "Screenshot Area",
+          "description": "Drag out an area and screenshot it — an instant share link, ready to paste",
+          "mode": "no-view",
+          "keywords": [
+            "screenshot",
+            "area",
+            "region",
+            "snip"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "screenshot-screen",
+          "title": "Screenshot Screen",
+          "description": "Screenshot your entire screen — an instant share link, ready to paste",
+          "mode": "no-view",
+          "keywords": [
+            "screenshot",
+            "screen",
+            "capture"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "screenshot-window",
+          "title": "Screenshot Window",
+          "description": "Pick a window and screenshot it",
+          "mode": "no-view",
+          "keywords": [
+            "screenshot",
+            "window"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "open-record",
+          "title": "Open Record",
+          "description": "Open the Record desktop app panel",
+          "mode": "no-view",
+          "keywords": [
+            "panel",
+            "app",
+            "launch"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "rectangle",
@@ -230010,14 +230223,17 @@
       "description": "Search, browse, read, and compose Spark email from Raycast via the Spark CLI.",
       "icon": "icon.png",
       "author": "keito4",
-      "contributors": [],
+      "contributors": [
+        "artistro08"
+      ],
       "categories": [
         "Productivity",
         "Communication"
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/keito4/spark-mail",
       "source": {
@@ -230082,8 +230298,8 @@
           "type": "textfield",
           "required": false,
           "title": "Spark CLI Path",
-          "description": "Absolute path to the spark binary. Leave blank to auto-detect on PATH (/usr/local/bin, /opt/homebrew/bin). Find it with `which spark`.",
-          "placeholder": "/usr/local/bin/spark"
+          "description": "Absolute path to the spark binary. Leave blank to auto-detect on PATH (macOS: /usr/local/bin, /opt/homebrew/bin; Windows: the Spark Desktop install folder). Find it with `which spark` (macOS) or `where.exe spark` (Windows).",
+          "placeholder": "/usr/local/bin/spark or C:\\...\\SparkCore.bundle\\spark.exe"
         }
       ]
     },
@@ -247902,6 +248118,131 @@
           "mode": "no-view",
           "keywords": [],
           "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "the-labyrinth",
+      "title": "The Labyrinth",
+      "description": "Descend through endless labyrinth levels rendered as SVG — collect keys and gems, dodge ghosts, and warp through portals.",
+      "icon": "labyrinth-icon.png",
+      "author": "luarmr",
+      "contributors": [],
+      "categories": [
+        "Fun"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows",
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/luarmr/the-labyrinth",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/the-labyrinth",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "maze",
+          "title": "Play the Labyrinth",
+          "subtitle": "Maze Game",
+          "description": "Escape level after level of randomly generated mazes: unlock doors with keys, collect gems, dodge the ghost, and survive the fog.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "custom",
+          "title": "Custom Labyrinth",
+          "subtitle": "Sandbox",
+          "description": "Play a labyrinth with a chosen level size and any mix of modifiers. Disabled until you enable it in extension settings.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "level",
+              "type": "textfield",
+              "required": false,
+              "title": "Level",
+              "description": "Maze size and intensity (1–99). Width and height cap at 26×15.",
+              "placeholder": "5",
+              "default": "5"
+            },
+            {
+              "name": "key",
+              "type": "checkbox",
+              "required": false,
+              "title": "Modifiers",
+              "label": "Key — locked exit",
+              "description": "Place a key and keep the exit locked until you find it.",
+              "default": false
+            },
+            {
+              "name": "ghost",
+              "type": "checkbox",
+              "required": false,
+              "label": "Ghost",
+              "description": "A ghost patrols the maze.",
+              "default": false
+            },
+            {
+              "name": "portals",
+              "type": "checkbox",
+              "required": false,
+              "label": "Portals",
+              "description": "Two portals warp you across the maze.",
+              "default": false
+            },
+            {
+              "name": "fog",
+              "type": "checkbox",
+              "required": false,
+              "label": "Fog",
+              "description": "Darkness hides the maze until you find the candle.",
+              "default": false
+            },
+            {
+              "name": "ice",
+              "type": "checkbox",
+              "required": false,
+              "label": "Ice",
+              "description": "Icy floors — you slide until you hit a wall.",
+              "default": false
+            },
+            {
+              "name": "shifting",
+              "type": "checkbox",
+              "required": false,
+              "label": "Shifting walls",
+              "description": "Walls open and close every few moves.",
+              "default": false
+            },
+            {
+              "name": "footprints",
+              "type": "dropdown",
+              "required": false,
+              "title": "Footprints",
+              "description": "How long the trail of visited cells stays visible.",
+              "default": "permanent",
+              "data": [
+                {
+                  "title": "Permanent",
+                  "value": "permanent"
+                },
+                {
+                  "title": "Fading",
+                  "value": "fading"
+                },
+                {
+                  "title": "None",
+                  "value": "none"
+                }
+              ]
+            }
+          ]
         }
       ],
       "preferences": []
