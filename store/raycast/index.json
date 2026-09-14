@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-13T20:45:56.887Z",
+  "generatedAt": "2026-09-14T21:53:35.134Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "a79448785b1bb8c6ccfa0e53e957b5812efab026"
+    "commit": "bfb909ca56a0dcb42c4f92536c1e2d94e720672f"
   },
-  "count": 3293,
+  "count": 3297,
   "extensions": [
     {
       "name": "0x0",
@@ -3460,7 +3460,8 @@
         "chingweih",
         "jalenzz",
         "Jakoss",
-        "laughing"
+        "laughing",
+        "ridemountainpig"
       ],
       "categories": [
         "Productivity"
@@ -3743,6 +3744,24 @@
           "title": "z.ai API Token (Optional)",
           "description": "Optional fallback token. Usually auto-detected from ZAI_API_KEY or GLM_API_KEY environment variable (set in ~/.zshrc, ~/.bashrc, etc.).",
           "required": false
+        },
+        {
+          "name": "percentageDisplayMode",
+          "type": "dropdown",
+          "title": "Percentage Display",
+          "description": "Show quota percentages as remaining (default) or used (100 − remaining). Warning colors stay based on quota remaining; currency amounts, credits, and balances are unaffected.",
+          "default": "remaining",
+          "required": false,
+          "data": [
+            {
+              "title": "Remaining",
+              "value": "remaining"
+            },
+            {
+              "title": "Used",
+              "value": "used"
+            }
+          ]
         },
         {
           "name": "cacheTtl",
@@ -7722,6 +7741,45 @@
           "description": "Search quickly between Android version, API level, codename.",
           "mode": "view",
           "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "android-weekly",
+      "title": "Android Weekly",
+      "description": "Browse Android Weekly issues and read the latest articles",
+      "icon": "extension-icon.png",
+      "author": "mibrahimdev",
+      "contributors": [],
+      "categories": [
+        "News"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/mibrahimdev/android-weekly",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/android-weekly",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "browse-issues",
+          "title": "Browse Issues",
+          "description": "Browse Android Weekly issues and read articles",
+          "mode": "view",
+          "keywords": [
+            "android",
+            "weekly",
+            "kotlin",
+            "newsletter"
+          ],
+          "icon": "extension-icon.png",
           "preferences": []
         }
       ],
@@ -42698,7 +42756,7 @@
           "title": "Caffeinate for ...",
           "subtitle": "Coffee",
           "description": "Prevent your computer from sleeping for a certain time",
-          "mode": "no-view",
+          "mode": "view",
           "keywords": [],
           "preferences": []
         },
@@ -54112,7 +54170,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/fhf1121/dated-folder",
       "source": {
@@ -54143,7 +54202,7 @@
         {
           "name": "terminal",
           "title": "Terminal",
-          "description": "App used to open the new folder. Follows the system default terminal when left empty.",
+          "description": "App used to open the new folder. When left empty, follows the system default terminal: the shell handler on macOS, the Default Terminal Application setting on Windows.",
           "type": "appPicker",
           "required": false
         },
@@ -54159,8 +54218,8 @@
         {
           "name": "revealInFinder",
           "title": "Reveal",
-          "description": "Also reveal the new folder in Finder after opening it in the terminal.",
-          "label": "Reveal the folder in Finder",
+          "description": "Also reveal the new folder in Finder or File Explorer after opening it in the terminal.",
+          "label": "Reveal the folder in Finder / File Explorer",
           "type": "checkbox",
           "default": false,
           "required": false
@@ -95128,7 +95187,8 @@
         "xmok",
         "hayk_safaryan",
         "alexi.build",
-        "oussama_moussaoui"
+        "oussama_moussaoui",
+        "kirill-markin"
       ],
       "categories": [],
       "license": "MIT",
@@ -101618,7 +101678,34 @@
           "preferences": []
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "plotDetail",
+          "title": "Plot Detail",
+          "description": "Number of points sampled per plot. Standard is enough for the graph's on-screen size. Raise it only when a curve looks jagged or broken after zooming far out (fast oscillations, steep functions). Higher settings make every zoom and pan slower and produce much larger images.",
+          "type": "dropdown",
+          "required": false,
+          "default": "1000",
+          "data": [
+            {
+              "title": "Standard – 1,000 points (recommended)",
+              "value": "1000"
+            },
+            {
+              "title": "High – 3,000 points",
+              "value": "3000"
+            },
+            {
+              "title": "Very High – 6,000 points",
+              "value": "6000"
+            },
+            {
+              "title": "Maximum – 12,000 points (slow)",
+              "value": "12000"
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "graphcdn",
@@ -110827,6 +110914,94 @@
           "title": "Token",
           "description": "Huggingface Inference API Token",
           "link": "https://huggingface.co/settings/token"
+        }
+      ]
+    },
+    {
+      "name": "hule",
+      "title": "Hule",
+      "description": "Create, find and update Hule tasks without leaving your keyboard.",
+      "icon": "icon.png",
+      "author": "tony_hule",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/tony_hule/hule",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/hule",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "quick-add-task",
+          "title": "Quick Add Task",
+          "subtitle": "Hule",
+          "description": "Create a task from a single line, straight into your default list.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "create-task",
+          "title": "Create Task",
+          "subtitle": "Hule",
+          "description": "Create a task with a list, description, priority, due date and assignee.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-tasks",
+          "title": "Search Tasks",
+          "subtitle": "Hule",
+          "description": "Search tasks across a workspace and act on the results.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "my-tasks",
+          "title": "My Tasks",
+          "subtitle": "Hule",
+          "description": "Tasks assigned to you, grouped by when they are due.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "token",
+          "title": "Personal API Token",
+          "description": "A hule_pat_… token from Settings → API tokens in Hule.",
+          "type": "password",
+          "required": true,
+          "placeholder": "hule_pat_…"
+        },
+        {
+          "name": "apiUrl",
+          "title": "API URL",
+          "description": "Only change this if you run a self-hosted Hule.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "https://api.hule-do.com/api",
+          "default": "https://api.hule-do.com/api"
+        },
+        {
+          "name": "defaultList",
+          "title": "Default List",
+          "description": "List that Quick Add Task writes to, as “List” or “Workspace / List”. Leave empty to use your first list.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "Inbox or Workspace / Inbox",
+          "default": ""
         }
       ]
     },
@@ -134088,7 +134263,8 @@
         "erikjs",
         "alexi.build",
         "samuelkraft",
-        "ray.dhruv"
+        "ray.dhruv",
+        "ChrisPanTaken"
       ],
       "categories": [
         "Developer Tools",
@@ -141891,7 +142067,9 @@
       "description": "Manage bookmarks using a markdown file as persistence layer",
       "icon": "extension-icon.png",
       "author": "rmartins",
-      "contributors": [],
+      "contributors": [
+        "madebyjun"
+      ],
       "categories": [
         "Productivity",
         "Web"
@@ -165656,14 +165834,17 @@
       "icon": "extension-icon.png",
       "author": "nicolas-marien",
       "contributors": [
-        "alanwill"
+        "alanwill",
+        "ashish_anant"
       ],
       "categories": [
         "Productivity",
         "Applications"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/nicolas-marien/omnifocus",
       "source": {
         "type": "github-monorepo",
@@ -187531,6 +187712,94 @@
           "title": "Access Token",
           "description": "Your Postman API key.",
           "placeholder": "Go to your Postman profile to get one."
+        }
+      ]
+    },
+    {
+      "name": "postproxy",
+      "title": "Postproxy",
+      "description": "Publish posts, manage comments, and answer DMs across your social profiles with Postproxy.",
+      "icon": "icon.png",
+      "author": "dmitrysereda",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Communication"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/dmitrysereda/postproxy",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/postproxy",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "status",
+          "title": "Status",
+          "subtitle": "Postproxy",
+          "description": "See what's happening — posts published, engagement, and what's awaiting your reply.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "profiles",
+          "title": "Profiles",
+          "subtitle": "Postproxy",
+          "description": "View connected profiles grouped by profile group, with stats.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "publish-post",
+          "title": "Publish Post",
+          "subtitle": "Postproxy",
+          "description": "Create, schedule, or draft a post across your profiles.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "recent-posts",
+          "title": "Recent Posts",
+          "subtitle": "Postproxy",
+          "description": "Browse recent posts and manage their comments.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "recent-comments",
+          "title": "Recent Comments",
+          "subtitle": "Postproxy",
+          "description": "Browse recent comments across your posts and reply.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "direct-messages",
+          "title": "Direct Messages",
+          "subtitle": "Postproxy",
+          "description": "Read and reply to direct messages.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "title": "API Key",
+          "description": "Your Postproxy API key. Create one at https://app.postproxy.dev (Settings → API).",
+          "type": "password",
+          "required": true
         }
       ]
     },
@@ -260933,7 +261202,7 @@
     {
       "name": "tuple",
       "title": "Tuple",
-      "description": "Browse and call contacts, control your active call, and search transcripts from your Tuple pair programming sessions.",
+      "description": "Call contacts and connected machines, control active calls, and search captured Tuple sessions.",
       "icon": "extension-icon.png",
       "author": "stephendolan",
       "contributors": [],
@@ -260956,7 +261225,7 @@
         {
           "name": "search-contacts",
           "title": "Search Contacts",
-          "description": "Browse your contacts and start a call.",
+          "description": "Browse contacts and connected machines, then start or join a call.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -261029,8 +261298,8 @@
         },
         {
           "name": "exportDirectory",
-          "title": "Transcript Export Folder",
-          "description": "Where exported transcripts are saved. Defaults to your Downloads folder.",
+          "title": "Capture Export Folder",
+          "description": "Where Capture artifacts are saved. Defaults to your Downloads folder.",
           "type": "directory",
           "required": false
         }
@@ -270588,6 +270857,41 @@
       ]
     },
     {
+      "name": "vitra",
+      "title": "Vitra",
+      "description": "Requires the Vitra desktop app. Reads Vitra's local snapshot to show today's readiness, sleep and recovery from your Oura ring — no Oura credentials or setup in Raycast, and no network calls.",
+      "icon": "vitra.png",
+      "author": "pedro_pt_thomaz",
+      "contributors": [],
+      "categories": [
+        "Data"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/pedro_pt_thomaz/vitra",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/vitra",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "today",
+          "title": "Vitra Today",
+          "subtitle": "Vitra",
+          "description": "Requires the Vitra desktop app. Today's readiness, sleep and recovery, read from the snapshot Vitra writes on this machine.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "vivaldi",
       "title": "Vivaldi",
       "description": "Search open tabs, bookmarks and history in Vivaldi.",
@@ -277038,6 +277342,15 @@
           "title": "Quake Window",
           "label": "Open profiles in quake window",
           "description": "When enabled, profile launches (primary action and Open as Administrator) open inside Windows Terminal's quake (drop-down) window.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "useNewTabMenu",
+          "title": "New Tab Menu",
+          "label": "Use New Tab Menu order",
+          "description": "When enabled, shows profiles in the order defined by Windows Terminal's New Tab Menu setting (newTabMenu in settings.json) instead of the raw profile list order.",
           "type": "checkbox",
           "required": false,
           "default": false
