@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-16T21:38:29.287Z",
+  "generatedAt": "2026-09-17T21:18:24.431Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "2433d0b5eaf54704cfb1ff2472d9954f32828da0"
+    "commit": "63ab836444ea88218f33dae290c4efd851612a78"
   },
   "count": 3299,
   "extensions": [
@@ -484,16 +484,19 @@
     {
       "name": "2fas-authenticator",
       "title": "2FAS Authenticator",
-      "description": "Search and copy TOTP codes from 2FAS exports with a Keychain-encrypted local vault",
+      "description": "Search and copy TOTP codes from 2FAS exports with an encrypted local vault",
       "icon": "extension-icon.png",
       "author": "Lock",
-      "contributors": [],
+      "contributors": [
+        "MushuDG"
+      ],
       "categories": [
         "Security"
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/Lock/2fas-authenticator",
       "source": {
@@ -169522,12 +169525,13 @@
     {
       "name": "openclaw",
       "title": "OpenClaw",
-      "description": "Chat with your OpenClaw AI assistant (local or remote gateway)",
+      "description": "Monitor and chat with your OpenClaw Gateway from Raycast",
       "icon": "icon.png",
       "author": "leveragedrobot",
       "contributors": [
         "asaph_kotzin",
-        "RaviTharuma"
+        "RaviTharuma",
+        "Olli0103"
       ],
       "categories": [
         "Productivity",
@@ -169546,76 +169550,187 @@
       },
       "commands": [
         {
+          "name": "control-center",
+          "title": "OpenClaw Control Center",
+          "description": "Monitor Gateway health, tasks, sessions, agents, nodes, channels, and usage",
+          "mode": "view",
+          "keywords": [
+            "dashboard",
+            "status",
+            "tasks",
+            "sessions",
+            "agents",
+            "nodes",
+            "channels",
+            "usage"
+          ],
+          "preferences": []
+        },
+        {
           "name": "ask",
           "title": "Ask OpenClaw",
-          "description": "Quick question to OpenClaw",
+          "description": "Ask OpenClaw a question in a new Gateway session",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "question",
+            "prompt"
+          ],
           "preferences": []
         },
         {
           "name": "chat",
           "title": "Chat with OpenClaw",
-          "description": "Open a conversation with OpenClaw",
+          "description": "Start or continue an OpenClaw Gateway conversation",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "conversation",
+            "session",
+            "message"
+          ],
           "preferences": []
         },
         {
           "name": "clipboard",
           "title": "Ask About Clipboard",
-          "description": "Ask OpenClaw about your clipboard content",
+          "description": "Send clipboard text to OpenClaw with your question",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "clipboard",
+            "question"
+          ],
           "preferences": []
         },
         {
           "name": "selected-text",
           "title": "Process Selected Text",
-          "description": "Summarize, explain, translate, or improve selected text",
+          "description": "Summarize, explain, translate, or rewrite selected text",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "rewrite",
+            "summarize",
+            "translate",
+            "grammar",
+            "code"
+          ],
           "preferences": []
         },
         {
           "name": "status",
           "title": "Gateway Status",
-          "description": "Check OpenClaw gateway connection status",
+          "description": "Check the authenticated OpenClaw Gateway connection",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "health",
+            "connection",
+            "pairing",
+            "tailscale",
+            "cloudflare"
+          ],
           "preferences": []
         },
         {
           "name": "open-webchat",
-          "title": "Open Webchat",
-          "description": "Open OpenClaw webchat in browser",
+          "title": "Open OpenClaw Control UI",
+          "description": "Open the configured Gateway Control UI in your browser",
           "mode": "no-view",
-          "keywords": [],
+          "keywords": [
+            "web",
+            "dashboard",
+            "browser"
+          ],
           "preferences": []
         }
       ],
       "preferences": [
         {
+          "name": "connectionMode",
+          "title": "How Should Raycast Connect?",
+          "description": "Choose where the OpenClaw Gateway runs and how Raycast reaches it.",
+          "type": "dropdown",
+          "required": true,
+          "data": [
+            {
+              "title": "Use OpenClaw Configuration",
+              "value": "config"
+            },
+            {
+              "title": "Local Gateway on This Mac",
+              "value": "local"
+            },
+            {
+              "title": "Local Network Gateway",
+              "value": "network"
+            },
+            {
+              "title": "Tailscale",
+              "value": "tailscale"
+            },
+            {
+              "title": "Cloudflare Tunnel and Access",
+              "value": "cloudflare"
+            }
+          ]
+        },
+        {
           "name": "endpoint",
-          "title": "API Endpoint",
-          "description": "OpenClaw gateway URL. Use http://127.0.0.1:18789 for local, or your Tailscale serve URL (e.g., https://machine-name.tailnet.ts.net) for remote access.",
+          "title": "Gateway URL",
+          "description": "Required for Local Network, Tailscale, and Cloudflare. Every remote connection must use wss://.",
           "type": "textfield",
-          "default": "http://127.0.0.1:18789",
-          "required": true
+          "placeholder": "wss://gateway.example.com",
+          "required": false
         },
         {
           "name": "token",
-          "title": "API Token",
-          "description": "gateway.auth.token on the gateway host, or gateway.remote.token on a node (~/.openclaw/openclaw.json). Leave empty to use the file.",
+          "title": "Gateway Token",
+          "description": "Optional shared Gateway token. Leave empty to use a paired device token or read a string token from ~/.openclaw/openclaw.json.",
+          "type": "password",
+          "required": false
+        },
+        {
+          "name": "password",
+          "title": "Gateway Password",
+          "description": "Optional Gateway password. A token is preferred when both are available.",
           "type": "password",
           "required": false
         },
         {
           "name": "agentId",
           "title": "Agent ID",
-          "description": "Which OpenClaw agent to use",
+          "description": "The default OpenClaw agent for new conversations.",
           "type": "textfield",
           "default": "main",
+          "required": false
+        },
+        {
+          "name": "cloudflareAuthMode",
+          "title": "Cloudflare Access Method",
+          "description": "Used only for Cloudflare. Browser sign-in opens the identity provider configured by the Access policy, such as GitHub or Google.",
+          "type": "dropdown",
+          "default": "browser",
+          "required": false,
+          "data": [
+            {
+              "title": "Browser Sign-In (GitHub, Google, or Other IdP)",
+              "value": "browser"
+            },
+            {
+              "title": "Service Token",
+              "value": "service-token"
+            }
+          ]
+        },
+        {
+          "name": "cloudflareAccessClientId",
+          "title": "Cloudflare Access Client ID",
+          "description": "Required only when Cloudflare authentication is set to Service Token.",
+          "type": "textfield",
+          "required": false
+        },
+        {
+          "name": "cloudflareAccessClientSecret",
+          "title": "Cloudflare Access Client Secret",
+          "description": "Required only when Cloudflare authentication is set to Service Token.",
+          "type": "password",
           "required": false
         }
       ]
@@ -188381,6 +188496,16 @@
           "keywords": [],
           "icon": "Light Switch.png",
           "preferences": []
+        },
+        {
+          "name": "keyboard-manager",
+          "title": "Keyboard Manager",
+          "subtitle": "PowerToys",
+          "description": "Launch PowerToys Keyboard Manager (new)",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "Keyboard Manager.png",
+          "preferences": []
         }
       ],
       "preferences": [
@@ -203204,7 +203329,9 @@
       "description": "Search Raycast's documentation quickly, copy the URL, or open it in your browser",
       "icon": "extension-icon.png",
       "author": "teziovsky",
-      "contributors": [],
+      "contributors": [
+        "chrismessina"
+      ],
       "categories": [
         "Documentation",
         "Developer Tools",
@@ -213167,6 +213294,15 @@
           "title": "New Window",
           "subtitle": "Safari",
           "description": "Open a new Safari window",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "new-private-window",
+          "title": "New Private Window",
+          "subtitle": "Safari",
+          "description": "Open a new Safari private window",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
