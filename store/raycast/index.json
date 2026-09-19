@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-18T20:57:19.313Z",
+  "generatedAt": "2026-09-19T20:36:46.761Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "7385d56717d2666708493dae1f9e2fb4a681dc3d"
+    "commit": "7d98dd1348c2c1fb153c230ec828dfbee27aa0d0"
   },
-  "count": 3299,
+  "count": 3300,
   "extensions": [
     {
       "name": "0x0",
@@ -3548,6 +3548,14 @@
           "label": "Show Claude",
           "description": "Show Claude usage in the list",
           "default": true,
+          "required": false
+        },
+        {
+          "name": "additionalClaudeHomes",
+          "type": "textfield",
+          "title": "Additional Claude Homes (Optional)",
+          "placeholder": "~/.claude-personal, ~/.claude-work",
+          "description": "Comma-separated CLAUDE_CONFIG_DIR directories to include in addition to the default Claude home",
           "required": false
         },
         {
@@ -22267,7 +22275,7 @@
           "type": "password",
           "title": "API Token",
           "required": true,
-          "description": "Generate an API token at https://id.atlassian.com/manage-profile/security/api-tokens with read:* scopes (or see README for specific scopes)",
+          "description": "Generate an API token at https://id.atlassian.com/manage-profile/security/api-tokens with read:* scopes, plus write:pullrequest:bitbucket for review actions (or see README for specific scopes)",
           "placeholder": "bXlzZWNyZXRhcGlrZXkqwd"
         }
       ]
@@ -47319,7 +47327,8 @@
       "contributors": [
         "ridemountainpig",
         "INCHMAN1900",
-        "arjan"
+        "arjan",
+        "dans_huang"
       ],
       "categories": [
         "Developer Tools",
@@ -69367,6 +69376,50 @@
           "required": false,
           "description": "If you need to select target language manually, turn on it.",
           "default": false
+        },
+        {
+          "title": "Query Cache",
+          "name": "queryCacheMode",
+          "type": "dropdown",
+          "required": true,
+          "default": "off",
+          "description": "Store completed dictionary and machine translation results locally. Cached words expire after up to 7 days; translations expire after 24 hours.",
+          "data": [
+            {
+              "title": "Off",
+              "value": "off"
+            },
+            {
+              "title": "Words Only",
+              "value": "words"
+            },
+            {
+              "title": "All Text",
+              "value": "all"
+            }
+          ]
+        },
+        {
+          "title": "AI Query Cache",
+          "name": "aiQueryCacheMode",
+          "type": "dropdown",
+          "required": true,
+          "default": "off",
+          "description": "Reuse completed AI translations and dictionary entries. Off by default because regenerating the same input can produce a different result.",
+          "data": [
+            {
+              "title": "Off",
+              "value": "off"
+            },
+            {
+              "title": "Words Only",
+              "value": "words"
+            },
+            {
+              "title": "All Text",
+              "value": "all"
+            }
+          ]
         },
         {
           "title": "Language Detection",
@@ -95013,7 +95066,8 @@
         "dangkhoipro",
         "0xdhrv",
         "peduarte",
-        "oguma0923"
+        "oguma0923",
+        "alerix"
       ],
       "categories": [
         "Productivity",
@@ -95074,6 +95128,15 @@
               "title": "Display",
               "label": "Show location",
               "description": "Show the event's location as an accessory in the list",
+              "default": false,
+              "required": false
+            },
+            {
+              "name": "showBirthdays",
+              "type": "checkbox",
+              "title": "Display",
+              "label": "Show birthdays",
+              "description": "Include Google Contacts birthday events when listing the primary calendar. Off by default because birthdays often flood upcoming events.",
               "default": false,
               "required": false
             },
@@ -135480,7 +135543,7 @@
         {
           "name": "export-links",
           "title": "Export Links",
-          "description": "Exports your saved links as a JSON file to your Downloads folder.",
+          "description": "Exports your saved links as a JSON file to a folder you choose.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -150274,6 +150337,107 @@
           "required": true
         }
       ]
+    },
+    {
+      "name": "modbus-toolkit",
+      "title": "Modbus Toolkit",
+      "description": "Parse, build, decode, and validate Modbus RTU, TCP, and ASCII frames",
+      "icon": "icon.png",
+      "author": "TwoMental",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/TwoMental/modbus-toolkit",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/modbus-toolkit",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "parse-modbus",
+          "title": "Parse Modbus",
+          "subtitle": "Modbus Toolkit",
+          "description": "Parse Modbus RTU, TCP, and ASCII application data units",
+          "mode": "view",
+          "keywords": [
+            "modbus",
+            "rtu",
+            "tcp",
+            "ascii",
+            "hex",
+            "protocol"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "build-modbus-frame",
+          "title": "Build Modbus Frame",
+          "subtitle": "Modbus Toolkit",
+          "description": "Build validated Modbus RTU, TCP, and ASCII request frames",
+          "mode": "view",
+          "keywords": [
+            "modbus",
+            "build",
+            "generate",
+            "request",
+            "frame"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "decode-register-values",
+          "title": "Decode Register Values",
+          "subtitle": "Modbus Toolkit",
+          "description": "Decode Modbus register bytes using common data types and byte orders",
+          "mode": "view",
+          "keywords": [
+            "modbus",
+            "register",
+            "float",
+            "integer",
+            "endianness"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "calculate-modbus-checksum",
+          "title": "Calculate Modbus Checksum",
+          "subtitle": "Modbus Toolkit",
+          "description": "Calculate or verify Modbus RTU CRC16 and Modbus ASCII LRC checksums",
+          "mode": "view",
+          "keywords": [
+            "modbus",
+            "crc",
+            "lrc",
+            "checksum",
+            "verify"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "modbus-reference",
+          "title": "Modbus Reference",
+          "subtitle": "Modbus Toolkit",
+          "description": "Look up Modbus data areas, function codes, and address rules",
+          "mode": "view",
+          "keywords": [
+            "modbus",
+            "reference",
+            "function code",
+            "register",
+            "address"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "model-context-protocol-registry",
@@ -187136,7 +187300,8 @@
         "ridemountainpig",
         "pernielsentikaer",
         "0xdhrv",
-        "MaaxGr"
+        "MaaxGr",
+        "tony.nguyen"
       ],
       "categories": [
         "Developer Tools",
@@ -191124,6 +191289,40 @@
           "description": "When enabled, cached results will refresh in the background",
           "default": true,
           "required": false
+        },
+        {
+          "name": "cacheExpiration",
+          "type": "dropdown",
+          "title": "Cache Expiration",
+          "description": "How long cached metadata remains usable. Background Refresh can update it sooner.",
+          "default": "5",
+          "required": false,
+          "data": [
+            {
+              "title": "5 minutes",
+              "value": "5"
+            },
+            {
+              "title": "1 hour",
+              "value": "60"
+            },
+            {
+              "title": "5 hours",
+              "value": "300"
+            },
+            {
+              "title": "1 day",
+              "value": "1440"
+            },
+            {
+              "title": "7 days",
+              "value": "10080"
+            },
+            {
+              "title": "30 days",
+              "value": "43200"
+            }
+          ]
         },
         {
           "name": "enableWebIntegration",
@@ -218433,19 +218632,18 @@
       "name": "seo-lighthouse",
       "title": "SEO Lighthouse",
       "description": "Lighthouse SEO Analyzer is a powerful Raycast extension that leverages Google Lighthouse to provide comprehensive SEO and performance audits for any website. Simply input a URL and choose your desired analysis mode, device type, and categories. Get detailed insights into page load speed, core web vitals, accessibility, best practices, and more.",
-      "icon": "extension-icon.png",
+      "icon": "extension-icon-dark.png",
       "author": "guelug",
       "contributors": [],
       "categories": [
         "Productivity",
-        "Web",
-        "Other"
+        "Web"
       ],
       "license": "MIT",
       "platforms": [
         "macOS"
       ],
-      "version": "1.1.0",
+      "version": "1.2.0",
       "storeUrl": "https://www.raycast.com/guelug/seo-lighthouse",
       "source": {
         "type": "github-monorepo",
@@ -218459,16 +218657,50 @@
           "title": "SEO Lighthouse",
           "description": "Run SEO Lighthouse analysis",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "lighthouse",
+            "seo",
+            "audit",
+            "performance",
+            "core web vitals",
+            "cwv",
+            "pagespeed"
+          ],
           "preferences": []
         }
       ],
       "preferences": [
         {
+          "name": "reportProfile",
+          "type": "dropdown",
+          "title": "Report Profile",
+          "description": "Prioritize dashboard metrics and recommendations for your role. All audit evidence remains available.",
+          "required": false,
+          "default": "general",
+          "data": [
+            {
+              "title": "General / Other",
+              "value": "general"
+            },
+            {
+              "title": "Marketing",
+              "value": "marketing"
+            },
+            {
+              "title": "SEO",
+              "value": "seo"
+            },
+            {
+              "title": "Development",
+              "value": "developer"
+            }
+          ]
+        },
+        {
           "name": "outputPath",
           "type": "directory",
           "title": "Output Path",
-          "description": "Select the directory where JSON reports will be saved.",
+          "description": "Directory for readable JSON reports (lighthouse-<host>-<timestamp>.json). The 24-hour cache is stored separately in the extension support folder.",
           "default": "~/Downloads",
           "required": true
         },
@@ -218476,7 +218708,7 @@
           "name": "lighthousePath",
           "type": "textfield",
           "title": "Lighthouse Path",
-          "description": "Optional: Set a custom path to the Lighthouse executable (e.g., ~/.nvm/versions/node/v21.5.0/bin/lighthouse)😜",
+          "description": "Optional: Set a custom path to the Lighthouse executable (e.g., ~/.nvm/versions/node/v21.5.0/bin/lighthouse)",
           "default": "",
           "placeholder": "opt/homebrew/bin/lighthouse",
           "required": false
@@ -219442,7 +219674,8 @@
       "author": "joshmedeski",
       "contributors": [
         "sebastian_gunnarsson",
-        "pernielsentikaer"
+        "pernielsentikaer",
+        "tharropoulos"
       ],
       "categories": [
         "Developer Tools",
@@ -259125,7 +259358,9 @@
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/FezVrasta/transmission",
       "source": {
         "type": "github-monorepo",
@@ -275953,7 +276188,7 @@
           "name": "whisper",
           "title": "Whisper",
           "subtitle": "Whisper",
-          "description": "Quickly create an encrypted secret link",
+          "description": "Quickly create an encrypted secret link using your default expiration and self-destruct settings",
           "mode": "no-view",
           "keywords": [
             "secret",
@@ -275980,6 +276215,40 @@
             "secure"
           ],
           "preferences": []
+        },
+        {
+          "name": "whisper-selection",
+          "title": "Whisper Selected Text",
+          "subtitle": "Whisper",
+          "description": "Encrypt the selected text (or the clipboard) into a secret link using your default settings",
+          "mode": "no-view",
+          "keywords": [
+            "secret",
+            "password",
+            "encrypt",
+            "share",
+            "link",
+            "secure",
+            "selection",
+            "clipboard"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "retrieve-secret",
+          "title": "Retrieve Secret",
+          "subtitle": "Whisper",
+          "description": "Open a Whisper link and decrypt the secret on this device",
+          "mode": "view",
+          "keywords": [
+            "secret",
+            "retrieve",
+            "decrypt",
+            "open",
+            "reveal",
+            "link"
+          ],
+          "preferences": []
         }
       ],
       "preferences": [
@@ -275990,6 +276259,41 @@
           "required": false,
           "default": "https://whisper.quentinvedrenne.com",
           "description": "URL of the Whisper server (for self-hosted instances)"
+        },
+        {
+          "name": "defaultDuration",
+          "title": "Default Expiration",
+          "type": "dropdown",
+          "required": false,
+          "default": "1h",
+          "description": "Used by Whisper, Whisper Selected Text, the AI tool and as the form's initial value",
+          "data": [
+            {
+              "title": "30 Minutes",
+              "value": "30m"
+            },
+            {
+              "title": "1 Hour",
+              "value": "1h"
+            },
+            {
+              "title": "24 Hours",
+              "value": "24h"
+            },
+            {
+              "title": "7 Days",
+              "value": "7d"
+            }
+          ]
+        },
+        {
+          "name": "defaultSelfDestruct",
+          "title": "Default Self-Destruct",
+          "label": "Delete secrets after the first view",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "description": "Used by Whisper, Whisper Selected Text, the AI tool and as the form's initial value"
         }
       ]
     },
@@ -286550,9 +286854,13 @@
           "type": "dropdown",
           "required": false,
           "title": "Search Engine",
-          "description": "Search Engine for query (default: Google).",
-          "default": "Google",
+          "description": "Search engine for queries, or Browser Default to use Zen's default search engine.",
+          "default": "Default",
           "data": [
+            {
+              "title": "Browser Default",
+              "value": "Default"
+            },
             {
               "title": "Google",
               "value": "Google"
