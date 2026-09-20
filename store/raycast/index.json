@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-19T20:36:46.761Z",
+  "generatedAt": "2026-09-20T20:45:23.076Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "7d98dd1348c2c1fb153c230ec828dfbee27aa0d0"
+    "commit": "dc18b8722db4c7357222247b33ab468128875228"
   },
   "count": 3300,
   "extensions": [
@@ -13499,7 +13499,8 @@
       "author": "JinShi",
       "contributors": [
         "3llomi",
-        "ridemountainpig"
+        "ridemountainpig",
+        "sam32j"
       ],
       "categories": [
         "Data",
@@ -13679,6 +13680,23 @@
           "description": "Delete file(s) after compression",
           "label": "Delete File(s) after Compression",
           "default": false
+        },
+        {
+          "name": "revealInFinder",
+          "type": "checkbox",
+          "required": false,
+          "title": "Finder",
+          "description": "Reveal the compressed file in Finder after compression completes",
+          "label": "Reveal Compressed File in Finder",
+          "default": true
+        },
+        {
+          "name": "revealExtracted",
+          "type": "checkbox",
+          "required": false,
+          "description": "Reveal extracted files in Finder after extraction completes",
+          "label": "Reveal Extracted Files in Finder",
+          "default": true
         },
         {
           "name": "locationSaveCompressed",
@@ -75655,11 +75673,29 @@
           "default": "~/Downloads"
         },
         {
+          "name": "notifyOnDownloadFinish",
+          "type": "checkbox",
+          "required": false,
+          "title": "Download Notifications",
+          "label": "Notify when a download finishes",
+          "description": "Downloads keep running after you close Raycast, so the progress toast is gone by the time they finish. This posts a desktop notification instead.",
+          "default": true
+        },
+        {
+          "name": "useRaycastNotification",
+          "type": "checkbox",
+          "required": false,
+          "title": "Notification Style",
+          "label": "Send notifications through Raycast",
+          "description": "Shows the notification as Raycast instead of Script Editor. Requires the separate \"Raycast Notification\" extension by maxnyby — without it, notifications are silently dropped.",
+          "default": false
+        },
+        {
           "name": "verboseLogging",
           "title": "Verbose Logging",
           "description": "Enable detailed console logging for debugging purposes",
           "type": "checkbox",
-          "label": "Enable",
+          "label": "Enable Verbose Logging",
           "default": false,
           "required": false
         }
@@ -94022,7 +94058,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/garon/glimpse",
       "source": {
@@ -94072,7 +94109,7 @@
           "name": "transcribe-selection",
           "title": "Transcribe Selected File",
           "subtitle": "Glimpse",
-          "description": "Transcribe the file selected in Finder.",
+          "description": "Transcribe the file selected in Finder or File Explorer.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -94119,6 +94156,60 @@
           "subtitle": "Glimpse",
           "description": "Add and remove dictionary words.",
           "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "manage-replacements",
+          "title": "Manage Replacements",
+          "subtitle": "Glimpse",
+          "description": "Add, edit, and remove text replacements.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "start-recording",
+          "title": "Start Recording",
+          "subtitle": "Glimpse",
+          "description": "Start a recording with your last sources.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle-recording-pause",
+          "title": "Pause or Resume Recording",
+          "subtitle": "Glimpse",
+          "description": "Pause or resume the current recording.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "add-recording-bookmark",
+          "title": "Add Recording Bookmark",
+          "subtitle": "Glimpse",
+          "description": "Bookmark this moment in the current recording.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "finish-recording",
+          "title": "Finish Recording",
+          "subtitle": "Glimpse",
+          "description": "Save the current recording to your Library.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "recording-status",
+          "title": "Recording Status",
+          "subtitle": "Glimpse",
+          "description": "Show the recording timer in the menu bar.",
+          "mode": "menu-bar",
           "keywords": [],
           "preferences": []
         }
@@ -156667,7 +156758,9 @@
         "Fun"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/AbhinavPalacharla/nba-game-viewer",
       "source": {
         "type": "github-monorepo",
@@ -215571,7 +215664,7 @@
     {
       "name": "screenocr",
       "title": "ScreenOCR",
-      "description": "Extract text from screen captures locally via OCR",
+      "description": "Extract text from screen captures and clipboard images locally via OCR",
       "icon": "command-icon.png",
       "author": "huzef44",
       "contributors": [
@@ -215579,14 +215672,16 @@
         "xilopaint",
         "pernielsentikaer",
         "chrismessina",
-        "huzef_ansari"
+        "huzef_ansari",
+        "duck69"
       ],
       "categories": [
         "Productivity"
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/huzef44/screenocr",
       "source": {
@@ -215599,7 +215694,7 @@
         {
           "name": "preferences",
           "title": "Select Recognition Languages",
-          "description": "Choose which languages will be used for text recognition",
+          "description": "Choose recognition languages on macOS or an installed OCR language on Windows",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -215615,7 +215710,15 @@
         {
           "name": "recognize-text-fullscreen",
           "title": "Recognize Text on Entire Screen",
-          "description": "Detect all text from the captured screen",
+          "description": "Recognize text on the current display on macOS or across all monitors on Windows",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "recognize-clipboard",
+          "title": "Recognize Text in Clipboard Image (Windows Only)",
+          "description": "Extract text from an image or supported image file in the Windows clipboard",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -215623,7 +215726,7 @@
         {
           "name": "detect-barcode",
           "title": "Detect Barcode/QR Code",
-          "description": "Detect barcodes and QR codes from the captured screen area",
+          "description": "Detect barcodes and QR codes from the captured screen area (macOS only)",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -215632,8 +215735,8 @@
       "preferences": [
         {
           "name": "primaryLanguage",
-          "title": "Primary Language",
-          "description": "Primary language for text recognition",
+          "title": "Primary Language (macOS)",
+          "description": "Primary Apple Vision language. On Windows, use Select Recognition Languages to choose an installed OCR language.",
           "type": "dropdown",
           "required": true,
           "data": [
@@ -215749,12 +215852,15 @@
               "title": "🇹🇷 Turkish (Turkey)",
               "value": "tr-TR"
             }
-          ]
+          ],
+          "default": {
+            "Windows": "en-US"
+          }
         },
         {
           "name": "ocrMode",
-          "title": "Recognition Level",
-          "description": "Affects performance and accuracy of the text recognition",
+          "title": "Recognition Level (macOS)",
+          "description": "Apple Vision performance and accuracy. Windows uses its installed OCR engine.",
           "type": "dropdown",
           "required": true,
           "data": [
@@ -215766,12 +215872,15 @@
               "title": "Fast",
               "value": "fast"
             }
-          ]
+          ],
+          "default": {
+            "Windows": "accurate"
+          }
         },
         {
           "name": "languageCorrection",
           "title": "Options",
-          "description": "Disabling this property returns the raw recognition results, which provides performance benefits but less accurate results",
+          "description": "macOS only: use Apple Vision language correction for more accurate recognition.",
           "type": "checkbox",
           "required": true,
           "label": "Use language correction",
@@ -215779,7 +215888,7 @@
         },
         {
           "name": "playSound",
-          "description": "Play camera shutter sound when capturing screenshots",
+          "description": "macOS only: play the camera shutter sound when capturing a screen region.",
           "type": "checkbox",
           "required": false,
           "label": "Play sounds",
@@ -215795,7 +215904,7 @@
         },
         {
           "name": "ignoreLineBreaks",
-          "description": "Ignores Line Breaks",
+          "description": "Join recognized lines with spaces instead of line breaks.",
           "type": "checkbox",
           "required": false,
           "label": "Ignore line breaks",
@@ -215803,7 +215912,7 @@
         },
         {
           "name": "keepImage",
-          "description": "Keep the image in the clipboard after text recognition",
+          "description": "macOS only: copy the captured image to the clipboard before recognition. Copying recognized text may replace it.",
           "type": "checkbox",
           "required": true,
           "label": "Keep image in clipboard",
@@ -215811,11 +215920,35 @@
         },
         {
           "name": "customWordsList",
-          "title": "Custom Words List",
-          "description": "You can improve text recognition by providing a list of words that are special to your text",
+          "title": "Custom Words List (macOS)",
+          "description": "Comma-separated words that help Apple Vision recognize specialized text. Not used by Windows OCR.",
           "type": "textfield",
           "required": false,
           "label": "Custom Words List"
+        },
+        {
+          "name": "resultAction",
+          "title": "After Recognition (Windows)",
+          "description": "Windows only: what to do with recognized text. Cross-extension callbacks receive the result directly.",
+          "type": "dropdown",
+          "required": false,
+          "default": {
+            "Windows": "copy"
+          },
+          "data": [
+            {
+              "title": "Copy to Clipboard",
+              "value": "copy"
+            },
+            {
+              "title": "Paste into Active App",
+              "value": "paste"
+            },
+            {
+              "title": "Copy and Paste",
+              "value": "both"
+            }
+          ]
         }
       ]
     },
