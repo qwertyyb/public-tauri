@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-20T20:45:23.076Z",
+  "generatedAt": "2026-09-21T22:02:02.013Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "dc18b8722db4c7357222247b33ab468128875228"
+    "commit": "9cc313e84b4dbf43454cb8463c2584df3e142bb1"
   },
   "count": 3300,
   "extensions": [
@@ -26664,8 +26664,36 @@
           "subtitle": "Brew",
           "description": "Review available upgrades, choose which to apply, and run it",
           "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "show-vulnerabilities",
+          "title": "Show Vulnerabilities",
+          "subtitle": "Brew",
+          "description": "Check installed formulae for known vulnerabilities (Homebrew 7)",
+          "mode": "view",
           "keywords": [
-            "outdated"
+            "security",
+            "vulns",
+            "vulnerabilities",
+            "cve",
+            "osv"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "run-doctor",
+          "title": "Run Doctor",
+          "subtitle": "Brew",
+          "description": "Check your Homebrew installation for problems and fix them",
+          "mode": "view",
+          "keywords": [
+            "doctor",
+            "diagnose",
+            "health",
+            "check",
+            "problems"
           ],
           "preferences": []
         },
@@ -27169,7 +27197,8 @@
         "0xdhrv",
         "pernielsentikaer",
         "haneul486",
-        "just_me"
+        "just_me",
+        "mguellsegarra"
       ],
       "categories": [
         "Web"
@@ -27212,6 +27241,14 @@
           "name": "openBookmarkBrowser",
           "description": "When enabled, the extension will open the browser from which the bookmark originated, instead of your default browser.",
           "default": true,
+          "required": false
+        },
+        {
+          "type": "checkbox",
+          "label": "Replace Current Browser Tab (macOS Only)",
+          "name": "replaceCurrentTab",
+          "description": "When enabled with Open Bookmark's Browser, pressing Enter replaces the active tab in supported macOS browsers. If no browser window exists, a new one is created.",
+          "default": false,
           "required": false
         }
       ]
@@ -36827,6 +36864,15 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "doctor",
+          "title": "Run Doctor",
+          "subtitle": "Claude Artifacts",
+          "description": "Check that artifact tracking is working and recover publishes the hook missed",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": []
@@ -42710,7 +42756,8 @@
         "bsradcliffe",
         "aditi_bhagat",
         "muhammadrizo",
-        "aaronjensen"
+        "aaronjensen",
+        "dmitri_moscoglo"
       ],
       "categories": [
         "System"
@@ -45635,7 +45682,9 @@
       ],
       "categories": [],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/rasmusbe/connect-to-vpn",
       "source": {
         "type": "github-monorepo",
@@ -55252,6 +55301,15 @@
           "preferences": []
         },
         {
+          "name": "thai",
+          "title": "Translate into Thai",
+          "subtitle": "Deepcast",
+          "description": "Translate text into Thai using DeepL",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "chinese",
           "title": "Translate into Chinese",
           "subtitle": "Deepcast",
@@ -55629,6 +55687,10 @@
             {
               "title": "Turkish",
               "value": "TR"
+            },
+            {
+              "title": "Thai",
+              "value": "TH"
             }
           ],
           "default": "EN-US"
@@ -58298,6 +58360,29 @@
           "type": "checkbox",
           "required": false,
           "default": true
+        },
+        {
+          "name": "communicationMethod",
+          "title": "Communication Method",
+          "label": "Choose how Raycast communicates with DesktopRenamer",
+          "description": "Automatic uses SpaceAPI first and falls back to AppleScript when needed.",
+          "type": "dropdown",
+          "required": false,
+          "default": "automatic",
+          "data": [
+            {
+              "title": "Automatic",
+              "value": "automatic"
+            },
+            {
+              "title": "SpaceAPI",
+              "value": "spaceapi"
+            },
+            {
+              "title": "AppleScript",
+              "value": "applescript"
+            }
+          ]
         }
       ]
     },
@@ -124834,7 +124919,7 @@
           "type": "dropdown",
           "required": false,
           "title": "Language",
-          "description": "Article language",
+          "description": "Article language. Note: Kagi has temporarily disabled translations to manage costs, so only English and each article's original language currently display correctly. Other options are kept here and will work again once Kagi restores the feature.",
           "default": "default",
           "data": [
             {
@@ -171983,7 +172068,8 @@
       "author": "plonq",
       "contributors": [
         "erics118",
-        "gianni_sanrochman"
+        "gianni_sanrochman",
+        "ponyma"
       ],
       "categories": [
         "Web"
@@ -220551,17 +220637,25 @@
             "training"
           ],
           "preferences": []
+        },
+        {
+          "name": "training-status",
+          "title": "Training Status",
+          "description": "See your readiness, training load, and health metrics",
+          "mode": "view",
+          "keywords": [
+            "shape",
+            "readiness",
+            "fitness",
+            "fatigue",
+            "form",
+            "load",
+            "health"
+          ],
+          "preferences": []
         }
       ],
       "preferences": [
-        {
-          "name": "apiToken",
-          "title": "API Token",
-          "description": "Your Shape Calendar API token (starts with shape_)",
-          "type": "password",
-          "required": true,
-          "placeholder": "shape_..."
-        },
         {
           "name": "distanceUnit",
           "title": "Distance Unit",
@@ -239646,6 +239740,14 @@
               "default": false,
               "label": "Show completed tasks",
               "description": "Show today's completed tasks (at the bottom of the list)."
+            },
+            {
+              "name": "showDetails",
+              "type": "checkbox",
+              "required": false,
+              "default": false,
+              "label": "Show Task Details",
+              "description": "Open a side pane with the selected task's notes, subtasks, times, and linked item."
             }
           ]
         },
@@ -242749,7 +242851,8 @@
         "xmok",
         "jadenmajid",
         "ADCAdams",
-        "TurboCoder13"
+        "TurboCoder13",
+        "Olli0103"
       ],
       "categories": [
         "Productivity",
@@ -247284,13 +247387,18 @@
       "description": "Control and view your Tesla",
       "icon": "icon.png",
       "author": "williamwelsh",
-      "contributors": [],
+      "contributors": [
+        "misterK"
+      ],
       "categories": [
         "Data",
         "Fun"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "storeUrl": "https://www.raycast.com/williamwelsh/tesla",
       "source": {
         "type": "github-monorepo",
@@ -247304,6 +247412,15 @@
           "title": "View Car",
           "subtitle": "Tesla",
           "description": "View information about your Tesla",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "carStatus",
+          "title": "Car Status",
+          "subtitle": "Tesla",
+          "description": "View a full status overview of your Tesla",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -289104,6 +289221,15 @@
           "default": false,
           "label": "Wrap PDF Path in Quotes",
           "description": "Wrap the copied PDF path in quotation marks"
+        },
+        {
+          "name": "order_by_opens",
+          "type": "checkbox",
+          "title": "Order by Last Opened",
+          "required": false,
+          "default": false,
+          "label": "Order Empty Results by Last Opened",
+          "description": "When the search is empty, show entries you opened most recently first. Tracks when you open a PDF, the Zotero entry, the original link, or reveal a PDF in Finder"
         }
       ]
     },
