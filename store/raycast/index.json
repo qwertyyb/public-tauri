@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-21T22:02:02.013Z",
+  "generatedAt": "2026-09-22T22:16:24.104Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "9cc313e84b4dbf43454cb8463c2584df3e142bb1"
+    "commit": "49bb2cf6e5097639476320f2de067bec9167e2aa"
   },
-  "count": 3300,
+  "count": 3302,
   "extensions": [
     {
       "name": "0x0",
@@ -42690,17 +42690,17 @@
       },
       "commands": [
         {
-          "name": "search-sessions",
-          "title": "Search Codex Sessions",
-          "description": "Search all local Codex threads and open them in Codex Desktop or the terminal",
+          "name": "open-project",
+          "title": "Browse Codex Sessions",
+          "description": "Browse project folders and drill into their local Codex sessions",
           "mode": "view",
           "keywords": [],
           "preferences": []
         },
         {
-          "name": "open-project",
-          "title": "Open Codex Project",
-          "description": "Open a project folder in Codex Desktop, ranked by how often you use it",
+          "name": "search-sessions",
+          "title": "Search Codex Sessions",
+          "description": "Search all local Codex threads and open them in Codex Desktop or the terminal",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -63264,7 +63264,8 @@
         "sebastiankranz",
         "kosha",
         "Olivier-OG",
-        "Krosnoz"
+        "Krosnoz",
+        "ahetzm"
       ],
       "categories": [],
       "license": "MIT",
@@ -63319,16 +63320,12 @@
       ],
       "preferences": [
         {
-          "description": "Path to Docker socket",
+          "description": "Path or URL of the Docker socket (e.g. /var/run/docker.sock, unix:///path/to/docker.sock, tcp://host:2375). Leave empty to use the current Docker CLI context, falling back to the platform default.",
           "name": "socketPath",
-          "placeholder": "Leave empty for default",
+          "placeholder": "Leave empty to use the current Docker context",
           "required": false,
           "title": "Socket path",
-          "type": "textfield",
-          "default": {
-            "macOS": "/var/run/docker.sock",
-            "Windows": "//./pipe/docker_engine"
-          }
+          "type": "textfield"
         }
       ]
     },
@@ -64393,6 +64390,14 @@
           "name": "instances",
           "title": "Instances",
           "description": "Manage Instances and their Projects, Services and more",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "deploy-service",
+          "title": "Deploy Service",
+          "description": "Search for a service by name across all configured instances and deploy the one you pick",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -75564,6 +75569,46 @@
           "preferences": []
         },
         {
+          "name": "purge",
+          "title": "Purge Cache",
+          "description": "Purge a URL, surrogate keys, or everything on a service, with optional soft purge",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "realtime",
+          "title": "Watch Real-Time Stats",
+          "description": "Watch live requests, hit ratio, errors, and bandwidth for a service",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "service-addons",
+          "title": "Manage Service Add-Ons",
+          "description": "Enable or disable products like Image Optimizer, Fanout, and WebSockets per service",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "tls",
+          "title": "Manage TLS Certificates",
+          "description": "View TLS certificates and subscriptions with expiry warnings",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "alerts",
+          "title": "View Alerts",
+          "description": "View Fastly alert definitions and firing history",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "kv-stores",
           "title": "Manage KV Stores",
           "description": "Browse and manage Fastly KV Store key-value pairs",
@@ -75599,6 +75644,54 @@
           "name": "audit-log",
           "title": "View Audit Log",
           "description": "View and filter Fastly audit log events for security monitoring and compliance",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "bot-management",
+          "title": "Manage Bot Management",
+          "description": "Enable Bot Management on services and view detected bot traffic",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "ddos-protection",
+          "title": "Manage DDoS Protection",
+          "description": "Enable DDoS Protection, switch between log and block modes, and manage attack mitigation rules",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "ai-virtual-keys",
+          "title": "Manage AI Runtime Control Virtual Keys",
+          "description": "Create, rotate, and manage AI Runtime Control virtual keys",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "ai-providers",
+          "title": "Manage AI Runtime Control Providers",
+          "description": "Configure AI Runtime Control provider connections",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "ai-usage",
+          "title": "View AI Runtime Control Usage",
+          "description": "View AI Runtime Control usage metrics by provider and model",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "ai-sessions",
+          "title": "View AI Runtime Control Sessions",
+          "description": "Browse AI Runtime Control session logs with request and response data",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -91539,6 +91632,22 @@
           "preferences": []
         },
         {
+          "name": "my-packages",
+          "title": "My Packages",
+          "description": "List packages you published to GitHub Packages",
+          "mode": "view",
+          "keywords": [
+            "container",
+            "npm",
+            "maven",
+            "docker",
+            "nuget",
+            "rubygems",
+            "registry"
+          ],
+          "preferences": []
+        },
+        {
           "name": "workflow-runs",
           "title": "Workflow Runs",
           "description": "Manage workflow runs for a selected GitHub repository.",
@@ -91839,6 +91948,40 @@
           ]
         },
         {
+          "name": "my-packages-menu",
+          "title": "My Packages Menu Bar",
+          "description": "Display My Packages in the Menu Bar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "titlePackage",
+              "description": "Show this package's name and total download count in the menu bar title. Leave empty to show the number of packages instead. GitHub publishes download counts only on public package pages, so a private package shows just its name.",
+              "type": "textfield",
+              "required": false,
+              "title": "Menu Bar Title",
+              "placeholder": "package-name"
+            },
+            {
+              "name": "showtext",
+              "description": "Show packages count with menu bar icon. Ignored when a package name is set above.",
+              "type": "checkbox",
+              "required": false,
+              "label": "Show Count",
+              "title": "Appearance",
+              "default": true
+            },
+            {
+              "name": "maxitems",
+              "description": "Maximum packages shown per package type.",
+              "type": "textfield",
+              "required": false,
+              "title": "Max Packages per Package Type",
+              "placeholder": "10"
+            }
+          ]
+        },
+        {
           "name": "download-repository",
           "title": "Download Repository as ZIP",
           "subtitle": "GitHub",
@@ -91854,7 +91997,7 @@
           "type": "password",
           "required": false,
           "title": "GitHub Token",
-          "description": "Your GitHub's personal access token. Required scopes: notifications repo project read:org read:user.",
+          "description": "Your GitHub's personal access token. Required scopes: notifications repo project read:org read:user. Add read:packages to use the My Packages commands.",
           "link": "https://github.com/settings/tokens",
           "placeholder": "Enter your personal access token"
         },
@@ -92168,7 +92311,8 @@
         "theherk",
         "LunaticMuch",
         "pernielsentikaer",
-        "perat"
+        "perat",
+        "Astatine-213"
       ],
       "categories": [],
       "license": "MIT",
@@ -141515,8 +141659,8 @@
     },
     {
       "name": "maplestory-gg",
-      "title": "MapleStory.gg",
-      "description": "MapleStory's Definitive Database.",
+      "title": "MapleStory",
+      "description": "Look up Global MapleStory characters using Nexon rankings.",
       "icon": "maplestory-gg-icon.png",
       "author": "litomore",
       "contributors": [
@@ -141551,7 +141695,7 @@
         {
           "name": "lookup",
           "title": "Lookup Character",
-          "description": "Lookup charecter from maplestory.gg.",
+          "description": "Look up characters in Nexon’s North American and European rankings.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -172175,6 +172319,36 @@
           ]
         },
         {
+          "name": "suggestionLimit",
+          "title": "Suggestions",
+          "description": "Number of live search suggestions shown in Command Bar. Set to 0 to disable suggestions and their network requests.",
+          "type": "dropdown",
+          "required": false,
+          "default": "6",
+          "data": [
+            {
+              "title": "Disabled (0)",
+              "value": "0"
+            },
+            {
+              "title": "3 Suggestions",
+              "value": "3"
+            },
+            {
+              "title": "6 Suggestions",
+              "value": "6"
+            },
+            {
+              "title": "9 Suggestions",
+              "value": "9"
+            },
+            {
+              "title": "12 Suggestions",
+              "value": "12"
+            }
+          ]
+        },
+        {
           "name": "autoCloseLauncherTabs",
           "title": "Command Bar",
           "label": "Auto-close launcher tabs",
@@ -176887,7 +177061,8 @@
       "contributors": [
         "pantajoe",
         "kero13",
-        "ridemountainpig"
+        "ridemountainpig",
+        "islamtayeb"
       ],
       "categories": [
         "Developer Tools",
@@ -202153,7 +202328,8 @@
       "contributors": [
         "0xdhrv",
         "ashokbaruaakas",
-        "pernielsentikaer"
+        "pernielsentikaer",
+        "kud"
       ],
       "categories": [
         "Productivity"
@@ -202196,7 +202372,17 @@
           "description": "Make selected text more casual",
           "mode": "view",
           "keywords": [],
-          "preferences": []
+          "preferences": [
+            {
+              "name": "ollamaAutoReplace",
+              "description": "Replace the selected text with the result as soon as it is generated, instead of showing the answer to copy or paste yourself. Only applies when the selection supplied the input; if the clipboard did, the answer is shown instead.",
+              "type": "checkbox",
+              "required": false,
+              "title": "Auto-Replace Selected Text",
+              "label": "Replace the selected text automatically",
+              "default": false
+            }
+          ]
         },
         {
           "name": "ollama-code-explain",
@@ -202214,7 +202400,17 @@
           "description": "Make selected text more confident",
           "mode": "view",
           "keywords": [],
-          "preferences": []
+          "preferences": [
+            {
+              "name": "ollamaAutoReplace",
+              "description": "Replace the selected text with the result as soon as it is generated, instead of showing the answer to copy or paste yourself. Only applies when the selection supplied the input; if the clipboard did, the answer is shown instead.",
+              "type": "checkbox",
+              "required": false,
+              "title": "Auto-Replace Selected Text",
+              "label": "Replace the selected text automatically",
+              "default": false
+            }
+          ]
         },
         {
           "name": "ollama-explain",
@@ -202232,7 +202428,17 @@
           "description": "Fix selected text from spelling and grammar error",
           "mode": "view",
           "keywords": [],
-          "preferences": []
+          "preferences": [
+            {
+              "name": "ollamaAutoReplace",
+              "description": "Replace the selected text with the result as soon as it is generated, instead of showing the answer to copy or paste yourself. Only applies when the selection supplied the input; if the clipboard did, the answer is shown instead.",
+              "type": "checkbox",
+              "required": false,
+              "title": "Auto-Replace Selected Text",
+              "label": "Replace the selected text automatically",
+              "default": false
+            }
+          ]
         },
         {
           "name": "ollama-friendly",
@@ -202241,7 +202447,17 @@
           "description": "Make selected text more friendly",
           "mode": "view",
           "keywords": [],
-          "preferences": []
+          "preferences": [
+            {
+              "name": "ollamaAutoReplace",
+              "description": "Replace the selected text with the result as soon as it is generated, instead of showing the answer to copy or paste yourself. Only applies when the selection supplied the input; if the clipboard did, the answer is shown instead.",
+              "type": "checkbox",
+              "required": false,
+              "title": "Auto-Replace Selected Text",
+              "label": "Replace the selected text automatically",
+              "default": false
+            }
+          ]
         },
         {
           "name": "ollama-image-describe",
@@ -202268,7 +202484,17 @@
           "description": "Improve writing of selected text",
           "mode": "view",
           "keywords": [],
-          "preferences": []
+          "preferences": [
+            {
+              "name": "ollamaAutoReplace",
+              "description": "Replace the selected text with the result as soon as it is generated, instead of showing the answer to copy or paste yourself. Only applies when the selection supplied the input; if the clipboard did, the answer is shown instead.",
+              "type": "checkbox",
+              "required": false,
+              "title": "Auto-Replace Selected Text",
+              "label": "Replace the selected text automatically",
+              "default": false
+            }
+          ]
         },
         {
           "name": "ollama-longer",
@@ -202277,7 +202503,17 @@
           "description": "Make selected text longer",
           "mode": "view",
           "keywords": [],
-          "preferences": []
+          "preferences": [
+            {
+              "name": "ollamaAutoReplace",
+              "description": "Replace the selected text with the result as soon as it is generated, instead of showing the answer to copy or paste yourself. Only applies when the selection supplied the input; if the clipboard did, the answer is shown instead.",
+              "type": "checkbox",
+              "required": false,
+              "title": "Auto-Replace Selected Text",
+              "label": "Replace the selected text automatically",
+              "default": false
+            }
+          ]
         },
         {
           "name": "ollama-professional",
@@ -202286,7 +202522,17 @@
           "description": "Make selected text more professional",
           "mode": "view",
           "keywords": [],
-          "preferences": []
+          "preferences": [
+            {
+              "name": "ollamaAutoReplace",
+              "description": "Replace the selected text with the result as soon as it is generated, instead of showing the answer to copy or paste yourself. Only applies when the selection supplied the input; if the clipboard did, the answer is shown instead.",
+              "type": "checkbox",
+              "required": false,
+              "title": "Auto-Replace Selected Text",
+              "label": "Replace the selected text automatically",
+              "default": false
+            }
+          ]
         },
         {
           "name": "ollama-shorter",
@@ -202295,7 +202541,17 @@
           "description": "Make selected text shorter",
           "mode": "view",
           "keywords": [],
-          "preferences": []
+          "preferences": [
+            {
+              "name": "ollamaAutoReplace",
+              "description": "Replace the selected text with the result as soon as it is generated, instead of showing the answer to copy or paste yourself. Only applies when the selection supplied the input; if the clipboard did, the answer is shown instead.",
+              "type": "checkbox",
+              "required": false,
+              "title": "Auto-Replace Selected Text",
+              "label": "Replace the selected text automatically",
+              "default": false
+            }
+          ]
         },
         {
           "name": "ollama-translate",
@@ -202304,7 +202560,17 @@
           "description": "Translate selected text",
           "mode": "view",
           "keywords": [],
-          "preferences": []
+          "preferences": [
+            {
+              "name": "ollamaAutoReplace",
+              "description": "Replace the selected text with the result as soon as it is generated, instead of showing the answer to copy or paste yourself. Only applies when the selection supplied the input; if the clipboard did, the answer is shown instead.",
+              "type": "checkbox",
+              "required": false,
+              "title": "Auto-Replace Selected Text",
+              "label": "Replace the selected text automatically",
+              "default": false
+            }
+          ]
         },
         {
           "name": "ollama-tweet",
@@ -202313,7 +202579,17 @@
           "description": "Rephrase selected text as Tweet",
           "mode": "view",
           "keywords": [],
-          "preferences": []
+          "preferences": [
+            {
+              "name": "ollamaAutoReplace",
+              "description": "Replace the selected text with the result as soon as it is generated, instead of showing the answer to copy or paste yourself. Only applies when the selection supplied the input; if the clipboard did, the answer is shown instead.",
+              "type": "checkbox",
+              "required": false,
+              "title": "Auto-Replace Selected Text",
+              "label": "Replace the selected text automatically",
+              "default": false
+            }
+          ]
         },
         {
           "name": "ollama-models",
@@ -223141,6 +223417,46 @@
       "preferences": []
     },
     {
+      "name": "signal-500",
+      "title": "Signal 500",
+      "description": "Search the Signal 500 — 500 hand-scored news and expert sources, ranked on editorial quality, ad restraint and independence by feeds.bar.",
+      "icon": "extension-icon.png",
+      "author": "graeme_chard",
+      "contributors": [],
+      "categories": [
+        "News",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/graeme_chard/signal-500",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/signal-500",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-signal-500",
+          "title": "Search the Signal 500",
+          "description": "Find any of the 500 curated sources; open its page, its site, or copy its feed URL.",
+          "mode": "view",
+          "keywords": [
+            "news",
+            "rss",
+            "feeds",
+            "feedsbar"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "silent-mention",
       "title": "Silent Mention",
       "description": "Silently mention a handle, a URL or a hashtag.",
@@ -227147,6 +227463,179 @@
           "type": "textfield",
           "required": false,
           "placeholder": "e.g. Work Laptop"
+        }
+      ]
+    },
+    {
+      "name": "slides2pdf",
+      "title": "Slides2PDF",
+      "description": "On-device conversion of slides, documents, spreadsheets, images, and more to PDF.",
+      "icon": "extension-icon.png",
+      "author": "bertro",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Data"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "0.1.0",
+      "storeUrl": "https://www.raycast.com/bertro/slides2pdf",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/slides2pdf",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "convert-to-pdf",
+          "title": "Convert to PDF",
+          "subtitle": "Slides2PDF",
+          "description": "Convert files selected in Finder to PDF using Keynote, Microsoft Office, LibreOffice, sips, or the built-in text renderer.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "stop-conversion",
+          "title": "Stop Conversion",
+          "subtitle": "Slides2PDF",
+          "description": "Stop a running batch conversion after the file it is currently working on. Assign a hotkey to this command to stop from anywhere.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "setup",
+          "title": "Setup Conversion Engines",
+          "subtitle": "Slides2PDF",
+          "description": "See which conversion engines are installed and get install help.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "preferredPresentation",
+          "type": "dropdown",
+          "title": "Preferred Presentation Engine",
+          "description": "Tried first for slides (.pptx, .ppt, .key, .odp). Falls back if missing or it fails.",
+          "required": false,
+          "default": "auto",
+          "data": [
+            {
+              "title": "Auto",
+              "value": "auto"
+            },
+            {
+              "title": "Microsoft PowerPoint",
+              "value": "powerpoint"
+            },
+            {
+              "title": "Keynote",
+              "value": "keynote"
+            },
+            {
+              "title": "LibreOffice",
+              "value": "libreoffice"
+            }
+          ]
+        },
+        {
+          "name": "preferredDocument",
+          "type": "dropdown",
+          "title": "Preferred Document Engine",
+          "description": "Tried first for documents (.docx, .doc, .pages, .odt, .rtf). Falls back if missing or it fails.",
+          "required": false,
+          "default": "auto",
+          "data": [
+            {
+              "title": "Auto",
+              "value": "auto"
+            },
+            {
+              "title": "Microsoft Word",
+              "value": "word"
+            },
+            {
+              "title": "Pages",
+              "value": "pages"
+            },
+            {
+              "title": "LibreOffice",
+              "value": "libreoffice"
+            }
+          ]
+        },
+        {
+          "name": "preferredSpreadsheet",
+          "type": "dropdown",
+          "title": "Preferred Spreadsheet Engine",
+          "description": "Tried first for spreadsheets (.xlsx, .xls, .numbers, .ods, .csv). Falls back if missing or it fails.",
+          "required": false,
+          "default": "auto",
+          "data": [
+            {
+              "title": "Auto",
+              "value": "auto"
+            },
+            {
+              "title": "Microsoft Excel",
+              "value": "excel"
+            },
+            {
+              "title": "Numbers",
+              "value": "numbers"
+            },
+            {
+              "title": "LibreOffice",
+              "value": "libreoffice"
+            }
+          ]
+        },
+        {
+          "name": "preferredImage",
+          "type": "dropdown",
+          "title": "Preferred Image Engine",
+          "description": "Tried first for images (.jpg, .png, .heic, …). Falls back if missing or it fails.",
+          "required": false,
+          "default": "auto",
+          "data": [
+            {
+              "title": "Auto",
+              "value": "auto"
+            },
+            {
+              "title": "sips",
+              "value": "sips"
+            },
+            {
+              "title": "LibreOffice",
+              "value": "libreoffice"
+            }
+          ]
+        },
+        {
+          "name": "openAfterConvertSingle",
+          "type": "checkbox",
+          "title": "After Conversion",
+          "label": "Open After Single Convert",
+          "description": "Open the generated PDF immediately when converting a single selected file.",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "openAfterConvertBatch",
+          "type": "checkbox",
+          "title": "",
+          "label": "Open After Batch Convert",
+          "description": "Open all generated PDFs after converting multiple selected files (after all conversions finish).",
+          "required": false,
+          "default": false
         }
       ]
     },
