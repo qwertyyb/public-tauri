@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-22T22:16:24.104Z",
+  "generatedAt": "2026-09-23T21:35:38.638Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "49bb2cf6e5097639476320f2de067bec9167e2aa"
+    "commit": "da15482f95042dbddb84f8f9181edec6212a9349"
   },
-  "count": 3302,
+  "count": 3307,
   "extensions": [
     {
       "name": "0x0",
@@ -11655,7 +11655,6 @@
         "tm.wrnr",
         "ir4n",
         "jondelgado",
-        "phil_s",
         "michalzuch",
         "ridemountainpig",
         "maxnyby",
@@ -11738,6 +11737,42 @@
               "label": "Initially select \"Today\" for new reminders",
               "description": "When enabled, \"Today\" will be initially selected for new reminders instead of no due date.",
               "default": false,
+              "required": false
+            }
+          ]
+        },
+        {
+          "name": "create-reminder-from-current-tab",
+          "title": "Create Reminder from Current Tab",
+          "subtitle": "Apple Reminders",
+          "description": "Create a reminder from the active browser tab.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "createImmediately",
+              "type": "checkbox",
+              "label": "Create Reminder Immediately",
+              "description": "When enabled, the reminder is created immediately in your default list without opening the form.",
+              "default": false,
+              "required": false
+            },
+            {
+              "name": "defaultListName",
+              "type": "textfield",
+              "title": "Default List",
+              "label": "Default List",
+              "placeholder": "e.g. Inbox, Work, or Reminders",
+              "description": "Default list to add tab reminders to. Leave empty to use Reminders' default list.",
+              "required": false
+            },
+            {
+              "name": "defaultDueDate",
+              "type": "textfield",
+              "title": "Default Due Date & Time",
+              "label": "Default Due Date & Time",
+              "placeholder": "e.g. 6pm, in 2 hours, tomorrow 9am, tonight",
+              "description": "Optional default due date or time for tab reminders (e.g. \"6pm\", \"tonight\", \"tomorrow 9am\", \"in 2 hours\"). Leave empty for no due date.",
               "required": false
             }
           ]
@@ -11859,6 +11894,15 @@
               "label": "Don't use the AI",
               "description": "When enabled, the reminder is simply added to your default list with the input as the title.",
               "default": false,
+              "required": false
+            },
+            {
+              "name": "defaultListName",
+              "type": "textfield",
+              "title": "Default List",
+              "label": "Default List",
+              "placeholder": "e.g. Inbox, Work, or Reminders",
+              "description": "Default list to add reminders to when no list is specified. Leave empty to use Reminders' default list.",
               "required": false
             },
             {
@@ -24142,7 +24186,8 @@
         "clins1994",
         "naokiiida",
         "mabraithwaite",
-        "edobry"
+        "edobry",
+        "just_me"
       ],
       "categories": [
         "Security"
@@ -32425,7 +32470,8 @@
         "degouville",
         "xmok",
         "chrismessina",
-        "alexi.build"
+        "alexi.build",
+        "just_me"
       ],
       "categories": [
         "Developer Tools",
@@ -40790,6 +40836,107 @@
       "preferences": []
     },
     {
+      "name": "coast",
+      "title": "Coast",
+      "description": "An independently maintained Raycast integration to search, inspect, and revisit Coast screen history",
+      "icon": "extension_icon.png",
+      "author": "jerichosequitin",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "0.2.0",
+      "storeUrl": "https://www.raycast.com/jerichosequitin/coast",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/coast",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "gallery",
+          "title": "Browse Screenshots",
+          "subtitle": "Coast",
+          "description": "Visually browse recorded Coast moments with application and domain filters",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "saved-searches",
+          "title": "Saved Searches",
+          "subtitle": "Coast",
+          "description": "Save and rerun local queries and filters without copying recordings",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search",
+          "title": "Search Coast",
+          "description": "Search your Coast screen history",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "activity",
+          "title": "Coast Activity",
+          "description": "See app and domain usage over time",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "timeline",
+          "title": "Browse Coast Timeline",
+          "description": "Browse recent Coast screenshots and activity highlights",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "grab-screen",
+          "title": "Capture Current Screen",
+          "description": "Capture the current display through Coast and copy the image",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "today",
+          "title": "Coast Screen Time",
+          "description": "Show today's Coast screen time in the menu bar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "coastPath",
+          "type": "textfield",
+          "required": false,
+          "title": "Coast Binary Path",
+          "description": "Path to the coast CLI if not on PATH",
+          "placeholder": "/usr/local/bin/coast"
+        },
+        {
+          "name": "defaultLimit",
+          "type": "textfield",
+          "required": false,
+          "title": "Search Page Size",
+          "description": "Results loaded per page, from 1 to 200. More matches remain available as you scroll. Defaults to 20.",
+          "placeholder": "20"
+        }
+      ]
+    },
+    {
       "name": "cobalt",
       "title": "Cobalt",
       "description": "Download videos and audio from popular social media platforms with ease.",
@@ -42732,6 +42879,117 @@
             }
           ],
           "description": "Terminal application used by Resume in Terminal"
+        }
+      ]
+    },
+    {
+      "name": "codexrunway-reset-tracker",
+      "title": "CodexRunway Reset Tracker",
+      "description": "Track CodexRunway usage reset schedule and completion status right from the menu bar",
+      "icon": "icon.png",
+      "author": "evilmouth",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/evilmouth/codexrunway-reset-tracker",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/codexrunway-reset-tracker",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "menubar",
+          "title": "Reset Status (Menu Bar)",
+          "subtitle": "CodexRunway",
+          "description": "Shows the latest reset status in the menu bar, auto-refreshing every 10 minutes",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "iconOnly",
+              "title": "Menu Bar Display",
+              "label": "Show icon only",
+              "description": "Keep the status in the tooltip and expanded menu.",
+              "type": "checkbox",
+              "required": false,
+              "default": false
+            },
+            {
+              "name": "notifyResets",
+              "title": "Completion Notifications",
+              "label": "Notify when a new reset is confirmed",
+              "description": "Uses macOS notifications. The first background check establishes a baseline; subsequent checks notify only new completions matching your plan. Requires background refresh.",
+              "type": "checkbox",
+              "required": false,
+              "default": false
+            }
+          ]
+        },
+        {
+          "name": "latest",
+          "title": "View Latest Reset",
+          "subtitle": "CodexRunway",
+          "description": "Shows full details of the latest reset record",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "history",
+          "title": "Browse Reset History",
+          "subtitle": "CodexRunway",
+          "description": "Browse paginated reset records, filterable by kind",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "plan",
+          "title": "Subscription Plan",
+          "description": "Show resets explicitly covering this plan, including records marked for all plans. Unspecified scope is only shown with All Plans.",
+          "type": "dropdown",
+          "required": false,
+          "default": "all",
+          "data": [
+            {
+              "title": "All Plans",
+              "value": "all"
+            },
+            {
+              "title": "Free",
+              "value": "free"
+            },
+            {
+              "title": "Plus",
+              "value": "plus"
+            },
+            {
+              "title": "Pro",
+              "value": "pro"
+            },
+            {
+              "title": "Team",
+              "value": "team"
+            },
+            {
+              "title": "Business",
+              "value": "business"
+            },
+            {
+              "title": "Enterprise",
+              "value": "enterprise"
+            }
+          ]
         }
       ]
     },
@@ -85061,6 +85319,118 @@
       ]
     },
     {
+      "name": "frp-client-manager",
+      "title": "Frp Client Manager",
+      "description": "Manage a local frp client (frpc): service control, proxies, logs, config hot-reload, and version upgrades.",
+      "icon": "icon.png",
+      "author": "DanielZHAO",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/DanielZHAO/frp-client-manager",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/frp-client-manager",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "status",
+          "title": "View Status",
+          "subtitle": "frp",
+          "description": "Dashboard for the frpc process, admin API, proxies, and version updates.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "proxies",
+          "title": "Manage Proxies",
+          "subtitle": "frp",
+          "description": "List frpc proxies from the config with live admin API status.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "logs",
+          "title": "View Logs",
+          "subtitle": "frp",
+          "description": "Read the frpc log with level filters.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "edit-config",
+          "title": "Edit Config",
+          "subtitle": "frp",
+          "description": "View, verify, and hot-reload frpc.toml.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "menu-bar",
+          "title": "Frp Menu Bar",
+          "description": "Menu bar extra showing frpc status and proxy counts.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "frpDir",
+          "title": "Frp Directory",
+          "description": "Root directory that contains frpc.toml, logs, and versioned frpc binaries.",
+          "type": "textfield",
+          "required": true,
+          "default": "~/frp",
+          "placeholder": "~/frp"
+        },
+        {
+          "name": "launchdLabel",
+          "title": "Launchd Label",
+          "description": "Label of the LaunchAgent that runs frpc (e.g. com.user.frpc). Leave empty if frpc is not managed by launchd.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "com.user.frpc"
+        },
+        {
+          "name": "adminAddr",
+          "title": "Admin API Address",
+          "description": "Host:port of the frpc admin (webServer) API.",
+          "type": "textfield",
+          "required": false,
+          "default": "127.0.0.1:7400",
+          "placeholder": "127.0.0.1:7400"
+        },
+        {
+          "name": "adminUser",
+          "title": "Admin Username",
+          "description": "Basic Auth username for the frpc admin API.",
+          "type": "textfield",
+          "required": false,
+          "default": "admin",
+          "placeholder": "admin"
+        },
+        {
+          "name": "adminPassword",
+          "title": "Admin Password",
+          "description": "Basic Auth password for the frpc admin API. Leave empty to skip live status.",
+          "type": "password",
+          "required": false
+        }
+      ]
+    },
+    {
       "name": "ftrack",
       "title": "ftrack",
       "description": "Interacting with ftrack",
@@ -101091,7 +101461,8 @@
         "ridemountainpig",
         "ViGeng",
         "xilopaint",
-        "faridrashidi"
+        "faridrashidi",
+        "anupchavan"
       ],
       "categories": [
         "Productivity"
@@ -101158,6 +101529,15 @@
           "name": "search-google-drive-files",
           "title": "Search Google Drive",
           "description": "Search files in your Google Drive",
+          "mode": "view",
+          "keywords": [],
+          "icon": "google-drive.png",
+          "preferences": []
+        },
+        {
+          "name": "download-google-drive-file",
+          "title": "Download Google Drive File",
+          "description": "Download a file or folder from your Google Drive by searching for it or pasting its link",
           "mode": "view",
           "keywords": [],
           "icon": "google-drive.png",
@@ -132502,6 +132882,120 @@
           "required": false,
           "default": "1440",
           "placeholder": "1440"
+        }
+      ]
+    },
+    {
+      "name": "ldap-contacts",
+      "title": "LDAP Contacts",
+      "description": "Lookup names and telephone numbers within an LDAP (AD) directory",
+      "icon": "icon.png",
+      "author": "frdmn",
+      "contributors": [],
+      "categories": [
+        "Communication"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/frdmn/ldap-contacts",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/ldap-contacts",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "ldap-lookup",
+          "title": "LDAP Lookup",
+          "description": "Search for people by name or phone number in your LDAP directory",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "ldapHost",
+          "title": "LDAP Host",
+          "description": "Hostname of your LDAP/AD server",
+          "type": "textfield",
+          "required": true
+        },
+        {
+          "name": "ldapSecurity",
+          "title": "Security",
+          "description": "How to connect to the directory server",
+          "type": "dropdown",
+          "required": false,
+          "default": "starttls",
+          "data": [
+            {
+              "title": "StartTLS (upgrade ldap:// to TLS)",
+              "value": "starttls"
+            },
+            {
+              "title": "LDAPS (ldaps://)",
+              "value": "ldaps"
+            },
+            {
+              "title": "Plain (ldap://, localhost only)",
+              "value": "none"
+            }
+          ]
+        },
+        {
+          "name": "ldapPort",
+          "title": "LDAP Port",
+          "description": "Port of your LDAP/AD server. Leave empty to use 389, or 636 for LDAPS",
+          "type": "textfield",
+          "required": false
+        },
+        {
+          "name": "ldapUsername",
+          "title": "Username",
+          "description": "Bind DN or user principal name (e.g. ldap@company.ads)",
+          "type": "textfield",
+          "required": true
+        },
+        {
+          "name": "ldapPassword",
+          "title": "Password",
+          "description": "Password for the bind user",
+          "type": "password",
+          "required": true
+        },
+        {
+          "name": "ldapSearchBase",
+          "title": "Search Base",
+          "description": "Distinguished name to search within (e.g. OU=Frankfurt,DC=Company,DC=Ads)",
+          "type": "textfield",
+          "required": true
+        },
+        {
+          "name": "ldapTLSVerify",
+          "title": "Verify TLS Certificate",
+          "description": "Validate the server certificate against the system trust store and CA file below. Disable only for self-signed setups without a CA.",
+          "type": "checkbox",
+          "label": "Verify TLS Certificate",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "ldapCACert",
+          "title": "TLS CA Certificate",
+          "description": "Path to a PEM file with the CA that signed your server certificate (for internal CAs)",
+          "type": "textfield",
+          "required": false
+        },
+        {
+          "name": "phonePrefix",
+          "title": "Phone Prefix",
+          "description": "Internal extension prefix stripped from results (e.g. 970)",
+          "type": "textfield",
+          "required": false
         }
       ]
     },
@@ -196349,6 +196843,59 @@
       "preferences": []
     },
     {
+      "name": "quick-radios",
+      "title": "Quick Radios",
+      "description": "Manage Windows Wi-Fi from Raycast: scan, connect, share via QR, and inspect connection details.",
+      "icon": "icon.png",
+      "author": "tejas911",
+      "contributors": [],
+      "categories": [
+        "System",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/tejas911/quick-radios",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/quick-radios",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "wifi",
+          "title": "Manage Wi-Fi",
+          "description": "View status, connect to networks, and manage Wi-Fi.",
+          "mode": "view",
+          "keywords": [
+            "wifi",
+            "wlan",
+            "wireless",
+            "network",
+            "connect"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "toggle-wifi",
+          "title": "Toggle Wi-Fi",
+          "description": "Instantly turn Wi-Fi on or off.",
+          "mode": "no-view",
+          "keywords": [
+            "wifi",
+            "wlan",
+            "wireless",
+            "radio"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "quick-references",
       "title": "Quick References",
       "description": "Search and browse Fechin/reference cheat sheets with favorites and offline support.",
@@ -199506,9 +200053,12 @@
         "samuelkraft",
         "benoit.grelard",
         "sdorra",
-        "sebdanielsson"
+        "sebdanielsson",
+        "ray.dhruv"
       ],
-      "categories": [],
+      "categories": [
+        "Design Tools"
+      ],
       "license": "MIT",
       "platforms": [
         "macOS",
@@ -199538,189 +200088,197 @@
           "description": "Use Ray.so to create beautiful images of your code",
           "mode": "no-view",
           "keywords": [],
-          "preferences": [
-            {
-              "name": "theme",
-              "title": "Theme",
-              "type": "dropdown",
-              "required": false,
-              "description": "Change the background color",
-              "default": "candy",
-              "data": [
-                {
-                  "title": "Vercel",
-                  "value": "vercel"
-                },
-                {
-                  "title": "Evil Rabbit",
-                  "value": "rabbit"
-                },
-                {
-                  "title": "Supabase",
-                  "value": "supabase"
-                },
-                {
-                  "title": "Tailwind",
-                  "value": "tailwind"
-                },
-                {
-                  "title": "OpenAI",
-                  "value": "openai"
-                },
-                {
-                  "title": "Mintlify",
-                  "value": "mintlify"
-                },
-                {
-                  "title": "Prisma",
-                  "value": "prisma"
-                },
-                {
-                  "title": "Clerk",
-                  "value": "clerk"
-                },
-                {
-                  "title": "ElevenLabs",
-                  "value": "elevenlabs"
-                },
-                {
-                  "title": "Resend",
-                  "value": "resend"
-                },
-                {
-                  "title": "Trigger.dev",
-                  "value": "triggerdev"
-                },
-                {
-                  "title": "Nuxt",
-                  "value": "nuxt"
-                },
-                {
-                  "title": "Browserbase",
-                  "value": "browserbase"
-                },
-                {
-                  "title": "Cloudflare",
-                  "value": "cloudflare"
-                },
-                {
-                  "title": "Gemini",
-                  "value": "gemini"
-                },
-                {
-                  "title": "Stripe",
-                  "value": "stripe"
-                },
-                {
-                  "title": "Firecrawl",
-                  "value": "firecrawl"
-                },
-                {
-                  "title": "Bitmap",
-                  "value": "bitmap"
-                },
-                {
-                  "title": "Noir",
-                  "value": "noir"
-                },
-                {
-                  "title": "Ice",
-                  "value": "ice"
-                },
-                {
-                  "title": "Sand",
-                  "value": "sand"
-                },
-                {
-                  "title": "Forest",
-                  "value": "forest"
-                },
-                {
-                  "title": "Mono",
-                  "value": "mono"
-                },
-                {
-                  "title": "Breeze",
-                  "value": "breeze"
-                },
-                {
-                  "title": "Candy",
-                  "value": "candy"
-                },
-                {
-                  "title": "Crimson",
-                  "value": "crimson"
-                },
-                {
-                  "title": "Falcon",
-                  "value": "falcon"
-                },
-                {
-                  "title": "Meadow",
-                  "value": "meadow"
-                },
-                {
-                  "title": "Midnight",
-                  "value": "midnight"
-                },
-                {
-                  "title": "Raindrop",
-                  "value": "raindrop"
-                },
-                {
-                  "title": "Sunset",
-                  "value": "sunset"
-                }
-              ]
-            },
-            {
-              "name": "padding",
-              "title": "Padding",
-              "type": "dropdown",
-              "required": false,
-              "description": "Set the padding around the code",
-              "default": "64",
-              "data": [
-                {
-                  "title": "16",
-                  "value": "16"
-                },
-                {
-                  "title": "32",
-                  "value": "32"
-                },
-                {
-                  "title": "64",
-                  "value": "64"
-                },
-                {
-                  "title": "128",
-                  "value": "128"
-                }
-              ]
-            },
-            {
-              "name": "darkMode",
-              "title": "Dark Mode",
-              "type": "checkbox",
-              "description": "Set the theme to light or dark mode",
-              "required": false,
-              "default": true,
-              "label": "Enabled"
-            },
-            {
-              "name": "background",
-              "title": "Background",
-              "type": "checkbox",
-              "description": "Select whether you want a gradient background or not",
-              "required": false,
-              "default": true,
-              "label": "Enabled"
-            }
-          ]
+          "preferences": []
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "theme",
+          "title": "Theme",
+          "type": "dropdown",
+          "required": false,
+          "description": "Default color theme for commands and AI tools",
+          "default": "candy",
+          "data": [
+            {
+              "title": "Vercel",
+              "value": "vercel"
+            },
+            {
+              "title": "Evil Rabbit",
+              "value": "rabbit"
+            },
+            {
+              "title": "Supabase",
+              "value": "supabase"
+            },
+            {
+              "title": "Tailwind",
+              "value": "tailwind"
+            },
+            {
+              "title": "OpenAI",
+              "value": "openai"
+            },
+            {
+              "title": "Mintlify",
+              "value": "mintlify"
+            },
+            {
+              "title": "Prisma",
+              "value": "prisma"
+            },
+            {
+              "title": "Clerk",
+              "value": "clerk"
+            },
+            {
+              "title": "ElevenLabs",
+              "value": "elevenlabs"
+            },
+            {
+              "title": "Resend",
+              "value": "resend"
+            },
+            {
+              "title": "Trigger.dev",
+              "value": "triggerdev"
+            },
+            {
+              "title": "Nuxt",
+              "value": "nuxt"
+            },
+            {
+              "title": "Browserbase",
+              "value": "browserbase"
+            },
+            {
+              "title": "Cloudflare",
+              "value": "cloudflare"
+            },
+            {
+              "title": "Gemini",
+              "value": "gemini"
+            },
+            {
+              "title": "Stripe",
+              "value": "stripe"
+            },
+            {
+              "title": "Firecrawl",
+              "value": "firecrawl"
+            },
+            {
+              "title": "Auth0",
+              "value": "auth0"
+            },
+            {
+              "title": "AWS",
+              "value": "aws"
+            },
+            {
+              "title": "Bitmap",
+              "value": "bitmap"
+            },
+            {
+              "title": "Noir",
+              "value": "noir"
+            },
+            {
+              "title": "Ice",
+              "value": "ice"
+            },
+            {
+              "title": "Sand",
+              "value": "sand"
+            },
+            {
+              "title": "Forest",
+              "value": "forest"
+            },
+            {
+              "title": "Mono",
+              "value": "mono"
+            },
+            {
+              "title": "Breeze",
+              "value": "breeze"
+            },
+            {
+              "title": "Candy",
+              "value": "candy"
+            },
+            {
+              "title": "Crimson",
+              "value": "crimson"
+            },
+            {
+              "title": "Falcon",
+              "value": "falcon"
+            },
+            {
+              "title": "Meadow",
+              "value": "meadow"
+            },
+            {
+              "title": "Midnight",
+              "value": "midnight"
+            },
+            {
+              "title": "Raindrop",
+              "value": "raindrop"
+            },
+            {
+              "title": "Sunset",
+              "value": "sunset"
+            }
+          ]
+        },
+        {
+          "name": "padding",
+          "title": "Padding",
+          "type": "dropdown",
+          "required": false,
+          "description": "Default padding around your code in commands and AI tools",
+          "default": "64",
+          "data": [
+            {
+              "title": "16",
+              "value": "16"
+            },
+            {
+              "title": "32",
+              "value": "32"
+            },
+            {
+              "title": "64",
+              "value": "64"
+            },
+            {
+              "title": "128",
+              "value": "128"
+            }
+          ]
+        },
+        {
+          "name": "darkMode",
+          "title": "Dark Mode",
+          "type": "checkbox",
+          "description": "Use dark mode by default in commands and AI tools",
+          "required": false,
+          "default": true,
+          "label": "Enabled"
+        },
+        {
+          "name": "background",
+          "title": "Background",
+          "type": "checkbox",
+          "description": "Show the gradient background by default in commands and AI tools",
+          "required": false,
+          "default": true,
+          "label": "Enabled"
+        }
+      ]
     },
     {
       "name": "raycafe",
@@ -226920,7 +227478,8 @@
         "stephlv",
         "artistro08",
         "andreaselia",
-        "0xdhrv"
+        "0xdhrv",
+        "ray.dhruv"
       ],
       "categories": [
         "Communication",
@@ -285880,7 +286439,8 @@
       "contributors": [
         "skoch13",
         "grimbixcode",
-        "ruslan-korneev"
+        "ruslan-korneev",
+        "just_me"
       ],
       "categories": [
         "Developer Tools",
@@ -285888,7 +286448,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/tiulpin/youtrack",
       "source": {
