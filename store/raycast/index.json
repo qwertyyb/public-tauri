@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-23T21:35:38.638Z",
+  "generatedAt": "2026-09-24T22:30:55.575Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "da15482f95042dbddb84f8f9181edec6212a9349"
+    "commit": "473a066833988583a430c1d8440ff58510d0d94c"
   },
-  "count": 3307,
+  "count": 3311,
   "extensions": [
     {
       "name": "0x0",
@@ -11944,7 +11944,26 @@
           "preferences": []
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "dateFormat",
+          "type": "dropdown",
+          "title": "Date Format",
+          "description": "Preferred date format for numeric dates (e.g. 1/11).",
+          "required": false,
+          "default": "mdy",
+          "data": [
+            {
+              "title": "Month / Day (MM/DD)",
+              "value": "mdy"
+            },
+            {
+              "title": "Day / Month (DD/MM)",
+              "value": "dmy"
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "apple-stocks-search",
@@ -76757,6 +76776,119 @@
       ]
     },
     {
+      "name": "fetch",
+      "title": "Fetch",
+      "description": "Download one or many files with curl: batch downloads, URL range patterns, and download history.",
+      "icon": "fetch-icon.png",
+      "author": "chrismessina",
+      "contributors": [],
+      "categories": [
+        "Web",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/chrismessina/fetch",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/fetch",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "download",
+          "title": "Download",
+          "description": "Download a single file from a URL.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "download-batch",
+          "title": "Download Batch",
+          "description": "Download multiple files from a list of URLs.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "download-history",
+          "title": "Download History",
+          "description": "View download history.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "outputDirectory",
+          "title": "Output Directory",
+          "description": "Default directory to save downloaded files",
+          "type": "directory",
+          "default": "~/Downloads",
+          "required": false
+        },
+        {
+          "name": "overwriteExisting",
+          "title": "Overwrite Existing",
+          "description": "Overwrite files if they already exist",
+          "type": "checkbox",
+          "default": false,
+          "label": "Overwrite existing files",
+          "required": false
+        },
+        {
+          "name": "followRedirects",
+          "title": "Follow Redirects",
+          "description": "Automatically follow HTTP redirects",
+          "type": "checkbox",
+          "default": true,
+          "label": "Follow HTTP redirects",
+          "required": false
+        },
+        {
+          "name": "defaultTimeout",
+          "title": "Stall Timeout",
+          "description": "Seconds with no data received before a download is abandoned",
+          "type": "textfield",
+          "default": "300",
+          "required": false,
+          "placeholder": "300"
+        },
+        {
+          "name": "maxParallelDownloads",
+          "title": "Max Parallel Downloads",
+          "description": "Maximum concurrent downloads for batch operations (capped at 10)",
+          "type": "textfield",
+          "default": "3",
+          "required": false,
+          "placeholder": "3"
+        },
+        {
+          "name": "verboseLogging",
+          "title": "Debug Logging",
+          "label": "Enable extra diagnostics in the console",
+          "description": "Show detailed logs in the console for debugging.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "strictRedaction",
+          "type": "checkbox",
+          "required": false,
+          "title": "Strict Redaction",
+          "label": "Also hide URL query strings and fragments in logs",
+          "description": "Enable before reproducing an issue, then share only the lines written afterward. Masks every URL query string and fragment, including values that automatic redaction cannot recognize by name. Does not change lines already in the console.",
+          "default": false
+        }
+      ]
+    },
+    {
       "name": "fetch-youtube-transcript",
       "title": "Fetch YouTube Transcript",
       "description": "Fetches and saves the transcript of a YouTube video in your downloads folder",
@@ -115728,7 +115860,7 @@
     {
       "name": "inoh",
       "title": "Inoh",
-      "description": "The vocabulary app for the articulate. Add words to your Inoh decks without leaving Raycast",
+      "description": "Collect words anywhere. Turn them into rich vocabulary cards and make them yours.",
       "icon": "extension-icon.png",
       "author": "tai",
       "contributors": [],
@@ -115751,6 +115883,14 @@
           "name": "add-card",
           "title": "Search Word",
           "description": "Search and add vocabulary cards to your Inoh deck",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "generate",
+          "title": "Generate",
+          "description": "Write down words the dictionary doesn't have and turn them into Inoh cards",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -144229,7 +144369,8 @@
         "wattmalsh",
         "samuelkraft",
         "sacha_crispin",
-        "chihkang"
+        "chihkang",
+        "tomjohn"
       ],
       "categories": [
         "Productivity",
@@ -144307,7 +144448,7 @@
           "name": "edit",
           "title": "Edit Media",
           "subtitle": "Media Converter",
-          "description": "Resize, crop, change speed, extract audio, normalize loudness, or edit subtitles",
+          "description": "Resize, crop, change speed or frame rate, remove or extract audio, normalize loudness, or edit subtitles",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -154473,6 +154614,92 @@
       ]
     },
     {
+      "name": "multi-ai-chat",
+      "title": "Multi AI Chat",
+      "description": "Open or prefill one prompt in ChatGPT, Claude, Grok, and Perplexity using query URLs in your browser.",
+      "icon": "icon.png",
+      "author": "matheuscoelho3006",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/matheuscoelho3006/multi-ai-chat",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/multi-ai-chat",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "multi-ai-chat",
+          "title": "Multi AI Chat",
+          "description": "Open one prompt in multiple AI chatbots at once",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "run-presets",
+          "title": "Saved Prompts",
+          "subtitle": "Multi AI Chat",
+          "description": "Create, manage, and run reusable prompts in configured AI chats",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "browser",
+          "title": "Browser",
+          "description": "Which browser to open AI chats in. Prompts are included in the URLs and may appear in browser history and sync.",
+          "type": "dropdown",
+          "required": false,
+          "default": "",
+          "data": [
+            {
+              "title": "System Default",
+              "value": ""
+            },
+            {
+              "title": "Google Chrome",
+              "value": "com.google.Chrome"
+            },
+            {
+              "title": "Safari",
+              "value": "com.apple.Safari"
+            },
+            {
+              "title": "Vivaldi",
+              "value": "com.vivaldi.Vivaldi"
+            },
+            {
+              "title": "Arc",
+              "value": "company.thebrowser.Browser"
+            },
+            {
+              "title": "Brave",
+              "value": "com.brave.Browser"
+            },
+            {
+              "title": "Microsoft Edge",
+              "value": "com.microsoft.edgemac"
+            },
+            {
+              "title": "Firefox",
+              "value": "org.mozilla.firefox"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "multi-force",
       "title": "MultiForce",
       "description": "Allows a Salesforce Developer to access and authenticate orgs availabe via the SF command line tools.",
@@ -164200,6 +164427,71 @@
           "required": false
         }
       ]
+    },
+    {
+      "name": "nust-mess-menu",
+      "title": "NUST Mess Menu",
+      "description": "Today's and this week's NUST hostel mess menu.",
+      "icon": "icon.png",
+      "author": "muhammadaljoufi",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/muhammadaljoufi/nust-mess-menu",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/nust-mess-menu",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "today",
+          "title": "Today's Mess Menu",
+          "subtitle": "NUST Hostels",
+          "description": "What's in the mess today. Breakfast, lunch, and dinner.",
+          "mode": "view",
+          "keywords": [
+            "mess",
+            "food",
+            "nust",
+            "hostel",
+            "breakfast",
+            "lunch",
+            "dinner"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "weekly",
+          "title": "Weekly Mess Menu",
+          "subtitle": "NUST Hostels",
+          "description": "The week's mess in one table.",
+          "mode": "view",
+          "keywords": [
+            "mess",
+            "week",
+            "nust",
+            "hostel"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "menu-bar",
+          "title": "Mess Menu Bar",
+          "subtitle": "NUST Hostels",
+          "description": "Pin today's current or next meal in the menu bar.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "nuxt",
@@ -195880,7 +196172,9 @@
         "System"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/koinzhang/quick-access",
       "source": {
         "type": "github-monorepo",
@@ -196439,6 +196733,66 @@
           "default": "~/",
           "type": "directory",
           "required": true
+        }
+      ]
+    },
+    {
+      "name": "quick-groups",
+      "title": "Quick Groups",
+      "description": "Search and act on grouped reference data from local YAML files",
+      "icon": "reference-icon.png",
+      "author": "neilbartlett",
+      "contributors": [],
+      "categories": [
+        "Data",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/neilbartlett/quick-groups",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/quick-groups",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-groups",
+          "title": "Search Groups",
+          "subtitle": "Quick Groups",
+          "description": "Search grouped records from local YAML files",
+          "mode": "view",
+          "keywords": [
+            "qg",
+            "reference",
+            "yaml"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "browse-fields",
+          "title": "Browse Fields",
+          "subtitle": "Quick Groups",
+          "description": "Browse grouped values by field",
+          "mode": "view",
+          "keywords": [
+            "fields",
+            "reference",
+            "yaml"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "referenceDirectory",
+          "title": "Custom Groups Directory",
+          "description": "Optional directory override for your Quick Groups YAML files",
+          "type": "directory",
+          "required": false
         }
       ]
     },
@@ -220437,11 +220791,11 @@
       "preferences": [
         {
           "name": "viewMode",
-          "description": "Choose view mode",
+          "description": "Choose how to display results",
           "type": "dropdown",
           "required": false,
           "default": "grid",
-          "title": "View Mode",
+          "title": "Layout",
           "data": [
             {
               "title": "Grid",
@@ -220455,7 +220809,7 @@
         },
         {
           "name": "preferredWebsite",
-          "description": "Choose which website opens by default when viewing TV series details.",
+          "description": "Choose which website opens by default when viewing TV series details",
           "type": "dropdown",
           "required": false,
           "default": "seriesGraph",
@@ -220477,38 +220831,35 @@
         },
         {
           "name": "apiBaseUrl",
+          "title": "IMDxAPI Base URL",
           "description": "Base URL for the IMDxAPI used to search titles and fetch episode ratings. Default: https://api.tiffara.com",
           "type": "textfield",
           "required": false,
           "default": "https://api.tiffara.com",
-          "title": "IMDxAPI Base URL",
           "placeholder": "https://api.tiffara.com"
         },
         {
           "name": "tmdbAccessToken",
-          "description": "Optional TMDB Access Token for 'Open SeriesGraph Page' and 'Open TMDB Page' actions. Get from https://themoviedb.org/settings/api.",
+          "title": "TMDB Read Access Token",
+          "description": "Optional TMDB Access Token for 'Open SeriesGraph Page' and 'Open TMDB Page' actions. Get from https://themoviedb.org/settings/api",
           "type": "password",
-          "required": false,
-          "title": "TMDB Read Access Token"
+          "required": false
         },
         {
           "name": "downloadPath",
-          "description": "Specify the path download images",
+          "title": "Download Path",
+          "description": "Specify the path to download images",
           "type": "directory",
           "required": false,
-          "title": "Download Path",
-          "default": {
-            "macOS": "~/Downloads",
-            "Windows": "C:\\Users\\%USERPROFILE%\\Downloads"
-          }
+          "default": "~/Downloads"
         },
         {
           "name": "showInFinderAfterDownload",
-          "description": "Show in Finder/File Explorer after download",
+          "label": "Show Downloaded Image in Finder/File Explorer",
+          "description": "Show image in Finder/File Explorer after download",
           "type": "checkbox",
           "required": false,
-          "default": true,
-          "label": "Show In Finder/File Explorer"
+          "default": true
         }
       ]
     },
@@ -220759,7 +221110,34 @@
               "name": "openWithApp",
               "type": "appPicker",
               "required": true,
-              "title": "Open with (required)",
+              "title": "Open With (Required)",
+              "description": "Open with",
+              "default": "Terminal"
+            },
+            {
+              "name": "environmentPath",
+              "type": "textfield",
+              "required": true,
+              "title": "Environment Path",
+              "description": "Colon-separated PATH (Unix-style), e.g /usr/local/bin:/usr/bin",
+              "default": "/usr/local/bin:/usr/bin:/opt/homebrew/bin:/run/current-system/sw/bin"
+            }
+          ]
+        },
+        {
+          "name": "cmd-connect-window",
+          "title": "Connect to Window",
+          "subtitle": "Sesh",
+          "description": "Search every tmux window across your sessions and jump straight to it.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": [
+            {
+              "name": "openWithApp",
+              "type": "appPicker",
+              "required": true,
+              "title": "Open With (Required)",
               "description": "Open with",
               "default": "Terminal"
             },
@@ -251710,7 +252088,7 @@
     {
       "name": "thesvg",
       "title": "TheSVG",
-      "description": "Search, preview, and copy 5,600+ brand SVG icons from thesvg.org",
+      "description": "Search, preview, and copy 7,400+ brand SVG icons from thesvg.org",
       "icon": "extension-icon.png",
       "author": "thegdsks",
       "contributors": [],
@@ -251734,7 +252112,7 @@
           "name": "search-icons",
           "title": "Search Brand Icons",
           "subtitle": "theSVG",
-          "description": "Search 5,600+ brand SVG icons. Copy SVG, download, or open in browser.",
+          "description": "Search 7,400+ brand SVG icons. Copy SVG, download, or open in browser.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -283996,7 +284374,6 @@
       "contributors": [
         "qeude",
         "oliep",
-        "kiliankoe",
         "3llomi",
         "ridemountainpig"
       ],
@@ -288451,7 +288828,7 @@
     {
       "name": "zenmux-manager",
       "title": "ZenMux Manager",
-      "description": "Monitor ZenMux usage, manage account links, and ask Raycast AI about ZenMux.",
+      "description": "Monitor ZenMux usage, manage account links, and use ZenMux models in Raycast AI.",
       "icon": "extension-icon.png",
       "author": "abnershang",
       "contributors": [],
@@ -288535,6 +288912,14 @@
           "type": "password",
           "required": true,
           "placeholder": "Your ZenMux Platform API key"
+        },
+        {
+          "name": "modelApiKey",
+          "title": "Model API Key",
+          "description": "Subscription (sk-ss-v1-...) or PAYG (sk-ai-v1-...) key used to list and run ZenMux models in Raycast AI. Do not paste the Platform API key here.",
+          "type": "password",
+          "required": false,
+          "placeholder": "sk-ss-v1-... or sk-ai-v1-..."
         }
       ]
     },
