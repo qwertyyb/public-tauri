@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-24T22:30:55.575Z",
+  "generatedAt": "2026-09-25T21:47:32.400Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "473a066833988583a430c1d8440ff58510d0d94c"
+    "commit": "b4eb066c6906135852f8fde1c7b1717b9e030a18"
   },
-  "count": 3311,
+  "count": 3320,
   "extensions": [
     {
       "name": "0x0",
@@ -11773,6 +11773,42 @@
               "label": "Default Due Date & Time",
               "placeholder": "e.g. 6pm, in 2 hours, tomorrow 9am, tonight",
               "description": "Optional default due date or time for tab reminders (e.g. \"6pm\", \"tonight\", \"tomorrow 9am\", \"in 2 hours\"). Leave empty for no due date.",
+              "required": false
+            }
+          ]
+        },
+        {
+          "name": "create-reminder-from-selected-email",
+          "title": "Create Reminder from Selected Email",
+          "subtitle": "Apple Reminders",
+          "description": "Create a reminder from the selected email in Apple Mail.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "createImmediately",
+              "type": "checkbox",
+              "label": "Create Reminder Immediately",
+              "description": "When enabled, the reminder is created immediately in your default list without opening the form.",
+              "default": false,
+              "required": false
+            },
+            {
+              "name": "defaultListName",
+              "type": "textfield",
+              "title": "Default List",
+              "label": "Default List",
+              "placeholder": "e.g. Inbox, Work, or Reminders",
+              "description": "Default list to add email reminders to. Leave empty to use Reminders' default list.",
+              "required": false
+            },
+            {
+              "name": "defaultDueDate",
+              "type": "textfield",
+              "title": "Default Due Date & Time",
+              "label": "Default Due Date & Time",
+              "placeholder": "e.g. 6pm, in 2 hours, tomorrow 9am, tonight",
+              "description": "Optional default due date or time for email reminders (e.g. \"6pm\", \"tonight\", \"tomorrow 9am\", \"in 2 hours\"). Leave empty for no due date.",
               "required": false
             }
           ]
@@ -27262,7 +27298,8 @@
         "pernielsentikaer",
         "haneul486",
         "just_me",
-        "mguellsegarra"
+        "mguellsegarra",
+        "teziovsky"
       ],
       "categories": [
         "Web"
@@ -27314,6 +27351,24 @@
           "description": "When enabled with Open Bookmark's Browser, pressing Enter replaces the active tab in supported macOS browsers. If no browser window exists, a new one is created.",
           "default": false,
           "required": false
+        },
+        {
+          "type": "dropdown",
+          "title": "Copy Link Shortcut",
+          "name": "copyLinkShortcut",
+          "description": "The keyboard shortcut used to copy the bookmark's link.",
+          "default": "cmd-c",
+          "required": false,
+          "data": [
+            {
+              "title": "⌘ C (Ctrl+C on Windows)",
+              "value": "cmd-c"
+            },
+            {
+              "title": "⌘ ⌥ C (Ctrl+Alt+C on Windows)",
+              "value": "cmd-opt-c"
+            }
+          ]
         }
       ]
     },
@@ -27755,6 +27810,87 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "browser-router",
+      "title": "Browser Router",
+      "description": "Route search queries and URLs to any installed browser and profile on Windows.",
+      "icon": "extension-icon.png",
+      "author": "raghavg02",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/raghavg02/browser-router",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/browser-router",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "browser-router",
+          "title": "Browser Router",
+          "description": "Route queries and URLs to any browser and profile on Windows",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "defaultSearchEngine",
+          "title": "Default Search Engine",
+          "description": "Search engine used when entering search queries instead of direct URLs",
+          "type": "dropdown",
+          "required": false,
+          "default": "google",
+          "data": [
+            {
+              "title": "Google",
+              "value": "google"
+            },
+            {
+              "title": "DuckDuckGo",
+              "value": "duckduckgo"
+            },
+            {
+              "title": "Bing",
+              "value": "bing"
+            },
+            {
+              "title": "Brave Search",
+              "value": "brave"
+            },
+            {
+              "title": "Perplexity",
+              "value": "perplexity"
+            },
+            {
+              "title": "Ecosia",
+              "value": "ecosia"
+            },
+            {
+              "title": "Custom URL",
+              "value": "custom"
+            }
+          ]
+        },
+        {
+          "name": "customSearchUrl",
+          "title": "Custom Search URL",
+          "description": "Used if default search engine is set to Custom. Use %s as the search query placeholder.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "https://kagi.com/search?q=%s"
+        }
+      ]
     },
     {
       "name": "browser-tabs",
@@ -44110,7 +44246,8 @@
         "yusifaliyevpro",
         "elibattistoni",
         "clins1994",
-        "just_me"
+        "just_me",
+        "ray.dhruv"
       ],
       "categories": [
         "Design Tools"
@@ -64678,6 +64815,14 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "deployments",
+          "title": "Deployments",
+          "description": "See the most recent deployment for every application and Compose stack across every configured instance, and act on it",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": []
@@ -70638,6 +70783,14 @@
           "name": "speak-copied",
           "title": "Speak Copied Text",
           "description": "Speak text from the clipboard using ElevenLabs TTS",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "stop-speaking",
+          "title": "Stop Speaking",
+          "description": "Stop the current ElevenLabs TTS playback",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -96451,9 +96604,12 @@
         "NirRosh",
         "josh_carty",
         "smpeotn",
-        "radek_cabaj"
+        "radek_cabaj",
+        "ray.dhruv"
       ],
-      "categories": [],
+      "categories": [
+        "Web"
+      ],
       "license": "MIT",
       "platforms": [
         "macOS"
@@ -96471,6 +96627,15 @@
           "title": "Switch Profiles",
           "subtitle": "Google Chrome",
           "description": "Select a Chrome profile to bring its window to front, browse its bookmarks, or open a new tab.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "move-current-tab",
+          "title": "Move Current Tab to Another Profile",
+          "subtitle": "Google Chrome",
+          "description": "Move the active Chrome tab to another profile. With two profiles, switch automatically; otherwise, choose a destination.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -113067,6 +113232,127 @@
       ]
     },
     {
+      "name": "iconsearch",
+      "title": "IconSearch SVG Icons",
+      "description": "Search 350,000+ SVG icons from 229 icon sets. Requires a free IconSearch account.",
+      "icon": "icon.png",
+      "author": "iconsearch",
+      "contributors": [],
+      "categories": [
+        "Design Tools",
+        "Developer Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "version": "0.1.0",
+      "storeUrl": "https://www.raycast.com/iconsearch/iconsearch",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/iconsearch",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-icons",
+          "title": "Search Icons",
+          "subtitle": "IconSearch",
+          "description": "Connect a free IconSearch account, then search and use SVG icons.",
+          "mode": "view",
+          "keywords": [
+            "copy",
+            "paste",
+            "svg",
+            "react",
+            "tailwind"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "defaultFormat",
+          "title": "Default Output",
+          "description": "The output format used by the primary copy and paste actions.",
+          "type": "dropdown",
+          "required": true,
+          "default": "react",
+          "data": [
+            {
+              "title": "React",
+              "value": "react"
+            },
+            {
+              "title": "Raw SVG",
+              "value": "svg"
+            },
+            {
+              "title": "Vue",
+              "value": "vue"
+            },
+            {
+              "title": "Svelte",
+              "value": "svelte"
+            },
+            {
+              "title": "Tailwind Mask",
+              "value": "tailwind"
+            },
+            {
+              "title": "SVG URL",
+              "value": "url"
+            }
+          ]
+        },
+        {
+          "name": "tailwindClasses",
+          "title": "Classes",
+          "description": "Classes added to generated React, SVG, Vue, Svelte, and Tailwind snippets.",
+          "type": "textfield",
+          "required": false,
+          "default": "w-5 h-5"
+        },
+        {
+          "name": "defaultStyle",
+          "title": "Default Style",
+          "description": "Style filter applied when the command opens.",
+          "type": "dropdown",
+          "required": true,
+          "default": "all",
+          "data": [
+            {
+              "title": "All Styles",
+              "value": "all"
+            },
+            {
+              "title": "Stroke / Outline",
+              "value": "stroke"
+            },
+            {
+              "title": "Solid / Filled",
+              "value": "solid"
+            },
+            {
+              "title": "Duotone",
+              "value": "duotone"
+            },
+            {
+              "title": "Two-Tone",
+              "value": "twotone"
+            },
+            {
+              "title": "Sharp",
+              "value": "sharp"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "icy-veins-quicklinks",
       "title": "Icy Veins Quicklinks",
       "description": "Instantly navigate to Icy Veins World of Warcraft class and spec guides.",
@@ -124811,6 +125097,57 @@
       "preferences": []
     },
     {
+      "name": "jumpseat",
+      "title": "Jumpseat",
+      "description": "See your and your friends' upcoming Jumpseat flights at a glance.",
+      "icon": "extension-icon.png",
+      "author": "chefski",
+      "contributors": [],
+      "categories": [
+        "Applications"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "version": "0.1.0",
+      "storeUrl": "https://www.raycast.com/chefski/jumpseat",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/jumpseat",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "upcoming-flights",
+          "title": "Upcoming Flights",
+          "description": "See your upcoming flights and travel details",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "friends-upcoming-flights",
+          "title": "Friends' Upcoming Flights",
+          "description": "See upcoming flights shared by your Jumpseat friends",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "next-flight-in-menu-bar",
+          "title": "Next Flight in Menu Bar",
+          "description": "Keep your next Jumpseat flight in the menu bar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "jup-agg",
       "title": "Jupiter Aggregator",
       "description": "Lets you display the value of a token in the menu bar and lets you calculate the value of tokens",
@@ -136057,7 +136394,7 @@
           "name": "groupCommands",
           "title": "Grouping",
           "label": "Group commands by environment, brand and category",
-          "description": "Read the naming convention out of each command's title and subtitle — an @environment prefix on the title, a brand and a #category on the subtitle — and use it to build sections and filters. Commands that follow no convention are still listed; they simply have no environment or category.",
+          "description": "Read the naming convention out of each command's title and subtitle — a brand and a · @environment · #category subtitle — and use it to build sections and filters. Commands written with the older @environment prefix on the title are read the same way, and commands that follow no convention are still listed; they simply have no environment or category.",
           "type": "checkbox",
           "required": false,
           "default": true
@@ -154966,6 +155303,58 @@
       ]
     },
     {
+      "name": "muse-ai",
+      "title": "Muse AI",
+      "description": "Muse AI (Meta Model API) within Raycast — use Muse Spark in AI Chat, Quick AI and AI Commands",
+      "icon": "extension-icon.png",
+      "author": "alhassanaraouf",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Applications"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows",
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/alhassanaraouf/muse-ai",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/muse-ai",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "ask-muse-ai",
+          "title": "Ask Muse AI",
+          "subtitle": "Meta Model API",
+          "description": "Ask questions using Muse Spark via Meta Model API, with conversation history",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "title": "Model API Key",
+          "name": "MODEL_API_KEY",
+          "type": "password",
+          "required": true,
+          "description": "Meta Model API key from https://dev.meta.ai (looks like LLM|...). Stored only in Raycast preferences."
+        },
+        {
+          "title": "Muse Model",
+          "name": "MUSE_MODEL",
+          "type": "textfield",
+          "required": false,
+          "default": "muse-spark-1.3",
+          "description": "Default model for Ask Muse AI. The command lets you pick any available Muse Spark model; this is preselected, e.g. muse-spark-1.3"
+        }
+      ]
+    },
+    {
       "name": "music",
       "title": "Music",
       "description": "Control the Apple Music app with your keyboard.",
@@ -156140,13 +156529,17 @@
     {
       "name": "my-daily-log",
       "title": "My Daily Log",
-      "description": "Log what you do every day.",
+      "description": "Log what you do every day, get reminded to log, and summarize your days with a local LLM.",
       "icon": "command-icon.png",
       "author": "frugoman",
       "contributors": [],
-      "categories": [],
+      "categories": [
+        "Productivity"
+      ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/frugoman/my-daily-log",
       "source": {
         "type": "github-monorepo",
@@ -156158,7 +156551,7 @@
         {
           "name": "dailyLogList",
           "title": "My Daily Log",
-          "description": "List of all logs for the current day",
+          "description": "List, edit and delete the logs of a day",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -156166,7 +156559,7 @@
         {
           "name": "loggedDaysInMonthList",
           "title": "Logged Days of Month",
-          "description": "List of all logged days in a given month",
+          "description": "List of all logged days, grouped by month",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -156180,17 +156573,111 @@
           "preferences": []
         },
         {
-          "name": "summaryOfAMonth",
-          "title": "Summary Of A Month",
-          "description": "Summary of what you did in a given month",
+          "name": "searchLogs",
+          "title": "Search Logs",
+          "description": "Search through everything you have ever logged",
           "mode": "view",
           "keywords": [],
           "preferences": []
         },
         {
+          "name": "logReminderMenuBar",
+          "title": "Log Reminder",
+          "subtitle": "My Daily Log",
+          "description": "Menu bar item that reminds you to log what you are doing when you have not logged for a while",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "reminderIntervalMinutes",
+              "title": "Remind Me Every",
+              "description": "How long without a new log before you are reminded",
+              "type": "dropdown",
+              "required": false,
+              "default": "60",
+              "data": [
+                {
+                  "title": "30 Minutes",
+                  "value": "30"
+                },
+                {
+                  "title": "1 Hour",
+                  "value": "60"
+                },
+                {
+                  "title": "90 Minutes",
+                  "value": "90"
+                },
+                {
+                  "title": "2 Hours",
+                  "value": "120"
+                },
+                {
+                  "title": "3 Hours",
+                  "value": "180"
+                },
+                {
+                  "title": "4 Hours",
+                  "value": "240"
+                }
+              ]
+            },
+            {
+              "name": "reminderStartTime",
+              "title": "Working Hours Start",
+              "description": "Do not remind before this time (24h format, e.g. 09:00)",
+              "type": "textfield",
+              "required": false,
+              "default": "09:00"
+            },
+            {
+              "name": "reminderEndTime",
+              "title": "Working Hours End",
+              "description": "Do not remind after this time (24h format, e.g. 18:00)",
+              "type": "textfield",
+              "required": false,
+              "default": "18:00"
+            },
+            {
+              "name": "reminderWeekdaysOnly",
+              "title": "Days",
+              "label": "Only remind me on weekdays",
+              "description": "Skip reminders on Saturdays and Sundays",
+              "type": "checkbox",
+              "required": false,
+              "default": true
+            },
+            {
+              "name": "reminderNotification",
+              "title": "Notification",
+              "label": "Show a system notification when a log is due",
+              "description": "Besides highlighting the menu bar item, show a macOS notification",
+              "type": "checkbox",
+              "required": false,
+              "default": true
+            }
+          ]
+        },
+        {
           "name": "daySummaryView",
           "title": "Day Summary",
-          "description": "Summary of a given day",
+          "description": "AI summary of a given day, generated with your own LLM (Ollama by default)",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "weekSummaryView",
+          "title": "Summary of a Week",
+          "description": "AI weekly report of what you did, generated with your own LLM (Ollama by default)",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "summaryOfAMonth",
+          "title": "Summary of a Month",
+          "description": "AI summary of what you did in a given month, generated with your own LLM (Ollama by default)",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -156198,7 +156685,7 @@
         {
           "name": "dailyStandupSpeechView",
           "title": "Day Standup Speech",
-          "description": "Creates a speech that you can use for your daily standup meeting",
+          "description": "Creates a speech for your daily standup meeting, generated with your own LLM (Ollama by default)",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -156208,10 +156695,77 @@
         {
           "name": "logPath",
           "title": "Daily Log Path",
-          "description": "Path to your daily log",
+          "description": "Folder where your logs are stored. Put it in iCloud Drive or Dropbox to sync between machines.",
           "default": "~/Documents/DailyLog",
           "type": "textfield",
           "required": true
+        },
+        {
+          "name": "aiBaseUrl",
+          "title": "AI Server URL",
+          "description": "Base URL of any OpenAI-compatible API. Ollama: http://localhost:11434/v1, LM Studio: http://localhost:1234/v1, OpenAI: https://api.openai.com/v1",
+          "default": "http://localhost:11434/v1",
+          "type": "textfield",
+          "required": false
+        },
+        {
+          "name": "aiModel",
+          "title": "AI Model",
+          "description": "Name of the model to use, e.g. llama3.2, qwen2.5, mistral (for Ollama run `ollama list` to see yours)",
+          "default": "llama3.2",
+          "type": "textfield",
+          "required": false
+        },
+        {
+          "name": "aiApiKey",
+          "title": "AI API Key",
+          "description": "Only needed for hosted providers. Leave empty for Ollama or other local servers.",
+          "type": "password",
+          "required": false
+        },
+        {
+          "name": "aiInstructions",
+          "title": "Extra AI Instructions",
+          "description": "Optional instructions added to every prompt, e.g. 'Answer in Spanish' or 'Keep it under 5 bullet points'",
+          "type": "textfield",
+          "required": false
+        },
+        {
+          "name": "aiThinking",
+          "title": "AI Thinking",
+          "description": "For reasoning models (qwen3, deepseek-r1, gpt-oss…). Disabling thinking makes answers much faster. Sent as `reasoning_effort`.",
+          "type": "dropdown",
+          "required": false,
+          "default": "default",
+          "data": [
+            {
+              "title": "Model Default",
+              "value": "default"
+            },
+            {
+              "title": "Disabled (like --think=false)",
+              "value": "none"
+            },
+            {
+              "title": "Low",
+              "value": "low"
+            },
+            {
+              "title": "Medium",
+              "value": "medium"
+            },
+            {
+              "title": "High",
+              "value": "high"
+            }
+          ]
+        },
+        {
+          "name": "aiExtraParams",
+          "title": "Extra Model Parameters",
+          "description": "Extra parameters sent with every request, as flags (--think=false --temperature=0.2) or JSON ({\"temperature\": 0.2, \"top_p\": 0.9}).",
+          "type": "textfield",
+          "required": false
         }
       ]
     },
@@ -157825,6 +158379,55 @@
           "default": false
         }
       ]
+    },
+    {
+      "name": "nbnhhsh",
+      "title": "Nbnhhsh – Chinese Abbreviations",
+      "description": "Decode Chinese pinyin abbreviations and internet slang with 能不能好好说话 (nbnhhsh).",
+      "icon": "nbnhhsh-icon.png",
+      "author": "Astatine-213",
+      "contributors": [],
+      "categories": [
+        "Communication",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/Astatine-213/nbnhhsh",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/nbnhhsh",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "explain-abbreviations",
+          "title": "Explain Chinese Abbreviations",
+          "subtitle": "nbnhhsh · 能不能好好说话",
+          "description": "Find possible meanings for one or more Chinese pinyin abbreviations, then copy or paste an expansion.",
+          "mode": "view",
+          "keywords": [
+            "nbnhhsh",
+            "能不能好好说话",
+            "缩写",
+            "拼音",
+            "黑话",
+            "网络用语",
+            "pinyin",
+            "slang",
+            "acronym",
+            "yyds",
+            "nsdd",
+            "awsl"
+          ],
+          "icon": "nbnhhsh-icon.png",
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "near-rewards",
@@ -162539,7 +163142,8 @@
         "pernielsentikaer",
         "0xdhrv",
         "ridemountainpig",
-        "alvesrafa"
+        "alvesrafa",
+        "ray.dhruv"
       ],
       "categories": [
         "Applications",
@@ -162558,6 +163162,14 @@
         "ref": "main"
       },
       "commands": [
+        {
+          "name": "manage-connection",
+          "title": "Manage Notion Connection",
+          "description": "Test your Notion connection, reconnect, or manage page access.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
         {
           "name": "create-database-page",
           "title": "Create Database Page",
@@ -164168,6 +164780,122 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "number-formatter",
+      "title": "Number Formatter",
+      "description": "Quickly understand and copy numbers in familiar, locale-aware formats.",
+      "icon": "icon.png",
+      "author": "dydent",
+      "contributors": [],
+      "categories": [
+        "Data"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "version": "1.0.0",
+      "storeUrl": "https://www.raycast.com/dydent/number-formatter",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/number-formatter",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "format-number",
+          "title": "Format Number",
+          "description": "Make large and small numbers easier to read.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "locale",
+              "title": "Number Locale",
+              "description": "Locale used to interpret and format numbers.",
+              "type": "dropdown",
+              "required": true,
+              "default": "system",
+              "data": [
+                {
+                  "title": "System Default",
+                  "value": "system"
+                },
+                {
+                  "title": "English (United States)",
+                  "value": "en-US"
+                },
+                {
+                  "title": "English (United Kingdom)",
+                  "value": "en-GB"
+                },
+                {
+                  "title": "German (Germany)",
+                  "value": "de-DE"
+                },
+                {
+                  "title": "German (Switzerland)",
+                  "value": "de-CH"
+                },
+                {
+                  "title": "French (France)",
+                  "value": "fr-FR"
+                },
+                {
+                  "title": "Italian (Italy)",
+                  "value": "it-IT"
+                },
+                {
+                  "title": "Spanish (Spain)",
+                  "value": "es-ES"
+                }
+              ]
+            },
+            {
+              "name": "decimalDetail",
+              "title": "Decimal Detail",
+              "description": "Maximum decimal detail to show without adding trailing zeros.",
+              "type": "dropdown",
+              "required": true,
+              "default": "2",
+              "data": [
+                {
+                  "title": "0",
+                  "value": "0"
+                },
+                {
+                  "title": "1",
+                  "value": "1"
+                },
+                {
+                  "title": "2",
+                  "value": "2"
+                },
+                {
+                  "title": "3",
+                  "value": "3"
+                },
+                {
+                  "title": "4",
+                  "value": "4"
+                },
+                {
+                  "title": "5",
+                  "value": "5"
+                },
+                {
+                  "title": "6",
+                  "value": "6"
+                }
+              ]
+            }
+          ]
         }
       ],
       "preferences": []
@@ -196608,7 +197336,9 @@
         "Communication"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/karbassi/quick-call",
       "source": {
         "type": "github-monorepo",
@@ -213787,6 +214517,86 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "rubiks-cube-timer",
+      "title": "Rubiks Cube Timer",
+      "description": "Time your Rubik's Cube solves with random scrambles and csTimer import/export. No account required.",
+      "icon": "icon.png",
+      "author": "nokoniko",
+      "contributors": [],
+      "categories": [
+        "Fun"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "version": "1.0.0",
+      "storeUrl": "https://www.raycast.com/nokoniko/rubiks-cube-timer",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/rubiks-cube-timer",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "rubiks-cube-timer",
+          "title": "Rubiks Cube Timer",
+          "subtitle": "Times your solves",
+          "description": "Get a random scramble and time your solve.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "precision",
+              "title": "Timer Precision",
+              "description": "How finely the running timer counts up. The final time is always exact.",
+              "type": "dropdown",
+              "required": false,
+              "default": "tenths",
+              "data": [
+                {
+                  "title": "Seconds (1, 2, 3)",
+                  "value": "whole"
+                },
+                {
+                  "title": "Half seconds (1, 1.5, 2)",
+                  "value": "half"
+                },
+                {
+                  "title": "Tenths (1, 1.1, 1.2)",
+                  "value": "tenths"
+                },
+                {
+                  "title": "Hundredths (1, 1.01, 1.02)",
+                  "value": "hundredths"
+                }
+              ]
+            },
+            {
+              "name": "inspection",
+              "title": "Inspection",
+              "label": "Enable inspection countdown",
+              "description": "Enter starts an inspection countdown before the solve. Going over adds +2; going 2s past it is a DNF.",
+              "type": "checkbox",
+              "required": false,
+              "default": false
+            },
+            {
+              "name": "inspectionSeconds",
+              "title": "Inspection Time",
+              "description": "Length of the inspection countdown in seconds (WCA is 15).",
+              "type": "textfield",
+              "required": false,
+              "default": "15"
+            }
+          ]
         }
       ],
       "preferences": []
@@ -241195,7 +242005,16 @@
           "required": false,
           "title": "Workspace URL",
           "placeholder": "https://app.sunsama.com/group/your-workspace",
-          "description": "Lets Open in Sunsama jump straight to a task. Copy it from the address bar while Sunsama is open. Without it, Open in Sunsama opens the app's home page."
+          "description": "Lets Open in Sunsama jump straight to a task on the web. Copy it from the address bar while Sunsama is open. Not needed with deep links on."
+        },
+        {
+          "name": "useDeepLinks",
+          "type": "checkbox",
+          "required": false,
+          "default": false,
+          "title": "Open Tasks",
+          "label": "Use Deep Links",
+          "description": "Open tasks in the Sunsama desktop app (sunsama://) instead of the website. Needs the app installed."
         }
       ]
     },
@@ -243275,6 +244094,95 @@
             {
               "title": "Run and clear searchbar",
               "value": "run+clear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "swift-salamander",
+      "title": "Swift Salamander",
+      "description": "Open paths, Finder selections, and saved workspaces in Swift Salamander.",
+      "icon": "icon.png",
+      "author": "c0desurfer",
+      "contributors": [],
+      "categories": [
+        "Applications",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/c0desurfer/swift-salamander",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/swift-salamander",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "activate",
+          "title": "Open Swift Salamander",
+          "description": "Bring Swift Salamander to the front",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-path",
+          "title": "Open Path",
+          "description": "Open a directory or reveal a file in Swift Salamander",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-clipboard-path",
+          "title": "Open Clipboard Path",
+          "description": "Open the local path currently on the clipboard",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-finder-selection",
+          "title": "Open Finder Selection",
+          "description": "Reveal Finder's selected items in Swift Salamander",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-workspace",
+          "title": "Open Saved Workspace",
+          "description": "Apply a saved workspace by name; this command does not accept paths",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "pathTarget",
+          "title": "Open Paths In",
+          "description": "Choose where path commands navigate in Swift Salamander.",
+          "type": "dropdown",
+          "required": true,
+          "default": "active",
+          "data": [
+            {
+              "title": "Active Pane",
+              "value": "active"
+            },
+            {
+              "title": "Opposite Pane",
+              "value": "opposite"
+            },
+            {
+              "title": "New Tab",
+              "value": "new-tab"
             }
           ]
         }
@@ -249506,7 +250414,7 @@
     {
       "name": "text-enhance",
       "title": "Text Enhance",
-      "description": "Enhance drafts with Raycast AI, copy the improved result to the clipboard, and iterate with follow-up corrections.",
+      "description": "Enhance drafts with Raycast AI or your own API key, copy results, and refine with follow-up corrections.",
       "icon": "icon.png",
       "author": "max13021302",
       "contributors": [],
@@ -249530,7 +250438,7 @@
         {
           "name": "index",
           "title": "Enhance Text",
-          "description": "Improve a draft with Raycast AI and copy the output to the clipboard",
+          "description": "Improve a draft with your selected AI provider and copy the output",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -249545,6 +250453,72 @@
         }
       ],
       "preferences": [
+        {
+          "name": "generationProvider",
+          "title": "Generation Provider",
+          "description": "Provider selected when the command opens and no remembered setting or preset applies.",
+          "type": "dropdown",
+          "required": false,
+          "default": "openrouter",
+          "data": [
+            {
+              "title": "OpenRouter API Key",
+              "value": "openrouter"
+            },
+            {
+              "title": "OpenAI API Key",
+              "value": "openai"
+            },
+            {
+              "title": "Anthropic API Key",
+              "value": "anthropic"
+            },
+            {
+              "title": "Google Gemini API Key",
+              "value": "google"
+            },
+            {
+              "title": "Raycast AI",
+              "value": "raycast"
+            }
+          ]
+        },
+        {
+          "name": "providerModel",
+          "title": "Provider Model ID",
+          "description": "Model selected when the command opens. Enter a provider model ID, such as openai/gpt-5-mini for OpenRouter, or leave blank for the provider default.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "Leave blank for provider default"
+        },
+        {
+          "name": "openRouterApiKey",
+          "title": "OpenRouter API Key",
+          "description": "Used only when OpenRouter is selected. Stored in Raycast's encrypted preferences.",
+          "type": "password",
+          "required": false
+        },
+        {
+          "name": "openAIApiKey",
+          "title": "OpenAI API Key",
+          "description": "Used only when OpenAI is selected. Stored in Raycast's encrypted preferences.",
+          "type": "password",
+          "required": false
+        },
+        {
+          "name": "anthropicApiKey",
+          "title": "Anthropic API Key",
+          "description": "Used only when Anthropic is selected. Stored in Raycast's encrypted preferences.",
+          "type": "password",
+          "required": false
+        },
+        {
+          "name": "googleApiKey",
+          "title": "Google Gemini API Key",
+          "description": "Used only when Google is selected. Stored in Raycast's encrypted preferences.",
+          "type": "password",
+          "required": false
+        },
         {
           "name": "defaultPurpose",
           "title": "Default Purpose",
@@ -249726,11 +250700,15 @@
         {
           "name": "defaultModel",
           "title": "Default Model",
-          "description": "AI model selected when the command opens and no saved preset applies.",
+          "description": "Raycast AI model selected when the command opens and no saved preset applies.",
           "type": "dropdown",
           "required": false,
-          "default": "claude-4.5-sonnet",
+          "default": "automatic",
           "data": [
+            {
+              "title": "Automatic (Raycast chooses)",
+              "value": "automatic"
+            },
             {
               "title": "Claude 4 Sonnet",
               "value": "claude-4-sonnet"
@@ -249770,6 +250748,14 @@
             {
               "title": "GPT-5.2",
               "value": "gpt-5.2"
+            },
+            {
+              "title": "GPT-5.3 Instant",
+              "value": "gpt-5.3-instant"
+            },
+            {
+              "title": "GPT-5.4",
+              "value": "gpt-5.4"
             },
             {
               "title": "GPT-4.1",
@@ -249887,6 +250873,15 @@
           "type": "checkbox",
           "required": false,
           "label": "Copy generated text automatically",
+          "default": true
+        },
+        {
+          "name": "saveGenerationHistory",
+          "title": "History",
+          "description": "Save drafts and generated results in Enhancement History.",
+          "type": "checkbox",
+          "required": false,
+          "label": "Save generated text to history",
           "default": true
         }
       ]
@@ -250501,7 +251496,7 @@
     {
       "name": "textarray",
       "title": "TextArray",
-      "description": "540+ text tools that run locally — transform the selected text or clipboard: case, encoding, cleaning, formatting, ciphers and more. Nothing leaves your machine.",
+      "description": "650+ text tools that run locally — transform the selected text or clipboard: case, encoding, cleaning, formatting, ciphers and more. Nothing leaves your machine.",
       "icon": "icon.png",
       "author": "apptiary_com",
       "contributors": [],
@@ -252091,14 +253086,17 @@
       "description": "Search, preview, and copy 7,400+ brand SVG icons from thesvg.org",
       "icon": "extension-icon.png",
       "author": "thegdsks",
-      "contributors": [],
+      "contributors": [
+        "muhammadrizo"
+      ],
       "categories": [
         "Design Tools",
         "Developer Tools"
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/thegdsks/thesvg",
       "source": {
@@ -252115,7 +253113,44 @@
           "description": "Search 7,400+ brand SVG icons. Copy SVG, download, or open in browser.",
           "mode": "view",
           "keywords": [],
-          "preferences": []
+          "preferences": [
+            {
+              "name": "layout",
+              "description": "Choose how to display results",
+              "type": "dropdown",
+              "required": false,
+              "title": "Layout",
+              "data": [
+                {
+                  "title": "List",
+                  "value": "list"
+                },
+                {
+                  "title": "Grid",
+                  "value": "grid"
+                }
+              ],
+              "default": "list"
+            },
+            {
+              "name": "primaryAction",
+              "description": "The action to perform when selecting an item",
+              "type": "dropdown",
+              "required": false,
+              "title": "Primary Action",
+              "data": [
+                {
+                  "title": "Copy SVG",
+                  "value": "copySvg"
+                },
+                {
+                  "title": "Show Details",
+                  "value": "showDetails"
+                }
+              ],
+              "default": "copySvg"
+            }
+          ]
         },
         {
           "name": "copy-icon",
@@ -255624,6 +256659,56 @@
           "type": "textfield",
           "required": true,
           "placeholder": "Give your big day a name"
+        }
+      ]
+    },
+    {
+      "name": "timeatlas",
+      "title": "Timeatlas",
+      "description": "Notes and daily glance for Time Atlas.",
+      "icon": "icon.png",
+      "author": "shak",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/shak/timeatlas",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/timeatlas",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "add-note",
+          "title": "Add Note",
+          "description": "Write a note to the Time Atlas iCloud directory for any date.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "today-at-a-glance",
+          "title": "Today at a Glance",
+          "description": "In-window summary of today's sleep, places, distance, and notes from Time Atlas.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "icloudPath",
+          "title": "Time Atlas iCloud Folder",
+          "description": "Optional override. Leave empty to use the default Time Atlas iCloud Documents folder.",
+          "type": "directory",
+          "required": false,
+          "placeholder": "~/Library/Mobile Documents/iCloud~com~timeatlaslabs~Pat/Documents"
         }
       ]
     },
@@ -288194,7 +289279,8 @@
         "ivens_joris",
         "FollowTheProcess",
         "justyt65",
-        "npc203"
+        "npc203",
+        "lvigerust"
       ],
       "categories": [
         "Developer Tools"
@@ -288219,7 +289305,17 @@
           "description": "Opens the currently selected Finder item with Zed",
           "mode": "no-view",
           "keywords": [],
-          "preferences": []
+          "preferences": [
+            {
+              "name": "openInNewWindow",
+              "type": "checkbox",
+              "title": "Window",
+              "required": false,
+              "label": "Open in New Window",
+              "default": false,
+              "description": "Open selected items in a new Zed window"
+            }
+          ]
         },
         {
           "name": "search",
@@ -288228,7 +289324,17 @@
           "description": "Search and open recent projects with Zed",
           "mode": "view",
           "keywords": [],
-          "preferences": []
+          "preferences": [
+            {
+              "name": "openInNewWindow",
+              "type": "checkbox",
+              "title": "Window",
+              "required": false,
+              "label": "Open in New Window",
+              "default": false,
+              "description": "Open projects in a new Zed window"
+            }
+          ]
         },
         {
           "name": "open-new-window",
@@ -289531,13 +290637,16 @@
       "description": "Search Z-Library and download books, powered by the zlib CLI.",
       "icon": "icon.png",
       "author": "materialcritic",
-      "contributors": [],
+      "contributors": [
+        "joshith99"
+      ],
       "categories": [
         "Productivity"
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/materialcritic/zlib-search",
       "source": {
@@ -289570,7 +290679,7 @@
         {
           "name": "zlibPath",
           "title": "zlib Binary Path",
-          "description": "Path to the zlib executable. Leave blank to auto-detect (Apple Silicon or Intel Homebrew).",
+          "description": "Path to the zlib executable. Leave blank to auto-detect (Homebrew on macOS, zlib.exe on PATH on Windows).",
           "type": "textfield",
           "default": "",
           "required": false
