@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-25T21:47:32.400Z",
+  "generatedAt": "2026-09-26T21:04:34.159Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "b4eb066c6906135852f8fde1c7b1717b9e030a18"
+    "commit": "25a0579ffdda61f317dd52d4a52fc07b8dba1a0d"
   },
-  "count": 3320,
+  "count": 3323,
   "extensions": [
     {
       "name": "0x0",
@@ -14039,6 +14039,130 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "argocd",
+      "title": "ArgoCD",
+      "description": "Search applications across several ArgoCD instances, then open, inspect or sync them.",
+      "icon": "argocd.png",
+      "author": "pixibixi",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/pixibixi/argocd",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/argocd",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-applications",
+          "title": "Search Applications",
+          "subtitle": "ArgoCD",
+          "description": "Search ArgoCD applications across every configured instance.",
+          "mode": "view",
+          "keywords": [
+            "app",
+            "argo",
+            "gitops"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "search-applicationsets",
+          "title": "Search ApplicationSets",
+          "subtitle": "ArgoCD",
+          "description": "Search ApplicationSets and jump to the applications they generated.",
+          "mode": "view",
+          "keywords": [
+            "appset",
+            "applicationset",
+            "generator"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "manage-instances",
+          "title": "Manage Instances",
+          "subtitle": "ArgoCD",
+          "description": "Add, edit and remove the ArgoCD instances the extension queries.",
+          "mode": "view",
+          "keywords": [
+            "server",
+            "cluster",
+            "config"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "monitor",
+          "title": "Monitor",
+          "subtitle": "ArgoCD",
+          "description": "Menu bar counter of the degraded and out-of-sync applications across every instance. Also keeps the local cache warm, so the search command stays instant.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "showWhenHealthy",
+              "title": "When Everything Is Healthy",
+              "label": "Show the application count",
+              "description": "Off by default, so the menu bar stays quiet until something needs attention.",
+              "type": "checkbox",
+              "required": false,
+              "default": false
+            }
+          ]
+        }
+      ],
+      "preferences": [
+        {
+          "name": "cacheTtlSeconds",
+          "title": "Cache TTL",
+          "description": "Seconds before a cached application list is refreshed in the background. Clamped to 5-3600.",
+          "type": "textfield",
+          "required": false,
+          "default": "60"
+        },
+        {
+          "name": "requestTimeoutSeconds",
+          "title": "Request Timeout",
+          "description": "Seconds before an ArgoCD API request is aborted. Clamped to 3-120.",
+          "type": "textfield",
+          "required": false,
+          "default": "15"
+        },
+        {
+          "name": "probeTimeoutSeconds",
+          "title": "Reachability Probe Timeout",
+          "description": "Seconds before an instance is considered unreachable. Kept short so a VPN that is down is reported immediately. Clamped to 1-30.",
+          "type": "textfield",
+          "required": false,
+          "default": "4"
+        },
+        {
+          "name": "maxResults",
+          "title": "Max Results",
+          "description": "Maximum number of applications rendered at once. Clamped to 10-200.",
+          "type": "textfield",
+          "required": false,
+          "default": "60"
+        },
+        {
+          "name": "argocdCliPath",
+          "title": "ArgoCD CLI Path",
+          "description": "Path to the argocd binary used for the SSO login action.",
+          "type": "textfield",
+          "required": false,
+          "default": "argocd"
+        }
+      ]
     },
     {
       "name": "array-this",
@@ -29584,17 +29708,21 @@
     },
     {
       "name": "calendly",
-      "title": "Calendly Share Meeting Links",
-      "description": "Quickly share your Calendly meeting links",
+      "title": "Calendly",
+      "description": "Share scheduling links, manage meetings, and book invitees with Calendly.",
       "icon": "logo.png",
       "author": "eluce2",
       "contributors": [
-        "eric_dumesnil"
+        "eric_dumesnil",
+        "0xdhrv"
       ],
-      "categories": [],
+      "categories": [
+        "Productivity"
+      ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/eluce2/calendly",
       "source": {
@@ -29609,6 +29737,33 @@
           "title": "Share Meeting Link",
           "subtitle": "Calendly",
           "description": "Copy Meeting URL",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "upcoming-meetings",
+          "title": "Upcoming Meetings",
+          "subtitle": "Calendly",
+          "description": "Browse upcoming Calendly meetings, join calls, reschedule, or cancel with confirmation",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "event-types",
+          "title": "Event Types",
+          "subtitle": "Calendly",
+          "description": "Browse active Calendly event types, share scheduling links, and check availability",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "book-meeting",
+          "title": "Book Meeting",
+          "subtitle": "Calendly",
+          "description": "Book an invitee into a verified available Calendly time slot with confirmation",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -63116,6 +63271,41 @@
       ]
     },
     {
+      "name": "dmenu",
+      "title": "Dmenu",
+      "description": "A dmenu-style picker for macOS, powered by a Python CLI and Raycast",
+      "icon": "extension-icon.png",
+      "author": "8w8kkr8typ",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools",
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/8w8kkr8typ/dmenu",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/dmenu",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "dmenu",
+          "title": "Dmenu",
+          "description": "This command mimics a dmenu-like functionality.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "dnb-book-lookup",
       "title": "DNB Book Lookup",
       "description": "Look up book contents from Deutsche Nationalbibliothek by ISBN with optional AI-generated Klappentext",
@@ -64823,6 +65013,32 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "menu-bar",
+          "title": "Server Health",
+          "description": "Menu bar server health/disk status across every configured instance",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "diskThreshold",
+              "title": "Disk Warning Threshold",
+              "description": "Tint the menu bar icon when any instance's disk usage is at or above this percentage.",
+              "type": "textfield",
+              "default": "90",
+              "required": false
+            },
+            {
+              "name": "showIcon",
+              "title": "Show Menu Bar Icon",
+              "description": "Uncheck to hide the Server Health icon from the menu bar.",
+              "label": "Show icon",
+              "type": "checkbox",
+              "default": true,
+              "required": false
+            }
+          ]
         }
       ],
       "preferences": []
@@ -169434,7 +169650,30 @@
           "preferences": []
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "required": false,
+          "name": "openFoldersIn",
+          "title": "Open Folders In",
+          "type": "dropdown",
+          "description": "Where Finder shows a folder you open. New Tab requires Accessibility permission for Raycast.",
+          "default": "newWindow",
+          "data": [
+            {
+              "title": "New Finder Window",
+              "value": "newWindow"
+            },
+            {
+              "title": "New Tab in Front Finder Window",
+              "value": "newTab"
+            },
+            {
+              "title": "Current Finder Tab",
+              "value": "currentTab"
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "open-gem-documentation",
@@ -171746,6 +171985,50 @@
           "description": "Required only when Cloudflare authentication is set to Service Token.",
           "type": "password",
           "required": false
+        }
+      ]
+    },
+    {
+      "name": "opencode",
+      "title": "OpenCode",
+      "description": "Use models from your OpenCode Console workspace in Raycast AI",
+      "icon": "extension-icon.png",
+      "author": "vimtor",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/vimtor/opencode",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/opencode",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "refresh-models",
+          "title": "Refresh Models",
+          "description": "Reload the models available in your OpenCode Console workspace",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "title": "API Key",
+          "description": "An OpenCode Console API key. Create one under Service Accounts > API Keys.",
+          "type": "password",
+          "required": true,
+          "placeholder": "oc_sk_..."
         }
       ]
     },
@@ -236858,7 +237141,8 @@
         "alexi.build",
         "shivraj-roy",
         "ridemountainpig",
-        "clemenzi"
+        "clemenzi",
+        "ray.dhruv"
       ],
       "categories": [
         "Media",
@@ -237068,33 +237352,11 @@
           "preferences": [
             {
               "name": "duplicateSongCheck",
-              "description": "Prevents duplicate song addition. Significantly slows performance of non cached playlists.",
+              "description": "Check for duplicates when adding through a Quicklink. The playlist picker always checks membership to offer Add or Remove.",
               "type": "checkbox",
-              "label": "Check for duplicate songs",
+              "label": "Check for duplicate songs in Quicklinks",
               "default": false,
               "required": false
-            },
-            {
-              "name": "cacheRefreshTime",
-              "title": "Cache Refresh Rate",
-              "description": "How often to refresh cached playlists",
-              "type": "dropdown",
-              "data": [
-                {
-                  "title": "7 Days",
-                  "value": "7"
-                },
-                {
-                  "title": "14 Days",
-                  "value": "14"
-                },
-                {
-                  "title": "1 Month",
-                  "value": "30"
-                }
-              ],
-              "required": false,
-              "default": "30"
             }
           ]
         },
@@ -258608,7 +258870,8 @@
         "xmok",
         "Hadi04",
         "nikord",
-        "cbrplx"
+        "cbrplx",
+        "ray.dhruv"
       ],
       "categories": [
         "Applications",
@@ -258630,6 +258893,7 @@
         {
           "name": "index",
           "title": "Manage Todo List",
+          "subtitle": "Todo List",
           "description": "Create and delete items, mark them as completed and pin important tasks.",
           "mode": "view",
           "keywords": [],
@@ -258638,8 +258902,27 @@
         {
           "name": "menu_bar",
           "title": "Todo List",
+          "subtitle": "Todo List",
           "description": "See your Todos at a glance",
           "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "export-todos",
+          "title": "Export Todo Backup",
+          "subtitle": "Todo List",
+          "description": "Save all todos and their details to a portable JSON backup.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "import-todos",
+          "title": "Import Todo Backup",
+          "subtitle": "Todo List",
+          "description": "Restore todos from a backup or an original todo.json file.",
+          "mode": "view",
           "keywords": [],
           "preferences": []
         }
@@ -272571,7 +272854,7 @@
     {
       "name": "vesslo",
       "title": "Vesslo",
-      "description": "Search and manage apps from Vesslo",
+      "description": "Search your Vesslo app library, review updates and findings, and follow Homebrew requests from Raycast.",
       "icon": "extension-icon.png",
       "author": "hjm79",
       "contributors": [],
@@ -272596,7 +272879,7 @@
           "name": "search-apps",
           "title": "Search Apps",
           "subtitle": "Vesslo",
-          "description": "Search apps by name, developer, tags, or memo",
+          "description": "Search apps by name, Bundle ID, developer, tags, or memo",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -272614,7 +272897,7 @@
           "name": "bulk-homebrew-update",
           "title": "Bulk Homebrew Update",
           "subtitle": "Vesslo",
-          "description": "Update eligible Homebrew cask apps from Vesslo",
+          "description": "Select up to 16 exact Homebrew targets for confirmation in Vesslo",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -272624,6 +272907,33 @@
           "title": "Browse by Tag",
           "subtitle": "Vesslo",
           "description": "View apps grouped by tags",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "review-apps",
+          "title": "Review Apps",
+          "subtitle": "Vesslo",
+          "description": "Review exported security, update source, and app management findings",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "deleted-apps",
+          "title": "Deleted Apps",
+          "subtitle": "Vesslo",
+          "description": "Review deleted app records exported by Vesslo",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "handoff-requests",
+          "title": "Homebrew Requests",
+          "subtitle": "Vesslo",
+          "description": "Read Vesslo review request receipts and per-app verification results",
           "mode": "view",
           "keywords": [],
           "preferences": []
