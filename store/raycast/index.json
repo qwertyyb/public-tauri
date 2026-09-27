@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-26T21:04:34.159Z",
+  "generatedAt": "2026-09-27T21:19:25.759Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "25a0579ffdda61f317dd52d4a52fc07b8dba1a0d"
+    "commit": "763301ae07cad6dcfed033e213fea1ccdd91fdfd"
   },
-  "count": 3323,
+  "count": 3327,
   "extensions": [
     {
       "name": "0x0",
@@ -44402,7 +44402,8 @@
         "elibattistoni",
         "clins1994",
         "just_me",
-        "ray.dhruv"
+        "ray.dhruv",
+        "alexi.build"
       ],
       "categories": [
         "Design Tools"
@@ -87046,6 +87047,79 @@
       ]
     },
     {
+      "name": "gaffiot",
+      "title": "Gaffiot Latin-French Dictionary",
+      "description": "Look up Latin words in the Gaffiot 2016 Latin-French dictionary (G. Gréco et al.), offline",
+      "icon": "icon.png",
+      "author": "davidyannick",
+      "contributors": [],
+      "categories": [
+        "Documentation",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/davidyannick/gaffiot",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/gaffiot",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search",
+          "title": "Search Gaffiot",
+          "subtitle": "Latin → French",
+          "description": "Look up a Latin word in the Gaffiot 2016 (72,000 entries, offline)",
+          "mode": "view",
+          "keywords": [
+            "latin",
+            "dictionary",
+            "french",
+            "dictionnaire",
+            "latin-français"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "maxResults",
+          "type": "dropdown",
+          "required": false,
+          "title": "Maximum Results",
+          "description": "Maximum number of entries shown in the list",
+          "default": "60",
+          "data": [
+            {
+              "title": "30",
+              "value": "30"
+            },
+            {
+              "title": "60",
+              "value": "60"
+            },
+            {
+              "title": "120",
+              "value": "120"
+            }
+          ]
+        },
+        {
+          "name": "showDetail",
+          "type": "checkbox",
+          "required": false,
+          "title": "Detail Panel",
+          "description": "Show the detail panel when the command opens (toggle with ⌘D)",
+          "label": "Show the entry in the detail panel on launch",
+          "default": true
+        }
+      ]
+    },
+    {
       "name": "game-scout",
       "title": "Game Scout",
       "description": "The ultimate gaming companion to track prices, deals, and free giveaways.",
@@ -89905,7 +89979,8 @@
         "tim_gailey",
         "clins1994",
         "0xdhrv",
-        "Olli0103"
+        "Olli0103",
+        "alexi.build"
       ],
       "categories": [
         "Media",
@@ -94604,6 +94679,15 @@
           "title": "Job Artifacts Download Directory",
           "description": "Folder for downloaded CI job artifacts. Defaults to ~/Downloads when empty.",
           "placeholder": "~/Downloads"
+        },
+        {
+          "name": "showRepositoryGroupName",
+          "type": "checkbox",
+          "label": "Show Group Name in Project Dropdowns",
+          "required": false,
+          "default": true,
+          "title": "Project Dropdowns",
+          "description": "Show the top-level group in project names, e.g. \"group / subgroup / project\" instead of \"subgroup / project\""
         },
         {
           "name": "primaryaction",
@@ -107066,6 +107150,158 @@
             "plag",
             "date"
           ],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "heed",
+      "title": "Heed",
+      "description": "Move keyboard focus between windows and turn focus follows mouse on and off: Hyprland's movefocus and follow_mouse for macOS.",
+      "icon": "icon.png",
+      "author": "rbstp",
+      "contributors": [],
+      "categories": [
+        "System",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/rbstp/heed",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/heed",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "focus-next",
+          "title": "Focus Next Window",
+          "subtitle": "Heed",
+          "description": "Move keyboard focus to the next visible window, screen by screen from left to right.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "focus-previous",
+          "title": "Focus Previous Window",
+          "subtitle": "Heed",
+          "description": "Move keyboard focus to the previous visible window.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "focus-left",
+          "title": "Focus Window Left",
+          "subtitle": "Heed",
+          "description": "Move keyboard focus to the nearest window to the left.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "focus-right",
+          "title": "Focus Window Right",
+          "subtitle": "Heed",
+          "description": "Move keyboard focus to the nearest window to the right.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "focus-up",
+          "title": "Focus Window Above",
+          "subtitle": "Heed",
+          "description": "Move keyboard focus to the nearest window above.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "focus-down",
+          "title": "Focus Window Below",
+          "subtitle": "Heed",
+          "description": "Move keyboard focus to the nearest window below.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "focus-window",
+          "title": "Focus Window",
+          "subtitle": "Heed",
+          "description": "Every visible window by name, in Heed's spatial order. Pick one to focus it.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle",
+          "title": "Toggle Focus Follows Mouse",
+          "subtitle": "Heed",
+          "description": "Turn Heed's pointer focus on or off.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "enable",
+          "title": "Enable Focus Follows Mouse",
+          "subtitle": "Heed",
+          "description": "Turn Heed's pointer focus on.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "disable",
+          "title": "Disable Focus Follows Mouse",
+          "subtitle": "Heed",
+          "description": "Turn Heed's pointer focus off.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "release-shortcuts",
+          "title": "Release Shortcuts",
+          "subtitle": "Heed",
+          "description": "Unregister every shortcut Heed holds, so Raycast can have the combinations.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "restore-shortcuts",
+          "title": "Restore Shortcuts",
+          "subtitle": "Heed",
+          "description": "Give Heed its default shortcuts back.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "warp-on",
+          "title": "Enable Mouse Follows Focus",
+          "subtitle": "Heed",
+          "description": "Move the pointer into the window a command focused.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "warp-off",
+          "title": "Disable Mouse Follows Focus",
+          "subtitle": "Heed",
+          "description": "Leave the pointer where it is when a command moves focus.",
+          "mode": "no-view",
+          "keywords": [],
           "preferences": []
         }
       ],
@@ -152233,6 +152469,58 @@
       "preferences": []
     },
     {
+      "name": "moex-bonds",
+      "title": "MOEX Bonds",
+      "description": "Search Russian bonds on the Moscow Exchange by name, ticker or ISIN: price, yield, coupons, offer and maturity.",
+      "icon": "extension-icon.png",
+      "author": "andrey_tolstikov",
+      "contributors": [],
+      "categories": [
+        "Finance"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/andrey_tolstikov/moex-bonds",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/moex-bonds",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-bond",
+          "title": "Search Bonds",
+          "description": "Find a bond by name, ticker or ISIN and open its card.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "language",
+          "title": "Language",
+          "description": "Language of the list and bond card. Issuer and issue-type values always come from MOEX as they are.",
+          "type": "dropdown",
+          "required": false,
+          "default": "en",
+          "data": [
+            {
+              "title": "English",
+              "value": "en"
+            },
+            {
+              "title": "Русский",
+              "value": "ru"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "moji",
       "title": "Moji Dict Search",
       "description": "Search mojidict.com",
@@ -152271,7 +152559,8 @@
       "icon": "extension-icon.png",
       "author": "jlrochin",
       "contributors": [
-        "adria_navarrete"
+        "adria_navarrete",
+        "alexi.build"
       ],
       "categories": [
         "System"
@@ -174213,6 +174502,98 @@
           "type": "directory",
           "required": false,
           "default": "~/Desktop"
+        }
+      ]
+    },
+    {
+      "name": "osaurus",
+      "title": "Osaurus",
+      "description": "Use local Osaurus models in Raycast AI, ask them directly, manage them, and search chat history",
+      "icon": "extension-icon.png",
+      "author": "chrismessina",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/chrismessina/osaurus",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/osaurus",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "ask-osaurus",
+          "title": "Ask Osaurus",
+          "description": "Send a prompt to a local model and stream the answer",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "manage-models",
+          "title": "Manage Models",
+          "description": "Browse your Osaurus models, set the one Ask Osaurus uses, and open or quit Osaurus",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-models",
+          "title": "Search Models",
+          "description": "Search Hugging Face for MLX models, or paste a link, and add one to Osaurus",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-history",
+          "title": "Search History",
+          "description": "Search past Osaurus chats by title and message text",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "baseUrl",
+          "title": "Server URL",
+          "description": "Where the Osaurus server listens",
+          "type": "textfield",
+          "required": false,
+          "default": "http://localhost:1337"
+        },
+        {
+          "name": "osaurusApp",
+          "title": "Osaurus App",
+          "description": "Which Osaurus to open when none is running. Empty reopens the last one.",
+          "type": "appPicker",
+          "required": false
+        },
+        {
+          "name": "verboseLogging",
+          "title": "Debug Logging",
+          "label": "Enable extra diagnostics in the console",
+          "description": "Show detailed logs in the console for debugging.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "strictRedaction",
+          "type": "checkbox",
+          "required": false,
+          "title": "Strict Redaction",
+          "label": "Also hide URL query strings and fragments in logs",
+          "description": "Turn on before reproducing an issue, then share only the new log lines.",
+          "default": false
         }
       ]
     },
@@ -211639,7 +212020,8 @@
         "artivilla",
         "maxoliinyk",
         "0xdhrv",
-        "xilopaint"
+        "xilopaint",
+        "alexi.build"
       ],
       "categories": [
         "Web"
@@ -211976,7 +212358,7 @@
     {
       "name": "replicate",
       "title": "Replicate",
-      "description": "Replicate is a tool for creating and sharing machine learning models. This extension allows you to create and view your predictions in Raycast.",
+      "description": "Run Replicate's AI models from Raycast, and use them in Raycast AI chats.",
       "icon": "replicate.png",
       "author": "KevinBatdorf",
       "contributors": [
@@ -211989,7 +212371,9 @@
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/KevinBatdorf/replicate",
       "source": {
         "type": "github-monorepo",
@@ -212001,8 +212385,7 @@
         {
           "name": "replicate",
           "title": "Replicate",
-          "subtitle": "Run models in the cloud",
-          "description": "Run models in the cloud",
+          "description": "Run Replicate models, view your predictions and manage the models Raycast AI offers.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -212016,6 +212399,42 @@
           "description": "Add your token from Replicate",
           "placeholder": "Token",
           "required": true
+        },
+        {
+          "name": "saveImages",
+          "type": "checkbox",
+          "title": "Image History",
+          "label": "Save generated images on this computer",
+          "description": "Replicate deletes a prediction's files about an hour after it runs. With this on, images the extension generates are copied to this computer so View Predictions can still show them. The copies don't sync to other devices.",
+          "default": true,
+          "required": false
+        },
+        {
+          "name": "defaultModel",
+          "type": "textfield",
+          "title": "Default Model",
+          "description": "The model @replicate uses for images, written as owner/name. Leave it empty to let the AI pick from your Raycast AI models.",
+          "default": "",
+          "required": false,
+          "placeholder": "Auto"
+        },
+        {
+          "name": "confirmGenerations",
+          "type": "checkbox",
+          "title": "AI Tool",
+          "label": "Confirm before generating",
+          "description": "Ask for confirmation before the AI tool runs a model and bills your Replicate account.",
+          "default": true,
+          "required": false
+        },
+        {
+          "name": "popularModels",
+          "type": "checkbox",
+          "title": "AI Models",
+          "label": "Offer popular models",
+          "description": "List Replicate's most-run image, editing and text models in Raycast AI's model picker, refreshed daily. Models you add or chat with stay either way.",
+          "default": true,
+          "required": false
         }
       ]
     },
@@ -223143,7 +223562,9 @@
       "description": "Browse and create ShareX screenshots, videos, and GIFs from Raycast",
       "icon": "ShareX_Logo.png",
       "author": "the_revolution",
-      "contributors": [],
+      "contributors": [
+        "TheTimmaeh"
+      ],
       "categories": [
         "Media"
       ],
@@ -223227,6 +223648,22 @@
           "name": "image-splitter",
           "title": "Image Splitter",
           "description": "Open ShareX Image Splitter tool",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "qr-code",
+          "title": "QR Code",
+          "description": "Open ShareX QR Code tool",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "clipboard-upload",
+          "title": "Clipboard Upload",
+          "description": "Open ShareX Clipboard Upload tool",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -245448,7 +245885,8 @@
         "jadenmajid",
         "ADCAdams",
         "TurboCoder13",
-        "Olli0103"
+        "Olli0103",
+        "alexi.build"
       ],
       "categories": [
         "Productivity",
@@ -281261,7 +281699,8 @@
       "icon": "extension-icon.png",
       "author": "lunaris",
       "contributors": [
-        "artistro08"
+        "artistro08",
+        "muhammadrizo"
       ],
       "categories": [
         "Developer Tools",
@@ -281286,6 +281725,14 @@
           "subtitle": "Windows Terminal",
           "description": "Creates a new Windows Terminal instance for a profile",
           "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-with-terminal",
+          "title": "Open with Terminal",
+          "description": "Open the currently selected file manager item with Terminal",
+          "mode": "no-view",
           "keywords": [],
           "preferences": []
         }
