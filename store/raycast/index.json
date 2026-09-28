@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-27T21:19:25.759Z",
+  "generatedAt": "2026-09-28T23:15:26.440Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "763301ae07cad6dcfed033e213fea1ccdd91fdfd"
+    "commit": "707d8974baa6ba804b4499999a76c432e99eca3c"
   },
-  "count": 3327,
+  "count": 3331,
   "extensions": [
     {
       "name": "0x0",
@@ -168,7 +168,7 @@
           "name": "import-bookmarks",
           "title": "Import Bookmarks",
           "subtitle": "1bookmark",
-          "description": "Import bookmarks",
+          "description": "Import bookmarks with the 1bookmark Desktop app",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -6031,6 +6031,129 @@
               "value": "local"
             }
           ]
+        }
+      ]
+    },
+    {
+      "name": "aktar",
+      "title": "Aktar",
+      "description": "Upload files to your own S3, R2, B2 or MinIO storage, search your upload history, and browse your buckets with the Aktar menu bar app.",
+      "icon": "extension-icon.png",
+      "author": "merttopuz",
+      "contributors": [],
+      "categories": [
+        "Applications",
+        "Productivity",
+        "Media"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/merttopuz/aktar",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/aktar",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "upload-clipboard",
+          "title": "Upload Clipboard",
+          "subtitle": "Aktar",
+          "description": "Upload the file or image on your clipboard and copy its link.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "upload-finder-selection",
+          "title": "Upload Selected Files",
+          "subtitle": "Aktar",
+          "description": "Upload the files selected in Finder to your default destination and copy their links.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "upload-file",
+          "title": "Upload File",
+          "subtitle": "Aktar",
+          "description": "Pick files, a destination, and an optional folder, then upload them and copy their links.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-uploads",
+          "title": "Search Uploads",
+          "subtitle": "Aktar",
+          "description": "Search your upload history, copy links in any format, and delete uploads.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "browse-buckets",
+          "title": "Browse Buckets",
+          "subtitle": "Aktar",
+          "description": "Browse the folders and files in your destinations' buckets: copy links, create temporary links, rename, move, delete, and upload.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "connect",
+          "title": "Connect to Aktar",
+          "subtitle": "Aktar",
+          "description": "Pair this extension with the Aktar app. Aktar asks you to approve the connection once.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "copyFormat",
+          "title": "Copy Format",
+          "description": "What the primary copy action and uploads put on your clipboard.",
+          "type": "dropdown",
+          "required": false,
+          "default": "aktar",
+          "data": [
+            {
+              "title": "Same as Aktar's Output Setting",
+              "value": "aktar"
+            },
+            {
+              "title": "URL",
+              "value": "url"
+            },
+            {
+              "title": "Markdown",
+              "value": "markdown"
+            },
+            {
+              "title": "HTML",
+              "value": "html"
+            }
+          ]
+        },
+        {
+          "name": "apiToken",
+          "title": "API Token",
+          "description": "Only needed if you don't use Connect to Aktar. Copy it from Aktar > Settings > Integrations.",
+          "type": "password",
+          "required": false
+        },
+        {
+          "name": "port",
+          "title": "Port",
+          "description": "Only used together with the API Token above. Must match the port in Aktar > Settings > Integrations.",
+          "type": "textfield",
+          "required": false,
+          "default": "47913"
         }
       ]
     },
@@ -22452,7 +22575,9 @@
         "0xdhrv",
         "siuhinnn"
       ],
-      "categories": [],
+      "categories": [
+        "Developer Tools"
+      ],
       "license": "MIT",
       "platforms": [
         "macOS",
@@ -22482,7 +22607,17 @@
           "description": "Showing open pull requests for the current user",
           "mode": "view",
           "keywords": [],
-          "preferences": []
+          "preferences": [
+            {
+              "name": "maxRepoAgeDays",
+              "type": "textfield",
+              "title": "Max Repository Age (Days)",
+              "required": false,
+              "default": "0",
+              "description": "Speeds up this search by skipping repositories not updated within this many days. Set to 0 for no limit (scan every repository).",
+              "placeholder": "0 = no limit"
+            }
+          ]
         },
         {
           "name": "searchAllPullRequests",
@@ -22491,7 +22626,17 @@
           "description": "Showing all open pull requests in the workspace",
           "mode": "view",
           "keywords": [],
-          "preferences": []
+          "preferences": [
+            {
+              "name": "maxRepoAgeDays",
+              "type": "textfield",
+              "title": "Max Repository Age (Days)",
+              "required": false,
+              "default": "0",
+              "description": "Speeds up this search by skipping repositories not updated within this many days. Set to 0 for no limit (scan every repository).",
+              "placeholder": "0 = no limit"
+            }
+          ]
         }
       ],
       "preferences": [
@@ -27134,7 +27279,8 @@
       "contributors": [
         "pavzagor",
         "fatih_isaogullari",
-        "0xdhrv"
+        "0xdhrv",
+        "muhammadrizo"
       ],
       "categories": [
         "System"
@@ -27159,7 +27305,32 @@
           "mode": "no-view",
           "keywords": [],
           "icon": "brightness-up.png",
-          "preferences": []
+          "preferences": [
+            {
+              "name": "closeRaycast",
+              "description": "Close Raycast after changing brightness",
+              "type": "checkbox",
+              "required": false,
+              "default": true,
+              "label": "Close Raycast"
+            },
+            {
+              "name": "showDisplayName",
+              "description": "Show display name in toasts and HUDs",
+              "type": "checkbox",
+              "required": false,
+              "default": false,
+              "label": "Show display name"
+            },
+            {
+              "name": "step",
+              "description": "Brightness change per press",
+              "type": "textfield",
+              "required": false,
+              "default": "10",
+              "title": "Step Size"
+            }
+          ]
         },
         {
           "name": "down",
@@ -27168,7 +27339,32 @@
           "mode": "no-view",
           "keywords": [],
           "icon": "brightness-down.png",
-          "preferences": []
+          "preferences": [
+            {
+              "name": "closeRaycast",
+              "description": "Close Raycast after changing brightness",
+              "type": "checkbox",
+              "required": false,
+              "default": true,
+              "label": "Close Raycast"
+            },
+            {
+              "name": "showDisplayName",
+              "description": "Show display name in toasts and HUDs",
+              "type": "checkbox",
+              "required": false,
+              "default": false,
+              "label": "Show display name"
+            },
+            {
+              "name": "step",
+              "description": "Brightness change per press",
+              "type": "textfield",
+              "required": false,
+              "default": "10",
+              "title": "Step Size"
+            }
+          ]
         },
         {
           "name": "set-brightness",
@@ -27177,7 +27373,24 @@
           "mode": "no-view",
           "keywords": [],
           "icon": "command-icon.png",
-          "preferences": []
+          "preferences": [
+            {
+              "name": "closeRaycast",
+              "description": "Close Raycast after changing brightness",
+              "type": "checkbox",
+              "required": false,
+              "default": true,
+              "label": "Close Raycast"
+            },
+            {
+              "name": "showDisplayName",
+              "description": "Show display name in toasts and HUDs",
+              "type": "checkbox",
+              "required": false,
+              "default": false,
+              "label": "Show display name"
+            }
+          ]
         },
         {
           "name": "max-brightness",
@@ -27186,7 +27399,50 @@
           "mode": "no-view",
           "keywords": [],
           "icon": "command-icon.png",
-          "preferences": []
+          "preferences": [
+            {
+              "name": "closeRaycast",
+              "description": "Close Raycast after changing brightness",
+              "type": "checkbox",
+              "required": false,
+              "default": true,
+              "label": "Close Raycast"
+            },
+            {
+              "name": "showDisplayName",
+              "description": "Show display name in toasts and HUDs",
+              "type": "checkbox",
+              "required": false,
+              "default": false,
+              "label": "Show display name"
+            }
+          ]
+        },
+        {
+          "name": "min-brightness",
+          "title": "Min Brightness",
+          "description": "Instantly set brightness to 0% on the current display",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "brightness-down.png",
+          "preferences": [
+            {
+              "name": "closeRaycast",
+              "description": "Close Raycast after changing brightness",
+              "type": "checkbox",
+              "required": false,
+              "default": true,
+              "label": "Close Raycast"
+            },
+            {
+              "name": "showDisplayName",
+              "description": "Show display name in toasts and HUDs",
+              "type": "checkbox",
+              "required": false,
+              "default": false,
+              "label": "Show display name"
+            }
+          ]
         }
       ],
       "preferences": []
@@ -93179,7 +93435,8 @@
         "darchen_gautier",
         "pedro_dcc",
         "xilopaint",
-        "jakoss"
+        "jakoss",
+        "slmnbruno"
       ],
       "categories": [
         "Developer Tools",
@@ -122435,12 +122692,14 @@
         "dgrzedzielski",
         "perasite",
         "hemang_kinra",
-        "kubarom"
+        "kubarom",
+        "muhammadrizo"
       ],
       "categories": [],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/gdsmith/jetbrains",
       "source": {
@@ -122476,7 +122735,10 @@
           "required": false,
           "title": "Shell scripts location",
           "description": "Where are JetBrains Tools 'shell scripts' are installed (in Toolbox → Settings → Tools)",
-          "default": "/usr/local/bin",
+          "default": {
+            "macOS": "/usr/local/bin",
+            "Windows": "%LOCALAPPDATA%\\JetBrains\\Toolbox\\scripts"
+          },
           "placeholder": "/usr/local/bin"
         },
         {
@@ -122485,35 +122747,35 @@
           "required": false,
           "title": "Tools Install location",
           "description": "What is the JetBrains Tools install Location? (in Toolbox → Settings → Tools)",
-          "default": "/Applications/JetBrains Toolbox.app",
+          "default": {
+            "macOS": "/Applications/JetBrains Toolbox.app",
+            "Windows": "%LOCALAPPDATA%\\JetBrains\\Toolbox"
+          },
           "placeholder": "/Applications/JetBrains Toolbox.app"
         },
         {
           "name": "fallback",
           "type": "checkbox",
           "required": false,
-          "title": "Use protocol urls if missing shell scripts",
+          "label": "Use protocol urls if missing shell scripts",
           "description": "Try to use the jetbrain://app-name protocol url to open projects if tools are not installed (not recommended)",
-          "default": false,
-          "label": "Enabled"
+          "default": false
         },
         {
           "name": "frecencySorting",
           "type": "checkbox",
           "required": false,
-          "title": "Use Frecency sorting for projects",
+          "label": "Use Frecency sorting for projects",
           "description": "Use Raycast's built in frecency sorting to order the list of projects",
-          "default": true,
-          "label": "Enabled"
+          "default": true
         },
         {
           "name": "showGitBranch",
           "type": "checkbox",
           "required": false,
-          "title": "Show Git Branch",
+          "label": "Show Git Branch",
           "description": "Show the current git branch next to projects that live in a git repository",
-          "default": true,
-          "label": "Enabled"
+          "default": true
         }
       ]
     },
@@ -134082,6 +134344,188 @@
           "label": "Maintain brightness when changing colors",
           "required": false,
           "default": true
+        }
+      ]
+    },
+    {
+      "name": "league-stats",
+      "title": "League Stats",
+      "description": "Look up League of Legends players: ranked and recent win rates, recent matches with KDA, champions and items, and full match breakdowns.",
+      "icon": "icon.png",
+      "author": "mert_tufekci",
+      "contributors": [],
+      "categories": [
+        "Fun",
+        "Data"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/mert_tufekci/league-stats",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/league-stats",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-player",
+          "title": "Search Player",
+          "subtitle": "League Stats",
+          "description": "Look up a League of Legends player by Riot ID: win rates, recent matches, and full match breakdowns.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "type": "password",
+          "required": true,
+          "title": "Riot API Key",
+          "description": "Get one at developer.riotgames.com. Development keys expire every 24 hours; a Personal API Key does not.",
+          "placeholder": "RGAPI-…"
+        },
+        {
+          "name": "region",
+          "type": "dropdown",
+          "required": true,
+          "title": "Default Region",
+          "description": "Used when a player's region cannot be detected automatically.",
+          "default": "tr1",
+          "data": [
+            {
+              "title": "Türkiye (TR)",
+              "value": "tr1"
+            },
+            {
+              "title": "Europe West (EUW)",
+              "value": "euw1"
+            },
+            {
+              "title": "Europe Nordic & East (EUNE)",
+              "value": "eun1"
+            },
+            {
+              "title": "Middle East (ME)",
+              "value": "me1"
+            },
+            {
+              "title": "Russia (RU)",
+              "value": "ru"
+            },
+            {
+              "title": "North America (NA)",
+              "value": "na1"
+            },
+            {
+              "title": "Brazil (BR)",
+              "value": "br1"
+            },
+            {
+              "title": "Latin America North (LAN)",
+              "value": "la1"
+            },
+            {
+              "title": "Latin America South (LAS)",
+              "value": "la2"
+            },
+            {
+              "title": "Korea (KR)",
+              "value": "kr"
+            },
+            {
+              "title": "Japan (JP)",
+              "value": "jp1"
+            },
+            {
+              "title": "Oceania (OCE)",
+              "value": "oc1"
+            },
+            {
+              "title": "Singapore (SG)",
+              "value": "sg2"
+            },
+            {
+              "title": "Taiwan (TW)",
+              "value": "tw2"
+            },
+            {
+              "title": "Vietnam (VN)",
+              "value": "vn2"
+            },
+            {
+              "title": "Philippines (PH)",
+              "value": "ph2"
+            },
+            {
+              "title": "Thailand (TH)",
+              "value": "th2"
+            }
+          ]
+        },
+        {
+          "name": "gameType",
+          "type": "dropdown",
+          "required": false,
+          "title": "Game Type",
+          "description": "Which recent games to show and to count in the win rate.",
+          "default": "all",
+          "data": [
+            {
+              "title": "All Game Types",
+              "value": "all"
+            },
+            {
+              "title": "Ranked Solo/Duo",
+              "value": "solo"
+            },
+            {
+              "title": "Ranked Flex",
+              "value": "flex"
+            },
+            {
+              "title": "All Ranked (Solo/Duo and Flex)",
+              "value": "ranked"
+            },
+            {
+              "title": "ARAM",
+              "value": "aram"
+            },
+            {
+              "title": "Normal and Other Modes (not ranked)",
+              "value": "other"
+            }
+          ]
+        },
+        {
+          "name": "matchCount",
+          "type": "dropdown",
+          "required": false,
+          "title": "Games to Load",
+          "description": "How many recent games to load at first, and each time you choose Show More Games.",
+          "default": "20",
+          "data": [
+            {
+              "title": "10 games",
+              "value": "10"
+            },
+            {
+              "title": "20 games",
+              "value": "20"
+            },
+            {
+              "title": "30 games",
+              "value": "30"
+            },
+            {
+              "title": "50 games",
+              "value": "50"
+            }
+          ]
         }
       ]
     },
@@ -147646,12 +148090,16 @@
       "description": "Quickly see your Mercury accounts and transactions directly in Raycast",
       "icon": "extension-icon.png",
       "author": "atkinsmatt101",
-      "contributors": [],
+      "contributors": [
+        "chrismessina"
+      ],
       "categories": [
         "Finance"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/atkinsmatt101/mercury",
       "source": {
         "type": "github-monorepo",
@@ -147662,30 +148110,102 @@
       "commands": [
         {
           "name": "view-transactions",
-          "title": "View Accounts & Transactions",
+          "title": "Manage Accounts",
           "subtitle": "Mercury",
-          "description": "View accounts and transactions for your Mercury Account",
+          "description": "View balances and account details, and add or remove Mercury accounts",
           "mode": "view",
           "keywords": [],
           "preferences": []
         },
         {
-          "name": "ai-account-summary",
-          "title": "AI Account Summary",
-          "subtitle": "Get an AI-generated summary of your accounts",
-          "description": "Fetches all accounts and transactions, and provides an AI-generated summary",
+          "name": "search-transactions",
+          "title": "Search Transactions",
+          "subtitle": "Mercury",
+          "description": "Search transactions across all your Mercury accounts",
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "view-cards",
+          "title": "View Cards",
+          "subtitle": "Mercury",
+          "description": "View your Mercury debit and credit cards",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "view-statements",
+          "title": "View Statements",
+          "subtitle": "Mercury",
+          "description": "Download and open monthly Mercury statements",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "menu-bar-balance",
+          "title": "Mercury Balance",
+          "subtitle": "Mercury",
+          "description": "Your Mercury balances in the menu bar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "refreshInterval",
+              "type": "dropdown",
+              "required": false,
+              "title": "Refresh Every",
+              "description": "How often to fetch new balances from Mercury.",
+              "default": "1h",
+              "data": [
+                {
+                  "title": "10 Minutes",
+                  "value": "10m"
+                },
+                {
+                  "title": "1 Hour",
+                  "value": "1h"
+                },
+                {
+                  "title": "12 Hours",
+                  "value": "12h"
+                },
+                {
+                  "title": "24 Hours",
+                  "value": "24h"
+                }
+              ]
+            }
+          ]
         }
       ],
       "preferences": [
         {
           "name": "apiKey",
           "type": "password",
-          "required": true,
-          "title": "Mercury API Key",
-          "description": "Your Mercury API key"
+          "required": false,
+          "title": "Legacy API Key",
+          "description": "Older versions kept a token here. It's added to Manage Accounts automatically."
+        },
+        {
+          "name": "verboseLogging",
+          "type": "checkbox",
+          "required": false,
+          "title": "Debug Logging",
+          "label": "Enable extra diagnostics in the console",
+          "description": "Show detailed logs in the console for debugging.",
+          "default": false
+        },
+        {
+          "name": "strictRedaction",
+          "type": "checkbox",
+          "required": false,
+          "title": "Strict Redaction",
+          "label": "Also hide URL query strings and fragments in logs",
+          "description": "Turn on before reproducing an issue, then share only the new log lines.",
+          "default": false
         }
       ]
     },
@@ -155877,7 +156397,8 @@
         "bogdan_bucur",
         "xmok",
         "byheaven",
-        "christianmagill"
+        "christianmagill",
+        "ray.dhruv"
       ],
       "categories": [],
       "license": "MIT",
@@ -166108,7 +166629,9 @@
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/Yukai/obs-control",
       "source": {
         "type": "github-monorepo",
@@ -166136,10 +166659,46 @@
           "preferences": []
         },
         {
+          "name": "start-stream",
+          "title": "Start Stream",
+          "subtitle": "OBS Control",
+          "description": "Start Stream",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "stop-stream",
+          "title": "Stop Stream",
+          "subtitle": "OBS Control",
+          "description": "Stop OBS Stream",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "toggle-virtual-cam",
           "title": "Toggle Virtual Camera",
           "subtitle": "OBS Control",
           "description": "Toggle Virtual Camera",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "start-virtual-cam",
+          "title": "Start Virtual Camera",
+          "subtitle": "OBS Control",
+          "description": "Start Virtual Camera",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "stop-virtual-cam",
+          "title": "Stop Virtual Camera",
+          "subtitle": "OBS Control",
+          "description": "Stop Virtual Camera",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -166154,10 +166713,46 @@
           "preferences": []
         },
         {
+          "name": "start-recording",
+          "title": "Start Recording",
+          "subtitle": "OBS Control",
+          "description": "Start Recording",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "stop-recording",
+          "title": "Stop Recording",
+          "subtitle": "OBS Control",
+          "description": "Stop Recording",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "toggle-pause-recording",
           "title": "Toggle Pause Recording",
           "subtitle": "OBS Control",
           "description": "Toggle Pause Recording",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "pause-recording",
+          "title": "Pause Recording",
+          "subtitle": "OBS Control",
+          "description": "Pause Recording",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "resume-recording",
+          "title": "Resume Recording",
+          "subtitle": "OBS Control",
+          "description": "Resume Recording",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -166185,6 +166780,24 @@
           "title": "Toggle Replay Buffer",
           "subtitle": "OBS Control",
           "description": "Toggle Replay Buffer",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "start-replay-buffer",
+          "title": "Start Replay Buffer",
+          "subtitle": "OBS Control",
+          "description": "Start Replay Buffer",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "stop-replay-buffer",
+          "title": "Stop Replay Buffer",
+          "subtitle": "OBS Control",
+          "description": "Stop Replay Buffer",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -189446,7 +190059,10 @@
       "contributors": [],
       "categories": [],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "storeUrl": "https://www.raycast.com/martipops/popcorn",
       "source": {
         "type": "github-monorepo",
@@ -189484,7 +190100,10 @@
               "title": "Default Streaming App",
               "description": "Default Streaming App to use for streaming",
               "placeholder": "Select a streaming app",
-              "default": "IINA"
+              "default": {
+                "macOS": "IINA",
+                "Windows": "VLC"
+              }
             },
             {
               "name": "alternativeStreamingApps",
@@ -197232,6 +197851,75 @@
       ]
     },
     {
+      "name": "qr-code-sharing",
+      "title": "QR Code Sharing",
+      "description": "Shares information through QR codes and barcodes.",
+      "icon": "extension-icon.png",
+      "author": "Francescoparadiso",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Communication",
+        "Data"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows",
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/Francescoparadiso/qr-code-sharing",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/qr-code-sharing",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-data",
+          "title": "Search Data",
+          "subtitle": "QR Code Sharing",
+          "description": "Search saved content, show its code, and create new ones.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "export-data",
+          "title": "Export Data",
+          "subtitle": "QR Code Sharing",
+          "description": "Choose a folder and save a CSV with every entry there, for backup or to restore later.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "qrSize",
+          "title": "Code Size",
+          "description": "How large the code is rendered. Medium fills the default Raycast window; use Large only if your window is taller.",
+          "type": "dropdown",
+          "required": false,
+          "default": "medium",
+          "data": [
+            {
+              "title": "Small",
+              "value": "small"
+            },
+            {
+              "title": "Medium",
+              "value": "medium"
+            },
+            {
+              "title": "Large",
+              "value": "large"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "qrcode-generator",
       "title": "QR Code Generator",
       "description": "Generate QR codes from text or URLs.",
@@ -204941,6 +205629,33 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "ollama-edit-command",
+          "title": "Edit Command Settings",
+          "subtitle": "Ollama",
+          "description": "Change model, reasoning effort, and keep alive for a specific command",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "ollama-configure",
+          "title": "Configure Command Models",
+          "subtitle": "Ollama",
+          "description": "Configure model, thinking effort, and keep alive for each command",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "ollama-global-settings",
+          "title": "Global Model Settings",
+          "subtitle": "Ollama",
+          "description": "Configure global default model settings for all commands",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": [
@@ -204992,6 +205707,56 @@
           "type": "password",
           "required": false,
           "title": "Ollama API Key"
+        },
+        {
+          "name": "ollamaDefaultServer",
+          "description": "Default Ollama server to use for all commands",
+          "type": "textfield",
+          "required": false,
+          "title": "Default Server",
+          "placeholder": "Local"
+        },
+        {
+          "name": "ollamaDefaultModel",
+          "description": "Default model to use for all commands. Must match an installed model name exactly (e.g., 'llama3.2', 'mistral:7b'). Use the 'Global Model Settings' command for a dropdown selection.",
+          "type": "textfield",
+          "required": false,
+          "title": "Default Model",
+          "placeholder": "llama3.2"
+        },
+        {
+          "name": "ollamaDefaultThinking",
+          "description": "Default thinking effort for all commands",
+          "type": "dropdown",
+          "required": false,
+          "title": "Default Thinking Effort",
+          "data": [
+            {
+              "title": "None",
+              "value": "none"
+            },
+            {
+              "title": "Low",
+              "value": "low"
+            },
+            {
+              "title": "Medium",
+              "value": "medium"
+            },
+            {
+              "title": "High",
+              "value": "high"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "name": "ollamaDefaultKeepAlive",
+          "description": "Default keep alive duration for models",
+          "type": "textfield",
+          "required": false,
+          "title": "Default Keep Alive",
+          "placeholder": "5m"
         }
       ]
     },
@@ -245404,6 +246169,72 @@
       ]
     },
     {
+      "name": "switcheroo",
+      "title": "Switcheroo",
+      "description": "Manage Switcheroo keyboard remapper configuration",
+      "icon": "command-icon.png",
+      "author": "mjphayes",
+      "contributors": [],
+      "categories": [
+        "System",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/mjphayes/switcheroo",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/switcheroo",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "view-remaps",
+          "title": "View Remaps",
+          "description": "View and manage all keyboard remapping rules",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "add-remap",
+          "title": "Add Remap",
+          "description": "Add a new keyboard remapping rule",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "restart",
+          "title": "Restart Switcheroo",
+          "description": "Restart the Switcheroo service",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "view-logs",
+          "title": "View Logs",
+          "description": "View recent Switcheroo log output",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "edit-config",
+          "title": "Edit Config",
+          "description": "Open Switcheroo config in your default editor",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "switchhosts",
       "title": "SwitchHosts",
       "description": "An extension for hosts management & switching",
@@ -254282,7 +255113,7 @@
     {
       "name": "threads",
       "title": "Threads",
-      "description": "Quickly post to Threads and see recent updates.",
+      "description": "Quickly post to Threads, see recent updates, view raw analytics, and draw giveaway winners.",
       "icon": "threads-icon.png",
       "author": "chrismessina",
       "contributors": [
@@ -254413,9 +255244,105 @@
               ]
             }
           ]
+        },
+        {
+          "name": "analytics",
+          "title": "Analytics",
+          "subtitle": "Threads",
+          "description": "View raw account and post metrics from the Threads API.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "analytics-menu-bar",
+          "title": "Analytics Menu Bar",
+          "subtitle": "Threads",
+          "description": "Show your follower count and recent post metrics in the menu bar.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "titleMetric",
+              "title": "Menu Bar Title",
+              "description": "Which number, or which post, to show next to the icon in the menu bar.",
+              "type": "dropdown",
+              "required": false,
+              "default": "followers",
+              "data": [
+                {
+                  "title": "Follower Count",
+                  "value": "followers"
+                },
+                {
+                  "title": "Views in Period",
+                  "value": "views"
+                },
+                {
+                  "title": "Likes in Period",
+                  "value": "likes"
+                },
+                {
+                  "title": "Replies in Period",
+                  "value": "replies"
+                },
+                {
+                  "title": "Latest Post",
+                  "value": "latestPost"
+                },
+                {
+                  "title": "Nothing (Icon Only)",
+                  "value": "none"
+                }
+              ]
+            },
+            {
+              "name": "period",
+              "title": "Period",
+              "description": "How many days of account metrics to show in the menu.",
+              "type": "dropdown",
+              "required": false,
+              "default": "7",
+              "data": [
+                {
+                  "title": "Last 7 days",
+                  "value": "7"
+                },
+                {
+                  "title": "Last 14 days",
+                  "value": "14"
+                },
+                {
+                  "title": "Last 30 days",
+                  "value": "30"
+                },
+                {
+                  "title": "Last 90 days",
+                  "value": "90"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "giveaway",
+          "title": "Giveaway",
+          "subtitle": "Threads",
+          "description": "Draw giveaway winners from a post's replies.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": [
+        {
+          "name": "accessToken",
+          "title": "Threads Access Token",
+          "description": "Long-lived Threads API access token with threads_basic, threads_manage_insights, and threads_read_replies. Used by Analytics, Analytics Menu Bar, and Giveaway.",
+          "type": "password",
+          "required": false,
+          "placeholder": "THAA…"
+        },
         {
           "name": "verboseLogging",
           "title": "Debug Logging",
@@ -275042,6 +275969,14 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "open-agents-window",
+          "title": "Open Agents Window",
+          "description": "Open the Agents Window",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": [
@@ -275054,7 +275989,7 @@
           "description": "Select which build of Visual Studio Code to use when searching for recent projects",
           "data": [
             {
-              "title": "Antigravity",
+              "title": "Antigravity IDE",
               "value": "Antigravity"
             },
             {
@@ -275138,7 +276073,7 @@
           "type": "checkbox",
           "title": "Advanced",
           "required": false,
-          "label": "Keep Section Order",
+          "label": "Keep section order",
           "default": false,
           "description": "Keep the order of the sections while searching folders, files, etc."
         },
@@ -275147,17 +276082,28 @@
           "type": "checkbox",
           "title": "Usability",
           "required": false,
-          "label": "Close Other VS Code Windows",
+          "label": "Close other VS Code windows",
           "default": false,
           "description": "Close other VS Code windows when opening a project"
         },
         {
           "name": "terminalApp",
           "type": "appPicker",
-          "default": "com.apple.Terminal",
+          "default": {
+            "macOS": "com.apple.Terminal",
+            "Windows": "Terminal"
+          },
           "required": false,
           "title": "Terminal App",
           "description": "Select which Terminal App to use when opening with a terminal"
+        },
+        {
+          "name": "openInNewTerminalTab",
+          "type": "checkbox",
+          "required": false,
+          "label": "Open in new tab",
+          "default": true,
+          "description": "When using the default terminal app for both macOS and Windows, open the folder in a new tab instead of a new window"
         },
         {
           "name": "showGitBranch",
@@ -275173,7 +276119,6 @@
           "type": "textfield",
           "title": "Git Integration Color",
           "required": false,
-          "label": "Git Branch Color",
           "default": "",
           "description": "Hexadecimal color code for Git branch tag (e.g., #00FF00). Leave empty to use default green"
         }
