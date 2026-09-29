@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-28T23:15:26.440Z",
+  "generatedAt": "2026-09-29T22:23:25.535Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "707d8974baa6ba804b4499999a76c432e99eca3c"
+    "commit": "c9c0bd700100ea7112ae1d2633647a456f8f87c7"
   },
-  "count": 3331,
+  "count": 3340,
   "extensions": [
     {
       "name": "0x0",
@@ -14926,6 +14926,79 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "asyntai",
+      "title": "Asyntai AI Chatbot",
+      "description": "Read your website chats, leads and support tickets, and ask your own AI chatbot a question, without opening the browser.",
+      "icon": "icon.png",
+      "author": "asyntai",
+      "contributors": [],
+      "categories": [
+        "Communication",
+        "Productivity",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/asyntai/asyntai",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/asyntai",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "inbox",
+          "title": "Recent Chats",
+          "subtitle": "Asyntai",
+          "description": "The newest chats on your website. Open one to read the whole conversation.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "leads",
+          "title": "Leads",
+          "subtitle": "Asyntai",
+          "description": "Visitors who left an email address or a phone number in the chat.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "tickets",
+          "title": "Tickets",
+          "subtitle": "Asyntai",
+          "description": "Your support tickets, with the status and the visitor.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "ask",
+          "title": "Ask My Chatbot",
+          "subtitle": "Asyntai",
+          "description": "Ask your own AI chatbot a question and read the answer it gives your visitors.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "type": "password",
+          "required": true,
+          "title": "API Key",
+          "description": "Your Asyntai API key. In Asyntai open Settings, then API, and copy the key.",
+          "placeholder": "Paste the key from Settings, API"
+        }
+      ]
     },
     {
       "name": "at-profile",
@@ -38347,7 +38420,8 @@
         "ridemountainpig",
         "litomore",
         "yusifaliyevpro",
-        "shivraj-roy"
+        "shivraj-roy",
+        "alexi.build"
       ],
       "categories": [
         "Productivity",
@@ -39096,7 +39170,8 @@
         "aesadde",
         "joltcode",
         "xmok",
-        "macbookandrew"
+        "macbookandrew",
+        "bpdhuyve"
       ],
       "categories": [],
       "license": "MIT",
@@ -72834,6 +72909,59 @@
       ]
     },
     {
+      "name": "env-keeper",
+      "title": "Env Keeper",
+      "description": "Manage all your projects' .env files and global shell config, right from Raycast. Local-only, keyboard-first, free.",
+      "icon": "extension-icon.png",
+      "author": "Mr-MJ",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/Mr-MJ/env-keeper",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/env-keeper",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "manage-envs",
+          "title": "Manage Envs",
+          "subtitle": "Env Keeper",
+          "description": "Open a project's .env file and manage its variables, environments, and snapshots.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-env-vars",
+          "title": "Search Env Vars",
+          "subtitle": "Env Keeper",
+          "description": "Quickly search environment variables across all registered projects.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "jump-to",
+          "title": "Jump to",
+          "subtitle": "Env Keeper",
+          "description": "Open a project, env file, profile or shell snippet by name.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "envato",
       "title": "Envato Sales, Purchases and Search",
       "description": "Tracking New Sales For Envato Author, View Purchases and Search Catalog",
@@ -75092,6 +75220,171 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "executor",
+      "title": "Executor",
+      "description": "Run connected tools, automate with Raycast AI, and manage your Executor workspaces",
+      "icon": "extension_icon.png",
+      "author": "jerichosequitin",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "0.2.0",
+      "storeUrl": "https://www.raycast.com/jerichosequitin/executor",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/executor",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-tools",
+          "title": "Search Tools",
+          "subtitle": "Executor",
+          "description": "Find connected tools, fill in native input forms, review calls, and inspect results",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "integrations",
+          "title": "Browse Integrations",
+          "subtitle": "Executor",
+          "description": "Browse your integrations and jump into their tools or open their settings in Executor",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "connections",
+          "title": "Manage Connections",
+          "subtitle": "Executor",
+          "description": "Inspect recorded health, reconnect accounts, edit labels, and resync connection tools",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "artifacts",
+          "title": "Browse Artifacts",
+          "subtitle": "Executor",
+          "description": "Browse, edit, and delete saved Executor artifacts",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "saved-tools",
+          "title": "Saved Tools",
+          "subtitle": "Executor",
+          "description": "Run favorite tools and reuse saved input presets",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "add-connection",
+          "title": "Add Connection",
+          "subtitle": "Executor",
+          "description": "Add an Executor connection with native credential entry or provider authorization.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "add-integration",
+          "title": "Add Integration",
+          "subtitle": "Executor",
+          "description": "Search the integration catalog or add a custom MCP, OpenAPI, or GraphQL endpoint",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "policies",
+          "title": "Manage Policies",
+          "subtitle": "Executor",
+          "description": "Search, create, edit, and remove tool policies with explicit scope and action review",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "approvals",
+          "title": "Review Approvals",
+          "subtitle": "Executor",
+          "description": "Review current server terms for pauses started through this extension",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "status",
+          "title": "Executor Status",
+          "subtitle": "Executor",
+          "description": "View recorded connection health and extension approvals from the menu bar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "workspaces",
+          "title": "Manage Workspaces",
+          "subtitle": "Executor",
+          "description": "Add, edit, verify, or switch Executor workspaces",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "type": "password",
+          "required": false,
+          "title": "Default Workspace API Key",
+          "description": "Optional existing workspace key. Use Manage Workspaces to add more organizations with separate keys."
+        },
+        {
+          "name": "baseUrl",
+          "type": "textfield",
+          "required": false,
+          "title": "Server URL",
+          "description": "Origin of the Executor server. Use http://127.0.0.1:4788 for the local daemon or your own host when self-hosting. Defaults to https://executor.sh.",
+          "default": "https://executor.sh",
+          "placeholder": "https://executor.sh"
+        },
+        {
+          "name": "defaultOwner",
+          "type": "dropdown",
+          "required": false,
+          "title": "Default Connection Visibility",
+          "description": "Show personal connections, workspace connections, or both within the default workspace.",
+          "default": "all",
+          "data": [
+            {
+              "title": "Both",
+              "value": "all"
+            },
+            {
+              "title": "Personal",
+              "value": "user"
+            },
+            {
+              "title": "Workspace",
+              "value": "org"
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "exif",
@@ -82861,6 +83154,86 @@
       "preferences": []
     },
     {
+      "name": "flowspeech-tts",
+      "title": "FlowSpeech TTS",
+      "description": "Turn selected or copied text into natural speech with FlowSpeech",
+      "icon": "extension-icon.png",
+      "author": "waeckerlinfederowicz66-sketch",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "1.0.0",
+      "storeUrl": "https://www.raycast.com/waeckerlinfederowicz66-sketch/flowspeech-tts",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/flowspeech-tts",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "speak-selected",
+          "title": "Speak Selected Text",
+          "description": "Read the currently selected text with FlowSpeech",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "speak-copied",
+          "title": "Speak Copied Text",
+          "description": "Read text from the clipboard with FlowSpeech",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "title": "FlowSpeech API Key",
+          "description": "Create an API key in your FlowSpeech settings",
+          "type": "password",
+          "required": true
+        },
+        {
+          "name": "voiceName",
+          "title": "Voice",
+          "description": "Voice used for speech generation",
+          "type": "dropdown",
+          "required": true,
+          "default": "Kore",
+          "data": [
+            {
+              "title": "Kore",
+              "value": "Kore"
+            },
+            {
+              "title": "Puck",
+              "value": "Puck"
+            },
+            {
+              "title": "Charon",
+              "value": "Charon"
+            },
+            {
+              "title": "Aoede",
+              "value": "Aoede"
+            },
+            {
+              "title": "Fenrir",
+              "value": "Fenrir"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "fluctuation",
       "title": "Fluctuation",
       "description": "Calculation for fluctuation",
@@ -84192,6 +84565,147 @@
           "required": false,
           "title": "Plugins Folder (Absolute Path)",
           "type": "textfield"
+        }
+      ]
+    },
+    {
+      "name": "folio",
+      "title": "Folio",
+      "description": "Net worth, holdings, activities and idle cash from every brokerage connected to SnapTrade, read-only.",
+      "icon": "folio.png",
+      "author": "shayan_abedi",
+      "contributors": [],
+      "categories": [
+        "Finance"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/shayan_abedi/folio",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/folio",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "sign-in",
+          "title": "Sign In with SnapTrade",
+          "description": "Sign in to SnapTrade with OAuth (read-only) or sign out.",
+          "mode": "view",
+          "keywords": [
+            "login",
+            "logout",
+            "oauth",
+            "snaptrade"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "show-portfolio",
+          "title": "Show Portfolio",
+          "description": "Net worth and accounts grouped by institution, with holdings per account.",
+          "mode": "view",
+          "keywords": [
+            "net worth",
+            "accounts",
+            "holdings"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "show-positions",
+          "title": "Show Positions",
+          "description": "Every position across all accounts in one searchable list. Pass a ticker to jump straight to it.",
+          "mode": "view",
+          "keywords": [
+            "holdings",
+            "stocks",
+            "etf",
+            "ticker",
+            "symbol",
+            "search"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "show-fog",
+          "title": "Show Fog",
+          "description": "How much cash is sitting idle and for how long.",
+          "mode": "view",
+          "keywords": [
+            "idle cash",
+            "cash drag",
+            "undeployed"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "show-activities",
+          "title": "Show Activities",
+          "description": "Trades, dividends and deposits across all accounts.",
+          "mode": "view",
+          "keywords": [
+            "transactions",
+            "trades",
+            "dividends",
+            "deposits"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "connect-brokerage",
+          "title": "Connect Brokerage",
+          "description": "Open the SnapTrade Connection Portal to link a brokerage (read-only) and review existing connections.",
+          "mode": "view",
+          "keywords": [
+            "link",
+            "connection",
+            "broker"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "menu-bar-portfolio",
+          "title": "Menu Bar Portfolio",
+          "description": "Net worth in the menu bar, with per-account totals and idle cash.",
+          "mode": "menu-bar",
+          "keywords": [
+            "net worth",
+            "menubar"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "authWorkerUrl",
+          "title": "Auth Worker URL",
+          "description": "URL of the deployed Folio auth worker that exchanges and refreshes SnapTrade OAuth tokens. The client secret lives there, never in Raycast.",
+          "type": "textfield",
+          "required": false,
+          "default": "https://folio-auth.shayanabedi-dev.workers.dev",
+          "placeholder": "https://folio-auth.<your-subdomain>.workers.dev"
+        },
+        {
+          "name": "oauthClientId",
+          "title": "SnapTrade OAuth Client ID",
+          "description": "Public client_id of the SnapTrade OAuth app registered by the maintainer. Not a secret.",
+          "type": "textfield",
+          "required": false,
+          "default": "FOLIO-YVIID",
+          "placeholder": "snaptrade-oauth-client-id"
+        },
+        {
+          "name": "useFixtures",
+          "title": "Data Source",
+          "label": "Use bundled fixture data (demo mode)",
+          "description": "Render sample Wealthsimple, Questrade and IBKR accounts instead of calling SnapTrade. Lets you try Folio without signing in.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
         }
       ]
     },
@@ -97234,6 +97748,51 @@
           "description": "The URL to use when searching. The text \"%query%\" will be replaced with the search text.",
           "type": "textfield",
           "placeholder": "cannot be empty"
+        },
+        {
+          "name": "sortProfiles",
+          "title": "Sort Profiles",
+          "type": "dropdown",
+          "required": false,
+          "default": "name",
+          "description": "Order of profiles in Switch Profiles and Move Current Tab.",
+          "data": [
+            {
+              "title": "Name",
+              "value": "name"
+            },
+            {
+              "title": "Last Used",
+              "value": "lastUsed"
+            }
+          ]
+        },
+        {
+          "name": "popToRootAfterOpen",
+          "title": "After Opening",
+          "label": "Return to Raycast root search",
+          "type": "checkbox",
+          "required": false,
+          "default": false,
+          "description": "After a profile action completes, go back to Raycast's root search instead of reopening on the profile view."
+        },
+        {
+          "name": "directSwitch",
+          "title": "Enter Key",
+          "label": "Bring profile to front on Enter",
+          "type": "checkbox",
+          "required": false,
+          "default": false,
+          "description": "Selecting a profile brings it to front immediately. Show Bookmarks moves to ⌘↵."
+        },
+        {
+          "name": "focusWithoutNewWindow",
+          "title": "Bring to Front",
+          "label": "Don't open a new window if one is already open",
+          "type": "checkbox",
+          "required": false,
+          "default": false,
+          "description": "Bring to Front reuses the profile's open window. If Chrome can't switch to it, show an error instead of opening a duplicate window. A profile with no open window still gets one."
         }
       ]
     },
@@ -98077,7 +98636,8 @@
         "iwex",
         "nexxai",
         "tim_gailey",
-        "0xdhrv"
+        "0xdhrv",
+        "pernielsentikaer"
       ],
       "categories": [
         "Communication"
@@ -144521,6 +145081,96 @@
       "preferences": []
     },
     {
+      "name": "markdownos",
+      "title": "MarkdownOS",
+      "description": "Quick actions for MarkdownOS, right from Raycast.",
+      "icon": "icon.png",
+      "author": "azlandotgg",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/azlandotgg/markdownos",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/markdownos",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-bookmarks",
+          "title": "Search Bookmarks",
+          "description": "Search, edit, archive, and delete your MarkdownOS bookmarks.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "save-bookmark",
+          "title": "Save Bookmark",
+          "description": "Save a URL as a MarkdownOS bookmark, with an optional title.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "save-tab",
+          "title": "Save Current Tab",
+          "description": "Save the active browser tab as a MarkdownOS bookmark.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-notes",
+          "title": "Search Notes",
+          "description": "Search your MarkdownOS notes, open one in the app, copy it, or delete it.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "new-note",
+          "title": "Create Note",
+          "description": "Create an empty MarkdownOS note and open it in a new window.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-bookmarks",
+          "title": "Open Bookmarks",
+          "description": "Open the Bookmarks section in MarkdownOS.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "menu-bar",
+          "title": "MarkdownOS Menu Bar",
+          "description": "Create a note, search notes or bookmarks, or open the app — from a menu bar icon.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "vaultPath",
+          "title": "Vault",
+          "description": "Your MarkdownOS vault folder.",
+          "type": "directory",
+          "required": true,
+          "placeholder": "Select MarkdownOS Vault"
+        }
+      ]
+    },
+    {
       "name": "markmarks",
       "title": "MarkMarks",
       "description": "Manage bookmarks using a markdown file as persistence layer",
@@ -167445,7 +168095,9 @@
         "Web"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/dru89/obsidian-bookmarks",
       "source": {
         "type": "github-monorepo",
@@ -169111,6 +169763,253 @@
           "type": "textfield"
         }
       ]
+    },
+    {
+      "name": "omni-cast",
+      "title": "OmniCast",
+      "description": "Search and run OmniWM commands in plain English.",
+      "icon": "extension-icon.png",
+      "author": "imprisonedmind",
+      "contributors": [],
+      "categories": [
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/imprisonedmind/omni-cast",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/omni-cast",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "commands",
+          "title": "OmniWM Commands",
+          "subtitle": "OmniCast",
+          "description": "Search and run every common OmniWM action",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "maximize",
+          "title": "Maximize",
+          "subtitle": "OmniWM",
+          "description": "Toggle the current tiled column across the full available width",
+          "mode": "no-view",
+          "keywords": [
+            "m"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "restore-default-tile",
+          "title": "Reset",
+          "subtitle": "OmniWM",
+          "description": "Return the focused window to a neutral standalone tiled state",
+          "mode": "no-view",
+          "keywords": [
+            "r",
+            "reset",
+            "normal"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "left-half",
+          "title": "Left Half",
+          "subtitle": "OmniWM",
+          "description": "Make the focused column half width without moving it",
+          "mode": "no-view",
+          "keywords": [
+            "lh"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "right-half",
+          "title": "Right Half",
+          "subtitle": "OmniWM",
+          "description": "Make the focused column half width without moving it",
+          "mode": "no-view",
+          "keywords": [
+            "rh"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "one-quarter",
+          "title": "One Quarter",
+          "subtitle": "OmniWM",
+          "description": "Make the focused column one-quarter width without moving it",
+          "mode": "no-view",
+          "keywords": [
+            "oq",
+            "25%"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "three-quarters",
+          "title": "Three Quarters",
+          "subtitle": "OmniWM",
+          "description": "Make the focused column three-quarters width without moving it",
+          "mode": "no-view",
+          "keywords": [
+            "tq",
+            "75%"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "top-left",
+          "title": "Top Left",
+          "subtitle": "OmniWM",
+          "description": "Join the column on the left and move the window to the top",
+          "mode": "no-view",
+          "keywords": [
+            "tl"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "top-right",
+          "title": "Top Right",
+          "subtitle": "OmniWM",
+          "description": "Join the column on the right and move the window to the top",
+          "mode": "no-view",
+          "keywords": [
+            "tr"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "bottom-left",
+          "title": "Bottom Left",
+          "subtitle": "OmniWM",
+          "description": "Join the column on the left at the bottom",
+          "mode": "no-view",
+          "keywords": [
+            "bl"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "bottom-right",
+          "title": "Bottom Right",
+          "subtitle": "OmniWM",
+          "description": "Join the column on the right at the bottom",
+          "mode": "no-view",
+          "keywords": [
+            "br"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "move-left",
+          "title": "Move Left",
+          "subtitle": "OmniWM",
+          "description": "Move the entire focused column left",
+          "mode": "no-view",
+          "keywords": [
+            "ml"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "move-right",
+          "title": "Move Right",
+          "subtitle": "OmniWM",
+          "description": "Move the entire focused column right",
+          "mode": "no-view",
+          "keywords": [
+            "mr"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "move-up",
+          "title": "Move Up",
+          "subtitle": "OmniWM",
+          "description": "Move the focused window up inside its column",
+          "mode": "no-view",
+          "keywords": [
+            "mu"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "move-down",
+          "title": "Move Down",
+          "subtitle": "OmniWM",
+          "description": "Move the focused window down inside its column",
+          "mode": "no-view",
+          "keywords": [
+            "md"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "workspace-1",
+          "title": "Workspace 1",
+          "subtitle": "OmniWM",
+          "description": "Switch to workspace 1",
+          "mode": "no-view",
+          "keywords": [
+            "w1"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "workspace-2",
+          "title": "Workspace 2",
+          "subtitle": "OmniWM",
+          "description": "Switch to workspace 2",
+          "mode": "no-view",
+          "keywords": [
+            "w2"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "workspace-3",
+          "title": "Workspace 3",
+          "subtitle": "OmniWM",
+          "description": "Switch to workspace 3",
+          "mode": "no-view",
+          "keywords": [
+            "w3"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "workspace-4",
+          "title": "Workspace 4",
+          "subtitle": "OmniWM",
+          "description": "Switch to workspace 4",
+          "mode": "no-view",
+          "keywords": [
+            "w4"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "workspace-5",
+          "title": "Workspace 5",
+          "subtitle": "OmniWM",
+          "description": "Switch to workspace 5",
+          "mode": "no-view",
+          "keywords": [
+            "w5"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "omni-news",
@@ -200667,6 +201566,438 @@
       ]
     },
     {
+      "name": "raccoon",
+      "title": "Raccoon",
+      "description": "macOS companion toolkit: disk, memory, ports, battery, network and a security audit, powered by the rcc CLI.",
+      "icon": "extension-icon.png",
+      "author": "eugenio",
+      "contributors": [],
+      "categories": [
+        "System",
+        "Developer Tools",
+        "Security"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/eugenio/raccoon",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/raccoon",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "index",
+          "title": "Search Raccoon Commands",
+          "subtitle": "Raccoon",
+          "description": "Browse and run every rcc subcommand.",
+          "mode": "view",
+          "keywords": [
+            "rcc",
+            "raccoon",
+            "cli",
+            "toolkit",
+            "system",
+            "mac",
+            "maintenance",
+            "diagnostics"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "disk",
+          "title": "Show Disk Space",
+          "subtitle": "Raccoon",
+          "description": "Volumes, how full they are, disk health and network mounts.",
+          "mode": "view",
+          "keywords": [
+            "disk",
+            "storage",
+            "space",
+            "free",
+            "full",
+            "volume",
+            "apfs",
+            "cleanup",
+            "gb"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "memory",
+          "title": "Show Memory Usage",
+          "subtitle": "Raccoon",
+          "description": "Memory pressure and the processes using the most RAM.",
+          "mode": "view",
+          "keywords": [
+            "memory",
+            "ram",
+            "pressure",
+            "swap",
+            "slow",
+            "beachball",
+            "hog",
+            "leak"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "ports",
+          "title": "List Open Ports",
+          "subtitle": "Raccoon",
+          "description": "Open TCP and UDP ports with the process behind each one.",
+          "mode": "view",
+          "keywords": [
+            "ports",
+            "port",
+            "listening",
+            "open",
+            "tcp",
+            "udp",
+            "lsof",
+            "socket",
+            "firewall"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "battery",
+          "title": "Show Battery Health",
+          "subtitle": "Raccoon",
+          "description": "Battery health, cycle count and charging status.",
+          "mode": "view",
+          "keywords": [
+            "battery",
+            "power",
+            "health",
+            "cycles",
+            "charge",
+            "capacity",
+            "wear"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "audit",
+          "title": "Run Security Audit",
+          "subtitle": "Raccoon",
+          "description": "Run the Raccoon security audit. Asks for admin rights via Touch ID.",
+          "mode": "view",
+          "keywords": [
+            "security",
+            "audit",
+            "hardening",
+            "firewall",
+            "filevault",
+            "sip",
+            "gatekeeper",
+            "checkup",
+            "vulnerability"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "admin-session",
+          "title": "Configure Admin Session",
+          "subtitle": "Raccoon",
+          "description": "Ask for Touch ID once instead of once per privileged command.",
+          "mode": "view",
+          "keywords": [
+            "touchid",
+            "touch id",
+            "sudo",
+            "fingerprint",
+            "auth",
+            "admin",
+            "root",
+            "password",
+            "privileges"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "trash",
+          "title": "Show Trash",
+          "subtitle": "Raccoon",
+          "description": "Trash size, item count and where it lives.",
+          "mode": "view",
+          "keywords": [
+            "trash",
+            "bin",
+            "delete",
+            "empty",
+            "space",
+            "cleanup",
+            "junk"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "wifi",
+          "title": "Show Wi-Fi Networks",
+          "subtitle": "Raccoon",
+          "description": "The network you are on and the ones this Mac remembers.",
+          "mode": "view",
+          "keywords": [
+            "wifi",
+            "wi-fi",
+            "network",
+            "ssid",
+            "wireless",
+            "password",
+            "airport"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "overlap",
+          "title": "Map PATH Overlaps",
+          "subtitle": "Raccoon",
+          "description": "Which manager is behind each PATH entry, and which names clash.",
+          "mode": "view",
+          "keywords": [
+            "path",
+            "overlap",
+            "shadow",
+            "brew",
+            "npm",
+            "cargo",
+            "which",
+            "duplicate"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "docker",
+          "title": "Show Docker Status",
+          "subtitle": "Raccoon",
+          "description": "Containers, images, volumes and reclaimable disk.",
+          "mode": "view",
+          "keywords": [
+            "docker",
+            "container",
+            "image",
+            "volume",
+            "desktop",
+            "daemon",
+            "compose"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "history",
+          "title": "Show Shell History",
+          "subtitle": "Raccoon",
+          "description": "How much each shell has recorded, and the last commands run.",
+          "mode": "view",
+          "keywords": [
+            "history",
+            "shell",
+            "zsh",
+            "bash",
+            "fish",
+            "commands",
+            "recent"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "certs",
+          "title": "Show Certificates",
+          "subtitle": "Raccoon",
+          "description": "Keychain certificates, expired and expiring first.",
+          "mode": "view",
+          "keywords": [
+            "certificate",
+            "cert",
+            "ssl",
+            "tls",
+            "keychain",
+            "expired",
+            "expiring",
+            "https"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "startup",
+          "title": "Show Startup Items",
+          "subtitle": "Raccoon",
+          "description": "What this Mac starts on its own: login items and launch agents.",
+          "mode": "view",
+          "keywords": [
+            "startup",
+            "login",
+            "launch",
+            "agent",
+            "daemon",
+            "boot",
+            "autostart",
+            "slow"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "fonts",
+          "title": "Show Fonts",
+          "subtitle": "Raccoon",
+          "description": "Where fonts live, duplicates, and any the system cannot read.",
+          "mode": "view",
+          "keywords": [
+            "font",
+            "fonts",
+            "typeface",
+            "duplicate",
+            "corrupted",
+            "fontbook",
+            "family"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "env",
+          "title": "Check Environment",
+          "subtitle": "Raccoon",
+          "description": "PATH entries, broken symlinks, duplicates and tool versions.",
+          "mode": "view",
+          "keywords": [
+            "env",
+            "path",
+            "symlink",
+            "broken",
+            "duplicate",
+            "version",
+            "tool",
+            "shell"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "network",
+          "title": "Show Network",
+          "subtitle": "Raccoon",
+          "description": "Your address, who resolves your names, and anything in between.",
+          "mode": "view",
+          "keywords": [
+            "network",
+            "ip",
+            "address",
+            "dns",
+            "vpn",
+            "proxy",
+            "firewall",
+            "wifi",
+            "internet"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "xcode",
+          "title": "Show Xcode Status",
+          "subtitle": "Raccoon",
+          "description": "Build caches worth reclaiming, simulators still running, what is installed.",
+          "mode": "view",
+          "keywords": [
+            "xcode",
+            "simulator",
+            "deriveddata",
+            "ios",
+            "build",
+            "cache",
+            "space",
+            "developer"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "backup",
+          "title": "Show Backup Status",
+          "subtitle": "Raccoon",
+          "description": "Whether this Mac is backed up, and how long ago.",
+          "mode": "view",
+          "keywords": [
+            "backup",
+            "time machine",
+            "timemachine",
+            "restore",
+            "snapshot",
+            "destination"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "git",
+          "title": "Check Git Repositories",
+          "subtitle": "Raccoon",
+          "description": "Repositories with work that is not committed, not pushed, or not on a branch.",
+          "mode": "view",
+          "keywords": [
+            "git",
+            "repo",
+            "repository",
+            "uncommitted",
+            "unpushed",
+            "stash",
+            "branch",
+            "upstream",
+            "detached"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "ssh",
+          "title": "Check SSH Keys",
+          "subtitle": "Raccoon",
+          "description": "Private keys with no passphrase, wrong permissions, or no public half.",
+          "mode": "view",
+          "keywords": [
+            "ssh",
+            "key",
+            "keys",
+            "passphrase",
+            "permissions",
+            "id_rsa",
+            "ed25519",
+            "private",
+            "publickey"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "sudoSession",
+          "title": "Admin Session",
+          "description": "How long one Touch ID covers every Raccoon command. Apply it with the Configure Admin Session command.",
+          "type": "dropdown",
+          "required": false,
+          "default": "60",
+          "data": [
+            {
+              "title": "Expires after 60 minutes",
+              "value": "60"
+            },
+            {
+              "title": "Until restart",
+              "value": "-1"
+            }
+          ]
+        },
+        {
+          "name": "rccPath",
+          "title": "Raccoon CLI",
+          "description": "Full path to the rcc binary. Leave empty to search the usual Homebrew locations.",
+          "type": "textfield",
+          "required": false,
+          "default": "",
+          "placeholder": "/opt/homebrew/bin/rcc"
+        }
+      ]
+    },
+    {
       "name": "radarr",
       "title": "Radarr",
       "description": "Manage your Radarr movie collection with powerful search, monitoring, and download management capabilities",
@@ -213137,7 +214468,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/KevinBatdorf/replicate",
       "source": {
@@ -216021,6 +217353,33 @@
           "keywords": [],
           "preferences": [
             {
+              "name": "cubeSize",
+              "title": "Cube",
+              "description": "Which cube to scramble.",
+              "type": "dropdown",
+              "required": false,
+              "default": "3x3",
+              "data": [
+                {
+                  "title": "3×3",
+                  "value": "3x3"
+                },
+                {
+                  "title": "2×2",
+                  "value": "2x2"
+                }
+              ]
+            },
+            {
+              "name": "hideTimer",
+              "title": "Hidden Timer",
+              "label": "Hide the timer while solving",
+              "description": "Shows \"Solving…\" instead of the running time; the final time still appears when you stop.",
+              "type": "checkbox",
+              "required": false,
+              "default": false
+            },
+            {
               "name": "precision",
               "title": "Timer Precision",
               "description": "How finely the running timer counts up. The final time is always exact.",
@@ -216062,6 +217421,15 @@
               "type": "textfield",
               "required": false,
               "default": "15"
+            },
+            {
+              "name": "hideInspection",
+              "title": "Hidden Inspection",
+              "label": "Hide the inspection countdown",
+              "description": "Shows \"Inspecting…\" instead of the countdown; +2 / DNF penalties still apply.",
+              "type": "checkbox",
+              "required": false,
+              "default": true
             }
           ]
         }
@@ -248352,7 +249720,8 @@
         "j3lte",
         "itsmatteomanf",
         "MatteoGauthier",
-        "McKeev"
+        "McKeev",
+        "csharp"
       ],
       "categories": [
         "Developer Tools",
@@ -248376,7 +249745,7 @@
           "name": "devices",
           "title": "All Devices",
           "subtitle": "Tailscale",
-          "description": "View a list of every device in the tailnet",
+          "description": "View a list of every device in your tailnet",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -248386,6 +249755,15 @@
           "title": "My Devices",
           "subtitle": "Tailscale",
           "description": "View a list of your own devices",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "services",
+          "title": "Services",
+          "subtitle": "Tailscale",
+          "description": "View the services available in your tailnet",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -248403,7 +249781,7 @@
           "name": "exit",
           "title": "Exit Node",
           "subtitle": "Tailscale",
-          "description": "View any available Exit node in your Tailnet and quickly activate one",
+          "description": "View any available Exit node in your tailnet and quickly activate one",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -248457,7 +249835,7 @@
               "type": "checkbox",
               "required": false,
               "label": "Show Tailnet Name",
-              "description": "Show the tailnet name in the status bar",
+              "description": "Show your tailnet name in the status bar",
               "default": true
             }
           ]
@@ -248485,6 +249863,15 @@
           "title": "Toggle Connection",
           "subtitle": "Tailscale",
           "description": "Toggle Tailscale connection on/off",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle-dns",
+          "title": "Toggle Tailscale DNS",
+          "subtitle": "Tailscale",
+          "description": "Toggle whether Tailscale accepts DNS settings from the tailnet (accept-dns)",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -248525,7 +249912,7 @@
             },
             {
               "name": "showTailnetName",
-              "description": "Show the tailnet name next to the menu bar icon",
+              "description": "Show your tailnet name next to the menu bar icon",
               "type": "checkbox",
               "label": "Show Tailnet Name",
               "default": false,
@@ -259012,6 +260399,115 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "tinkerer-club",
+      "title": "Tinkerer Club",
+      "description": "Browse and participate in Tinkerer Club from Raycast, with confirmable AI tools.",
+      "icon": "tinkerer-club-icon.png",
+      "author": "Olli0103",
+      "contributors": [],
+      "categories": [
+        "Communication",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/Olli0103/tinkerer-club",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/tinkerer-club",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-tinkerer",
+          "title": "Search Club",
+          "description": "Search members, posts, topics, projects, and other club content.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "browse-prompts",
+          "title": "Browse Prompts",
+          "description": "Search, inspect, and copy prompts shared by the club.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "browse-feed",
+          "title": "Browse Feed",
+          "description": "Read posts and comments, reply, and react without leaving Raycast.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "browse-articles",
+          "title": "Browse Articles",
+          "description": "Search published articles, read full posts, and inspect your drafts.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "quick-post",
+          "title": "Quick Post",
+          "description": "Publish, queue, or save a short Tinkerer Club post.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "browse-api",
+          "title": "Browse API",
+          "description": "Browse and run procedures from the live Tinkerer Club API catalog.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "menu-bar",
+          "title": "Tinkerer Club Menu Bar",
+          "description": "See recent feed activity and articles, then open common Tinkerer actions.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "baseUrl",
+          "title": "Platform Base URL",
+          "description": "The HTTPS origin that serves /api/v1, without a trailing API path.",
+          "type": "textfield",
+          "required": true,
+          "default": "https://app.tinkerer.club",
+          "placeholder": "https://app.tinkerer.club"
+        },
+        {
+          "name": "authorizationValue",
+          "title": "API Key",
+          "description": "A member API key created in Tinkerer Club Settings. It is sent in the x-api-key header.",
+          "type": "password",
+          "required": false,
+          "placeholder": "tnk_…"
+        },
+        {
+          "name": "demoMode",
+          "title": "Screenshot Demo Mode",
+          "label": "Use fictional demo content",
+          "description": "Show fictional local data for Store screenshots. No requests or changes are sent to Tinkerer Club while enabled.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        }
+      ]
     },
     {
       "name": "tints-and-shades",
