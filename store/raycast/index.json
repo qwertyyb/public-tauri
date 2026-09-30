@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-29T22:23:25.535Z",
+  "generatedAt": "2026-09-30T22:13:07.458Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "c9c0bd700100ea7112ae1d2633647a456f8f87c7"
+    "commit": "36e2a7c914cb54bb6fbd0610c6a3f7712febf28c"
   },
-  "count": 3340,
+  "count": 3343,
   "extensions": [
     {
       "name": "0x0",
@@ -6080,7 +6080,7 @@
           "name": "upload-file",
           "title": "Upload File",
           "subtitle": "Aktar",
-          "description": "Pick files, a destination, and an optional folder, then upload them and copy their links.",
+          "description": "Pick files, a destination, and an optional folder or auto-delete time, then upload them and copy their links.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -6137,6 +6137,36 @@
             {
               "title": "HTML",
               "value": "html"
+            }
+          ]
+        },
+        {
+          "name": "deleteAfter",
+          "title": "Delete After",
+          "description": "Default for Upload Clipboard, Upload Selected Files, and the Upload File form. Aktar deletes the uploaded file from your bucket after this many days. Needs Aktar 0.5.0 or later.",
+          "type": "dropdown",
+          "required": false,
+          "default": "0",
+          "data": [
+            {
+              "title": "Never",
+              "value": "0"
+            },
+            {
+              "title": "1 Day",
+              "value": "1"
+            },
+            {
+              "title": "7 Days",
+              "value": "7"
+            },
+            {
+              "title": "14 Days",
+              "value": "14"
+            },
+            {
+              "title": "30 Days",
+              "value": "30"
             }
           ]
         },
@@ -13955,8 +13985,7 @@
       "author": "alvinkobe",
       "contributors": [
         "xmok",
-        "0xdhrv",
-        "ray.dhruv"
+        "0xdhrv"
       ],
       "categories": [
         "Web"
@@ -40399,7 +40428,7 @@
         "taken",
         "nbbaier",
         "ilian",
-        "ray.dhruv"
+        "0xdhrv"
       ],
       "categories": [
         "Developer Tools",
@@ -137155,7 +137184,7 @@
     {
       "name": "linak-desk-controller",
       "title": "Linak Desk Controller",
-      "description": "Control the height of standing desks manufactured by Linak, for example the Ikea Idasen desk.",
+      "description": "Control the height of standing desks manufactured by Linak, for example the Ikea Idasen desk, over Bluetooth.",
       "icon": "icon.png",
       "author": "samuelkraft",
       "contributors": [],
@@ -137163,7 +137192,9 @@
         "Other"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/samuelkraft/linak-desk-controller",
       "source": {
         "type": "github-monorepo",
@@ -137174,7 +137205,7 @@
       "commands": [
         {
           "name": "move-to-stand",
-          "title": "Stand Up",
+          "title": "Stand up",
           "subtitle": "Linak Desk Controller",
           "description": "Move your desk to your standing height",
           "mode": "no-view",
@@ -137210,6 +137241,60 @@
           "preferences": []
         },
         {
+          "name": "step-up",
+          "title": "Raise Desk",
+          "subtitle": "Linak Desk Controller",
+          "description": "Raise your desk by a few centimeters",
+          "mode": "no-view",
+          "keywords": [
+            "up",
+            "higher"
+          ],
+          "icon": "raise.png",
+          "preferences": []
+        },
+        {
+          "name": "step-down",
+          "title": "Lower Desk",
+          "subtitle": "Linak Desk Controller",
+          "description": "Lower your desk by a few centimeters",
+          "mode": "no-view",
+          "keywords": [
+            "down",
+            "lower"
+          ],
+          "icon": "lower.png",
+          "preferences": []
+        },
+        {
+          "name": "stop-desk",
+          "title": "Stop Desk",
+          "subtitle": "Linak Desk Controller",
+          "description": "Stop your desk if it's moving",
+          "mode": "no-view",
+          "keywords": [
+            "halt",
+            "cancel"
+          ],
+          "icon": "stop.png",
+          "preferences": []
+        },
+        {
+          "name": "select-desk",
+          "title": "Select Desk",
+          "subtitle": "Linak Desk Controller",
+          "description": "Find nearby desks and choose which one to control",
+          "mode": "view",
+          "keywords": [
+            "pair",
+            "connect",
+            "bluetooth",
+            "discover"
+          ],
+          "icon": "select.png",
+          "preferences": []
+        },
+        {
           "name": "menubar-move",
           "title": "Move Desk",
           "subtitle": "Linak Desk Controller",
@@ -137221,20 +137306,12 @@
       ],
       "preferences": [
         {
-          "name": "uuid",
-          "description": "The UUID of the desk.",
-          "type": "textfield",
-          "required": true,
-          "title": "Desk UUID",
-          "placeholder": "00000000-0000-0000-0000-000000000000"
-        },
-        {
           "name": "sitHeight",
           "description": "The height in cm of your desk when sitting.",
           "type": "textfield",
           "required": true,
           "title": "Sitting height",
-          "placeholder": "80"
+          "placeholder": "75"
         },
         {
           "name": "standHeight",
@@ -137242,23 +137319,33 @@
           "type": "textfield",
           "required": true,
           "title": "Standing height",
-          "placeholder": "120"
+          "placeholder": "115"
         },
         {
-          "name": "python",
+          "name": "stepSize",
+          "description": "How many cm Raise Desk and Lower Desk move the desk.",
           "type": "textfield",
           "required": false,
-          "title": "Location of python bin",
-          "description": "Run 'which python' in the terminal to find out.",
-          "placeholder": "/usr/bin/python"
+          "title": "Raise/lower step",
+          "placeholder": "5",
+          "default": "5"
         },
         {
-          "name": "server",
-          "type": "checkbox",
+          "name": "baseHeight",
+          "description": "The height in cm of your desk at its lowest position. Change this if the reported height is off by a constant amount.",
+          "type": "textfield",
           "required": false,
-          "title": "Server mode",
-          "label": "Forward commands to custom server",
-          "description": "The server must be running on 127.0.0.1:9123."
+          "title": "Lowest height",
+          "placeholder": "62",
+          "default": "62"
+        },
+        {
+          "name": "uuid",
+          "description": "Optional. Leave empty to find your desk automatically, or use the Select Desk command to pick one.",
+          "type": "textfield",
+          "required": false,
+          "title": "Desk identifier",
+          "placeholder": "00000000-0000-0000-0000-000000000000"
         }
       ]
     },
@@ -137282,7 +137369,6 @@
         "erikjs",
         "alexi.build",
         "samuelkraft",
-        "ray.dhruv",
         "ChrisPanTaken"
       ],
       "categories": [
@@ -148103,6 +148189,50 @@
       "preferences": []
     },
     {
+      "name": "memradar",
+      "title": "MemRadar",
+      "description": "Search RAM and SSD prices with a decade of history, from MemRadar.",
+      "icon": "extension-icon.png",
+      "author": "memradar",
+      "contributors": [],
+      "categories": [
+        "Finance",
+        "Data"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/memradar/memradar",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/memradar",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-memory-prices",
+          "title": "Search Memory Prices",
+          "subtitle": "MemRadar",
+          "description": "Search tracked RAM and SSD prices, with all-time lows and a decade of history.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "show-market-overview",
+          "title": "Show Market Overview",
+          "subtitle": "MemRadar",
+          "description": "See how RAM and SSD prices have moved across each segment.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "menubar-calendar",
       "title": "Menubar Calendar",
       "description": "Show calendar and reminders in the menu bar.",
@@ -150180,7 +150310,7 @@
       "author": "sven",
       "contributors": [
         "mSarheed",
-        "ray.dhruv"
+        "0xdhrv"
       ],
       "categories": [
         "Applications",
@@ -203821,7 +203951,7 @@
         "benoit.grelard",
         "sdorra",
         "sebdanielsson",
-        "ray.dhruv"
+        "0xdhrv"
       ],
       "categories": [
         "Design Tools"
@@ -207867,7 +207997,8 @@
         "samuelkraft",
         "pernielsentikaer",
         "xilopaint",
-        "stelo"
+        "stelo",
+        "alexi.build"
       ],
       "categories": [
         "Media",
@@ -222534,7 +222665,8 @@
         "ahetzm",
         "Xeyn",
         "ridemountainpig",
-        "janosorcsik"
+        "janosorcsik",
+        "Spike_B"
       ],
       "categories": [
         "Web"
@@ -231519,8 +231651,7 @@
         "stephlv",
         "artistro08",
         "andreaselia",
-        "0xdhrv",
-        "ray.dhruv"
+        "0xdhrv"
       ],
       "categories": [
         "Communication",
@@ -239277,6 +239408,229 @@
               "value": "17530"
             }
           ]
+        }
+      ]
+    },
+    {
+      "name": "spotifast",
+      "title": "Spotifast",
+      "description": "Control Spotifast, the native Spotify client: play, skip, seek, volume, shuffle, repeat, liked songs and Spotify Connect devices, with the playing track in the menu bar.",
+      "icon": "extension-icon.png",
+      "author": "Seigiard",
+      "contributors": [],
+      "categories": [
+        "Media"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/Seigiard/spotifast",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/spotifast",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "menu-bar",
+          "title": "Menu Bar Player",
+          "subtitle": "Spotifast",
+          "description": "Show the playing track in the menu bar, with playback controls.",
+          "mode": "menu-bar",
+          "keywords": [
+            "spotifast",
+            "spotify"
+          ],
+          "preferences": [
+            {
+              "name": "showTrackTitle",
+              "label": "Show track title in the menu bar",
+              "description": "When off, the menu bar shows only the icon.",
+              "type": "checkbox",
+              "default": true,
+              "required": false
+            }
+          ]
+        },
+        {
+          "name": "play-pause",
+          "title": "Play / Pause",
+          "subtitle": "Spotifast",
+          "description": "Toggle playback.",
+          "mode": "no-view",
+          "keywords": [
+            "spotifast",
+            "spotify"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "next-track",
+          "title": "Next Track",
+          "subtitle": "Spotifast",
+          "description": "Skip to the next track.",
+          "mode": "no-view",
+          "keywords": [
+            "spotifast",
+            "spotify"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "previous-track",
+          "title": "Previous Track",
+          "subtitle": "Spotifast",
+          "description": "Return to the previous track.",
+          "mode": "no-view",
+          "keywords": [
+            "spotifast",
+            "spotify"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "seek-forward",
+          "title": "Skip Forward",
+          "subtitle": "Spotifast",
+          "description": "Seek forward, 15 seconds unless given.",
+          "mode": "no-view",
+          "keywords": [
+            "spotifast",
+            "spotify"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "seek-backward",
+          "title": "Skip Backward",
+          "subtitle": "Spotifast",
+          "description": "Seek backward, 15 seconds unless given.",
+          "mode": "no-view",
+          "keywords": [
+            "spotifast",
+            "spotify"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "volume-up",
+          "title": "Increase Volume",
+          "subtitle": "Spotifast",
+          "description": "Raise the volume, 10 percent unless given.",
+          "mode": "no-view",
+          "keywords": [
+            "spotifast",
+            "spotify"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "volume-down",
+          "title": "Decrease Volume",
+          "subtitle": "Spotifast",
+          "description": "Lower the volume, 10 percent unless given.",
+          "mode": "no-view",
+          "keywords": [
+            "spotifast",
+            "spotify"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "set-volume",
+          "title": "Set Volume",
+          "subtitle": "Spotifast",
+          "description": "Set the volume to a percentage.",
+          "mode": "no-view",
+          "keywords": [
+            "spotifast",
+            "spotify"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "toggle-mute",
+          "title": "Toggle Mute",
+          "subtitle": "Spotifast",
+          "description": "Mute or unmute playback.",
+          "mode": "no-view",
+          "keywords": [
+            "spotifast",
+            "spotify"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "toggle-shuffle",
+          "title": "Toggle Shuffle",
+          "subtitle": "Spotifast",
+          "description": "Turn shuffle on or off.",
+          "mode": "no-view",
+          "keywords": [
+            "spotifast",
+            "spotify"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "cycle-repeat",
+          "title": "Cycle Repeat",
+          "subtitle": "Spotifast",
+          "description": "Step through repeat off, repeat all and repeat one.",
+          "mode": "no-view",
+          "keywords": [
+            "spotifast",
+            "spotify"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "toggle-like",
+          "title": "Like / Unlike Track",
+          "subtitle": "Spotifast",
+          "description": "Save the playing track to Your Library, or remove it.",
+          "mode": "no-view",
+          "keywords": [
+            "spotifast",
+            "spotify"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "devices",
+          "title": "Switch Device",
+          "subtitle": "Spotifast",
+          "description": "Move playback to another Spotify Connect device.",
+          "mode": "view",
+          "keywords": [
+            "spotifast",
+            "spotify"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "open-spotifast",
+          "title": "Open Spotifast",
+          "subtitle": "Spotifast",
+          "description": "Bring the Spotifast window forward, starting the app if it is not running.",
+          "mode": "no-view",
+          "keywords": [
+            "spotifast",
+            "spotify"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "binaryPath",
+          "title": "Spotifast Binary",
+          "description": "Path to the Spotifast command. Leave empty to find it in Spotifast.app or in the Homebrew, Cargo and Nix bin directories.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "/Applications/Spotifast.app/Contents/MacOS/Spotifast"
         }
       ]
     },
@@ -288598,6 +288952,118 @@
       "preferences": []
     },
     {
+      "name": "wu-editor",
+      "title": "Wu",
+      "description": "Open recent projects, files, and settings in Wu.",
+      "icon": "icon.png",
+      "author": "farshed",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/farshed/wu-editor",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/wu-editor",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "open-recent-project",
+          "title": "Open Recent Project",
+          "subtitle": "Wu",
+          "description": "Search the projects you recently opened in Wu and open one.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-new-window",
+          "title": "Open New Window",
+          "subtitle": "Wu",
+          "description": "Open an empty Wu window.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-with-wu",
+          "title": "Open with Wu",
+          "subtitle": "Wu",
+          "description": "Open the files or folders selected in Finder, or the front Finder window's folder, in Wu.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-settings",
+          "title": "Open Settings",
+          "subtitle": "Wu",
+          "description": "Open Wu's settings.json.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-keymap",
+          "title": "Open Keymap",
+          "subtitle": "Wu",
+          "description": "Open Wu's keymap.json.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "show-installed-extensions",
+          "title": "Show Installed Extensions",
+          "subtitle": "Wu",
+          "description": "List the extensions installed in Wu.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "databasePath",
+          "title": "Wu Database",
+          "description": "Path to Wu's db.sqlite file. Only change this if you moved Wu's data directory.",
+          "type": "textfield",
+          "required": false,
+          "default": "~/Library/Application Support/Wu/db/0-stable/db.sqlite"
+        },
+        {
+          "name": "cliPath",
+          "title": "Wu CLI",
+          "description": "Path to the wu command line tool. When missing, the copy bundled inside Wu.app is used.",
+          "type": "textfield",
+          "required": false,
+          "default": "/usr/local/bin/wu"
+        },
+        {
+          "name": "configDir",
+          "title": "Wu Config Directory",
+          "description": "Folder holding Wu's settings.json and keymap.json.",
+          "type": "textfield",
+          "required": false,
+          "default": "~/.config/wu"
+        },
+        {
+          "name": "extensionsDir",
+          "title": "Wu Extensions Directory",
+          "description": "Folder where Wu installs extensions.",
+          "type": "textfield",
+          "required": false,
+          "default": "~/Library/Application Support/Wu/extensions/installed"
+        }
+      ]
+    },
+    {
       "name": "xbox-friends",
       "title": "Xbox Friends",
       "description": "See which Xbox Live friends are online and what they're playing",
@@ -293288,7 +293754,10 @@
         "Other"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
+      "version": "2.1.0",
       "storeUrl": "https://www.raycast.com/imqdee/zerion",
       "source": {
         "type": "github-monorepo",
@@ -293393,6 +293862,42 @@
           "title": "View Market",
           "subtitle": "Zerion",
           "description": "Real-time market performance",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "top-movers",
+          "title": "View Top Movers",
+          "subtitle": "Zerion",
+          "description": "Daily top gainers and losers",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "trending-tokens",
+          "title": "View Trending Tokens",
+          "subtitle": "Zerion",
+          "description": "Tokens trending on Zerion right now",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "stocks",
+          "title": "View Stocks",
+          "subtitle": "Zerion",
+          "description": "Tokenized stocks on Zerion",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "perps",
+          "title": "View Perps",
+          "subtitle": "Zerion",
+          "description": "Perpetual futures on Zerion",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
