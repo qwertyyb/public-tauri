@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-30T22:13:07.458Z",
+  "generatedAt": "2026-10-01T22:55:58.715Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "36e2a7c914cb54bb6fbd0610c6a3f7712febf28c"
+    "commit": "3d7aa375114b13713f4deeba392ce2f5d1c88c0f"
   },
-  "count": 3343,
+  "count": 3355,
   "extensions": [
     {
       "name": "0x0",
@@ -6080,7 +6080,7 @@
           "name": "upload-file",
           "title": "Upload File",
           "subtitle": "Aktar",
-          "description": "Pick files, a destination, and an optional folder or auto-delete time, then upload them and copy their links.",
+          "description": "Pick files, a destination, and an optional name, folder, or auto-delete time, then upload them and copy their links.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -6089,7 +6089,7 @@
           "name": "search-uploads",
           "title": "Search Uploads",
           "subtitle": "Aktar",
-          "description": "Search your upload history, copy links in any format, and delete uploads.",
+          "description": "Search your upload history, copy links in any format, show QR codes, and delete uploads.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -6098,7 +6098,7 @@
           "name": "browse-buckets",
           "title": "Browse Buckets",
           "subtitle": "Aktar",
-          "description": "Browse the folders and files in your destinations' buckets: copy links, create temporary links, rename, move, delete, and upload.",
+          "description": "Browse the folders and files in your destinations' buckets: copy links, create temporary links and QR codes, rename, move, delete, and upload.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -13992,7 +13992,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/alvinkobe/are-na",
       "source": {
@@ -14085,6 +14086,13 @@
         }
       ],
       "preferences": [
+        {
+          "name": "downloadDirectory",
+          "title": "Download Directory",
+          "description": "Optional folder for downloaded images and attachments. Leave empty to use your system's Downloads folder.",
+          "type": "directory",
+          "required": false
+        },
         {
           "name": "accessToken",
           "label": "Personal Access Token",
@@ -16652,7 +16660,7 @@
     {
       "name": "awork",
       "title": "awork",
-      "description": "Search projects and tasks, create tasks, and log time in awork.",
+      "description": "Search projects and tasks, create and edit tasks, log time, and start new awork AI threads.",
       "icon": "icon.png",
       "author": "hypercode-dev",
       "contributors": [
@@ -16709,6 +16717,15 @@
           "subtitle": "awork",
           "description": "Create a project or private task",
           "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "newAiThread",
+          "title": "New AI Thread",
+          "subtitle": "awork",
+          "description": "Open your workspace's awork AI page in the browser with an optional prefilled prompt",
+          "mode": "no-view",
           "keywords": [],
           "preferences": []
         }
@@ -21515,7 +21532,9 @@
         "Applications"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "version": "1.3.3",
       "storeUrl": "https://www.raycast.com/aaronschneider/bibmanager",
       "source": {
@@ -27169,6 +27188,15 @@
           "preferences": []
         },
         {
+          "name": "adopt-apps",
+          "title": "Adopt Apps",
+          "subtitle": "Homebrew",
+          "description": "Find applications already on your Mac that Homebrew can manage, and adopt them into a cask.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "upgrade",
           "title": "Upgrade All",
           "subtitle": "Brew",
@@ -27760,7 +27788,7 @@
     {
       "name": "browser-bookmarks",
       "title": "Browser Bookmarks",
-      "description": "Integrate bookmarks from Brave, ChatGPT Atlas, Chrome, Dia, Edge, Firefox, Safari, Arc, Vivaldi, Vivaldi Snapshot, Zen, Whale, or Helium.",
+      "description": "Integrate bookmarks from Brave, ChatGPT Atlas, Chrome, Dia, DuckDuckGo, Edge, Firefox, Safari, Arc, Vivaldi, Vivaldi Snapshot, Zen, Whale, or Helium.",
       "icon": "extension-icon.png",
       "author": "thomaslombart",
       "contributors": [
@@ -27781,7 +27809,8 @@
         "haneul486",
         "just_me",
         "mguellsegarra",
-        "teziovsky"
+        "teziovsky",
+        "robertanderson"
       ],
       "categories": [
         "Web"
@@ -42207,15 +42236,20 @@
       "title": "Code Review Emoji Guide",
       "description": "A simple emoji legend to help convey intention and added meaning in code review comments.",
       "icon": "command-icon.png",
-      "author": "rus64",
-      "contributors": [],
+      "author": "russellyeo",
+      "contributors": [
+        "muhammadrizo"
+      ],
       "categories": [
         "Documentation",
         "Developer Tools"
       ],
       "license": "MIT",
-      "platforms": [],
-      "storeUrl": "https://www.raycast.com/rus64/code-review-emojis",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/russellyeo/code-review-emojis",
       "source": {
         "type": "github-monorepo",
         "repo": "raycast/extensions",
@@ -42232,7 +42266,25 @@
           "preferences": []
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "primaryAction",
+          "description": "The action to perform when selecting an item",
+          "type": "dropdown",
+          "required": false,
+          "title": "Primary Action",
+          "data": [
+            {
+              "title": "Paste",
+              "value": "paste"
+            },
+            {
+              "title": "Copy",
+              "value": "copy"
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "code-runway",
@@ -51661,6 +51713,81 @@
           "required": false
         }
       ]
+    },
+    {
+      "name": "cuenow",
+      "title": "CueNow",
+      "description": "Search, create and manage your CueNow sticky notes without leaving Raycast.",
+      "icon": "command-icon.png",
+      "author": "sworup_ku",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/sworup_ku/cuenow",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/cuenow",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "create-note",
+          "title": "Create Note",
+          "subtitle": "CueNow",
+          "description": "Create a new CueNow sticky note and start typing.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "create-note.png",
+          "preferences": []
+        },
+        {
+          "name": "search-notes",
+          "title": "Search Notes",
+          "subtitle": "CueNow",
+          "description": "Search every CueNow note by title or content, then open, hide, copy or delete it.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "search-notes.png",
+          "preferences": []
+        },
+        {
+          "name": "show-all-notes",
+          "title": "Show All Notes",
+          "subtitle": "CueNow",
+          "description": "Bring every CueNow sticky note back onto the screen.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "show-all-notes.png",
+          "preferences": []
+        },
+        {
+          "name": "hide-all-notes",
+          "title": "Hide All Notes",
+          "subtitle": "CueNow",
+          "description": "Clear every CueNow sticky note off the screen without deleting them.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "hide-all-notes.png",
+          "preferences": []
+        },
+        {
+          "name": "open-settings",
+          "title": "Open Settings",
+          "subtitle": "CueNow",
+          "description": "Open the CueNow settings window.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "open-settings.png",
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "cuid-generator",
@@ -69943,7 +70070,7 @@
       "name": "easydict",
       "title": "Easy Dictionary",
       "description": "Easily look up words or translate text, support 48+ languages, support Linguee and Youdao dictionary, support OpenAI, DeepL, Google, Bing, Apple, Baidu, Tencent, Volcano, Youdao and Caiyun translation.",
-      "icon": "Eudic.png",
+      "icon": "extension-icon.png",
       "author": "isfeng",
       "contributors": [
         "ViGeng",
@@ -70570,6 +70697,31 @@
           "required": false,
           "description": "Hide country flags next to language names, respecting that flags represent countries, not languages.",
           "default": false
+        },
+        {
+          "title": "Anki",
+          "name": "enableAutomaticAddFavoriteToAnki",
+          "type": "checkbox",
+          "label": "Add Favorites to Anki Automatically",
+          "required": false,
+          "description": "When a word is added to Favorites, also add it to Anki through the AnkiConnect add-on. Removing a favorite does not delete its Anki card.",
+          "default": false
+        },
+        {
+          "title": "Anki Deck",
+          "name": "ankiDeckName",
+          "type": "textfield",
+          "required": true,
+          "default": "Easydict",
+          "description": "Deck used when adding favorites to Anki. It is created in Anki if it does not exist."
+        },
+        {
+          "title": "AnkiConnect URL",
+          "name": "ankiConnectUrl",
+          "type": "textfield",
+          "required": true,
+          "default": "http://127.0.0.1:8765",
+          "description": "Address of the AnkiConnect add-on. Change it when AnkiConnect listens on a custom port or on another machine."
         },
         {
           "title": "Dictionary Services",
@@ -77720,6 +77872,54 @@
               "value": "lark"
             }
           ]
+        }
+      ]
+    },
+    {
+      "name": "fenn-search",
+      "title": "Fenn Search",
+      "description": "Search text in videos, spoken words in audio, and content inside Sketch files and documents with Fenn.",
+      "icon": "icon.png",
+      "author": "thoddnn",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Applications"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/thoddnn/fenn-search",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/fenn-search",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search",
+          "title": "Search Fenn",
+          "description": "Find content inside videos, audio, Sketch files, and documents. Switch search modes and filter file types. Requires Fenn 1.3.3 or newer and a valid Fenn license.",
+          "mode": "view",
+          "keywords": [
+            "files",
+            "documents",
+            "audio",
+            "video",
+            "sketch"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiToken",
+          "title": "Fenn API Token",
+          "description": "Leave empty for normal setup. Open Fenn 1.3.3 or newer and the connection is configured automatically. This is not your Fenn license key.",
+          "type": "password",
+          "required": false
         }
       ]
     },
@@ -123955,6 +124155,103 @@
       "preferences": []
     },
     {
+      "name": "jev",
+      "title": "Jev",
+      "description": "Run saved checks, file documents into configured folders, and search browser bookmarks with TypeSafe Jev.",
+      "icon": "icon.png",
+      "author": "Olli0103",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/Olli0103/jev",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/jev",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "run-preset",
+          "title": "Run Preset",
+          "subtitle": "Jev",
+          "description": "Check or categorize selected text with a saved preset.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "file-documents",
+          "title": "File Documents",
+          "subtitle": "Jev",
+          "description": "Review and move selected documents into configured folders, with undo.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-links",
+          "title": "Search Links",
+          "subtitle": "Jev",
+          "description": "Search selected browser bookmarks by words or meaning.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "manage-presets",
+          "title": "Manage Presets",
+          "subtitle": "Jev",
+          "description": "Create, edit, duplicate, and export your text checks and categories.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "filing-history",
+          "title": "Filing History",
+          "subtitle": "Jev",
+          "description": "Inspect document moves and safely undo them.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "backup-restore",
+          "title": "Backup and Restore",
+          "subtitle": "Jev",
+          "description": "Export Jev settings and links, or recover a previous version.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "type": "password",
+          "title": "TypeSafe API Key",
+          "description": "Get a key at console.typesafe.ai. Used only for explicit Jev requests. Manual filing and keyword bookmark search work without it.",
+          "required": false
+        },
+        {
+          "name": "model",
+          "type": "textfield",
+          "title": "Model",
+          "description": "TypeSafe model identifier.",
+          "default": "jev-latest",
+          "required": false,
+          "placeholder": "jev-latest"
+        }
+      ]
+    },
+    {
       "name": "jira",
       "title": "Jira",
       "description": "Manage Jira issues with customizable views, sprint-aware sections, and quick actions.",
@@ -132504,7 +132801,10 @@
         "Documentation"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "storeUrl": "https://www.raycast.com/KevinBatdorf/laravel-artisan",
       "source": {
         "type": "github-monorepo",
@@ -137341,7 +137641,7 @@
         },
         {
           "name": "uuid",
-          "description": "Optional. Leave empty to find your desk automatically, or use the Select Desk command to pick one.",
+          "description": "Optional. Leave empty to find your desk automatically. Select Desk overrides this.",
           "type": "textfield",
           "required": false,
           "title": "Desk identifier",
@@ -140407,6 +140707,57 @@
           "description": "Set the API Key for your Logtail account",
           "type": "password",
           "required": true
+        }
+      ]
+    },
+    {
+      "name": "lokalbot",
+      "title": "LokalBot",
+      "description": "Find what you said or saw on your Mac. Search LokalBot meeting transcripts and summaries from Raycast.",
+      "icon": "icon.png",
+      "author": "stevan_bogosavljevic",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/stevan_bogosavljevic/lokalbot",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/lokalbot",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "quick-recall",
+          "title": "Quick Recall",
+          "description": "Search your LokalBot meeting memory by keyword across titles and summaries.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "recent-meetings",
+          "title": "Recent Meetings",
+          "description": "Browse your 20 most recent captured meetings with dates, durations, and capture flags.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "cliPath",
+          "title": "CLI Path",
+          "description": "Path to lokalbot-cli. Defaults to \"lokalbot-cli\" on PATH; falls back to /Applications/LokalBot.app/Contents/Helpers/lokalbot-cli if not found.",
+          "type": "textfield",
+          "required": false,
+          "default": "lokalbot-cli"
         }
       ]
     },
@@ -148201,7 +148552,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/memradar/memradar",
       "source": {
@@ -151984,7 +152336,7 @@
     {
       "name": "mint-mac-care",
       "title": "Mint",
-      "description": "Review AI-tool storage, clean disk space, release memory, uninstall apps, redact files, and undo through Mint",
+      "description": "See what fills your Mac, get space back without deleting anything, clean, organize folders, free memory and uninstall apps through Mint",
       "icon": "extension-icon.png",
       "author": "dzg-studio",
       "contributors": [],
@@ -152006,81 +152358,102 @@
       "commands": [
         {
           "name": "mint-status",
-          "title": "View Mint Status",
+          "title": "View Mac Status",
           "subtitle": "Mint",
-          "description": "View disk trends, recent activity, and managed folders",
+          "description": "Disk, memory and your organized folders on one screen, like Mint's menu bar",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "disk",
+            "storage",
+            "space",
+            "free space"
+          ],
           "preferences": []
         },
         {
-          "name": "mint-agents",
-          "title": "Review AI Agent Storage",
+          "name": "mint-optimize",
+          "title": "Optimize Storage",
           "subtitle": "Mint",
-          "description": "See what Codex, Claude, Cursor, and other AI tools keep on this Mac",
+          "description": "Identical copies share their storage. Nothing is deleted and every file stays where it is",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "duplicates",
+            "copies",
+            "clone",
+            "space"
+          ],
           "preferences": []
         },
         {
           "name": "mint-scan",
           "title": "Free Disk",
           "subtitle": "Mint",
-          "description": "Scan, review, and clean with optional duplicate, similar-photo, and AI archive checks",
+          "description": "Mint's groups with what is in each: optimize copies, clean what apps make again, choose from your own files",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "clean",
+            "cache",
+            "junk",
+            "space"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "mint-organize",
+          "title": "Organize a Folder",
+          "subtitle": "Mint",
+          "description": "How many files each folder has to sort and where they go, then organize it in one step",
+          "mode": "view",
+          "keywords": [
+            "desktop",
+            "downloads",
+            "tidy",
+            "sort"
+          ],
           "preferences": []
         },
         {
           "name": "mint-memory",
           "title": "Free Memory",
           "subtitle": "Mint",
-          "description": "Review running apps and safely release memory with Mint Boundaries",
+          "description": "Quit every idle app in one step, or choose the apps to quit",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "ram",
+            "memory"
+          ],
           "preferences": []
         },
         {
           "name": "mint-uninstall",
           "title": "Uninstall App",
           "subtitle": "Mint",
-          "description": "Find an app and its leftovers, review them, and move selected items to Trash",
+          "description": "Find an app and what it left behind, then move them to the Trash",
           "mode": "view",
-          "keywords": [],
-          "preferences": []
-        },
-        {
-          "name": "mint-redact",
-          "title": "Quick Redact",
-          "subtitle": "Mint",
-          "description": "Detect sensitive areas locally and save a redacted PDF or image without leaving Raycast",
-          "mode": "view",
-          "keywords": [],
-          "preferences": []
-        },
-        {
-          "name": "mint-full-redact",
-          "title": "Full Redact in Mint",
-          "subtitle": "Mint",
-          "description": "Open a PDF or image in Mint's full visual redaction editor",
-          "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "remove",
+            "delete app",
+            "leftovers"
+          ],
           "preferences": []
         },
         {
           "name": "mint-undo",
           "title": "Undo Mint Action",
           "subtitle": "Mint",
-          "description": "Restore a recoverable Mint cleanup, uninstall, or file organization action",
+          "description": "Put back files from a recent cleanup, uninstall or organize run",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "restore",
+            "revert"
+          ],
           "preferences": []
         },
         {
           "name": "mint-why",
-          "title": "Explain Disk Growth or File Activity",
+          "title": "Show Disk Growth",
           "subtitle": "Mint",
-          "description": "Explain storage growth or investigate Mint operations involving a path",
+          "description": "What grew on your disk this week, by app, folder, category or AI tool",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -155560,8 +155933,8 @@
     {
       "name": "moodist",
       "title": "Moodist",
-      "description": "Ambient sound mixer for focus and relaxation. Layer multiple sounds, save presets, and control from your menu bar.",
-      "icon": "icon.png",
+      "description": "Ambient sound mixer for focus and relaxation. Layer over 80 sounds, save presets, set a sleep timer, and control it all from your menu bar.",
+      "icon": "extension-icon.png",
       "author": "chandlervdw",
       "contributors": [
         "pernielsentikaer"
@@ -155586,7 +155959,7 @@
           "name": "mix-sounds",
           "title": "Mix Sounds",
           "subtitle": "Moodist",
-          "description": "Browse and mix ambient sounds with individual volume control",
+          "description": "Browse, play, and mix ambient sounds with individual and master volume",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -155595,7 +155968,7 @@
           "name": "toggle-playback",
           "title": "Toggle Playback",
           "subtitle": "Moodist",
-          "description": "Play or pause the current sound mix",
+          "description": "Pause or resume the current mix",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -155613,8 +155986,17 @@
           "name": "manage-presets",
           "title": "Manage Presets",
           "subtitle": "Moodist",
-          "description": "Save, load, and delete sound mix presets",
+          "description": "Save, load, pin, and delete sound mix presets",
           "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "load-preset",
+          "title": "Play Preset",
+          "subtitle": "Moodist",
+          "description": "Play a saved preset by name. Create a quicklink from Manage Presets to give a preset its own hotkey",
+          "mode": "no-view",
           "keywords": [],
           "preferences": []
         },
@@ -155622,7 +156004,7 @@
           "name": "set-timer",
           "title": "Set Sleep Timer",
           "subtitle": "Moodist",
-          "description": "Set an auto-stop timer for the current mix",
+          "description": "Pause the mix after a set time",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -155631,16 +156013,7 @@
           "name": "stop-all",
           "title": "Stop All Sounds",
           "subtitle": "Moodist",
-          "description": "Stop all playing sounds and kill any orphaned processes",
-          "mode": "no-view",
-          "keywords": [],
-          "preferences": []
-        },
-        {
-          "name": "keep-alive",
-          "title": "Keep Alive",
-          "subtitle": "Moodist",
-          "description": "Background task that restarts sounds if they stop unexpectedly",
+          "description": "Stop every sound and clear the mix",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -155650,10 +156023,32 @@
         {
           "name": "defaultVolume",
           "title": "Default Volume",
-          "description": "Default volume when adding a new sound (0-100)",
-          "type": "textfield",
-          "default": "75",
-          "required": false
+          "description": "Volume for a sound you add to the mix",
+          "type": "dropdown",
+          "default": "50",
+          "required": false,
+          "data": [
+            {
+              "title": "10%",
+              "value": "10"
+            },
+            {
+              "title": "25%",
+              "value": "25"
+            },
+            {
+              "title": "50%",
+              "value": "50"
+            },
+            {
+              "title": "75%",
+              "value": "75"
+            },
+            {
+              "title": "100%",
+              "value": "100"
+            }
+          ]
         },
         {
           "name": "showMenuBarCount",
@@ -155665,6 +156060,50 @@
           "label": "Show count"
         }
       ]
+    },
+    {
+      "name": "moon-mansions",
+      "title": "Moon Mansions",
+      "description": "Moon phase, illumination, zodiac and VOC plus Arab manazil, Vedic nakshatra, Chinese xiu, classical planets and traditional calendars.",
+      "icon": "extension_icon.png",
+      "author": "minhaaj_rehman",
+      "contributors": [],
+      "categories": [
+        "Other"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/minhaaj_rehman/moon-mansions",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/moon-mansions",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "info",
+          "title": "Show Moon Info",
+          "subtitle": "Moon Mansions",
+          "description": "Phase, illumination, zodiac and lunar mansion",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "menu-bar",
+          "title": "Moon in Menu Bar",
+          "subtitle": "Moon Mansions",
+          "description": "Phase emoji, illumination % and mansion in the menu bar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "moon-phrase",
@@ -157795,6 +158234,109 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "music-recognizer",
+      "title": "Music Recognizer",
+      "description": "Identify the song playing on your PC by recording a few seconds of system audio.",
+      "icon": "icon.png",
+      "author": "erenalparslan",
+      "contributors": [],
+      "categories": [
+        "Media"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/erenalparslan/music-recognizer",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/music-recognizer",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "recognize",
+          "title": "Recognize",
+          "subtitle": "Music Recognizer",
+          "description": "Listen to what's playing and identify the song.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "history",
+          "title": "History",
+          "subtitle": "Music Recognizer",
+          "description": "Browse previously recognized songs.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiToken",
+          "title": "AudD API Token",
+          "description": "Your personal AudD API token from dashboard.audd.io. AudD offers a limited free trial; continued use needs a paid AudD plan.",
+          "type": "password",
+          "required": true
+        },
+        {
+          "name": "duration",
+          "title": "Recording Duration",
+          "description": "How long to record system audio before recognition. 5 seconds is usually plenty; longer clips only help when the recording is noisy.",
+          "type": "dropdown",
+          "required": false,
+          "default": "5",
+          "data": [
+            {
+              "title": "3 seconds",
+              "value": "3"
+            },
+            {
+              "title": "5 seconds",
+              "value": "5"
+            },
+            {
+              "title": "8 seconds",
+              "value": "8"
+            },
+            {
+              "title": "10 seconds",
+              "value": "10"
+            },
+            {
+              "title": "12 seconds",
+              "value": "12"
+            }
+          ]
+        },
+        {
+          "name": "primaryService",
+          "title": "Primary Music Service",
+          "description": "Shown as the first action after a match, so pressing Enter opens the song there.",
+          "type": "dropdown",
+          "required": false,
+          "default": "spotify",
+          "data": [
+            {
+              "title": "Spotify",
+              "value": "spotify"
+            },
+            {
+              "title": "YouTube Music",
+              "value": "youtubemusic"
+            },
+            {
+              "title": "Apple Music",
+              "value": "applemusic"
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "music-timer",
@@ -164842,6 +165384,67 @@
               "value": "setapp"
             }
           ]
+        }
+      ]
+    },
+    {
+      "name": "notify-africa-bulk-sms",
+      "title": "Notify Africa",
+      "description": "Send personalized bulk SMS with Notify Africa from Raycast.",
+      "icon": "icon.png",
+      "author": "john_ndelembi",
+      "contributors": [],
+      "categories": [
+        "Communication"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "1.0.0",
+      "storeUrl": "https://www.raycast.com/john_ndelembi/notify-africa-bulk-sms",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/notify-africa-bulk-sms",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "send-personalized-sms",
+          "title": "Send Personalized SMS",
+          "subtitle": "Notify Africa",
+          "description": "Send a distinct SMS to each recipient.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "send-bulk-sms",
+          "title": "Send SMS",
+          "subtitle": "Notify Africa",
+          "description": "Send one SMS body to many recipients.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "send-sms-from-file",
+          "title": "Send SMS from File",
+          "subtitle": "Notify Africa",
+          "description": "Send one SMS body to recipients in a CSV file.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "title": "API Key",
+          "description": "A Notify Africa API key authorized for Bulk SMS.",
+          "type": "password",
+          "required": true
         }
       ]
     },
@@ -182643,24 +183246,32 @@
                   "title": "Follow global model"
                 },
                 {
-                  "value": "sonar",
-                  "title": "Sonar 128k"
+                  "value": "fast",
+                  "title": "Fast"
                 },
                 {
-                  "value": "sonar-pro",
-                  "title": "Sonar Pro 200k"
+                  "value": "low",
+                  "title": "Low"
                 },
                 {
-                  "value": "sonar-reasoning",
-                  "title": "Sonar Reasoning 128k"
+                  "value": "medium",
+                  "title": "Medium"
                 },
                 {
-                  "value": "sonar-reasoning-pro",
-                  "title": "Sonar Reasoning Pro 128k"
+                  "value": "high",
+                  "title": "High (Deep Research)"
                 },
                 {
-                  "value": "sonar-deep-research",
-                  "title": "Sonar Deep Research"
+                  "value": "xhigh",
+                  "title": "Extra High"
+                },
+                {
+                  "value": "openai/gpt-5.6-sol",
+                  "title": "GPT-5.6 Sol"
+                },
+                {
+                  "value": "openai/gpt-5.6-luna",
+                  "title": "GPT-5.6 Luna"
                 }
               ]
             }
@@ -182694,20 +183305,32 @@
                   "title": "Follow global model"
                 },
                 {
-                  "value": "sonar",
-                  "title": "Sonar 128k"
+                  "value": "fast",
+                  "title": "Fast"
                 },
                 {
-                  "value": "sonar-pro",
-                  "title": "Sonar Pro 200k"
+                  "value": "low",
+                  "title": "Low"
                 },
                 {
-                  "value": "sonar-reasoning",
-                  "title": "Sonar Reasoning 128k"
+                  "value": "medium",
+                  "title": "Medium"
                 },
                 {
-                  "value": "sonar-reasoning-pro",
-                  "title": "Sonar Reasoning Pro 128k"
+                  "value": "high",
+                  "title": "High (Deep Research)"
+                },
+                {
+                  "value": "xhigh",
+                  "title": "Extra High"
+                },
+                {
+                  "value": "openai/gpt-5.6-sol",
+                  "title": "GPT-5.6 Sol"
+                },
+                {
+                  "value": "openai/gpt-5.6-luna",
+                  "title": "GPT-5.6 Luna"
                 }
               ]
             }
@@ -182741,20 +183364,32 @@
                   "title": "Follow global model"
                 },
                 {
-                  "value": "sonar",
-                  "title": "Sonar 128k"
+                  "value": "fast",
+                  "title": "Fast"
                 },
                 {
-                  "value": "sonar-pro",
-                  "title": "Sonar Pro 200k"
+                  "value": "low",
+                  "title": "Low"
                 },
                 {
-                  "value": "sonar-reasoning",
-                  "title": "Sonar Reasoning 128k"
+                  "value": "medium",
+                  "title": "Medium"
                 },
                 {
-                  "value": "sonar-reasoning-pro",
-                  "title": "Sonar Reasoning Pro 128k"
+                  "value": "high",
+                  "title": "High (Deep Research)"
+                },
+                {
+                  "value": "xhigh",
+                  "title": "Extra High"
+                },
+                {
+                  "value": "openai/gpt-5.6-sol",
+                  "title": "GPT-5.6 Sol"
+                },
+                {
+                  "value": "openai/gpt-5.6-luna",
+                  "title": "GPT-5.6 Luna"
                 }
               ]
             }
@@ -182788,20 +183423,32 @@
                   "title": "Follow global model"
                 },
                 {
-                  "value": "sonar",
-                  "title": "Sonar 128k"
+                  "value": "fast",
+                  "title": "Fast"
                 },
                 {
-                  "value": "sonar-pro",
-                  "title": "Sonar Pro 200k"
+                  "value": "low",
+                  "title": "Low"
                 },
                 {
-                  "value": "sonar-reasoning",
-                  "title": "Sonar Reasoning 128k"
+                  "value": "medium",
+                  "title": "Medium"
                 },
                 {
-                  "value": "sonar-reasoning-pro",
-                  "title": "Sonar Reasoning Pro 128k"
+                  "value": "high",
+                  "title": "High (Deep Research)"
+                },
+                {
+                  "value": "xhigh",
+                  "title": "Extra High"
+                },
+                {
+                  "value": "openai/gpt-5.6-sol",
+                  "title": "GPT-5.6 Sol"
+                },
+                {
+                  "value": "openai/gpt-5.6-luna",
+                  "title": "GPT-5.6 Luna"
                 }
               ]
             }
@@ -182835,20 +183482,32 @@
                   "title": "Follow global model"
                 },
                 {
-                  "value": "sonar",
-                  "title": "Sonar 128k"
+                  "value": "fast",
+                  "title": "Fast"
                 },
                 {
-                  "value": "sonar-pro",
-                  "title": "Sonar Pro 200k"
+                  "value": "low",
+                  "title": "Low"
                 },
                 {
-                  "value": "sonar-reasoning",
-                  "title": "Sonar Reasoning 128k"
+                  "value": "medium",
+                  "title": "Medium"
                 },
                 {
-                  "value": "sonar-reasoning-pro",
-                  "title": "Sonar Reasoning Pro 128k"
+                  "value": "high",
+                  "title": "High (Deep Research)"
+                },
+                {
+                  "value": "xhigh",
+                  "title": "Extra High"
+                },
+                {
+                  "value": "openai/gpt-5.6-sol",
+                  "title": "GPT-5.6 Sol"
+                },
+                {
+                  "value": "openai/gpt-5.6-luna",
+                  "title": "GPT-5.6 Luna"
                 }
               ]
             }
@@ -182882,20 +183541,32 @@
                   "title": "Follow global model"
                 },
                 {
-                  "value": "sonar",
-                  "title": "Sonar 128k"
+                  "value": "fast",
+                  "title": "Fast"
                 },
                 {
-                  "value": "sonar-pro",
-                  "title": "Sonar Pro 200k"
+                  "value": "low",
+                  "title": "Low"
                 },
                 {
-                  "value": "sonar-reasoning",
-                  "title": "Sonar Reasoning 128k"
+                  "value": "medium",
+                  "title": "Medium"
                 },
                 {
-                  "value": "sonar-reasoning-pro",
-                  "title": "Sonar Reasoning Pro 128k"
+                  "value": "high",
+                  "title": "High (Deep Research)"
+                },
+                {
+                  "value": "xhigh",
+                  "title": "Extra High"
+                },
+                {
+                  "value": "openai/gpt-5.6-sol",
+                  "title": "GPT-5.6 Sol"
+                },
+                {
+                  "value": "openai/gpt-5.6-luna",
+                  "title": "GPT-5.6 Luna"
                 }
               ]
             }
@@ -182937,20 +183608,32 @@
                   "title": "Follow global model"
                 },
                 {
-                  "value": "sonar",
-                  "title": "Sonar 128k"
+                  "value": "fast",
+                  "title": "Fast"
                 },
                 {
-                  "value": "sonar-pro",
-                  "title": "Sonar Pro 200k"
+                  "value": "low",
+                  "title": "Low"
                 },
                 {
-                  "value": "sonar-reasoning",
-                  "title": "Sonar Reasoning 128k"
+                  "value": "medium",
+                  "title": "Medium"
                 },
                 {
-                  "value": "sonar-reasoning-pro",
-                  "title": "Sonar Reasoning Pro 128k"
+                  "value": "high",
+                  "title": "High (Deep Research)"
+                },
+                {
+                  "value": "xhigh",
+                  "title": "Extra High"
+                },
+                {
+                  "value": "openai/gpt-5.6-sol",
+                  "title": "GPT-5.6 Sol"
+                },
+                {
+                  "value": "openai/gpt-5.6-luna",
+                  "title": "GPT-5.6 Luna"
                 }
               ]
             }
@@ -182992,20 +183675,32 @@
                   "title": "Follow global model"
                 },
                 {
-                  "value": "sonar",
-                  "title": "Sonar 128k"
+                  "value": "fast",
+                  "title": "Fast"
                 },
                 {
-                  "value": "sonar-pro",
-                  "title": "Sonar Pro 200k"
+                  "value": "low",
+                  "title": "Low"
                 },
                 {
-                  "value": "sonar-reasoning",
-                  "title": "Sonar Reasoning 128k"
+                  "value": "medium",
+                  "title": "Medium"
                 },
                 {
-                  "value": "sonar-reasoning-pro",
-                  "title": "Sonar Reasoning Pro 128k"
+                  "value": "high",
+                  "title": "High (Deep Research)"
+                },
+                {
+                  "value": "xhigh",
+                  "title": "Extra High"
+                },
+                {
+                  "value": "openai/gpt-5.6-sol",
+                  "title": "GPT-5.6 Sol"
+                },
+                {
+                  "value": "openai/gpt-5.6-luna",
+                  "title": "GPT-5.6 Luna"
                 }
               ]
             }
@@ -183039,20 +183734,32 @@
                   "title": "Follow global model"
                 },
                 {
-                  "value": "sonar",
-                  "title": "Sonar 128k"
+                  "value": "fast",
+                  "title": "Fast"
                 },
                 {
-                  "value": "sonar-pro",
-                  "title": "Sonar Pro 200k"
+                  "value": "low",
+                  "title": "Low"
                 },
                 {
-                  "value": "sonar-reasoning",
-                  "title": "Sonar Reasoning 128k"
+                  "value": "medium",
+                  "title": "Medium"
                 },
                 {
-                  "value": "sonar-reasoning-pro",
-                  "title": "Sonar Reasoning Pro 128k"
+                  "value": "high",
+                  "title": "High (Deep Research)"
+                },
+                {
+                  "value": "xhigh",
+                  "title": "Extra High"
+                },
+                {
+                  "value": "openai/gpt-5.6-sol",
+                  "title": "GPT-5.6 Sol"
+                },
+                {
+                  "value": "openai/gpt-5.6-luna",
+                  "title": "GPT-5.6 Luna"
                 }
               ]
             }
@@ -183086,20 +183793,32 @@
                   "title": "Follow global model"
                 },
                 {
-                  "value": "sonar",
-                  "title": "Sonar 128k"
+                  "value": "fast",
+                  "title": "Fast"
                 },
                 {
-                  "value": "sonar-pro",
-                  "title": "Sonar Pro 200k"
+                  "value": "low",
+                  "title": "Low"
                 },
                 {
-                  "value": "sonar-reasoning",
-                  "title": "Sonar Reasoning 128k"
+                  "value": "medium",
+                  "title": "Medium"
                 },
                 {
-                  "value": "sonar-reasoning-pro",
-                  "title": "Sonar Reasoning Pro 128k"
+                  "value": "high",
+                  "title": "High (Deep Research)"
+                },
+                {
+                  "value": "xhigh",
+                  "title": "Extra High"
+                },
+                {
+                  "value": "openai/gpt-5.6-sol",
+                  "title": "GPT-5.6 Sol"
+                },
+                {
+                  "value": "openai/gpt-5.6-luna",
+                  "title": "GPT-5.6 Luna"
                 }
               ]
             }
@@ -183133,20 +183852,32 @@
                   "title": "Follow global model"
                 },
                 {
-                  "value": "sonar",
-                  "title": "Sonar 128k"
+                  "value": "fast",
+                  "title": "Fast"
                 },
                 {
-                  "value": "sonar-pro",
-                  "title": "Sonar Pro 200k"
+                  "value": "low",
+                  "title": "Low"
                 },
                 {
-                  "value": "sonar-reasoning",
-                  "title": "Sonar Reasoning 128k"
+                  "value": "medium",
+                  "title": "Medium"
                 },
                 {
-                  "value": "sonar-reasoning-pro",
-                  "title": "Sonar Reasoning Pro 128k"
+                  "value": "high",
+                  "title": "High (Deep Research)"
+                },
+                {
+                  "value": "xhigh",
+                  "title": "Extra High"
+                },
+                {
+                  "value": "openai/gpt-5.6-sol",
+                  "title": "GPT-5.6 Sol"
+                },
+                {
+                  "value": "openai/gpt-5.6-luna",
+                  "title": "GPT-5.6 Luna"
                 }
               ]
             }
@@ -183180,20 +183911,32 @@
                   "title": "Follow global model"
                 },
                 {
-                  "value": "sonar",
-                  "title": "Sonar 128k"
+                  "value": "fast",
+                  "title": "Fast"
                 },
                 {
-                  "value": "sonar-pro",
-                  "title": "Sonar Pro 200k"
+                  "value": "low",
+                  "title": "Low"
                 },
                 {
-                  "value": "sonar-reasoning",
-                  "title": "Sonar Reasoning 128k"
+                  "value": "medium",
+                  "title": "Medium"
                 },
                 {
-                  "value": "sonar-reasoning-pro",
-                  "title": "Sonar Reasoning Pro 128k"
+                  "value": "high",
+                  "title": "High (Deep Research)"
+                },
+                {
+                  "value": "xhigh",
+                  "title": "Extra High"
+                },
+                {
+                  "value": "openai/gpt-5.6-sol",
+                  "title": "GPT-5.6 Sol"
+                },
+                {
+                  "value": "openai/gpt-5.6-luna",
+                  "title": "GPT-5.6 Luna"
                 }
               ]
             }
@@ -183227,20 +183970,32 @@
                   "title": "Follow global model"
                 },
                 {
-                  "value": "sonar",
-                  "title": "Sonar 128k"
+                  "value": "fast",
+                  "title": "Fast"
                 },
                 {
-                  "value": "sonar-pro",
-                  "title": "Sonar Pro 200k"
+                  "value": "low",
+                  "title": "Low"
                 },
                 {
-                  "value": "sonar-reasoning",
-                  "title": "Sonar Reasoning 128k"
+                  "value": "medium",
+                  "title": "Medium"
                 },
                 {
-                  "value": "sonar-reasoning-pro",
-                  "title": "Sonar Reasoning Pro 128k"
+                  "value": "high",
+                  "title": "High (Deep Research)"
+                },
+                {
+                  "value": "xhigh",
+                  "title": "Extra High"
+                },
+                {
+                  "value": "openai/gpt-5.6-sol",
+                  "title": "GPT-5.6 Sol"
+                },
+                {
+                  "value": "openai/gpt-5.6-luna",
+                  "title": "GPT-5.6 Luna"
                 }
               ]
             }
@@ -183274,20 +184029,32 @@
                   "title": "Follow global model"
                 },
                 {
-                  "value": "sonar",
-                  "title": "Sonar 128k"
+                  "value": "fast",
+                  "title": "Fast"
                 },
                 {
-                  "value": "sonar-pro",
-                  "title": "Sonar Pro 200k"
+                  "value": "low",
+                  "title": "Low"
                 },
                 {
-                  "value": "sonar-reasoning",
-                  "title": "Sonar Reasoning 128k"
+                  "value": "medium",
+                  "title": "Medium"
                 },
                 {
-                  "value": "sonar-reasoning-pro",
-                  "title": "Sonar Reasoning Pro 128k"
+                  "value": "high",
+                  "title": "High (Deep Research)"
+                },
+                {
+                  "value": "xhigh",
+                  "title": "Extra High"
+                },
+                {
+                  "value": "openai/gpt-5.6-sol",
+                  "title": "GPT-5.6 Sol"
+                },
+                {
+                  "value": "openai/gpt-5.6-luna",
+                  "title": "GPT-5.6 Luna"
                 }
               ]
             }
@@ -183321,20 +184088,32 @@
                   "title": "Follow global model"
                 },
                 {
-                  "value": "sonar",
-                  "title": "Sonar 128k"
+                  "value": "fast",
+                  "title": "Fast"
                 },
                 {
-                  "value": "sonar-pro",
-                  "title": "Sonar Pro 200k"
+                  "value": "low",
+                  "title": "Low"
                 },
                 {
-                  "value": "sonar-reasoning",
-                  "title": "Sonar Reasoning 128k"
+                  "value": "medium",
+                  "title": "Medium"
                 },
                 {
-                  "value": "sonar-reasoning-pro",
-                  "title": "Sonar Reasoning Pro 128k"
+                  "value": "high",
+                  "title": "High (Deep Research)"
+                },
+                {
+                  "value": "xhigh",
+                  "title": "Extra High"
+                },
+                {
+                  "value": "openai/gpt-5.6-sol",
+                  "title": "GPT-5.6 Sol"
+                },
+                {
+                  "value": "openai/gpt-5.6-luna",
+                  "title": "GPT-5.6 Luna"
                 }
               ]
             }
@@ -183356,23 +184135,35 @@
           "description": "LLM model to use for all your commands.",
           "type": "dropdown",
           "required": true,
-          "default": "sonar",
+          "default": "fast",
           "data": [
             {
-              "value": "sonar",
-              "title": "Sonar 128k"
+              "value": "fast",
+              "title": "Fast"
             },
             {
-              "value": "sonar-pro",
-              "title": "Sonar Pro 200k"
+              "value": "low",
+              "title": "Low"
             },
             {
-              "value": "sonar-reasoning",
-              "title": "Sonar Reasoning 128k"
+              "value": "medium",
+              "title": "Medium"
             },
             {
-              "value": "sonar-reasoning-pro",
-              "title": "Sonar Reasoning Pro 128k"
+              "value": "high",
+              "title": "High (Deep Research)"
+            },
+            {
+              "value": "xhigh",
+              "title": "Extra High"
+            },
+            {
+              "value": "openai/gpt-5.6-sol",
+              "title": "GPT-5.6 Sol"
+            },
+            {
+              "value": "openai/gpt-5.6-luna",
+              "title": "GPT-5.6 Luna"
             }
           ]
         },
@@ -193907,6 +194698,59 @@
       "preferences": []
     },
     {
+      "name": "privmask",
+      "title": "Privacy Mask",
+      "description": "Find personal information in text and mask it before you share it, entirely on your Mac — Japanese names, addresses and My Numbers included.",
+      "icon": "privmask-icon.png",
+      "author": "snaka",
+      "contributors": [],
+      "categories": [
+        "Security",
+        "Developer Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/snaka/privmask",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/privmask",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "mask-text",
+          "title": "Mask Text",
+          "description": "Review the personal information found in your selection or clipboard, then copy the masked text.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "useModel",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "title": "Detection",
+          "label": "Use the on-device language model",
+          "description": "Japanese personal names are found only by this layer. Requires macOS 26 with Apple Intelligence; without it, names are not detected at all."
+        },
+        {
+          "name": "dictionaryPath",
+          "type": "textfield",
+          "required": false,
+          "title": "Term List",
+          "placeholder": "~/.config/privmask/terms.txt",
+          "description": "A plain text file, one term per line: customer names, company names, project code names. Shared with the privmask CLI."
+        }
+      ]
+    },
+    {
       "name": "productboard",
       "title": "Productboard",
       "description": "Add and view notes in Productboard quickly. Supports markdown.",
@@ -195474,7 +196318,7 @@
           "name": "cacheExpiration",
           "type": "dropdown",
           "title": "Cache Expiration",
-          "description": "How long cached metadata remains usable. Background Refresh can update it sooner.",
+          "description": "How long cached metadata is considered fresh. Older data is still shown instantly while it refreshes in the background.",
           "default": "5",
           "required": false,
           "data": [
@@ -207998,6 +208842,7 @@
         "pernielsentikaer",
         "xilopaint",
         "stelo",
+        "ray.dhruv",
         "alexi.build"
       ],
       "categories": [
@@ -208106,7 +208951,7 @@
                   "value": "current"
                 },
                 {
-                  "title": "Monitor",
+                  "title": "All Monitors",
                   "value": "every"
                 }
               ],
@@ -208151,7 +208996,7 @@
                   "value": "current"
                 },
                 {
-                  "title": "Monitor",
+                  "title": "All Monitors",
                   "value": "every"
                 }
               ],
@@ -230071,7 +230916,7 @@
           "description": "View and manage your backups",
           "mode": "view",
           "keywords": [],
-          "icon": "simplebackups-ico-64.png",
+          "icon": "simplebackups-icon.png",
           "preferences": []
         }
       ],
@@ -242748,7 +243593,7 @@
     {
       "name": "steam",
       "title": "Steam",
-      "description": "Search and view information about any game on steam, as well as games you own.",
+      "description": "Search Steam games and users, view game details, and browse the games you own.",
       "icon": "command-icon.png",
       "author": "KevinBatdorf",
       "contributors": [
@@ -242797,7 +243642,7 @@
           "name": "token",
           "type": "password",
           "title": "Web API Key",
-          "description": "Add your Steam Web API key",
+          "description": "Enables local mode for fast searches: https://steamcommunity.com/dev/apikey",
           "placeholder": "Web API Key",
           "required": false
         },
@@ -242805,8 +243650,71 @@
           "name": "steamid",
           "type": "textfield",
           "title": "Steam ID",
-          "description": "Add your Steam ID",
-          "placeholder": "Steam ID",
+          "description": "Steam ID, profile URL, or custom URL name",
+          "placeholder": "Steam ID or profile URL",
+          "required": false
+        },
+        {
+          "name": "indexRefresh",
+          "type": "dropdown",
+          "title": "Game List Refresh",
+          "description": "How often to refresh the game list",
+          "required": false,
+          "default": "1",
+          "data": [
+            {
+              "title": "Daily",
+              "value": "1"
+            },
+            {
+              "title": "Weekly",
+              "value": "7"
+            }
+          ]
+        },
+        {
+          "name": "showGames",
+          "type": "checkbox",
+          "title": "Show",
+          "label": "Games",
+          "description": "Include games",
+          "default": true,
+          "required": false
+        },
+        {
+          "name": "showSoftware",
+          "type": "checkbox",
+          "title": "",
+          "label": "Software like 3DMark",
+          "description": "Include software",
+          "default": true,
+          "required": false
+        },
+        {
+          "name": "showDlc",
+          "type": "checkbox",
+          "title": "",
+          "label": "DLC and soundtracks",
+          "description": "Include DLC and soundtracks",
+          "default": true,
+          "required": false
+        },
+        {
+          "name": "showVideos",
+          "type": "checkbox",
+          "title": "",
+          "label": "Videos",
+          "description": "Include videos",
+          "default": true,
+          "required": false
+        },
+        {
+          "name": "showHardware",
+          "type": "checkbox",
+          "title": "",
+          "label": "Hardware",
+          "description": "Include hardware",
+          "default": true,
           "required": false
         }
       ]
@@ -245031,14 +245939,14 @@
       "title": "Sun/Moon Times",
       "description": "Show times for sun and moon for any city in the World.",
       "icon": "extension_icon@512px.png",
-      "author": "danny_seidel",
+      "author": "DannySeidel",
       "contributors": [],
       "categories": [
         "Data"
       ],
       "license": "MIT",
       "platforms": [],
-      "storeUrl": "https://www.raycast.com/danny_seidel/sun-moon-times",
+      "storeUrl": "https://www.raycast.com/DannySeidel/sun-moon-times",
       "source": {
         "type": "github-monorepo",
         "repo": "raycast/extensions",
@@ -248642,6 +249550,162 @@
       ]
     },
     {
+      "name": "system-status",
+      "title": "System Status",
+      "description": "View Wi-Fi, volume, battery, time, and date on Windows from Raycast.",
+      "icon": "extension-icon.png",
+      "author": "JamexCEO",
+      "contributors": [],
+      "categories": [
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/JamexCEO/system-status",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/system-status",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "system-status",
+          "title": "System Status",
+          "subtitle": "Windows",
+          "description": "View Wi-Fi, volume, battery, time, and date.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "showSeconds",
+          "type": "checkbox",
+          "title": "Show Seconds",
+          "label": "Show seconds in time display",
+          "description": "Display seconds in the time row.",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "detailViewMode",
+          "type": "dropdown",
+          "title": "Detail View Mode",
+          "description": "Choose whether details appear in the side panel or open on a subpage.",
+          "required": false,
+          "default": "inline",
+          "data": [
+            {
+              "title": "Inline Side Panel",
+              "value": "inline"
+            },
+            {
+              "title": "Open Details on Enter",
+              "value": "subpage"
+            }
+          ]
+        },
+        {
+          "name": "timeFormat",
+          "type": "dropdown",
+          "title": "Time Format",
+          "description": "Choose how time is displayed.",
+          "required": false,
+          "default": "12h",
+          "data": [
+            {
+              "title": "12-hour",
+              "value": "12h"
+            },
+            {
+              "title": "24-hour, short",
+              "value": "24h-short"
+            },
+            {
+              "title": "24-hour, long",
+              "value": "24h-long"
+            }
+          ]
+        },
+        {
+          "name": "dateFormat",
+          "type": "dropdown",
+          "title": "Date Format",
+          "description": "Choose how the date row is displayed.",
+          "required": false,
+          "default": "D/MM/YYYY",
+          "data": [
+            {
+              "title": "D/MM/YYYY",
+              "value": "D/MM/YYYY"
+            },
+            {
+              "title": "D/MM/YY",
+              "value": "D/MM/YY"
+            },
+            {
+              "title": "D/M/YY",
+              "value": "D/M/YY"
+            },
+            {
+              "title": "D/M/YYYY",
+              "value": "D/M/YYYY"
+            },
+            {
+              "title": "DD/MM/YY",
+              "value": "DD/MM/YY"
+            },
+            {
+              "title": "DD/MM/YYYY",
+              "value": "DD/MM/YYYY"
+            },
+            {
+              "title": "DD-Mth-YY",
+              "value": "DD-Mth-YY"
+            },
+            {
+              "title": "DD-Month-YYYY",
+              "value": "DD-Month-YYYY"
+            },
+            {
+              "title": "YYYY-MM-DD",
+              "value": "YYYY-MM-DD"
+            },
+            {
+              "title": "YY/MM/DD",
+              "value": "YY/MM/DD"
+            },
+            {
+              "title": "YYYY/MM/DD",
+              "value": "YYYY/MM/DD"
+            }
+          ]
+        },
+        {
+          "name": "dateDetailFormat",
+          "type": "dropdown",
+          "title": "Date Detail Format",
+          "description": "Choose how the detailed date view is displayed.",
+          "required": false,
+          "default": "Day, D Month YYYY",
+          "data": [
+            {
+              "title": "Day, D Month YYYY",
+              "value": "Day, D Month YYYY"
+            },
+            {
+              "title": "D Month YYYY",
+              "value": "D Month YYYY"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "t3-chat",
       "title": "T3 Chat",
       "description": "Query T3 Chat directly from Raycast",
@@ -249145,6 +250209,85 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "t3-code",
+      "title": "T3 Code",
+      "description": "Start T3 Code sessions, search threads, and jump to the ones waiting on you.",
+      "icon": "icon.png",
+      "author": "skilux",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/skilux/t3-code",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/t3-code",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "ask-t3",
+          "title": "Prompt T3 Code",
+          "subtitle": "T3 Code",
+          "description": "Start a new T3 Code session with a prompt.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "waiting-threads",
+          "title": "Waiting T3 Threads",
+          "subtitle": "T3 Code",
+          "description": "Active threads where the agent has stopped and the ball is in your court.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-threads",
+          "title": "Search T3 Threads",
+          "subtitle": "T3 Code",
+          "description": "Search every live thread and open it in T3 Code.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "token",
+          "type": "password",
+          "required": true,
+          "title": "Access Token",
+          "description": "Bearer token from: t3 auth session issue --ttl 365d --label raycast --token-only",
+          "placeholder": "Paste the token printed by t3 auth session issue"
+        },
+        {
+          "name": "origin",
+          "type": "textfield",
+          "required": false,
+          "title": "Server Origin",
+          "default": "",
+          "description": "Override the T3 server origin. Empty reads ~/.t3/userdata/server-runtime.json.",
+          "placeholder": "http://127.0.0.1:3773"
+        },
+        {
+          "name": "appName",
+          "type": "textfield",
+          "required": false,
+          "title": "App Name",
+          "default": "T3 Code",
+          "description": "macOS application name used to launch and focus T3 Code.",
+          "placeholder": "T3 Code (Nightly)"
+        }
+      ]
     },
     {
       "name": "tabbit",
@@ -255460,14 +256603,14 @@
       "title": "The Matrix of Destiny",
       "description": "Quickly go to a date on the Matrix of Destiny",
       "icon": "icon.png",
-      "author": "unitech",
+      "author": "ordin",
       "contributors": [],
       "categories": [
         "Other"
       ],
       "license": "MIT",
       "platforms": [],
-      "storeUrl": "https://www.raycast.com/unitech/the-matrix-of-destiny",
+      "storeUrl": "https://www.raycast.com/ordin/the-matrix-of-destiny",
       "source": {
         "type": "github-monorepo",
         "repo": "raycast/extensions",
@@ -264925,9 +266068,9 @@
         },
         {
           "name": "up-next",
-          "title": "Up Next",
+          "title": "Continue Watching",
           "subtitle": "Trakt Manager",
-          "description": "Get the list of shows that are up next",
+          "description": "Continue watching shows and movies you have started, like Trakt's Continue Watching",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -267970,6 +269113,150 @@
       ]
     },
     {
+      "name": "try-museum",
+      "title": "Museum",
+      "description": "Find public domain artworks by color. Browse palettes, copy images, and discover art from museum collections.",
+      "icon": "museum-icon.png",
+      "author": "ray.dhruv",
+      "contributors": [],
+      "categories": [
+        "Design Tools",
+        "Applications"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows",
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/ray.dhruv/try-museum",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/try-museum",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "find-art-by-color",
+          "title": "Search Art by Color",
+          "description": "Find artworks using a hex value, CSS color name, RGB, or HSL color",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-art-from-clipboard",
+          "title": "Search Art from Clipboard or Selection",
+          "description": "Find art matching the color in selected text, falling back to the clipboard",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "pick-color-from-screen",
+          "title": "Pick Color from Screen",
+          "description": "Pick a screen color with the Color Picker extension and find matching art",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "random-artwork",
+          "title": "Random Artwork",
+          "description": "Discover a random public domain artwork and its palette",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "resultCount",
+          "type": "dropdown",
+          "title": "Result Count",
+          "description": "Maximum artworks shown in color searches",
+          "required": false,
+          "default": "48",
+          "data": [
+            {
+              "title": "24",
+              "value": "24"
+            },
+            {
+              "title": "48",
+              "value": "48"
+            },
+            {
+              "title": "96",
+              "value": "96"
+            }
+          ]
+        },
+        {
+          "name": "defaultAction",
+          "type": "dropdown",
+          "title": "Default Action",
+          "description": "Action performed when you press Enter on an artwork",
+          "required": false,
+          "default": "details",
+          "data": [
+            {
+              "title": "Show Details",
+              "value": "details"
+            },
+            {
+              "title": "Copy Image",
+              "value": "copy"
+            },
+            {
+              "title": "Open Source Page",
+              "value": "source"
+            }
+          ]
+        },
+        {
+          "name": "wallpaperScreen",
+          "type": "dropdown",
+          "title": "Wallpaper Screens",
+          "description": "On macOS, set wallpaper on all screens or the screen containing the pointer",
+          "required": false,
+          "default": "all",
+          "data": [
+            {
+              "title": "All Screens",
+              "value": "all"
+            },
+            {
+              "title": "Screen with Pointer",
+              "value": "current"
+            }
+          ]
+        },
+        {
+          "name": "refreshInterval",
+          "type": "dropdown",
+          "title": "Catalog Refresh Interval",
+          "description": "How often to check Museum for catalog changes. Use Refresh Catalog to check immediately.",
+          "required": false,
+          "default": "24",
+          "data": [
+            {
+              "title": "Every Hour",
+              "value": "1"
+            },
+            {
+              "title": "Daily",
+              "value": "24"
+            },
+            {
+              "title": "Weekly",
+              "value": "168"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "tscheck-in",
       "title": "Tscheck.In",
       "description": "Check-in questions for your team session",
@@ -269425,7 +270712,8 @@
       "author": "parker_klein",
       "contributors": [
         "ekafyi",
-        "ridemountainpig"
+        "ridemountainpig",
+        "timkelty"
       ],
       "categories": [
         "Productivity"
@@ -271963,14 +273251,14 @@
       "title": "UniTex - LaTeX Math to Unicode Text.",
       "description": "Convert LaTeX math to Unicode Text.",
       "icon": "command-icon.png",
-      "author": "jaykmody",
+      "author": "applepie",
       "contributors": [],
       "categories": [
         "Productivity"
       ],
       "license": "MIT",
       "platforms": [],
-      "storeUrl": "https://www.raycast.com/jaykmody/unitex",
+      "storeUrl": "https://www.raycast.com/applepie/unitex",
       "source": {
         "type": "github-monorepo",
         "repo": "raycast/extensions",
@@ -274259,7 +275547,7 @@
       "title": "UTM Virtual Machines",
       "description": "Launch and control virtual machines in UTM.",
       "icon": "command-icon.png",
-      "author": "alaidriel",
+      "author": "cecelot",
       "contributors": [],
       "categories": [
         "Developer Tools",
@@ -274267,7 +275555,7 @@
       ],
       "license": "MIT",
       "platforms": [],
-      "storeUrl": "https://www.raycast.com/alaidriel/utm-virtual-machines",
+      "storeUrl": "https://www.raycast.com/cecelot/utm-virtual-machines",
       "source": {
         "type": "github-monorepo",
         "repo": "raycast/extensions",
@@ -274670,14 +275958,14 @@
       "title": "V2EX",
       "description": "View V2EX in Raycast.",
       "icon": "v2ex-icon.png",
-      "author": "daikaiyu",
+      "author": "kvdo2",
       "contributors": [],
       "categories": [
         "Other"
       ],
       "license": "MIT",
       "platforms": [],
-      "storeUrl": "https://www.raycast.com/daikaiyu/v2ex-viewer",
+      "storeUrl": "https://www.raycast.com/kvdo2/v2ex-viewer",
       "source": {
         "type": "github-monorepo",
         "repo": "raycast/extensions",
@@ -274859,7 +276147,7 @@
       "title": "vAIb - Your AI Companion",
       "description": "Get quick answers to your quick questions with the power of AI with this free extension.",
       "icon": "command-icon.png",
-      "author": "vaibhav_sisodiya",
+      "author": "Vaib215",
       "contributors": [],
       "categories": [
         "Productivity",
@@ -274867,7 +276155,7 @@
       ],
       "license": "MIT",
       "platforms": [],
-      "storeUrl": "https://www.raycast.com/vaibhav_sisodiya/vaib",
+      "storeUrl": "https://www.raycast.com/Vaib215/vaib",
       "source": {
         "type": "github-monorepo",
         "repo": "raycast/extensions",
@@ -274952,7 +276240,7 @@
           "type": "password",
           "required": true,
           "title": "Val Town API Token",
-          "description": "Create one at val.town/settings/api",
+          "description": "Create one at val.town/settings/api with read and write on Vals, Blob storage and SQLite. With less, a val's runs, blobs and database won't load.",
           "placeholder": "vt_..."
         }
       ]
@@ -282373,9 +283661,13 @@
       "icon": "extension-icon.png",
       "author": "luciodaou",
       "contributors": [],
-      "categories": [],
+      "categories": [
+        "System"
+      ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/luciodaou/where-is-my-cursor",
       "source": {
         "type": "github-monorepo",
@@ -284486,6 +285778,109 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "windows-screenshot",
+      "title": "Windows Screenshot",
+      "description": "Capture full screen, selected region, or active window on Windows.",
+      "icon": "icon.png",
+      "author": "afaan_mushtaq",
+      "contributors": [],
+      "categories": [
+        "Applications",
+        "Media",
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/afaan_mushtaq/windows-screenshot",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/windows-screenshot",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "capture-screen",
+          "title": "Capture Screen",
+          "description": "Capture a screenshot of the entire screen",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "capture-window",
+          "title": "Capture Window",
+          "description": "Select and capture a window",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "capture-region",
+          "title": "Capture Region",
+          "description": "Select an area of the screen to capture",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "extract-text",
+          "title": "Extract Text",
+          "description": "Extract text from an image using native local Windows OCR and copy to clipboard",
+          "mode": "view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "output",
+          "title": "Screenshot Output",
+          "description": "Choose what happens after a screenshot is captured",
+          "type": "dropdown",
+          "required": false,
+          "default": "save-and-copy",
+          "data": [
+            {
+              "title": "Save + Copy",
+              "value": "save-and-copy"
+            },
+            {
+              "title": "Save",
+              "value": "save"
+            },
+            {
+              "title": "Copy",
+              "value": "copy"
+            }
+          ]
+        },
+        {
+          "name": "saveLocation",
+          "title": "Screenshot Save Location",
+          "description": "Directory where screenshots are saved",
+          "type": "directory",
+          "required": false,
+          "default": "~/Pictures/Screenshots"
+        },
+        {
+          "name": "showMagnifier",
+          "title": "Show Magnifier",
+          "label": "Show cursor magnifying glass in Region mode",
+          "description": "Show a magnified pixel preview and crosshair guides around cursor during Region capture",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        }
+      ]
     },
     {
       "name": "windows-terminal",
