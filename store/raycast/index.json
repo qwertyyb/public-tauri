@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-01T22:55:58.715Z",
+  "generatedAt": "2026-10-02T22:46:30.520Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "3d7aa375114b13713f4deeba392ce2f5d1c88c0f"
+    "commit": "37e8cb42a89d65ac8fcc9ccbb7ae1eb342838a5e"
   },
-  "count": 3355,
+  "count": 3366,
   "extensions": [
     {
       "name": "0x0",
@@ -1290,6 +1290,101 @@
           "required": false,
           "title": "Scrape API Key",
           "description": "You can find this API Key in the Abstract API dashboard."
+        }
+      ]
+    },
+    {
+      "name": "abuseipdb",
+      "title": "AbuseIPDB",
+      "description": "Check any IP address against the AbuseIPDB reputation database without leaving Raycast.",
+      "icon": "extension-icon.png",
+      "author": "gabrielbelli",
+      "contributors": [],
+      "categories": [
+        "Security",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/gabrielbelli/abuseipdb",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/abuseipdb",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "check-ip",
+          "title": "Check IP",
+          "subtitle": "AbuseIPDB",
+          "description": "Look up the abuse reputation of an IPv4 or IPv6 address.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "check-clipboard-ip",
+          "title": "Check IP from Clipboard",
+          "subtitle": "AbuseIPDB",
+          "description": "Look up the first IP address found in the clipboard.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "title": "API Key",
+          "description": "Your AbuseIPDB API key (Account -> API -> Create Key).",
+          "type": "password",
+          "required": true
+        },
+        {
+          "name": "maxAgeInDays",
+          "title": "Report Window",
+          "description": "Only consider reports made within this many days.",
+          "type": "dropdown",
+          "required": false,
+          "default": "90",
+          "data": [
+            {
+              "title": "1 day",
+              "value": "1"
+            },
+            {
+              "title": "7 days",
+              "value": "7"
+            },
+            {
+              "title": "30 days",
+              "value": "30"
+            },
+            {
+              "title": "90 days",
+              "value": "90"
+            },
+            {
+              "title": "180 days",
+              "value": "180"
+            },
+            {
+              "title": "365 days",
+              "value": "365"
+            }
+          ]
+        },
+        {
+          "name": "verbose",
+          "title": "Report Details",
+          "label": "Include individual reports",
+          "description": "Fetch the most recent report comments and categories.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
         }
       ]
     },
@@ -20903,6 +20998,133 @@
       ]
     },
     {
+      "name": "bettershot",
+      "title": "BetterShot",
+      "description": "Capture screenshots, scan text, pick colors, and open recording options with BetterShot.",
+      "icon": "bettershot-icon.png",
+      "author": "andyli_lfs898",
+      "contributors": [],
+      "categories": [
+        "Applications"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/andyli_lfs898/bettershot",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/bettershot",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "capture-region",
+          "title": "Capture Region",
+          "subtitle": "BetterShot",
+          "description": "Select a region to capture with BetterShot",
+          "mode": "no-view",
+          "keywords": [
+            "screenshot",
+            "area",
+            "selection"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "capture-fullscreen",
+          "title": "Capture Fullscreen",
+          "subtitle": "BetterShot",
+          "description": "Capture the full screen with BetterShot",
+          "mode": "no-view",
+          "keywords": [
+            "screenshot",
+            "display",
+            "screen"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "capture-window",
+          "title": "Capture Window",
+          "subtitle": "BetterShot",
+          "description": "Choose a window to capture with BetterShot",
+          "mode": "no-view",
+          "keywords": [
+            "screenshot",
+            "window"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "capture-scrolling",
+          "title": "Capture Scrolling",
+          "subtitle": "BetterShot",
+          "description": "Capture a scrolling area with BetterShot",
+          "mode": "no-view",
+          "keywords": [
+            "screenshot",
+            "scroll",
+            "long"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "scan-text",
+          "title": "Scan Text (OCR)",
+          "subtitle": "BetterShot",
+          "description": "Select text on screen to recognize with BetterShot",
+          "mode": "no-view",
+          "keywords": [
+            "text",
+            "ocr",
+            "extract"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "pick-color",
+          "title": "Pick Color",
+          "subtitle": "BetterShot",
+          "description": "Pick a color from the screen with BetterShot",
+          "mode": "no-view",
+          "keywords": [
+            "color",
+            "hex",
+            "eyedropper"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "record-screen",
+          "title": "Open Recording Options",
+          "subtitle": "BetterShot",
+          "description": "Open BetterShot recording options to choose what to record",
+          "mode": "no-view",
+          "keywords": [
+            "video",
+            "record",
+            "screen"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "open-settings",
+          "title": "Open Settings",
+          "subtitle": "BetterShot",
+          "description": "Open BetterShot settings",
+          "mode": "no-view",
+          "keywords": [
+            "preferences",
+            "settings"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "betterstack-utils",
       "title": "BetterStack Utils",
       "description": "View your BetterStack Primary on-call schedule",
@@ -25269,7 +25491,10 @@
         "Developer Tools"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "storeUrl": "https://www.raycast.com/Namaskar/blockchain-explorer-search",
       "source": {
         "type": "github-monorepo",
@@ -27210,6 +27435,15 @@
           "title": "Manage Services",
           "subtitle": "Brew",
           "description": "Start, stop & restart Homebrew services",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "manage-taps",
+          "title": "Manage Taps",
+          "subtitle": "Brew",
+          "description": "Add, trust & remove third-party Homebrew taps, and explore what they provide",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -31881,6 +32115,110 @@
               "value": "latte"
             }
           ]
+        }
+      ]
+    },
+    {
+      "name": "caviarde",
+      "title": "Caviarde",
+      "description": "Mask PII in your clipboard before you paste it anywhere",
+      "icon": "icon.png",
+      "author": "gldywn",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Security"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/gldywn/caviarde",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/caviarde",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "mask-and-paste",
+          "title": "Mask and Paste",
+          "subtitle": "Caviarde",
+          "description": "Replace personal data in the clipboard with placeholders, then paste the result",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "setup-detector",
+          "title": "Set up Detector",
+          "subtitle": "Caviarde",
+          "description": "Start the local detector Caviarde uses for its semantic layer",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "detectorUrl",
+          "type": "textfield",
+          "required": false,
+          "title": "Detector URL",
+          "description": "Base URL of the local PasteGuard detector. Set up Detector only manages http://127.0.0.1:<port>. For any other address, start the detector yourself.",
+          "default": "http://127.0.0.1:5002"
+        },
+        {
+          "name": "detectorTimeoutMs",
+          "type": "textfield",
+          "required": false,
+          "title": "Detector Timeout (ms)",
+          "description": "Give up on the semantic layer after this long and mask with the deterministic layer alone.",
+          "default": "3500"
+        },
+        {
+          "name": "authToken",
+          "type": "password",
+          "required": false,
+          "title": "Auth Token",
+          "description": "Sent as a bearer token when set. A local detector needs none.",
+          "default": ""
+        },
+        {
+          "name": "phoneRegions",
+          "type": "textfield",
+          "required": false,
+          "title": "Phone Regions",
+          "description": "Comma-separated ISO country codes. Without these, only numbers in +33 form are detected.",
+          "default": "FR"
+        },
+        {
+          "name": "maskPersons",
+          "type": "checkbox",
+          "required": false,
+          "title": "Semantic Detection",
+          "label": "Mask person names",
+          "description": "Needs the local detector. Mentions written with an at sign are masked either way.",
+          "default": true
+        },
+        {
+          "name": "maskLocations",
+          "type": "checkbox",
+          "required": false,
+          "title": "",
+          "label": "Mask locations and addresses",
+          "description": "Needs the local detector. Street addresses are reported as locations.",
+          "default": true
+        },
+        {
+          "name": "maskOrganizations",
+          "type": "checkbox",
+          "required": false,
+          "title": "",
+          "label": "Mask company and organisation names",
+          "description": "Needs the local detector running the patch in detector-patch/.",
+          "default": true
         }
       ]
     },
@@ -36628,14 +36966,18 @@
       "icon": "icon.png",
       "author": "sandypockets",
       "contributors": [
-        "Aayush9029"
+        "Aayush9029",
+        "muhammadrizo"
       ],
       "categories": [
         "Developer Tools",
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "storeUrl": "https://www.raycast.com/sandypockets/choose-a-license",
       "source": {
         "type": "github-monorepo",
@@ -43325,6 +43667,49 @@
       ]
     },
     {
+      "name": "codex-dictation",
+      "title": "Codex Dictation",
+      "description": "Browse, search, and copy Codex dictation history",
+      "icon": "icon.png",
+      "author": "ertem_biyik",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows",
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/ertem_biyik/codex-dictation",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/codex-dictation",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "dictation-history",
+          "title": "Dictation History",
+          "description": "Browse, search and copy Codex dictation history",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-codex-settings",
+          "title": "Open Codex Settings",
+          "description": "Open Codex settings to configure dictation hotkeys",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "codex-manager",
       "title": "Codex Manager",
       "description": "Manage Codex MCP servers and skills with safe local operations",
@@ -44814,7 +45199,7 @@
         "elibattistoni",
         "clins1994",
         "just_me",
-        "ray.dhruv",
+        "0xdhrv",
         "alexi.build"
       ],
       "categories": [
@@ -70125,6 +70510,16 @@
           "preferences": []
         },
         {
+          "name": "ocr-language",
+          "title": "Select OCR Language",
+          "subtitle": "Easydict",
+          "description": "Choose the installed Windows OCR language used by OCR Translate (Windows only).",
+          "mode": "view",
+          "keywords": [],
+          "icon": "ocr.png",
+          "preferences": []
+        },
+        {
           "name": "favorites",
           "title": "Favorite Words",
           "subtitle": "Easydict",
@@ -70615,7 +71010,7 @@
           "title": "Query Cache",
           "name": "queryCacheMode",
           "type": "dropdown",
-          "required": true,
+          "required": false,
           "default": "off",
           "description": "Store completed dictionary and machine translation results locally. Cached words expire after up to 7 days; translations expire after 24 hours.",
           "data": [
@@ -70637,7 +71032,7 @@
           "title": "AI Query Cache",
           "name": "aiQueryCacheMode",
           "type": "dropdown",
-          "required": true,
+          "required": false,
           "default": "off",
           "description": "Reuse completed AI translations and dictionary entries. Off by default because regenerating the same input can produce a different result.",
           "data": [
@@ -70711,7 +71106,7 @@
           "title": "Anki Deck",
           "name": "ankiDeckName",
           "type": "textfield",
-          "required": true,
+          "required": false,
           "default": "Easydict",
           "description": "Deck used when adding favorites to Anki. It is created in Anki if it does not exist."
         },
@@ -70719,7 +71114,7 @@
           "title": "AnkiConnect URL",
           "name": "ankiConnectUrl",
           "type": "textfield",
-          "required": true,
+          "required": false,
           "default": "http://127.0.0.1:8765",
           "description": "Address of the AnkiConnect add-on. Change it when AnkiConnect listens on a custom port or on another machine."
         },
@@ -72922,7 +73317,9 @@
       "icon": "command-icon.png",
       "author": "Yukai",
       "contributors": [],
-      "categories": [],
+      "categories": [
+        "Developer Tools"
+      ],
       "license": "MIT",
       "platforms": [
         "macOS"
@@ -74118,7 +74515,10 @@
         "Web"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "storeUrl": "https://www.raycast.com/destiner/ethereum-utils",
       "source": {
         "type": "github-monorepo",
@@ -96410,6 +96810,96 @@
       ]
     },
     {
+      "name": "glm-models",
+      "title": "GLM Models",
+      "description": "Use Z.ai / BigModel GLM models inside Raycast AI Chat, Quick AI and AI Commands",
+      "icon": "icon.png",
+      "author": "paulgit",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "1.0.0",
+      "storeUrl": "https://www.raycast.com/paulgit/glm-models",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/glm-models",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "check-setup",
+          "title": "Check Setup",
+          "subtitle": "GLM Models",
+          "description": "Validate your API key and platform settings against the Z.ai / BigModel API",
+          "mode": "view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "refresh-models",
+          "title": "Refresh Models",
+          "subtitle": "GLM Models",
+          "description": "Re-fetch the list of GLM models available to your account",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "title": "API Key",
+          "type": "password",
+          "required": true,
+          "description": "API key from the platform you pick below. Create one at z.ai → API Keys, or open.bigmodel.cn → API Keys. Keys from the two platforms are not interchangeable."
+        },
+        {
+          "name": "platform",
+          "title": "Platform",
+          "type": "dropdown",
+          "required": true,
+          "data": [
+            {
+              "value": "zai",
+              "title": "Z.ai (pay-as-you-go)"
+            },
+            {
+              "value": "bigmodel",
+              "title": "BigModel (pay-as-you-go)"
+            },
+            {
+              "value": "custom",
+              "title": "Custom base URL"
+            }
+          ],
+          "description": "Where your API key was created. Z.ai and BigModel are separate platforms with separate keys — pick the one matching your key. Pay-as-you-go API keys only: GLM Coding Plan and Team Plan keys are not supported."
+        },
+        {
+          "name": "customBaseUrl",
+          "title": "Custom Base URL",
+          "type": "textfield",
+          "required": false,
+          "description": "HTTPS OpenAI-compatible base URL, used when Platform is set to Custom (e.g. https://open.bigmodel.cn/api/paas/v4/)"
+        },
+        {
+          "name": "extraModels",
+          "title": "Extra Models",
+          "type": "textfield",
+          "required": false,
+          "description": "Optional comma-separated model IDs to always include in the model list"
+        }
+      ]
+    },
+    {
       "name": "global-media-key",
       "title": "Media Key Emulate",
       "description": "Emulate keyboard media keys press. Reassign hotkey for media keys.",
@@ -97905,7 +98395,7 @@
         "josh_carty",
         "smpeotn",
         "radek_cabaj",
-        "ray.dhruv"
+        "0xdhrv"
       ],
       "categories": [
         "Web"
@@ -157617,7 +158107,7 @@
         "xmok",
         "byheaven",
         "christianmagill",
-        "ray.dhruv"
+        "0xdhrv"
       ],
       "categories": [],
       "license": "MIT",
@@ -165551,8 +166041,7 @@
         "pernielsentikaer",
         "0xdhrv",
         "ridemountainpig",
-        "alvesrafa",
-        "ray.dhruv"
+        "alvesrafa"
       ],
       "categories": [
         "Applications",
@@ -168222,7 +168711,7 @@
         "denis_ufimtsev",
         "sapoepsilon",
         "theherk",
-        "chris_van_es",
+        "cvanes",
         "vicampuzano",
         "ErBlack",
         "byheaven",
@@ -168759,6 +169248,44 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "quickCaptureCommand",
+          "title": "Quick Capture",
+          "subtitle": "Obsidian",
+          "description": "Capture a note, task, or shopping item without the Advanced URI plugin.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "vaultName",
+              "type": "textfield",
+              "title": "Obsidian Vault",
+              "required": false,
+              "description": "Name of the vault that contains the capture files. If omitted, the first available vault is used."
+            },
+            {
+              "name": "dailyNotePath",
+              "type": "textfield",
+              "title": "Daily Note Path",
+              "required": false,
+              "description": "Existing Markdown file path within the vault, for example Daily Notes/{date}.md"
+            },
+            {
+              "name": "todoNotePath",
+              "type": "textfield",
+              "title": "To Do Note Path",
+              "required": false,
+              "description": "Existing Markdown file path within the vault."
+            },
+            {
+              "name": "shoppingNotePath",
+              "type": "textfield",
+              "title": "Shopping Note Path",
+              "required": false,
+              "description": "Existing Markdown file path within the vault."
+            }
+          ]
         }
       ],
       "preferences": [
@@ -176468,6 +176995,120 @@
           "description": "Optional. Point this at public/gifs in the orc.pictures repo to copy files without downloading.",
           "type": "directory",
           "required": false
+        }
+      ]
+    },
+    {
+      "name": "orca",
+      "title": "Orca",
+      "description": "Unofficial extension for the Orca agent orchestrator: see which agents are waiting for input and start new ones",
+      "icon": "icon.png",
+      "author": "dmitry_s",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/dmitry_s/orca",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/orca",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "list-agents",
+          "title": "List All Agents",
+          "subtitle": "Orca",
+          "description": "List every Claude/Codex agent running in Orca, grouped by project",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "agents-summary",
+          "title": "Show Waiting Agents",
+          "subtitle": "Orca",
+          "description": "Keeps the count of agents waiting for input in the root search, refreshed in the background",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "add-prompt",
+          "title": "Add Prompt",
+          "subtitle": "Orca",
+          "description": "Save a prompt as a named Raycast command that starts an agent in Orca",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "run-prompt",
+          "title": "Run Prompt",
+          "subtitle": "Orca",
+          "description": "Runs a saved prompt; opens the builder when started without one",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "summaryMode",
+          "title": "Root Search Subtitle",
+          "description": "What the Show Waiting Agents command shows under its name in the root search, refreshed in the background every minute. It does not affect List All Agents — that command opens on all agents, with the blocked ones on top, and its own dropdown narrows the view.",
+          "type": "dropdown",
+          "required": false,
+          "default": "sessions",
+          "data": [
+            {
+              "title": "Blocked Sessions, by Project and Name",
+              "value": "sessions"
+            },
+            {
+              "title": "Counts Only (2 Waiting · 1 Working)",
+              "value": "counts"
+            }
+          ]
+        },
+        {
+          "name": "agentFilter",
+          "title": "Agent Types",
+          "description": "Which panes count as agents, in List All Agents and in the root search subtitle alike.",
+          "type": "dropdown",
+          "required": false,
+          "default": "all-agents",
+          "data": [
+            {
+              "title": "All Agents",
+              "value": "all-agents"
+            },
+            {
+              "title": "Claude Only",
+              "value": "claude"
+            },
+            {
+              "title": "Codex Only",
+              "value": "codex"
+            },
+            {
+              "title": "All Terminals, Including Plain Shells",
+              "value": "everything"
+            }
+          ]
+        },
+        {
+          "name": "orcaPath",
+          "title": "Orca CLI Path",
+          "description": "Path to the orca executable. Defaults to the one bundled with Orca.app.",
+          "type": "textfield",
+          "required": false,
+          "default": "/Applications/Orca.app/Contents/Resources/bin/orca"
         }
       ]
     },
@@ -185808,6 +186449,127 @@
       "preferences": []
     },
     {
+      "name": "phpipam",
+      "title": "phpIPAM",
+      "description": "Search and browse your phpIPAM instance: addresses, subnets, sections, VLANs and VRFs.",
+      "icon": "icon.png",
+      "author": "frdmn",
+      "contributors": [],
+      "categories": [
+        "System",
+        "Data"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/frdmn/phpipam",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/phpipam",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search",
+          "title": "Search IPAM",
+          "subtitle": "phpIPAM",
+          "description": "Search phpIPAM for addresses, subnets, VLANs and VRFs",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "browse-sections",
+          "title": "Browse Sections",
+          "subtitle": "phpIPAM",
+          "description": "Browse phpIPAM sections and drill into their subnets",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "browse-subnets",
+          "title": "Browse Subnets",
+          "subtitle": "phpIPAM",
+          "description": "List and filter all subnets across all sections",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "first-free",
+          "title": "First Free Address",
+          "subtitle": "phpIPAM",
+          "description": "Find and copy the first free IP address of a subnet",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "phpipamUrl",
+          "title": "phpIPAM URL",
+          "description": "Base URL of your phpIPAM instance, e.g. https://phpipam.example.com",
+          "type": "textfield",
+          "placeholder": "https://phpipam.example.com",
+          "required": true
+        },
+        {
+          "name": "appId",
+          "title": "API App ID",
+          "description": "The application ID created in phpIPAM under Administration → API",
+          "type": "textfield",
+          "placeholder": "raycast",
+          "required": true
+        },
+        {
+          "name": "username",
+          "title": "Username",
+          "description": "phpIPAM user with API permissions (local user, not SAML). Not needed when an App Code is set.",
+          "type": "textfield",
+          "placeholder": "admin",
+          "required": false
+        },
+        {
+          "name": "password",
+          "title": "Password",
+          "description": "Password of the phpIPAM user. Not needed when an App Code is set.",
+          "type": "password",
+          "placeholder": "Your phpIPAM password",
+          "required": false
+        },
+        {
+          "name": "appCode",
+          "title": "API App Code",
+          "description": "Only for apps with 'SSL with App code token' security: the App code (from the app's edit dialog in phpIPAM) is used as token instead of username/password. Leave empty for 'SSL with User token' or 'User token'.",
+          "type": "password",
+          "placeholder": "Only for 'SSL with App code token' apps",
+          "required": false
+        },
+        {
+          "name": "ignoreTlsErrors",
+          "title": "Ignore TLS Certificate Errors",
+          "description": "Allow self-signed certificates. Use with caution.",
+          "type": "checkbox",
+          "label": "Ignore TLS errors",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "allowHttp",
+          "title": "Allow Unencrypted (HTTP) Connections",
+          "description": "Allow connecting to plain http:// instances. Credentials are sent unencrypted; only enable on trusted internal networks.",
+          "type": "checkbox",
+          "label": "Allow HTTP",
+          "required": false,
+          "default": false
+        }
+      ]
+    },
+    {
       "name": "php-monitor",
       "title": "PHP Monitor",
       "description": "Control PHP Monitor, a utility application for the Mac. Requires the integration with third-party options not to be disabled. (This option is enabled by default in PHP Monitor.) \n\nhttps://phpmon.app",
@@ -194544,6 +195306,66 @@
       ]
     },
     {
+      "name": "prismical",
+      "title": "Prismical",
+      "description": "Search, preview, and capture notes in your Prismical Cloud workspace.",
+      "icon": "prismical-icon-inset.png",
+      "author": "nch",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/nch/prismical",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/prismical",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-notes",
+          "title": "Search Notes",
+          "subtitle": "Prismical",
+          "description": "Find and preview your Prismical notes.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "create-note",
+          "title": "Create Note",
+          "subtitle": "Prismical",
+          "description": "Capture a note in your Prismical workspace.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "append-to-note",
+          "title": "Append to Note",
+          "subtitle": "Prismical",
+          "description": "Add text to an existing note.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "type": "password",
+          "title": "Prismical API Key",
+          "description": "Connect your Prismical account. In the Prismical app, go to Settings → API & MCP to create an API key.",
+          "required": true
+        }
+      ]
+    },
+    {
       "name": "pritunl",
       "title": "Connect Pritunl Vpn Tunnel",
       "description": "Connects to VPN using Pritunl client",
@@ -196297,20 +197119,42 @@
           ]
         },
         {
-          "name": "copyPasswordTransient",
+          "name": "primaryAction",
+          "type": "dropdown",
+          "title": "Primary Action",
+          "description": "What Enter does on an item.",
+          "default": "details",
+          "required": false,
+          "data": [
+            {
+              "title": "View Details",
+              "value": "details"
+            },
+            {
+              "title": "Copy Password",
+              "value": "copy"
+            },
+            {
+              "title": "Fill Login (macOS)",
+              "value": "fill"
+            }
+          ]
+        },
+        {
+          "name": "submitAfterFill",
           "type": "checkbox",
-          "title": "Transient Clipboard",
-          "label": "Clear password from clipboard after paste",
-          "description": "When enabled, passwords will be cleared from clipboard after pasting",
-          "default": true,
+          "title": "Fill Login",
+          "label": "Press Return after the password",
+          "description": "Submits the login form.",
+          "default": false,
           "required": false
         },
         {
-          "name": "enableBackgroundRefresh",
+          "name": "copyPasswordTransient",
           "type": "checkbox",
-          "title": "Background Refresh",
-          "label": "Automatically refresh cached vault and item data",
-          "description": "When enabled, cached results will refresh in the background",
+          "title": "Transient Clipboard",
+          "label": "Keep copied secrets out of clipboard history",
+          "description": "Passwords, 2FA codes, notes and hidden fields.",
           "default": true,
           "required": false
         },
@@ -196318,7 +197162,7 @@
           "name": "cacheExpiration",
           "type": "dropdown",
           "title": "Cache Expiration",
-          "description": "How long cached metadata is considered fresh. Older data is still shown instantly while it refreshes in the background.",
+          "description": "How long cached items stay fresh.",
           "default": "5",
           "required": false,
           "data": [
@@ -196349,12 +197193,30 @@
           ]
         },
         {
+          "name": "enableBackgroundRefresh",
+          "type": "checkbox",
+          "title": "Item List",
+          "label": "Refresh items in the background",
+          "description": "Even when the cache is still fresh.",
+          "default": true,
+          "required": false
+        },
+        {
           "name": "enableWebIntegration",
           "type": "checkbox",
-          "title": "Web Integration",
-          "label": "Match active browser tab URL in Search Items",
-          "description": "When enabled, Search Items auto-selects logins matching the active tab URL (Raycast web extension required)",
+          "title": "",
+          "label": "Suggest logins for the active browser tab",
+          "description": "Requires the Raycast browser extension.",
           "default": true,
+          "required": false
+        },
+        {
+          "name": "showWebsiteIcons",
+          "type": "checkbox",
+          "title": "",
+          "label": "Show website icons",
+          "description": "From Raycast's favicon provider, which receives the domains.",
+          "default": false,
           "required": false
         }
       ]
@@ -199038,10 +199900,19 @@
         },
         {
           "name": "convert-link",
-          "title": "Convert Track Link",
+          "title": "Show Current Track",
           "subtitle": "Qobuz",
-          "description": "Convert the track playing in Qobuz — or a Spotify, YouTube Music, or Qobuz track link from the clipboard — to the other services.",
+          "description": "See the track playing in Qobuz, how it matches on each streaming service, and copy its share links.",
           "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "copy-share-links",
+          "title": "Copy Share Links",
+          "subtitle": "Qobuz",
+          "description": "Copy a ready-to-paste message with a track's title, artist and a link on every streaming service. Uses the track playing in Qobuz, or a Spotify, YouTube Music or Qobuz track link you pass.",
+          "mode": "no-view",
           "keywords": [],
           "preferences": []
         },
@@ -199133,6 +200004,47 @@
           "type": "password",
           "title": "Qobuz Token",
           "description": "Your Qobuz user_auth_token (X-User-Auth-Token header from a www.qobuz.com/api.json request). Leave empty to reuse the token from the Qobuz CLI's Keychain entry.",
+          "required": false
+        },
+        {
+          "name": "includeSpotify",
+          "type": "checkbox",
+          "title": "Include in Share Message",
+          "label": "Spotify",
+          "description": "Include a Spotify link in the share message.",
+          "default": true,
+          "required": false
+        },
+        {
+          "name": "includeApple",
+          "type": "checkbox",
+          "label": "Apple Music",
+          "description": "Include an Apple Music link in the share message.",
+          "default": true,
+          "required": false
+        },
+        {
+          "name": "includeDeezer",
+          "type": "checkbox",
+          "label": "Deezer",
+          "description": "Include a Deezer link in the share message.",
+          "default": true,
+          "required": false
+        },
+        {
+          "name": "includeTidal",
+          "type": "checkbox",
+          "label": "Tidal",
+          "description": "Include a Tidal link in the share message.",
+          "default": true,
+          "required": false
+        },
+        {
+          "name": "includeSonglink",
+          "type": "checkbox",
+          "label": "All platforms (song.link)",
+          "description": "Include a song.link URL that resolves to all other platforms.",
+          "default": true,
           "required": false
         }
       ]
@@ -199807,7 +200719,8 @@
         "seewhy",
         "ridemountainpig",
         "dangkhoipro",
-        "stefan.imbesi"
+        "stefan.imbesi",
+        "0xdhrv"
       ],
       "categories": [],
       "license": "MIT",
@@ -208842,7 +209755,7 @@
         "pernielsentikaer",
         "xilopaint",
         "stelo",
-        "ray.dhruv",
+        "0xdhrv",
         "alexi.build"
       ],
       "categories": [
@@ -232664,7 +233577,9 @@
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/petr/slack-status",
       "source": {
         "type": "github-monorepo",
@@ -235494,6 +236409,69 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "socialfaktory",
+      "title": "SocialFaktory",
+      "description": "Write, post and schedule X and LinkedIn posts in your brand's voice, and track scheduled posts and credits across TikTok, Instagram, YouTube, X, LinkedIn, Facebook and Pinterest.",
+      "icon": "extension-icon.png",
+      "author": "adif_sgaid",
+      "contributors": [],
+      "categories": [
+        "Communication",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/adif_sgaid/socialfaktory",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/socialfaktory",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "write-post",
+          "title": "Write Post",
+          "subtitle": "SocialFaktory",
+          "description": "Write three post variants in your brand's voice from a short brief, then post one to X or LinkedIn now or schedule it.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "scheduled-posts",
+          "title": "Scheduled Posts",
+          "subtitle": "SocialFaktory",
+          "description": "Browse your scheduled, published and failed posts with their time, release link and metrics.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "credit-balance",
+          "title": "Credit Balance",
+          "subtitle": "SocialFaktory",
+          "description": "Show the credits available, reserved and in total in your SocialFaktory wallet.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiToken",
+          "title": "API Token",
+          "description": "Optional. A personal access token from SocialFaktory Settings > API tokens, with the read, generate and publish scopes. Leave it empty to sign in with your browser.",
+          "type": "password",
+          "required": false,
+          "placeholder": "sfp_..."
+        }
+      ]
     },
     {
       "name": "solana-explorer",
@@ -240911,7 +241889,7 @@
         "shivraj-roy",
         "ridemountainpig",
         "clemenzi",
-        "ray.dhruv"
+        "0xdhrv"
       ],
       "categories": [
         "Media",
@@ -252896,6 +253874,249 @@
       "preferences": []
     },
     {
+      "name": "techgedoens",
+      "title": "Techgedöns.de",
+      "description": "The official Raycast extension for the German tech blog Techgedöns.de",
+      "icon": "icon.png",
+      "author": "Marcelismus",
+      "contributors": [],
+      "categories": [
+        "News",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/Marcelismus/techgedoens",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/techgedoens",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "latest-articles",
+          "title": "Latest Articles",
+          "subtitle": "Techgedöns.de",
+          "description": "Lists the latest articles from Techgedoens.de",
+          "mode": "view",
+          "keywords": [
+            "tchgdns",
+            "techgedoens",
+            "techgedöns",
+            "artikel",
+            "blog",
+            "rss"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "all-articles",
+          "title": "All Articles",
+          "subtitle": "Techgedöns.de",
+          "description": "Shows the saved article archive with read status and topic filters",
+          "mode": "view",
+          "keywords": [
+            "tchgdns",
+            "techgedöns",
+            "artikel",
+            "archiv",
+            "gelesen",
+            "ungelesen",
+            "rss"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "ask-techgedoens",
+          "title": "Ask Techgedöns",
+          "subtitle": "Techgedöns.de",
+          "description": "Answers questions using saved Techgedöns articles",
+          "mode": "view",
+          "keywords": [
+            "tchgdns",
+            "techgedöns",
+            "artikel",
+            "fragen",
+            "suche",
+            "wissen",
+            "ai"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "saved-articles",
+          "title": "Favorites",
+          "subtitle": "Techgedöns.de",
+          "description": "Shows saved Techgedöns articles",
+          "mode": "view",
+          "keywords": [
+            "tchgdns",
+            "techgedöns",
+            "artikel",
+            "favoriten",
+            "gespeichert",
+            "leseliste"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "search-techgedoens",
+          "title": "Search Techgedöns",
+          "subtitle": "Techgedöns.de",
+          "description": "Searches the complete Techgedöns.de article archive",
+          "mode": "view",
+          "keywords": [
+            "tchgdns",
+            "techgedoens",
+            "techgedöns",
+            "artikel",
+            "suchen",
+            "archive",
+            "search",
+            "rss"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "refresh-articles",
+          "title": "Refresh Articles",
+          "subtitle": "Techgedöns.de",
+          "description": "Silently refreshes the local Techgedoens.de article cache",
+          "mode": "no-view",
+          "keywords": [
+            "tchgdns",
+            "techgedoens",
+            "techgedöns",
+            "artikel",
+            "aktualisieren",
+            "rss"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "open-techgedoens",
+          "title": "Open Techgedöns.de",
+          "subtitle": "Techgedöns.de",
+          "description": "Opens Techgedöns.de in the default browser",
+          "mode": "no-view",
+          "keywords": [
+            "tchgdns",
+            "techgedoens",
+            "techgedöns",
+            "öffnen",
+            "website",
+            "browser"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "allArticlesInitialFilter",
+          "title": "Initial Article Filter",
+          "description": "Selects the read status shown when opening All Articles.",
+          "type": "dropdown",
+          "required": false,
+          "default": "all",
+          "data": [
+            {
+              "title": "All Articles",
+              "value": "all"
+            },
+            {
+              "title": "Unread Articles",
+              "value": "unread"
+            },
+            {
+              "title": "Read Articles",
+              "value": "read"
+            },
+            {
+              "title": "Last Used",
+              "value": "last"
+            }
+          ]
+        },
+        {
+          "name": "articleEnterAction",
+          "title": "Return Key Action",
+          "description": "Selects whether Return shows the article in Raycast or opens it in the default browser.",
+          "type": "dropdown",
+          "required": false,
+          "default": "reader",
+          "data": [
+            {
+              "title": "Read in Raycast",
+              "value": "reader"
+            },
+            {
+              "title": "Open in Default Browser",
+              "value": "browser"
+            }
+          ]
+        },
+        {
+          "name": "archiveRetention",
+          "title": "Keep Articles",
+          "description": "Selects when stored articles are removed from the complete article list.",
+          "type": "dropdown",
+          "required": false,
+          "default": "month",
+          "data": [
+            {
+              "title": "One Week",
+              "value": "week"
+            },
+            {
+              "title": "One Month",
+              "value": "month"
+            },
+            {
+              "title": "One Year",
+              "value": "year"
+            },
+            {
+              "title": "Never Delete",
+              "value": "never"
+            }
+          ]
+        },
+        {
+          "name": "archivePageSize",
+          "title": "Articles per Load",
+          "description": "Selects how many articles are initially shown and loaded at the end of the list.",
+          "type": "dropdown",
+          "required": false,
+          "default": "30",
+          "data": [
+            {
+              "title": "15 Articles",
+              "value": "15"
+            },
+            {
+              "title": "30 Articles",
+              "value": "30"
+            },
+            {
+              "title": "45 Articles",
+              "value": "45"
+            },
+            {
+              "title": "60 Articles",
+              "value": "60"
+            },
+            {
+              "title": "90 Articles",
+              "value": "90"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "techmeme",
       "title": "Techmeme",
       "description": "Browse and search Techmeme from Raycast.",
@@ -263229,7 +264450,7 @@
         "Hadi04",
         "nikord",
         "cbrplx",
-        "ray.dhruv"
+        "0xdhrv"
       ],
       "categories": [
         "Applications",
@@ -282622,7 +283843,10 @@
         "Web"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "storeUrl": "https://www.raycast.com/peduarte/web3-profile",
       "source": {
         "type": "github-monorepo",
@@ -285105,6 +286329,77 @@
           ],
           "default": "raycast",
           "required": false
+        }
+      ]
+    },
+    {
+      "name": "windhawk",
+      "title": "Windhawk",
+      "description": "Install and manage Windhawk mods, straight from Raycast",
+      "icon": "extension-icon.png",
+      "author": "muhammadrizo",
+      "contributors": [],
+      "categories": [
+        "System",
+        "Applications",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/muhammadrizo/windhawk",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/windhawk",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "manage-mods",
+          "title": "Manage Mods",
+          "description": "Manage installed Windhawk mods",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-mods",
+          "title": "Search Mods",
+          "description": "Search and install Windhawk mods",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "installVersionOpensTo",
+              "title": "\"Install Version…\" Opens To",
+              "description": "Choose how to display versions in the \"Install Version…\" action",
+              "type": "dropdown",
+              "required": false,
+              "data": [
+                {
+                  "title": "Submenu",
+                  "value": "submenu"
+                },
+                {
+                  "title": "List",
+                  "value": "list"
+                }
+              ],
+              "default": "submenu"
+            }
+          ]
+        }
+      ],
+      "preferences": [
+        {
+          "name": "cliPath",
+          "title": "CLI Path",
+          "description": "Specify the path for Windhawk CLI. Defaults to \"C:\\Program Files\\Windhawk\\windhawk-cli.exe\"",
+          "type": "file",
+          "required": false,
+          "default": "C:\\Program Files\\Windhawk\\windhawk-cli.exe"
         }
       ]
     },
@@ -289118,6 +290413,20 @@
               "title": "Miles"
             }
           ],
+          "required": true
+        },
+        {
+          "name": "strava_client_id",
+          "title": "Strava Client ID",
+          "description": "Required for Strava features. Create a personal app at strava.com/settings/api (paid Strava subscription required). Set Authorization Callback Domain to raycast.com, enter both credentials, then reopen a command to sign in.",
+          "type": "textfield",
+          "required": true
+        },
+        {
+          "name": "strava_client_secret",
+          "title": "Strava Client Secret",
+          "description": "The secret from your personal Strava API app. Enter it with your Client ID, then sign in through Strava.",
+          "type": "password",
           "required": true
         }
       ]
