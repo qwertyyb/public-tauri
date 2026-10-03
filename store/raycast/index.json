@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-02T22:46:30.520Z",
+  "generatedAt": "2026-10-03T21:03:10.322Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "37e8cb42a89d65ac8fcc9ccbb7ae1eb342838a5e"
+    "commit": "11b060ecbad725f70a91e077c7a4b65f640cb1f9"
   },
-  "count": 3366,
+  "count": 3369,
   "extensions": [
     {
       "name": "0x0",
@@ -6132,7 +6132,7 @@
     {
       "name": "aktar",
       "title": "Aktar",
-      "description": "Upload files to your own S3, R2, B2 or MinIO storage, search your upload history, and browse your buckets with the Aktar menu bar app.",
+      "description": "Upload files to your own S3, R2, B2 or MinIO storage, search your upload history, browse your buckets, and control watched folders with the Aktar menu bar app.",
       "icon": "extension-icon.png",
       "author": "merttopuz",
       "contributors": [],
@@ -6195,6 +6195,24 @@
           "subtitle": "Aktar",
           "description": "Browse the folders and files in your destinations' buckets: copy links, create temporary links and QR codes, rename, move, delete, and upload.",
           "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "watched-folders",
+          "title": "Watched Folders",
+          "subtitle": "Aktar",
+          "description": "See the folders Aktar uploads from automatically, with what each one is waiting for, uploading, or failed to upload. Enable or disable folders and pause or resume watching.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle-watching",
+          "title": "Toggle Watching",
+          "subtitle": "Aktar",
+          "description": "Pause Aktar's watched folders until you resume them, or resume them when they're paused.",
+          "mode": "no-view",
           "keywords": [],
           "preferences": []
         },
@@ -17174,6 +17192,129 @@
       "preferences": []
     },
     {
+      "name": "baalda",
+      "title": "Baalda",
+      "description": "Manage your Baalda second brain from Raycast with note capture, search, folders, and AI tools.",
+      "icon": "icon.png",
+      "author": "owendavidprice",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/owendavidprice/baalda",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/baalda",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "quick-capture",
+          "title": "Quick Capture",
+          "subtitle": "Baalda",
+          "description": "Capture a thought into your Baalda vault in seconds",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "create-note",
+          "title": "Create Note",
+          "subtitle": "Baalda",
+          "description": "Create a markdown note in a selected Baalda vault and folder",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "manage-notes",
+          "title": "Manage Notes",
+          "subtitle": "Baalda",
+          "description": "Open, edit, move, rename, append to or delete Baalda notes",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "create-folder",
+          "title": "Create Folder",
+          "subtitle": "Baalda",
+          "description": "Create a folder in a selected Baalda vault",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "manage-folders",
+          "title": "Manage Folders",
+          "subtitle": "Baalda",
+          "description": "Open, move, rename or delete Baalda folders",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-notes",
+          "title": "Search Notes",
+          "subtitle": "Baalda",
+          "description": "Search notes across your Baalda vaults",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "browse-vault",
+          "title": "Browse Vault",
+          "subtitle": "Baalda",
+          "description": "Browse vaults, folders and recent notes",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "serverUrl",
+          "title": "Baalda Server URL",
+          "description": "URL of your Baalda server. Use https://api.baalda.com for the managed service, http://localhost:3010 for a local server, or your self-hosted URL.",
+          "type": "textfield",
+          "required": true,
+          "default": "https://api.baalda.com",
+          "placeholder": "https://api.baalda.com"
+        },
+        {
+          "name": "mcpToken",
+          "title": "MCP Token",
+          "description": "Token from Baalda desktop app → Vault Settings → MCP → Create token. Starts with mcp_. The AI is bound by the same permissions as your account.",
+          "type": "password",
+          "required": true,
+          "placeholder": "mcp_…"
+        },
+        {
+          "name": "defaultVaultId",
+          "title": "Default Vault ID (Optional)",
+          "description": "Skip vault selection. Copy a vaultId from the Browse Vault command. If empty, the first accessible vault is used.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "Leave empty to auto-pick first vault"
+        },
+        {
+          "name": "captureFolder",
+          "title": "Capture Folder (Optional)",
+          "description": "Vault-relative folder for Quick Capture notes, e.g. Inbox. Leave empty for the vault root. The folder must already exist.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "Inbox"
+        }
+      ]
+    },
+    {
       "name": "background-sounds",
       "title": "Background Sounds",
       "description": "Toggle macOS background sounds on and off.",
@@ -21166,6 +21307,22 @@
           "name": "incidents",
           "title": "Incidents",
           "description": "View and manage active incidents",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "status-pages",
+          "title": "Status Pages",
+          "description": "View your BetterStack status pages and open them in the browser",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "monitors",
+          "title": "Monitors",
+          "description": "View your BetterStack monitors and open them in the browser",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -61184,6 +61341,50 @@
       ]
     },
     {
+      "name": "devt-pro-tools",
+      "title": "DevT Pro Tools",
+      "description": "Search, pin, and launch tools in DevT Pro, a paid developer toolbox app for macOS and Windows that is sold separately. Tools that accept input open pre-filled with your clipboard text, or with text you enter in Raycast.",
+      "icon": "extension-icon.png",
+      "author": "devtpro",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/devtpro/devt-pro-tools",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/devt-pro-tools",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "open-tool",
+          "title": "Search Tools",
+          "subtitle": "DevT Pro",
+          "description": "Search, pin, and launch DevT Pro tools",
+          "mode": "view",
+          "keywords": [
+            "devtpro",
+            "developer tools",
+            "json",
+            "base64",
+            "jwt",
+            "formatter",
+            "converter"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "devutils",
       "title": "DevUtils",
       "description": "Navigate DevUtils faster with this All-in-one Toolbox for Developers",
@@ -88515,6 +88716,200 @@
           "description": "Show the detail panel when the command opens (toggle with ⌘D)",
           "label": "Show the entry in the detail panel on launch",
           "default": true
+        }
+      ]
+    },
+    {
+      "name": "gamaliel",
+      "title": "Bible Q&A",
+      "description": "Ask a biblical question. Gamaliel reads the relevant passages first, then answers with scripture links.",
+      "icon": "gamaliel-mark.png",
+      "author": "cirne",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/cirne/gamaliel",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/gamaliel",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "ask-gamaliel",
+          "title": "Bible Q&A",
+          "subtitle": "Gamaliel",
+          "description": "Ask a question and get a biblical answer with scripture links.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "gamaliel-mark.png",
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "theology",
+          "type": "dropdown",
+          "title": "Theology",
+          "description": "Theological perspective used for answers.",
+          "required": false,
+          "default": "default",
+          "data": [
+            {
+              "title": "General Christian",
+              "value": "default"
+            },
+            {
+              "title": "Anglican (Communion)",
+              "value": "anglican"
+            },
+            {
+              "title": "Baptist",
+              "value": "baptist"
+            },
+            {
+              "title": "Catholic",
+              "value": "catholic"
+            },
+            {
+              "title": "Charismatic",
+              "value": "charismatic"
+            },
+            {
+              "title": "Eastern Orthodox",
+              "value": "eastern_orthodox"
+            },
+            {
+              "title": "Lutheran",
+              "value": "lutheran"
+            },
+            {
+              "title": "Reformed",
+              "value": "reformed"
+            },
+            {
+              "title": "Wesleyan/Methodist",
+              "value": "wesleyan"
+            }
+          ]
+        },
+        {
+          "name": "profile",
+          "type": "dropdown",
+          "title": "Profile",
+          "description": "Experience level used to shape the answer.",
+          "required": false,
+          "default": "universal_explorer",
+          "data": [
+            {
+              "title": "Curious Explorer",
+              "value": "curious_explorer"
+            },
+            {
+              "title": "Universal Explorer",
+              "value": "universal_explorer"
+            },
+            {
+              "title": "Spiritual Seeker",
+              "value": "spiritual_seeker"
+            },
+            {
+              "title": "New Believer",
+              "value": "new_believer"
+            },
+            {
+              "title": "Growing Christian",
+              "value": "growing_christian"
+            },
+            {
+              "title": "Mature Believer",
+              "value": "mature_believer"
+            },
+            {
+              "title": "Biblical Scholar",
+              "value": "biblical_scholar"
+            }
+          ]
+        },
+        {
+          "name": "bibleId",
+          "type": "dropdown",
+          "title": "Bible Translation",
+          "description": "Translation used for scripture in answers.",
+          "required": false,
+          "default": "eng-us-niv",
+          "data": [
+            {
+              "title": "English — NIV",
+              "value": "eng-us-niv"
+            },
+            {
+              "title": "English — KJV",
+              "value": "eng-kjv"
+            },
+            {
+              "title": "English — ESV",
+              "value": "eng-esv"
+            },
+            {
+              "title": "English — WEB",
+              "value": "eng-web"
+            },
+            {
+              "title": "Español — NVI",
+              "value": "spa-niv-2022"
+            },
+            {
+              "title": "Português — NVI",
+              "value": "por-niv-23"
+            },
+            {
+              "title": "한국어 — 현대인",
+              "value": "kor-niv-1985"
+            },
+            {
+              "title": "العربية — الحياة",
+              "value": "arb-onav-2012"
+            },
+            {
+              "title": "Українська — ВНПУ",
+              "value": "ukr-onpu-2022"
+            }
+          ]
+        },
+        {
+          "name": "maxWords",
+          "type": "dropdown",
+          "title": "Max Words",
+          "description": "Maximum answer length in words.",
+          "required": false,
+          "default": "300",
+          "data": [
+            {
+              "title": "150",
+              "value": "150"
+            },
+            {
+              "title": "300",
+              "value": "300"
+            },
+            {
+              "title": "500",
+              "value": "500"
+            },
+            {
+              "title": "800",
+              "value": "800"
+            }
+          ]
         }
       ]
     },
@@ -221698,6 +222093,15 @@
       },
       "commands": [
         {
+          "name": "connection-status",
+          "title": "Schwab Connection Status",
+          "subtitle": "Schwab Portfolio",
+          "description": "Check saved app credentials and sign in again without repeating developer setup",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "portfolio",
           "title": "View Portfolio",
           "subtitle": "Schwab Portfolio",
@@ -278907,7 +279311,10 @@
         "Media"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "storeUrl": "https://www.raycast.com/grosst/video-converter",
       "source": {
         "type": "github-monorepo",
