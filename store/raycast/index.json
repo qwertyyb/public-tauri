@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-03T21:03:10.322Z",
+  "generatedAt": "2026-10-04T21:18:04.693Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "11b060ecbad725f70a91e077c7a4b65f640cb1f9"
+    "commit": "c2516dcf35efd97c8fef693f6bca15de3c01ba67"
   },
   "count": 3369,
   "extensions": [
@@ -195955,7 +195955,23 @@
           "default": true,
           "title": "Detection",
           "label": "Use the on-device language model",
-          "description": "Japanese personal names are found only by this layer. Requires macOS 26 with Apple Intelligence; without it, names are not detected at all."
+          "description": "The main source of Japanese personal names. Requires macOS 26 with Apple Intelligence; without it, names are found only by the privmask name model, when that is installed."
+        },
+        {
+          "name": "useNameModel",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "label": "Use the privmask name model when installed",
+          "description": "A trained model for Japanese personal names that comes with the privmask CLI (brew install snaka/tap/privmask). It runs on any macOS 13 or later, so names are still found without Apple Intelligence."
+        },
+        {
+          "name": "nameModelPath",
+          "type": "textfield",
+          "required": false,
+          "title": "Name Model",
+          "placeholder": "/opt/homebrew/share/privmask/ner",
+          "description": "The directory holding ner.mlmodelc. Leave empty to use the one installed with the privmask CLI by Homebrew."
         },
         {
           "name": "dictionaryPath",
@@ -227089,6 +227105,33 @@
               "default": "/usr/local/bin:/usr/bin:/opt/homebrew/bin:/run/current-system/sw/bin"
             }
           ]
+        },
+        {
+          "name": "cmd-connect-browser-worktree",
+          "title": "Connect to Worktree from Browser",
+          "subtitle": "Sesh",
+          "description": "Open a worktree for the GitHub issue or pull request in your active browser tab, creating it if needed.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": [
+            {
+              "name": "openWithApp",
+              "type": "appPicker",
+              "required": true,
+              "title": "Open With (Required)",
+              "description": "Open with",
+              "default": "Terminal"
+            },
+            {
+              "name": "environmentPath",
+              "type": "textfield",
+              "required": true,
+              "title": "Environment Path",
+              "description": "Colon-separated PATH (Unix-style), e.g /usr/local/bin:/usr/bin",
+              "default": "/usr/local/bin:/usr/bin:/opt/homebrew/bin:/run/current-system/sw/bin"
+            }
+          ]
         }
       ],
       "preferences": []
@@ -229530,7 +229573,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/solomkinmv/shortcuts-search",
       "source": {
@@ -229593,8 +229637,8 @@
         },
         {
           "name": "current-app",
-          "title": "Copy Current App's Bundle ID",
-          "description": "Saves current app's bundle id in the clipboard",
+          "title": "Copy Current App's ID",
+          "description": "Copy the current application identifier for this platform",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
