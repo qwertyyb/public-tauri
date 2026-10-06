@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-04T21:18:04.693Z",
+  "generatedAt": "2026-10-06T00:03:22.993Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "c2516dcf35efd97c8fef693f6bca15de3c01ba67"
+    "commit": "2eb47102ed17578447a9bdbf41558abbab866279"
   },
-  "count": 3369,
+  "count": 3377,
   "extensions": [
     {
       "name": "0x0",
@@ -3547,7 +3547,7 @@
     {
       "name": "agent-usage",
       "title": "Agent Usage",
-      "description": "Monitor AI coding agent usage across AIHubMix, Amp, Antigravity, Claude, ClinePass, Codex, Copilot, Cursor, DeepSeek, Droid, Gemini, Grok, Kimi, MiniMax, MinimaxCN, OpenCode Go, OpenRouter, Synthetic and z.ai",
+      "description": "Monitor AI coding agent usage across AIHubMix, Amp, Antigravity, Claude, ClinePass, Codex, Copilot, Cursor, DeepSeek, Droid, Gemini, Grok, Kimi, MiniMax, MinimaxCN, OpenCode Go, OpenRouter, Raycast, Synthetic and z.ai",
       "icon": "extension-icon.png",
       "author": "thuggyduck",
       "contributors": [
@@ -3819,6 +3819,21 @@
           "type": "password",
           "title": "OpenRouter API Key (Optional)",
           "description": "Auto-detected from OpenCode login (openrouter) or OPENROUTER_API_KEY/OPENROUTER_KEY. Fallback: paste a key from https://openrouter.ai/settings/keys. A provisioning key reports account credits; a regular key reports its own limit.",
+          "required": false
+        },
+        {
+          "name": "showRaycast",
+          "type": "checkbox",
+          "label": "Show Raycast",
+          "description": "Show Raycast AI credits in the list",
+          "default": true,
+          "required": false
+        },
+        {
+          "name": "raycastCookieHeader",
+          "type": "password",
+          "title": "Raycast Session Cookie (Optional)",
+          "description": "Sign in at https://www.raycast.com/settings, then paste the __raycast_session cookie value (or a Cookie header containing it) from your browser's developer tools.",
           "required": false
         },
         {
@@ -6132,7 +6147,7 @@
     {
       "name": "aktar",
       "title": "Aktar",
-      "description": "Upload files to your own S3, R2, B2 or MinIO storage, search your upload history, browse your buckets, and control watched folders with the Aktar menu bar app.",
+      "description": "Upload files to your own S3, R2, B2 or MinIO storage, search your upload history, browse your buckets, and control watched folders with the Aktar app for Mac or Windows.",
       "icon": "extension-icon.png",
       "author": "merttopuz",
       "contributors": [],
@@ -6143,7 +6158,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/merttopuz/aktar",
       "source": {
@@ -6166,7 +6182,7 @@
           "name": "upload-finder-selection",
           "title": "Upload Selected Files",
           "subtitle": "Aktar",
-          "description": "Upload the files selected in Finder to your default destination and copy their links.",
+          "description": "Upload the files selected in Finder or File Explorer to your default destination and copy their links.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -6256,7 +6272,7 @@
         {
           "name": "deleteAfter",
           "title": "Delete After",
-          "description": "Default for Upload Clipboard, Upload Selected Files, and the Upload File form. Aktar deletes the uploaded file from your bucket after this many days. Needs Aktar 0.5.0 or later.",
+          "description": "Default for Upload Clipboard, Upload Selected Files, and the Upload File form. Aktar deletes the uploaded file from your bucket after this many days. Needs Aktar 0.5.0 or later for Mac, or 0.1.2 or later for Windows.",
           "type": "dropdown",
           "required": false,
           "default": "0",
@@ -14612,7 +14628,8 @@
         "tuzemec",
         "xmok",
         "abcd_ca",
-        "nulltrope"
+        "nulltrope",
+        "0xdhrv"
       ],
       "categories": [
         "Productivity"
@@ -18873,6 +18890,82 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "battery-drain",
+      "title": "Battery Drain",
+      "description": "Find out why your MacBook battery drained: how many watts it draws, runaway processes, what keeps it from sleeping and how to stop it, and why charging stopped.",
+      "icon": "extension-icon.png",
+      "author": "muratfe",
+      "contributors": [],
+      "categories": [
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/muratfe/battery-drain",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/battery-drain",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "battery-drain",
+          "title": "Battery Drain",
+          "subtitle": "Menu Bar",
+          "description": "Show system power draw in the menu bar and flag runaway processes.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "diagnose-battery-drain",
+          "title": "Diagnose Battery Drain",
+          "description": "Power chart, CPU by app and process, sleep blockers and battery health.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "runawayCpu",
+          "title": "Runaway CPU (%)",
+          "description": "A process at or above this share of one CPU core can be flagged as runaway.",
+          "type": "textfield",
+          "default": "80",
+          "required": false
+        },
+        {
+          "name": "runawayMinutes",
+          "title": "Runaway Duration (minutes)",
+          "description": "How long a process must stay above the runaway CPU share before it is flagged.",
+          "type": "textfield",
+          "default": "15",
+          "required": false
+        },
+        {
+          "name": "highWatts",
+          "title": "High Power Draw (W)",
+          "description": "Sustained system draw at or above this turns the Now icon in Diagnose Battery Drain orange.",
+          "type": "textfield",
+          "default": "25",
+          "required": false
+        },
+        {
+          "name": "notifyRunaways",
+          "title": "Notifications",
+          "label": "Notify when a runaway process is found",
+          "description": "Show a macOS notification once for each runaway process.",
+          "type": "checkbox",
+          "default": true,
+          "required": false
+        }
+      ]
     },
     {
       "name": "battery-health",
@@ -34351,6 +34444,41 @@
       "preferences": []
     },
     {
+      "name": "charter",
+      "title": "Charter - Chart and Diagram Catalog",
+      "description": "Browse chart and diagram types with Mermaid, shadcn and ECharts examples, docs and prompt snippets",
+      "icon": "charter.png",
+      "author": "aic",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Documentation"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/aic/charter",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/charter",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "browse-charts",
+          "title": "Browse Charts",
+          "subtitle": "Charter",
+          "description": "Browse chart and diagram types by family through a Mermaid, shadcn or ECharts lens, and copy the docs link, example or prompt snippet",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "chartmogul",
       "title": "ChartMogul",
       "description": "A Raycast extension that gives you quick access to key business metrics from ChartMogul right from your command bar. Instantly view MRR, ARR, churn, customer counts, and more without leaving your workflow.",
@@ -38376,6 +38504,40 @@
       ]
     },
     {
+      "name": "claude-exit-ip",
+      "title": "Claude Exit IP",
+      "description": "Show the exit IP address and location claude.ai sees you connecting from",
+      "icon": "extension-icon.png",
+      "author": "marcuslannister",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/marcuslannister/claude-exit-ip",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/claude-exit-ip",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "index",
+          "title": "Show Exit IP",
+          "description": "Show the exit IP address and location claude.ai sees you connecting from",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "claude-session-bookmarks",
       "title": "Claude Session Bookmarks",
       "description": "Save and quickly open your Claude Code session links without keeping a pile of browser tabs around.",
@@ -42142,7 +42304,8 @@
       "author": "aelew",
       "contributors": [
         "ripgrim",
-        "just_me"
+        "just_me",
+        "kumamaki"
       ],
       "categories": [
         "Applications",
@@ -77829,12 +77992,30 @@
           "default": "~/Downloads"
         },
         {
+          "name": "openMeetingsIn",
+          "type": "dropdown",
+          "required": false,
+          "title": "Open Meetings In",
+          "description": "Falls back to the web when the Fathom desktop app is not installed.",
+          "default": "desktop",
+          "data": [
+            {
+              "title": "Fathom Desktop",
+              "value": "desktop"
+            },
+            {
+              "title": "Fathom Web",
+              "value": "web"
+            }
+          ]
+        },
+        {
           "name": "notifyOnDownloadFinish",
           "type": "checkbox",
           "required": false,
           "title": "Download Notifications",
           "label": "Notify when a download finishes",
-          "description": "Downloads keep running after you close Raycast, so the progress toast is gone by the time they finish. This posts a desktop notification instead.",
+          "description": "Posts a desktop notification when a download finishes after Raycast closes.",
           "default": true
         },
         {
@@ -77843,17 +78024,26 @@
           "required": false,
           "title": "Notification Style",
           "label": "Send notifications through Raycast",
-          "description": "Shows the notification as Raycast instead of Script Editor. Requires the separate \"Raycast Notification\" extension by maxnyby — without it, notifications are silently dropped.",
+          "description": "Needs the Raycast Notification extension, or notifications are dropped.",
           "default": false
         },
         {
           "name": "verboseLogging",
-          "title": "Verbose Logging",
-          "description": "Enable detailed console logging for debugging purposes",
+          "title": "Debug Logging",
+          "description": "Show detailed logs in the console for debugging.",
           "type": "checkbox",
-          "label": "Enable Verbose Logging",
+          "label": "Enable extra diagnostics in the console",
           "default": false,
           "required": false
+        },
+        {
+          "name": "strictRedaction",
+          "type": "checkbox",
+          "required": false,
+          "title": "Strict Redaction",
+          "label": "Also hide URL query strings and fragments in logs",
+          "description": "Turn on before reproducing an issue, then share only the new log lines.",
+          "default": false
         }
       ]
     },
@@ -78602,7 +78792,7 @@
         {
           "name": "defaultTimeout",
           "title": "Stall Timeout",
-          "description": "Seconds with no data received before a download is abandoned",
+          "description": "Seconds below 1 KiB/s before a download is abandoned",
           "type": "textfield",
           "default": "300",
           "required": false,
@@ -78632,7 +78822,7 @@
           "required": false,
           "title": "Strict Redaction",
           "label": "Also hide URL query strings and fragments in logs",
-          "description": "Enable before reproducing an issue, then share only the lines written afterward. Masks every URL query string and fragment, including values that automatic redaction cannot recognize by name. Does not change lines already in the console.",
+          "description": "Turn on before reproducing an issue, then share only the new log lines.",
           "default": false
         }
       ]
@@ -85542,11 +85732,12 @@
     {
       "name": "font-converter",
       "title": "Font Converter",
-      "description": "Convert fonts to TTF, WOFF, WOFF2, and EOT formats directly from Raycast",
+      "description": "Convert TTF, OTF, WOFF, WOFF2, and EOT fonts to TTF, WOFF, WOFF2, and EOT on macOS and Windows",
       "icon": "extension-icon.png",
       "author": "meshal",
       "contributors": [
-        "ridemountainpig"
+        "ridemountainpig",
+        "0xdhrv"
       ],
       "categories": [
         "Developer Tools",
@@ -85579,7 +85770,7 @@
           "title": "Generate @Font-Face CSS",
           "subtitle": "Font Converter",
           "description": "Generate a CSS snippet for the converted font files.",
-          "mode": "no-view",
+          "mode": "view",
           "keywords": [],
           "preferences": []
         },
@@ -85587,7 +85778,7 @@
           "name": "preview-font",
           "title": "Preview Font",
           "subtitle": "Font Converter",
-          "description": "Preview any installed or custom font.",
+          "description": "Preview a local font file and inspect its metadata.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -91603,6 +91794,81 @@
       ]
     },
     {
+      "name": "ghq-plus",
+      "title": "Ghq Plus",
+      "description": "List and clone repositories managed by ghq.",
+      "icon": "extension-icon.png",
+      "author": "flan",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/flan/ghq-plus",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/ghq-plus",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "list-repo",
+          "title": "List Repositories",
+          "subtitle": "ghq",
+          "description": "Show a list of ghq directories.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "get-repo",
+          "title": "Get Repository",
+          "subtitle": "ghq",
+          "description": "Clone a repository into your ghq root with ghq get.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "editor",
+          "type": "appPicker",
+          "required": false,
+          "title": "Editor",
+          "description": "Application used to open the selected repository with Enter. Optional if a Terminal is set."
+        },
+        {
+          "name": "terminal",
+          "type": "appPicker",
+          "required": false,
+          "title": "Terminal",
+          "description": "Application used to open the selected repository with ⌘ + Enter (Enter when no Editor is set). Optional if an Editor is set."
+        },
+        {
+          "name": "ghqPath",
+          "type": "textfield",
+          "required": true,
+          "title": "Ghq Path",
+          "description": "Absolute path to the ghq binary (the output of `which ghq`).",
+          "placeholder": "/opt/homebrew/bin/ghq"
+        },
+        {
+          "name": "cloneWithSSH",
+          "type": "checkbox",
+          "required": false,
+          "title": "Clone Protocol",
+          "label": "Clone with SSH",
+          "description": "Clone with SSH (ghq get -p) by default. Can be overridden per repository in the Get Repository form.",
+          "default": false
+        }
+      ]
+    },
+    {
       "name": "gif-maker",
       "title": "GIF Maker",
       "description": "Convert videos to GIFs with control over size, frame rate, trimming, and compression. Powered by ffmpeg.",
@@ -97219,7 +97485,7 @@
       "platforms": [
         "macOS"
       ],
-      "version": "1.0.0",
+      "version": "1.1.0",
       "storeUrl": "https://www.raycast.com/paulgit/glm-models",
       "source": {
         "type": "github-monorepo",
@@ -97244,6 +97510,16 @@
           "subtitle": "GLM Models",
           "description": "Re-fetch the list of GLM models available to your account",
           "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "show-models",
+          "title": "Show Models",
+          "subtitle": "GLM Models",
+          "description": "List the GLM models available to your account with context windows and capabilities",
+          "mode": "view",
           "keywords": [],
           "icon": "icon.png",
           "preferences": []
@@ -97276,7 +97552,7 @@
               "title": "Custom base URL"
             }
           ],
-          "description": "Where your API key was created. Z.ai and BigModel are separate platforms with separate keys — pick the one matching your key. Pay-as-you-go API keys only: GLM Coding Plan and Team Plan keys are not supported."
+          "description": "Where your API key was created. Z.ai and BigModel are separate platforms with separate keys — pick the one matching your key. Pay-as-you-go API keys only: GLM Coding Plan and Team Plan keys are not supported. Picking Custom base URL? The setup form doesn't ask for the URL — after finishing, open Raycast Settings → Extensions → GLM Models, set Custom Base URL, then run Refresh Models."
         },
         {
           "name": "customBaseUrl",
@@ -105578,7 +105854,9 @@
       "description": "Find articles of information about a given topic from Grokipedia.",
       "icon": "extension-icon.png",
       "author": "Visual-Studio-Coder",
-      "contributors": [],
+      "contributors": [
+        "0xdhrv"
+      ],
       "categories": [
         "Web",
         "News",
@@ -107146,7 +107424,9 @@
         "News"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/KevinBatdorf/hacker-news-top-stories",
       "source": {
         "type": "github-monorepo",
@@ -107168,7 +107448,7 @@
         {
           "name": "points",
           "title": "Minimum Points",
-          "description": "Minimum points to show stories. Updating this will reset your activity.",
+          "description": "Minimum points to show stories. Changing it starts the story list over; stories you've read stay read.",
           "type": "textfield",
           "default": "500",
           "required": false
@@ -107189,6 +107469,54 @@
           "label": "Use Story Icons",
           "type": "checkbox",
           "default": false,
+          "required": false
+        },
+        {
+          "name": "syncWithICloud",
+          "title": "iCloud Sync",
+          "description": "Sync read stories between your Macs through the \"Raycast Hacker News\" folder in iCloud Drive.",
+          "label": "Sync Read Stories with iCloud Drive",
+          "type": "checkbox",
+          "default": true,
+          "required": false
+        },
+        {
+          "name": "summaryLimit",
+          "title": "Stories per Summary",
+          "description": "How many unread stories Raycast AI summarizes at a time.",
+          "type": "dropdown",
+          "data": [
+            {
+              "title": "1",
+              "value": "1"
+            },
+            {
+              "title": "2",
+              "value": "2"
+            },
+            {
+              "title": "3",
+              "value": "3"
+            },
+            {
+              "title": "5",
+              "value": "5"
+            },
+            {
+              "title": "10",
+              "value": "10"
+            }
+          ],
+          "default": "3",
+          "required": false
+        },
+        {
+          "name": "markReadByAi",
+          "title": "Raycast AI",
+          "description": "Mark a story as read when Raycast AI reads its article or comments.",
+          "label": "Mark Stories Raycast AI Reads as Read",
+          "type": "checkbox",
+          "default": true,
           "required": false
         }
       ]
@@ -139127,6 +139455,15 @@
           "default": true
         },
         {
+          "name": "titleWithSite",
+          "title": "Titles",
+          "label": "Start titles with the site",
+          "description": "Start web titles with their site — `claude.ai · Usage` instead of `Usage`. Applies to http(s) targets only, never folders or surface routers; a name that is just the brand becomes the host alone. The filename stays derived from the bare name.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        },
+        {
           "name": "terminalApplication",
           "title": "Terminal",
           "description": "The application used by the Run in Terminal action, which runs a script with its output left on screen — useful when a command misbehaves and you need to see its errors.",
@@ -149470,6 +149807,49 @@
       "preferences": []
     },
     {
+      "name": "menu-bar-icon-search",
+      "title": "Menu Bar Icon Search",
+      "description": "Search and open menu bar app icons, including hidden icons.",
+      "icon": "menu-bar-icon.png",
+      "author": "mguellsegarra",
+      "contributors": [],
+      "categories": [
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/mguellsegarra/menu-bar-icon-search",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/menu-bar-icon-search",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-menu-bar",
+          "title": "Search Menu Bar Icons",
+          "description": "Find and open an app icon in the menu bar.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "includeSystemItems",
+          "title": "System Items",
+          "description": "Show macOS controls such as Bluetooth, Sound, Wi-Fi, Control Center, and Clock.",
+          "type": "checkbox",
+          "required": false,
+          "default": false,
+          "label": "Include system menu bar items"
+        }
+      ]
+    },
+    {
       "name": "menubar-calendar",
       "title": "Menubar Calendar",
       "description": "Show calendar and reminders in the menu bar.",
@@ -153221,7 +153601,7 @@
     {
       "name": "mint-mac-care",
       "title": "Mint",
-      "description": "See what fills your Mac, get space back without deleting anything, clean, organize folders, free memory and uninstall apps through Mint",
+      "description": "Clean up your Mac with Mint: see what fills the disk, get space back without deleting anything, clear caches, organize folders, free memory and uninstall apps",
       "icon": "extension-icon.png",
       "author": "dzg-studio",
       "contributors": [],
@@ -153251,7 +153631,11 @@
             "disk",
             "storage",
             "space",
-            "free space"
+            "free space",
+            "memory",
+            "ram",
+            "system status",
+            "overview"
           ],
           "preferences": []
         },
@@ -153265,7 +153649,12 @@
             "duplicates",
             "copies",
             "clone",
-            "space"
+            "space",
+            "dedupe",
+            "apfs",
+            "codex",
+            "claude",
+            "ai agents"
           ],
           "preferences": []
         },
@@ -153277,9 +153666,17 @@
           "mode": "view",
           "keywords": [
             "clean",
+            "cleaner",
+            "mac cleaner",
             "cache",
             "junk",
-            "space"
+            "space",
+            "disk space",
+            "free up space",
+            "node_modules",
+            "logs",
+            "purge",
+            "system data"
           ],
           "preferences": []
         },
@@ -153293,7 +153690,10 @@
             "desktop",
             "downloads",
             "tidy",
-            "sort"
+            "sort",
+            "organize files",
+            "declutter",
+            "clean desktop"
           ],
           "preferences": []
         },
@@ -153305,7 +153705,11 @@
           "mode": "view",
           "keywords": [
             "ram",
-            "memory"
+            "memory",
+            "free ram",
+            "quit apps",
+            "idle apps",
+            "memory cleaner"
           ],
           "preferences": []
         },
@@ -153318,7 +153722,9 @@
           "keywords": [
             "remove",
             "delete app",
-            "leftovers"
+            "leftovers",
+            "uninstaller",
+            "remove app"
           ],
           "preferences": []
         },
@@ -153330,7 +153736,8 @@
           "mode": "view",
           "keywords": [
             "restore",
-            "revert"
+            "revert",
+            "put back"
           ],
           "preferences": []
         },
@@ -153340,7 +153747,13 @@
           "subtitle": "Mint",
           "description": "What grew on your disk this week, by app, folder, category or AI tool",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "disk growth",
+            "what grew",
+            "storage history",
+            "space used",
+            "system data"
+          ],
           "preferences": []
         }
       ],
@@ -169742,7 +170155,8 @@
       "contributors": [
         "moeyua",
         "iwex",
-        "qfettes"
+        "qfettes",
+        "victorcaz"
       ],
       "categories": [
         "Productivity",
@@ -169843,6 +170257,10 @@
               "value": "openUrl"
             },
             {
+              "title": "Open Link in Current Window",
+              "value": "openUrlInCurrentWindow"
+            },
+            {
               "title": "Copy Link",
               "value": "copyUrl"
             },
@@ -169883,6 +170301,10 @@
             {
               "title": "Open Link",
               "value": "openUrl"
+            },
+            {
+              "title": "Open Link in Current Window",
+              "value": "openUrlInCurrentWindow"
             },
             {
               "title": "Copy Link",
@@ -169945,6 +170367,15 @@
           "title": "Check for Duplicates",
           "description": "Check for duplicate bookmarks when saving a new bookmark. If enabled, shows a warning when attempting to save a URL that already exists.",
           "label": "Check for Duplicates"
+        },
+        {
+          "name": "faviconField",
+          "title": "Favicon Field",
+          "description": "The frontmatter field used to override the favicon shown in search results. Its value can be a website URL (the favicon of that site is used) or a direct image URL (used as-is). Defaults to 'favicon' when left blank.",
+          "type": "textfield",
+          "placeholder": "favicon",
+          "default": "favicon",
+          "required": false
         }
       ]
     },
@@ -171416,6 +171847,113 @@
           "title": "Override username",
           "description": "The omg.lol account name to use. If not specified, the earliest name in your omg.lol account will be used.",
           "type": "textfield"
+        }
+      ]
+    },
+    {
+      "name": "omlx",
+      "title": "oMLX",
+      "description": "Use locally running oMLX models as AI providers in Raycast",
+      "icon": "extension-icon.png",
+      "author": "60400",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "1.0.0",
+      "storeUrl": "https://www.raycast.com/60400/omlx",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/omlx",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "manage-models",
+          "title": "Manage Models",
+          "subtitle": "oMLX",
+          "description": "View, load, eject, pin, and delete oMLX models",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "server-status",
+          "title": "Serving Stats",
+          "subtitle": "oMLX",
+          "description": "View oMLX serving stats, speed, cache efficiency, and active models",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "start-stop",
+          "title": "Start/Stop Server",
+          "subtitle": "oMLX",
+          "description": "Start, stop, or restart the oMLX server",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "download-model",
+          "title": "Download Model",
+          "subtitle": "oMLX",
+          "description": "Search and download models from HuggingFace",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "manage-downloads",
+          "title": "Manage Downloads",
+          "subtitle": "oMLX",
+          "description": "View download progress, cancel, retry, or remove downloads",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "check-updates",
+          "title": "Check for Updates",
+          "subtitle": "oMLX",
+          "description": "Check if a new version of oMLX is available",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-dashboard",
+          "title": "Open Web Dashboard",
+          "subtitle": "oMLX",
+          "description": "Open the oMLX web dashboard in your browser",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "serverUrl",
+          "title": "Server URL",
+          "type": "textfield",
+          "required": true,
+          "default": "http://127.0.0.1:8000/v1",
+          "description": "oMLX server base URL (including /v1)",
+          "placeholder": "http://127.0.0.1:8000/v1"
+        },
+        {
+          "name": "apiKey",
+          "title": "API Key",
+          "type": "password",
+          "required": true,
+          "description": "Found in ~/.omlx/settings.json under auth.api_key"
         }
       ]
     },
@@ -179638,6 +180176,239 @@
           "type": "password",
           "default": "",
           "required": true
+        }
+      ]
+    },
+    {
+      "name": "page-scanner",
+      "title": "Page Scanner",
+      "description": "Capture the tab in front as a vector PDF, through the Page Scanner Chrome extension.",
+      "icon": "icon.png",
+      "author": "sbd530",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/sbd530/page-scanner",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/page-scanner",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "scan-current-tab",
+          "title": "Scan Current Tab",
+          "subtitle": "Page Scanner",
+          "description": "Capture the tab in front of your browser as a vector PDF (or PNG or JPEG), save it and copy the file.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "set-up",
+          "title": "Set Up Page Scanner",
+          "subtitle": "Page Scanner",
+          "description": "Connect Raycast to the Page Scanner extension in Chrome.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "saveDirectory",
+          "title": "Save To",
+          "description": "Where scans are written. Downloads when left empty.",
+          "type": "directory",
+          "required": false
+        },
+        {
+          "name": "fileName",
+          "title": "File Name",
+          "description": "A name template: {host}, {name} (the browser's suggestion), {date}, {time}, {ext}. A / makes a folder. The browser's suggestion when empty.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "{host}-{date}-{time}"
+        },
+        {
+          "name": "format",
+          "title": "Format",
+          "description": "The file a scan produces.",
+          "type": "dropdown",
+          "required": false,
+          "default": "pdf",
+          "data": [
+            {
+              "title": "PDF (Vector, Selectable Text)",
+              "value": "pdf"
+            },
+            {
+              "title": "PNG",
+              "value": "png"
+            },
+            {
+              "title": "JPEG",
+              "value": "jpeg"
+            }
+          ]
+        },
+        {
+          "name": "pageSize",
+          "title": "Page Size",
+          "description": "How a PDF is paged.",
+          "type": "dropdown",
+          "required": false,
+          "default": "a4",
+          "data": [
+            {
+              "title": "A4 Pages",
+              "value": "a4"
+            },
+            {
+              "title": "US Letter Pages",
+              "value": "letter"
+            },
+            {
+              "title": "Single Long Page",
+              "value": "auto"
+            }
+          ]
+        },
+        {
+          "name": "markdown",
+          "title": "Markdown",
+          "description": "The page's text as Markdown as well, or instead of the file.",
+          "type": "dropdown",
+          "required": false,
+          "default": "none",
+          "data": [
+            {
+              "title": "No Markdown",
+              "value": "none"
+            },
+            {
+              "title": "Also Save a Markdown File Beside It",
+              "value": "beside"
+            },
+            {
+              "title": "Only the Markdown",
+              "value": "only"
+            }
+          ]
+        },
+        {
+          "name": "scheme",
+          "title": "Theme",
+          "description": "Which of a page's two themes to capture.",
+          "type": "dropdown",
+          "required": false,
+          "default": "extension",
+          "data": [
+            {
+              "title": "As in Page Scanner's Settings",
+              "value": "extension"
+            },
+            {
+              "title": "The Browser's (Auto)",
+              "value": "auto"
+            },
+            {
+              "title": "Light",
+              "value": "light"
+            },
+            {
+              "title": "Dark",
+              "value": "dark"
+            }
+          ]
+        },
+        {
+          "name": "pageWidth",
+          "title": "Page Width",
+          "description": "The width the page is laid out at before the capture.",
+          "type": "dropdown",
+          "required": false,
+          "default": "extension",
+          "data": [
+            {
+              "title": "As in Page Scanner's Settings",
+              "value": "extension"
+            },
+            {
+              "title": "The Window's",
+              "value": "window"
+            },
+            {
+              "title": "A4 Sheet",
+              "value": "a4"
+            },
+            {
+              "title": "US Letter Sheet",
+              "value": "letter"
+            }
+          ]
+        },
+        {
+          "name": "hide",
+          "title": "Hide Clutter",
+          "description": "Ads, cookie banners, chat widgets and pop-ups to hide before the capture.",
+          "type": "dropdown",
+          "required": false,
+          "default": "extension",
+          "data": [
+            {
+              "title": "As in Page Scanner's Settings",
+              "value": "extension"
+            },
+            {
+              "title": "Hide All of Them",
+              "value": "all"
+            },
+            {
+              "title": "Hide None of Them",
+              "value": "none"
+            }
+          ]
+        },
+        {
+          "name": "afterScan",
+          "title": "After Scanning",
+          "description": "What happens once the file is saved.",
+          "type": "dropdown",
+          "required": false,
+          "default": "copy",
+          "data": [
+            {
+              "title": "Copy the File",
+              "value": "copy"
+            },
+            {
+              "title": "Show in Finder",
+              "value": "reveal"
+            },
+            {
+              "title": "Open It",
+              "value": "open"
+            },
+            {
+              "title": "Open the Capture in Page Scanner's Editor",
+              "value": "editor"
+            }
+          ]
+        },
+        {
+          "name": "browser",
+          "title": "Browser",
+          "description": "The connected browser to use, by label or id, when more than one is connected.",
+          "type": "textfield",
+          "required": false
         }
       ]
     },
@@ -193429,7 +194200,8 @@
         "pernielsentikaer",
         "0xdhrv",
         "MaaxGr",
-        "tony.nguyen"
+        "tony.nguyen",
+        "alexi.build"
       ],
       "categories": [
         "Developer Tools",
@@ -197292,7 +198064,9 @@
       "description": "View and manage your Proton Mail inbox via Proton Mail Bridge",
       "icon": "extension-icon.png",
       "author": "NormC",
-      "contributors": [],
+      "contributors": [
+        "bastien"
+      ],
       "categories": [
         "System",
         "Communication"
@@ -197473,7 +198247,150 @@
           "description": "Generate secure passwords or passphrases",
           "mode": "view",
           "keywords": [],
-          "preferences": []
+          "preferences": [
+            {
+              "name": "defaultPasswordType",
+              "type": "dropdown",
+              "title": "Password Type",
+              "description": "The generator opens with this type.",
+              "default": "random",
+              "required": false,
+              "data": [
+                {
+                  "title": "Random",
+                  "value": "random"
+                },
+                {
+                  "title": "Passphrase",
+                  "value": "passphrase"
+                }
+              ]
+            },
+            {
+              "name": "defaultPasswordLength",
+              "type": "textfield",
+              "title": "Password Length",
+              "description": "For random passwords, from 8 to 128.",
+              "default": "20",
+              "required": false
+            },
+            {
+              "name": "includeUppercase",
+              "type": "checkbox",
+              "title": "Characters",
+              "label": "Uppercase letters",
+              "description": "In random passwords.",
+              "default": true,
+              "required": false
+            },
+            {
+              "name": "includeSymbols",
+              "type": "checkbox",
+              "title": "",
+              "label": "Symbols",
+              "description": "In random passwords.",
+              "default": true,
+              "required": false
+            },
+            {
+              "name": "includeNumbers",
+              "type": "checkbox",
+              "title": "",
+              "label": "Numbers",
+              "description": "In random passwords and passphrases.",
+              "default": true,
+              "required": false
+            },
+            {
+              "name": "defaultPassphraseWords",
+              "type": "dropdown",
+              "title": "Passphrase Words",
+              "description": "Number of words in passphrases.",
+              "default": "4",
+              "required": false,
+              "data": [
+                {
+                  "title": "3",
+                  "value": "3"
+                },
+                {
+                  "title": "4",
+                  "value": "4"
+                },
+                {
+                  "title": "5",
+                  "value": "5"
+                },
+                {
+                  "title": "6",
+                  "value": "6"
+                },
+                {
+                  "title": "7",
+                  "value": "7"
+                },
+                {
+                  "title": "8",
+                  "value": "8"
+                },
+                {
+                  "title": "9",
+                  "value": "9"
+                },
+                {
+                  "title": "10",
+                  "value": "10"
+                }
+              ]
+            },
+            {
+              "name": "passphraseSeparator",
+              "type": "dropdown",
+              "title": "Passphrase Separator",
+              "description": "Between the words of passphrases.",
+              "default": "hyphens",
+              "required": false,
+              "data": [
+                {
+                  "title": "Hyphens",
+                  "value": "hyphens"
+                },
+                {
+                  "title": "Spaces",
+                  "value": "spaces"
+                },
+                {
+                  "title": "Periods",
+                  "value": "periods"
+                },
+                {
+                  "title": "Commas",
+                  "value": "commas"
+                },
+                {
+                  "title": "Underscores",
+                  "value": "underscores"
+                },
+                {
+                  "title": "Numbers",
+                  "value": "numbers"
+                },
+                {
+                  "title": "Numbers and Symbols",
+                  "value": "numbers-and-symbols"
+                }
+              ]
+            },
+            {
+              "name": "capitalizeWords",
+              "type": "checkbox",
+              "title": "Capitalization",
+              "label": "Capitalize words",
+              "description": "In passphrases.",
+              "default": true,
+              "required": false
+            }
+          ]
         },
         {
           "name": "get-totp",
@@ -197502,32 +198419,6 @@
           "description": "Path to pass-cli executable",
           "default": "pass-cli",
           "required": false
-        },
-        {
-          "name": "defaultPasswordLength",
-          "type": "textfield",
-          "title": "Default Password Length",
-          "description": "Default length for generated passwords",
-          "default": "20",
-          "required": false
-        },
-        {
-          "name": "defaultPasswordType",
-          "type": "dropdown",
-          "title": "Default Password Type",
-          "description": "Type of password to generate by default",
-          "default": "random",
-          "required": false,
-          "data": [
-            {
-              "title": "Random",
-              "value": "random"
-            },
-            {
-              "title": "Passphrase",
-              "value": "passphrase"
-            }
-          ]
         },
         {
           "name": "primaryAction",
@@ -205065,6 +205956,56 @@
           "type": "appPicker",
           "required": false,
           "description": "Specify a secondary browser to use for opening bookmarks"
+        }
+      ]
+    },
+    {
+      "name": "rake",
+      "title": "Rake",
+      "description": "Search and run Rake tasks from a configurable directory, with support for task arguments.",
+      "icon": "icon.png",
+      "author": "kdmsnr",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/kdmsnr/rake",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/rake",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "rake",
+          "title": "Run Rake Task",
+          "description": "Search Rake tasks in your configured directory and run them with optional arguments.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "rakePath",
+          "type": "textfield",
+          "required": false,
+          "title": "Rake Executable",
+          "description": "Path to the rake executable, e.g. ~/.rbenv/shims/rake. Leave empty to use rake from PATH.",
+          "placeholder": "rake"
+        },
+        {
+          "name": "directory",
+          "type": "directory",
+          "required": false,
+          "title": "Rake Directory",
+          "description": "Directory used to discover and run Rake tasks. Defaults to your home directory.",
+          "default": "~"
         }
       ]
     },
@@ -212919,15 +213860,19 @@
     {
       "name": "readwise",
       "title": "Readwise",
-      "description": "Search and browse your Readwise Library.",
+      "description": "Search and browse your Readwise library, and ask AI about your saved highlights and notes.",
       "icon": "icon.png",
       "author": "natterstefan",
-      "contributors": [],
+      "contributors": [
+        "alexi.build"
+      ],
       "categories": [
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/natterstefan/readwise",
       "source": {
         "type": "github-monorepo",
@@ -296099,7 +297044,8 @@
         "FollowTheProcess",
         "justyt65",
         "npc203",
-        "lvigerust"
+        "lvigerust",
+        "xndrbyte"
       ],
       "categories": [
         "Developer Tools"
