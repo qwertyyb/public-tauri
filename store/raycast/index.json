@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-06T00:03:22.993Z",
+  "generatedAt": "2026-10-06T22:39:32.474Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "2eb47102ed17578447a9bdbf41558abbab866279"
+    "commit": "e211fcd83b325d22878618bad070c079ffd1f840"
   },
-  "count": 3377,
+  "count": 3379,
   "extensions": [
     {
       "name": "0x0",
@@ -15250,21 +15250,21 @@
     },
     {
       "name": "atlassian-data-center",
-      "title": "Atlassian Data Center (Self-Hosted)",
+      "title": "Atlassian (Self-Hosted)",
       "description": "Search and manage Confluence contents and Jira issues",
       "icon": "logo-atlassian.png",
       "author": "tofrankie",
       "contributors": [],
       "categories": [
-        "Productivity",
-        "Developer Tools"
+        "Developer Tools",
+        "Productivity"
       ],
       "license": "MIT",
       "platforms": [
         "macOS",
         "Windows"
       ],
-      "version": "1.0.1",
+      "version": "1.0.2",
       "storeUrl": "https://www.raycast.com/tofrankie/atlassian-data-center",
       "source": {
         "type": "github-monorepo",
@@ -15356,80 +15356,80 @@
       ],
       "preferences": [
         {
-          "type": "textfield",
           "name": "confluenceBaseUrl",
+          "type": "textfield",
+          "required": true,
           "title": "Confluence Base URL",
           "description": "Base URL of your Confluence site (e.g. https://confluence.example.com)",
-          "required": true,
           "placeholder": "e.g. https://confluence.example.com"
         },
         {
-          "type": "password",
           "name": "confluencePAT",
+          "type": "password",
+          "required": true,
           "title": "Confluence PAT",
           "description": "Personal Access Token for Confluence API authentication. Create it from: Profile → Personal Access Tokens → Create token",
-          "required": true,
           "placeholder": "Your Confluence Personal Access Token"
         },
         {
-          "type": "textfield",
           "name": "jiraBaseUrl",
+          "type": "textfield",
+          "required": true,
           "title": "Jira Base URL",
           "description": "Base URL of your Jira site (e.g. https://jira.example.com)",
-          "required": true,
           "placeholder": "e.g. https://jira.example.com"
         },
         {
-          "type": "password",
           "name": "jiraPAT",
+          "type": "password",
+          "required": true,
           "title": "Jira PAT",
           "description": "Personal Access Token for Jira API authentication. Create it from: Profile → Personal Access Tokens → Create token",
-          "required": true,
           "placeholder": "Your Jira Personal Access Token"
         },
         {
-          "type": "checkbox",
           "name": "replaceCurrentUser",
-          "title": "Replace currentUser",
-          "description": "Replace currentUser() with username when copying CQL/JQL",
-          "label": "Replace currentUser() with username when copying CQL/JQL",
+          "type": "checkbox",
           "required": true,
+          "title": "Replace currentUser",
+          "label": "Replace currentUser() with username when copying CQL/JQL",
+          "description": "Replace currentUser() with username when copying CQL/JQL",
           "default": true
         },
         {
-          "type": "textfield",
           "name": "paginationSize",
+          "type": "textfield",
+          "required": true,
           "title": "Results per Page",
           "description": "Number of search results per page. Default: 20",
-          "required": true,
-          "default": "20",
-          "placeholder": "20"
+          "placeholder": "20",
+          "default": "20"
         },
         {
-          "type": "textfield",
           "name": "jiraWorkingHoursPerDay",
+          "type": "textfield",
+          "required": true,
           "title": "Working Hours per Day",
           "description": "Working hours per day for worklog progress calculation. Default: 8h (max 1 decimal place)",
-          "required": true,
-          "default": "8",
-          "placeholder": "8"
+          "placeholder": "8",
+          "default": "8"
         },
         {
-          "type": "textfield",
           "name": "jiraWorkingDaysPerWeek",
+          "type": "textfield",
+          "required": true,
           "title": "Working Days per Week",
           "description": "Working days per week for worklog progress calculation. Default: 5",
-          "required": true,
-          "default": "5",
-          "placeholder": "5"
+          "placeholder": "5",
+          "default": "5"
         },
         {
-          "type": "checkbox",
           "name": "debugEnable",
-          "title": "Enable Debug",
-          "description": "Enable debug mode for troubleshooting",
-          "label": "Enable debug mode for troubleshooting",
+          "type": "checkbox",
           "required": true,
+          "title": "Enable Debug",
+          "label": "Enable debug mode for troubleshooting",
+          "description": "Enable debug mode for troubleshooting",
           "default": false
         }
       ]
@@ -36924,7 +36924,7 @@
     {
       "name": "chinese-converter",
       "title": "Chinese Converter",
-      "description": "Convert number input into Chinese formatted text, including uppercase RMB amount text.",
+      "description": "Convert number input into Chinese formatted text, including uppercase RMB amount text",
       "icon": "icon.png",
       "author": "tofrankie",
       "contributors": [],
@@ -36936,7 +36936,7 @@
         "macOS",
         "Windows"
       ],
-      "version": "1.0.0",
+      "version": "1.0.1",
       "storeUrl": "https://www.raycast.com/tofrankie/chinese-converter",
       "source": {
         "type": "github-monorepo",
@@ -36954,19 +36954,19 @@
           "preferences": [
             {
               "name": "autoReadClipboard",
+              "type": "checkbox",
+              "required": false,
               "title": "Auto Read Clipboard",
               "label": "Read clipboard content and fill the search box on launch",
               "description": "When enabled, if no number is provided through the command argument, the command reads clipboard text on launch and converts it automatically.",
-              "type": "checkbox",
-              "required": false,
               "default": false
             },
             {
               "name": "roundingMode",
-              "title": "Rounding Mode",
-              "description": "How to handle   extra decimal digits beyond the specified places.",
               "type": "dropdown",
               "required": false,
+              "title": "Rounding Mode",
+              "description": "How to handle   extra decimal digits beyond the specified places.",
               "default": "4",
               "data": [
                 {
@@ -37009,46 +37009,46 @@
             },
             {
               "name": "unOmitYuan",
+              "type": "checkbox",
+              "required": false,
               "title": "Always Show Yuan",
               "label": "不足一元时也显示「元」，如零元叁角贰分",
               "description": "不足一元时也显示「元」，如 0.32 → 零元叁角贰分。",
-              "type": "checkbox",
-              "required": false,
               "default": false
             },
             {
               "name": "preferTraditionalYuan",
+              "type": "checkbox",
+              "required": false,
               "title": "Use Traditional Yuan",
               "label": "使用「圆」替代「元」",
               "description": "开启后使用「圆」，默认使用「元」。",
-              "type": "checkbox",
-              "required": false,
               "default": false
             },
             {
               "name": "forceZheng",
+              "type": "checkbox",
+              "required": false,
               "title": "Append Zheng",
               "label": "到角位（无分）时在末尾加「整」，如壹元贰角整",
               "description": "到角位（无分）时在末尾加「整」，如 1.2 → 壹元贰角整。",
-              "type": "checkbox",
-              "required": false,
               "default": false
             },
             {
               "name": "preferSimpleZheng",
+              "type": "checkbox",
+              "required": false,
               "title": "Use Simple Zheng",
               "label": "使用「正」替代「整」",
               "description": "开启后使用「正」，默认使用「整」。",
-              "type": "checkbox",
-              "required": false,
               "default": false
             },
             {
               "name": "moneyPrefix",
-              "title": "Custom Prefix",
-              "description": "在结果前添加自定义文字，如「人民币壹元贰角叁分」。",
               "type": "textfield",
               "required": false,
+              "title": "Custom Prefix",
+              "description": "在结果前添加自定义文字，如「人民币壹元贰角叁分」。",
               "default": ""
             }
           ]
@@ -171711,6 +171711,124 @@
       ]
     },
     {
+      "name": "ollama-translate",
+      "title": "Ollama Translate",
+      "description": "Translate text privately with local Ollama models while preserving meaning and tone",
+      "icon": "extension-icon.png",
+      "author": "scorpion7slayer",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/scorpion7slayer/ollama-translate",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/ollama-translate",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "translate",
+          "title": "Translate",
+          "subtitle": "Ollama",
+          "description": "Translate text locally while preserving meaning and tone",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "translate-selected-text",
+          "title": "Translate Selected Text",
+          "subtitle": "Ollama",
+          "description": "Translate the text selected in the frontmost application",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "ollamaUrl",
+          "title": "Ollama URL",
+          "description": "Local Ollama server. Remote hosts are deliberately blocked to keep translations private.",
+          "type": "textfield",
+          "required": true,
+          "default": "http://127.0.0.1:11434",
+          "placeholder": "http://127.0.0.1:11434"
+        },
+        {
+          "name": "defaultModel",
+          "title": "Preferred Model",
+          "description": "Optional exact name of a locally installed Ollama model. The first local model is used as a fallback.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "gemma3:4b"
+        },
+        {
+          "name": "autoTranslate",
+          "title": "Automatic Translation",
+          "description": "Translate shortly after you stop typing.",
+          "type": "checkbox",
+          "required": false,
+          "label": "Translate while typing",
+          "default": true
+        },
+        {
+          "name": "debounceDelay",
+          "title": "Typing Delay",
+          "description": "How long to wait after typing before starting a local translation.",
+          "type": "dropdown",
+          "required": true,
+          "default": "700",
+          "data": [
+            {
+              "title": "Fast — 0.4 seconds",
+              "value": "400"
+            },
+            {
+              "title": "Balanced — 0.7 seconds",
+              "value": "700"
+            },
+            {
+              "title": "Patient — 1 second",
+              "value": "1000"
+            }
+          ]
+        },
+        {
+          "name": "keepAlive",
+          "title": "Keep Model Loaded",
+          "description": "How long Ollama should keep the translation model in memory.",
+          "type": "dropdown",
+          "required": true,
+          "default": "10m",
+          "data": [
+            {
+              "title": "5 minutes",
+              "value": "5m"
+            },
+            {
+              "title": "10 minutes",
+              "value": "10m"
+            },
+            {
+              "title": "30 minutes",
+              "value": "30m"
+            },
+            {
+              "title": "Unload immediately",
+              "value": "0"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "olympic-games",
       "title": "Olympic Games",
       "description": "Paris 2024 Olympic Medal Table",
@@ -173020,7 +173138,9 @@
       "description": "Search Microsoft OneNote notes",
       "icon": "onenote-sf-icon.png",
       "author": "alewandowski",
-      "contributors": [],
+      "contributors": [
+        "0xdhrv"
+      ],
       "categories": [
         "Productivity"
       ],
@@ -192561,7 +192681,6 @@
       "author": "anhthang",
       "contributors": [
         "miguel-felix1",
-        "DanBennett",
         "ridemountainpig"
       ],
       "categories": [
@@ -192755,6 +192874,10 @@
             {
               "title": "Scarlet & Violet Sprites",
               "value": "sv"
+            },
+            {
+              "title": "Pokémon GO",
+              "value": "go"
             }
           ]
         },
@@ -213676,6 +213799,48 @@
           ]
         },
         {
+          "name": "summaryModel",
+          "title": "Summary Model",
+          "description": "Larger models write better summaries but take longer.",
+          "type": "dropdown",
+          "default": "default",
+          "required": false,
+          "data": [
+            {
+              "title": "Default (GPT-5.4 nano)",
+              "value": "default"
+            },
+            {
+              "title": "GPT-5.4 mini",
+              "value": "OpenAI_GPT-5.4_mini"
+            },
+            {
+              "title": "GPT-6 Luna",
+              "value": "OpenAI_GPT-6_Luna"
+            },
+            {
+              "title": "Claude Haiku 4.5",
+              "value": "Anthropic_Claude_Haiku_4.5"
+            },
+            {
+              "title": "Claude Sonnet 5.5",
+              "value": "Anthropic_Claude_Sonnet_5.5"
+            },
+            {
+              "title": "Gemini 3.8 Flash",
+              "value": "Google_Gemini_3.8_Flash"
+            },
+            {
+              "title": "Gemini 3.1 Pro",
+              "value": "Google_Gemini_3.1_Pro"
+            },
+            {
+              "title": "Grok 4.7",
+              "value": "xAI_Grok-4.7"
+            }
+          ]
+        },
+        {
           "name": "summaryOutputLanguage",
           "title": "Summary Output Language",
           "description": "Language for AI-generated summaries.",
@@ -213804,12 +213969,21 @@
         },
         {
           "name": "verboseLogging",
-          "title": "Troubleshooting",
-          "description": "Enable extra diagnostics for troubleshooting and bug reports.",
+          "title": "Debug Logging",
+          "description": "Show detailed logs in the console for debugging.",
           "type": "checkbox",
-          "label": "Enable debug logging",
+          "label": "Enable extra diagnostics in the console",
           "default": false,
           "required": false
+        },
+        {
+          "name": "strictRedaction",
+          "type": "checkbox",
+          "required": false,
+          "title": "Strict Redaction",
+          "label": "Also hide URL query strings and fragments in logs",
+          "description": "Turn on before reproducing an issue, then share only the new log lines.",
+          "default": false
         }
       ]
     },
@@ -272557,6 +272731,184 @@
       "preferences": []
     },
     {
+      "name": "tweek",
+      "title": "Tweek Task Manager",
+      "description": "Manage your Tweek calendars, tasks, someday lists, and recurring todos directly from Raycast and Raycast AI (@tweek).",
+      "icon": "extension-icon.png",
+      "author": "Bykush",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/Bykush/tweek",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/tweek",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "dashboard",
+          "title": "Tweek Dashboard",
+          "subtitle": "Tweek",
+          "description": "Main dashboard to view today's tasks, weekly schedule, calendars, and manage tasks.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "ask-tweek",
+          "title": "Ask Tweek",
+          "subtitle": "Tweek",
+          "description": "Ask Raycast AI about your Tweek schedule, overdue tasks, or daily priorities.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "quick-add",
+          "title": "Quick Add Task",
+          "subtitle": "Tweek",
+          "description": "Quickly add a task to your default Tweek calendar with inline date and color syntax.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-tasks",
+          "title": "Search Tasks",
+          "subtitle": "Tweek",
+          "description": "Search and filter Tweek tasks across dates, calendars, and color badges.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "create-task",
+          "title": "Create Task",
+          "subtitle": "Tweek",
+          "description": "Create a new Tweek task with a detailed modal form (calendar, date/someday list, color, recurrence, checklist, and note).",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "type": "password",
+          "required": true,
+          "title": "Tweek Personal API Key / Access Token",
+          "description": "Generate your Personal API Key in Tweek → Profile → API Settings.",
+          "placeholder": "twk_live_..."
+        },
+        {
+          "name": "defaultCalendar",
+          "type": "textfield",
+          "required": false,
+          "title": "Default Calendar Name or ID",
+          "description": "Optional name or ID of your preferred default calendar. Leave empty to use your primary Tweek calendar.",
+          "default": ""
+        },
+        {
+          "name": "hideCompleted",
+          "type": "checkbox",
+          "required": false,
+          "title": "Hide Completed Tasks",
+          "description": "Whether to hide completed tasks by default in the Dashboard and Search views.",
+          "label": "Hide completed tasks by default in Dashboard and Search views",
+          "default": false
+        },
+        {
+          "name": "dateFormat",
+          "type": "dropdown",
+          "required": false,
+          "title": "Date Format",
+          "description": "Preferred date display format across lists and details.",
+          "default": "dd/MM/yyyy",
+          "data": [
+            {
+              "title": "dd/MM/yyyy (26/09/2026)",
+              "value": "dd/MM/yyyy"
+            },
+            {
+              "title": "MM/dd/yyyy (09/26/2026)",
+              "value": "MM/dd/yyyy"
+            }
+          ]
+        },
+        {
+          "name": "weekStartsOn",
+          "type": "dropdown",
+          "required": false,
+          "title": "Week Starts On",
+          "description": "First day of the week for weekly views and filters.",
+          "default": "Monday",
+          "data": [
+            {
+              "title": "Monday",
+              "value": "Monday"
+            },
+            {
+              "title": "Sunday",
+              "value": "Sunday"
+            }
+          ]
+        },
+        {
+          "name": "defaultTaskColor",
+          "type": "dropdown",
+          "required": false,
+          "title": "Default Task Color",
+          "description": "Default color badge assigned to newly created tasks.",
+          "default": "blank",
+          "data": [
+            {
+              "title": "Blank (No Highlight)",
+              "value": "blank"
+            },
+            {
+              "title": "Pink (#CD2C54)",
+              "value": "pink"
+            },
+            {
+              "title": "Yellowish (#FDEF5D)",
+              "value": "yellowish"
+            },
+            {
+              "title": "Cornflower (#5167F4)",
+              "value": "cornflower"
+            },
+            {
+              "title": "Mango (#FFAF23)",
+              "value": "mango"
+            },
+            {
+              "title": "Greenish (#21FFA1)",
+              "value": "greenish"
+            },
+            {
+              "title": "Lilac (#D95CFE)",
+              "value": "lilac"
+            },
+            {
+              "title": "Grey (#C2C2C2)",
+              "value": "grey"
+            },
+            {
+              "title": "Black (#000000)",
+              "value": "black"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "twenty",
       "title": "Twenty",
       "description": "Create Object Record Instantly",
@@ -285816,7 +286168,7 @@
     {
       "name": "wechat-devtool",
       "title": "WeChat DevTool",
-      "description": "Quickly open WeChat mini program project via official CLI.",
+      "description": "Quickly open WeChat mini program project via official CLI",
       "icon": "icon.png",
       "author": "tofrankie",
       "contributors": [],
@@ -285828,7 +286180,7 @@
         "macOS",
         "Windows"
       ],
-      "version": "1.4.0",
+      "version": "1.4.1",
       "storeUrl": "https://www.raycast.com/tofrankie/wechat-devtool",
       "source": {
         "type": "github-monorepo",
