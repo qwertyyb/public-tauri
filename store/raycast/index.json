@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-06T22:39:32.474Z",
+  "generatedAt": "2026-10-07T23:04:19.014Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "e211fcd83b325d22878618bad070c079ffd1f840"
+    "commit": "9a0386d3493961ab804234865d760f3c472f9145"
   },
-  "count": 3379,
+  "count": 3390,
   "extensions": [
     {
       "name": "0x0",
@@ -6200,7 +6200,7 @@
           "name": "search-uploads",
           "title": "Search Uploads",
           "subtitle": "Aktar",
-          "description": "Search your upload history, copy links in any format, show QR codes, and delete uploads.",
+          "description": "Search your upload history, copy links in any format, show QR codes, replace a file while keeping its link, and delete uploads.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -6209,7 +6209,7 @@
           "name": "browse-buckets",
           "title": "Browse Buckets",
           "subtitle": "Aktar",
-          "description": "Browse the folders and files in your destinations' buckets: copy links, create temporary links and QR codes, rename, move, delete, and upload.",
+          "description": "Browse the folders and files in your destinations' buckets: copy links, create temporary links and QR codes, replace files while keeping their links, rename, move, delete, and upload.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -7646,6 +7646,55 @@
               "value": "com"
             }
           ]
+        }
+      ]
+    },
+    {
+      "name": "amp-runner-manager",
+      "title": "Local Amp Runners",
+      "description": "Manage folders served by local Amp runners",
+      "icon": "icon.png",
+      "author": "nhkhang",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/nhkhang/amp-runner-manager",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/amp-runner-manager",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "manage-runners",
+          "title": "Manage Local Amp Runners",
+          "description": "Manage folders served by local Amp runners",
+          "mode": "view",
+          "keywords": [
+            "amp",
+            "runner",
+            "folders",
+            "directories"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "ampPath",
+          "title": "Amp Executable",
+          "description": "Path to the Amp CLI",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "~/.local/bin/amp",
+          "default": "~/.local/bin/amp"
         }
       ]
     },
@@ -10059,6 +10108,607 @@
           "description": "Optional API key for the Anytype API. Leave empty to use the built-in authentication flow with your Anytype desktop app, or enter an API key (e.g., from a headless Anytype instance) to use manual authentication.",
           "type": "password",
           "required": false
+        }
+      ]
+    },
+    {
+      "name": "apexconnect",
+      "title": "Apex Connect+",
+      "description": "Apex Connect+ remote control. Control your house with Raycast 🚀",
+      "icon": "apex-connect.png",
+      "author": "advaitthakur",
+      "contributors": [],
+      "categories": [
+        "Other"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "1.2.4",
+      "storeUrl": "https://www.raycast.com/advaitthakur/apexconnect",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/apexconnect",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "index",
+          "title": "All Entities",
+          "subtitle": "Apex Connect",
+          "description": "Get/Set states of Apex Connect entities",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "covers",
+          "title": "Covers",
+          "subtitle": "Apex Connect",
+          "description": "Get/Set states of Apex Connect covers",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "fans",
+          "title": "Fans",
+          "subtitle": "Apex Connect",
+          "description": "Get/Set states of Apex Connect fans",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "lights",
+          "title": "Lights",
+          "subtitle": "Apex Connect",
+          "description": "Get/Set states of Apex Connect lights",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "persons",
+          "title": "Persons",
+          "subtitle": "Apex Connect",
+          "description": "Get/Set states of Apex Connect persons",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "sensors",
+          "title": "Sensors",
+          "subtitle": "Apex Connect",
+          "description": "Get/Set states of Apex Connect sensors",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "binarysensors",
+          "title": "Binary Sensors",
+          "subtitle": "Apex Connect",
+          "description": "Get/Set states of Apex Connect binary sensors",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "mediaplayers",
+          "title": "Media Players",
+          "subtitle": "Apex Connect",
+          "description": "Get/Set states of Apex Connect mediaplayers",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "automations",
+          "title": "Automations",
+          "subtitle": "Apex Connect",
+          "description": "Apex Connect automations",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "dashboard",
+          "title": "Dashboard",
+          "subtitle": "Apex Connect",
+          "description": "Open Apex Connect dashboard",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "climate",
+          "title": "Climate",
+          "subtitle": "Apex Connect",
+          "description": "Get/Set states of Apex Connect climate entities",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "attributes",
+          "title": "All Entities with Attributes",
+          "subtitle": "Apex Connect",
+          "description": "Query Apex Connect entity attributes",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "batteries",
+          "title": "Batteries",
+          "subtitle": "Apex Connect",
+          "description": "Query Batteries",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "motions",
+          "title": "Motions",
+          "subtitle": "Apex Connect",
+          "description": "Query Motion Sensors",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "vacuums",
+          "title": "Vacuum Cleaners",
+          "subtitle": "Apex Connect",
+          "description": "Query Vacuum Cleaners",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "cameras",
+          "title": "Cameras",
+          "subtitle": "Apex Connect",
+          "description": "Query Cameras",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "scripts",
+          "title": "Scripts",
+          "subtitle": "Apex Connect",
+          "description": "Query Scripts",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "buttons",
+          "title": "Buttons",
+          "subtitle": "Apex Connect",
+          "description": "Query Buttons",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "scenes",
+          "title": "Scenes",
+          "subtitle": "Apex Connect",
+          "description": "Query Scenes",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "switches",
+          "title": "Switches",
+          "subtitle": "Apex Connect",
+          "description": "Get/Set states of Apex Connect Switches",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "helpers",
+          "title": "Helpers",
+          "subtitle": "Apex Connect",
+          "description": "Get/Set states of Apex Connect Helpers",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "updates",
+          "title": "Updates",
+          "subtitle": "Apex Connect",
+          "description": "Get/Set states of Apex Connect Entity Updates",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "doors",
+          "title": "Doors",
+          "subtitle": "Apex Connect",
+          "description": "Get/Set states of Apex Connect Entity with device class door",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "weather",
+          "title": "Weather",
+          "subtitle": "Apex Connect",
+          "description": "Get Weather states of Apex Connect Entity Weather",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "windows",
+          "title": "Windows",
+          "subtitle": "Apex Connect",
+          "description": "Get/Set states of Apex Connect Entity with device class window",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "notificationmenu",
+          "title": "Notifications Menu",
+          "subtitle": "Apex Connect",
+          "description": "Display Persistent Notifications, Low Batteries and Update in the Menu Bar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "showcount",
+              "description": "Show Notification Count in Menu",
+              "type": "checkbox",
+              "label": "Show Notification Count in Menubar",
+              "required": false,
+              "default": false
+            },
+            {
+              "name": "indicatorUpdates",
+              "description": "Pending Updates will activate the Indicator",
+              "type": "checkbox",
+              "required": false,
+              "title": "Indicator",
+              "label": "Updates",
+              "default": true
+            }
+          ]
+        },
+        {
+          "name": "zones",
+          "title": "Zones",
+          "subtitle": "Apex Connect",
+          "description": "Get states about Zones",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "weathermenu",
+          "title": "Weather Menu",
+          "subtitle": "Apex Connect",
+          "description": "Display Weather entity in the Menu Bar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "entity",
+              "description": "Weather Entity ID which will be shown",
+              "type": "textfield",
+              "required": false,
+              "title": "Weather Entity",
+              "placeholder": "weather.home"
+            }
+          ]
+        },
+        {
+          "name": "assist",
+          "title": "Assist",
+          "subtitle": "Apex Connect",
+          "description": "Conversation with Apex Connect Assist",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "connection",
+          "title": "Connection Check",
+          "subtitle": "Apex Connect",
+          "description": "Check the Connection to Apex Connect",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "mediaplayermenu",
+          "title": "Media Player Menu",
+          "subtitle": "Apex Connect",
+          "description": "Display Media Players in the Menu Bar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "includedEntities",
+              "description": "Given entities will be included in the menu. Multiple elements can be separated by , . Wildcards are supported.",
+              "type": "textfield",
+              "required": false,
+              "title": "Included Entities",
+              "placeholder": "media_player.*"
+            },
+            {
+              "name": "excludedEntities",
+              "description": "Given entities will be hidden in the menu. Multiple elements can be separated by , . Wildcards are supported.",
+              "type": "textfield",
+              "required": false,
+              "title": "Excluded Entities",
+              "placeholder": "media_player.player1,media_player.player2,media_player.bath*"
+            }
+          ]
+        },
+        {
+          "name": "lightsmenu",
+          "title": "Lights Menu",
+          "subtitle": "Apex Connect",
+          "description": "Display Lights in the Menu Bar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "includedEntities",
+              "description": "Given entities will be included in the menu. Multiple elements can be separated by , . Wildcards are supported.",
+              "type": "textfield",
+              "required": false,
+              "title": "Included Entities",
+              "placeholder": "light.*"
+            },
+            {
+              "name": "excludedEntities",
+              "description": "Given entities will be hidden in the menu. Multiple elements can be separated by , . Wildcards are supported.",
+              "type": "textfield",
+              "required": false,
+              "title": "Excluded Entities",
+              "placeholder": "light.mylight1,light.mylight2,light.bath*"
+            }
+          ]
+        },
+        {
+          "name": "coversmenu",
+          "title": "Covers Menu",
+          "subtitle": "Apex Connect",
+          "description": "Display Covers in the Menu Bar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "includedEntities",
+              "description": "Given entities will be included in the menu. Multiple elements can be separated by , . Wildcards are supported.",
+              "type": "textfield",
+              "required": false,
+              "title": "Included Entities",
+              "placeholder": "cover.*"
+            },
+            {
+              "name": "excludedEntities",
+              "description": "Given entities will be hidden in the menu. Multiple elements can be separated by , . Wildcards are supported.",
+              "type": "textfield",
+              "required": false,
+              "title": "Excluded Entities",
+              "placeholder": "cover.mycover1,cover.bath*"
+            }
+          ]
+        },
+        {
+          "name": "batteriesmenu",
+          "title": "Batteries Menu",
+          "subtitle": "Apex Connect",
+          "description": "Display Batteries in the Menu Bar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "includedEntities",
+              "description": "Given entities will be included in the menu. Multiple elements can be separated by , . Wildcards are supported.",
+              "type": "textfield",
+              "required": false,
+              "title": "Included Entities",
+              "placeholder": "sensor.*"
+            },
+            {
+              "name": "excludedEntities",
+              "description": "Given entities will be hidden in the menu. Multiple elements can be separated by , . Wildcards are supported.",
+              "type": "textfield",
+              "required": false,
+              "title": "Excluded Entities",
+              "placeholder": "sensor.mysensor1,cover.mysensor*"
+            },
+            {
+              "name": "excludeHigher",
+              "description": "Exclude Battery with a Level higher than the given value. Keep empty to disable the filter",
+              "type": "textfield",
+              "required": false,
+              "title": "Exclude Higher Than",
+              "placeholder": "50"
+            }
+          ]
+        },
+        {
+          "name": "entitiesmenu",
+          "title": "Entities Menu",
+          "subtitle": "Apex Connect",
+          "description": "Show given entities in the Menu Bar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "includedEntities",
+              "description": "Given entities will be included in the menu. Multiple elements can be separated by , . Wildcards are supported.",
+              "type": "textfield",
+              "required": true,
+              "title": "Included Entities",
+              "placeholder": "cover.*"
+            },
+            {
+              "name": "excludedEntities",
+              "description": "Given entities will be hidden in the menu. Multiple elements can be separated by , . Wildcards are supported.",
+              "type": "textfield",
+              "required": false,
+              "title": "Excluded Entities",
+              "placeholder": "cover.mycover1,cover.bath*"
+            }
+          ]
+        },
+        {
+          "name": "entitymenu01",
+          "title": "Entity Menu 1",
+          "subtitle": "Apex Connect",
+          "description": "Show a Single Entity directly in the Menubar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "entity",
+              "description": "Entity ID which will be shown",
+              "type": "textfield",
+              "required": true,
+              "title": "Weather Entity",
+              "placeholder": "weather.home"
+            }
+          ]
+        },
+        {
+          "name": "entitymenu02",
+          "title": "Entity Menu 2",
+          "subtitle": "Apex Connect",
+          "description": "Show a Single Entity directly in the Menubar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "entity",
+              "description": "Entity ID which will be shown",
+              "type": "textfield",
+              "required": true,
+              "title": "Weather Entity",
+              "placeholder": "weather.home"
+            }
+          ]
+        },
+        {
+          "name": "entitymenu03",
+          "title": "Entity Menu 3",
+          "subtitle": "Apex Connect",
+          "description": "Show a Single Entity directly in the Menubar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "entity",
+              "description": "Entity ID which will be shown",
+              "type": "textfield",
+              "required": true,
+              "title": "Weather Entity",
+              "placeholder": "weather.home"
+            }
+          ]
+        }
+      ],
+      "preferences": [
+        {
+          "name": "instance",
+          "type": "textfield",
+          "required": true,
+          "title": "Apex Connect URL",
+          "description": "URL of your Apex Connect instance",
+          "placeholder": "https://user.cloud.apexinfosys.in"
+        },
+        {
+          "name": "instanceInternal",
+          "type": "textfield",
+          "required": false,
+          "title": "Internal Apex Connect URL (Optional)",
+          "description": "URL of your Apex Connect instance in your Home Network. This url is used when the current WiFI SSID is in the SSID list of your Home WiFi or the url is pingable.",
+          "placeholder": "http://apexconnect.local:1702"
+        },
+        {
+          "name": "homeSSIDs",
+          "type": "textfield",
+          "required": false,
+          "title": "Home Network Detection",
+          "description": "A list of your Home Network WiFi SSIDs separated by a comma if you have multiple. The SSIDs are used to detect your Home WiFi. Only required if the Internal Apex Connect URL is set.",
+          "placeholder": "HomeWiFi1,HomeWiFi2"
+        },
+        {
+          "name": "usePing",
+          "description": "Use ping to detect Home Network",
+          "type": "checkbox",
+          "required": false,
+          "label": "Use Ping",
+          "default": true
+        },
+        {
+          "name": "token",
+          "type": "password",
+          "required": true,
+          "title": "API Token",
+          "description": "Your Apex Connect long-lived access token",
+          "placeholder": "Enter your Apex Connect long-lived access token"
+        },
+        {
+          "name": "ignorecerts",
+          "type": "checkbox",
+          "label": "Ignore Certificates",
+          "required": false,
+          "default": false,
+          "title": "Network Settings",
+          "description": "Ignore Certificates",
+          "placeholder": "Ignore Certificates"
+        },
+        {
+          "name": "showEntityId",
+          "type": "checkbox",
+          "label": "Show Entity IDs",
+          "required": false,
+          "default": false,
+          "title": "Style",
+          "description": "Show Entity IDs as subtitle"
+        },
+        {
+          "name": "camerarefreshinterval",
+          "type": "textfield",
+          "required": false,
+          "default": "3000",
+          "title": "Camera Refresh Interval (Ms)",
+          "description": "Refresh interval in ms for camera streams. Values < 2000 are not recommended. 0 mean no auto refresh at all",
+          "placeholder": "3000"
+        },
+        {
+          "name": "preferredapp",
+          "description": "Preferred Application to Open",
+          "type": "dropdown",
+          "required": false,
+          "title": "Preferred Application",
+          "data": [
+            {
+              "title": "Browser",
+              "value": "browser"
+            },
+            {
+              "title": "Companion",
+              "value": "companion"
+            }
+          ]
         }
       ]
     },
@@ -14738,6 +15388,59 @@
           "title": "Auto Wallpaper Background",
           "description": "Background task that changes the wallpaper automatically",
           "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "ascii-kit",
+      "title": "ASCII Kit",
+      "description": "Box-drawing glyphs, diagram templates and a live-preview composer for text diagrams in PRs, Slack and docs.",
+      "icon": "icon.png",
+      "author": "villem",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/villem/ascii-kit",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/ascii-kit",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "compose",
+          "title": "Compose Diagram",
+          "subtitle": "ASCII Kit",
+          "description": "Turn selected or copied text into trees, tables, flows, sequence diagrams, charts and more, with a live preview.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "glyphs",
+          "title": "Search Glyphs",
+          "subtitle": "ASCII Kit",
+          "description": "Browse box-drawing, arrow, marker and block characters and paste one.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "templates",
+          "title": "Diagram Templates",
+          "subtitle": "ASCII Kit",
+          "description": "Paste a ready-made diagram skeleton: boxes, columns, wireframe, sequence, option list.",
+          "mode": "view",
           "keywords": [],
           "preferences": []
         }
@@ -50474,13 +51177,14 @@
     {
       "name": "craftdocs",
       "title": "Craft",
-      "description": "Search Blocks, browse and add to Daily Notes, and manage Spaces in Craft",
+      "description": "Search Blocks, browse and add to Daily Notes, and manage Spaces in Craft. Includes AI tools to search and write to Craft.",
       "icon": "command-icon.png",
       "author": "sfkmk",
       "contributors": [
         "bgnfu7re",
         "mafredri",
-        "0x77dev"
+        "0x77dev",
+        "alhassanaraouf"
       ],
       "categories": [
         "Productivity"
@@ -50532,62 +51236,7 @@
           "description": "Add content to your Daily Note",
           "mode": "view",
           "keywords": [],
-          "preferences": [
-            {
-              "title": "Append Position",
-              "name": "appendPosition",
-              "type": "dropdown",
-              "required": false,
-              "default": "end",
-              "data": [
-                {
-                  "title": "Add at End",
-                  "value": "end"
-                },
-                {
-                  "title": "Add at Beginning",
-                  "value": "beginning"
-                }
-              ],
-              "description": "Choose whether to add content at the beginning or end of the Daily Note"
-            },
-            {
-              "title": "Add Timestamp",
-              "name": "addTimestamp",
-              "type": "checkbox",
-              "required": false,
-              "default": true,
-              "label": "Add timestamp to content",
-              "description": "Automatically add current time before your content"
-            },
-            {
-              "title": "Time Format",
-              "name": "timeFormat",
-              "type": "textfield",
-              "required": false,
-              "default": "HH:mm",
-              "placeholder": "HH:mm",
-              "description": "Custom time format pattern. Examples: HH:mm (14:30), h:mm A (2:30 PM), HH:mm:ss (14:30:45). Patterns: H/HH=24h, h/hh=12h, mm=minutes, ss=seconds, A/a=AM/PM"
-            },
-            {
-              "title": "Prefix",
-              "name": "contentPrefix",
-              "type": "textfield",
-              "required": false,
-              "default": ": ",
-              "placeholder": "Enter prefix text",
-              "description": "Text to add after timestamp (if enabled) and before your content"
-            },
-            {
-              "title": "Suffix",
-              "name": "contentSuffix",
-              "type": "textfield",
-              "required": false,
-              "default": "",
-              "placeholder": "Enter suffix text",
-              "description": "Text to add after your content"
-            }
-          ]
+          "preferences": []
         },
         {
           "name": "manageSpaces",
@@ -50607,6 +51256,76 @@
           "title": "Application to search in",
           "description": "Choose which Craft installation to use. If you leave it empty, the extension auto-detects an installed Craft app.",
           "placeholder": "com.lukilabs.lukiapp"
+        },
+        {
+          "title": "Append Position",
+          "name": "appendPosition",
+          "type": "dropdown",
+          "required": false,
+          "default": "end",
+          "data": [
+            {
+              "title": "Add at End",
+              "value": "end"
+            },
+            {
+              "title": "Add at Beginning",
+              "value": "beginning"
+            }
+          ],
+          "description": "Choose whether to add content at the beginning or end of the Daily Note"
+        },
+        {
+          "title": "Add Timestamp",
+          "name": "addTimestamp",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "label": "Add timestamp to content",
+          "description": "Automatically add current time before your content"
+        },
+        {
+          "title": "Time Format",
+          "name": "timeFormat",
+          "type": "textfield",
+          "required": false,
+          "default": "HH:mm",
+          "placeholder": "HH:mm",
+          "description": "Custom time format pattern. Examples: HH:mm (14:30), h:mm A (2:30 PM), HH:mm:ss (14:30:45). Patterns: H/HH=24h, h/hh=12h, mm=minutes, ss=seconds, A/a=AM/PM"
+        },
+        {
+          "title": "Prefix",
+          "name": "contentPrefix",
+          "type": "textfield",
+          "required": false,
+          "default": ": ",
+          "placeholder": "Enter prefix text",
+          "description": "Text to add after timestamp (if enabled) and before your content"
+        },
+        {
+          "title": "Suffix",
+          "name": "contentSuffix",
+          "type": "textfield",
+          "required": false,
+          "default": "",
+          "placeholder": "Enter suffix text",
+          "description": "Text to add after your content"
+        },
+        {
+          "name": "apiUrl",
+          "type": "textfield",
+          "required": false,
+          "title": "Craft API URL",
+          "placeholder": "https://connect.craft.do/links/.../api/v1",
+          "description": "Optional. Lets Raycast AI edit, delete and move content, and manage tasks, collections and folders. Create an API connection in Craft (Imagine tab) and paste its URL."
+        },
+        {
+          "name": "apiKey",
+          "type": "password",
+          "required": false,
+          "title": "Craft API Key",
+          "placeholder": "pdk_...",
+          "description": "Optional. Only needed if your Craft API connection requires a key."
         }
       ]
     },
@@ -86977,7 +87696,9 @@
       "description": "Interact with FreeAgent",
       "icon": "icon.png",
       "author": "SteveEdson",
-      "contributors": [],
+      "contributors": [
+        "jcwacky"
+      ],
       "categories": [
         "Finance",
         "Productivity"
@@ -111688,7 +112409,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/Flatroy/hide-mail",
       "source": {
@@ -111732,8 +112454,17 @@
           "type": "password",
           "required": true,
           "title": "HideMail API Key",
-          "description": "Generate from our web-site - https://hidemail.app/user/api-tokens",
+          "description": "Create a token at https://hidemail.app/user/api-tokens and paste it here",
           "placeholder": "API Key"
+        },
+        {
+          "name": "host",
+          "type": "textfield",
+          "required": false,
+          "title": "HideMail Host",
+          "description": "Only change this to use a different HideMail server. Always uses HTTPS",
+          "default": "https://hidemail.app",
+          "placeholder": "https://hidemail.app"
         }
       ]
     },
@@ -113580,6 +114311,133 @@
       ]
     },
     {
+      "name": "hora-calendar",
+      "title": "Hora Calendar",
+      "description": "The official hora Calendar extension. Create events and tasks in plain language and join your next meeting, without leaving Raycast.",
+      "icon": "icon.png",
+      "author": "szamski",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Applications"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/szamski/hora-calendar",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/hora-calendar",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "create-calendar-event",
+          "title": "Create Calendar Event",
+          "subtitle": "hora Calendar",
+          "description": "Describe an event in plain language and save it straight to your Google Calendar.",
+          "mode": "no-view",
+          "keywords": [
+            "quick add",
+            "new event",
+            "add event",
+            "schedule",
+            "appointment",
+            "calendar",
+            "book time"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "create-meeting",
+          "title": "Create Meeting",
+          "subtitle": "hora Calendar",
+          "description": "Parse a sentence, then open it in hora to add guests, a room or a call before saving.",
+          "mode": "no-view",
+          "keywords": [
+            "new meeting",
+            "add meeting",
+            "invite",
+            "guests",
+            "schedule meeting",
+            "event details"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "create-task",
+          "title": "Create Task",
+          "subtitle": "hora Calendar",
+          "description": "Add a task to one of your Google Tasks lists, with a due date and notes.",
+          "mode": "view",
+          "keywords": [
+            "add task",
+            "todo",
+            "to do",
+            "reminder",
+            "google tasks",
+            "task list"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "join-next-meeting",
+          "title": "Join Next Meeting",
+          "subtitle": "hora Calendar",
+          "description": "Find an upcoming meeting and open its link in the right app and the right account.",
+          "mode": "view",
+          "keywords": [
+            "join meeting",
+            "zoom",
+            "google meet",
+            "teams",
+            "video call",
+            "conference",
+            "standup"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "calendarName",
+          "title": "Default Calendar",
+          "description": "Calendar that Quick Add Event writes to. Leave empty to use the primary calendar of your first connected account.",
+          "type": "textfield",
+          "required": false,
+          "default": ""
+        },
+        {
+          "name": "closeWindowOnAdd",
+          "label": "Close Raycast after adding",
+          "description": "Dismiss the Raycast window as soon as a quick add is sent.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "dateLocale",
+          "title": "Date and Time Locale",
+          "description": "Locale used to format event dates and times in Raycast.",
+          "type": "dropdown",
+          "required": false,
+          "default": "en-US",
+          "data": [
+            {
+              "title": "English (United States)",
+              "value": "en-US"
+            },
+            {
+              "title": "Polski (Polska)",
+              "value": "pl-PL"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "horoscope",
       "title": "Horoscope",
       "description": "Get Daily, Weekly or Monthly Horoscope by Sign",
@@ -113758,6 +114616,68 @@
           "name": "switch",
           "title": "Host Switch",
           "description": "Quickly switch between hosts",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "hostbeam",
+      "title": "Hostbeam",
+      "description": "Control the Hostbeam Mac app — beam the screenshot on your clipboard to a remote host and get the paste-ready path back.",
+      "icon": "icon.png",
+      "author": "PunkABeat",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/PunkABeat/hostbeam",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/hostbeam",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "beam-clipboard",
+          "title": "Beam Clipboard",
+          "subtitle": "Hostbeam",
+          "description": "Send the screenshot on your clipboard to your current host.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "beam-selected-files",
+          "title": "Beam Selected Files",
+          "subtitle": "Hostbeam",
+          "description": "Send the images selected in Finder to your current host.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "recent-beams",
+          "title": "Recent Beams",
+          "subtitle": "Hostbeam",
+          "description": "Browse what you have beamed and copy a path back to the clipboard.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "switch-host",
+          "title": "Switch Host",
+          "subtitle": "Hostbeam",
+          "description": "Choose which host your beams go to.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -137792,7 +138712,7 @@
           "description": "Force query from the specified mirror.",
           "type": "textfield",
           "default": "",
-          "placeholder": "https://libgen.is",
+          "placeholder": "https://libgen.li",
           "required": false
         },
         {
@@ -139861,6 +140781,60 @@
           "required": true,
           "type": "password",
           "placeholder": "Password..."
+        }
+      ]
+    },
+    {
+      "name": "linkpilot",
+      "title": "LinkPilot",
+      "description": "Share a password or API key as a link that opens once, and shorten URLs, without leaving Raycast",
+      "icon": "command-icon.png",
+      "author": "tetracorellc",
+      "contributors": [],
+      "categories": [
+        "Security",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/tetracorellc/linkpilot",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/linkpilot",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "create-secret",
+          "title": "Create Secret Link",
+          "subtitle": "LinkPilot",
+          "description": "Encrypt text locally and get a link that self-destructs after one view",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "shorten-link",
+          "title": "Shorten Link",
+          "subtitle": "LinkPilot",
+          "description": "Shorten the URL on your clipboard, or type one in",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "type": "password",
+          "required": true,
+          "title": "API Key",
+          "description": "Your LinkPilot API key. Available on every plan, including Free.",
+          "placeholder": "Create one at uselinkpilot.com/app/api-keys"
         }
       ]
     },
@@ -146961,7 +147935,7 @@
     {
       "name": "masscode",
       "title": "massCode",
-      "description": "Fetch snippets from massCode v4 app",
+      "description": "Fetch snippets from massCode app",
       "icon": "massCode.png",
       "author": "antonreshetov",
       "contributors": [],
@@ -146985,7 +147959,7 @@
         {
           "name": "index",
           "title": "MassCode Assistant",
-          "description": "Fetch snippets from massCode v4 app",
+          "description": "Fetch snippets from massCode app",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -146999,6 +147973,14 @@
           "type": "textfield",
           "placeholder": "4321",
           "default": "4321",
+          "required": false
+        },
+        {
+          "name": "token",
+          "title": "massCode API Token",
+          "description": "Generate it in massCode Preferences > API with Enable API integrations turned on",
+          "type": "password",
+          "placeholder": "mc_...",
           "required": false
         },
         {
@@ -158029,7 +159011,9 @@
         "Security"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/natew/mozilla-vpn",
       "source": {
         "type": "github-monorepo",
@@ -158046,9 +159030,88 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "menubar",
+          "title": "VPN Status",
+          "subtitle": "Mozilla VPN",
+          "description": "Show VPN status in menubar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "ms-todo",
+      "title": "Microsoft To Do via ms-todo",
+      "description": "Browse, search, and manage Microsoft To Do tasks through your local ms-todo cache",
+      "icon": "icon.png",
+      "author": "bhekanik",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/bhekanik/ms-todo",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/ms-todo",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "quick-add",
+          "title": "Quick Add Task",
+          "subtitle": "Microsoft To Do",
+          "description": "Capture a task with ms-todo quick add",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-tasks",
+          "title": "Search Tasks",
+          "subtitle": "Microsoft To Do",
+          "description": "Fuzzy search all cached tasks and reopen or complete them",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "browse-tasks",
+          "title": "Browse Tasks",
+          "subtitle": "Microsoft To Do",
+          "description": "Browse smart views and lists, inspect and edit tasks",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "my-day",
+          "title": "My Day",
+          "subtitle": "Microsoft To Do",
+          "description": "View and manage today’s My Day tasks",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "cliPath",
+          "title": "ms-todo CLI Path",
+          "description": "Optional absolute path to the installed ms-todo binary. Leave blank to search Homebrew and PATH.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "/opt/homebrew/bin/ms-todo"
+        }
+      ]
     },
     {
       "name": "mui-documentation",
@@ -170705,6 +171768,192 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "octarine",
+      "title": "Octarine",
+      "description": "Search your Octarine workspaces from Raycast",
+      "icon": "icon.png",
+      "author": "aerz",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/aerz/octarine",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/octarine",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "open-workspace",
+          "title": "Open Workspace",
+          "subtitle": "Octarine",
+          "description": "Open a workspace in Octarine",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-notes",
+          "title": "Search Notes",
+          "subtitle": "Octarine",
+          "description": "Search notes across Octarine workspaces",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "showWorkspaceNoteCount",
+              "type": "checkbox",
+              "title": "Search Results",
+              "description": "Adds a note count to each workspace section title.",
+              "label": "Show a note count in each workspace section",
+              "default": false,
+              "required": false
+            },
+            {
+              "name": "showPinnedNotesFirst",
+              "type": "checkbox",
+              "title": "",
+              "description": "Moves pinned notes to the top of results in each workspace.",
+              "label": "Show pinned notes first",
+              "default": false,
+              "required": false
+            },
+            {
+              "name": "searchContent",
+              "type": "checkbox",
+              "title": "",
+              "description": "Searches note content alongside note titles and file paths.",
+              "label": "Include note content by default",
+              "default": false,
+              "required": false
+            },
+            {
+              "name": "previewNotesByDefault",
+              "type": "checkbox",
+              "title": "",
+              "description": "Shows the selected note beside the results list when Search Notes opens.",
+              "label": "Show a note preview by default",
+              "default": false,
+              "required": false
+            }
+          ]
+        },
+        {
+          "name": "search-attachments",
+          "title": "Search Attachments",
+          "subtitle": "Octarine",
+          "description": "Search attachments across Octarine workspaces",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "showWorkspaceAttachmentCount",
+              "type": "checkbox",
+              "title": "Attachment Results",
+              "description": "Adds an attachment count to each workspace section title.",
+              "label": "Show an attachment count in each workspace section",
+              "default": false,
+              "required": false
+            },
+            {
+              "name": "flattenWorkspaceSections",
+              "type": "checkbox",
+              "title": "",
+              "description": "Applies when All Extensions is selected.",
+              "label": "Show attachments in one list",
+              "default": false,
+              "required": false
+            },
+            {
+              "name": "listViewByDefault",
+              "type": "checkbox",
+              "title": "",
+              "description": "Opens Search Attachments in List view instead of Grid.",
+              "label": "Show attachments in a list by default",
+              "default": false,
+              "required": false
+            },
+            {
+              "name": "excludeFileExtensions",
+              "type": "textfield",
+              "title": "File Extensions to Exclude",
+              "description": "Extensions to omit from results, separated by commas. A leading dot is optional.",
+              "placeholder": "png, mp4, pdf",
+              "required": false
+            }
+          ]
+        },
+        {
+          "name": "open-daily-desk-note",
+          "title": "Open Daily Desk Note",
+          "subtitle": "Octarine",
+          "description": "Find and open Daily Desk notes by date",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "defaultWorkspace",
+              "type": "textfield",
+              "title": "Default Workspace",
+              "required": false,
+              "description": "Enter a workspace name to select when the command opens. Leave blank to show notes from all workspaces.",
+              "placeholder": "Workspace name"
+            },
+            {
+              "name": "showFilename",
+              "type": "checkbox",
+              "title": "Daily Note Titles",
+              "label": "Use the file name as the result title",
+              "required": false,
+              "default": false,
+              "description": "Shows the file name without its extension, such as 2023-02-18. The formatted date or week label appears as the subtitle."
+            },
+            {
+              "name": "useLastWorkspace",
+              "type": "checkbox",
+              "title": "Date Suggestions",
+              "label": "Use the last workspace for date suggestions",
+              "required": false,
+              "default": true,
+              "description": "When you search all workspaces, date suggestions use the workspace where you last opened a note."
+            }
+          ]
+        }
+      ],
+      "preferences": [
+        {
+          "name": "workspaceRoots",
+          "type": "textfield",
+          "required": true,
+          "title": "Workspace Paths",
+          "description": "Paths to Octarine workspaces or folders containing them, separated by commas.",
+          "placeholder": "~/path/to/workspace, ~/path/to/folder"
+        },
+        {
+          "name": "excludedWorkspaces",
+          "type": "textfield",
+          "placeholder": "Workspace A, Workspace B",
+          "title": "Workspaces to Exclude",
+          "required": false,
+          "description": "Workspace names Raycast should skip, separated by commas."
+        },
+        {
+          "name": "excludedFoldersInWorkspaces",
+          "type": "textfield",
+          "placeholder": "Folder A, Folder B",
+          "title": "Folders to Exclude",
+          "required": false,
+          "description": "Folder names to exclude from note and attachment results across all workspaces, separated by commas."
+        }
+      ]
     },
     {
       "name": "octoprint",
@@ -202305,6 +203554,55 @@
       ]
     },
     {
+      "name": "qrz-lookup",
+      "title": "QRZ Lookup",
+      "description": "Look up amateur radio callsigns on QRZ.com",
+      "icon": "extension-icon.png",
+      "author": "derJan",
+      "contributors": [],
+      "categories": [
+        "Communication",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/derJan/qrz-lookup",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/qrz-lookup",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-callsign",
+          "title": "Search Callsign",
+          "description": "Look up a callsign on QRZ.com",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "username",
+          "type": "textfield",
+          "required": true,
+          "title": "QRZ Username",
+          "description": "Your QRZ.com username (usually your callsign)"
+        },
+        {
+          "name": "password",
+          "type": "password",
+          "required": true,
+          "title": "QRZ Password",
+          "description": "Your QRZ.com password"
+        }
+      ]
+    },
+    {
       "name": "quarantine-manager",
       "title": "Quarantine Manager",
       "description": "Inspect extended attributes on macOS files, apps, and folders, then select which quarantined items to clear — individually or in bulk — removing the com.apple.quarantine flag once you've verified the source.",
@@ -205705,16 +207003,7 @@
           "description": "Search and navigate to your Railway projects",
           "mode": "view",
           "keywords": [],
-          "preferences": [
-            {
-              "name": "railwayApiKey",
-              "type": "password",
-              "title": "Railway API Key",
-              "required": true,
-              "description": "type your Railway api key for auth",
-              "placeholder": "xxxxxxxxxx"
-            }
-          ]
+          "preferences": []
         },
         {
           "name": "railway-templates",
@@ -205724,9 +207013,64 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "railway-usage",
+          "title": "Show Usage",
+          "subtitle": "Railway",
+          "description": "Show the current billing period usage, estimated bill, and usage limits of a workspace",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "railway-last-deploy",
+          "title": "Last Deploy",
+          "subtitle": "Railway",
+          "description": "Show the status of your latest Railway deployments in the menu bar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "showServiceName",
+              "type": "checkbox",
+              "label": "Show service name in the menu bar",
+              "title": "Menu Bar Title",
+              "required": false,
+              "default": true,
+              "description": "Show the name of the last deployed service next to the status icon"
+            }
+          ]
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "railwayApiKey",
+          "type": "password",
+          "title": "Railway API Token",
+          "required": false,
+          "description": "Create an account, workspace, or project token at railway.com/account/tokens. Search Templates works without one",
+          "placeholder": "xxxxxxxxxx"
+        },
+        {
+          "name": "tokenType",
+          "type": "dropdown",
+          "title": "Token Type",
+          "required": false,
+          "default": "account",
+          "description": "Project tokens only give access to a single project environment",
+          "data": [
+            {
+              "title": "Account or Workspace Token",
+              "value": "account"
+            },
+            {
+              "title": "Project Token",
+              "value": "project"
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "rain-radars",
@@ -211991,7 +213335,8 @@
       "author": "CodetaroMiura",
       "contributors": [
         "omarshahine",
-        "damian_duchnowski"
+        "damian_duchnowski",
+        "orellazri"
       ],
       "categories": [
         "Finance",
@@ -225984,7 +227329,7 @@
         {
           "name": "search",
           "title": "Search the Web",
-          "subtitle": "Search the Web with !bangs",
+          "subtitle": "!bangs with a customizable prefix",
           "description": "Search the Web using any of the available search engines. Powered by Kagi's Bangs and custom search engines",
           "mode": "view",
           "keywords": [
@@ -226029,7 +227374,17 @@
           "preferences": []
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "engineTriggerPrefix",
+          "title": "Engine Trigger Prefix",
+          "description": "Prefix for engine triggers at the start of a query. Leave blank for bare triggers such as yt query. With a blank prefix, common first words like go or docs can redirect plain English queries away from your default engine. @ is reserved for sites. Invalid prefixes (@ or internal whitespace) use ! instead.",
+          "type": "textfield",
+          "required": false,
+          "default": "!",
+          "placeholder": "Leave blank for bare triggers"
+        }
+      ]
     },
     {
       "name": "search-rubygems",
@@ -251533,6 +252888,144 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "synci",
+      "title": "Synci",
+      "description": "Search transactions, check balances and holdings, monitor connections, and ask Raycast AI about your finances with Synci.",
+      "icon": "synci-mark.png",
+      "author": "tonning",
+      "contributors": [],
+      "categories": [
+        "Finance",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/tonning/synci",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/synci",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-transactions",
+          "title": "Search Transactions",
+          "subtitle": "Synci",
+          "description": "Search transactions across your connected accounts with account and date filters",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "check-balances",
+          "title": "View Accounts",
+          "subtitle": "Synci",
+          "description": "View account balances, history, and recent activity",
+          "mode": "view",
+          "keywords": [
+            "balance",
+            "balances"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "view-holdings",
+          "title": "View Holdings",
+          "subtitle": "Synci",
+          "description": "Explore investment and crypto holdings, quantities, market values, and account details",
+          "mode": "view",
+          "keywords": [
+            "portfolio",
+            "positions",
+            "investments",
+            "stocks",
+            "crypto"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "recent-spending",
+          "title": "Show Recent Spending",
+          "subtitle": "Synci",
+          "description": "Explore booked outflows by currency, merchant, and account",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "connection-status",
+          "title": "Open Connection Status",
+          "subtitle": "Synci",
+          "description": "Check connection health, consent expiry, and open connections in Synci",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "reconnect-synci",
+          "title": "Reconnect Synci",
+          "subtitle": "Synci",
+          "description": "Choose which Synci accounts Raycast can access and approve updated permissions",
+          "mode": "no-view",
+          "keywords": [
+            "reauthorize",
+            "authorize",
+            "permissions",
+            "scopes",
+            "sign in",
+            "account access"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "menu-bar-balance",
+          "title": "Synci Balance",
+          "subtitle": "Synci",
+          "description": "Show balances for selected accounts in the macOS menu bar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "spendingPeriod",
+          "title": "Default Spending Period",
+          "description": "Initial time period shown in Recent Spending",
+          "type": "dropdown",
+          "required": false,
+          "default": "month",
+          "data": [
+            {
+              "title": "Last 7 Days",
+              "value": "7"
+            },
+            {
+              "title": "Last 30 Days",
+              "value": "30"
+            },
+            {
+              "title": "This Month",
+              "value": "month"
+            }
+          ]
+        },
+        {
+          "name": "showDetails",
+          "title": "Transaction Details",
+          "description": "Initial transaction layout before a saved sidebar choice exists. Changes made with Show/Hide Details are remembered. Press Enter to view transaction details.",
+          "type": "checkbox",
+          "label": "Show transaction side panel by default",
+          "required": false,
+          "default": false
+        }
+      ]
     },
     {
       "name": "synology-download-station",
@@ -277302,6 +278795,98 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "upload-post",
+      "title": "Upload-Post",
+      "description": "Publish and schedule videos, photos and text posts to TikTok, Instagram, YouTube, LinkedIn, X and more social networks with Upload-Post",
+      "icon": "extension-icon.png",
+      "author": "juan_carlos_cavero_gracia",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Media",
+        "Communication"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/juan_carlos_cavero_gracia/upload-post",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/upload-post",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "create-post",
+          "title": "Create Post",
+          "subtitle": "Upload-Post",
+          "description": "Publish or schedule a text, photo or video post to your connected social networks.",
+          "mode": "view",
+          "keywords": [
+            "upload",
+            "publish",
+            "schedule",
+            "video",
+            "photo",
+            "text"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "scheduled-posts",
+          "title": "Scheduled Posts",
+          "subtitle": "Upload-Post",
+          "description": "Browse your scheduled posts and cancel the ones you no longer need.",
+          "mode": "view",
+          "keywords": [
+            "calendar",
+            "queue",
+            "cancel"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "upload-history",
+          "title": "Upload History",
+          "subtitle": "Upload-Post",
+          "description": "Browse your recent uploads and open the published posts.",
+          "mode": "view",
+          "keywords": [
+            "history",
+            "published",
+            "posts"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "profiles",
+          "title": "Profiles",
+          "subtitle": "Upload-Post",
+          "description": "Browse your Upload-Post profiles and the social accounts connected to each one.",
+          "mode": "view",
+          "keywords": [
+            "accounts",
+            "users",
+            "connected"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "title": "API Key",
+          "description": "Your Upload-Post API key. Create one at https://app.upload-post.com/api-keys",
+          "type": "password",
+          "required": true,
+          "placeholder": "Paste your Upload-Post API key"
+        }
+      ]
     },
     {
       "name": "uploaderx",
