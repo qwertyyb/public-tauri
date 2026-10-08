@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-07T23:04:19.014Z",
+  "generatedAt": "2026-10-08T23:20:13.297Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "9a0386d3493961ab804234865d760f3c472f9145"
+    "commit": "b66491790834a6397f55a1fa2bbdc32aa9ceb9f4"
   },
-  "count": 3390,
+  "count": 3394,
   "extensions": [
     {
       "name": "0x0",
@@ -8389,65 +8389,15 @@
       "commands": [
         {
           "name": "search-archives",
-          "title": "Search Archives",
+          "title": "Search Archives (Obsolete)",
           "subtitle": "Anna's Archive",
-          "description": "Search Anna's Archive, the largest truly open library in human history",
+          "description": "This extension is obsolete, due to Anna's Archive implementing bot protection. Please uninstall the extension.",
           "mode": "view",
           "keywords": [],
           "preferences": []
         }
       ],
-      "preferences": [
-        {
-          "name": "mirror",
-          "title": "Mirror",
-          "type": "dropdown",
-          "default": "https://annas-archive.gl",
-          "description": "Choose a mirror to use",
-          "required": false,
-          "data": [
-            {
-              "value": "https://annas-archive.gl",
-              "title": "https://annas-archive.gl"
-            },
-            {
-              "value": "https://annas-archive.pk",
-              "title": "https://annas-archive.pk"
-            },
-            {
-              "value": "https://annas-archive.vg",
-              "title": "https://annas-archive.vg"
-            },
-            {
-              "value": "https://annas-archive.gd",
-              "title": "https://annas-archive.gd"
-            }
-          ]
-        },
-        {
-          "name": "customMirror",
-          "title": "Custom Mirror",
-          "type": "textfield",
-          "default": "",
-          "description": "Enter a custom mirror URL to use, something like \"https://de.anna-archive.org\". Only use this if the default mirrors are not working for you. I cannot guarantee that this will work, use at your own risk.",
-          "required": false
-        },
-        {
-          "name": "annaSecretKey",
-          "title": "Anna's Archive Secret Key",
-          "type": "password",
-          "description": "Optional Anna's Archive member secret key for the official fast-download API.",
-          "required": false
-        },
-        {
-          "name": "downloadDirectory",
-          "title": "Download Directory",
-          "type": "directory",
-          "default": "~/Downloads/Anna's Archive",
-          "description": "Folder where EPUB downloads are saved.",
-          "required": false
-        }
-      ]
+      "preferences": []
     },
     {
       "name": "annotely",
@@ -13654,7 +13604,8 @@
         "tama_harrison",
         "pavelas",
         "mchoun",
-        "yoann_aubineau"
+        "yoann_aubineau",
+        "0xdhrv"
       ],
       "categories": [
         "Web",
@@ -14131,7 +14082,7 @@
           "name": "search-items",
           "title": "Search Items",
           "subtitle": "Arc Helper",
-          "description": "Search Arc Raiders items",
+          "description": "Search Arc Raiders items with crafting, recycling and drop info",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -14140,7 +14091,7 @@
           "name": "search-arcs",
           "title": "Search ARCs",
           "subtitle": "Arc Helper",
-          "description": "Browse ARC enemies and their descriptions",
+          "description": "Browse ARC enemies and their loot drops",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -14167,7 +14118,7 @@
           "name": "traders",
           "title": "Browse Traders",
           "subtitle": "Arc Helper",
-          "description": "Browse trader inventories",
+          "description": "Browse trader inventories and Ermal's barter offers",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -23083,13 +23034,16 @@
       "description": "Search Bilibili videos with autosuggestions",
       "icon": "command-icon.png",
       "author": "55b",
-      "contributors": [],
+      "contributors": [
+        "zwjacl"
+      ],
       "categories": [
         "Web"
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/55b/bilibili-search",
       "source": {
@@ -112311,6 +112265,132 @@
       ]
     },
     {
+      "name": "hide-details",
+      "title": "Hide Details",
+      "description": "Redact names, emails, cards, secrets, and faces in a screenshot before you share. On-device.",
+      "icon": "extension-icon.png",
+      "author": "0xdhrv",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Security"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/0xdhrv/hide-details",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/hide-details",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "redact-clipboard",
+          "title": "Redact Clipboard Image",
+          "subtitle": "Hide Details",
+          "description": "Find sensitive details in the clipboard image and copy a redacted version",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "redact-now",
+          "title": "Redact and Copy",
+          "subtitle": "Hide Details",
+          "description": "Redact the clipboard image immediately and copy it back",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "showOCRConfidence",
+          "title": "OCR Confidence",
+          "label": "Show OCR Confidence",
+          "description": "Show text recognition confidence percentages in the detection list.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "recognition",
+          "title": "Text Recognition",
+          "description": "Fast works well for clear screenshots. Accurate can help with small or difficult text, but takes longer to start.",
+          "type": "dropdown",
+          "required": false,
+          "default": "fast",
+          "data": [
+            {
+              "title": "Fast",
+              "value": "fast"
+            },
+            {
+              "title": "Accurate",
+              "value": "accurate"
+            }
+          ]
+        },
+        {
+          "name": "style",
+          "title": "Redaction Style",
+          "description": "Blackout covers detected regions. Blur and pixelation obscure them but can retain readable information.",
+          "type": "dropdown",
+          "required": false,
+          "default": "blackout",
+          "data": [
+            {
+              "title": "Pixelate",
+              "value": "pixelate"
+            },
+            {
+              "title": "Smooth Blur",
+              "value": "blur"
+            },
+            {
+              "title": "Blackout",
+              "value": "blackout"
+            }
+          ]
+        },
+        {
+          "name": "categories",
+          "title": "What to Hide",
+          "description": "Comma-separated: email, phone, card, secret, ip, name, face. Leave empty to use only Custom Regex.",
+          "type": "textfield",
+          "required": false,
+          "default": "email,phone,card,secret,ip,name,face"
+        },
+        {
+          "name": "extraWords",
+          "title": "Always Hide These Words",
+          "description": "Comma-separated names or strings to redact. Keep the name category enabled to use this list.",
+          "type": "textfield",
+          "required": false,
+          "default": ""
+        },
+        {
+          "name": "customRegex",
+          "title": "Custom Regex",
+          "description": "Optional pattern applied to each OCR line. Combine patterns with | and use (?i) for case-insensitive matching. Enter the pattern without / delimiters.",
+          "type": "textfield",
+          "required": false,
+          "default": ""
+        },
+        {
+          "name": "padding",
+          "title": "Padding",
+          "description": "Extra pixels around each detection. Enter a number from 0 to 1000.",
+          "type": "textfield",
+          "required": false,
+          "default": "4"
+        }
+      ]
+    },
+    {
       "name": "hide-files",
       "title": "Hide Files",
       "description": "Hide and show files in any Finder directory, including Desktop, Downloads, Documents, etc.",
@@ -127085,16 +127165,22 @@
     {
       "name": "jira-time-tracking",
       "title": "Jira Time Tracking",
-      "description": "Log time against Jira issues",
+      "description": "Log, view, and manage time against Jira issues",
       "icon": "command-icon.png",
       "author": "niallpaterson",
       "contributors": [
         "0w0miki",
-        "hayden_barnes"
+        "hayden_barnes",
+        "Hugosay"
       ],
-      "categories": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools"
+      ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/niallpaterson/jira-time-tracking",
       "source": {
         "type": "github-monorepo",
@@ -127108,6 +127194,15 @@
           "title": "Log Time",
           "subtitle": "Jira Time Tracking",
           "description": "Log time against a Jira issue",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "viewLoggedTime",
+          "title": "View Logged Time",
+          "subtitle": "Jira Time Tracking",
+          "description": "View your logged time entries by month",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -127170,6 +127265,15 @@
           "title": "Default Project Key",
           "description": "Set the key of a project to select by default (e.g., 'MYPROJECT').",
           "placeholder": "Enter project key"
+        },
+        {
+          "name": "dailyHoursThreshold",
+          "type": "textfield",
+          "required": false,
+          "title": "Daily Hours Threshold",
+          "description": "Minimum hours required per day before hiding the 'Log Time' prompt (default: 7).",
+          "placeholder": "7",
+          "default": "7"
         }
       ]
     },
@@ -140947,6 +141051,68 @@
           "description": "Your Linkwarden API Key",
           "type": "password",
           "placeholder": "API Key",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "linqlo",
+      "title": "Linqlo",
+      "description": "Search your saved links, save clipboard URLs, and open Linqlo collections.",
+      "icon": "icon.png",
+      "author": "ryohei-62",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "0.1.0",
+      "storeUrl": "https://www.raycast.com/ryohei-62/linqlo",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/linqlo",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-bookmarks",
+          "title": "Search Bookmarks",
+          "subtitle": "Linqlo",
+          "description": "Search, open, and copy links saved in your connected workspace.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "save-clipboard-url",
+          "title": "Save Clipboard URL",
+          "subtitle": "Linqlo",
+          "description": "Save a URL from your clipboard to a Linqlo collection.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-collection",
+          "title": "Open Collection",
+          "subtitle": "Linqlo",
+          "description": "Find and open a Linqlo collection in your browser.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "title": "Integration Key",
+          "description": "Create a Raycast key in Linqlo Settings → App integrations. Choose read and save access to save URLs.",
+          "type": "password",
           "required": true
         }
       ]
@@ -159978,7 +160144,8 @@
         "xmok",
         "byheaven",
         "christianmagill",
-        "0xdhrv"
+        "0xdhrv",
+        "shanto462"
       ],
       "categories": [],
       "license": "MIT",
@@ -210018,7 +210185,8 @@
         "anwarulislam",
         "DanielPFitzsimmons",
         "aleksishere",
-        "sayaka"
+        "sayaka",
+        "shanto462"
       ],
       "categories": [
         "Productivity",
@@ -220362,6 +220530,105 @@
       "preferences": []
     },
     {
+      "name": "revenuecat",
+      "title": "RevenueCat",
+      "description": "Explore RevenueCat revenue, customers, subscriptions, and products, and use its official MCP tools with Raycast AI.",
+      "icon": "revenuecat-icon.png",
+      "author": "samuelkraft",
+      "contributors": [],
+      "categories": [
+        "Finance",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/samuelkraft/revenuecat",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/revenuecat",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "dashboard",
+          "title": "Show Dashboard",
+          "description": "View project metrics and open RevenueCat",
+          "mode": "view",
+          "keywords": [
+            "mrr",
+            "revenue",
+            "subscriptions",
+            "trials"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "search-customers",
+          "title": "Search Customers",
+          "description": "Find customers and inspect subscription status, access, renewal, and event history",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "revenue-trends",
+          "title": "Show Revenue Trends",
+          "description": "Browse daily revenue newest first, scroll through history, and filter by date",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "catalog",
+          "title": "Browse Catalog",
+          "description": "Browse subscription products and current offerings",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "currency",
+          "title": "Currency",
+          "description": "Currency used for monetary metrics.",
+          "type": "dropdown",
+          "required": false,
+          "default": "USD",
+          "data": [
+            {
+              "title": "USD",
+              "value": "USD"
+            },
+            {
+              "title": "EUR",
+              "value": "EUR"
+            },
+            {
+              "title": "GBP",
+              "value": "GBP"
+            },
+            {
+              "title": "SEK",
+              "value": "SEK"
+            }
+          ]
+        },
+        {
+          "name": "demoMode",
+          "label": "Demo mode",
+          "description": "Use sample data instead of loading data from RevenueCat.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        }
+      ]
+    },
+    {
       "name": "reverso-context",
       "title": "Reverso Context",
       "description": "Get Translations and Examples via Reverso Context",
@@ -220736,7 +221003,9 @@
       "description": "Full-featured HTTP client with environments, variables, and request chaining",
       "icon": "icon.png",
       "author": "SebastianJarsve",
-      "contributors": [],
+      "contributors": [
+        "shanto462"
+      ],
       "categories": [
         "Developer Tools"
       ],
@@ -223991,7 +224260,8 @@
       "icon": "say-icon.png",
       "author": "litomore",
       "contributors": [
-        "j3lte"
+        "j3lte",
+        "shanto462"
       ],
       "categories": [
         "Communication",
@@ -234765,6 +235035,67 @@
           "placeholder": "SimpleBackups API Token"
         }
       ]
+    },
+    {
+      "name": "simplebanking",
+      "title": "Simplebanking",
+      "description": "Balances, transactions and a monthly overview from simplebanking — reads the local cache, without contacting a bank.",
+      "icon": "icon.png",
+      "author": "klotzbrocken",
+      "contributors": [],
+      "categories": [
+        "Finance"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/klotzbrocken/simplebanking",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/simplebanking",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "saldo",
+          "title": "Balance",
+          "subtitle": "simplebanking",
+          "description": "Shows the balance of every connected account.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "umsaetze",
+          "title": "Transactions",
+          "subtitle": "simplebanking",
+          "description": "The bookings of the last 30 days, searchable.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "ausgaben",
+          "title": "Monthly Overview",
+          "subtitle": "simplebanking",
+          "description": "Income, spending and the split by category.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "aktualisieren",
+          "title": "Refresh Accounts",
+          "subtitle": "simplebanking",
+          "description": "Asks the app to fetch from your banks. May require approval.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "simplelogin",
@@ -254321,9 +254652,8 @@
           "type": "textfield",
           "required": false,
           "title": "App Name",
-          "default": "T3 Code",
-          "description": "macOS application name used to launch and focus T3 Code.",
-          "placeholder": "T3 Code (Nightly)"
+          "description": "macOS application name used to launch and focus T3 Code. Leave empty to pick T3 Code (Alpha) or T3 Code (Nightly) from the running server.",
+          "placeholder": "T3 Code (Alpha)"
         }
       ]
     },
@@ -256490,7 +256820,7 @@
       "platforms": [
         "macOS"
       ],
-      "version": "1.0.70",
+      "version": "1.0.81",
       "storeUrl": "https://www.raycast.com/praveenjuge/teak-raycast",
       "source": {
         "type": "github-monorepo",
@@ -275988,26 +276318,18 @@
       },
       "commands": [
         {
-          "name": "search-history",
-          "title": "Search History",
-          "description": "Search and browse TypeWhisper transcription history",
-          "mode": "view",
-          "keywords": [],
-          "preferences": []
-        },
-        {
-          "name": "switch-profile",
-          "title": "Switch Profile",
-          "description": "View and toggle TypeWhisper profiles",
-          "mode": "view",
-          "keywords": [],
-          "preferences": []
-        },
-        {
           "name": "start-dictation",
           "title": "Start Dictation",
           "description": "Start or stop voice dictation",
           "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "dictate-with-workflow",
+          "title": "Dictate with Workflow",
+          "description": "Start a dictation that uses a specific TypeWhisper workflow",
+          "mode": "view",
           "keywords": [],
           "preferences": []
         },
@@ -276020,9 +276342,65 @@
           "preferences": []
         },
         {
+          "name": "search-history",
+          "title": "Search History",
+          "description": "Search and browse TypeWhisper transcription history",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "transcribe-file",
           "title": "Transcribe File",
           "description": "Transcribe an audio file using TypeWhisper",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle-recording",
+          "title": "Toggle Recording",
+          "description": "Start or stop a TypeWhisper recording, for example of a meeting",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "show-last-recording",
+          "title": "Show Last Recording",
+          "description": "Show the transcript of the last recording started from Raycast",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "add-dictionary-term",
+          "title": "Add Dictionary Term",
+          "description": "Add the selected text or a typed word to the TypeWhisper dictionary",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "manage-dictionary",
+          "title": "Manage Dictionary",
+          "description": "Browse, add, edit, and delete dictionary terms and corrections",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "switch-profile",
+          "title": "Manage Workflows",
+          "description": "Enable or disable TypeWhisper workflows and dictate with one",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "switch-model",
+          "title": "Switch Model",
+          "description": "Choose the transcription engine and model TypeWhisper uses",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -287456,7 +287834,7 @@
         "macOS",
         "Windows"
       ],
-      "version": "1.0.0",
+      "version": "1.1.0",
       "storeUrl": "https://www.raycast.com/BinaryBlitz10/webhook-sender",
       "source": {
         "type": "github-monorepo",
