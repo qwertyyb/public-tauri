@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-08T23:20:13.297Z",
+  "generatedAt": "2026-10-09T22:37:27.606Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "b66491790834a6397f55a1fa2bbdc32aa9ceb9f4"
+    "commit": "568794f3991c2c19b8eee47de2bad2f8f7b8c7b8"
   },
-  "count": 3394,
+  "count": 3402,
   "extensions": [
     {
       "name": "0x0",
@@ -10669,7 +10669,8 @@
       "icon": "icon.png",
       "author": "eggsy",
       "contributors": [
-        "florisdobber"
+        "florisdobber",
+        "shanto462"
       ],
       "categories": [
         "Productivity",
@@ -12545,7 +12546,8 @@
         "sch01ar",
         "0xdhrv",
         "kendaniels",
-        "isabhiii"
+        "isabhiii",
+        "shanto462"
       ],
       "categories": [
         "Productivity",
@@ -56766,7 +56768,8 @@
         "hemang_kinra",
         "jose-elias-alvarez",
         "bestemic",
-        "ridemountainpig"
+        "ridemountainpig",
+        "shanto462"
       ],
       "categories": [],
       "license": "MIT",
@@ -69070,6 +69073,214 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "driveway",
+      "title": "DriveWay",
+      "description": "Finds SMB and WebDAV drives on your network and keeps a list of as many as you like, each with its own alias, username, and protocol: mount, unmount, auto-reconnect, or open any of them from the menu bar. Drives are added with Add Drive; the Domain/IP preference only pins one extra host to always include.",
+      "icon": "icon.png",
+      "author": "pankajpopli",
+      "contributors": [],
+      "categories": [
+        "System",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/pankajpopli/driveway",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/driveway",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "index",
+          "title": "Manage Drives",
+          "subtitle": "DriveWay",
+          "description": "View, edit, remove, connect, and disconnect your saved drives. If Domain/IP is set in Preferences, also browse that server's shares live.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "add-server",
+          "title": "Add Drive",
+          "subtitle": "DriveWay",
+          "description": "Save a new drive (host, share path, optional alias and username) to your list.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "scan-network",
+          "title": "Discover Devices",
+          "subtitle": "DriveWay",
+          "description": "Finds SMB and WebDAV servers, computers, and other devices on your local network via Bonjour/mDNS, a subnet scan, and a ping sweep, per the Network Discovery preferences below.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "mount-shares",
+          "title": "Mount All",
+          "subtitle": "DriveWay",
+          "description": "Mount every saved, reachable drive at once.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "unmount-shares",
+          "title": "Unmount All",
+          "subtitle": "DriveWay",
+          "description": "Unmount every currently connected saved drive at once.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "auto-reconnect",
+          "title": "Auto-Reconnect",
+          "subtitle": "DriveWay",
+          "description": "Runs in the background and silently reconnects saved drives with Auto-Reconnect enabled. Never touches drives without it, and never unmounts anything. Actual cadence is controlled by the Interval preference below.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": [
+            {
+              "type": "dropdown",
+              "name": "pref_auto_reconnect_interval",
+              "title": "Interval",
+              "description": "How often to retry drives with Auto-Reconnect enabled. This command checks every 5 minutes, but only does anything once this much time has actually passed. To turn the command off entirely, use the Background Refresh toggle above instead. This only sets cadence.",
+              "data": [
+                {
+                  "title": "Every 5 minutes",
+                  "value": "5"
+                },
+                {
+                  "title": "Every 10 minutes",
+                  "value": "10"
+                },
+                {
+                  "title": "Every 15 minutes",
+                  "value": "15"
+                },
+                {
+                  "title": "Every 30 minutes",
+                  "value": "30"
+                },
+                {
+                  "title": "Every hour",
+                  "value": "60"
+                }
+              ],
+              "default": "10",
+              "required": false
+            }
+          ]
+        },
+        {
+          "name": "menu-bar",
+          "title": "DriveWay Menu Bar",
+          "subtitle": "DriveWay",
+          "description": "Shows saved drives in the menu bar with live connection status and one-click mount/unmount.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "type": "dropdown",
+              "name": "pref_menu_bar_refresh_interval",
+              "title": "Refresh Interval",
+              "description": "How often status is re-checked in the background. The Background Refresh toggle above turns it off.",
+              "data": [
+                {
+                  "title": "Every 1 minute",
+                  "value": "1"
+                },
+                {
+                  "title": "Every 5 minutes",
+                  "value": "5"
+                },
+                {
+                  "title": "Every 10 minutes",
+                  "value": "10"
+                },
+                {
+                  "title": "Every 30 minutes",
+                  "value": "30"
+                }
+              ],
+              "default": "1",
+              "required": false
+            },
+            {
+              "type": "checkbox",
+              "name": "pref_menu_bar_count_unsaved",
+              "title": "Count",
+              "label": "Include drives that are mounted but not saved",
+              "description": "Counts mounts that aren't saved drives, such as a one-off from Browse Shares or anything mounted in Finder. They are listed in the menu either way.",
+              "default": false,
+              "required": false
+            }
+          ]
+        }
+      ],
+      "preferences": [
+        {
+          "type": "checkbox",
+          "name": "pref_discovery_bonjour",
+          "title": "Network Discovery",
+          "label": "Bonjour/mDNS discovery",
+          "description": "Finds self-advertising SMB/WebDAV servers. Fast, passive. See README for details.",
+          "default": true,
+          "required": false
+        },
+        {
+          "type": "checkbox",
+          "name": "pref_discovery_subnet_scan",
+          "title": "",
+          "label": "Scan local subnet",
+          "description": "Probes for open SMB/WebDAV ports. Slower, active scan. See README for details.",
+          "default": false,
+          "required": false
+        },
+        {
+          "type": "checkbox",
+          "name": "pref_discovery_all_devices",
+          "title": "",
+          "label": "Show all network devices",
+          "description": "Pings everything, any protocol. Broadest, noisiest option. See README for details.",
+          "default": false,
+          "required": false
+        },
+        {
+          "type": "textfield",
+          "name": "pref_discovery_host",
+          "title": "Domain / IP",
+          "description": "Always include this one host (optional). For multiple servers, use Add Drive instead.",
+          "placeholder": "e.g. 192.168.1.10 (one host only)",
+          "required": false
+        },
+        {
+          "type": "textfield",
+          "name": "pref_discovery_username",
+          "title": "Username",
+          "description": "Username for the host above (optional).",
+          "placeholder": "e.g. jane",
+          "required": false
+        },
+        {
+          "type": "password",
+          "name": "pref_discovery_password",
+          "title": "Password",
+          "description": "Password for the host above (optional).",
+          "placeholder": "Password for the host above",
+          "required": false
+        }
+      ]
     },
     {
       "name": "dropover",
@@ -85741,6 +85952,59 @@
       "preferences": []
     },
     {
+      "name": "focus-modes",
+      "title": "Focus Modes",
+      "description": "Switch between your macOS Focus modes, like Do Not Disturb, Work, or Sleep, right from Raycast.",
+      "icon": "extension-icon.png",
+      "author": "kikks",
+      "contributors": [],
+      "categories": [
+        "System",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/kikks/focus-modes",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/focus-modes",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "set-focus-mode",
+          "title": "Set Focus Mode",
+          "description": "See your Focus modes, turn one on, or turn off the current one.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "turn-on-focus",
+          "title": "Turn On Focus",
+          "description": "Turn on a Focus mode by typing its name.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "turn-off-focus",
+          "title": "Turn Off Focus",
+          "description": "Turn off whichever Focus mode is on.",
+          "mode": "no-view",
+          "keywords": [
+            "do not disturb",
+            "dnd"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "focustask",
       "title": "FocusTask",
       "description": "Manage and search for tasks in FocusTask",
@@ -86838,6 +87102,153 @@
           "type": "textfield",
           "default": "Calendar",
           "required": false
+        }
+      ]
+    },
+    {
+      "name": "foqus-league",
+      "title": "Foqus League",
+      "description": "Stats for Raycast Focus. Hours, streaks, weekly leagues and a shareable recap. Everything stays on your Mac.",
+      "icon": "icon.png",
+      "author": "filipimiparebine",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/filipimiparebine/foqus-league",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/foqus-league",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "focus-stats",
+          "title": "Show League",
+          "subtitle": "Foqus League",
+          "description": "Your week at a glance: time focused, streak, league and calendar.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "focus-wrapped",
+          "title": "Show Recap",
+          "subtitle": "Foqus League",
+          "description": "One card with your totals and records. Copy it or save it as a PNG.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "focus-sessions",
+          "title": "Browse Sessions",
+          "subtitle": "Foqus League",
+          "description": "Browse, add, edit or delete sessions.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "focus-menu-bar",
+          "title": "Menu Bar Stats",
+          "subtitle": "Foqus League",
+          "description": "Today's focused time and one-click starts for recent goals. Keep it on: it records your sessions.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "weekStart",
+          "title": "Week Starts On",
+          "type": "dropdown",
+          "required": false,
+          "default": "monday",
+          "data": [
+            {
+              "title": "Monday",
+              "value": "monday"
+            },
+            {
+              "title": "Sunday",
+              "value": "sunday"
+            }
+          ],
+          "description": "First day of the week for totals, leagues and the calendar."
+        },
+        {
+          "name": "menuBarFormat",
+          "title": "Menu Bar Shows",
+          "type": "dropdown",
+          "required": false,
+          "default": "today",
+          "data": [
+            {
+              "title": "Today's Time",
+              "value": "today"
+            },
+            {
+              "title": "This Week's Time",
+              "value": "week"
+            },
+            {
+              "title": "Current Streak",
+              "value": "streak"
+            }
+          ],
+          "description": "Which number the menu bar shows."
+        },
+        {
+          "name": "dailyGoal",
+          "title": "Daily Goal",
+          "description": "Minutes per day to count as a focused day. Five focused days make a perfect week.",
+          "type": "textfield",
+          "required": false,
+          "default": "60",
+          "placeholder": "60"
+        },
+        {
+          "name": "leagues",
+          "title": "League Thresholds",
+          "description": "Hours per week for the 🥈 Silver, 🥇 Gold and 💎 Diamond leagues, comma separated. The Bronze league starts at 0.",
+          "type": "textfield",
+          "required": false,
+          "default": "10,20,40",
+          "placeholder": "10,20,40"
+        },
+        {
+          "name": "celebrations",
+          "title": "Notifications",
+          "label": "Celebrate goals",
+          "description": "A notification when you hit your daily goal, reach a new league or a perfect week, beat last week, or hit a streak milestone.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "streakReminder",
+          "title": "",
+          "label": "Remind me to keep my streak",
+          "description": "A notification after 8 PM on a day with no focus yet, while you have a streak going.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "sound",
+          "title": "",
+          "label": "Play a sound",
+          "description": "A short chime with each celebration. The evening reminder stays silent.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
         }
       ]
     },
@@ -108707,6 +109118,49 @@
       ]
     },
     {
+      "name": "happy-squid",
+      "title": "Happy Squid",
+      "description": "Start and manage your Happy Squid tasks without leaving Raycast.",
+      "icon": "icon.png",
+      "author": "happysquid",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/happysquid/happy-squid",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/happy-squid",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "tasks",
+          "title": "Current Task",
+          "subtitle": "Happy Squid",
+          "description": "Open your current task, or choose what to work on next.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "manage-tasks",
+          "title": "Manage Tasks",
+          "subtitle": "Happy Squid",
+          "description": "Start, review and manage your Happy Squid tasks.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "hardcover",
       "title": "Hardcover",
       "description": "Search and manage books and lists.",
@@ -112981,6 +113435,49 @@
           "label": "Start with Lorem",
           "default": false,
           "required": false
+        }
+      ]
+    },
+    {
+      "name": "hl7-preview",
+      "title": "HL7 Preview",
+      "description": "Read HL7 v2 messages as one document: patient, orders with material, flagged results and notes, and every segment with named fields.",
+      "icon": "extension-icon.png",
+      "author": "daanmlab",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/daanmlab/hl7-preview",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/hl7-preview",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "preview-hl7",
+          "title": "Preview HL7",
+          "description": "Paste an HL7 file or message, or reopen a past view searchable by patient name.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "keepPastViews",
+          "type": "checkbox",
+          "required": false,
+          "default": false,
+          "title": "Past Views",
+          "label": "Keep Past Views",
+          "description": "Keep a copy of each opened message, patient data included, in Raycast's local encrypted storage, so it can be reopened and searched by patient. Off by default."
         }
       ]
     },
@@ -142050,6 +142547,85 @@
       "preferences": []
     },
     {
+      "name": "local-time-tracker",
+      "title": "Local Time Tracker",
+      "description": "Track project work locally in Raycast",
+      "icon": "extension-icon.png",
+      "author": "yoshinyan",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/yoshinyan/local-time-tracker",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/local-time-tracker",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "start-work",
+          "title": "Start Work",
+          "subtitle": "Start a project timer",
+          "description": "Start tracking work",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "stop-work",
+          "title": "Stop Work",
+          "subtitle": "Stop the active timer",
+          "description": "Stop the active timer",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "menu-bar",
+          "title": "Menu Bar Timer",
+          "subtitle": "View the running timer",
+          "description": "Show the active timer in the menu bar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "work-logs",
+          "title": "Work Logs",
+          "subtitle": "Review and edit time entries",
+          "description": "View and edit work logs",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "reports",
+          "title": "Reports",
+          "subtitle": "Analyze tracked time",
+          "description": "View work-time reports",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "projects",
+          "title": "Projects",
+          "subtitle": "Manage projects and categories",
+          "description": "Manage projects",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "localcan",
       "title": "LocalCan",
       "description": "List LocalCan domains",
@@ -155153,6 +155729,224 @@
               "value": "external"
             }
           ]
+        }
+      ]
+    },
+    {
+      "name": "mise",
+      "title": "Mise",
+      "description": "Search, install and upgrade the dev tools managed by mise.",
+      "icon": "mise.png",
+      "author": "lachieh",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/lachieh/mise",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/mise",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-tools",
+          "title": "Search Tools",
+          "subtitle": "Mise",
+          "description": "Search the mise registry and add tools to your global config",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "showDetails",
+              "type": "checkbox",
+              "required": false,
+              "title": "Details",
+              "label": "Show details panel by default",
+              "description": "Open Search Tools with the details panel showing.",
+              "default": false
+            }
+          ]
+        },
+        {
+          "name": "installed-tools",
+          "title": "Show Installed Tools",
+          "subtitle": "Mise",
+          "description": "Browse installed mise tools, set global versions, upgrade and uninstall",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "show-outdated",
+          "title": "Show Outdated Tools",
+          "subtitle": "Mise",
+          "description": "List outdated mise tools and upgrade them",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "tasks",
+          "title": "Manage Tasks",
+          "subtitle": "Mise",
+          "description": "Run global mise tasks in your terminal or capture their output",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "outdated-tools",
+          "title": "Tools Menu Bar",
+          "subtitle": "Mise",
+          "description": "Show outdated mise tools in the menu bar and upgrade them",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "upgrade-all",
+          "title": "Upgrade All Tools",
+          "subtitle": "Mise",
+          "description": "Upgrade every outdated mise tool",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "pruneReplaced",
+              "type": "checkbox",
+              "required": false,
+              "title": "Replaced Versions",
+              "label": "Uninstall replaced versions",
+              "description": "Add --prune to mise upgrade, so the versions an upgrade replaces are uninstalled at once.",
+              "default": false
+            }
+          ]
+        },
+        {
+          "name": "prune",
+          "title": "Prune Unused Versions",
+          "subtitle": "Mise",
+          "description": "Delete installed tool versions that no config uses",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "pruneScope",
+              "type": "dropdown",
+              "required": false,
+              "title": "Prune Scope",
+              "description": "Prune unused tool versions, stale config links, or both.",
+              "default": "all",
+              "data": [
+                {
+                  "title": "Tool versions and config links",
+                  "value": "all"
+                },
+                {
+                  "title": "Tool versions only (--tools)",
+                  "value": "tools"
+                },
+                {
+                  "title": "Config links only (--configs)",
+                  "value": "configs"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "clear-cache",
+          "title": "Clear Cache",
+          "subtitle": "Mise",
+          "description": "Delete mise's cache files",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "misePath",
+          "type": "textfield",
+          "required": false,
+          "title": "Mise Path",
+          "description": "Absolute path to the mise binary. Leave empty to detect automatically.",
+          "placeholder": "/Users/you/.local/bin/mise"
+        },
+        {
+          "name": "terminalApp",
+          "type": "appPicker",
+          "required": false,
+          "title": "Terminal Application",
+          "description": "Used by Run in Terminal actions. Defaults to Terminal."
+        },
+        {
+          "name": "upgradeBump",
+          "type": "checkbox",
+          "required": false,
+          "title": "Upgrade Behavior",
+          "label": "Upgrade past the configured range",
+          "description": "Add --bump to mise upgrade and mise outdated, so a tool pinned to a range moves to the latest version and the version in your config is rewritten.",
+          "default": false
+        },
+        {
+          "name": "includeInactive",
+          "type": "checkbox",
+          "required": false,
+          "title": "Inactive Tools",
+          "label": "Include inactive tools",
+          "description": "Add --inactive to mise outdated and mise upgrade, so installed versions no config activates are checked and upgraded too.",
+          "default": false
+        },
+        {
+          "name": "uninstallRemovesConfig",
+          "type": "checkbox",
+          "required": false,
+          "title": "Uninstall Behavior",
+          "label": "Remove the tool from config when uninstalling a configured version",
+          "description": "Uninstalling a version that a config file requests runs mise unuse on that file instead of mise uninstall, so the tool is removed from the config as well.",
+          "default": false
+        },
+        {
+          "name": "jobs",
+          "type": "textfield",
+          "required": false,
+          "title": "Parallel Jobs",
+          "description": "Number of tools mise installs or upgrades at once (-j). Leave empty for mise's default.",
+          "placeholder": "8"
+        },
+        {
+          "name": "showInactive",
+          "type": "checkbox",
+          "required": false,
+          "title": "Show Installed Tools List",
+          "label": "Show inactive tools in Show Installed Tools",
+          "description": "List installed versions that no config activates in their own Inactive section.",
+          "default": true
+        },
+        {
+          "name": "closeAfterAction",
+          "type": "checkbox",
+          "required": false,
+          "title": "Window Behavior",
+          "label": "Close window after actions",
+          "description": "Close the Raycast window after install, upgrade and uninstall and show the result as a HUD.",
+          "default": false
+        },
+        {
+          "name": "debugLogging",
+          "type": "checkbox",
+          "required": false,
+          "title": "Debug Logging",
+          "label": "Log mise commands to the console",
+          "description": "Print every mise command line, its exit code and duration to the extension's console.",
+          "default": false
         }
       ]
     },
@@ -226108,6 +226902,96 @@
       "preferences": []
     },
     {
+      "name": "screvi",
+      "title": "Screvi",
+      "description": "Search your Screvi highlights, browse your articles and books, and save links to read later.",
+      "icon": "extension-icon.png",
+      "author": "pedroaraujo74",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Media",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/pedroaraujo74/screvi",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/screvi",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-highlights",
+          "title": "Search Highlights",
+          "subtitle": "Screvi",
+          "description": "Semantic search across every highlight you have saved.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "browse-articles",
+          "title": "Browse Article Library",
+          "subtitle": "Screvi",
+          "description": "Triage your saved articles: inbox, later and archive.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "browse-sources",
+          "title": "Browse Books & Sources",
+          "subtitle": "Screvi",
+          "description": "Browse the books, podcasts and videos you have highlighted.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "save-link",
+          "title": "Save Link",
+          "subtitle": "Screvi",
+          "description": "Save a URL to your Screvi reading list.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "save-clipboard-link",
+          "title": "Save Link from Clipboard",
+          "subtitle": "Screvi",
+          "description": "Save the URL you have selected or copied, with no window at all. Worth a hotkey.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "type": "password",
+          "required": true,
+          "title": "API Key",
+          "description": "Create one in Screvi under Settings > API. A read-scoped key is enough for search and browsing; Save Link needs the write scope.",
+          "placeholder": "sk_live_..."
+        },
+        {
+          "name": "apiUrl",
+          "type": "textfield",
+          "required": false,
+          "title": "API URL",
+          "description": "Only change this if you run your own Screvi server.",
+          "default": "https://api.screvi.com",
+          "placeholder": "https://api.screvi.com"
+        }
+      ]
+    },
+    {
       "name": "script-commands",
       "title": "Script Commands Store – Find and manage your Raycast Script Commands",
       "description": "Your new way to manage Script Commands without having to deal with GitHub.",
@@ -244761,7 +245645,8 @@
         "pernielsentikaer",
         "yansq",
         "amureki",
-        "bengt"
+        "bengt",
+        "CaffeineCat"
       ],
       "categories": [],
       "license": "MIT",
@@ -274586,7 +275471,7 @@
         },
         {
           "name": "ask-tweek",
-          "title": "Ask Tweek",
+          "title": "Summarize My Tasks (AI)",
           "subtitle": "Tweek",
           "description": "Ask Raycast AI about your Tweek schedule, overdue tasks, or daily priorities.",
           "mode": "view",
@@ -274682,6 +275567,15 @@
               "value": "Sunday"
             }
           ]
+        },
+        {
+          "name": "defaultToMonthView",
+          "type": "checkbox",
+          "required": false,
+          "title": "Dashboard View",
+          "label": "Open the Dashboard in monthly calendar view by default",
+          "description": "When enabled, the Tweek Dashboard opens as a monthly calendar instead of the task list. You can still switch to the task list from the calendar.",
+          "default": false
         },
         {
           "name": "defaultTaskColor",
@@ -282665,7 +283559,8 @@
         "anwarulislam",
         "yusifaliyevpro",
         "xilopaint",
-        "chrismessina"
+        "chrismessina",
+        "showbiz0"
       ],
       "categories": [
         "Applications",
@@ -282810,6 +283705,15 @@
               "value": "vivaldi"
             }
           ]
+        },
+        {
+          "name": "fastRemux",
+          "title": "Fast Remux",
+          "description": "Package video and audio streams directly into the target container without re-encoding. Much faster and preserves lossless quality.",
+          "type": "checkbox",
+          "label": "Remux streams without re-encoding (faster, recommended)",
+          "default": true,
+          "required": false
         }
       ]
     },
@@ -293505,7 +294409,8 @@
       "author": "Katatsu",
       "contributors": [
         "eddieb",
-        "0xdhrv"
+        "0xdhrv",
+        "shanto462"
       ],
       "categories": [
         "Productivity",
