@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-10T21:35:31.975Z",
+  "generatedAt": "2026-10-11T21:50:06.759Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "5670e388701605bf7d68c6e51bc1674086e56945"
+    "commit": "05123892e3776ad59bc0bc14680c1432f58aa10a"
   },
-  "count": 3402,
+  "count": 3404,
   "extensions": [
     {
       "name": "0x0",
@@ -6679,20 +6679,44 @@
             {
               "name": "model",
               "title": "Model",
-              "description": "Select Custom Action Model",
+              "description": "Select the model for Custom Action. Models marked '(thinking)' support Reasoning Level.",
               "type": "dropdown",
-              "default": "gpt-4o-mini",
+              "default": "gpt-6-luna",
               "data": [
                 {
-                  "title": "GPT-5.4",
+                  "title": "GPT-6 Luna (thinking)",
+                  "value": "gpt-6-luna"
+                },
+                {
+                  "title": "GPT-6.1 Sol (thinking)",
+                  "value": "gpt-6.1-sol"
+                },
+                {
+                  "title": "GPT-6 Astra (thinking)",
+                  "value": "gpt-6-astra"
+                },
+                {
+                  "title": "GPT-5.6 Sol (thinking)",
+                  "value": "gpt-5.6-sol"
+                },
+                {
+                  "title": "GPT-5.6 Terra (thinking)",
+                  "value": "gpt-5.6-terra"
+                },
+                {
+                  "title": "GPT-5.6 Luna (thinking)",
+                  "value": "gpt-5.6-luna"
+                },
+                {
+                  "title": "GPT-5.4 (thinking)",
                   "value": "gpt-5.4"
                 },
                 {
-                  "title": "GPT-5.4 Mini",
+                  "title": "GPT-5.4 Mini (thinking)",
                   "value": "gpt-5.4-mini"
                 },
                 {
-                  "title": "GPT-5.4 Nano",
+                  "title": "GPT-5.4 Nano (thinking)",
                   "value": "gpt-5.4-nano"
                 },
                 {
@@ -6704,28 +6728,86 @@
                   "value": "gpt-4o-mini"
                 },
                 {
-                  "title": "Gemini 3 Flash Preview",
+                  "title": "Gemini 3.8 Flash (thinking)",
+                  "value": "gemini-3.8-flash"
+                },
+                {
+                  "title": "Gemini 3.6 Flash (thinking)",
+                  "value": "gemini-3.6-flash"
+                },
+                {
+                  "title": "Gemini 3.5 Flash-Lite (thinking)",
+                  "value": "gemini-3.5-flash-lite"
+                },
+                {
+                  "title": "Gemini 3.1 Flash-Lite (thinking)",
+                  "value": "gemini-3.1-flash-lite"
+                },
+                {
+                  "title": "Gemini 3.1 Pro Preview (thinking)",
+                  "value": "gemini-3.1-pro-preview"
+                },
+                {
+                  "title": "Gemini 3 Flash Preview (thinking)",
                   "value": "gemini-3-flash-preview"
                 },
                 {
-                  "title": "Gemini 3 Pro Preview",
-                  "value": "gemini-3-pro-preview"
-                },
-                {
-                  "title": "Gemini 2.5 Flash",
+                  "title": "Gemini 2.5 Flash (thinking)",
                   "value": "gemini-2.5-flash"
                 },
                 {
-                  "title": "Gemini 2.5 Flash-Lite",
+                  "title": "Gemini 2.5 Flash-Lite (thinking)",
                   "value": "gemini-2.5-flash-lite"
                 }
               ],
               "required": true
             },
             {
+              "name": "reasoningLevel",
+              "title": "Reasoning Level",
+              "description": "Controls how much thinking models marked '(thinking)' do before answering. Higher levels can help with difficult tasks, but take longer and use more tokens. With Model Default, Alice AI sends no explicit reasoning level, so the model uses its own default thinking setting. This default can differ between models. Off disables thinking when supported. Other models ignore this setting; unsupported levels use Model Default.",
+              "type": "dropdown",
+              "default": "default",
+              "data": [
+                {
+                  "title": "Model Default",
+                  "value": "default"
+                },
+                {
+                  "title": "Off",
+                  "value": "none"
+                },
+                {
+                  "title": "Minimal",
+                  "value": "minimal"
+                },
+                {
+                  "title": "Low",
+                  "value": "low"
+                },
+                {
+                  "title": "Medium",
+                  "value": "medium"
+                },
+                {
+                  "title": "High",
+                  "value": "high"
+                },
+                {
+                  "title": "Extra High",
+                  "value": "xhigh"
+                },
+                {
+                  "title": "Maximum",
+                  "value": "max"
+                }
+              ],
+              "required": false
+            },
+            {
               "name": "temperature",
               "title": "Temperature",
-              "description": "Custom Action Temperature (value between 0.0 and 1.0)",
+              "description": "Controls how varied the answers are. Enter 0.0 to 1.0: lower values make wording more consistent; higher values make it more varied. Used by Gemini and OpenAI models without thinking. OpenAI thinking models ignore it unless Reasoning Level is Off and the model supports turning thinking off.",
               "type": "textfield",
               "default": "0.7",
               "required": true
@@ -6733,7 +6815,7 @@
             {
               "name": "maxTokens",
               "title": "Max Tokens",
-              "description": "Custom Action Max Tokens to be generated (set -1 for unlimited)",
+              "description": "The maximum number of tokens to generate. Set -1 for unlimited.",
               "type": "textfield",
               "default": "-1",
               "required": true
@@ -11334,6 +11416,77 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "app-usage",
+      "title": "App Usage",
+      "description": "See your screen time and which apps you actually use. Fully local, no account, no network.",
+      "icon": "extension-icon.png",
+      "author": "GouravAkaJojo",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "1.0.0",
+      "storeUrl": "https://www.raycast.com/GouravAkaJojo/app-usage",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/app-usage",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "collect",
+          "title": "Collect Usage",
+          "subtitle": "App Usage",
+          "description": "Records the focused application once a minute. Runs automatically in the background. Disabling this stops all tracking.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "report",
+          "title": "Usage Report",
+          "subtitle": "App Usage",
+          "description": "See which applications you have used and for how long.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "days",
+          "title": "Daily Usage",
+          "subtitle": "App Usage",
+          "description": "Browse the last seven days, one day at a time.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "retentionDays",
+          "title": "Keep History For",
+          "description": "Days of history to retain before older data is pruned.",
+          "type": "textfield",
+          "default": "30",
+          "required": false
+        },
+        {
+          "name": "excludedApps",
+          "title": "Excluded Apps",
+          "description": "Comma-separated app names to never record. These are never written to disk.",
+          "type": "textfield",
+          "default": "",
+          "required": false
+        }
+      ]
     },
     {
       "name": "appcleaner",
@@ -63744,40 +63897,56 @@
           "keywords": [],
           "preferences": [
             {
-              "name": "autoLoadUrlFromClipboard",
-              "title": "Auto Load URL from Clipboard",
-              "description": "Automatically load the URL from the clipboard when the command is executed",
+              "name": "autoLoadUrlFromSelectedText",
+              "title": "Empty URL Fallback",
+              "description": "When no URL is typed, dig the URL in the selected text.",
               "type": "checkbox",
-              "label": "Enable",
-              "default": false,
+              "label": "Use Selected Text",
+              "default": true,
               "required": false
             },
             {
-              "name": "autoLoadUrlFromSelectedText",
-              "title": "Auto Load URL from Selected Text",
-              "description": "Automatically load the URL from the selected text when the command is executed",
+              "name": "autoLoadUrlFromClipboard",
+              "description": "When no URL is typed or selected, dig the URL on the clipboard.",
               "type": "checkbox",
-              "label": "Enable",
-              "default": false,
+              "label": "Use Clipboard",
+              "default": true,
               "required": false
             },
             {
               "name": "enableBrowserExtensionSupport",
-              "title": "Enable Browser Extension Support",
-              "description": "Automatically load the URL from the active browser tab when the command is executed",
+              "description": "Last fallback: the active browser tab. macOS only; needs the browser extension.",
               "type": "checkbox",
-              "label": "Enable",
+              "label": "Use Current Browser Tab",
               "default": false,
               "required": false
             }
           ]
+        },
+        {
+          "name": "open-current-tab",
+          "title": "Open Current Tab in Digger",
+          "subtitle": "Digger",
+          "description": "Dig the website in the active browser tab (macOS, needs the browser extension)",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-clipboard",
+          "title": "Open Clipboard in Digger",
+          "subtitle": "Digger",
+          "description": "Dig the URL on the clipboard",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": [
         {
           "name": "acceptLanguage",
           "title": "Page Language",
-          "description": "Sent as the Accept-Language header. Sites that serve more than one language use it to choose which version Digger analyses; without it they pick for you.",
+          "description": "Request content using a BCP 47 language tag (e.g. en-US).",
           "type": "textfield",
           "default": "en-US",
           "required": false
@@ -88811,6 +88980,114 @@
       ]
     },
     {
+      "name": "fsearch",
+      "title": "FSearch",
+      "description": "Find any file on your Mac by name or contents in about a millisecond",
+      "icon": "icon.png",
+      "author": "paus_d_",
+      "contributors": [
+        "0xdhrv"
+      ],
+      "categories": [
+        "Productivity",
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/paus_d_/fsearch",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/fsearch",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "install-fsearch",
+          "title": "Install FSearch",
+          "subtitle": "FSearch",
+          "description": "Build and install or update FSearch in Terminal, with startup at login",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-files",
+          "title": "Search Files",
+          "subtitle": "FSearch",
+          "description": "Find files and folders anywhere on your Mac by name, with typos forgiven",
+          "mode": "view",
+          "keywords": [
+            "find",
+            "file",
+            "folder",
+            "fuzzy",
+            "spotlight"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "search-contents",
+          "title": "Search File Contents",
+          "subtitle": "FSearch",
+          "description": "Find text, a regular expression, or where a symbol is defined inside your files",
+          "mode": "view",
+          "keywords": [
+            "grep",
+            "text",
+            "inside",
+            "regex",
+            "symbol",
+            "code"
+          ],
+          "preferences": [
+            {
+              "name": "editor",
+              "title": "Open Matches In",
+              "description": "The app that opens a match at its line",
+              "type": "dropdown",
+              "required": false,
+              "default": "default",
+              "data": [
+                {
+                  "title": "Default App",
+                  "value": "default"
+                },
+                {
+                  "title": "Visual Studio Code",
+                  "value": "vscode"
+                },
+                {
+                  "title": "Cursor",
+                  "value": "cursor"
+                },
+                {
+                  "title": "Zed",
+                  "value": "zed"
+                },
+                {
+                  "title": "Xcode",
+                  "value": "xcode"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "preferences": [
+        {
+          "name": "binary",
+          "title": "FSearch Location",
+          "description": "Where the fsearch command is installed. It starts the search daemon when it isn't running.",
+          "type": "textfield",
+          "required": false,
+          "default": "~/.local/bin/fsearch"
+        }
+      ]
+    },
+    {
       "name": "ftrack",
       "title": "ftrack",
       "description": "Interacting with ftrack",
@@ -101247,7 +101524,8 @@
         "jlokos",
         "YourMCGeek",
         "alexi.build",
-        "tofrankie"
+        "tofrankie",
+        "chrismessina"
       ],
       "categories": [
         "Web"
@@ -101279,7 +101557,16 @@
           "description": "Google search with selected text",
           "mode": "no-view",
           "keywords": [],
-          "preferences": []
+          "preferences": [
+            {
+              "name": "useClipboardFallback",
+              "type": "checkbox",
+              "required": false,
+              "default": false,
+              "label": "Use Clipboard Fallback",
+              "description": "When no text is selected, fall back to using clipboard content for search."
+            }
+          ]
         }
       ],
       "preferences": [
@@ -101290,14 +101577,6 @@
           "default": true,
           "label": "Remember Search History",
           "description": "Enable this checkbox to locally store Google search history."
-        },
-        {
-          "name": "useClipboardFallback",
-          "type": "checkbox",
-          "required": false,
-          "default": false,
-          "label": "Use Clipboard Fallback",
-          "description": "When no text is selected, fall back to using clipboard content for search."
         }
       ]
     },
@@ -154317,9 +154596,10 @@
       "title": "Minecraft Color Codes",
       "description": "View and copy Minecraft chat color codes.",
       "icon": "extension_icon.png",
-      "author": "lafkpages",
+      "author": "luisafk",
       "contributors": [
-        "pernielsentikaer"
+        "pernielsentikaer",
+        "muhammadrizo"
       ],
       "categories": [
         "Productivity",
@@ -154327,8 +154607,11 @@
         "Developer Tools"
       ],
       "license": "MIT",
-      "platforms": [],
-      "storeUrl": "https://www.raycast.com/lafkpages/minecraft-color-codes",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/luisafk/minecraft-color-codes",
       "source": {
         "type": "github-monorepo",
         "repo": "raycast/extensions",
@@ -258267,6 +258550,25 @@
           "preferences": []
         },
         {
+          "name": "search-selected-text",
+          "title": "Search Selected Text",
+          "subtitle": "Techgedöns.de",
+          "description": "Searches Techgedöns.de for text selected in the frontmost application",
+          "mode": "no-view",
+          "keywords": [
+            "tchgdns",
+            "techgedoens",
+            "techgedöns",
+            "artikel",
+            "auswahl",
+            "markierter text",
+            "suchen",
+            "selected text",
+            "search"
+          ],
+          "preferences": []
+        },
+        {
           "name": "search-techgedoens",
           "title": "Search Techgedöns",
           "subtitle": "Techgedöns.de",
@@ -258331,26 +258633,7 @@
             "menüleiste",
             "menu bar"
           ],
-          "preferences": [
-            {
-              "name": "showMenuBarArticleDate",
-              "title": "Article Details",
-              "description": "Shows the publication date next to each article in the menu bar.",
-              "type": "checkbox",
-              "required": false,
-              "default": true,
-              "label": "Show publication date"
-            },
-            {
-              "name": "showMenuBarArticleCategory",
-              "title": "",
-              "description": "Shows the category next to each article in the menu bar.",
-              "type": "checkbox",
-              "required": false,
-              "default": true,
-              "label": "Show category"
-            }
-          ]
+          "preferences": []
         }
       ],
       "preferences": [
@@ -258453,6 +258736,107 @@
               "value": "90"
             }
           ]
+        },
+        {
+          "name": "menuBarDisplayArticleCount",
+          "title": "Menu Bar Article Count",
+          "description": "Selects how many articles are shown in each menu bar section.",
+          "type": "dropdown",
+          "required": false,
+          "default": "5",
+          "data": [
+            {
+              "title": "3 Articles",
+              "value": "3"
+            },
+            {
+              "title": "5 Articles",
+              "value": "5"
+            },
+            {
+              "title": "10 Articles",
+              "value": "10"
+            }
+          ]
+        },
+        {
+          "name": "menuBarDisplayTitleLength",
+          "title": "Menu Bar Title Length",
+          "description": "Selects the maximum article title length shown in the menu bar.",
+          "type": "dropdown",
+          "required": false,
+          "default": "medium",
+          "data": [
+            {
+              "title": "Very Short (Max. 40 Characters)",
+              "value": "very-short"
+            },
+            {
+              "title": "Short (Max. 55 Characters)",
+              "value": "short"
+            },
+            {
+              "title": "Medium (56-70 Characters)",
+              "value": "medium"
+            },
+            {
+              "title": "Long (71-90 Characters)",
+              "value": "long"
+            },
+            {
+              "title": "Full Title",
+              "value": "full"
+            }
+          ]
+        },
+        {
+          "name": "menuBarDisplayUnreadOnly",
+          "title": "Menu Bar Article Filter",
+          "description": "Only shows unread articles in the Latest Articles and Favorites sections.",
+          "type": "checkbox",
+          "required": false,
+          "default": false,
+          "label": "Only show unread articles"
+        },
+        {
+          "name": "menuBarDisplayUnreadCounter",
+          "title": "Menu Bar Unread Counter",
+          "description": "Selects when the unread counter is shown in the menu bar.",
+          "type": "dropdown",
+          "required": false,
+          "default": "always",
+          "data": [
+            {
+              "title": "Always Show",
+              "value": "always"
+            },
+            {
+              "title": "Hide When Zero",
+              "value": "hide-zero"
+            },
+            {
+              "title": "Always Hide",
+              "value": "hidden"
+            }
+          ]
+        },
+        {
+          "name": "menuBarDisplayPublicationDate",
+          "title": "Menu Bar Article Details",
+          "description": "Shows the publication date next to each article in the menu bar.",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "label": "Show publication date"
+        },
+        {
+          "name": "menuBarDisplayCategory",
+          "title": "",
+          "description": "Shows the category next to each article in the menu bar.",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "label": "Show category"
         }
       ]
     },
