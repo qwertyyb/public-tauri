@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-13T00:37:25.654Z",
+  "generatedAt": "2026-10-13T22:38:59.354Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "4345ef9b5a0cca8a817dc209cf573666009a5d34"
+    "commit": "ef642d185d100f0aeba5b1bc08cf3ccba9c2dc51"
   },
-  "count": 3411,
+  "count": 3423,
   "extensions": [
     {
       "name": "0x0",
@@ -8109,7 +8109,9 @@
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/chenhuazhao/android-screen-capture",
       "source": {
         "type": "github-monorepo",
@@ -8141,7 +8143,7 @@
           "type": "textfield",
           "required": false,
           "title": "adb command directory",
-          "description": "Set directory path where adb command included. Default is `$HOME/Library/Android/sdk/platform-tools`.",
+          "description": "Set directory path where adb command included. When empty, `$HOME/Library/Android/sdk/platform-tools` is used, or Homebrew's adb (`/opt/homebrew/bin`, `/usr/local/bin`) if the SDK is not installed.",
           "placeholder": "/dir/sdk/platform-tools"
         }
       ]
@@ -8356,7 +8358,9 @@
       "description": "Anki extension for Raycast",
       "icon": "extension-icon.png",
       "author": "anton-suprun",
-      "contributors": [],
+      "contributors": [
+        "0xdhrv"
+      ],
       "categories": [
         "Productivity",
         "Applications",
@@ -8403,9 +8407,9 @@
             {
               "name": "allow_empty_card_fields",
               "type": "checkbox",
-              "label": "Allow empty card fields",
+              "label": "Allow Empty First Field",
               "required": false,
-              "description": "Enabling this will allow you to create cards with empty fields"
+              "description": "Skip the local first-field check in Add Card. Other fields are optional. Anki may still reject an empty note."
             }
           ]
         },
@@ -13910,7 +13914,8 @@
         "pavelas",
         "mchoun",
         "yoann_aubineau",
-        "0xdhrv"
+        "0xdhrv",
+        "Berenger"
       ],
       "categories": [
         "Web",
@@ -32600,6 +32605,40 @@
       ]
     },
     {
+      "name": "caps-lock",
+      "title": "Caps Lock",
+      "description": "Toggle Caps Lock even when your Caps Lock key is remapped to Hyper, Escape, Control, or another key.",
+      "icon": "extension-icon.png",
+      "author": "itsdanielsultan",
+      "contributors": [],
+      "categories": [
+        "System",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/itsdanielsultan/caps-lock",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/caps-lock",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "toggle-caps-lock",
+          "title": "Toggle Caps Lock",
+          "description": "Turn Caps Lock on or off without pressing the physical Caps Lock key.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "capso",
       "title": "Capso",
       "description": "Trigger Capso captures, OCR, recordings, and history directly from Raycast.",
@@ -44760,6 +44799,94 @@
       ]
     },
     {
+      "name": "codepen",
+      "title": "CodePen",
+      "description": "Search, create, and manage your CodePen Pens, collections, and assets with API v2.",
+      "icon": "extension-icon.png",
+      "author": "0xdhrv",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows",
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/0xdhrv/codepen",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/codepen",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-pens",
+          "title": "Search Pens",
+          "subtitle": "CodePen",
+          "description": "Search your Pens, browse source files and versions, edit, fork, and manage deployments",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "create-pen",
+          "title": "Create Pen",
+          "subtitle": "CodePen",
+          "description": "Create a CodePen 2.0 Pen with starter files or your own HTML, CSS, and JavaScript",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-collections",
+          "title": "Search Collections",
+          "subtitle": "CodePen",
+          "description": "Browse your collections and manage their Pens",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "create-collection",
+          "title": "Create Collection",
+          "subtitle": "CodePen",
+          "description": "Create a collection to organize your Pens",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-assets",
+          "title": "Search Assets",
+          "subtitle": "CodePen",
+          "description": "Browse, copy, rename, and delete your hosted assets",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "upload-asset",
+          "title": "Upload Asset",
+          "subtitle": "CodePen",
+          "description": "Upload a file to CodePen Asset Hosting and copy its URL",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "type": "password",
+          "required": true,
+          "title": "API Key",
+          "description": "Generate an API key in CodePen Settings → API (https://codepen.io/settings/api). Personal keys access your work; team keys access that team’s work."
+        }
+      ]
+    },
+    {
       "name": "codesnap",
       "title": "CodeSnap",
       "description": "Creates a beautiful image of your code snippet",
@@ -45029,7 +45156,8 @@
       "icon": "extension-icon.png",
       "author": "WerrySs",
       "contributors": [
-        "0xdhrv"
+        "0xdhrv",
+        "vedant_kalipatnapu"
       ],
       "categories": [
         "Developer Tools"
@@ -45144,6 +45272,22 @@
           "title": "Codex Data Folder",
           "description": "Optional. Uses CODEX_HOME or ~/.codex when empty.",
           "placeholder": "~/.codex"
+        },
+        {
+          "name": "usageOnly",
+          "type": "checkbox",
+          "required": false,
+          "title": "Quota-Only Monitoring",
+          "label": "Read saved Claude usage and hide chats in the usage menu bar",
+          "description": "Connect Claude Code from the usage viewer. Usage commands read its saved status line without launching Claude or scanning chat history. Codex still uses its app server.",
+          "default": false
+        },
+        {
+          "name": "customUsageFile",
+          "type": "file",
+          "required": false,
+          "title": "Custom Usage File",
+          "description": "Optional local JSON snapshots for other providers. See the README for the format."
         }
       ]
     },
@@ -45309,6 +45453,68 @@
           "required": true
         }
       ]
+    },
+    {
+      "name": "codex-profiles",
+      "title": "Codex Profiles",
+      "description": "Switch ChatGPT between your local Codex profiles.",
+      "icon": "icon.png",
+      "author": "hamza_alchbli",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/hamza_alchbli/codex-profiles",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/codex-profiles",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "switch-profile",
+          "title": "Switch Profile",
+          "subtitle": "Codex Profiles",
+          "description": "Open a separate ChatGPT window with its own local profile state.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "manage-profiles",
+          "title": "Manage Profiles",
+          "subtitle": "Codex Profiles",
+          "description": "Create, rename, and remove local Codex profiles.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-first-profile",
+          "title": "Switch to Profile 1",
+          "subtitle": "Codex Profiles",
+          "description": "Open the required first profile directly; assign a Raycast hotkey for quick access.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-second-profile",
+          "title": "Switch to Profile 2",
+          "subtitle": "Codex Profiles",
+          "description": "Open the second profile directly; assign a Raycast hotkey for quick access.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "codex-reset-forecast",
@@ -48578,7 +48784,7 @@
     {
       "name": "connect-to-vpn",
       "title": "Connect to VPN",
-      "description": "Connect to/disconnect from VPN",
+      "description": "Control your macOS VPN connections from Raycast and the menu bar, with favorites and a hotkey to toggle your last-used VPN.",
       "icon": "command-icon.png",
       "author": "rasmusbe",
       "contributors": [
@@ -48587,7 +48793,8 @@
         "vyacheslav",
         "yshmeel",
         "borzov",
-        "andrei_hudalla"
+        "andrei_hudalla",
+        "0xdhrv"
       ],
       "categories": [],
       "license": "MIT",
@@ -48605,8 +48812,8 @@
         {
           "name": "toggle",
           "title": "Toggle Last Used",
-          "subtitle": "VPN",
-          "description": "Toggle your Last Used VPN",
+          "subtitle": "Connect to VPN",
+          "description": "Connect to or disconnect from the VPN most recently selected or used in this extension. Assign a hotkey for quick access.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -48614,8 +48821,8 @@
         {
           "name": "index",
           "title": "Show Network Services",
-          "subtitle": "VPN",
-          "description": "Shortcut to your Network Preferences",
+          "subtitle": "Connect to VPN",
+          "description": "View VPN connection status, connect or disconnect, organize favorites, and choose the VPN used by Toggle Last Used.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -48623,8 +48830,8 @@
         {
           "name": "menu-bar",
           "title": "Network Services",
-          "subtitle": "VPN",
-          "description": "View your Network Services at a glance",
+          "subtitle": "Connect to VPN",
+          "description": "View VPN connection status and connect or disconnect from the menu bar. Status refreshes automatically every 30 seconds.",
           "mode": "menu-bar",
           "keywords": [],
           "preferences": []
@@ -48633,9 +48840,9 @@
       "preferences": [
         {
           "name": "hideInvalidDevices",
-          "title": "Filter Non-VPN Services",
-          "description": "Tick this to hide non-VPN services from the list.",
-          "label": "Hide non-VPN services",
+          "title": "Filter Services",
+          "description": "Show only available VPN services. Turn off to include disabled VPNs and other network services.",
+          "label": "Hide unavailable and non-VPN services",
           "type": "checkbox",
           "required": false,
           "default": true
@@ -48643,25 +48850,25 @@
         {
           "name": "sortBy",
           "title": "Sort By",
-          "description": "Choose how to sort the services",
+          "description": "Sort services by name or type. Active services appear first; favorites keep their manual order.",
           "type": "dropdown",
           "required": false,
           "default": "ascService",
           "data": [
             {
-              "title": "Ascending by Name",
+              "title": "Name (A–Z)",
               "value": "ascService"
             },
             {
-              "title": "Descending by Name",
+              "title": "Name (Z–A)",
               "value": "descService"
             },
             {
-              "title": "Ascending by Type",
+              "title": "Type (A–Z)",
               "value": "ascType"
             },
             {
-              "title": "Descending by Type",
+              "title": "Type (Z–A)",
               "value": "descType"
             }
           ]
@@ -49854,6 +50061,50 @@
           "name": "deploymentUrl",
           "title": "Deployment URL",
           "description": "Your Convex deployment URL (optional). Example: https://polite-condor-874.convex.cloud",
+          "type": "textfield",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "convt",
+      "title": "Convt",
+      "description": "Convert images, videos, audio, PDFs, and documents locally with Convt.",
+      "icon": "icon.png",
+      "author": "0xdhrv",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Design Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows",
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/0xdhrv/convt",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/convt",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "convt",
+          "title": "Convert Files",
+          "subtitle": "Convt",
+          "description": "Convert selected Finder files or choose files to convert locally with Convt.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "binaryPath",
+          "title": "Convt CLI Path",
+          "description": "Optional absolute path to the convt executable. Leave blank to detect the installed app, Homebrew, or PATH automatically.",
           "type": "textfield",
           "required": false
         }
@@ -52979,6 +53230,46 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "cronitor",
+      "title": "Cronitor",
+      "description": "View Monitors in Cronitor",
+      "icon": "cronitor.png",
+      "author": "xmok",
+      "contributors": [],
+      "categories": [],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/xmok/cronitor",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/cronitor",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-monitors",
+          "title": "Search Monitors",
+          "description": "Search Monitors in Cronitor",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "api_key",
+          "title": "API Key",
+          "placeholder": "Cronitor API Key",
+          "type": "password",
+          "required": true,
+          "description": "Cronitor API Key"
+        }
+      ]
     },
     {
       "name": "crossbell",
@@ -59890,6 +60181,50 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "defined-fi",
+      "title": "Defined.fi",
+      "description": "Search tokens by name, symbol, or contract address and open them on Defined.fi.",
+      "icon": "extension-icon.png",
+      "author": "chapati23",
+      "contributors": [],
+      "categories": [
+        "Finance",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/chapati23/defined-fi",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/defined-fi",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search",
+          "title": "Search Tokens",
+          "subtitle": "Defined.fi",
+          "description": "Search tokens across all networks and open the token page on Defined.fi.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "type": "password",
+          "required": false,
+          "title": "Codex.io API Key",
+          "description": "Optional. Overrides the key saved during setup. Get one at dashboard.codex.io.",
+          "placeholder": "Paste your Codex.io API key"
+        }
+      ]
     },
     {
       "name": "definitelytyped",
@@ -78343,6 +78678,207 @@
       "preferences": []
     },
     {
+      "name": "fake-data-generator",
+      "title": "Fake Data Generator",
+      "description": "Generate checksum-valid fake IBANs, BICs, VAT numbers, EINs, ABNs, IRD numbers, names, emails, phone numbers and companies for testing. One keystroke to copy.",
+      "icon": "extension-icon.png",
+      "author": "joachim_bauters",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Finance"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/joachim_bauters/fake-data-generator",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/fake-data-generator",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "generate-iban",
+          "title": "Generate IBAN",
+          "subtitle": "Fake Data",
+          "description": "Checksum-valid IBANs for 50 European countries, incl. national check digits and matching BIC.",
+          "mode": "view",
+          "keywords": [
+            "iban",
+            "bank",
+            "account",
+            "rekeningnummer",
+            "sepa"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "generate-vat",
+          "title": "Generate VAT Number",
+          "subtitle": "Fake Data",
+          "description": "Valid-format VAT numbers for all EU countries (VIES format), UK, Northern Ireland, Switzerland and Norway.",
+          "mode": "view",
+          "keywords": [
+            "vat",
+            "btw",
+            "tva",
+            "ust",
+            "mwst",
+            "iva",
+            "moms",
+            "tax"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "generate-tax-id",
+          "title": "Generate Tax ID",
+          "subtitle": "Fake Data",
+          "description": "US EIN, Australian ABN / ACN / TFN, New Zealand IRD / GST number and NZBN.",
+          "mode": "view",
+          "keywords": [
+            "ein",
+            "abn",
+            "acn",
+            "tfn",
+            "ird",
+            "gst",
+            "nzbn",
+            "tax"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "generate-financial",
+          "title": "Generate Financial Data",
+          "subtitle": "Fake Data",
+          "description": "BIC/SWIFT codes, Luhn-valid and Stripe test card numbers, ABA routing numbers, UK sort codes and AU BSBs.",
+          "mode": "view",
+          "keywords": [
+            "bic",
+            "swift",
+            "credit card",
+            "card",
+            "routing",
+            "aba",
+            "sort code",
+            "bsb",
+            "stripe"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "generate-phone",
+          "title": "Generate Phone Number",
+          "subtitle": "Fake Data",
+          "description": "Mobile or landline numbers per country, using regulator-reserved fictional ranges where they exist.",
+          "mode": "view",
+          "keywords": [
+            "phone",
+            "mobile",
+            "telephone",
+            "gsm",
+            "number"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "generate-person",
+          "title": "Generate Person",
+          "subtitle": "Fake Data",
+          "description": "Fake name, email, phone, birthdate and address for a country.",
+          "mode": "view",
+          "keywords": [
+            "name",
+            "person",
+            "identity",
+            "address",
+            "user"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "generate-company",
+          "title": "Generate Company",
+          "subtitle": "Fake Data",
+          "description": "Fake company with legal form, VAT number, registration number, IBAN, phone, email and address.",
+          "mode": "view",
+          "keywords": [
+            "company",
+            "business",
+            "bedrijf",
+            "firma",
+            "organisation",
+            "organization"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "generate-email",
+          "title": "Generate Email",
+          "subtitle": "Fake Data",
+          "description": "Fake email addresses on reserved domains (example.com, .test) that never reach a real inbox.",
+          "mode": "view",
+          "keywords": [
+            "email",
+            "mail",
+            "e-mail",
+            "address"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "copyFormat",
+          "title": "Copy Format",
+          "description": "What Enter copies. The other format is always available with ⌘⇧C.",
+          "type": "dropdown",
+          "required": false,
+          "default": "compact",
+          "data": [
+            {
+              "title": "Compact (BE71096123456769)",
+              "value": "compact"
+            },
+            {
+              "title": "Formatted (BE71 0961 2345 6769)",
+              "value": "formatted"
+            }
+          ]
+        },
+        {
+          "name": "phoneMode",
+          "title": "Phone Numbers",
+          "description": "Fictional ranges never reach a real person, but UK and French mobile drama ranges fail libphonenumber validation.",
+          "type": "dropdown",
+          "required": false,
+          "default": "fictional",
+          "data": [
+            {
+              "title": "Prefer fictional (reserved) ranges",
+              "value": "fictional"
+            },
+            {
+              "title": "Always pass libphonenumber validation",
+              "value": "valid"
+            }
+          ]
+        },
+        {
+          "name": "emailDomain",
+          "title": "Email Domain",
+          "description": "Domain for generated person and email addresses. Reserved domains (example.com/.org/.net, .test) never receive mail; any other domain is real and mail to it can be delivered. Invalid values fall back to example.com.",
+          "type": "textfield",
+          "required": false,
+          "default": "example.com"
+        }
+      ]
+    },
+    {
       "name": "fake-financial-data",
       "title": "Fake Financial Data",
       "description": "Generate fake financial data",
@@ -85317,6 +85853,218 @@
           "description": "FlatIcon API Key",
           "type": "password",
           "required": true
+        }
+      ]
+    },
+    {
+      "name": "fleeting",
+      "title": "Fleeting",
+      "description": "Launch synthetic workplace meetings from Fleeting and block matching calendar time. Unofficial companion extension.",
+      "icon": "icon.png",
+      "author": "0xdhrv",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows",
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/0xdhrv/fleeting",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/fleeting",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "start-meeting",
+          "title": "Start Meeting",
+          "subtitle": "Fleeting",
+          "description": "Search and open a synthetic Fleeting meeting in your browser.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "block-calendar",
+          "title": "Block Calendar",
+          "subtitle": "Fleeting",
+          "description": "Create a calendar event that links to a Fleeting meeting.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "quick-meeting",
+          "title": "Quick Meeting",
+          "subtitle": "Fleeting",
+          "description": "Instantly open your preferred (or a random) Fleeting meeting.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "preferredMeeting",
+          "type": "dropdown",
+          "title": "Preferred Meeting",
+          "description": "Used by Quick Meeting and as the Block Calendar default.",
+          "required": false,
+          "default": "standup",
+          "data": [
+            {
+              "title": "Engineering Standup",
+              "value": "standup"
+            },
+            {
+              "title": "Client Sales Call",
+              "value": "sales"
+            },
+            {
+              "title": "API Design Review",
+              "value": "api"
+            },
+            {
+              "title": "AppSec Review",
+              "value": "appsec"
+            },
+            {
+              "title": "Scoping Call",
+              "value": "scoping"
+            },
+            {
+              "title": "Project Status Meeting",
+              "value": "pm"
+            },
+            {
+              "title": "Vendor Security Review",
+              "value": "vendor"
+            },
+            {
+              "title": "Quarterly All-Hands",
+              "value": "allhands"
+            },
+            {
+              "title": "IT Incident War Room",
+              "value": "incident"
+            },
+            {
+              "title": "Before the Host Joins",
+              "value": "gossip"
+            },
+            {
+              "title": "Healthy Workplace Working Group",
+              "value": "wellbeing"
+            },
+            {
+              "title": "Offsite Planning Sync",
+              "value": "flirt"
+            },
+            {
+              "title": "Ops Weekly (Flight Deck Edition)",
+              "value": "pilots"
+            },
+            {
+              "title": "Ransomware Crisis Bridge",
+              "value": "ransomware"
+            }
+          ]
+        },
+        {
+          "name": "quickLaunchMode",
+          "type": "dropdown",
+          "title": "Quick Meeting Mode",
+          "description": "What Quick Meeting opens.",
+          "required": false,
+          "default": "preferred",
+          "data": [
+            {
+              "title": "Preferred Meeting",
+              "value": "preferred"
+            },
+            {
+              "title": "Random Meeting",
+              "value": "random"
+            }
+          ]
+        },
+        {
+          "name": "preferredCalendar",
+          "type": "dropdown",
+          "title": "Preferred Calendar",
+          "description": "Primary action in Block Calendar.",
+          "required": false,
+          "default": "google",
+          "data": [
+            {
+              "title": "Google Calendar",
+              "value": "google"
+            },
+            {
+              "title": "Outlook",
+              "value": "outlook"
+            },
+            {
+              "title": "Calendar File (.ics)",
+              "value": "ics"
+            }
+          ]
+        },
+        {
+          "name": "defaultDuration",
+          "type": "dropdown",
+          "title": "Default Duration",
+          "description": "Default event length.",
+          "required": false,
+          "default": "30",
+          "data": [
+            {
+              "title": "15 minutes",
+              "value": "15"
+            },
+            {
+              "title": "30 minutes",
+              "value": "30"
+            },
+            {
+              "title": "45 minutes",
+              "value": "45"
+            },
+            {
+              "title": "60 minutes",
+              "value": "60"
+            },
+            {
+              "title": "90 minutes",
+              "value": "90"
+            },
+            {
+              "title": "120 minutes",
+              "value": "120"
+            }
+          ]
+        },
+        {
+          "name": "defaultPrivate",
+          "type": "checkbox",
+          "title": "Event Visibility",
+          "label": "Private by default",
+          "description": "Request private visibility where the calendar supports it.",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "includeJoinLink",
+          "type": "checkbox",
+          "title": "Join Link",
+          "label": "Include join link by default",
+          "description": "Add the Fleeting URL to the event location and description.",
+          "required": false,
+          "default": true
         }
       ]
     },
@@ -101860,7 +102608,7 @@
       "preferences": [
         {
           "title": "Open Meetings In",
-          "description": "Choose whether meetings open in your browser or in the installed Google Meet PWA. The link is always resolved through a real browser first and copied to your clipboard either way.",
+          "description": "Choose whether meetings open in your browser or in the installed Google Meet PWA. A Safari web app (File → Add to Dock) creates the meeting itself with no browser involved; other PWAs resolve the link through a real browser first. The link is copied to your clipboard either way.",
           "name": "launchTarget",
           "type": "dropdown",
           "required": true,
@@ -114534,7 +115282,8 @@
         "krsntn",
         "mikikiv",
         "techmaved",
-        "mattiacolombomc"
+        "mattiacolombomc",
+        "mateus_badalotti"
       ],
       "categories": [
         "Other"
@@ -114693,6 +115442,24 @@
           "subtitle": "Home Assistant",
           "description": "Get/Set states of Home Assistant climate entities",
           "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "acmenu",
+          "title": "Toggle AC Menu in Menu Bar",
+          "subtitle": "Home Assistant",
+          "description": "Control Home Assistant air conditioners from the menu bar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle-ac-menu",
+          "title": "Toggle AC Menu",
+          "subtitle": "Home Assistant",
+          "description": "Show or hide the air conditioner menu bar item",
+          "mode": "no-view",
           "keywords": [],
           "preferences": []
         },
@@ -142720,7 +143487,7 @@
     {
       "name": "litterbox",
       "title": "Litterbox",
-      "description": "Upload files to Litterbox from Raycast with a file picker, set expiry (1h, 12h, 24h, or 72h), and get shareable links. Recent uploads are listed until they expire.",
+      "description": "Upload files to Litterbox from Raycast with a file picker or Finder selection (macOS), set expiry (1h, 12h, 24h, or 72h), and get shareable links. Recent uploads are listed until they expire.",
       "icon": "icon.png",
       "author": "0xdhrv",
       "contributors": [],
@@ -142751,6 +143518,19 @@
             "share",
             "expiry",
             "litterbox"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "upload-selected-finder-files",
+          "title": "Upload Selected Finder Files",
+          "description": "On macOS, review files selected in Finder, choose an expiry, and upload them to Litterbox. URLs are copied to the clipboard.",
+          "mode": "view",
+          "keywords": [
+            "finder",
+            "selected",
+            "upload",
+            "files"
           ],
           "preferences": []
         },
@@ -145472,6 +146252,42 @@
           "description": "See recently accessed and trending games in your menu bar.",
           "mode": "menu-bar",
           "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "chinese-lunar-calendar",
+      "title": "Chinese Lunar Calendar",
+      "description": "A simple Chinese Lunar Calendar extension to check lunar dates, traditional festivals, and public holidays.",
+      "icon": "extension-icon.png",
+      "author": "chentao7v",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/chentao7v/chinese-lunar-calendar",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/lunar-calendar",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "lunar",
+          "title": "Chinese Lunar Calendar",
+          "subtitle": "Show Chinese Lunar Calendar",
+          "description": "View monthly lunar calendar with traditional festivals and holidays",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
           "preferences": []
         }
       ],
@@ -186544,8 +187360,8 @@
     },
     {
       "name": "paste-rs",
-      "title": "paste.rs - Quick Pastes",
-      "description": "Create anonymous paste.rs links from typed text or your clipboard, and browse recent pastes.",
+      "title": "paste.rs",
+      "description": "Create anonymous paste.rs links from typed, selected, or clipboard text, and browse recent pastes.",
       "icon": "icon.png",
       "author": "0xdhrv",
       "contributors": [],
@@ -186584,6 +187400,15 @@
           "preferences": []
         },
         {
+          "name": "paste-selected-text",
+          "title": "Paste Selected Text",
+          "subtitle": "paste.rs",
+          "description": "Upload selected text from the frontmost app after confirmation and copy the URL",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "recent-pastes",
           "title": "Browse Recent Pastes",
           "subtitle": "paste.rs",
@@ -186593,7 +187418,134 @@
           "preferences": []
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "language",
+          "title": "Default Language",
+          "description": "Language used for clipboard, selected-text, and AI pastes; Create Paste can override it. Markdown renders as HTML.",
+          "type": "dropdown",
+          "required": false,
+          "default": "",
+          "data": [
+            {
+              "title": "Plain Text",
+              "value": ""
+            },
+            {
+              "title": "Bash",
+              "value": "bash"
+            },
+            {
+              "title": "C",
+              "value": "c"
+            },
+            {
+              "title": "C++",
+              "value": "cpp"
+            },
+            {
+              "title": "C#",
+              "value": "cs"
+            },
+            {
+              "title": "Clojure",
+              "value": "clj"
+            },
+            {
+              "title": "CSS",
+              "value": "css"
+            },
+            {
+              "title": "Diff",
+              "value": "diff"
+            },
+            {
+              "title": "Erlang",
+              "value": "erl"
+            },
+            {
+              "title": "Go",
+              "value": "go"
+            },
+            {
+              "title": "Haskell",
+              "value": "hs"
+            },
+            {
+              "title": "HTML",
+              "value": "html"
+            },
+            {
+              "title": "Java",
+              "value": "java"
+            },
+            {
+              "title": "JavaScript",
+              "value": "js"
+            },
+            {
+              "title": "JSON",
+              "value": "json"
+            },
+            {
+              "title": "Lua",
+              "value": "lua"
+            },
+            {
+              "title": "Markdown",
+              "value": "md"
+            },
+            {
+              "title": "OCaml",
+              "value": "ml"
+            },
+            {
+              "title": "Perl",
+              "value": "pl"
+            },
+            {
+              "title": "PHP",
+              "value": "php"
+            },
+            {
+              "title": "Python",
+              "value": "py"
+            },
+            {
+              "title": "R",
+              "value": "r"
+            },
+            {
+              "title": "Ruby",
+              "value": "rb"
+            },
+            {
+              "title": "Rust",
+              "value": "rs"
+            },
+            {
+              "title": "Scala",
+              "value": "scala"
+            },
+            {
+              "title": "Shell",
+              "value": "sh"
+            },
+            {
+              "title": "SQL",
+              "value": "sql"
+            },
+            {
+              "title": "XML",
+              "value": "xml"
+            },
+            {
+              "title": "YAML",
+              "value": "yaml"
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "paste-safely",
@@ -201444,7 +202396,8 @@
       "icon": "extension-icon.png",
       "author": "izyuumi",
       "contributors": [
-        "FeernandoOFF"
+        "FeernandoOFF",
+        "bastien"
       ],
       "categories": [
         "Security",
@@ -207025,6 +207978,125 @@
       "preferences": []
     },
     {
+      "name": "quickadd",
+      "title": "QuickAdd for Obsidian",
+      "description": "Run QuickAdd choices, captures, and templates in your Obsidian vault straight from Raycast.",
+      "icon": "icon.png",
+      "author": "christian_bager_bach_houmann",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Applications"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/christian_bager_bach_houmann/quickadd",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/quickadd",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "run-choice",
+          "title": "Run QuickAdd Choice",
+          "description": "Browse and run any QuickAdd choice, filling its inputs in Raycast.",
+          "mode": "view",
+          "keywords": [
+            "obsidian",
+            "capture",
+            "note",
+            "template",
+            "macro"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "quick-capture",
+          "title": "Quick Capture",
+          "description": "Capture text to your vault through a QuickAdd capture choice without leaving Raycast.",
+          "mode": "no-view",
+          "keywords": [
+            "obsidian",
+            "capture",
+            "note"
+          ],
+          "preferences": [
+            {
+              "name": "captureChoice",
+              "type": "textfield",
+              "required": true,
+              "title": "Capture Choice",
+              "placeholder": "e.g. Quick Capture",
+              "description": "Name of the QuickAdd capture choice to send text to (as shown in Run QuickAdd Choice). Pick one that runs without prompts."
+            }
+          ]
+        },
+        {
+          "name": "capture-selection",
+          "title": "Capture Selection",
+          "description": "Capture the selected text to your vault through a QuickAdd capture choice.",
+          "mode": "no-view",
+          "keywords": [
+            "obsidian",
+            "capture",
+            "note"
+          ],
+          "preferences": [
+            {
+              "name": "captureChoice",
+              "type": "textfield",
+              "required": true,
+              "title": "Capture Choice",
+              "placeholder": "e.g. Quick Capture",
+              "description": "Name of the QuickAdd capture choice to send text to (as shown in Run QuickAdd Choice). Pick one that runs without prompts."
+            }
+          ]
+        },
+        {
+          "name": "capture-clipboard",
+          "title": "Capture Clipboard",
+          "description": "Capture the clipboard text to your vault through a QuickAdd capture choice.",
+          "mode": "no-view",
+          "keywords": [
+            "obsidian",
+            "capture",
+            "note"
+          ],
+          "preferences": [
+            {
+              "name": "captureChoice",
+              "type": "textfield",
+              "required": true,
+              "title": "Capture Choice",
+              "placeholder": "e.g. Quick Capture",
+              "description": "Name of the QuickAdd capture choice to send text to (as shown in Run QuickAdd Choice). Pick one that runs without prompts."
+            }
+          ]
+        }
+      ],
+      "preferences": [
+        {
+          "name": "vaultPath",
+          "type": "directory",
+          "required": false,
+          "title": "Vault",
+          "description": "Leave empty to detect."
+        },
+        {
+          "name": "cliPath",
+          "type": "textfield",
+          "required": false,
+          "title": "Obsidian CLI Path",
+          "description": "Path to the Obsidian CLI binary. Leave empty to auto-detect.",
+          "placeholder": "/opt/homebrew/bin/obsidian"
+        }
+      ]
+    },
+    {
       "name": "quickfile",
       "title": "QuickFile",
       "description": "Access your QuickFile account balances.",
@@ -211027,7 +212099,9 @@
         "Fun"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/EvanZhouDev/raycast-arcade",
       "source": {
         "type": "github-monorepo",
@@ -240554,6 +241628,50 @@
       ]
     },
     {
+      "name": "snapset",
+      "title": "Snapset",
+      "description": "Save and restore complete Mac workspaces, including apps, windows, macOS Spaces, browser tabs, and Finder folders",
+      "icon": "icon.png",
+      "author": "seiya_nishi",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/seiya_nishi/snapset",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/snapset",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "apply-layout",
+          "title": "Apply Layout",
+          "subtitle": "Snapset",
+          "description": "Restore a workspace saved in Snapset. Snapset reopens missing apps, restores windows to their saved positions across displays and macOS Spaces, reopens saved browser tabs and Finder folders, and can hide apps that are not part of the workspace.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "save-layout",
+          "title": "Save Layout",
+          "subtitle": "Snapset",
+          "description": "Save your current Mac workspace as a new Snapset layout. Snapset captures the apps and windows in use, their positions across displays and macOS Spaces, open browser tabs, and Finder folders.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "snapzy",
       "title": "Snapzy",
       "description": "Capture screenshots, record your screen, and manage captures with Snapzy.",
@@ -255718,10 +256836,10 @@
       "preferences": [
         {
           "name": "defaultView",
-          "description": "Select active tab upon launch",
+          "description": "Select the view shown on launch",
           "type": "dropdown",
           "required": false,
-          "title": "Default tab",
+          "title": "Default View",
           "placeholder": "placeHolder",
           "data": [
             {
@@ -255755,7 +256873,7 @@
           "description": "Select cpu usage display mode",
           "type": "dropdown",
           "required": false,
-          "title": "CPU usage display mode",
+          "title": "CPU Usage Display Mode",
           "placeholder": "placeHolder",
           "data": [
             {
@@ -255774,7 +256892,7 @@
           "description": "Select battery usage display mode",
           "type": "dropdown",
           "required": false,
-          "title": "Battery usage display mode",
+          "title": "Battery Usage Display Mode",
           "placeholder": "placeHolder",
           "data": [
             {
@@ -255793,7 +256911,7 @@
           "description": "Select disk usage display mode",
           "type": "dropdown",
           "required": false,
-          "title": "Disk usage display mode",
+          "title": "Disk Usage Display Mode",
           "placeholder": "placeHolder",
           "data": [
             {
@@ -255812,7 +256930,7 @@
           "description": "Select memory usage display mode",
           "type": "dropdown",
           "required": false,
-          "title": "Memory usage display mode",
+          "title": "Memory Usage Display Mode",
           "placeholder": "placeHolder",
           "data": [
             {
@@ -259698,14 +260816,6 @@
           "link": "https://my.telegram.org/apps"
         },
         {
-          "name": "phoneNumber",
-          "type": "textfield",
-          "required": true,
-          "title": "Phone Number",
-          "description": "Your phone number with country code (e.g., +1234567890)",
-          "placeholder": "+1234567890"
-        },
-        {
           "name": "openRouterApiKey",
           "type": "password",
           "required": false,
@@ -261326,6 +262436,75 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "text-counter",
+      "title": "Text Counter",
+      "description": "Count words, characters, sentences, reading time, and LLM tokens in selected or copied text",
+      "icon": "icon.png",
+      "author": "fernando_jacob",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/fernando_jacob/text-counter",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/text-counter",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "count-text",
+          "title": "Count Tokens / Words / Lines",
+          "description": "Count tokens, words, lines, and characters from selected text or clipboard",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "preferSelectedText",
+          "type": "checkbox",
+          "required": false,
+          "title": "Text Source",
+          "label": "Prefer selected text over clipboard",
+          "description": "Try to read the selected text in the frontmost app first, falling back to the clipboard",
+          "default": true
+        },
+        {
+          "name": "showTokenCounts",
+          "type": "checkbox",
+          "required": false,
+          "title": "Display",
+          "label": "Show token counts",
+          "description": "Show LLM token counts (o200k_base, cl100k_base, Claude estimate)",
+          "default": true
+        },
+        {
+          "name": "showReadingTime",
+          "type": "checkbox",
+          "required": false,
+          "label": "Show reading time",
+          "description": "Show an estimated reading time based on average reading speed",
+          "default": true
+        },
+        {
+          "name": "showCostEstimates",
+          "type": "checkbox",
+          "required": false,
+          "label": "Show cost estimates",
+          "description": "Show input cost estimates using live model pricing from models.dev (cached for 24h)",
+          "default": true
+        }
+      ]
     },
     {
       "name": "text-decorator",
@@ -275861,7 +277040,7 @@
       "title": "Museum",
       "description": "Find public domain artworks by color. Browse palettes, copy images, and discover art from museum collections.",
       "icon": "museum-icon.png",
-      "author": "ray.dhruv",
+      "author": "0xdhrv",
       "contributors": [],
       "categories": [
         "Design Tools",
@@ -275872,7 +277051,7 @@
         "Windows",
         "macOS"
       ],
-      "storeUrl": "https://www.raycast.com/ray.dhruv/try-museum",
+      "storeUrl": "https://www.raycast.com/0xdhrv/try-museum",
       "source": {
         "type": "github-monorepo",
         "repo": "raycast/extensions",
@@ -299564,7 +300743,8 @@
       "contributors": [
         "anothertempore",
         "akshay_khade",
-        "teemu_suvinen"
+        "teemu_suvinen",
+        "0xdhrv"
       ],
       "categories": [
         "Productivity",
@@ -299572,7 +300752,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/thomas/year-in-progress",
       "source": {
@@ -299583,9 +300764,17 @@
       },
       "commands": [
         {
+          "name": "show-year-progress",
+          "title": "Year in Progress",
+          "description": "Display the current year's progress in the command subtitle. Add to Favorites to keep it visible in Raycast.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "year-in-progress",
           "title": "Progress",
-          "description": "Displays the year in progress inline.",
+          "description": "Display the selected calendar or custom progress in the command subtitle.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -299644,7 +300833,8 @@
               "title": "Saturday",
               "value": "6"
             }
-          ]
+          ],
+          "default": "1"
         }
       ]
     },
