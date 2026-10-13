@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-11T21:50:06.759Z",
+  "generatedAt": "2026-10-13T00:37:25.654Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "05123892e3776ad59bc0bc14680c1432f58aa10a"
+    "commit": "4345ef9b5a0cca8a817dc209cf573666009a5d34"
   },
-  "count": 3404,
+  "count": 3411,
   "extensions": [
     {
       "name": "0x0",
@@ -3322,6 +3322,14 @@
           "mode": "no-view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "manage-sessions",
+          "title": "Manage Sessions",
+          "description": "List active CLI sessions, open a URL in a selected session, or close it after confirmation",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": [
@@ -6191,7 +6199,7 @@
           "name": "upload-file",
           "title": "Upload File",
           "subtitle": "Aktar",
-          "description": "Pick files, a destination, and an optional name, folder, or auto-delete time, then upload them and copy their links.",
+          "description": "Pick files, a destination, and an optional name, folder, auto-delete time, or short link, then upload them and copy their links.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -6200,7 +6208,7 @@
           "name": "search-uploads",
           "title": "Search Uploads",
           "subtitle": "Aktar",
-          "description": "Search your upload history, copy links in any format, show QR codes, replace a file while keeping its link, and delete uploads.",
+          "description": "Search your upload history, copy links in any format, make and copy short links with their clicks, show QR codes, replace a file while keeping its link, and delete uploads.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -12864,11 +12872,11 @@
               "type": "dropdown",
               "data": [
                 {
-                  "title": "Nothing",
+                  "title": "Icon Only",
                   "value": "nothing"
                 },
                 {
-                  "title": "Count",
+                  "title": "Number of Reminders",
                   "value": "count"
                 },
                 {
@@ -12878,78 +12886,220 @@
               ],
               "default": "count",
               "required": false,
-              "title": "Title",
-              "description": "Choose what you want to see next to the menu bar icon."
-            },
-            {
-              "name": "view",
-              "type": "dropdown",
-              "data": [
-                {
-                  "title": "Today",
-                  "value": "today"
-                },
-                {
-                  "title": "Upcoming",
-                  "value": "upcoming"
-                },
-                {
-                  "title": "All",
-                  "value": "all"
-                }
-              ],
-              "default": "today",
-              "required": false,
-              "title": "View",
-              "description": "Choose which view you want to see in your menu bar."
+              "title": "Menu Bar Text",
+              "description": "What appears next to the icon. An upcoming reminder (see below) replaces it while it's shown."
             },
             {
               "name": "countType",
               "type": "dropdown",
               "data": [
                 {
-                  "title": "Today",
+                  "title": "Due Today or Overdue",
                   "value": "today"
                 },
                 {
-                  "title": "Upcoming",
+                  "title": "Reminders with a Due Date",
                   "value": "upcoming"
                 },
                 {
-                  "title": "All",
+                  "title": "All Open Reminders",
                   "value": "all"
                 }
               ],
               "default": "today",
               "required": false,
-              "title": "Count",
-              "description": "Choose which count you want to see in your menu bar."
+              "title": "Number Counts",
+              "description": "Which reminders the number counts, when Menu Bar Text is set to Number of reminders."
             },
             {
               "name": "hideMenuBarCountWhenEmpty",
               "type": "checkbox",
-              "label": "Hide menu bar count when empty",
-              "description": "When enabled, the number of reminders will be hidden if there are no reminders left (\"Display menu bar count\" needs to be enabled)",
+              "label": "Hide the number when it's 0",
+              "description": "Show only the icon when there's nothing to count.",
               "default": false,
               "required": false
             },
             {
+              "name": "nextReminderShowBefore",
+              "title": "Upcoming Reminder",
+              "description": "Show the next reminder that has a time, with a countdown such as \"Call mom · in 8m\", the way Raycast shows calendar events.",
+              "type": "dropdown",
+              "required": false,
+              "default": "never",
+              "data": [
+                {
+                  "title": "Never",
+                  "value": "never"
+                },
+                {
+                  "title": "At Its Due Time",
+                  "value": "0"
+                },
+                {
+                  "title": "From 5 Minutes Before",
+                  "value": "5"
+                },
+                {
+                  "title": "From 10 Minutes Before",
+                  "value": "10"
+                },
+                {
+                  "title": "From 15 Minutes Before",
+                  "value": "15"
+                },
+                {
+                  "title": "From 30 Minutes Before",
+                  "value": "30"
+                },
+                {
+                  "title": "From 1 Hour Before",
+                  "value": "60"
+                },
+                {
+                  "title": "Always Show the Next One",
+                  "value": "always"
+                }
+              ]
+            },
+            {
+              "name": "nextReminderHideAfter",
+              "title": "Keep It Shown",
+              "description": "How long an upcoming reminder stays in the menu bar once its time has passed.",
+              "type": "dropdown",
+              "required": false,
+              "default": "completed",
+              "data": [
+                {
+                  "title": "Until I Complete It (or the Day Ends)",
+                  "value": "completed"
+                },
+                {
+                  "title": "5 Minutes After It's Due",
+                  "value": "5"
+                },
+                {
+                  "title": "15 Minutes After It's Due",
+                  "value": "15"
+                },
+                {
+                  "title": "1 Hour After It's Due",
+                  "value": "60"
+                }
+              ]
+            },
+            {
+              "name": "hideWhenNothingDue",
+              "label": "Only show the menu bar item for an upcoming reminder",
+              "description": "Hide the icon the rest of the time. Needs Upcoming Reminder set to something other than Never.",
+              "type": "checkbox",
+              "required": false,
+              "default": false,
+              "title": "Visibility"
+            },
+            {
+              "name": "view",
+              "type": "dropdown",
+              "data": [
+                {
+                  "title": "Today and Overdue",
+                  "value": "today"
+                },
+                {
+                  "title": "Today, Tomorrow and Upcoming",
+                  "value": "upcoming"
+                },
+                {
+                  "title": "All, Including No Due Date",
+                  "value": "all"
+                }
+              ],
+              "default": "today",
+              "required": false,
+              "title": "Reminders in Menu",
+              "description": "Which reminders the dropdown lists."
+            },
+            {
               "name": "sortMenuBarRemindersByDueDate",
               "type": "checkbox",
-              "label": "Sort menu bar reminders by time",
-              "description": "When enabled, the reminders in the menu bar will be sorted by time.",
+              "label": "Sort by due time",
+              "description": "Order the reminders in the dropdown by due time instead of list order.",
               "default": false,
               "required": false,
-              "title": "Sort"
+              "title": "Menu"
             },
             {
               "name": "displayListTitleForMenuBarReminders",
               "type": "checkbox",
-              "label": "Display the name of the list",
-              "description": "When enabled, the name of the list from which the reminder originates will be displayed in the menu bar next to the reminder’s name.",
+              "label": "Show the list name",
+              "description": "Add the list name after each reminder, e.g. \"Call mom [Work]\".",
               "default": false,
+              "required": false
+            }
+          ]
+        },
+        {
+          "name": "next-reminder",
+          "title": "Next Reminder",
+          "subtitle": "Apple Reminders",
+          "description": "Shows your next timed reminder in its root search subtitle. Add it to Favorites to keep it at the top.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "showWithin",
+              "title": "Look Ahead",
+              "description": "How far ahead to look for the next reminder that has a time.",
+              "type": "dropdown",
               "required": false,
-              "title": "Extra"
+              "default": "60",
+              "data": [
+                {
+                  "title": "15 Minutes",
+                  "value": "15"
+                },
+                {
+                  "title": "30 Minutes",
+                  "value": "30"
+                },
+                {
+                  "title": "1 Hour",
+                  "value": "60"
+                },
+                {
+                  "title": "2 Hours",
+                  "value": "120"
+                },
+                {
+                  "title": "Any Time (Always Show the Next One)",
+                  "value": "always"
+                }
+              ]
+            },
+            {
+              "name": "keepShown",
+              "title": "Keep It Shown",
+              "description": "How long a reminder stays in the subtitle once its time has passed.",
+              "type": "dropdown",
+              "required": false,
+              "default": "completed",
+              "data": [
+                {
+                  "title": "Until I Complete It (or the Day Ends)",
+                  "value": "completed"
+                },
+                {
+                  "title": "5 Minutes After It's Due",
+                  "value": "5"
+                },
+                {
+                  "title": "15 Minutes After It's Due",
+                  "value": "15"
+                },
+                {
+                  "title": "1 Hour After It's Due",
+                  "value": "60"
+                }
+              ]
             }
           ]
         },
@@ -32032,6 +32182,80 @@
       ]
     },
     {
+      "name": "canary",
+      "title": "PR Canary",
+      "description": "Your open PRs with one-key access to the preview URL that CI posts as a PR comment",
+      "icon": "extension-icon.png",
+      "author": "liran_mizrahi",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/liran_mizrahi/canary",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/canary",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "canaries",
+          "title": "My PR Canaries",
+          "description": "List my open PRs and open their preview environment",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "repo",
+          "title": "Repository",
+          "description": "GitHub repository as owner/name",
+          "type": "textfield",
+          "required": true,
+          "placeholder": "my-org/my-repo"
+        },
+        {
+          "name": "urlPrefix",
+          "title": "Canary URL Prefix",
+          "description": "Use the newest URL in a PR comment that starts with this. Empty = the URL after a 'Canary … :' label",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "https://dashboard."
+        },
+        {
+          "name": "extraUrlPrefix",
+          "title": "Extra Link URL Prefix",
+          "description": "Optional second link from PR comments, e.g. your deploy dashboard",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "https://argocd."
+        },
+        {
+          "name": "commentAuthor",
+          "title": "CI Comment Author",
+          "description": "Optional. GitHub login of the account that posts the preview URL, e.g. your CI bot. Only its comments are trusted. If empty, comments from bot accounts and from repository owners, members and collaborators are used.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "platform-handler"
+        },
+        {
+          "name": "personalAccessToken",
+          "title": "Personal Access Token",
+          "description": "Optional. Use a GitHub token instead of signing in with OAuth, e.g. when your organization restricts third-party OAuth apps. Needs read access to pull requests; authorize it for SSO if required.",
+          "type": "password",
+          "required": false,
+          "placeholder": "ghp_… or github_pat_…"
+        }
+      ]
+    },
+    {
       "name": "cangjie",
       "title": "Cangjie Dictionary",
       "description": "Fast Chinese characters lookup for Cangjie and Sucheng codes. Supports instant search from selected text and provides both English letters and Chinese radicals.",
@@ -41766,6 +41990,131 @@
       ]
     },
     {
+      "name": "clocky-time-tracker",
+      "title": "Clocky - Time Tracker",
+      "description": "Clocky helps you keep track of your work hours in a simple and flexible way. Clock in, clock out, track breaks, and monitor your daily or weekly time balance — perfect for flexible working hours and trust-based schedules.",
+      "icon": "extension_icon.png",
+      "author": "jeffnawroth",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/jeffnawroth/clocky-time-tracker",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/clocky-time-tracker",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "clock-in",
+          "title": "Clock In",
+          "subtitle": "Clocky",
+          "description": "Starts tracking your work time and records your current session start.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "clock-out",
+          "title": "Clock Out",
+          "subtitle": "Clocky",
+          "description": "Stops tracking and calculates your total working time including breaks and daily delta.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle-pause",
+          "title": "Toggle Pause",
+          "subtitle": "Clocky",
+          "description": "Toggles your break state and tracks total pause duration automatically.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "today",
+          "title": "Today",
+          "subtitle": "Clocky",
+          "description": "Shows your worked hours, break time, and current daily delta compared to your target hours.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "week",
+          "title": "Week",
+          "subtitle": "Clocky",
+          "description": "Displays your weekly working time, daily breakdown, and overall time balance (plus/minus hours).",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "status",
+          "title": "Status",
+          "subtitle": "Clocky",
+          "description": "Shows your current state (working, paused, or off) and live time delta for today.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "history",
+          "title": "Adjust Entries",
+          "subtitle": "Clocky",
+          "description": "Add, edit, or delete sessions and pauses to keep your time records accurate.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "targetWeeklyHours",
+          "title": "Weekly Target Hours",
+          "type": "textfield",
+          "default": "40",
+          "required": false,
+          "placeholder": "40",
+          "description": "Your planned working hours per week."
+        },
+        {
+          "name": "workDaysPerWeek",
+          "title": "Work Days per Week",
+          "type": "textfield",
+          "default": "5",
+          "required": false,
+          "placeholder": "5",
+          "description": "How many days you typically work each week."
+        },
+        {
+          "name": "forgotClockOutThresholdMinutes",
+          "title": "Forgot Clock Out After (minutes)",
+          "type": "textfield",
+          "default": "15",
+          "required": false,
+          "placeholder": "15",
+          "description": "How long the computer must have been asleep before Status suggests you forgot to clock out."
+        },
+        {
+          "name": "forgotClockInThresholdMinutes",
+          "title": "Forgot Clock In After (minutes)",
+          "type": "textfield",
+          "default": "30",
+          "required": false,
+          "placeholder": "30",
+          "description": "How long you can be awake without an active session before Status suggests you forgot to clock in."
+        }
+      ]
+    },
+    {
       "name": "search-clojuredocs",
       "title": "Search ClojureDocs Documentation",
       "description": "Search and browse clojuredocs.org site.",
@@ -47114,6 +47463,67 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "commandcode-ai",
+      "title": "Command Code AI",
+      "description": "Use your Command Code subscription in Raycast — Command Code models in AI Chat, Quick AI and AI Commands",
+      "icon": "extension-icon.png",
+      "author": "alhassanaraouf",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows",
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/alhassanaraouf/commandcode-ai",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/commandcode-ai",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "ask-commandcode-ai",
+          "title": "Ask Command Code AI",
+          "subtitle": "Command Code",
+          "description": "Ask questions using Command Code models, with conversation history",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "refresh-models",
+          "title": "Refresh Models",
+          "subtitle": "Command Code",
+          "description": "Fetch the latest Command Code model list and update Raycast AI's model picker",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "title": "API Key",
+          "name": "COMMANDCODE_API_KEY",
+          "type": "password",
+          "required": false,
+          "description": "Command Code API key from Command Code Studio. Leave empty to use the key from the Command Code CLI (`cmd login`, stored in ~/.commandcode/auth.json)."
+        },
+        {
+          "title": "Default Model",
+          "name": "COMMANDCODE_MODEL",
+          "type": "textfield",
+          "required": false,
+          "default": "deepseek/deepseek-v4-flash",
+          "description": "Model preselected in Ask Command Code AI, e.g. deepseek/deepseek-v4-flash or claude-sonnet-5"
+        }
+      ]
     },
     {
       "name": "commercequest",
@@ -64857,7 +65267,9 @@
         "Data"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/andreaselia/disney",
       "source": {
         "type": "github-monorepo",
@@ -90206,7 +90618,7 @@
       "title": "Gaffiot Latin-French Dictionary",
       "description": "Look up Latin words in the Gaffiot 2016 Latin-French dictionary (G. Gréco et al.), offline",
       "icon": "icon.png",
-      "author": "davidyannick",
+      "author": "pernielsentikaer",
       "contributors": [],
       "categories": [
         "Documentation",
@@ -90216,7 +90628,7 @@
       "platforms": [
         "macOS"
       ],
-      "storeUrl": "https://www.raycast.com/davidyannick/gaffiot",
+      "storeUrl": "https://www.raycast.com/pernielsentikaer/gaffiot",
       "source": {
         "type": "github-monorepo",
         "repo": "raycast/extensions",
@@ -113092,8 +113504,8 @@
         },
         {
           "name": "categories",
-          "title": "What to Hide",
-          "description": "Comma-separated: email, phone, card, secret, ip, name, face. Leave empty to use only Custom Regex.",
+          "title": "Legacy Categories",
+          "description": "Previous category selection, used until you save Configure What to Hide in Redact Clipboard Image. The checkbox form replaces this field and can restore it.",
           "type": "textfield",
           "required": false,
           "default": "email,phone,card,secret,ip,name,face"
@@ -119174,7 +119586,6 @@
       "contributors": [
         "thomas",
         "arronhunt",
-        "ronaldheft",
         "hitolaus",
         "taschaub",
         "omaerkhan",
@@ -132865,6 +133276,77 @@
           "type": "textfield",
           "required": false,
           "description": "Optional Environment to use for API"
+        }
+      ]
+    },
+    {
+      "name": "keyprobe-keyboard-tester",
+      "title": "KeyProbe - Keyboard Tester",
+      "description": "Visually test every key on your keyboard in a native macOS panel launched from Raycast.",
+      "icon": "icon.png",
+      "author": "yuzukq",
+      "contributors": [],
+      "categories": [
+        "System",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/yuzukq/keyprobe-keyboard-tester",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/keyprobe-keyboard-tester",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "open",
+          "title": "Open KeyProbe",
+          "subtitle": "KeyProbe",
+          "description": "Open the key test panel (focuses the existing panel if already open)",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-layout",
+          "title": "Select Keyboard Layout",
+          "subtitle": "KeyProbe",
+          "description": "Search and pick which keyboard layout to test (overrides the Keyboard Layout preference; includes an entry to revert to it)",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "layoutMode",
+          "title": "Keyboard Layout",
+          "description": "Which board to draw. Auto detects the attached keyboard's hardware type — but that reports ANSI for an ANSI-shaped board even if its firmware sends JIS-mapped combos (英数/かな/¥/_), so force JIS here to test those.",
+          "type": "dropdown",
+          "required": false,
+          "default": "auto",
+          "data": [
+            {
+              "title": "Auto-Detect",
+              "value": "auto"
+            },
+            {
+              "title": "ANSI",
+              "value": "ansi"
+            },
+            {
+              "title": "JIS",
+              "value": "jis"
+            },
+            {
+              "title": "ISO",
+              "value": "iso"
+            }
+          ]
         }
       ]
     },
@@ -155747,7 +156229,7 @@
           "name": "mint-undo",
           "title": "Undo Mint Action",
           "subtitle": "Mint",
-          "description": "Put back files from a recent cleanup, uninstall or organize run",
+          "description": "Restore eligible files from recent Mint operations while files and recovery records remain available",
           "mode": "view",
           "keywords": [
             "restore",
@@ -169680,8 +170162,8 @@
           "type": "password",
           "required": true,
           "title": "API Key",
-          "description": "Your organization-scoped Notra API key with read and write access",
-          "placeholder": "Enter your organization-scoped Notra API key"
+          "description": "Your Notra API key with read and write access. Organization keys work in one workspace, account keys in every workspace you belong to",
+          "placeholder": "ntra_..."
         }
       ]
     },
@@ -177640,7 +178122,8 @@
       "contributors": [
         "JoyG",
         "leeonfield",
-        "ridemountainpig"
+        "ridemountainpig",
+        "benwk"
       ],
       "categories": [
         "Applications",
@@ -198655,7 +199138,7 @@
       "title": "Printer Status",
       "description": "Check printer status (page counts, ink levels, device info) via SNMP",
       "icon": "printer-icon.png",
-      "author": "davidyannick",
+      "author": "pernielsentikaer",
       "contributors": [],
       "categories": [
         "Applications"
@@ -198665,7 +199148,7 @@
         "macOS",
         "Windows"
       ],
-      "storeUrl": "https://www.raycast.com/davidyannick/printer-status",
+      "storeUrl": "https://www.raycast.com/pernielsentikaer/printer-status",
       "source": {
         "type": "github-monorepo",
         "repo": "raycast/extensions",
@@ -200683,6 +201166,103 @@
       "preferences": []
     },
     {
+      "name": "proton-drive",
+      "title": "Proton Drive",
+      "description": "Search, open, download and upload files in Proton Drive using the official Proton Drive CLI.",
+      "icon": "extension-icon.png",
+      "author": "bastien",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/bastien/proton-drive",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/proton-drive",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-files",
+          "title": "Search Files",
+          "subtitle": "Proton Drive",
+          "description": "Browse and search your Proton Drive",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "primaryAction",
+              "type": "dropdown",
+              "title": "Primary Action",
+              "description": "What Enter does on a file.",
+              "default": "open",
+              "required": false,
+              "data": [
+                {
+                  "title": "Open",
+                  "value": "open"
+                },
+                {
+                  "title": "Download",
+                  "value": "download"
+                }
+              ]
+            },
+            {
+              "name": "downloadDirectory",
+              "type": "directory",
+              "title": "Download Directory",
+              "description": "Where Download saves files.",
+              "default": "~/Downloads",
+              "required": false
+            }
+          ]
+        },
+        {
+          "name": "upload-files",
+          "title": "Upload Files",
+          "subtitle": "Proton Drive",
+          "description": "Upload the Finder selection, or files you choose, to a Proton Drive folder",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "login",
+          "title": "Log In to Proton Drive",
+          "subtitle": "Proton Drive",
+          "description": "Check authentication status and log in",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "refresh-index",
+          "title": "Refresh Search Index",
+          "subtitle": "Proton Drive",
+          "description": "Rebuild the local index used by Search Files",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "cliPath",
+          "type": "textfield",
+          "title": "CLI Path",
+          "description": "Command name or full path of the proton-drive executable. A name is looked up in /opt/homebrew/bin, /usr/local/bin, ~/.local/bin, ~/bin and PATH.",
+          "required": false,
+          "default": "proton-drive"
+        }
+      ]
+    },
+    {
       "name": "proton-mail",
       "title": "Proton Mail",
       "description": "View and manage your Proton Mail inbox via Proton Mail Bridge",
@@ -200716,6 +201296,59 @@
           "mode": "view",
           "keywords": [],
           "preferences": [
+            {
+              "name": "openOn",
+              "title": "Open On",
+              "description": "What Browse Email shows first. From the inbox, Esc goes back to the mailboxes.",
+              "type": "dropdown",
+              "required": false,
+              "default": "inbox",
+              "data": [
+                {
+                  "title": "Inbox",
+                  "value": "inbox"
+                },
+                {
+                  "title": "Mailboxes",
+                  "value": "mailboxes"
+                }
+              ]
+            },
+            {
+              "name": "showPreview",
+              "title": "Email Preview",
+              "label": "Show by default",
+              "description": "Show the selected email next to the list when Browse Email opens. ⌘D shows or hides it.",
+              "type": "checkbox",
+              "required": false,
+              "default": false
+            },
+            {
+              "name": "emailsToLoad",
+              "title": "Emails to Load",
+              "description": "Number of emails to load per page",
+              "type": "dropdown",
+              "required": false,
+              "default": "50",
+              "data": [
+                {
+                  "title": "25",
+                  "value": "25"
+                },
+                {
+                  "title": "50",
+                  "value": "50"
+                },
+                {
+                  "title": "100",
+                  "value": "100"
+                },
+                {
+                  "title": "200",
+                  "value": "200"
+                }
+              ]
+            },
             {
               "name": "loadRemoteImages",
               "title": "Remote Images",
@@ -200785,35 +201418,9 @@
           "required": true
         },
         {
-          "name": "emailsToLoad",
-          "title": "Emails to Load",
-          "description": "Number of emails to load per page",
-          "type": "dropdown",
-          "required": false,
-          "default": "50",
-          "data": [
-            {
-              "title": "25",
-              "value": "25"
-            },
-            {
-              "title": "50",
-              "value": "50"
-            },
-            {
-              "title": "100",
-              "value": "100"
-            },
-            {
-              "title": "200",
-              "value": "200"
-            }
-          ]
-        },
-        {
           "name": "composeFormat",
-          "title": "Compose Format",
-          "description": "Format for composing emails",
+          "title": "Writing Format",
+          "description": "Used for new emails, replies and forwards",
           "type": "dropdown",
           "required": false,
           "default": "markdown",
@@ -221651,6 +222258,45 @@
       "preferences": []
     },
     {
+      "name": "retype-fix-wrong-keyboard-layout-text",
+      "title": "Retype - Fix Wrong Keyboard Layout Text",
+      "description": "Fix text that you typed in a wrong keyboard layout and switch to the correct layout.",
+      "icon": "extension_icon.png",
+      "author": "pavel_shut",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/pavel_shut/retype-fix-wrong-keyboard-layout-text",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/retype-fix-wrong-keyboard-layout-text",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "index",
+          "title": "Correct Text Typed in Wrong Keyboard Layout",
+          "description": "Fix text that you typed in a wrong keyboard layout and switch to the correct layout.",
+          "mode": "no-view",
+          "keywords": [
+            "punto switcher",
+            "keyboard layout",
+            "wrong layout",
+            "switch language",
+            "convert layout"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "revenuecat",
       "title": "RevenueCat",
       "description": "Explore RevenueCat revenue, customers, subscriptions, and products, and use its official MCP tools with Raycast AI.",
@@ -221710,6 +222356,49 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "menu-bar",
+          "title": "Menu Bar Metrics",
+          "description": "Keep a selected dashboard metric in the macOS menu bar and browse your project overview",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "metric",
+              "title": "Metric",
+              "description": "Metric displayed in the menu bar.",
+              "type": "dropdown",
+              "required": false,
+              "default": "mrr",
+              "data": [
+                {
+                  "title": "MRR",
+                  "value": "mrr"
+                },
+                {
+                  "title": "Revenue",
+                  "value": "revenue"
+                },
+                {
+                  "title": "Active Subscriptions",
+                  "value": "active_subscriptions"
+                },
+                {
+                  "title": "Active Trials",
+                  "value": "active_trials"
+                },
+                {
+                  "title": "New Customers",
+                  "value": "new_customers"
+                },
+                {
+                  "title": "Active Customers",
+                  "value": "active_users"
+                }
+              ]
+            }
+          ]
         }
       ],
       "preferences": [
@@ -221738,6 +222427,14 @@
               "value": "SEK"
             }
           ]
+        },
+        {
+          "name": "chartsV3",
+          "label": "Use Charts v3",
+          "description": "Use Charts v3 for dashboard and menu bar revenue and customer metrics. Turn off to match the legacy overview.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
         },
         {
           "name": "demoMode",
@@ -233550,7 +234247,7 @@
             {
               "name": "delay",
               "title": "Delay",
-              "description": "Specify delay required before running shortcut for the application",
+              "description": "Seconds (0–5) to wait before running a shortcut in the application",
               "default": "0",
               "required": false,
               "type": "textfield"
@@ -233567,7 +234264,7 @@
             {
               "name": "delay",
               "title": "Delay",
-              "description": "Specify delay required before running shortcut on the app",
+              "description": "Seconds (0–5) to wait before running a shortcut in the app",
               "required": false,
               "default": "0",
               "type": "textfield"
@@ -233584,7 +234281,7 @@
             {
               "name": "delay",
               "title": "Delay",
-              "description": "Specify delay required before running shortcut on the web page",
+              "description": "Seconds (0–5) to wait before running a shortcut on the web page",
               "required": false,
               "default": "0",
               "type": "textfield"
@@ -256692,6 +257389,41 @@
             "capture",
             "bookmark"
           ],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "tagesschau",
+      "title": "Tagesschau",
+      "description": "Read the latest news from the German news service Tagesschau.",
+      "icon": "icon.png",
+      "author": "cherubeam",
+      "contributors": [],
+      "categories": [
+        "News"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/cherubeam/tagesschau",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/tagesschau",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "show-latest-news",
+          "title": "Show Latest News",
+          "subtitle": "Tagesschau",
+          "description": "Browse the latest Tagesschau headlines by section and open them in your browser.",
+          "mode": "view",
+          "keywords": [],
           "preferences": []
         }
       ],
@@ -292668,7 +293400,9 @@
         "Developer Tools"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/marckohlbrugge/wip",
       "source": {
         "type": "github-monorepo",
