@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-13T22:38:59.354Z",
+  "generatedAt": "2026-10-14T21:39:59.261Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "ef642d185d100f0aeba5b1bc08cf3ccba9c2dc51"
+    "commit": "6fab076c0cc712106c55f24622cecbc4fe956294"
   },
-  "count": 3423,
+  "count": 3427,
   "extensions": [
     {
       "name": "0x0",
@@ -38400,6 +38400,60 @@
       "preferences": []
     },
     {
+      "name": "chrome-profile-links",
+      "title": "Chrome Profile Links",
+      "description": "Save links that open in a specific Google Chrome profile, or pick the profile every time you open them",
+      "icon": "icon.png",
+      "author": "h-tadashi",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/h-tadashi/chrome-profile-links",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/chrome-profile-links",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-profile-links",
+          "title": "Search Profile Links",
+          "subtitle": "Google Chrome",
+          "description": "Search saved links and Chrome bookmarks, and open them in their Google Chrome profile.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "showBookmarks",
+              "title": "Chrome Bookmarks",
+              "label": "Show bookmarks from every profile",
+              "description": "List the bookmarks of each Chrome profile next to your saved links. They open in the profile they belong to.",
+              "type": "checkbox",
+              "default": true,
+              "required": false
+            }
+          ]
+        },
+        {
+          "name": "create-profile-link",
+          "title": "Create Profile Link",
+          "subtitle": "Google Chrome",
+          "description": "Save a URL together with the Google Chrome profile it should open in.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "chronometer",
       "title": "Chronometer",
       "description": "measue laps and see how it's going easily",
@@ -72538,7 +72592,8 @@
       "icon": "command-icon.png",
       "author": "Rafo94",
       "contributors": [
-        "quiknull"
+        "quiknull",
+        "noice_anas"
       ],
       "categories": [
         "Productivity"
@@ -72565,6 +72620,33 @@
         }
       ],
       "preferences": [
+        {
+          "name": "ocr_engine",
+          "type": "dropdown",
+          "required": false,
+          "title": "OCR Engine",
+          "description": "Tesseract needs a local install. Apple Vision is the engine behind macOS Live Text, needs no install and reads Arabic more reliably.",
+          "data": [
+            {
+              "title": "Tesseract",
+              "value": "tesseract"
+            },
+            {
+              "title": "Apple Vision (Live Text)",
+              "value": "vision"
+            }
+          ],
+          "default": "tesseract"
+        },
+        {
+          "name": "vision_languages",
+          "type": "textfield",
+          "required": false,
+          "title": "Apple Vision Languages",
+          "description": "Comma-separated languages for Apple Vision in priority order, e.g. ar-SA,en-US. Only used when OCR Engine is set to Apple Vision.",
+          "placeholder": "en-US",
+          "default": "en-US"
+        },
         {
           "name": "tesseract_path",
           "type": "textfield",
@@ -97084,7 +97166,17 @@
           "description": "Create an issue in one of your GitHub repositories.",
           "mode": "view",
           "keywords": [],
-          "preferences": []
+          "preferences": [
+            {
+              "name": "openInBrowserAfterCreate",
+              "type": "checkbox",
+              "required": false,
+              "default": false,
+              "title": "After Creating",
+              "label": "Open issue in browser",
+              "description": "If checked, newly created issues will be opened in your default browser."
+            }
+          ]
         },
         {
           "name": "create-branch",
@@ -102551,7 +102643,8 @@
         "nexxai",
         "tim_gailey",
         "0xdhrv",
-        "pernielsentikaer"
+        "pernielsentikaer",
+        "smrehan"
       ],
       "categories": [
         "Communication"
@@ -110593,6 +110686,50 @@
           "title": "Manage Tasks",
           "subtitle": "Happy Squid",
           "description": "Start, review and manage your Happy Squid tasks.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "harbordrop",
+      "title": "HarborDrop",
+      "description": "Search downloads and send a URL to HarborDrop for review.",
+      "icon": "harbordrop.png",
+      "author": "hjm79",
+      "contributors": [],
+      "categories": [
+        "Applications",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/hjm79/harbordrop",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/harbordrop",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-downloads",
+          "title": "Search Downloads",
+          "subtitle": "HarborDrop",
+          "description": "See active download counts, live progress, and download history shared by HarborDrop.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "add-download",
+          "title": "Add Download",
+          "subtitle": "HarborDrop",
+          "description": "Send one HTTP or HTTPS URL to HarborDrop for confirmation.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -132185,6 +132322,94 @@
       ]
     },
     {
+      "name": "kaiku",
+      "title": "Kaiku",
+      "description": "Control Kaiku recordings and search, read and ask about your calls.",
+      "icon": "extension-icon.png",
+      "author": "gabry-ts",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/gabry-ts/kaiku",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/kaiku",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "start-recording",
+          "title": "Start Recording",
+          "subtitle": "Kaiku",
+          "description": "Start recording a call, with an optional title.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "stop-recording",
+          "title": "Stop Recording",
+          "subtitle": "Kaiku",
+          "description": "Stop the current recording.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle-pause",
+          "title": "Pause or Resume Recording",
+          "subtitle": "Kaiku",
+          "description": "Pause the current recording, or resume it if it is paused.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "add-bookmark",
+          "title": "Add Bookmark",
+          "subtitle": "Kaiku",
+          "description": "Add a bookmark at the current moment of the recording.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle-mute",
+          "title": "Mute or Unmute Microphones",
+          "subtitle": "Kaiku",
+          "description": "Mute every microphone on the Mac, or unmute them.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-calls",
+          "title": "Search Calls",
+          "subtitle": "Kaiku",
+          "description": "Search your recorded calls and their transcripts.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "ask-calls",
+          "title": "Ask Calls",
+          "subtitle": "Kaiku",
+          "description": "Ask a question about your calls in the Kaiku chat.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "kaleidoscope",
       "title": "Kaleidoscope",
       "description": "Compare or open content from Raycast in Kaleidoscope.",
@@ -144158,14 +144383,73 @@
         {
           "name": "projects",
           "title": "Projects",
-          "subtitle": "Manage projects and categories",
+          "subtitle": "Manage projects and project groups",
           "description": "Manage projects",
           "mode": "view",
           "keywords": [],
           "preferences": []
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "timerAlertEnabled",
+          "type": "checkbox",
+          "title": "Work Timer Alert",
+          "required": false,
+          "default": false,
+          "description": "Notify once per work timer when elapsed time reaches the threshold.",
+          "label": "Enable alert"
+        },
+        {
+          "name": "timerAlertMinutes",
+          "type": "textfield",
+          "title": "Timer Alert (Minutes)",
+          "required": false,
+          "default": "480",
+          "description": "Positive whole minutes; invalid values use 480."
+        },
+        {
+          "name": "pomodoroEnabled",
+          "type": "checkbox",
+          "title": "Pomodoro",
+          "label": "Enable Pomodoro",
+          "required": false,
+          "default": true,
+          "description": "Allow Pomodoro alongside work tracking. Disabling ends the Pomodoro session on the next menu bar refresh; work tracking continues."
+        },
+        {
+          "name": "workMinutes",
+          "type": "textfield",
+          "title": "Pomodoro Work (Minutes)",
+          "required": false,
+          "default": "25",
+          "description": "Positive whole minutes; invalid values use 25."
+        },
+        {
+          "name": "shortBreakMinutes",
+          "type": "textfield",
+          "title": "Pomodoro Short Break (Minutes)",
+          "required": false,
+          "default": "5",
+          "description": "Positive whole minutes; invalid values use 5."
+        },
+        {
+          "name": "longBreakMinutes",
+          "type": "textfield",
+          "title": "Pomodoro Long Break (Minutes)",
+          "required": false,
+          "default": "15",
+          "description": "Positive whole minutes; invalid values use 15."
+        },
+        {
+          "name": "longBreakEvery",
+          "type": "textfield",
+          "title": "Work Intervals Before Long Break",
+          "required": false,
+          "default": "4",
+          "description": "Positive whole number; invalid values use 4."
+        }
+      ]
     },
     {
       "name": "localcan",
@@ -158693,7 +158977,8 @@
       "author": "thomas",
       "contributors": [
         "nagauta",
-        "pernielsentikaer"
+        "pernielsentikaer",
+        "porenes"
       ],
       "categories": [],
       "license": "MIT",
@@ -260367,6 +260652,43 @@
           "preferences": []
         },
         {
+          "name": "next-unread-article",
+          "title": "Next Unread Article",
+          "subtitle": "Techgedöns.de",
+          "description": "Opens the next unread Techgedöns article",
+          "mode": "view",
+          "keywords": [
+            "tchgdns",
+            "techgedoens",
+            "techgedöns",
+            "artikel",
+            "ungelesen",
+            "nächster",
+            "next",
+            "unread"
+          ],
+          "preferences": [
+            {
+              "name": "nextUnreadArticleOrder",
+              "title": "Unread Article Order",
+              "description": "Selects whether the oldest or newest unread article opens first.",
+              "type": "dropdown",
+              "required": false,
+              "default": "oldest",
+              "data": [
+                {
+                  "title": "Oldest First",
+                  "value": "oldest"
+                },
+                {
+                  "title": "Newest First",
+                  "value": "newest"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "name": "all-articles",
           "title": "All Articles",
           "subtitle": "Techgedöns.de",
@@ -261649,7 +261971,7 @@
     {
       "name": "terminalfinder",
       "title": "Terminal Finder",
-      "description": "Open currently selected Finder (or Path Finder) window in Terminal (or iTerm2, Warp, WezTerm, cmux) and vice versa",
+      "description": "Open currently selected Finder (or Path Finder) window in Terminal (or iTerm2, Warp, WezTerm, cmux, Tern) and vice versa",
       "icon": "command-icon.png",
       "author": "yedongze",
       "contributors": [
@@ -261735,6 +262057,15 @@
           "preferences": []
         },
         {
+          "name": "clipboardToTern",
+          "title": "Clipboard → Tern",
+          "subtitle": "Open Path",
+          "description": "Open current Clipboard directory in Tern",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "finderToITerm",
           "title": "Finder → iTerm",
           "subtitle": "Open Path",
@@ -261798,6 +262129,15 @@
           "preferences": []
         },
         {
+          "name": "finderToTern",
+          "title": "Finder → Tern",
+          "subtitle": "Open Path",
+          "description": "Open current Finder directory in Tern",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "iTermToFinder",
           "title": "iTerm → Finder",
           "subtitle": "Open Path",
@@ -261856,6 +262196,15 @@
           "title": "Cmux → Finder",
           "subtitle": "Open Path",
           "description": "Open current cmux directory in Finder",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "ternToFinder",
+          "title": "Tern → Finder",
+          "subtitle": "Open Path",
+          "description": "Open current Tern directory in Finder",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -262394,6 +262743,184 @@
           "placeholder": "sa-{nameOfSA}-xxxxxxxxxxxxx"
         }
       ]
+    },
+    {
+      "name": "tethered-controls",
+      "title": "Tethered",
+      "description": "Control Tethered directly from Raycast. Tethered must be installed and running. A number of actions are only available to users with Pro access.",
+      "icon": "icon.png",
+      "author": "Tumerit",
+      "contributors": [],
+      "categories": [
+        "System",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/Tumerit/tethered-controls",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/tethered-controls",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "get-tethered",
+          "title": "Get Tethered",
+          "description": "Open the Tethered website to download the Mac app",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "auto-power",
+          "title": "Auto Power",
+          "description": "Set Tethered to Auto Power",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "low-power",
+          "title": "Low Power",
+          "description": "Set Tethered to Low Power",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "high-power",
+          "title": "High Power",
+          "description": "Set Tethered to High Power",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "start-caffeinate",
+          "title": "Start Caffeinate",
+          "description": "Start the default Tethered Caffeinate preset",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "start-timed-caffeinate",
+          "title": "Start Timed Caffeinate",
+          "description": "Keep your Mac awake for a chosen number of minutes",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "stop-caffeinate",
+          "title": "Stop Caffeinate",
+          "description": "Stop Tethered Caffeinate",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "run-caffeinate-preset",
+          "title": "Run Caffeinate Preset",
+          "description": "Browse and run saved Caffeinate presets",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "show-status",
+          "title": "Show Status",
+          "description": "Read the current Tethered battery and control state",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "get-tethered-pro",
+          "title": "Get Tethered Pro",
+          "description": "Open checkout for Tethered Pro on this Mac",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "start-calibration",
+          "title": "Start Calibration",
+          "description": "Start a manual battery calibration cycle",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "cancel-calibration",
+          "title": "Cancel Calibration",
+          "description": "Cancel the current battery calibration cycle",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "enable-topup",
+          "title": "Enable Topup",
+          "description": "Charge to full with Tethered Topup",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "disable-topup",
+          "title": "Disable Topup",
+          "description": "Return to the normal charging limit",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "enable-sailing",
+          "title": "Enable Sailing",
+          "description": "Enable Tethered Sailing behavior",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "disable-sailing",
+          "title": "Disable Sailing",
+          "description": "Disable Tethered Sailing behavior",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "enable-heat-protection",
+          "title": "Enable Heat Protection",
+          "description": "Enable battery temperature protection",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "disable-heat-protection",
+          "title": "Disable Heat Protection",
+          "description": "Disable battery temperature protection",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "apply-profile",
+          "title": "Apply Profile",
+          "description": "Browse and apply saved Tethered settings profiles",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "tex2typst",
@@ -268258,7 +268785,9 @@
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/g0d/time",
       "source": {
         "type": "github-monorepo",
