@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-14T21:39:59.261Z",
+  "generatedAt": "2026-10-16T20:58:07.849Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "6fab076c0cc712106c55f24622cecbc4fe956294"
+    "commit": "e0511c9b16807959defd661f91c435745b1342c9"
   },
-  "count": 3427,
+  "count": 3439,
   "extensions": [
     {
       "name": "0x0",
@@ -3712,7 +3712,7 @@
           "name": "cursorCookieHeader",
           "type": "password",
           "title": "Cursor Cookie Header (Optional)",
-          "description": "Optional fallback Cookie header from cursor.com. Usually auto-detected from your local Cursor.app login.",
+          "description": "Optional fallback Cookie header from cursor.com. Usually auto-detected from your local Cursor login.",
           "required": false
         },
         {
@@ -12712,7 +12712,8 @@
         "0xdhrv",
         "kendaniels",
         "isabhiii",
-        "shanto462"
+        "shanto462",
+        "smrehan"
       ],
       "categories": [
         "Productivity",
@@ -15494,6 +15495,87 @@
       ]
     },
     {
+      "name": "aryan-techie-blog",
+      "title": "Aryan Techie Blog",
+      "description": "Browse and search Aryan Techie's blog posts from aryantechie.com, and get notified when a new post is published.",
+      "icon": "icon.png",
+      "author": "aryantechie",
+      "contributors": [],
+      "categories": [
+        "News",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/aryantechie/aryan-techie-blog",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/aryan-techie-blog",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-posts",
+          "title": "Search Blog Posts",
+          "subtitle": "The Insight Journal",
+          "description": "List and search all posts from aryantechie.com/blog.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-projects",
+          "title": "Search Projects",
+          "subtitle": "The Insight Journal",
+          "description": "List and search project write-ups from aryantechie.com/work.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "random-post",
+          "title": "Open Random Post",
+          "subtitle": "The Insight Journal",
+          "description": "Open a random blog post in your browser.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "new-posts",
+          "title": "New Blog Posts",
+          "subtitle": "The Insight Journal",
+          "description": "Menu bar item that checks for new posts in the background and notifies you.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "systemNotifications",
+              "title": "Notifications",
+              "label": "Show a macOS notification for new posts",
+              "description": "Send a system notification when a new post is found during a background check.",
+              "type": "checkbox",
+              "default": true,
+              "required": false
+            },
+            {
+              "name": "hideWhenEmpty",
+              "title": "Menu Bar",
+              "label": "Hide icon when there are no new posts",
+              "description": "Only show the menu bar icon while there are unread posts.",
+              "type": "checkbox",
+              "default": false,
+              "required": false
+            }
+          ]
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "asafamos-accessibility-scanner",
       "title": "AsafAmos — Accessibility Scanner",
       "description": "Scan any URL for WCAG 2.1 / 2.2 AA accessibility violations and browse axe-core results in Raycast.",
@@ -17680,6 +17762,56 @@
               "value": "8"
             }
           ]
+        }
+      ]
+    },
+    {
+      "name": "aven",
+      "title": "Aven",
+      "description": "Raycast extension for the aven task manager.",
+      "icon": "icon.png",
+      "author": "Infonautica",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/Infonautica/aven",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/aven",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "add-task",
+          "title": "Add Task",
+          "description": "Adds a new task to specified Workspace and project in aven CLI",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "defaultWorkspace",
+          "title": "Default Workspace",
+          "description": "Workspace key to preselect when adding a task. Falls back to the first available workspace if not found.",
+          "type": "textfield",
+          "placeholder": "e.g. default",
+          "required": false
+        },
+        {
+          "name": "defaultProject",
+          "title": "Default Project",
+          "description": "Project key to preselect when adding a task. Falls back to the first available project in the selected workspace if not found.",
+          "type": "textfield",
+          "placeholder": "e.g. your-project",
+          "required": false
         }
       ]
     },
@@ -29331,6 +29463,28 @@
               "value": "cmd-opt-c"
             }
           ]
+        },
+        {
+          "type": "dropdown",
+          "title": "Search Strictness",
+          "name": "searchStrictness",
+          "description": "How closely a bookmark must match your search. A stricter search hides loose matches on short queries.",
+          "default": "0.4",
+          "required": false,
+          "data": [
+            {
+              "title": "Loose",
+              "value": "0.4"
+            },
+            {
+              "title": "Balanced",
+              "value": "0.3"
+            },
+            {
+              "title": "Strict",
+              "value": "0.2"
+            }
+          ]
         }
       ]
     },
@@ -38944,7 +39098,9 @@
       "description": "Record, view, and search meetings in Circleback",
       "icon": "extension-icon.png",
       "author": "arguiot",
-      "contributors": [],
+      "contributors": [
+        "baris_bayburtlu"
+      ],
       "categories": [
         "Productivity"
       ],
@@ -38963,6 +39119,7 @@
         {
           "name": "new-meeting",
           "title": "New Meeting",
+          "subtitle": "Circleback",
           "description": "Record a new meeting in Circleback.",
           "mode": "no-view",
           "keywords": [],
@@ -38971,6 +39128,7 @@
         {
           "name": "open-last-meeting",
           "title": "Open Last Meeting",
+          "subtitle": "Circleback",
           "description": "Open your most recent meeting in Circleback.",
           "mode": "no-view",
           "keywords": [],
@@ -38979,7 +39137,26 @@
         {
           "name": "search-meetings",
           "title": "Search Meetings",
+          "subtitle": "Circleback",
           "description": "Search your meetings in Circleback.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "ask-circleback",
+          "title": "Ask Circleback",
+          "subtitle": "Circleback",
+          "description": "Ask Circleback about your meetings and more.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "chats",
+          "title": "Chats",
+          "subtitle": "Circleback",
+          "description": "Browse and continue your chats.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -40302,6 +40479,52 @@
             "dirty"
           ],
           "preferences": [
+            {
+              "name": "defaultDuration",
+              "title": "Default Duration",
+              "description": "Lock the keyboard immediately for the chosen duration, or choose Always Ask to pick each time.",
+              "type": "dropdown",
+              "default": "always-ask",
+              "required": false,
+              "data": [
+                {
+                  "title": "Always Ask",
+                  "value": "always-ask"
+                },
+                {
+                  "title": "15 Seconds",
+                  "value": "15"
+                },
+                {
+                  "title": "30 Seconds",
+                  "value": "30"
+                },
+                {
+                  "title": "1 Minute",
+                  "value": "60"
+                },
+                {
+                  "title": "2 Minutes",
+                  "value": "120"
+                },
+                {
+                  "title": "5 Minutes",
+                  "value": "300"
+                },
+                {
+                  "title": "1 Hour",
+                  "value": "3600"
+                },
+                {
+                  "title": "24 Hours",
+                  "value": "86400"
+                },
+                {
+                  "title": "Forever",
+                  "value": "0"
+                }
+              ]
+            },
             {
               "name": "lockFnKeys",
               "title": "Lock Function Row Keys",
@@ -45998,6 +46221,14 @@
           "label": "Prevent disk sleep"
         },
         {
+          "name": "preventSleepOnAC",
+          "description": "Keep the system awake while on AC power, for example with the lid closed (caffeinate -s). This option is not supported on Windows and will have no effect",
+          "type": "checkbox",
+          "required": false,
+          "default": false,
+          "label": "Prevent system sleep on AC power"
+        },
+        {
           "name": "icon",
           "description": "Select icon set for Menu Bar. macOS only",
           "type": "dropdown",
@@ -50126,7 +50357,9 @@
       "description": "Convert images, videos, audio, PDFs, and documents locally with Convt.",
       "icon": "icon.png",
       "author": "0xdhrv",
-      "contributors": [],
+      "contributors": [
+        "ray.dhruv"
+      ],
       "categories": [
         "Productivity",
         "Design Tools"
@@ -57915,6 +58148,234 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "daycal-google-calendar",
+      "title": "DayCal - Google Calendar",
+      "description": "A fast Google Calendar schedule, menu bar, quick add, and event management extension for Raycast.",
+      "icon": "daycal.png",
+      "author": "jonah_tweed",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/jonah_tweed/daycal-google-calendar",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/daycal-google-calendar",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "schedule",
+          "title": "Schedule",
+          "subtitle": "DayCal",
+          "description": "View and manage your Google Calendar schedule directly in Raycast.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "enabled-calendars",
+          "title": "Enabled Calendars",
+          "subtitle": "DayCal",
+          "description": "Choose which Google calendars appear when Custom calendar selection is active.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "set-up-calendars",
+          "title": "Set up Calendars",
+          "subtitle": "DayCal",
+          "description": "Assign calendar roles and optional smart-routing keywords.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "add-personal-event",
+          "title": "Add Personal Event",
+          "subtitle": "DayCal",
+          "description": "Add an event to Personal with smart timed/all-day parsing and calendar checking.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "add-shared-event",
+          "title": "Add Shared Event",
+          "subtitle": "DayCal",
+          "description": "Add an event to your Shared / Partner calendar with smart timed/all-day parsing and calendar checking.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "add-work-event",
+          "title": "Add Work Event",
+          "subtitle": "DayCal",
+          "description": "Add an event to Work with smart timed/all-day parsing and calendar checking.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "menu-bar-settings",
+          "title": "Calendar Settings",
+          "subtitle": "DayCal",
+          "description": "Configure independent Schedule and menu-bar calendars and menu-bar filtering.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "menu-bar",
+          "title": "Calendar Menu Bar",
+          "subtitle": "DayCal",
+          "description": "Show current and upcoming Google Calendar events in the macOS menu bar.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "disconnect-google",
+          "title": "Disconnect Google Account",
+          "subtitle": "DayCal",
+          "description": "Disconnect Google Calendar and choose whether to keep or delete this account’s saved DayCal setup.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "daysAhead",
+          "title": "Schedule Range",
+          "description": "How far ahead Schedule should load.",
+          "type": "dropdown",
+          "required": true,
+          "default": "14",
+          "data": [
+            {
+              "title": "7 days",
+              "value": "7"
+            },
+            {
+              "title": "14 days",
+              "value": "14"
+            },
+            {
+              "title": "30 days",
+              "value": "30"
+            },
+            {
+              "title": "60 days",
+              "value": "60"
+            }
+          ]
+        },
+        {
+          "name": "hideDeclined",
+          "title": "Declined Events",
+          "description": "Hide invitations that you have declined.",
+          "type": "checkbox",
+          "label": "Hide declined events",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "calendarSelectionMode",
+          "title": "Calendar Selection Mode",
+          "description": "Choose which calendars DayCal uses. Custom is managed with the Enabled Calendars command.",
+          "type": "dropdown",
+          "required": true,
+          "data": [
+            {
+              "title": "Custom Enabled Calendars",
+              "value": "custom"
+            },
+            {
+              "title": "Google Calendar Visibility",
+              "value": "google"
+            },
+            {
+              "title": "All Calendars",
+              "value": "all"
+            }
+          ],
+          "default": "custom"
+        },
+        {
+          "name": "menuBarMode",
+          "title": "Show Events in Menu Bar",
+          "description": "Choose when DayCal should appear in the macOS menu bar.",
+          "type": "dropdown",
+          "required": false,
+          "default": "upcoming",
+          "data": [
+            {
+              "title": "Never",
+              "value": "never"
+            },
+            {
+              "title": "2 minutes before",
+              "value": "2"
+            },
+            {
+              "title": "5 minutes before",
+              "value": "5"
+            },
+            {
+              "title": "10 minutes before",
+              "value": "10"
+            },
+            {
+              "title": "15 minutes before",
+              "value": "15"
+            },
+            {
+              "title": "30 minutes before",
+              "value": "30"
+            },
+            {
+              "title": "1 hour before",
+              "value": "60"
+            },
+            {
+              "title": "Upcoming Events",
+              "value": "upcoming"
+            },
+            {
+              "title": "Always",
+              "value": "always"
+            }
+          ]
+        },
+        {
+          "name": "menuBarHeadlineStyle",
+          "title": "Menu Bar Headline",
+          "description": "Choose whether the menu bar shows smart timing status or only the current/next event title.",
+          "type": "dropdown",
+          "required": false,
+          "default": "smart",
+          "data": [
+            {
+              "title": "Smart Status",
+              "value": "smart"
+            },
+            {
+              "title": "Event Title Only",
+              "value": "event-only"
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "days-until-christmas",
@@ -66596,6 +67057,106 @@
           "subtitle": "Dock",
           "description": "Change the dock's position to the left, bottom or right",
           "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "dock-badges",
+      "title": "Dock Badges",
+      "description": "Notification badge counts from your Dock, in the menu bar — for people who hide their Dock.",
+      "icon": "extension-icon.png",
+      "author": "mrpunkin",
+      "contributors": [],
+      "categories": [
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/mrpunkin/dock-badges",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/dock-badges",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "show-dock-badges",
+          "title": "Show Dock Badges",
+          "description": "Menu bar item showing the summed notification badge count of every app in your Dock.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "symbol",
+              "title": "Icon",
+              "description": "Symbol shown in the menu bar. It turns red whenever a Dock app has notifications; Bell and App also gain a badge.",
+              "type": "dropdown",
+              "required": false,
+              "default": "circle",
+              "data": [
+                {
+                  "title": "Circle",
+                  "value": "circle"
+                },
+                {
+                  "title": "Bell",
+                  "value": "bell"
+                },
+                {
+                  "title": "App",
+                  "value": "app"
+                }
+              ]
+            },
+            {
+              "name": "symbolStyle",
+              "title": "Icon Style",
+              "description": "Filled or outline rendering of the menu bar symbol.",
+              "type": "dropdown",
+              "required": false,
+              "default": "filled",
+              "data": [
+                {
+                  "title": "Filled",
+                  "value": "filled"
+                },
+                {
+                  "title": "Outline",
+                  "value": "outline"
+                }
+              ]
+            },
+            {
+              "name": "showCount",
+              "title": "Count",
+              "label": "Show Total Count",
+              "description": "Show the summed badge count next to the menu bar icon. When disabled, only the badge on the icon indicates notifications.",
+              "type": "checkbox",
+              "required": false,
+              "default": true
+            },
+            {
+              "name": "hideWhenClear",
+              "label": "Hide When Clear",
+              "description": "Remove the menu bar item entirely while no Dock app has a badge.",
+              "type": "checkbox",
+              "required": false,
+              "default": false,
+              "title": "Visibility"
+            }
+          ]
+        },
+        {
+          "name": "view-notifications",
+          "title": "View Notifications",
+          "description": "List the Dock apps with notification badges and open one from the keyboard. Ignore an app to leave its badge out of the menu bar count.",
+          "mode": "view",
           "keywords": [],
           "preferences": []
         }
@@ -79532,14 +80093,16 @@
     {
       "name": "fantasy-premier-league-rankings",
       "title": "Fantasy Premier League",
-      "description": "See where you rank amongst in your league rivals in Fantasy Premier League within Raycast.",
+      "description": "Your FPL team, gameweek history, fixtures, player stats, price changes and mini-leagues",
       "icon": "icon.png",
       "author": "hwb",
       "contributors": [
-        "niall-maloney"
+        "niall-maloney",
+        "vicjor"
       ],
       "categories": [
-        "Fun"
+        "Fun",
+        "Data"
       ],
       "license": "MIT",
       "platforms": [
@@ -79554,23 +80117,111 @@
       },
       "commands": [
         {
-          "name": "rankings",
-          "title": "View My Rankings",
-          "subtitle": "Fantasy Premier League FPL",
-          "description": "View your live ranking across all your leagues in Fantasy Premier League.",
+          "name": "my-team",
+          "title": "My Team",
+          "subtitle": "Fantasy Premier League",
+          "description": "Your squad with live points, captain, bench, value and rank, as a list or on the pitch",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "fpl"
+          ],
+          "icon": "my-team.png",
+          "preferences": []
+        },
+        {
+          "name": "price-changes",
+          "title": "Price Changes",
+          "subtitle": "Fantasy Premier League",
+          "description": "Projected price rises and falls, and tonight's likely movers",
+          "mode": "view",
+          "keywords": [
+            "fpl"
+          ],
+          "icon": "price-changes.png",
+          "preferences": []
+        },
+        {
+          "name": "players",
+          "title": "Search Players",
+          "subtitle": "Fantasy Premier League",
+          "description": "Search all players with price, form, ownership and upcoming fixtures",
+          "mode": "view",
+          "keywords": [
+            "fpl"
+          ],
+          "icon": "players.png",
+          "preferences": []
+        },
+        {
+          "name": "fixtures",
+          "title": "Fixtures",
+          "subtitle": "Fantasy Premier League",
+          "description": "Fixtures and results by gameweek with difficulty ratings",
+          "mode": "view",
+          "keywords": [
+            "fpl"
+          ],
+          "icon": "fixtures.png",
+          "preferences": []
+        },
+        {
+          "name": "history",
+          "title": "Gameweek History",
+          "subtitle": "Fantasy Premier League",
+          "description": "Points, rank, transfers and chips for every gameweek this season",
+          "mode": "view",
+          "keywords": [
+            "fpl"
+          ],
+          "icon": "history.png",
+          "preferences": []
+        },
+        {
+          "name": "rankings",
+          "title": "Mini-Leagues",
+          "subtitle": "Fantasy Premier League",
+          "description": "Your rank and standings in your classic mini-leagues",
+          "mode": "view",
+          "keywords": [
+            "fpl",
+            "rankings"
+          ],
+          "icon": "leagues.png",
+          "preferences": []
+        },
+        {
+          "name": "menu-bar",
+          "title": "Live Points in Menu Bar",
+          "subtitle": "Fantasy Premier League",
+          "description": "Your live gameweek points in the menu bar, with every player, your rank and the next deadline",
+          "mode": "menu-bar",
+          "keywords": [
+            "fpl"
+          ],
+          "icon": "my-team.png",
+          "preferences": []
+        },
+        {
+          "name": "open-team",
+          "title": "Open My Team",
+          "subtitle": "Fantasy Premier League",
+          "description": "Open your team on the FPL website",
+          "mode": "no-view",
+          "keywords": [
+            "fpl"
+          ],
+          "icon": "open-team.png",
           "preferences": []
         }
       ],
       "preferences": [
         {
           "name": "userTeamId",
-          "title": "Your Team ID",
-          "description": "The ID of your team, found on the URL of your team page. You can get it from the URL of your team page, e.g. https://fantasy.premierleague.com/entry/1234567/event/1",
+          "title": "Team ID",
+          "description": "Found in the URL of your Points page: fantasy.premierleague.com/entry/<Team ID>/event/…. When empty, the commands ask for it.",
           "type": "textfield",
-          "required": true,
-          "placeholder": "Enter your team ID"
+          "required": false,
+          "placeholder": "1234567"
         }
       ]
     },
@@ -102910,7 +103561,8 @@
         "xmok",
         "brucemakes012",
         "alexi.build",
-        "ridemountainpig"
+        "ridemountainpig",
+        "Anoninz"
       ],
       "categories": [
         "Web",
@@ -102952,6 +103604,15 @@
           "title": "Quick Translate",
           "subtitle": "Google Translate",
           "description": "Quickly translate to multiple languages",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "quick-translate-view",
+          "title": "Quick Translate Results",
+          "subtitle": "Google Translate",
+          "description": "Display the translation results opened by Quick Translate",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -107022,6 +107683,81 @@
               "value": "Brave Browser"
             }
           ]
+        }
+      ]
+    },
+    {
+      "name": "goose-2fa",
+      "title": "Goose 2FA",
+      "description": "Two-factor code manager with screenshot and image QR scanning, backups, and an optional shared JSON data source",
+      "icon": "icon.png",
+      "author": "eachann_",
+      "contributors": [],
+      "categories": [
+        "Security"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/eachann_/goose-2fa",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/goose-2fa",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "codes",
+          "title": "Codes",
+          "subtitle": "Goose 2FA",
+          "description": "Search accounts; press Return to copy or paste codes according to preferences",
+          "mode": "view",
+          "keywords": [
+            "2fa",
+            "otp",
+            "totp",
+            "hotp",
+            "goose"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "enterAction",
+          "title": "Return Action",
+          "description": "Choose whether Return copies the code or pastes it into the previous field.",
+          "type": "dropdown",
+          "required": false,
+          "default": "copy",
+          "data": [
+            {
+              "title": "Copy Code",
+              "value": "copy"
+            },
+            {
+              "title": "Paste into Previous Field",
+              "value": "paste"
+            }
+          ]
+        },
+        {
+          "name": "closeAfterCopy",
+          "title": "After Copy",
+          "description": "Close Raycast and return to the previous app after copying a code.",
+          "label": "Close Raycast and return to desktop",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "dataFile",
+          "title": "Data Source File",
+          "description": "Choose an existing JSON file. Or create one in a chosen folder from Settings & Data. Select the same iCloud file on both clients to sync. The file contains plaintext 2FA secrets.",
+          "type": "file",
+          "required": false
         }
       ]
     },
@@ -117520,12 +118256,11 @@
           "name": "controlGroups",
           "title": "Control Groups",
           "subtitle": "Hue",
-          "description": "List, search and control rooms, zones and entertainment areas",
+          "description": "List, search and control rooms and zones",
           "mode": "view",
           "keywords": [
             "room",
-            "zone",
-            "entertainment"
+            "zone"
           ],
           "preferences": []
         },
@@ -117550,15 +118285,6 @@
       ],
       "preferences": [
         {
-          "name": "transitionTime",
-          "title": "Transition Time",
-          "description": "The time in milliseconds that transitions will take, rounded to the nearest 100ms.",
-          "placeholder": "400",
-          "type": "textfield",
-          "default": "400",
-          "required": false
-        },
-        {
           "name": "toggleAllLights",
           "title": "“Toggle All Lights” when some lights are on",
           "description": "When some—but not all—lights are on, the command should",
@@ -117582,7 +118308,7 @@
           "description": "The IP address of your Hue bridge. Use this if automatic discovery doesn't work.",
           "placeholder": "x.x.x.x",
           "type": "textfield",
-          "default": "",
+          "default": {},
           "required": false
         },
         {
@@ -117591,7 +118317,7 @@
           "description": "The username for your Hue bridge. Use this if you have already created a username you want to use. Leave this empty to automatically request a new username.",
           "placeholder": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
           "type": "textfield",
-          "default": "",
+          "default": {},
           "required": false
         }
       ]
@@ -118532,6 +119258,24 @@
         }
       ],
       "preferences": [
+        {
+          "name": "build",
+          "title": "Bob Version",
+          "type": "dropdown",
+          "required": false,
+          "default": "IBM Bob",
+          "description": "Select which IBM Bob build to use",
+          "data": [
+            {
+              "value": "IBM Bob",
+              "title": "Standard"
+            },
+            {
+              "value": "IBM Bob - Insiders",
+              "title": "Insiders"
+            }
+          ]
+        },
         {
           "name": "layout",
           "title": "View Layout",
@@ -136873,6 +137617,57 @@
           "required": false,
           "type": "textfield",
           "default": "c13c3a8e2f6b46da9c5c425cf61fab3e"
+        }
+      ]
+    },
+    {
+      "name": "lan-file-share",
+      "title": "LAN File Share",
+      "description": "Open a sharing session on your local network: hand out one link so anyone nearby can download and send files or drop you text, with nothing to install on their side.",
+      "icon": "icon.png",
+      "author": "shaomai98",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/shaomai98/lan-file-share",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/lan-file-share",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "share",
+          "title": "LAN File Share",
+          "description": "Start, stop and monitor the sharing session, choose the network interface, and show the link or QR code.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "port",
+          "title": "Port",
+          "description": "Port the sharing service listens on. Must be an integer between 1024 and 49151. Changing it needs a restart.",
+          "type": "textfield",
+          "required": false,
+          "default": "7331",
+          "placeholder": "7331"
+        },
+        {
+          "name": "receiveDirectory",
+          "title": "Receive Directory",
+          "description": "Directory that files uploaded from the browser are saved into. They are added to the share list afterwards.",
+          "type": "directory",
+          "required": false,
+          "default": "~/Downloads"
         }
       ]
     },
@@ -157197,14 +157992,15 @@
     },
     {
       "name": "mint-mac-care",
-      "title": "Mint",
-      "description": "Clean up your Mac with Mint: see what fills the disk, get space back without deleting anything, clear caches, organize folders, free memory and uninstall apps",
+      "title": "Mint - Mac Storage Cleanup for You and Your Agents",
+      "description": "Optimize and clean up Mac storage for you and your AI agents: caches, Xcode builds, duplicate files and the gigabytes Codex, Claude Code and Cursor keep",
       "icon": "extension-icon.png",
       "author": "dzg-studio",
       "contributors": [],
       "categories": [
-        "Productivity",
-        "System"
+        "System",
+        "Developer Tools",
+        "Productivity"
       ],
       "license": "MIT",
       "platforms": [
@@ -157222,17 +158018,20 @@
           "name": "mint-status",
           "title": "View Mac Status",
           "subtitle": "Mint",
-          "description": "Disk, memory and your organized folders on one screen, like Mint's menu bar",
+          "description": "Disk space, memory and organized folders at a glance, with their Auto Care, like Mint's menu bar",
           "mode": "view",
           "keywords": [
-            "disk",
-            "storage",
-            "space",
+            "disk usage",
+            "storage usage",
+            "disk space",
             "free space",
             "memory",
             "ram",
             "system status",
-            "overview"
+            "overview",
+            "monitor",
+            "auto care",
+            "dashboard"
           ],
           "preferences": []
         },
@@ -157240,18 +158039,21 @@
           "name": "mint-optimize",
           "title": "Optimize Storage",
           "subtitle": "Mint",
-          "description": "Identical copies share their storage. Nothing is deleted and every file stays where it is",
+          "description": "Get space back without deleting anything: identical copies share their storage, by source like Codex, Claude Code, Cursor and your files",
           "mode": "view",
           "keywords": [
+            "optimizer",
+            "optimization",
             "duplicates",
-            "copies",
-            "clone",
-            "space",
+            "duplicate files",
             "dedupe",
-            "apfs",
+            "apfs clone",
+            "lossless",
             "codex",
-            "claude",
-            "ai agents"
+            "claude code",
+            "cursor",
+            "ai agents",
+            "agent storage"
           ],
           "preferences": []
         },
@@ -157259,20 +158061,20 @@
           "name": "mint-scan",
           "title": "Free Disk",
           "subtitle": "Mint",
-          "description": "Mint's groups with what is in each: optimize copies, clean what apps make again, choose from your own files",
+          "description": "Free disk space: share identical copies, clean the caches, logs and build output apps make again, and choose from your own files",
           "mode": "view",
           "keywords": [
-            "clean",
             "cleaner",
-            "mac cleaner",
-            "cache",
+            "cleanup",
+            "clean up",
             "junk",
-            "space",
-            "disk space",
-            "free up space",
+            "cache",
+            "disk cleanup",
+            "xcode",
+            "derived data",
             "node_modules",
-            "logs",
-            "purge",
+            "build cache",
+            "temporary files",
             "system data"
           ],
           "preferences": []
@@ -157281,7 +158083,7 @@
           "name": "mint-organize",
           "title": "Organize a Folder",
           "subtitle": "Mint",
-          "description": "How many files each folder has to sort and where they go, then organize it in one step",
+          "description": "How many loose files each folder has to sort and where they go, then tidy it in one step",
           "mode": "view",
           "keywords": [
             "desktop",
@@ -157290,7 +158092,10 @@
             "sort",
             "organize files",
             "declutter",
-            "clean desktop"
+            "clean desktop",
+            "file organizer",
+            "folder organizer",
+            "sort files"
           ],
           "preferences": []
         },
@@ -157298,7 +158103,7 @@
           "name": "mint-memory",
           "title": "Free Memory",
           "subtitle": "Mint",
-          "description": "Quit every idle app in one step, or choose the apps to quit",
+          "description": "Quit idle apps to free RAM in one step, or choose which apps to quit",
           "mode": "view",
           "keywords": [
             "ram",
@@ -157306,7 +158111,10 @@
             "free ram",
             "quit apps",
             "idle apps",
-            "memory cleaner"
+            "memory cleaner",
+            "ram cleaner",
+            "memory usage",
+            "memory pressure"
           ],
           "preferences": []
         },
@@ -157321,7 +158129,10 @@
             "delete app",
             "leftovers",
             "uninstaller",
-            "remove app"
+            "remove app",
+            "app cleaner",
+            "app remover",
+            "leftover files"
           ],
           "preferences": []
         },
@@ -157334,7 +158145,8 @@
           "keywords": [
             "restore",
             "revert",
-            "put back"
+            "put back",
+            "history"
           ],
           "preferences": []
         },
@@ -157349,7 +158161,10 @@
             "what grew",
             "storage history",
             "space used",
-            "system data"
+            "system data",
+            "disk usage",
+            "storage usage",
+            "what is using space"
           ],
           "preferences": []
         }
@@ -158806,7 +159621,8 @@
       "icon": "MocoLogo.png",
       "author": "eviscares",
       "contributors": [
-        "el-schneider"
+        "el-schneider",
+        "TheFRedFox"
       ],
       "categories": [
         "Productivity"
@@ -158835,7 +159651,7 @@
         {
           "name": "moco_today",
           "title": "Todays Activities",
-          "subtitle": "moco",
+          "subtitle": "MOCO",
           "description": "Show todays activities",
           "mode": "view",
           "keywords": [],
@@ -158847,6 +159663,33 @@
           "subtitle": "MOCO",
           "description": "See if a timer is running with a glance",
           "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "start_timer",
+          "title": "Start New Timer",
+          "subtitle": "MOCO",
+          "description": "Start a timer with a description",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "edit_timer",
+          "title": "Edit Current / Last Active Timer",
+          "subtitle": "MOCO",
+          "description": "Edit description and time of the running or last timer",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "menu_bar_tools",
+          "title": "Menu Bar Tools",
+          "subtitle": "MOCO",
+          "description": "Windows opened from the MOCO menu bar: task and project actions, favorites, settings",
+          "mode": "view",
           "keywords": [],
           "preferences": []
         }
@@ -161259,6 +162102,75 @@
       "preferences": []
     },
     {
+      "name": "morgen-calendar",
+      "title": "Morgen Calendar",
+      "description": "Create and manage Morgen calendar events and native tasks from Raycast.",
+      "icon": "morgen-icon.png",
+      "author": "ctacta621",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/ctacta621/morgen-calendar",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/morgen-calendar",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "create-event",
+          "title": "Create Event",
+          "subtitle": "Morgen Calendar",
+          "description": "Add an event to a connected Morgen calendar",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "events",
+          "title": "View Events",
+          "subtitle": "Morgen Calendar",
+          "description": "Browse upcoming events across your Morgen calendars",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "create-task",
+          "title": "Create Task",
+          "subtitle": "Morgen Calendar",
+          "description": "Add a native Morgen task",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "tasks",
+          "title": "View Tasks",
+          "subtitle": "Morgen Calendar",
+          "description": "Browse and complete native Morgen tasks",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "title": "Morgen API Key",
+          "description": "Copy your key from platform.morgen.so/developers-api. Your Morgen plan must include API access.",
+          "type": "password",
+          "required": true
+        }
+      ]
+    },
+    {
       "name": "morning-coffee",
       "title": "Morning Coffee",
       "description": "Morning Coffee is your Raycast extension with which you can easily organize routine web readings. Organize the websites you want to open simultaneously in your default browser and set a hotkey for launching 'Open Websites'.",
@@ -161296,6 +162208,169 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "motion-rosetta",
+      "title": "Motion Rosetta",
+      "description": "Translate easing curves and springs with explicit conversion fidelity.",
+      "icon": "extension-icon.png",
+      "author": "sebastiangonzales",
+      "contributors": [],
+      "categories": [
+        "Design Tools",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/sebastiangonzales/motion-rosetta",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/motion-rosetta",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "convert-easing",
+          "title": "Convert Easing",
+          "description": "Paste an easing, inspect its curve, and copy platform equivalents.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "shortcut_copy_figma",
+          "type": "textfield",
+          "required": false,
+          "title": "Copy Figma Shortcut",
+          "description": "All shortcuts: use cmd+shift+1 syntax; none disables; blank uses the default. Reopen Convert Easing to apply.",
+          "placeholder": "cmd+shift+1"
+        },
+        {
+          "name": "shortcut_copy_figma_css",
+          "type": "textfield",
+          "required": false,
+          "title": "Copy Figma CSS Syntax Shortcut",
+          "description": "Figma output in CSS syntax.",
+          "placeholder": "cmd+shift+2"
+        },
+        {
+          "name": "shortcut_copy_css_bezier",
+          "type": "textfield",
+          "required": false,
+          "title": "Copy CSS Bézier Shortcut",
+          "description": "CSS timing function.",
+          "placeholder": "cmd+shift+3"
+        },
+        {
+          "name": "shortcut_copy_css_linear",
+          "type": "textfield",
+          "required": false,
+          "title": "Copy CSS linear() / steps() Shortcut",
+          "description": "Sampled curve or discrete steps.",
+          "placeholder": "cmd+shift+4"
+        },
+        {
+          "name": "shortcut_copy_motion",
+          "type": "textfield",
+          "required": false,
+          "title": "Copy Motion Shortcut",
+          "description": "Motion transition object.",
+          "placeholder": "cmd+shift+5"
+        },
+        {
+          "name": "shortcut_copy_swiftui",
+          "type": "textfield",
+          "required": false,
+          "title": "Copy SwiftUI Shortcut",
+          "description": "SwiftUI animation.",
+          "placeholder": "cmd+shift+6"
+        },
+        {
+          "name": "shortcut_copy_compose",
+          "type": "textfield",
+          "required": false,
+          "title": "Copy Jetpack Compose Shortcut",
+          "description": "Compose animation specification.",
+          "placeholder": "cmd+shift+7"
+        },
+        {
+          "name": "shortcut_copy_tailwind",
+          "type": "textfield",
+          "required": false,
+          "title": "Copy Tailwind Shortcut",
+          "description": "Tailwind animation classes.",
+          "placeholder": "cmd+shift+8"
+        },
+        {
+          "name": "shortcut_copy_dtcg",
+          "type": "textfield",
+          "required": false,
+          "title": "Copy DTCG Shortcut",
+          "description": "Design token output.",
+          "placeholder": "cmd+shift+9"
+        },
+        {
+          "name": "shortcut_copy_figma_motion",
+          "type": "textfield",
+          "required": false,
+          "title": "Copy Figma Motion Shortcut",
+          "description": "Bounce-only spring output.",
+          "placeholder": "cmd+opt+1"
+        },
+        {
+          "name": "shortcut_copy_motion_time",
+          "type": "textfield",
+          "required": false,
+          "title": "Copy Motion Visual Duration Shortcut",
+          "description": "Time-based Motion spring.",
+          "placeholder": "cmd+opt+2"
+        },
+        {
+          "name": "shortcut_preview_sheet",
+          "type": "textfield",
+          "required": false,
+          "title": "Preview on Sheet Shortcut",
+          "description": "Long-travel preview.",
+          "placeholder": "ctrl+1"
+        },
+        {
+          "name": "shortcut_preview_toggle",
+          "type": "textfield",
+          "required": false,
+          "title": "Preview on Toggle Shortcut",
+          "description": "Short-travel preview.",
+          "placeholder": "ctrl+2"
+        },
+        {
+          "name": "shortcut_preview_tooltip",
+          "type": "textfield",
+          "required": false,
+          "title": "Preview on Tooltip Shortcut",
+          "description": "Small-element preview.",
+          "placeholder": "ctrl+3"
+        },
+        {
+          "name": "shortcut_preview_staggered_list",
+          "type": "textfield",
+          "required": false,
+          "title": "Preview on Staggered List Shortcut",
+          "description": "Six staggered rows.",
+          "placeholder": "ctrl+4"
+        },
+        {
+          "name": "shortcut_confirm",
+          "type": "textfield",
+          "required": false,
+          "title": "Confirm Input and Preview Shortcut",
+          "description": "Generate the current preview.",
+          "placeholder": "cmd+return"
+        }
+      ]
     },
     {
       "name": "mound-for-pile",
@@ -163123,6 +164198,20 @@
           "preferences": []
         },
         {
+          "name": "view-recommendations",
+          "title": "View Recommendations",
+          "subtitle": "Apple Music",
+          "description": "Browse your personal Apple Music recommendations, add albums, playlists, and songs to your library, and play the ones already there.",
+          "mode": "view",
+          "keywords": [
+            "recommendations",
+            "for you",
+            "discover",
+            "catalog"
+          ],
+          "preferences": []
+        },
+        {
           "name": "just-play",
           "title": "Just Play",
           "subtitle": "Apple Music",
@@ -164324,7 +165413,9 @@
         "Developer Tools"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/xmok/myidlers",
       "source": {
         "type": "github-monorepo",
@@ -175267,7 +176358,7 @@
     {
       "name": "ohdear",
       "title": "Oh Dear",
-      "description": "Manage your Oh Dear sites easy directly from Raycast",
+      "description": "Check the health of your Oh Dear monitors and add new ones from Raycast.",
       "icon": "command-icon.png",
       "author": "andreaselia",
       "contributors": [
@@ -175279,7 +176370,9 @@
         "Developer Tools"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/andreaselia/ohdear",
       "source": {
         "type": "github-monorepo",
@@ -201057,7 +202150,7 @@
         {
           "name": "mask-text",
           "title": "Mask Text",
-          "description": "Review the personal information found in your selection or clipboard, then copy the masked text.",
+          "description": "Review the personal information found in your selection or clipboard. The masked text is copied as soon as it is ready.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -210877,7 +211970,8 @@
         "stefanmatar",
         "YourMCGeek",
         "xilopaint",
-        "just_me"
+        "just_me",
+        "GektorGrom"
       ],
       "categories": [
         "Data",
@@ -226758,6 +227852,15 @@
           "title": "New Private Window",
           "subtitle": "Safari",
           "description": "Open a new Safari private window",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "duplicate-tab",
+          "title": "Duplicate Tab",
+          "subtitle": "Safari",
+          "description": "Duplicate the current Safari tab",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -270500,10 +271603,12 @@
     {
       "name": "tinyfish-search",
       "title": "TinyFish Search",
-      "description": "Search the web with TinyFish, open result URLs, and fetch clean page content.",
+      "description": "Search the web, news, and research papers with TinyFish, and fetch pages as Markdown, HTML, or JSON.",
       "icon": "icon.png",
       "author": "pranav_janakiraman",
-      "contributors": [],
+      "contributors": [
+        "ray.dhruv"
+      ],
       "categories": [
         "Web"
       ],
@@ -270523,12 +271628,64 @@
         {
           "name": "search",
           "title": "Search Web",
-          "description": "Search the web with TinyFish, browse result URLs, and fetch clean page content.",
+          "description": "Search the web, news, or academic papers with date and domain filters, and browse more results.",
           "mode": "view",
           "keywords": [
             "tinyfish",
             "web",
             "search"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "fetch-pages",
+          "title": "Fetch Pages",
+          "description": "Fetch up to 10 URLs as Markdown, HTML, or JSON and browse extracted page and image links.",
+          "mode": "view",
+          "keywords": [
+            "tinyfish",
+            "read",
+            "extract",
+            "markdown",
+            "url"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "saved-searches",
+          "title": "Saved Searches",
+          "description": "Run pinned searches and recent queries with their saved filters and purpose.",
+          "mode": "view",
+          "keywords": [
+            "history",
+            "favorites",
+            "recent",
+            "tinyfish"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "reading-list",
+          "title": "Reading List",
+          "description": "Read saved pages offline, track read status, and export Markdown.",
+          "mode": "view",
+          "keywords": [
+            "bookmark",
+            "offline",
+            "read",
+            "export"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "read-current-tab",
+          "title": "Read Current Tab",
+          "description": "Fetch the active browser page with TinyFish using the Raycast browser extension.",
+          "mode": "view",
+          "keywords": [
+            "browser",
+            "tab",
+            "read"
           ],
           "preferences": []
         }
@@ -270537,10 +271694,10 @@
         {
           "name": "apiKey",
           "title": "TinyFish API Key",
-          "description": "Your TinyFish API key. Create one at https://agent.tinyfish.ai/api-keys.",
+          "description": "Optional API key to use instead of signing in to TinyFish. Leave blank for OAuth. Create a key at https://agent.tinyfish.ai/api-keys.",
           "type": "password",
-          "required": true,
-          "placeholder": "tf_..."
+          "required": false,
+          "placeholder": "Leave blank to sign in"
         },
         {
           "name": "location",
@@ -270557,6 +271714,15 @@
           "type": "textfield",
           "required": false,
           "placeholder": "en"
+        },
+        {
+          "name": "rememberHistory",
+          "title": "Search History",
+          "label": "Remember recent searches",
+          "description": "Keep the last 100 successful searches locally. Clear them from Saved Searches.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
         }
       ]
     },
@@ -274313,6 +275479,67 @@
           "description": "Your AeroData Box API Token",
           "type": "password",
           "default": "",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "tracktimer",
+      "title": "TrackTimer",
+      "description": "Start and stop TrackTimer timers and restart recent work.",
+      "icon": "extension-icon.png",
+      "author": "pfista",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "0.1.0",
+      "storeUrl": "https://www.raycast.com/pfista/tracktimer",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/tracktimer",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "index",
+          "title": "Start/Stop Timer",
+          "subtitle": "TrackTimer",
+          "description": "See your running timer and restart recent work.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "create-timer",
+          "title": "Start New Timer",
+          "subtitle": "TrackTimer",
+          "description": "Start a timer with a description and project.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "process-timer",
+          "title": "Finish Pending Timer Action",
+          "subtitle": "TrackTimer",
+          "description": "Send a saved timer action independently of the timer window.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiToken",
+          "title": "TrackTimer API Token",
+          "description": "Create a token in TrackTimer Settings with clients:read, projects:read, timers:read, and timers:write.",
+          "type": "password",
           "required": true
         }
       ]
@@ -290928,6 +292155,67 @@
       "preferences": []
     },
     {
+      "name": "watts-up",
+      "title": "Watt's up",
+      "description": "Check your Mac's power adapter wattage, charging power, battery health and charge status. Shows the negotiated power (watts, voltage, current) your charger delivers, plus battery level, cycle count and temperature — in Raycast or your menu bar.",
+      "icon": "command-icon.png",
+      "author": "mrmartineau",
+      "contributors": [],
+      "categories": [
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/mrmartineau/watts-up",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/watts-up",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "index",
+          "title": "Show Power and Charger Info",
+          "subtitle": "Watts Up",
+          "description": "Show power adapter wattage, voltage, current and battery details",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "energy-impact",
+          "title": "Show Energy Impact",
+          "subtitle": "Watts Up",
+          "description": "List the apps and processes using the most energy (runs a ~2s top sample only when launched)",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "energy-settings",
+          "title": "Manage Energy Settings",
+          "subtitle": "Watts Up",
+          "description": "View and toggle Low Power Mode and Power Nap, see sleep timers and what's preventing sleep",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "menu-bar",
+          "title": "Power Wattage in Menu Bar",
+          "subtitle": "Watts Up",
+          "description": "Show the negotiated power adapter wattage — or the battery percentage when unplugged — in the menu bar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "wave",
       "title": "Wave",
       "description": "Manage your Wave Businesses",
@@ -291591,6 +292879,129 @@
           "title": "Base Directory",
           "placeholder": "/",
           "default": "/"
+        }
+      ]
+    },
+    {
+      "name": "webeep",
+      "title": "WeBeep",
+      "description": "Browse your Politecnico di Milano WeBeep (Moodle) courses: materials, recordings, announcements, notifications and deadlines",
+      "icon": "webeep.png",
+      "author": "mattiacolombomc",
+      "contributors": [],
+      "categories": [
+        "Documentation",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/mattiacolombomc/webeep",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/webeep",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-courses",
+          "title": "Search Courses",
+          "subtitle": "WeBeep",
+          "description": "Browse your courses and their sections, resources, folders and links",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-materials",
+          "title": "Search Materials",
+          "subtitle": "WeBeep",
+          "description": "Find files across all courses in progress and download or open them",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-recordings",
+          "title": "Open Recordings",
+          "subtitle": "WeBeep",
+          "description": "Open the lecture recording archive or virtual classroom of a course",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "read-announcements",
+          "title": "Read Announcements",
+          "subtitle": "WeBeep",
+          "description": "Latest posts from the announcements forums of your courses in progress",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "read-notifications",
+          "title": "Read Notifications",
+          "subtitle": "WeBeep",
+          "description": "Your WeBeep notifications: new content, forum posts and deadlines",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "show-upcoming-events",
+          "title": "Show Upcoming Events",
+          "subtitle": "WeBeep",
+          "description": "Upcoming calendar events and assignment deadlines",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-course-catalog",
+          "title": "Search Course Catalog",
+          "subtitle": "WeBeep",
+          "description": "Search all WeBeep courses, including the ones you are not enrolled in",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "sessionCookie",
+          "title": "MoodleSession Cookie",
+          "description": "Value of the MoodleSession cookie of webeep.polimi.it, copied from your browser after logging in (see the README for the steps). You paste it only once: it is exchanged for a Moodle token that stays valid for about three months.",
+          "type": "password",
+          "placeholder": "e.g. 4f9c2a1b7e0d3c8f9a6b5e2d1c0f7a3b",
+          "required": false
+        },
+        {
+          "name": "language",
+          "title": "Content Language",
+          "description": "Language used for bilingual course names and resource titles",
+          "type": "dropdown",
+          "data": [
+            {
+              "title": "English",
+              "value": "en"
+            },
+            {
+              "title": "Italian",
+              "value": "it"
+            }
+          ],
+          "default": "en",
+          "required": false
+        },
+        {
+          "name": "downloadDirectory",
+          "title": "Download Directory",
+          "description": "Folder where course files are saved (defaults to ~/Downloads)",
+          "type": "directory",
+          "required": false
         }
       ]
     },
@@ -294756,7 +296167,8 @@
       "author": "lunaris",
       "contributors": [
         "artistro08",
-        "muhammadrizo"
+        "muhammadrizo",
+        "taken"
       ],
       "categories": [
         "Developer Tools",
@@ -294811,6 +296223,14 @@
           "type": "checkbox",
           "required": false,
           "default": false
+        },
+        {
+          "name": "windowsTerminalPath",
+          "title": "Windows Terminal Folder",
+          "label": "Use a portable install of Windows Terminal",
+          "description": "Folder that contains wt.exe for an unpackaged or portable install. Leave empty for the Microsoft Store version.",
+          "type": "directory",
+          "required": false
         }
       ]
     },
@@ -301182,6 +302602,296 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "yatt",
+      "title": "Yet Another Timezone Tool",
+      "description": "Type a time or a meeting window the way you say it (15-17 sf, tomorrow 9 utc, thu 17 et) and see it in every place you care about.",
+      "icon": "extension-icon.png",
+      "author": "alexbartok",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/alexbartok/yatt",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/yatt",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "convert",
+          "title": "Convert Time",
+          "description": "Type a time, a window or a date with a place (15-17 sf, tomorrow 9 utc) and see it in every location. Empty shows the current time.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "defaultAnchor",
+              "title": "Default Anchor Zone",
+              "description": "The zone a typed time is in when you name no place.",
+              "type": "dropdown",
+              "required": false,
+              "default": "local",
+              "data": [
+                {
+                  "title": "Local (this Mac's zone)",
+                  "value": "local"
+                },
+                {
+                  "title": "UTC",
+                  "value": "utc"
+                },
+                {
+                  "title": "Home location",
+                  "value": "home"
+                },
+                {
+                  "title": "Last used",
+                  "value": "last"
+                }
+              ]
+            },
+            {
+              "name": "popToRootAfterCopy",
+              "title": "After Copying",
+              "description": "Go back to Raycast's root search after copying, whatever Raycast's own Pop to Root setting says.",
+              "type": "checkbox",
+              "required": false,
+              "default": true,
+              "label": "Return to root search"
+            },
+            {
+              "name": "showLocalRow",
+              "title": "Local Row",
+              "description": "Show a Local row when none of your locations is in this Mac's zone.",
+              "type": "checkbox",
+              "required": false,
+              "default": true,
+              "label": "Always show local time"
+            },
+            {
+              "name": "dateOrder",
+              "title": "Numeric Date Order",
+              "description": "How to read a date typed as 3/9. Dates like 2026-09-03 always work.",
+              "type": "dropdown",
+              "required": false,
+              "default": "dmy",
+              "data": [
+                {
+                  "title": "Day/Month (3/9 = 3 September)",
+                  "value": "dmy"
+                },
+                {
+                  "title": "Month/Day (3/9 = 9 March)",
+                  "value": "mdy"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "menu-bar-clock",
+          "title": "Menu Bar Clock",
+          "description": "Show the time in chosen locations in the menu bar, with all locations in the dropdown. Run it once from the root search to place it.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "menuBarTemplate",
+              "title": "Menu Bar Template",
+              "description": "Format of one location in the menu bar. Placeholders as in Copy Template; {dot} {code} {time} adds a coloured dot for the hours there. A location can override this in Manage Locations.",
+              "type": "textfield",
+              "required": false,
+              "default": "{code} {time}",
+              "placeholder": "{code} {time}"
+            },
+            {
+              "name": "menuBarSeparator",
+              "title": "Menu Bar Separator",
+              "description": "Text between locations in the menu bar.",
+              "type": "textfield",
+              "required": false,
+              "default": " • ",
+              "placeholder": "•"
+            },
+            {
+              "name": "menuBarIcon",
+              "title": "Menu Bar Icon",
+              "description": "Show the clock icon before the text. The icon always shows when no location is flagged.",
+              "type": "checkbox",
+              "required": false,
+              "default": true,
+              "label": "Show icon"
+            }
+          ]
+        },
+        {
+          "name": "manage-locations",
+          "title": "Manage Locations",
+          "description": "Add, remove, order and alias the cities and time zones that Convert Time shows.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "onlineLookup",
+              "title": "Online Lookup",
+              "description": "Search OpenStreetMap when a place is not in the built-in list.",
+              "type": "checkbox",
+              "required": false,
+              "default": true,
+              "label": "Search OpenStreetMap for unknown places"
+            }
+          ]
+        }
+      ],
+      "preferences": [
+        {
+          "name": "timeFormat",
+          "title": "Time Format",
+          "description": "How times are shown and copied. You can type either form: 15:00 or 3pm.",
+          "type": "dropdown",
+          "required": false,
+          "default": "24h",
+          "data": [
+            {
+              "title": "24-hour (19:00)",
+              "value": "24h"
+            },
+            {
+              "title": "12-hour (7:00 PM)",
+              "value": "12h"
+            }
+          ]
+        },
+        {
+          "name": "copyTemplate",
+          "title": "Copy Template",
+          "description": "Format of one location in copied text. Placeholders: {time} {label} {code} {abbr} {date} {day} {offset} {tz} {dot}. {dot} is 🟢 🟡 🔴 for business, shoulder and off hours. {abbr} is left out when it repeats {code}, and empty brackets are removed: UTC copies as '11:15 UTC', not '11:15 UTC (UTC)'.",
+          "type": "textfield",
+          "required": false,
+          "default": "{time} {code} ({abbr})",
+          "placeholder": "{time} {code} ({abbr})"
+        },
+        {
+          "name": "copySeparator",
+          "title": "Copy Separator",
+          "description": "Text between locations when copying all rows as one line.",
+          "type": "textfield",
+          "required": false,
+          "default": " / ",
+          "placeholder": "/"
+        },
+        {
+          "name": "sortOrder",
+          "title": "Sort Locations",
+          "description": "Order of rows in Convert Time and in the menu bar dropdown.",
+          "type": "dropdown",
+          "required": false,
+          "default": "offset",
+          "data": [
+            {
+              "title": "West to east (by UTC offset)",
+              "value": "offset"
+            },
+            {
+              "title": "East to west (by UTC offset)",
+              "value": "offsetDesc"
+            },
+            {
+              "title": "Manual (as arranged in Manage Locations)",
+              "value": "manual"
+            }
+          ]
+        },
+        {
+          "name": "businessHours",
+          "title": "Business Hours",
+          "description": "Hours shown green, as start-end in 24-hour time, e.g. 9-18. Each location can override this.",
+          "type": "textfield",
+          "required": false,
+          "default": "9-18",
+          "placeholder": "9-18"
+        },
+        {
+          "name": "shoulderHours",
+          "title": "Shoulder Hours",
+          "description": "Hours shown yellow around the business day, as start-end, e.g. 7-21. Other hours are red.",
+          "type": "textfield",
+          "required": false,
+          "default": "7-21",
+          "placeholder": "7-21"
+        },
+        {
+          "name": "colorBusiness",
+          "title": "Business Hours Colour",
+          "description": "Hex colour for the business-hours dot in Convert Time and the menu bar, e.g. #34C759. Empty uses Raycast's green. When set, the time text shows in the plain text colour.",
+          "type": "textfield",
+          "required": false,
+          "default": "",
+          "placeholder": "#RRGGBB"
+        },
+        {
+          "name": "colorShoulder",
+          "title": "Shoulder Hours Colour",
+          "description": "Hex colour for the shoulder-hours dot in Convert Time and the menu bar, e.g. #FFCC00. Empty uses Raycast's yellow. When set, the time text shows in the plain text colour.",
+          "type": "textfield",
+          "required": false,
+          "default": "",
+          "placeholder": "#RRGGBB"
+        },
+        {
+          "name": "colorOff",
+          "title": "Off Hours Colour",
+          "description": "Hex colour for the off-hours dot in Convert Time and the menu bar, e.g. #FF3B30. Empty uses Raycast's red. When set, the time text shows in the plain text colour.",
+          "type": "textfield",
+          "required": false,
+          "default": "",
+          "placeholder": "#RRGGBB"
+        },
+        {
+          "name": "stripColorBusiness",
+          "title": "Hour Strip: Business Colour",
+          "description": "Hex colour for business-hours cells in the hour strip. Empty uses the strip's own green.",
+          "type": "textfield",
+          "required": false,
+          "default": "",
+          "placeholder": "#RRGGBB"
+        },
+        {
+          "name": "stripColorShoulder",
+          "title": "Hour Strip: Shoulder Colour",
+          "description": "Hex colour for shoulder-hours cells in the hour strip. Empty uses the strip's own ochre.",
+          "type": "textfield",
+          "required": false,
+          "default": "",
+          "placeholder": "#RRGGBB"
+        },
+        {
+          "name": "stripColorOff",
+          "title": "Hour Strip: Off Colour",
+          "description": "Hex colour for off-hours cells in the hour strip. Empty uses a quiet grey, so the strip is calmer than the dots; set it to your off-hours colour to match.",
+          "type": "textfield",
+          "required": false,
+          "default": "",
+          "placeholder": "#RRGGBB"
+        },
+        {
+          "name": "locationsFile",
+          "title": "Locations File",
+          "description": "Optional. A JSON file that holds your location list, for example in iCloud Drive, so two Macs share it. Leave empty to store the list in Raycast on this Mac. Use a full path or one starting with ~.",
+          "type": "textfield",
+          "required": false,
+          "default": "",
+          "placeholder": "~/Library/Mobile Documents/com~apple~CloudDocs/Raycast/yatt.json"
+        }
+      ]
     },
     {
       "name": "yazio-tracker",
