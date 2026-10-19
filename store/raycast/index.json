@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-18T20:32:21.335Z",
+  "generatedAt": "2026-10-19T22:19:59.571Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "3b812d1e153a1862df29bc8ec34e170c728512ea"
+    "commit": "560eeea1c9839cccc5b93e60b6de46d04135b669"
   },
-  "count": 3443,
+  "count": 3444,
   "extensions": [
     {
       "name": "0x0",
@@ -37994,7 +37994,9 @@
       "description": "Search and browse Chiikawa characters offline",
       "icon": "icon.png",
       "author": "0xdhrv",
-      "contributors": [],
+      "contributors": [
+        "ray.dhruv"
+      ],
       "categories": [
         "Fun"
       ],
@@ -38036,7 +38038,17 @@
           "preferences": []
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "animateCharacters",
+          "title": "Animation",
+          "description": "Show custom character illustrations with blinking eyes and moving limbs or accessories. Turn off to use original portraits.",
+          "type": "checkbox",
+          "label": "Show animated characters",
+          "default": true,
+          "required": false
+        }
+      ]
     },
     {
       "name": "china-ip-address",
@@ -115406,14 +115418,17 @@
       "description": "Redact names, emails, cards, secrets, and faces in a screenshot before you share. On-device.",
       "icon": "extension-icon.png",
       "author": "0xdhrv",
-      "contributors": [],
+      "contributors": [
+        "ray.dhruv"
+      ],
       "categories": [
         "Productivity",
         "Security"
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/0xdhrv/hide-details",
       "source": {
@@ -115428,6 +115443,15 @@
           "title": "Redact Clipboard Image",
           "subtitle": "Hide Details",
           "description": "Find sensitive details in the clipboard image and copy a redacted version",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "redact-history",
+          "title": "Redact Image File from History",
+          "subtitle": "Hide Details",
+          "description": "Pick a recently copied image file from clipboard history, then review or copy a redacted version",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -148589,6 +148613,15 @@
           "preferences": []
         },
         {
+          "name": "add-dock-spacer",
+          "title": "Add Dock Spacer",
+          "subtitle": "macOS Tweaks",
+          "description": "Add an empty tile to the Dock to split your apps into groups",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "menu-bar",
           "title": "Tweaks Menu Bar",
           "subtitle": "macOS Tweaks",
@@ -176789,7 +176822,8 @@
       "author": "andreaselia",
       "contributors": [
         "pernielsentikaer",
-        "Hodglim"
+        "Hodglim",
+        "0xdhrv"
       ],
       "categories": [
         "Web",
@@ -176797,7 +176831,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/andreaselia/ohdear",
       "source": {
@@ -235036,10 +235071,12 @@
     {
       "name": "seventv-search",
       "title": "7TV Emotes Search",
-      "description": "Search, preview, copy, and paste 7TV emotes from Raycast.",
+      "description": "Search, preview, copy, and paste emotes from 7TV, BetterTTV, and FrankerFaceZ.",
       "icon": "icon.png",
       "author": "Paranjayy",
-      "contributors": [],
+      "contributors": [
+        "Kan-A-Pesh"
+      ],
       "categories": [
         "Media"
       ],
@@ -235060,7 +235097,7 @@
         {
           "name": "search",
           "title": "Search Emotes",
-          "description": "Find any 7TV emote",
+          "description": "Find emotes across 7TV, BetterTTV, and FrankerFaceZ",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -264427,6 +264464,78 @@
       },
       "commands": [
         {
+          "name": "share-profile",
+          "title": "Share Profile",
+          "description": "Choose a saved profile and export a .tetheredprofile file through Tethered",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "post-profile",
+          "title": "Post Profile",
+          "description": "Choose a saved profile and open Tethered’s submission editor for tetheredmac.com/profiles",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle-companion-sync",
+          "title": "Toggle Companion Sync",
+          "description": "Request a Companion Sync toggle; requires a supporting Tethered app version",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle-mcp-bridge",
+          "title": "Toggle MCP Bridge",
+          "description": "Enable or disable the Tethered MCP bridge; disabling ends the active task session",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "manage-events",
+          "title": "Next Event",
+          "description": "Show the next upcoming event and open the event manager",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "manage-events-view",
+          "title": "Manage Events",
+          "description": "View upcoming events, edit schedules, and enable or disable repeating events",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "quick-event",
+          "title": "Quick Event",
+          "description": "Type an event in plain language, preview it live, and press Enter to create it",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "create-scheduled-event",
+          "title": "Create Scheduled Event",
+          "description": "Schedule a one-time Tethered action or macOS power event",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "create-repeating-event",
+          "title": "Create Repeating Event",
+          "description": "Repeat a Tethered action or macOS power event on selected weekdays",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "get-tethered",
           "title": "Get Tethered",
           "description": "Open the Tethered website to download the Mac app",
@@ -290550,12 +290659,50 @@
       ],
       "preferences": [
         {
-          "name": "geminiApiKey",
+          "name": "provider",
+          "type": "dropdown",
+          "required": false,
+          "title": "Provider",
+          "description": "AI service used for translation and pronunciation. Auto-detect picks Gemini, Anthropic or OpenAI from the API key prefix; choose a provider explicitly for any other key.",
+          "default": "auto",
+          "data": [
+            {
+              "title": "Auto-Detect from API Key",
+              "value": "auto"
+            },
+            {
+              "title": "Google Gemini",
+              "value": "gemini"
+            },
+            {
+              "title": "Anthropic",
+              "value": "anthropic"
+            },
+            {
+              "title": "OpenAI",
+              "value": "openai"
+            },
+            {
+              "title": "OpenAI-Compatible Server",
+              "value": "openai-compatible"
+            }
+          ]
+        },
+        {
+          "name": "apiKey",
           "type": "password",
           "required": true,
-          "title": "Gemini API Key",
-          "description": "Get a free key at aistudio.google.com",
-          "placeholder": "AIza..."
+          "title": "API Key",
+          "description": "Key for your provider. Auto-detect recognizes Gemini (AIza…), Anthropic (sk-ant-…) and OpenAI (sk-…) keys. Local servers that need no key accept any value.",
+          "placeholder": "AIza…, sk-ant-… or sk-…"
+        },
+        {
+          "name": "apiBaseUrl",
+          "type": "textfield",
+          "required": false,
+          "title": "API Server URL",
+          "description": "Advanced. Leave empty to use the provider's official endpoint; required for an OpenAI-Compatible Server. Accepts a server root or a full API base, for example http://localhost:11434/v1 or https://openrouter.ai/api/v1. Your API key is sent to this host. Do not include credentials or a query string. Plain http is accepted only for local addresses (localhost, 127.0.0.1, [::1], 0.0.0.0).",
+          "placeholder": "Official endpoint"
         },
         {
           "name": "sourceLanguage",
@@ -290714,114 +290861,46 @@
           ]
         },
         {
-          "name": "readClipboardOnOpen",
-          "type": "checkbox",
-          "required": false,
-          "title": "Read Clipboard on Open",
-          "label": "Enable",
-          "description": "If enabled, prefill a suggestion only when clipboard content is a safe single word"
-        },
-        {
-          "name": "translationModelPreset",
-          "type": "dropdown",
-          "required": true,
-          "title": "Translation Model",
-          "description": "Gemini model used for translation. Use the custom model field only if you need an ID not listed here.",
-          "default": "gemini-3.5-flash",
-          "data": [
-            {
-              "title": "Gemini 3.5 Flash",
-              "value": "gemini-3.5-flash"
-            },
-            {
-              "title": "Gemini 3.1 Flash-Lite",
-              "value": "gemini-3.1-flash-lite"
-            },
-            {
-              "title": "Gemini 3.1 Pro Preview",
-              "value": "gemini-3.1-pro-preview"
-            },
-            {
-              "title": "Gemini 3 Flash Preview",
-              "value": "gemini-3-flash-preview"
-            },
-            {
-              "title": "Gemini 2.5 Flash",
-              "value": "gemini-2.5-flash"
-            },
-            {
-              "title": "Gemini 2.5 Flash-Lite",
-              "value": "gemini-2.5-flash-lite"
-            },
-            {
-              "title": "Gemini 2.5 Pro",
-              "value": "gemini-2.5-pro"
-            }
-          ]
-        },
-        {
           "name": "translationModel",
           "type": "textfield",
           "required": false,
-          "title": "Custom Translation Model ID",
-          "description": "Optional advanced override. Use an unprefixed ID, for example gemini-3.5-flash. Reasoning controls are applied only for recognized models.",
-          "placeholder": "gemini-3.5-flash"
-        },
-        {
-          "name": "reasoningLevel",
-          "type": "dropdown",
-          "required": true,
-          "title": "Reasoning Level",
-          "description": "Controls Gemini reasoning for translations. Minimum is fastest: it disables thinking where supported; Pro models use their lowest supported reasoning level.",
-          "default": "none",
-          "data": [
-            {
-              "title": "Minimum (fastest)",
-              "value": "none"
-            },
-            {
-              "title": "Low",
-              "value": "low"
-            },
-            {
-              "title": "Medium",
-              "value": "medium"
-            },
-            {
-              "title": "High",
-              "value": "high"
-            }
-          ]
-        },
-        {
-          "name": "ttsModelPreset",
-          "type": "dropdown",
-          "required": true,
-          "title": "Text-to-Speech Model",
-          "description": "Gemini model used for word pronunciation. Use the custom model field only if you need an ID not listed here.",
-          "default": "gemini-3.1-flash-tts-preview",
-          "data": [
-            {
-              "title": "Gemini 3.1 Flash TTS Preview",
-              "value": "gemini-3.1-flash-tts-preview"
-            },
-            {
-              "title": "Gemini 2.5 Flash Preview TTS",
-              "value": "gemini-2.5-flash-preview-tts"
-            },
-            {
-              "title": "Gemini 2.5 Pro Preview TTS",
-              "value": "gemini-2.5-pro-preview-tts"
-            }
-          ]
+          "title": "Translation Model",
+          "description": "Model ID used for translation. Leave empty for the provider default: gemini-3.5-flash-lite (Gemini), claude-haiku-5-5 (Anthropic), gpt-6-luna (OpenAI). Required for an OpenAI-Compatible Server.",
+          "placeholder": "Provider default"
         },
         {
           "name": "ttsModel",
           "type": "textfield",
           "required": false,
-          "title": "Custom Text-to-Speech Model ID",
-          "description": "Optional advanced override. Use an unprefixed ID, for example gemini-3.1-flash-tts-preview.",
-          "placeholder": "gemini-3.1-flash-tts-preview"
+          "title": "Text-to-Speech Model",
+          "description": "Model ID used for word pronunciation. Leave empty for the provider default: gemini-3.1-flash-tts-preview (Gemini), gpt-4o-mini-tts (OpenAI). Anthropic and OpenAI-Compatible Servers use the macOS system voice. OpenAI tts-1 and tts-1-hd also use the system voice to preserve the selected language.",
+          "placeholder": "Provider default"
+        },
+        {
+          "name": "pronunciation",
+          "type": "dropdown",
+          "required": false,
+          "title": "Pronunciation",
+          "description": "Provider voice uses Gemini or OpenAI speech and falls back to the macOS system voice when it is unavailable. Other providers always use the macOS system voice.",
+          "default": "auto",
+          "data": [
+            {
+              "title": "Provider Voice When Available",
+              "value": "auto"
+            },
+            {
+              "title": "macOS System Voice",
+              "value": "system"
+            }
+          ]
+        },
+        {
+          "name": "readClipboardOnOpen",
+          "type": "checkbox",
+          "required": false,
+          "title": "Read Clipboard on Open",
+          "label": "Enable",
+          "description": "If enabled, prefill a suggestion only when clipboard content is a safe word or short phrase"
         }
       ]
     },
@@ -296041,6 +296120,57 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "window-kickflip",
+      "title": "Window Kickflip",
+      "description": "Make the focused window take flight with a full 2D spin and air thrusters.",
+      "icon": "extension-icon.png",
+      "author": "0xdhrv",
+      "contributors": [],
+      "categories": [
+        "Fun"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/0xdhrv/window-kickflip",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/window-kickflip",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "window-kickflip",
+          "title": "Kickflip",
+          "description": "Launch the focused window into a 360° spin with air thrusters. Requires Screen Recording access.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "guide",
+          "title": "Kickflip Guide",
+          "description": "Learn how Window Kickflip works and launch the animation.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "playSound",
+          "type": "checkbox",
+          "title": "Sound Effects",
+          "label": "Play air thrusters and landing sound",
+          "description": "Play quiet sound effects synchronized with the kickflip.",
+          "default": true,
+          "required": false
+        }
+      ]
     },
     {
       "name": "window-layouts",
