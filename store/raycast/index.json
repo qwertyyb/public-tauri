@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-19T22:19:59.571Z",
+  "generatedAt": "2026-10-20T21:38:08.891Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "560eeea1c9839cccc5b93e60b6de46d04135b669"
+    "commit": "d0885a5383fc1ae78217092f311518dc2cdcca48"
   },
   "count": 3444,
   "extensions": [
@@ -161545,6 +161545,14 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "list-budgets",
+          "title": "List Budgets",
+          "description": "View monthly category budget spending and manage saved limits",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": [
@@ -227087,7 +227095,8 @@
         "xmok",
         "alexi.build",
         "degouville",
-        "massimiliano_pasquini"
+        "massimiliano_pasquini",
+        "ridemountainpig"
       ],
       "categories": [],
       "license": "MIT",
@@ -235075,7 +235084,8 @@
       "icon": "icon.png",
       "author": "Paranjayy",
       "contributors": [
-        "Kan-A-Pesh"
+        "Kan-A-Pesh",
+        "nakama"
       ],
       "categories": [
         "Media"
@@ -235103,7 +235113,34 @@
           "preferences": []
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "size",
+          "title": "Emote Size",
+          "description": "Size of pasted and copied emotes. Larger sizes are sharper but heavier. When a size is missing, the closest smaller one is used.",
+          "type": "dropdown",
+          "required": false,
+          "default": "2",
+          "data": [
+            {
+              "title": "1x",
+              "value": "1"
+            },
+            {
+              "title": "2x",
+              "value": "2"
+            },
+            {
+              "title": "3x",
+              "value": "3"
+            },
+            {
+              "title": "4x",
+              "value": "4"
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "sf-symbols-search",
