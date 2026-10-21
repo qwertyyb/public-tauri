@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-20T21:38:08.891Z",
+  "generatedAt": "2026-10-21T21:46:52.131Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "d0885a5383fc1ae78217092f311518dc2cdcca48"
+    "commit": "353829977dbb57ff45b0351b24f08acae5e64bd9"
   },
-  "count": 3444,
+  "count": 3448,
   "extensions": [
     {
       "name": "0x0",
@@ -66840,7 +66840,7 @@
         {
           "name": "dns-lookup",
           "title": "DNS Lookup",
-          "description": "Check DNS propagation instantly using DoH (Google, Cloudflare, Alibaba, DNS.SB) or global propagation with worldwide DNS servers.",
+          "description": "Check DNS propagation instantly with Google, Cloudflare, Alibaba and DNS.SB (DoH or classic DNS) or global propagation with worldwide DNS servers.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -66848,11 +66848,33 @@
       ],
       "preferences": [
         {
+          "name": "fastCheckTransport",
+          "type": "dropdown",
+          "required": false,
+          "title": "Fast Check Transport",
+          "description": "How Fast Check reaches the public resolvers. Auto uses DNS over HTTPS and falls back to classic DNS (UDP port 53) when HTTPS lookups are blocked.",
+          "default": "auto",
+          "data": [
+            {
+              "title": "Auto (DoH, Fallback to UDP 53)",
+              "value": "auto"
+            },
+            {
+              "title": "DNS over HTTPS Only",
+              "value": "doh"
+            },
+            {
+              "title": "Classic DNS Only (UDP 53)",
+              "value": "udp"
+            }
+          ]
+        },
+        {
           "name": "globalpingToken",
           "type": "password",
           "required": false,
           "title": "Globalping API Key",
-          "description": "Optional: Get a free API key from https://www.globalping.io/ to use Global Check feature with higher limits.",
+          "description": "Optional: get a free API key from https://www.globalping.io/ to use the Global Check feature with higher limits.",
           "placeholder": "gp_abc123..."
         }
       ]
@@ -116145,6 +116167,57 @@
       ]
     },
     {
+      "name": "hister",
+      "title": "Hister",
+      "description": "Search the full text of every page you've visited, indexed by your own Hister server.",
+      "icon": "icon.png",
+      "author": "KevinBatdorf",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/KevinBatdorf/hister",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/hister",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search",
+          "title": "Search Hister",
+          "subtitle": "Hister",
+          "description": "Full-text search over the pages and files your Hister server has indexed.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "serverUrl",
+          "title": "Server URL",
+          "description": "Where your Hister server runs.",
+          "type": "textfield",
+          "default": "http://127.0.0.1:4433",
+          "required": true
+        },
+        {
+          "name": "accessToken",
+          "title": "Access Token",
+          "description": "The access_token from your Hister config, or your profile's token on a multi-user server. Leave empty if your server has none.",
+          "type": "password",
+          "required": false
+        }
+      ]
+    },
+    {
       "name": "hl7-preview",
       "title": "HL7 Preview",
       "description": "Read HL7 v2 messages as one document: patient, orders with material, flagged results and notes, and every segment with named fields.",
@@ -122090,7 +122163,8 @@
       "icon": "icon.png",
       "author": "i_idz",
       "contributors": [
-        "ridemountainpig"
+        "ridemountainpig",
+        "gyim"
       ],
       "categories": [
         "Productivity"
@@ -122137,6 +122211,15 @@
             }
           ],
           "default": "system",
+          "required": false
+        },
+        {
+          "name": "showLocalTimezone",
+          "type": "checkbox",
+          "title": "Local Time Zone",
+          "label": "Show my local time zone",
+          "description": "When a pinned base city is in a different time zone from you, also show a Local row for where you are now.",
+          "default": true,
           "required": false
         },
         {
@@ -131520,7 +131603,9 @@
       "description": "Parse JSON Resume",
       "icon": "extension-icon.png",
       "author": "0xdhrv",
-      "contributors": [],
+      "contributors": [
+        "alexi.build"
+      ],
       "categories": [
         "Productivity",
         "Communication"
@@ -131548,8 +131633,16 @@
         },
         {
           "name": "search-resumes",
-          "title": "View Saved Resumes",
+          "title": "List Saved Resumes",
           "description": "View and manage saved resumes",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "create-resume",
+          "title": "Create Resume",
+          "description": "Create and save a JSON Resume inside the extension",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -145523,6 +145616,15 @@
         "ref": "main"
       },
       "commands": [
+        {
+          "name": "today-plan",
+          "title": "Today's Plan",
+          "subtitle": "Plan tasks and track work",
+          "description": "Plan daily goals and subtasks in a single text field and track time against tasks",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
         {
           "name": "start-work",
           "title": "Start Work",
@@ -188483,7 +188585,17 @@
           "description": "Search for passwords in Passbolt",
           "mode": "view",
           "keywords": [],
-          "preferences": []
+          "preferences": [
+            {
+              "name": "matchCurrentWebsite",
+              "type": "checkbox",
+              "title": "Website Matching",
+              "label": "Show passwords for the current website first",
+              "description": "Uses the Raycast Browser Extension when available, or a URL supplied in launch context.",
+              "required": false,
+              "default": true
+            }
+          ]
         },
         {
           "name": "create",
@@ -232549,7 +232661,8 @@
         "Xeyn",
         "ridemountainpig",
         "janosorcsik",
-        "Spike_B"
+        "Spike_B",
+        "kidonng"
       ],
       "categories": [
         "Web"
@@ -234801,6 +234914,36 @@
           "description": "Search every tmux window across your sessions and jump straight to it.",
           "mode": "view",
           "keywords": [],
+          "icon": "command-icon.png",
+          "preferences": [
+            {
+              "name": "openWithApp",
+              "type": "appPicker",
+              "required": true,
+              "title": "Open With (Required)",
+              "description": "Open with",
+              "default": "Terminal"
+            },
+            {
+              "name": "environmentPath",
+              "type": "textfield",
+              "required": true,
+              "title": "Environment Path",
+              "description": "Colon-separated PATH (Unix-style), e.g /usr/local/bin:/usr/bin",
+              "default": "/usr/local/bin:/usr/bin:/opt/homebrew/bin:/run/current-system/sw/bin"
+            }
+          ]
+        },
+        {
+          "name": "cmd-search",
+          "title": "Search Sessions and Windows",
+          "subtitle": "Sesh",
+          "description": "Search your sessions and every tmux window in one list.",
+          "mode": "view",
+          "keywords": [
+            "everything",
+            "all"
+          ],
           "icon": "command-icon.png",
           "preferences": [
             {
@@ -247791,6 +247934,60 @@
       "preferences": []
     },
     {
+      "name": "spinal",
+      "title": "Spinal",
+      "description": "Create and browse resources in your Spinal workspace from Raycast",
+      "icon": "extension-icon.png",
+      "author": "spinalcms",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/spinalcms/spinal",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/spinal",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "create-resource",
+          "title": "Create Resource",
+          "subtitle": "Spinal",
+          "description": "Create a draft or scheduled resource in a Spinal collection",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "browse-resources",
+          "title": "Browse Resources",
+          "subtitle": "Spinal",
+          "description": "Browse resources in a Spinal collection and filter by status",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "type": "password",
+          "title": "API Key",
+          "description": "Create one in Spinal under Settings > API",
+          "required": true
+        }
+      ]
+    },
+    {
       "name": "spinupwp",
       "title": "SpinupWP",
       "description": "Quickly manage your SpinupWP servers and websites.",
@@ -254766,10 +254963,12 @@
     {
       "name": "substack",
       "title": "Substack",
-      "description": "Search Substack posts and profiles from Raycast",
+      "description": "Search Substack posts and profiles and create newsletter drafts from Raycast",
       "icon": "command-icon.png",
       "author": "j3lte",
-      "contributors": [],
+      "contributors": [
+        "alexi.build"
+      ],
       "categories": [
         "Web"
       ],
@@ -254800,6 +254999,56 @@
           "title": "Search Profiles",
           "subtitle": "Substack",
           "description": "Search Substack profiles",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "create-substack-draft",
+          "title": "Create Draft",
+          "subtitle": "Substack",
+          "description": "Create a newsletter draft from Markdown and review it in Substack",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "publication",
+              "title": "Publication",
+              "description": "Your publication's Substack subdomain or URL, for example yourname.substack.com. Use the Substack domain even if you have a custom domain.",
+              "type": "textfield",
+              "required": false,
+              "placeholder": "yourname.substack.com"
+            },
+            {
+              "name": "sessionCookie",
+              "title": "Substack Session Cookie",
+              "description": "The value of your substack.sid browser cookie. Paste only its value, without the cookie name.",
+              "type": "password",
+              "required": false
+            },
+            {
+              "name": "connectCookie",
+              "title": "Connect Session Cookie",
+              "description": "Optional connect.sid cookie value if your account requires it. Paste only its value.",
+              "type": "password",
+              "required": false
+            }
+          ]
+        },
+        {
+          "name": "manage-accounts",
+          "title": "Manage Accounts",
+          "subtitle": "Substack",
+          "description": "Add, edit, remove and choose default Substack connections",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "list-my-drafts",
+          "title": "List My Drafts",
+          "subtitle": "Substack",
+          "description": "List remote unpublished drafts for a selected Substack account",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -257910,6 +258159,59 @@
           "title": "Default Photos Directory",
           "description": "Default folder to scan when starting a review session",
           "required": false
+        }
+      ]
+    },
+    {
+      "name": "swiss-dummy-data",
+      "title": "Swiss Dummy Data",
+      "description": "Generates various random data commonly found in Switzerland, such as Social Security Number (SSN, aka «AHV»).",
+      "icon": "extension-icon.png",
+      "author": "cmdr",
+      "contributors": [],
+      "categories": [
+        "Data"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows",
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/cmdr/swiss-dummy-data",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/swiss-dummy-data",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "generate-ssn",
+          "title": "Generate SSN",
+          "subtitle": "Generates a fake Social Security Number",
+          "description": "Generates a fake Social Security Number with a valid check digit.\n\nAlso known as AHV Nummer.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "history",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "title": "History",
+          "label": "Keep previously generated values",
+          "description": "Show previously generated values below the new one."
+        },
+        {
+          "name": "historySize",
+          "type": "textfield",
+          "required": false,
+          "default": "20",
+          "title": "History Size",
+          "description": "Number of previously generated values to keep per command."
         }
       ]
     },
@@ -261902,7 +262204,7 @@
       "platforms": [
         "macOS"
       ],
-      "version": "1.0.81",
+      "version": "1.0.88",
       "storeUrl": "https://www.raycast.com/praveenjuge/teak-raycast",
       "source": {
         "type": "github-monorepo",
@@ -261915,7 +262217,7 @@
           "name": "quick-save",
           "title": "Quick Save",
           "subtitle": "Capture text or links to Teak",
-          "description": "Save text or URLs to Teak without leaving your workflow",
+          "description": "Save text or URLs to Teak, with optional tags and a note, without leaving your workflow",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -261924,7 +262226,7 @@
           "name": "save-text",
           "title": "Save to Teak",
           "subtitle": "Capture text or links to Teak",
-          "description": "Save any text or URL to Teak. Works as a Raycast root-search fallback command.",
+          "description": "Save any text or URL to Teak, with optional tags and a note. Works as a Raycast root-search fallback command.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -261933,7 +262235,7 @@
           "name": "save-clipboard-url",
           "title": "Save Clipboard",
           "subtitle": "Capture copied text or links to Teak",
-          "description": "Save the current clipboard contents to Teak in one step",
+          "description": "Save the current clipboard to Teak in one step, including copied files and images",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -261957,10 +262259,19 @@
           "preferences": []
         },
         {
+          "name": "save-finder-selection",
+          "title": "Save Finder Selection",
+          "subtitle": "Upload selected files to Teak",
+          "description": "Save the files selected in Finder to Teak, like dropping them on the web app",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "search-cards",
           "title": "Search Cards",
           "subtitle": "Find anything in your Teak vault",
-          "description": "Find any Teak card by content, tags, or metadata",
+          "description": "Find any Teak card by content, tags, or metadata, then archive it, mark it done, add it to a folder, or find similar cards",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -261979,6 +262290,33 @@
           "title": "Browse Tags",
           "subtitle": "List your tags with card counts",
           "description": "Browse every tag in your Teak vault with card counts and drill into any tag",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "folders",
+          "title": "Browse Folders",
+          "subtitle": "Open your folders and smart folders",
+          "description": "Browse your Teak folders, including smart folders that save a search, and open any of them",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "random-cards",
+          "title": "Random Cards",
+          "subtitle": "Revisit a shuffled set of cards",
+          "description": "See 20 random cards from your vault and archive the ones you're done with, or keep them",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "find-similar",
+          "title": "Find Similar Cards",
+          "subtitle": "Cards close in meaning to one card",
+          "description": "Find the cards closest in meaning to a card, from its ID or a Teak link",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -263619,6 +263957,49 @@
           "name": "new-terminal-tab",
           "title": "New Terminal Tab",
           "description": "Launch a new tab in Terminal",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "terminal-commands",
+      "title": "Terminal Commands",
+      "description": "Save your shell commands and run them in Terminal straight from Raycast.",
+      "icon": "extension-icon.png",
+      "author": "alvarez",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/alvarez/terminal-commands",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/terminal-commands",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "commands",
+          "title": "My Commands",
+          "subtitle": "Terminal Commands",
+          "description": "List your saved commands, run them in Terminal, or create new ones.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "run-command",
+          "title": "Run Saved Command",
+          "subtitle": "Terminal Commands",
+          "description": "Runs a saved command in Terminal. Target of the quicklinks created from My Commands; opens My Commands when launched directly.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -276188,7 +276569,7 @@
     {
       "name": "tracktimer",
       "title": "TrackTimer",
-      "description": "Start and stop TrackTimer timers and restart recent work.",
+      "description": "Track time by client and project, start timers, and pick up recent work from Raycast.",
       "icon": "extension-icon.png",
       "author": "pfista",
       "contributors": [],
