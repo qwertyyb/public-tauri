@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-21T21:46:52.131Z",
+  "generatedAt": "2026-10-22T21:32:29.654Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "353829977dbb57ff45b0351b24f08acae5e64bd9"
+    "commit": "84f9ac51336a8c69f70974a75bc067c0feae3658"
   },
-  "count": 3448,
+  "count": 3457,
   "extensions": [
     {
       "name": "0x0",
@@ -9919,6 +9919,113 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "anycap",
+      "title": "Anycap",
+      "description": "Capture links and notes, search your library, and browse folders and collections in Anycap.",
+      "icon": "icon.png",
+      "author": "ipang",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Applications"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/ipang/anycap",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/anycap",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "capture-form",
+          "title": "Capture",
+          "subtitle": "Anycap",
+          "description": "Save a link or note with a title, folder and tags.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "save-tab",
+          "title": "Save Current Tab",
+          "subtitle": "Anycap",
+          "description": "Save the page in front of your browser to Anycap.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search",
+          "title": "Search Anycap",
+          "description": "Search your captures, or see the newest when nothing is typed.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "capture",
+          "title": "Quick Capture",
+          "subtitle": "Anycap",
+          "description": "Save a link or a note to Anycap.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "save-clipboard",
+          "title": "Save Clipboard",
+          "subtitle": "Anycap",
+          "description": "Save the link or text on the clipboard to Anycap.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "folders",
+          "title": "Browse Folders",
+          "subtitle": "Anycap",
+          "description": "Your Anycap folders and what is filed in each.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "collections",
+          "title": "Browse Collections",
+          "subtitle": "Anycap",
+          "description": "Your Anycap collections, and their briefs.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-latest",
+          "title": "Open Latest Capture",
+          "subtitle": "Anycap",
+          "description": "Open the page or note you saved last.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "appPath",
+          "type": "textfield",
+          "required": false,
+          "title": "Anycap.app Path",
+          "default": "/Applications/Anycap.app",
+          "description": "Where Anycap.app lives. The commands talk to the MCP binary inside it; no server, no account.",
+          "placeholder": "/Applications/Anycap.app"
+        }
+      ]
     },
     {
       "name": "anycoffee",
@@ -62556,6 +62663,60 @@
       ]
     },
     {
+      "name": "dev-null",
+      "title": "/dev/null",
+      "description": "Participate in the social network for devs.",
+      "icon": "extension-icon.png",
+      "author": "chrismessina",
+      "contributors": [],
+      "categories": [
+        "Fun",
+        "Communication"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/chrismessina/dev-null",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/dev-null",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "create-commit",
+          "title": "Create Commit",
+          "subtitle": "/dev/null",
+          "description": "Sign a commit with your SSH key and post it to /dev/null.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "verboseLogging",
+          "title": "Debug Logging",
+          "label": "Enable extra diagnostics in the console",
+          "description": "Show detailed logs in the console for debugging.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "strictRedaction",
+          "type": "checkbox",
+          "required": false,
+          "title": "Strict Redaction",
+          "label": "Also hide URL query strings and fragments in logs",
+          "description": "Turn on before reproducing an issue, then share only the new log lines.",
+          "default": false
+        }
+      ]
+    },
+    {
       "name": "dev-servers",
       "title": "Dev Servers",
       "description": "Project-grouped dashboard for every dev server running on your Mac. Start, restart, and kill them without leaving Raycast, with the framework (Next, Svelte, Astro, Vite, Shopify) and package manager (npm, pnpm, yarn, bun) detected for you. Live count and quick actions in your menu bar.",
@@ -89470,6 +89631,59 @@
       ]
     },
     {
+      "name": "fontshare",
+      "title": "Fontshare",
+      "description": "Search, preview and download the free fonts and font pairings of Fontshare",
+      "icon": "extension-icon.png",
+      "author": "Berenger",
+      "contributors": [],
+      "categories": [
+        "Design Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/Berenger/fontshare",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/fontshare",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-fonts",
+          "title": "Search Fonts",
+          "subtitle": "Fontshare",
+          "description": "Search the Fontshare catalogue by name, designer, category or tag",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-pairings",
+          "title": "Search Font Pairings",
+          "subtitle": "Fontshare",
+          "description": "Browse the font pairings curated by Fontshare",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "preview-text",
+          "title": "Preview Text",
+          "subtitle": "Fontshare",
+          "description": "Preview your own text in every Fontshare font",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "foodle-recipes",
       "title": "Foodle Recipes",
       "description": "Search for recipes by name or ingredient",
@@ -101844,6 +102058,49 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "godot-projects",
+      "title": "Godot Projects",
+      "description": "Search your Godot projects and open them in the editor, run them, or show them in Finder.",
+      "icon": "extension-icon.png",
+      "author": "shanto462",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Applications"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/shanto462/godot-projects",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/godot-projects",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-projects",
+          "title": "Search Projects",
+          "subtitle": "Godot",
+          "description": "Search the projects in the Godot Project Manager and open them in the editor, run them, or show them in Finder.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "godotApp",
+          "title": "Godot Application",
+          "description": "The Godot app that opens and runs projects. Leave it empty to pick one automatically: the installed Godot that matches the project's version (or the newest one), and the .NET build for C# projects.",
+          "type": "appPicker",
+          "required": false
+        }
+      ]
     },
     {
       "name": "gokapi",
@@ -115539,7 +115796,17 @@
           ]
         },
         {
+          "name": "blurFaces",
+          "title": "Face Redaction",
+          "label": "Blur Faces",
+          "description": "Use smooth blur for detected faces while keeping the selected Redaction Style for text. Requires Faces in What to Hide. Blur can retain recognizable details.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        },
+        {
           "name": "categories",
+          "placeholder": "email,phone,card,secret,ip,name,face",
           "title": "Legacy Categories",
           "description": "Previous category selection, used until you save Configure What to Hide in Redact Clipboard Image. The checkbox form replaces this field and can restore it.",
           "type": "textfield",
@@ -115548,6 +115815,7 @@
         },
         {
           "name": "extraWords",
+          "placeholder": "Jane Doe, Project Atlas",
           "title": "Always Hide These Words",
           "description": "Comma-separated names or strings to redact. Keep the name category enabled to use this list.",
           "type": "textfield",
@@ -115556,6 +115824,7 @@
         },
         {
           "name": "customRegex",
+          "placeholder": "(?i)invoice-[0-9]+",
           "title": "Custom Regex",
           "description": "Optional pattern applied to each OCR line. Combine patterns with | and use (?i) for case-insensitive matching. Enter the pattern without / delimiters.",
           "type": "textfield",
@@ -115564,6 +115833,7 @@
         },
         {
           "name": "padding",
+          "placeholder": "4",
           "title": "Padding",
           "description": "Extra pixels around each detection. Enter a number from 0 to 1000.",
           "type": "textfield",
@@ -116213,6 +116483,15 @@
           "title": "Access Token",
           "description": "The access_token from your Hister config, or your profile's token on a multi-user server. Leave empty if your server has none.",
           "type": "password",
+          "required": false
+        },
+        {
+          "name": "includeHisterSearches",
+          "title": "Recent Searches",
+          "label": "Include searches made outside Raycast",
+          "description": "Also list searches you opened a result from in Hister's web page or your browser.",
+          "type": "checkbox",
+          "default": false,
           "required": false
         }
       ]
@@ -123550,6 +123829,130 @@
       ]
     },
     {
+      "name": "instabox-manager",
+      "title": "InstaBox Manager",
+      "description": "Create, control and connect to your InstaBox cloud machines, run commands on them and manage their snapshots.",
+      "icon": "extension-icon.png",
+      "author": "ridemountainpig",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/ridemountainpig/instabox-manager",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/instabox-manager",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "manage-machines",
+          "title": "Manage Machines",
+          "subtitle": "InstaBox",
+          "description": "List your InstaBox machines, control their lifecycle, connect via SSH, open the desktop, and more.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "create-machine",
+          "title": "Create Machine",
+          "subtitle": "InstaBox",
+          "description": "Create a new InstaBox machine from a template or one of your snapshots.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "run-command",
+          "title": "Run Command",
+          "subtitle": "InstaBox",
+          "description": "Run a shell command on an InstaBox machine and see its output.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "manage-snapshots",
+          "title": "Manage Snapshots",
+          "subtitle": "InstaBox",
+          "description": "List, delete, and create machines from your InstaBox snapshots.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "title": "API Key",
+          "description": "An InstaBox API key (ibk_...). Create one on the API Keys page of the InstaBox dashboard.",
+          "type": "password",
+          "required": true,
+          "placeholder": "ibk_..."
+        },
+        {
+          "name": "terminalApp",
+          "title": "Terminal App",
+          "description": "The terminal used for SSH connections on macOS.",
+          "type": "dropdown",
+          "required": false,
+          "default": "terminal",
+          "data": [
+            {
+              "title": "Terminal",
+              "value": "terminal"
+            },
+            {
+              "title": "iTerm",
+              "value": "iterm"
+            }
+          ]
+        },
+        {
+          "name": "sshTokenTtl",
+          "title": "SSH Token Lifetime",
+          "description": "How long a new SSH login token stays valid.",
+          "type": "dropdown",
+          "required": false,
+          "default": "28800",
+          "data": [
+            {
+              "title": "1 Hour",
+              "value": "3600"
+            },
+            {
+              "title": "8 Hours",
+              "value": "28800"
+            },
+            {
+              "title": "24 Hours",
+              "value": "86400"
+            },
+            {
+              "title": "7 Days",
+              "value": "604800"
+            }
+          ]
+        },
+        {
+          "name": "apiUrl",
+          "title": "API URL",
+          "description": "Only change this for a self-hosted InstaBox server.",
+          "type": "textfield",
+          "required": false,
+          "default": "https://api.instabox.sh",
+          "placeholder": "https://api.instabox.sh"
+        }
+      ]
+    },
+    {
       "name": "instagram-media-downloader",
       "title": "Instagram Media Downloader",
       "description": "Download media from Instagram with ease",
@@ -125647,7 +126050,8 @@
       "icon": "extension-icon.png",
       "author": "koinzhang",
       "contributors": [
-        "foof"
+        "foof",
+        "afshany"
       ],
       "categories": [
         "Developer Tools",
@@ -125673,6 +126077,15 @@
           "mode": "view",
           "keywords": [],
           "icon": "query-ip-geolocation.png",
+          "preferences": []
+        },
+        {
+          "name": "compare-ip-providers",
+          "title": "Compare IP Providers",
+          "subtitle": "IP Geolocation",
+          "description": "Look up an IP address at five geolocation providers and see where they agree or differ.",
+          "mode": "view",
+          "keywords": [],
           "preferences": []
         },
         {
@@ -149227,7 +149640,8 @@
         "5z99tsb75z",
         "xilopaint",
         "chrahe",
-        "clins1994"
+        "clins1994",
+        "bitforger"
       ],
       "categories": [
         "Applications",
@@ -149256,7 +149670,7 @@
         },
         {
           "name": "paste-latest-otp-code",
-          "title": "Paste Latest OTP Code",
+          "title": "Paste Latest Otp Code",
           "description": "Paste the latest OTP code from your emails.",
           "mode": "no-view",
           "keywords": [
@@ -179081,6 +179495,40 @@
       ]
     },
     {
+      "name": "open-app-with-timezone",
+      "title": "App Time Zone Launcher",
+      "description": "Relaunch a macOS app with its own time zone, without changing the system time zone.",
+      "icon": "extension-icon.png",
+      "author": "aaron_ye",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/aaron_ye/open-app-with-timezone",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/open-app-with-timezone",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "open-app-with-timezone",
+          "title": "Open App with Time Zone",
+          "description": "Search an app and press Enter to (re)launch it with its remembered time zone (system time zone by default).",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "open-camera-menu-bar",
       "title": "Open Camera Menu Bar",
       "description": "Open the camera command from the menu bar",
@@ -183875,6 +184323,24 @@
             {
               "title": "Counts Only (2 Waiting · 1 Working)",
               "value": "counts"
+            }
+          ]
+        },
+        {
+          "name": "groupBy",
+          "title": "Group List By",
+          "description": "How List All Agents groups its rows. Agents waiting for input and agents that finished unseen always lead the list; below them it goes by project, or by state: working, finished, other terminals.",
+          "type": "dropdown",
+          "required": false,
+          "default": "project",
+          "data": [
+            {
+              "title": "Project",
+              "value": "project"
+            },
+            {
+              "title": "Status",
+              "value": "status"
             }
           ]
         },
@@ -225595,7 +226061,7 @@
         {
           "name": "chartsV3",
           "label": "Use Charts v3",
-          "description": "Use Charts v3 for dashboard and menu bar revenue and customer metrics. Turn off to match the legacy overview.",
+          "description": "Use Charts v3 for all dashboard and menu bar metrics. Turn off to match the legacy overview.",
           "type": "checkbox",
           "required": false,
           "default": true
@@ -226568,6 +227034,145 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "roblox-developer-tools",
+      "title": "Roblox Developer Tools",
+      "description": "Launch Roblox games, open Studio, publish places, restart servers, view player counts, and open game pages and Creator Dashboard",
+      "icon": "extension-icon.png",
+      "author": "zw1ce",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/zw1ce/roblox-developer-tools",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/roblox-developer-tools",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "player-count",
+          "title": "Player Count",
+          "subtitle": "Roblox",
+          "description": "Display your universe's player count in the menu bar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "hideZeroPlayers",
+              "type": "checkbox",
+              "title": "",
+              "label": "Hide when there are zero players",
+              "description": "Keep refreshing while hidden and show the item when players join",
+              "required": false,
+              "default": false
+            }
+          ]
+        },
+        {
+          "name": "launch",
+          "title": "Launch Game",
+          "subtitle": "Roblox",
+          "description": "Play your place",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "studio",
+          "title": "Open in Studio",
+          "subtitle": "Roblox",
+          "description": "Edit your place in Studio",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "publish",
+          "title": "Publish Place",
+          "subtitle": "Roblox",
+          "description": "Publish the current place in Studio",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "restart",
+          "title": "Restart Servers",
+          "subtitle": "Roblox",
+          "description": "Restart servers in your universe",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "closeAllVersions",
+              "type": "checkbox",
+              "title": "",
+              "label": "Restart all versions",
+              "description": "Turn off to restart outdated servers only",
+              "required": false,
+              "default": true
+            },
+            {
+              "name": "confirmRestart",
+              "type": "checkbox",
+              "title": "",
+              "label": "Ask before restarting",
+              "description": "Confirm each restart",
+              "required": false,
+              "default": true
+            }
+          ]
+        },
+        {
+          "name": "game-page",
+          "title": "Open Game Page",
+          "subtitle": "Roblox",
+          "description": "Open your universe's public Roblox game page",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "dashboard",
+          "title": "Open in Creator Dashboard",
+          "subtitle": "Roblox",
+          "description": "Open your universe's Overview page in Creator Dashboard",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "universeId",
+          "type": "textfield",
+          "title": "Universe ID",
+          "description": "Required for Player Count, Studio, Game Page, Creator Dashboard, and Restart",
+          "required": false
+        },
+        {
+          "name": "placeId",
+          "type": "textfield",
+          "title": "Place ID",
+          "description": "Required for Launch and Studio",
+          "required": false
+        },
+        {
+          "name": "apiKey",
+          "type": "password",
+          "title": "API Key",
+          "description": "Required for Restart, Roblox Open Cloud key with universe:write access",
+          "required": false
+        }
+      ]
     },
     {
       "name": "roblox-games",
@@ -230286,6 +230891,40 @@
               "type": "textfield"
             }
           ]
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "screen-draw",
+      "title": "Screen Draw",
+      "description": "Draw, highlight and point at things directly on your screen",
+      "icon": "icon.png",
+      "author": "eric-ostholm",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/eric-ostholm/screen-draw",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/screen-draw",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "draw-on-screen",
+          "title": "Draw on Screen",
+          "subtitle": "Screen Draw",
+          "description": "Toggle a transparent overlay you can draw on. Run again (or press Esc) to close it.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": []
@@ -235251,6 +235890,22 @@
           "name": "search",
           "title": "Search Emotes",
           "description": "Find emotes across 7TV, BetterTTV, and FrankerFaceZ",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "browse-channel-emotes",
+          "title": "Browse Channel Emotes",
+          "description": "Find a 7TV user and browse their active channel emotes",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "browse-creator-emotes",
+          "title": "Browse Creator Emotes",
+          "description": "Find a 7TV creator and browse their uploaded emotes",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -241534,6 +242189,113 @@
           "required": true
         }
       ]
+    },
+    {
+      "name": "sizewise",
+      "title": "Sizewise",
+      "description": "Scan a folder or disk in Sizewise to see what's taking up space.",
+      "icon": "icon.png",
+      "author": "ethan-wickstrom",
+      "contributors": [],
+      "categories": [
+        "System",
+        "Applications"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/ethan-wickstrom/sizewise",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/sizewise",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "scan-folder",
+          "title": "Scan Folder",
+          "subtitle": "Sizewise",
+          "description": "Choose a disk, a common folder, or any folder by its path, and scan it in Sizewise.",
+          "mode": "view",
+          "keywords": [
+            "disk",
+            "volume",
+            "storage",
+            "space"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "scan-finder-selection",
+          "title": "Scan Finder Selection",
+          "subtitle": "Sizewise",
+          "description": "Scan the folder selected in Finder, or the front Finder window's folder when nothing is selected.",
+          "mode": "no-view",
+          "keywords": [
+            "finder",
+            "folder",
+            "storage",
+            "space"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "finder-folder-size",
+          "title": "Get Folder Size",
+          "subtitle": "Sizewise",
+          "description": "Show how much space the folder selected in Finder takes up, without opening Sizewise.",
+          "mode": "no-view",
+          "keywords": [
+            "finder",
+            "folder",
+            "size",
+            "storage",
+            "space"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "largest-files",
+          "title": "Largest Files",
+          "subtitle": "Sizewise",
+          "description": "List the largest files in your home folder or another folder, then reveal, preview, or move them to the Trash.",
+          "mode": "view",
+          "keywords": [
+            "large files",
+            "big files",
+            "clean up",
+            "free up space",
+            "trash",
+            "storage"
+          ],
+          "preferences": [
+            {
+              "name": "folder",
+              "title": "Folder",
+              "description": "The folder to search. Leave it empty to search your home folder.",
+              "type": "directory",
+              "required": false
+            }
+          ]
+        },
+        {
+          "name": "disk-space",
+          "title": "Disk Space",
+          "subtitle": "Sizewise",
+          "description": "Show your startup disk's available space in the menu bar, and scan any disk in Sizewise from its menu.",
+          "mode": "menu-bar",
+          "keywords": [
+            "menu bar",
+            "disk",
+            "storage",
+            "space"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "sketch",
@@ -268803,6 +269565,15 @@
           "description": "Show detailed logs in the console for debugging.",
           "type": "checkbox",
           "required": false,
+          "default": false
+        },
+        {
+          "name": "strictRedaction",
+          "type": "checkbox",
+          "required": false,
+          "title": "Strict Redaction",
+          "label": "Also hide URL query strings and fragments in logs",
+          "description": "Turn on before reproducing an issue, then share only the new log lines.",
           "default": false
         }
       ]
@@ -299654,7 +300425,9 @@
         "Fun"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/chrisalxlng/wordle",
       "source": {
         "type": "github-monorepo",
