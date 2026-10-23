@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-22T21:32:29.654Z",
+  "generatedAt": "2026-10-23T21:22:00.760Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "84f9ac51336a8c69f70974a75bc067c0feae3658"
+    "commit": "0b61ca53883ae7f8d571c4193c35270b982d0340"
   },
-  "count": 3457,
+  "count": 3458,
   "extensions": [
     {
       "name": "0x0",
@@ -62692,10 +62692,64 @@
           "description": "Sign a commit with your SSH key and post it to /dev/null.",
           "mode": "view",
           "keywords": [],
+          "preferences": [
+            {
+              "name": "useSelectedText",
+              "title": "Selected Text",
+              "label": "Use selected text for new commits",
+              "description": "Selected text is appended to a draft you already started.",
+              "type": "checkbox",
+              "required": false,
+              "default": false
+            }
+          ]
+        },
+        {
+          "name": "view-profile",
+          "title": "View Profile",
+          "subtitle": "/dev/null",
+          "description": "Look up someone's /dev/null profile, commits and followers, or search for people.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "my-profile",
+          "title": "Go to My Profile",
+          "subtitle": "/dev/null",
+          "description": "Open your own /dev/null profile, commits and followers.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "my-commits",
+          "title": "My Commits",
+          "subtitle": "/dev/null",
+          "description": "Browse the commits and replies you've posted to /dev/null.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-commits",
+          "title": "Search Commits",
+          "subtitle": "/dev/null",
+          "description": "Search everyone's commits on /dev/null.",
+          "mode": "view",
+          "keywords": [],
           "preferences": []
         }
       ],
       "preferences": [
+        {
+          "name": "username",
+          "title": "Username",
+          "description": "Leave empty to use the account of your last commit.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "chrismessina"
+        },
         {
           "name": "verboseLogging",
           "title": "Debug Logging",
@@ -66036,7 +66090,9 @@
       "description": "It will search discogs.com for a music release information specified by Label ID, Barcode, Artist or Album name",
       "icon": "command-icon.png",
       "author": "vigosan",
-      "contributors": [],
+      "contributors": [
+        "FL0R1AN"
+      ],
       "categories": [
         "Media"
       ],
@@ -66085,13 +66141,21 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "search-current-track",
+          "title": "Search Current Music Track",
+          "description": "Search Discogs for the track currently playing in Apple Music",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": [
         {
           "name": "token",
           "type": "password",
-          "required": true,
+          "required": false,
           "title": "Personal Access Token",
           "description": "Your Discogs Personal Access Token. You can generate one at https://www.discogs.com/settings/developers",
           "placeholder": "a1b2...c3d4"
@@ -87436,7 +87500,8 @@
       "author": "hrishabhn",
       "contributors": [
         "damian_duchnowski",
-        "effektsvk"
+        "effektsvk",
+        "samuelkraft"
       ],
       "categories": [],
       "license": "MIT",
@@ -94202,6 +94267,57 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "genki-wave",
+      "title": "Genki Wave",
+      "description": "Use the buttons and swipes on your Genki Wave ring to dictate into any app, control slides and media, or run any Raycast command.",
+      "icon": "icon.png",
+      "author": "multivac61",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/multivac61/genki-wave",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/genki-wave",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "configure-buttons",
+          "title": "Configure Wave",
+          "description": "Map your Wave ring: buttons and swipes to dictation, slides, media, keys or any Raycast command.",
+          "mode": "view",
+          "keywords": [
+            "genki",
+            "wave",
+            "ring",
+            "buttons",
+            "dictation",
+            "slides",
+            "swipe"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "helperPath",
+          "type": "textfield",
+          "required": false,
+          "title": "Helper Path",
+          "description": "Run a wave-helper you installed yourself instead of the one the extension downloads.",
+          "placeholder": "/opt/homebrew/bin/wave-helper"
+        }
+      ]
     },
     {
       "name": "geoconverter",
@@ -135046,7 +135162,7 @@
           "title": "User Interface",
           "description": "Whether to display favicons in the user interface",
           "label": "Favicon",
-          "default": false
+          "default": true
         }
       ]
     },
