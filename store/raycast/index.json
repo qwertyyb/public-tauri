@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-23T21:22:00.760Z",
+  "generatedAt": "2026-10-24T20:39:49.005Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "0b61ca53883ae7f8d571c4193c35270b982d0340"
+    "commit": "1a0ef1d91a7d2b1ce55ee8cd2323d98bcfb1f5ac"
   },
   "count": 3458,
   "extensions": [
@@ -91561,7 +91561,8 @@
       "icon": "icon.png",
       "author": "paus_d_",
       "contributors": [
-        "0xdhrv"
+        "0xdhrv",
+        "matiu"
       ],
       "categories": [
         "Productivity",
@@ -103109,7 +103110,8 @@
         "josh_carty",
         "smpeotn",
         "radek_cabaj",
-        "0xdhrv"
+        "0xdhrv",
+        "masamallow"
       ],
       "categories": [
         "Web"
@@ -143967,7 +143969,8 @@
         "erikjs",
         "alexi.build",
         "samuelkraft",
-        "ChrisPanTaken"
+        "ChrisPanTaken",
+        "nengqi"
       ],
       "categories": [
         "Developer Tools",
@@ -185775,7 +185778,9 @@
       "description": "Control the Otty terminal from Raycast.",
       "icon": "command-icon.png",
       "author": "Ethan_Cao",
-      "contributors": [],
+      "contributors": [
+        "chrismessina"
+      ],
       "categories": [
         "Developer Tools",
         "Productivity"
@@ -185793,9 +185798,96 @@
       },
       "commands": [
         {
+          "name": "search-tabs",
+          "title": "Search Otty Tabs",
+          "description": "Browse Otty windows, tabs, and panes, and switch to one.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "agents-menu-bar",
+          "title": "Otty Agents",
+          "subtitle": "Otty",
+          "description": "Show coding agents that need input in the menu bar, and jump to them.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "jump-to-directory",
+          "title": "Jump to Directory",
+          "description": "Open one of Otty's most-visited folders, or a git repository, in a new tab.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "repositoriesDirectory",
+              "title": "Repositories Folder",
+              "description": "Folder to scan for git repositories.",
+              "type": "directory",
+              "required": false
+            },
+            {
+              "name": "repositoriesScanDepth",
+              "title": "Scan Depth",
+              "description": "How many folder levels to search below it.",
+              "type": "dropdown",
+              "required": false,
+              "default": "2",
+              "data": [
+                {
+                  "title": "1 Level",
+                  "value": "1"
+                },
+                {
+                  "title": "2 Levels",
+                  "value": "2"
+                },
+                {
+                  "title": "3 Levels",
+                  "value": "3"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "open-recipe",
+          "title": "Open Otty Recipe",
+          "description": "Open an exported Otty recipe to rebuild its tabs and panes.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "recipesDirectory",
+              "title": "Recipes Folder",
+              "description": "Folder that holds your exported .ottyrecipe files.",
+              "type": "directory",
+              "required": false
+            }
+          ]
+        },
+        {
+          "name": "otty-settings",
+          "title": "Otty Settings",
+          "description": "Browse Otty's settings, toggle them, and edit values.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "change-theme",
+          "title": "Change Otty Theme",
+          "description": "Pick Otty's light-mode and dark-mode themes from a grid of previews.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "open-in-otty",
           "title": "Open in Otty",
-          "description": "Open the current Finder directory in a new Otty tab.",
+          "description": "Open the selected Finder items, or the front Finder window, in Otty.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -227154,7 +227246,7 @@
     {
       "name": "roblox-developer-tools",
       "title": "Roblox Developer Tools",
-      "description": "Launch Roblox games, open Studio, publish places, restart servers, view player counts, and open game pages and Creator Dashboard",
+      "description": "Manage your Roblox development workflow from Raycast",
       "icon": "extension-icon.png",
       "author": "zw1ce",
       "contributors": [],
@@ -227174,6 +227266,109 @@
       },
       "commands": [
         {
+          "name": "robux-earned",
+          "title": "Robux Earned",
+          "subtitle": "Roblox",
+          "description": "Show game or account earnings in the menu bar in Robux or estimated DevEx USD",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "earningsSource",
+              "type": "dropdown",
+              "title": "Earnings Source",
+              "description": "Choose earnings from a game or your Roblox account",
+              "required": true,
+              "default": "game",
+              "data": [
+                {
+                  "title": "Game",
+                  "value": "game"
+                },
+                {
+                  "title": "Roblox Account",
+                  "value": "account"
+                }
+              ]
+            },
+            {
+              "name": "earningsPeriod",
+              "type": "dropdown",
+              "title": "Time Range",
+              "description": "All-time includes all history available from Roblox; game analytics retain up to four years",
+              "required": true,
+              "default": "30",
+              "data": [
+                {
+                  "title": "All-time",
+                  "value": "all"
+                },
+                {
+                  "title": "Last 180 Days",
+                  "value": "180"
+                },
+                {
+                  "title": "Last 90 Days",
+                  "value": "90"
+                },
+                {
+                  "title": "Last 30 Days",
+                  "value": "30"
+                },
+                {
+                  "title": "Last 7 Days",
+                  "value": "7"
+                },
+                {
+                  "title": "Last Day",
+                  "value": "1"
+                }
+              ]
+            },
+            {
+              "name": "earningsDisplay",
+              "type": "dropdown",
+              "title": "Display Amount As",
+              "description": "USD is an estimate at the standard DevEx rate of $0.0038 per Robux, before fees and eligibility checks",
+              "required": true,
+              "default": "robux",
+              "data": [
+                {
+                  "title": "Robux",
+                  "value": "robux"
+                },
+                {
+                  "title": "USD (DevEx Estimate)",
+                  "value": "usd"
+                }
+              ]
+            },
+            {
+              "name": "earningsUserId",
+              "type": "textfield",
+              "title": "Roblox User ID",
+              "description": "The number in your Roblox profile URL; required only for Roblox Account earnings source",
+              "required": false
+            },
+            {
+              "name": "robloxSecurityCookie",
+              "type": "password",
+              "title": "Roblox Session Cookie",
+              "description": "Your .ROBLOSECURITY login cookie; required only for Roblox Account earnings source",
+              "required": false
+            },
+            {
+              "name": "hideZeroEarnings",
+              "type": "checkbox",
+              "title": "",
+              "label": "Hide when zero",
+              "description": "Keep refreshing while hidden and show the item when earnings change",
+              "required": false,
+              "default": false
+            }
+          ]
+        },
+        {
           "name": "player-count",
           "title": "Player Count",
           "subtitle": "Roblox",
@@ -227185,8 +227380,8 @@
               "name": "hideZeroPlayers",
               "type": "checkbox",
               "title": "",
-              "label": "Hide when there are zero players",
-              "description": "Keep refreshing while hidden and show the item when players join",
+              "label": "Hide when zero",
+              "description": "Hide only when enabled and the player count is zero",
               "required": false,
               "default": false
             }
@@ -227271,21 +227466,21 @@
           "name": "universeId",
           "type": "textfield",
           "title": "Universe ID",
-          "description": "Required for Player Count, Studio, Game Page, Creator Dashboard, and Restart",
+          "description": "Required for Player Count, Open in Studio, Open Game Page, Open in Creator Dashboard, Restart Servers, and Robux Earned (Game)",
           "required": false
         },
         {
           "name": "placeId",
           "type": "textfield",
           "title": "Place ID",
-          "description": "Required for Launch and Studio",
+          "description": "Required for Launch Game and Open in Studio",
           "required": false
         },
         {
           "name": "apiKey",
           "type": "password",
           "title": "API Key",
-          "description": "Required for Restart, Roblox Open Cloud key with universe:write access",
+          "description": "Required for Restart Servers [universe:write] and Robux Earned (Game) [universe.analytics:read]",
           "required": false
         }
       ]
@@ -236051,6 +236246,28 @@
             {
               "title": "4x",
               "value": "4"
+            }
+          ]
+        },
+        {
+          "name": "gridSize",
+          "title": "Grid Size",
+          "description": "Size of emotes in the grid view. Small shows the most emotes at once.",
+          "type": "dropdown",
+          "required": false,
+          "default": "small",
+          "data": [
+            {
+              "title": "Small",
+              "value": "small"
+            },
+            {
+              "title": "Medium",
+              "value": "medium"
+            },
+            {
+              "title": "Large",
+              "value": "large"
             }
           ]
         }
