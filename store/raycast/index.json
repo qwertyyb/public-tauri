@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-24T20:39:49.005Z",
+  "generatedAt": "2026-10-25T20:46:35.238Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "1a0ef1d91a7d2b1ce55ee8cd2323d98bcfb1f5ac"
+    "commit": "798a97088ab60288f6268d973eae916a62ef5f5f"
   },
-  "count": 3458,
+  "count": 3463,
   "extensions": [
     {
       "name": "0x0",
@@ -21979,7 +21979,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/andreaselia/better-uptime",
       "source": {
@@ -28034,6 +28035,67 @@
       "preferences": []
     },
     {
+      "name": "bose-noise-cancelling",
+      "title": "Bose Noise Cancelling",
+      "description": "Switch noise cancelling on Bose QuietComfort 35 II headphones",
+      "icon": "icon.png",
+      "author": "eric-ostholm",
+      "contributors": [],
+      "categories": [
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/eric-ostholm/bose-noise-cancelling",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/bose-noise-cancelling",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "toggle",
+          "title": "Toggle Noise Cancelling",
+          "subtitle": "Bose",
+          "description": "Switch noise cancelling between high and off",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "high",
+          "title": "Set Noise Cancelling to High",
+          "subtitle": "Bose",
+          "description": "Set noise cancelling to the strongest level",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "low",
+          "title": "Set Noise Cancelling to Low",
+          "subtitle": "Bose",
+          "description": "Set noise cancelling to the low level",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "off",
+          "title": "Turn Off Noise Cancelling",
+          "subtitle": "Bose",
+          "description": "Turn noise cancelling off",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "botpress",
       "title": "Botpress",
       "description": "Manage your Botpress chatbots",
@@ -29481,10 +29543,11 @@
     {
       "name": "browser-bookmarks",
       "title": "Browser Bookmarks",
-      "description": "Integrate bookmarks from Brave, ChatGPT Atlas, Chrome, Dia, DuckDuckGo, Edge, Firefox, Safari, Arc, Vivaldi, Vivaldi Snapshot, Zen, Whale, or Helium.",
+      "description": "Integrate bookmarks from Brave, ChatGPT Atlas, Chrome, Dia, DuckDuckGo, Edge, Firefox, Safari, Arc, Vivaldi, Vivaldi Snapshot, Zen, Whale, Helium, or Search.",
       "icon": "extension-icon.png",
       "author": "thomaslombart",
       "contributors": [
+        "chahine-tech",
         "sasivarnan",
         "ahp",
         "juang970",
@@ -62663,6 +62726,105 @@
       ]
     },
     {
+      "name": "dev-essentials",
+      "title": "Dev Essentials",
+      "description": "Generate UUIDs, convert Unix timestamps, and decode, verify, sign or encrypt JWT, JWS and JWE tokens.",
+      "icon": "icon.png",
+      "author": "vinh_bachsy",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/vinh_bachsy/dev-essentials",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/dev-essentials",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "uuid",
+          "title": "Generate UUID",
+          "subtitle": "Dev Essentials",
+          "description": "Generate a UUID (v4 by default, or v7), show it and copy it to the clipboard.",
+          "mode": "view",
+          "keywords": [
+            "uuid",
+            "guid",
+            "v4",
+            "v7"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "ts",
+          "title": "Convert Timestamp",
+          "subtitle": "Dev Essentials",
+          "description": "Show the current Unix timestamp, or convert a timestamp, ISO date-time or relative duration (e.g. \"10 seconds ago\").",
+          "mode": "view",
+          "keywords": [
+            "ts",
+            "unix",
+            "epoch",
+            "date",
+            "time",
+            "iso"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "jwt",
+          "title": "Decode JWT",
+          "subtitle": "Dev Essentials",
+          "description": "Decode, verify and sign JSON Web Tokens.",
+          "mode": "view",
+          "keywords": [
+            "jwt",
+            "token",
+            "decode",
+            "verify",
+            "sign"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "jws",
+          "title": "Decode JWS",
+          "subtitle": "Dev Essentials",
+          "description": "Decode, verify and sign JSON Web Signatures with arbitrary payloads.",
+          "mode": "view",
+          "keywords": [
+            "jws",
+            "signature",
+            "decode",
+            "verify",
+            "sign"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "jwe",
+          "title": "Decode JWE",
+          "subtitle": "Dev Essentials",
+          "description": "Inspect, decrypt and encrypt JSON Web Encryption tokens.",
+          "mode": "view",
+          "keywords": [
+            "jwe",
+            "encryption",
+            "decrypt",
+            "encrypt"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "dev-null",
       "title": "/dev/null",
       "description": "Participate in the social network for devs.",
@@ -85497,8 +85659,8 @@
     },
     {
       "name": "fip",
-      "title": "Fip",
-      "description": "Start and explore the fip radio directly from Raycast",
+      "title": "FIP",
+      "description": "Listen to FIP and its webradios, and see what they are playing, directly from Raycast",
       "icon": "favicon.png",
       "author": "louison",
       "contributors": [],
@@ -85520,8 +85682,8 @@
         {
           "name": "now",
           "title": "Currently Playing Track",
-          "subtitle": "Fip Radio",
-          "description": "What's currently playing on fip radio",
+          "subtitle": "FIP",
+          "description": "Show the track currently playing on the last FIP radio you started",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -85529,8 +85691,8 @@
         {
           "name": "prev",
           "title": "Previous Track",
-          "subtitle": "Fip Radio",
-          "description": "The last track played before the current one on fip radio",
+          "subtitle": "FIP",
+          "description": "Show the track played before the current one on the last FIP radio you started",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -85538,8 +85700,8 @@
         {
           "name": "next",
           "title": "Next Track",
-          "subtitle": "Fip Radio",
-          "description": "The next track to by played by fip radio",
+          "subtitle": "FIP",
+          "description": "Show the next track announced on the last FIP radio you started",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -85547,8 +85709,8 @@
         {
           "name": "start",
           "title": "Start Playing",
-          "subtitle": "Fip Radio",
-          "description": "Starts VLC and play the fip radio audio stream",
+          "subtitle": "FIP",
+          "description": "Play your default FIP radio in your default player",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -85556,8 +85718,8 @@
         {
           "name": "stop",
           "title": "Stop Playing",
-          "subtitle": "Fip Radio",
-          "description": "Pause fip radio stream on VLC",
+          "subtitle": "FIP",
+          "description": "Stop the FIP radio stream in your default player",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -85565,8 +85727,8 @@
         {
           "name": "choose_radio",
           "title": "Choose Radio",
-          "subtitle": "Fip Radio",
-          "description": "Choose a radio to play",
+          "subtitle": "FIP",
+          "description": "Pick FIP or one of its webradios and start playing it",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -85575,7 +85737,7 @@
       "preferences": [
         {
           "name": "defaultRadio",
-          "description": "The radio to play by default when you start the extension",
+          "description": "The radio Start Playing plays",
           "type": "dropdown",
           "required": false,
           "default": "FIP",
@@ -85628,12 +85790,16 @@
             {
               "title": "Metal",
               "value": "Metal"
+            },
+            {
+              "title": "Cultes",
+              "value": "Cultes"
             }
           ]
         },
         {
           "name": "defaultApp",
-          "description": "The app to use to play the radio",
+          "description": "The app that plays the radio stream",
           "type": "dropdown",
           "required": false,
           "default": "QuickTime Player",
@@ -90381,6 +90547,48 @@
           "placeholder": "Select CSV file..."
         }
       ]
+    },
+    {
+      "name": "fotcast",
+      "title": "Fotcast",
+      "description": "Today's football matches and your favorite teams and leagues, from FotMob",
+      "icon": "extension-icon.png",
+      "author": "fcarysnyder",
+      "contributors": [],
+      "categories": [
+        "News"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/fcarysnyder/fotcast",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/fotcast",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "matches",
+          "title": "Matches",
+          "description": "Today's football matches across all leagues",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "favorites",
+          "title": "Favorites",
+          "description": "Manage favorite teams and leagues",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "fotmob",
@@ -202426,6 +202634,579 @@
       ]
     },
     {
+      "name": "prayer-times",
+      "title": "Prayer Times",
+      "description": "Prayer times in root search and the menu bar, kept in Apple Reminders two weeks ahead with start, jamaat and ending notifications.",
+      "icon": "icon.png",
+      "author": "smrehan",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/smrehan/prayer-times",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/prayer-times",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "next-prayer",
+          "title": "Next Prayer",
+          "subtitle": "Prayer Times",
+          "description": "Keeps the next prayer in its root search subtitle and keeps prayer reminders filled ahead. Open it to see today's prayers.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "menu-bar",
+          "title": "Prayer Menu Bar",
+          "subtitle": "Prayer Times",
+          "description": "Shows the prayer in the menu bar when it starts, before jamaat, and before it ends until you mark it prayed.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "today",
+          "title": "Today's Prayers",
+          "subtitle": "Prayer Times",
+          "description": "Start and jamaat times for today, prayed status, and the last 7 days.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "prayer-calendar",
+          "title": "Prayer Calendar",
+          "subtitle": "Prayer Times",
+          "description": "A month calendar of prayer status. Open any day to see its prayers, mark or change them, and expand each one for its times.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "set-location",
+          "title": "Set Prayer Location",
+          "subtitle": "Prayer Times",
+          "description": "Pick your country and city from searchable lists, or use your current location, refreshed 30 minutes before each prayer.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "prayer-alert",
+          "title": "Prayer Alert",
+          "subtitle": "Prayer Times",
+          "description": "Optional Raycast popup for prayer start, jamaat and ending, with snooze. Off unless Alert Style includes the popup.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "school",
+          "title": "School",
+          "type": "dropdown",
+          "required": false,
+          "default": "hanafi",
+          "description": "School of fiqh for when each prayer's time starts, when it ends, and when delaying it becomes disliked (makruh). Each rule below can override it.",
+          "data": [
+            {
+              "title": "Hanafi",
+              "value": "hanafi"
+            },
+            {
+              "title": "Shafi'i",
+              "value": "shafi"
+            },
+            {
+              "title": "Maliki",
+              "value": "maliki"
+            },
+            {
+              "title": "Hanbali",
+              "value": "hanbali"
+            },
+            {
+              "title": "Ja'fari (Shia)",
+              "value": "jafari"
+            }
+          ]
+        },
+        {
+          "name": "method",
+          "title": "Calculation Method",
+          "description": "Fajr and Isha angles. Tehran and Ja'fari also set Maghrib after the eastern redness.",
+          "type": "dropdown",
+          "required": false,
+          "default": "Karachi",
+          "data": [
+            {
+              "title": "University of Islamic Sciences, Karachi",
+              "value": "Karachi"
+            },
+            {
+              "title": "Muslim World League",
+              "value": "MuslimWorldLeague"
+            },
+            {
+              "title": "Egyptian",
+              "value": "Egyptian"
+            },
+            {
+              "title": "Umm al-Qura",
+              "value": "UmmAlQura"
+            },
+            {
+              "title": "Dubai",
+              "value": "Dubai"
+            },
+            {
+              "title": "Qatar",
+              "value": "Qatar"
+            },
+            {
+              "title": "Kuwait",
+              "value": "Kuwait"
+            },
+            {
+              "title": "Moonsighting Committee",
+              "value": "MoonsightingCommittee"
+            },
+            {
+              "title": "Singapore",
+              "value": "Singapore"
+            },
+            {
+              "title": "Turkey",
+              "value": "Turkey"
+            },
+            {
+              "title": "Tehran",
+              "value": "Tehran"
+            },
+            {
+              "title": "Ja'fari (Leva Institute, Qom)",
+              "value": "Jafari"
+            },
+            {
+              "title": "North America (ISNA)",
+              "value": "NorthAmerica"
+            }
+          ]
+        },
+        {
+          "name": "madhab",
+          "title": "Asr Starts At",
+          "description": "When an object's shadow is once or twice its length (plus its shadow at noon).",
+          "type": "dropdown",
+          "required": false,
+          "default": "school",
+          "data": [
+            {
+              "title": "School Default",
+              "value": "school"
+            },
+            {
+              "title": "One Shadow Length (Shafi'i, Maliki, Hanbali, Ja'fari)",
+              "value": "shafi"
+            },
+            {
+              "title": "Two Shadow Lengths (Hanafi)",
+              "value": "hanafi"
+            }
+          ]
+        },
+        {
+          "name": "asrPreferred",
+          "title": "Asr Preferred Until",
+          "type": "dropdown",
+          "required": false,
+          "default": "school",
+          "description": "Asr stays valid until sunset; after this, delaying it is disliked.",
+          "data": [
+            {
+              "title": "School Default",
+              "value": "school"
+            },
+            {
+              "title": "Sun Turns Yellow, About 20 Min Before Sunset (Hanafi, Maliki)",
+              "value": "yellow"
+            },
+            {
+              "title": "Shadow Twice Its Length (Shafi'i, Hanbali)",
+              "value": "twoShadows"
+            },
+            {
+              "title": "No Preferred End",
+              "value": "none"
+            }
+          ]
+        },
+        {
+          "name": "dhuhrEndsAtShafiAsr",
+          "title": "Dhuhr Ends At",
+          "label": "End Dhuhr at the earlier (Shafi'i) Asr time",
+          "description": "With two-shadow Asr: end Dhuhr when the shadow equals the object's length. Off by default: Dhuhr stays valid until Asr, and that earlier time is its preferred end. Not used for Ja'fari, whose Dhuhr is valid until sunset.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "adjustments",
+          "title": "Minute Adjustments",
+          "description": "Shift start times to match your local timetable: Fajr,Dhuhr,Asr,Maghrib,Isha in minutes, e.g. 0,2,0,3,0.",
+          "type": "textfield",
+          "required": false,
+          "default": "0,0,0,0,0"
+        },
+        {
+          "name": "maghribStart",
+          "title": "Maghrib Starts At",
+          "type": "dropdown",
+          "required": false,
+          "default": "school",
+          "description": "Sunset (Sunni schools) or once the eastern redness has gone, about 15–20 min later (Ja'fari).",
+          "data": [
+            {
+              "title": "School Default",
+              "value": "school"
+            },
+            {
+              "title": "Sunset",
+              "value": "sunset"
+            },
+            {
+              "title": "Eastern Redness Gone (Ja'fari)",
+              "value": "easternRedness"
+            }
+          ]
+        },
+        {
+          "name": "maghribEnd",
+          "title": "Maghrib Ends At",
+          "type": "dropdown",
+          "required": false,
+          "default": "school",
+          "description": "After this Maghrib is late. Isha's start follows the calculation method's Isha angle.",
+          "data": [
+            {
+              "title": "School Default",
+              "value": "school"
+            },
+            {
+              "title": "Isha Starts",
+              "value": "isha"
+            },
+            {
+              "title": "Red Twilight Gone, 15°",
+              "value": "red15"
+            },
+            {
+              "title": "Red Twilight Gone, 12° (Cautious)",
+              "value": "red12"
+            },
+            {
+              "title": "Islamic Midnight (Ja'fari)",
+              "value": "midnight"
+            }
+          ]
+        },
+        {
+          "name": "maghribPreferred",
+          "title": "Maghrib Preferred Until",
+          "type": "dropdown",
+          "required": false,
+          "default": "school",
+          "description": "After this, delaying Maghrib is disliked.",
+          "data": [
+            {
+              "title": "School Default",
+              "value": "school"
+            },
+            {
+              "title": "Stars Appear, About 35 Min After Sunset (Hanafi)",
+              "value": "stars"
+            },
+            {
+              "title": "Short Window, About 25 Min After Sunset (Maliki)",
+              "value": "short"
+            },
+            {
+              "title": "Isha Starts (Ja'fari)",
+              "value": "isha"
+            },
+            {
+              "title": "No Preferred End",
+              "value": "none"
+            }
+          ]
+        },
+        {
+          "name": "ishaEnd",
+          "title": "Isha Ends At",
+          "description": "After this Isha is late.",
+          "type": "dropdown",
+          "required": false,
+          "default": "school",
+          "data": [
+            {
+              "title": "School Default",
+              "value": "school"
+            },
+            {
+              "title": "Islamic Midnight (Ja'fari)",
+              "value": "midnight"
+            },
+            {
+              "title": "Fajr (Sunni Schools)",
+              "value": "fajr"
+            }
+          ]
+        },
+        {
+          "name": "ishaPreferred",
+          "title": "Isha Preferred Until",
+          "type": "dropdown",
+          "required": false,
+          "default": "school",
+          "description": "After this, delaying Isha is disliked.",
+          "data": [
+            {
+              "title": "School Default",
+              "value": "school"
+            },
+            {
+              "title": "Islamic Midnight (Hanafi)",
+              "value": "midnight"
+            },
+            {
+              "title": "First Third of the Night (Shafi'i, Maliki, Hanbali, Ja'fari)",
+              "value": "firstThird"
+            },
+            {
+              "title": "No Preferred End",
+              "value": "none"
+            }
+          ]
+        },
+        {
+          "name": "lateAt",
+          "title": "Counts as Late After",
+          "type": "dropdown",
+          "required": false,
+          "default": "valid",
+          "description": "Which end the ending reminder, the red menu bar countdown and on-time history use. After a prayer's preferred end the menu bar turns orange either way.",
+          "data": [
+            {
+              "title": "End of the Prayer's Time",
+              "value": "valid"
+            },
+            {
+              "title": "End of Its Preferred Time",
+              "value": "preferred"
+            }
+          ]
+        },
+        {
+          "name": "jamaatFajr",
+          "title": "Fajr Jamaat",
+          "description": "Fixed HH:MM (24h), +N minutes after start, floor5+N (round start down to 5 min, add N), ceil5+N, end-N (N minutes before the prayer time ends), or empty for none.",
+          "type": "textfield",
+          "required": false,
+          "default": "floor5+15"
+        },
+        {
+          "name": "jamaatDhuhr",
+          "title": "Dhuhr Jamaat",
+          "description": "Same format as Fajr Jamaat.",
+          "type": "textfield",
+          "required": false,
+          "default": "floor5+15"
+        },
+        {
+          "name": "jamaatJumuah",
+          "title": "Jumu'ah Jamaat",
+          "description": "Friday Dhuhr. Empty uses the Dhuhr rule.",
+          "type": "textfield",
+          "required": false,
+          "default": ""
+        },
+        {
+          "name": "jamaatAsr",
+          "title": "Asr Jamaat",
+          "description": "Same format as Fajr Jamaat, or dhuhr+N for N minutes after Dhuhr's jamaat (prayed together, Ja'fari).",
+          "type": "textfield",
+          "required": false,
+          "default": "floor5+15"
+        },
+        {
+          "name": "jamaatMaghrib",
+          "title": "Maghrib Jamaat",
+          "description": "Same format as Fajr Jamaat.",
+          "type": "textfield",
+          "required": false,
+          "default": "+5"
+        },
+        {
+          "name": "jamaatIsha",
+          "title": "Isha Jamaat",
+          "description": "Same format as Fajr Jamaat, or maghrib+N for N minutes after Maghrib's jamaat (prayed together, Ja'fari).",
+          "type": "textfield",
+          "required": false,
+          "default": "floor5+15"
+        },
+        {
+          "name": "dueAt",
+          "title": "Reminder Due Time",
+          "description": "When each prayer reminder is due. Jamaat falls back to start for prayers without a jamaat rule.",
+          "type": "dropdown",
+          "required": false,
+          "default": "start",
+          "data": [
+            {
+              "title": "Prayer Start",
+              "value": "start"
+            },
+            {
+              "title": "Jamaat",
+              "value": "jamaat"
+            }
+          ]
+        },
+        {
+          "name": "headsUpMinutes",
+          "title": "Heads-Up (Minutes)",
+          "description": "Extra notification this many minutes before the due time (start or jamaat); the menu bar countdown turns yellow from then. 0 turns it off.",
+          "type": "textfield",
+          "required": false,
+          "default": "15"
+        },
+        {
+          "name": "startWindowMinutes",
+          "title": "Just Started (Minutes)",
+          "description": "For this many minutes after a prayer starts, its menu bar count (e.g. \"Asr +3\") shows in green, then blue.",
+          "type": "textfield",
+          "required": false,
+          "default": "5"
+        },
+        {
+          "name": "endingReminderMinutes",
+          "title": "Ending Reminder (Minutes)",
+          "description": "Notify this many minutes before the prayer time ends. The menu bar keeps showing it until marked prayed.",
+          "type": "textfield",
+          "required": false,
+          "default": "30"
+        },
+        {
+          "name": "jamaatReminderMinutes",
+          "title": "Jamaat Reminder (Minutes)",
+          "description": "Notify this many minutes before jamaat; the menu bar shows it from then.",
+          "type": "textfield",
+          "required": false,
+          "default": "10"
+        },
+        {
+          "name": "useReminders",
+          "title": "Apple Reminders",
+          "label": "Keep prayers in Apple Reminders",
+          "description": "Off: prayed status and history stay in Raycast only, and no reminders are created.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "alerts",
+          "title": "Notifications",
+          "description": "Reminders alarms work on your iPhone and without Raycast running. The popup has Mark as Prayed and Snooze, but only while Raycast runs. The banner is the extension's own macOS notification, also only while Raycast runs.",
+          "type": "dropdown",
+          "required": false,
+          "default": "reminders",
+          "data": [
+            {
+              "title": "Reminders Alarms",
+              "value": "reminders"
+            },
+            {
+              "title": "Raycast Popup",
+              "value": "popup"
+            },
+            {
+              "title": "Reminders Alarms + Raycast Popup",
+              "value": "both"
+            },
+            {
+              "title": "macOS Banner",
+              "value": "banner"
+            },
+            {
+              "title": "None",
+              "value": "none"
+            }
+          ]
+        },
+        {
+          "name": "menuBarShowNext",
+          "label": "Always show the next prayer in the menu bar",
+          "description": "A started prayer shows its time left (e.g. \"Asr (-40)\") until marked prayed or its time ends. The next prayer's countdown (\"Maghrib -5\") shows during the heads-up window, or all the time with this on.",
+          "type": "checkbox",
+          "required": false,
+          "default": false,
+          "title": "Menu Bar"
+        },
+        {
+          "name": "remindersList",
+          "title": "Reminders List",
+          "description": "Apple Reminders list for prayer reminders. Created if missing.",
+          "type": "textfield",
+          "required": false,
+          "default": "Prayer"
+        },
+        {
+          "name": "prayerNames",
+          "title": "Prayer Names",
+          "description": "English or Arabic names for the prayers in the menu bar, alerts and reminder titles.",
+          "type": "dropdown",
+          "required": false,
+          "default": "english",
+          "data": [
+            {
+              "title": "English (Fajr, Dhuhr…)",
+              "value": "english"
+            },
+            {
+              "title": "Arabic (فجر، ظهر…)",
+              "value": "arabic"
+            }
+          ]
+        },
+        {
+          "name": "daysAhead",
+          "title": "Days Ahead",
+          "description": "How many days of reminders to keep filled, starting today (1–31).",
+          "type": "textfield",
+          "required": false,
+          "default": "14"
+        },
+        {
+          "name": "cleanMissedAfterDays",
+          "title": "Clean Missed After (Days)",
+          "description": "A missed prayer stays dated, showing as overdue in Reminders and Calendar, for this many days. After that its date is removed; it still counts as missed in history. 0 never removes it.",
+          "type": "textfield",
+          "required": false,
+          "default": "7"
+        }
+      ]
+    },
+    {
       "name": "premier-league",
       "title": "Premier League",
       "description": "Get instant access to Premier League data right from your Raycast menu. Easily search for teams, players, fixtures, results, standings and awards.",
@@ -255667,6 +256448,47 @@
           "description": "Save a text to Sublime",
           "mode": "view",
           "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "subnets",
+      "title": "Subnet Calculator",
+      "description": "Break down an IPv4 or IPv6 subnet and jump to its halves, neighbors, and supernet without retyping the CIDR.",
+      "icon": "icon.png",
+      "author": "don.draper",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/don.draper/subnets",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/subnets",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "subnet",
+          "title": "Subnet Calculator",
+          "description": "Break down an IPv4 or IPv6 subnet and walk through neighboring blocks.",
+          "mode": "view",
+          "keywords": [
+            "cidr",
+            "ip",
+            "ipv4",
+            "ipv6",
+            "netmask",
+            "network",
+            "prefix"
+          ],
           "preferences": []
         }
       ],
