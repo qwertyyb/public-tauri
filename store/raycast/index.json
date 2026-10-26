@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-25T20:46:35.238Z",
+  "generatedAt": "2026-10-26T22:45:20.962Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "798a97088ab60288f6268d973eae916a62ef5f5f"
+    "commit": "4c43c8373ff25abf7d23de1006f819c706996fd8"
   },
-  "count": 3463,
+  "count": 3466,
   "extensions": [
     {
       "name": "0x0",
@@ -1586,7 +1586,10 @@
         "Developer Tools"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "storeUrl": "https://www.raycast.com/Quentin23Soleil/adb",
       "source": {
         "type": "github-monorepo",
@@ -1763,7 +1766,10 @@
           "description": "Locate Android SDK path",
           "type": "textfield",
           "required": true,
-          "default": "~/Library/Android/sdk"
+          "default": {
+            "macOS": "~/Library/Android/sdk",
+            "Windows": "~\\AppData\\Local\\Android\\Sdk"
+          }
         }
       ]
     },
@@ -141135,6 +141141,114 @@
       "preferences": []
     },
     {
+      "name": "launchbar-file-manager",
+      "title": "LaunchBar File Manager",
+      "description": "LaunchBar-style file browsing inside Raycast: drill with keyboard, preview, copy move rename trash.",
+      "icon": "icon.png",
+      "author": "imed",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/imed/launchbar-file-manager",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/launchbar-file-manager",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "browse-files",
+          "title": "Browse Files",
+          "description": "Browse filesystem LaunchBar-style with quick file operations",
+          "mode": "view",
+          "keywords": [
+            "files",
+            "browse",
+            "finder",
+            "manager",
+            "folders"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "finder-selection",
+          "title": "Transfer Finder Selection",
+          "description": "Transfer the files currently selected in Finder via the folder tree",
+          "mode": "view",
+          "keywords": [
+            "finder",
+            "selection",
+            "transfer",
+            "move",
+            "copy"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "startingPath",
+          "title": "Starting Folder",
+          "description": "Folder to open when the command starts",
+          "type": "directory",
+          "required": false,
+          "default": "~"
+        },
+        {
+          "name": "startBehavior",
+          "title": "On Open",
+          "description": "Begin in the starting folder or the last opened folder",
+          "type": "dropdown",
+          "required": false,
+          "default": "start",
+          "data": [
+            {
+              "title": "Starting Folder",
+              "value": "start"
+            },
+            {
+              "title": "Last Opened Folder",
+              "value": "last"
+            }
+          ]
+        },
+        {
+          "name": "showHiddenDefault",
+          "title": "View Options",
+          "description": "Show hidden files by default",
+          "type": "checkbox",
+          "required": false,
+          "label": "Show Hidden Files",
+          "default": false
+        },
+        {
+          "name": "transferStart",
+          "title": "Transfer Start Folder",
+          "description": "Where the Tab transfer tree starts browsing",
+          "type": "dropdown",
+          "required": false,
+          "default": "home",
+          "data": [
+            {
+              "title": "Home Folder",
+              "value": "home"
+            },
+            {
+              "title": "Current Folder",
+              "value": "current"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "launchd-monitor",
       "title": "Launchd Monitor",
       "description": "Monitor your macOS launchd jobs from the menu bar. See job status, last run times, failures, and re-run jobs on demand.",
@@ -148193,6 +148307,50 @@
           "title": "Search Sets",
           "description": "Search and view all MTG sets, and view all the cards in a set.",
           "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "luci-screen-memory",
+      "title": "Luci Screen Memory",
+      "description": "Toggle Luci screen memory recording and monitor status",
+      "icon": "command-icon.png",
+      "author": "fahd_badran",
+      "contributors": [],
+      "categories": [
+        "System",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/fahd_badran/luci-screen-memory",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/luci-screen-memory",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "toggle-recording",
+          "title": "Toggle Screen Memory",
+          "subtitle": "Luci",
+          "description": "Toggle Luci screen memory recording on/off",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "status-menu-bar",
+          "title": "Luci Status",
+          "subtitle": "Luci",
+          "description": "Show Luci recording status and toggle from menu bar",
+          "mode": "menu-bar",
           "keywords": [],
           "preferences": []
         }
@@ -166281,15 +166439,6 @@
           "description": "Base URL of the MuteDeck HTTP API.",
           "default": "http://localhost:3491",
           "placeholder": "http://localhost:3491"
-        },
-        {
-          "name": "wsEndpoint",
-          "type": "textfield",
-          "required": false,
-          "title": "WebSocket Endpoint",
-          "description": "MuteDeck WebSocket URL, used for Bring to Front.",
-          "default": "ws://localhost:3492",
-          "placeholder": "ws://localhost:3492"
         },
         {
           "name": "confirmMuteInPresentation",
@@ -202701,6 +202850,15 @@
           "preferences": []
         },
         {
+          "name": "jamaat-formulas",
+          "title": "Jamaat Formula Guide",
+          "subtitle": "Prayer Times",
+          "description": "How to write a jamaat rule as a formula, like ceil(start, 15) + 15, with today's result or error for each prayer.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "prayer-alert",
           "title": "Prayer Alert",
           "subtitle": "Prayer Times",
@@ -203019,7 +203177,7 @@
         {
           "name": "jamaatFajr",
           "title": "Fajr Jamaat",
-          "description": "Fixed HH:MM (24h), +N minutes after start, floor5+N (round start down to 5 min, add N), ceil5+N, end-N (N minutes before the prayer time ends), or empty for none.",
+          "description": "Fixed HH:MM (24h), +N minutes after start, floor5+N (round start down to 5 min, add N), ceil5+N, end-N (N minutes before the prayer time ends), a formula such as ceil(start, 15) + 15 (see Jamaat Formula Guide), or empty for none.",
           "type": "textfield",
           "required": false,
           "default": "floor5+15"
@@ -203035,7 +203193,7 @@
         {
           "name": "jamaatJumuah",
           "title": "Jumu'ah Jamaat",
-          "description": "Friday Dhuhr. Empty uses the Dhuhr rule.",
+          "description": "Friday Dhuhr, same format as Fajr Jamaat. Empty uses the Dhuhr rule.",
           "type": "textfield",
           "required": false,
           "default": ""
@@ -203099,9 +203257,17 @@
           "default": "5"
         },
         {
+          "name": "preferredReminderMinutes",
+          "title": "Before Preferred End (Minutes)",
+          "description": "The menu bar masjid turns from dark to light green this many minutes before the preferred time ends.",
+          "type": "textfield",
+          "required": false,
+          "default": "15"
+        },
+        {
           "name": "endingReminderMinutes",
-          "title": "Ending Reminder (Minutes)",
-          "description": "Notify this many minutes before the prayer time ends. The menu bar keeps showing it until marked prayed.",
+          "title": "Ending Soon (Minutes)",
+          "description": "Notify this many minutes before the prayer time ends; the menu bar masjid turns red from then. The menu bar keeps showing it until marked prayed.",
           "type": "textfield",
           "required": false,
           "default": "30"
@@ -204190,6 +204356,68 @@
           "required": true,
           "title": "Pritunl App",
           "description": "Select Pritunl application"
+        }
+      ]
+    },
+    {
+      "name": "private-subnet-generator",
+      "title": "Private Subnet Generator",
+      "description": "Generates IPv4 and IPv6 prefixes according to RFC1918 and RFC4193. Excludes commonly used IPv4 and IPv6 subnets, such as CGNAT, Docker bridge, …",
+      "icon": "extension-icon.png",
+      "author": "cmdr",
+      "contributors": [],
+      "categories": [
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows",
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/cmdr/private-subnet-generator",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/private-subnet-generator",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "generate-private-ipv4-prefix",
+          "title": "Generate Private IPv4 Prefix",
+          "subtitle": "Address Allocation for Private Internets",
+          "description": "Generate an IPv4 Prefix according to RFC1918",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "generate-private-ipv6-prefix",
+          "title": "Generate Private IPv6 Prefix",
+          "subtitle": "Unique Local IPv6 Unicast Addresses",
+          "description": "Generate an ULA Prefix according to RFC4193",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "history",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "title": "History",
+          "label": "Keep previously generated prefixes",
+          "description": "Show previously generated prefixes below the new one."
+        },
+        {
+          "name": "historySize",
+          "type": "textfield",
+          "required": false,
+          "default": "20",
+          "title": "History Size",
+          "description": "Number of previously generated prefixes to keep per command."
         }
       ]
     },
