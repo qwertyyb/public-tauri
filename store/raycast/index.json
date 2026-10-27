@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-26T22:45:20.962Z",
+  "generatedAt": "2026-10-27T22:10:38.854Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "4c43c8373ff25abf7d23de1006f819c706996fd8"
+    "commit": "233cd77e77c3cf9df72cbe30edcbd2b85277f1eb"
   },
-  "count": 3466,
+  "count": 3467,
   "extensions": [
     {
       "name": "0x0",
@@ -11545,10 +11545,12 @@
     {
       "name": "app-usage",
       "title": "App Usage",
-      "description": "See your screen time and which apps you actually use. Fully local, no account, no network.",
+      "description": "See your screen time and which apps you actually use. Track locally and ask Raycast AI about your usage.",
       "icon": "extension-icon.png",
       "author": "GouravAkaJojo",
-      "contributors": [],
+      "contributors": [
+        "alexi.build"
+      ],
       "categories": [
         "Productivity",
         "System"
@@ -18133,7 +18135,7 @@
           "name": "search-templates",
           "title": "Search Templates",
           "subtitle": "AWX",
-          "description": "Browse job templates (paginated, filterable) and launch a selected one.",
+          "description": "Browse workflows and job templates in one searchable list and launch a selected one.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -21972,8 +21974,8 @@
     },
     {
       "name": "better-uptime",
-      "title": "Better Uptime",
-      "description": "Check on your Better Uptime monitors, incidents and heartbeats.",
+      "title": "Better Stack",
+      "description": "Check on your Better Stack monitors, incidents and heartbeats.",
       "icon": "command-icon.png",
       "author": "andreaselia",
       "contributors": [
@@ -21999,55 +22001,67 @@
         {
           "name": "monitors",
           "title": "Show Monitors",
-          "subtitle": "Better Uptime",
+          "subtitle": "Better Stack",
           "description": "List all existing monitors.",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "better uptime"
+          ],
           "preferences": []
         },
         {
           "name": "add-monitor",
           "title": "Add Monitor",
-          "subtitle": "Better Uptime",
+          "subtitle": "Better Stack",
           "description": "Add a new monitor.",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "better uptime"
+          ],
           "preferences": []
         },
         {
           "name": "incidents",
           "title": "Show Incidents",
-          "subtitle": "Better Uptime",
+          "subtitle": "Better Stack",
           "description": "List all existing incidents.",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "better uptime"
+          ],
           "preferences": []
         },
         {
           "name": "add-incident",
           "title": "Add Incident",
-          "subtitle": "Better Uptime",
+          "subtitle": "Better Stack",
           "description": "Add a new incident.",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "better uptime"
+          ],
           "preferences": []
         },
         {
           "name": "heartbeats",
           "title": "Show Heartbeats",
-          "subtitle": "Better Uptime",
+          "subtitle": "Better Stack",
           "description": "List all existing heartbeats.",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "better uptime"
+          ],
           "preferences": []
         },
         {
           "name": "add-heartbeat",
           "title": "Add Heartbeat",
-          "subtitle": "Better Uptime",
+          "subtitle": "Better Stack",
           "description": "Add a new heartbeat.",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "better uptime"
+          ],
           "preferences": []
         }
       ],
@@ -22056,8 +22070,8 @@
           "name": "apiKey",
           "type": "password",
           "required": true,
-          "title": "Better Uptime API Key",
-          "description": "You can find this API Key in the Better Uptime dashboard."
+          "title": "Better Stack API Token",
+          "description": "Find it in Better Stack under API tokens → Team-based tokens → Incidents API tokens."
         }
       ]
     },
@@ -72665,7 +72679,8 @@
       "icon": "command-icon.png",
       "author": "Rob",
       "contributors": [
-        "0xdhrv"
+        "0xdhrv",
+        "effektsvk"
       ],
       "categories": [
         "Fun"
@@ -76342,7 +76357,9 @@
         "Documentation"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/ViGeng/emojify",
       "source": {
         "type": "github-monorepo",
@@ -87923,7 +87940,7 @@
       "platforms": [
         "macOS"
       ],
-      "version": "1.0.0",
+      "version": "1.1.0",
       "storeUrl": "https://www.raycast.com/waeckerlinfederowicz66-sketch/flowspeech-tts",
       "source": {
         "type": "github-monorepo",
@@ -87936,7 +87953,7 @@
           "name": "speak-selected",
           "title": "Speak Selected Text",
           "description": "Read the currently selected text with FlowSpeech",
-          "mode": "no-view",
+          "mode": "view",
           "keywords": [],
           "preferences": []
         },
@@ -87944,7 +87961,15 @@
           "name": "speak-copied",
           "title": "Speak Copied Text",
           "description": "Read text from the clipboard with FlowSpeech",
-          "mode": "no-view",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "show-recovery",
+          "title": "Show Speech Recovery",
+          "description": "Show saved request IDs without creating another recording",
+          "mode": "view",
           "keywords": [],
           "preferences": []
         }
@@ -87953,7 +87978,7 @@
         {
           "name": "apiKey",
           "title": "FlowSpeech API Key",
-          "description": "Create an API key in your FlowSpeech settings",
+          "description": "Developer API key; generation requires active paid API access and consumes credits",
           "type": "password",
           "required": true
         },
@@ -240397,7 +240422,8 @@
       "icon": "command-icon.png",
       "author": "noppefoxwolf",
       "contributors": [
-        "xmok"
+        "xmok",
+        "Fizzbow"
       ],
       "categories": [
         "Developer Tools"
@@ -242477,7 +242503,9 @@
         "Applications"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/pauloedurezende/simulator-manager",
       "source": {
         "type": "github-monorepo",
@@ -259326,6 +259354,86 @@
       "preferences": []
     },
     {
+      "name": "svg-new",
+      "title": "SVG.new",
+      "description": "Convert images to SVG vectors and remove backgrounds with SVG.new.",
+      "icon": "extension-icon.png",
+      "author": "svgnew",
+      "contributors": [],
+      "categories": [
+        "Design Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/svgnew/svg-new",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/svg-new",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "convert-to-svg",
+          "title": "Convert Image to SVG",
+          "subtitle": "SVG.new",
+          "description": "Convert the image selected in Finder to an SVG saved next to it.",
+          "mode": "no-view",
+          "keywords": [
+            "vectorize",
+            "vector",
+            "trace",
+            "image to svg",
+            "png to svg",
+            "jpg to svg"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "convert-clipboard-to-svg",
+          "title": "Convert Clipboard Image to SVG",
+          "subtitle": "SVG.new",
+          "description": "Convert the image on the clipboard to an SVG, save it to Downloads and copy it.",
+          "mode": "no-view",
+          "keywords": [
+            "vectorize",
+            "vector",
+            "trace",
+            "clipboard",
+            "paste"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "remove-background",
+          "title": "Remove Background",
+          "subtitle": "SVG.new",
+          "description": "Remove the background from the image selected in Finder and save a transparent PNG and SVG next to it.",
+          "mode": "no-view",
+          "keywords": [
+            "background",
+            "remove bg",
+            "transparent",
+            "cutout"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "title": "API Key",
+          "description": "Your SVG.new API key from svg.new/account",
+          "placeholder": "svk_…",
+          "type": "password",
+          "required": true
+        }
+      ]
+    },
+    {
       "name": "svg-studio",
       "title": "SVG Studio",
       "description": "Powerful SVG previewer and editor with dark mode and PNG export.",
@@ -264349,7 +264457,7 @@
       "platforms": [
         "macOS"
       ],
-      "version": "1.0.88",
+      "version": "1.0.91",
       "storeUrl": "https://www.raycast.com/praveenjuge/teak-raycast",
       "source": {
         "type": "github-monorepo",
@@ -264473,7 +264581,7 @@
           "title": "API Key",
           "type": "password",
           "required": false,
-          "description": "Optional — only if you prefer an API key over browser sign-in. Generate in Teak Settings > Manage API Keys."
+          "description": "Optional. Only if you prefer an API key to browser sign-in. Make one in Teak Settings > Integrations > API keys."
         }
       ]
     },
