@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-27T22:10:38.854Z",
+  "generatedAt": "2026-10-28T22:32:11.676Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "233cd77e77c3cf9df72cbe30edcbd2b85277f1eb"
+    "commit": "3d3ed18264999e480de1cae02d8f0f5951044884"
   },
-  "count": 3467,
+  "count": 3470,
   "extensions": [
     {
       "name": "0x0",
@@ -16392,8 +16392,8 @@
           "name": "export-apps",
           "title": "Export Apps",
           "subtitle": "@ Profile",
-          "description": "Export apps and history to a YAML file",
-          "mode": "view",
+          "description": "Export apps and History to a YAML file in your export directory",
+          "mode": "no-view",
           "keywords": [],
           "preferences": []
         },
@@ -16407,7 +16407,16 @@
           "preferences": []
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "exportDirectory",
+          "type": "directory",
+          "required": false,
+          "title": "Export Directory",
+          "description": "Where Export Apps saves its YAML file",
+          "default": "~/Downloads"
+        }
+      ]
     },
     {
       "name": "atlassian-data-center",
@@ -28213,7 +28222,8 @@
           "type": "password",
           "required": true,
           "title": "Bouncer API Key",
-          "description": "Stored securely by Raycast and used for Bouncer requests."
+          "placeholder": "app.usebouncer.com → API",
+          "description": "Create one at app.usebouncer.com: open API in the left menu and choose Generate API Key. Raycast stores it securely."
         },
         {
           "name": "saveHistory",
@@ -40713,7 +40723,8 @@
         "litomore",
         "yusifaliyevpro",
         "shivraj-roy",
-        "alexi.build"
+        "alexi.build",
+        "nawal"
       ],
       "categories": [
         "Productivity",
@@ -40804,7 +40815,17 @@
           ]
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "lockMouse",
+          "title": "Lock Mouse Clicks",
+          "description": "Also block clicks and dragging while scrolling stays available. Unlock with Touch ID or hold both Command keys for 8 seconds. Requires Touch ID on macOS; ignored on Windows.",
+          "type": "checkbox",
+          "label": "Also lock mouse clicks (macOS, requires Touch ID)",
+          "default": false,
+          "required": false
+        }
+      ]
     },
     {
       "name": "clean-text",
@@ -51148,7 +51169,7 @@
       "contributors": [
         "ridemountainpig",
         "INCHMAN1900",
-        "arjan",
+        "arjan.flac",
         "dans_huang"
       ],
       "categories": [
@@ -51179,7 +51200,7 @@
       ],
       "preferences": [
         {
-          "title": "Advanced",
+          "title": "Copy Tip",
           "name": "showCopyTip",
           "type": "checkbox",
           "required": false,
@@ -51188,12 +51209,21 @@
           "default": true
         },
         {
+          "name": "showHudEmoji",
+          "type": "checkbox",
+          "required": false,
+          "label": "Show emoji",
+          "description": "Show a file, folder, or link emoji in copy tips.",
+          "default": true
+        },
+        {
           "name": "showLastCopy",
           "type": "checkbox",
           "required": false,
           "label": "Show Last Copy",
           "description": "Show the path or URL of the most recent copy in the subtitle of the command.",
-          "default": true
+          "default": true,
+          "title": "Advanced"
         },
         {
           "name": "showTabTitle",
@@ -51217,11 +51247,11 @@
           "required": false,
           "title": "Multi-path Separator",
           "description": "The separator between paths when copying multiple file paths.",
-          "default": "\n",
+          "default": "\\n",
           "data": [
             {
               "title": "⏎",
-              "value": "\n"
+              "value": "\\n"
             },
             {
               "title": "␣",
@@ -124315,7 +124345,9 @@
       "description": "Download media from Instagram with ease",
       "icon": "extension-icon.png",
       "author": "ridemountainpig",
-      "contributors": [],
+      "contributors": [
+        "chrismessina"
+      ],
       "categories": [
         "Applications",
         "Media"
@@ -124365,6 +124397,15 @@
           "description": "Path to save downloaded media",
           "type": "directory",
           "required": false
+        },
+        {
+          "name": "verboseLogging",
+          "title": "Debug Logging",
+          "label": "Enable extra diagnostics in the console",
+          "description": "Show detailed logs in the console for debugging.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
         }
       ]
     },
@@ -146474,6 +146515,80 @@
       "preferences": []
     },
     {
+      "name": "local-content-search",
+      "title": "Local Content Search",
+      "description": "Search documents, photos, audio, and video locally with EmbeddingGemma 2 and independent background indexing.",
+      "icon": "icon.png",
+      "author": "sushil",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "0.1.0",
+      "storeUrl": "https://www.raycast.com/sushil/local-content-search",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/local-content-search",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search",
+          "title": "Search File Contents",
+          "subtitle": "Local Content Search",
+          "description": "Describe what you remember to find matching documents, images, audio, and video on your Mac",
+          "mode": "view",
+          "keywords": [
+            "content",
+            "semantic",
+            "file search"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "manage",
+          "title": "Manage Content Index",
+          "subtitle": "Local Content Search",
+          "description": "Choose folders, follow background indexing, and control pause, exclusions, power, and memory limits",
+          "mode": "view",
+          "keywords": [
+            "indexing",
+            "folders",
+            "pause"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "setup",
+          "title": "Install Local Content Search",
+          "subtitle": "Local Content Search",
+          "description": "Set up the local EmbeddingGemma 2 model and independent macOS login service",
+          "mode": "view",
+          "keywords": [
+            "install",
+            "model",
+            "setup"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "helperPath",
+          "title": "Helper Path",
+          "description": "Optional extracted helper release directory containing bin/ and licenses/. Leave empty to download the verified release. Only select a helper you trust.",
+          "type": "directory",
+          "required": false
+        }
+      ]
+    },
+    {
       "name": "local-time-tracker",
       "title": "Local Time Tracker",
       "description": "Track project work locally in Raycast",
@@ -156477,7 +156592,7 @@
         {
           "name": "renderEngine",
           "title": "Render Engine",
-          "description": "Auto uses beautiful-mermaid for supported SVG diagrams and falls back to compatible mode",
+          "description": "Auto preserves Beautiful SVG routing, with optional Ondine SVG/PNG before Compatible for other reviewed families. Explicit Ondine is SVG only; AI is unchanged.",
           "type": "dropdown",
           "required": true,
           "default": "auto",
@@ -156493,8 +156608,21 @@
             {
               "title": "Compatible (mmdc)",
               "value": "compatible"
+            },
+            {
+              "title": "Ondine Experimental (SVG Only)",
+              "value": "ondine"
             }
           ]
+        },
+        {
+          "name": "useOndineInAuto",
+          "title": "Use Ondine in Auto",
+          "label": "Try Ondine Experimental for eligible Auto SVG/PNG diagrams",
+          "description": "Manual command only. Default off. Other reviewed families may use Ondine SVG or browser-backed PNG, falling back to Compatible on render failure. Preserves Beautiful SVG and its families' mmdc PNG path. Embedded configuration is bypassed. Requires Chrome/Chromium; PNG uses 3x, max edge 4096 px. Explicit Ondine stays SVG only; AI is unchanged.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
         },
         {
           "name": "theme",
@@ -156525,7 +156653,7 @@
         {
           "name": "beautifulTheme",
           "title": "Beautiful Theme",
-          "description": "Theme for beautiful-mermaid rendering (Auto + SVG + supported syntax, or Beautiful mode)",
+          "description": "Theme for Beautiful and Ondine Experimental rendering, including opt-in Auto; Ondine maps bundled theme colors only.",
           "type": "dropdown",
           "required": true,
           "default": "github-light",
@@ -211718,7 +211846,9 @@
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/ShawYoungTang/quick-web",
       "source": {
         "type": "github-monorepo",
@@ -245505,6 +245635,45 @@
       ]
     },
     {
+      "name": "smhi",
+      "title": "SMHI Weather",
+      "description": "Weather forecasts and warnings for Sweden and the Nordics from SMHI − no API key required.",
+      "icon": "extension-icon.png",
+      "author": "niklaslavrell",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/niklaslavrell/smhi",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/smhi",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-weather",
+          "title": "Search Weather",
+          "description": "Search SMHI weather forecasts by place name",
+          "mode": "view",
+          "keywords": [
+            "forecast",
+            "vader",
+            "väder",
+            "nordic",
+            "sweden"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "smry",
       "title": "Smry",
       "description": "Save browser tabs and links to your smry Inbox or Later list.",
@@ -256574,6 +256743,49 @@
           "placeholder": "Enter the Test API Key for default profile"
         }
       ]
+    },
+    {
+      "name": "style-dictionary",
+      "title": "Style Dictionary",
+      "description": "Browse, search, and copy design tokens from your Style Dictionary projects",
+      "icon": "extension-icon.png",
+      "author": "ars2062",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/ars2062/style-dictionary",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/style-dictionary",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "browse-tokens",
+          "title": "Browse Tokens",
+          "subtitle": "Style Dictionary",
+          "description": "Browse, search, and copy design tokens of the active project",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "manage-projects",
+          "title": "Manage Projects",
+          "subtitle": "Style Dictionary",
+          "description": "Add, edit, and switch style-dictionary token projects",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "subflow",
@@ -307196,7 +307408,8 @@
         "xilopaint",
         "yug2005",
         "ridemountainpig",
-        "0xdhrv"
+        "0xdhrv",
+        "alexi.build"
       ],
       "categories": [],
       "license": "MIT",
