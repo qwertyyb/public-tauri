@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-29T22:44:22.819Z",
+  "generatedAt": "2026-10-30T22:15:21.722Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "568a3b23c434ecdc48788496a7daa865d49cebe7"
+    "commit": "25aba767edd085c47ce17408bbaf6a054b263101"
   },
-  "count": 3483,
+  "count": 3487,
   "extensions": [
     {
       "name": "0x0",
@@ -2625,7 +2625,9 @@
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/inakitajes/advanced-speech-to-text",
       "source": {
         "type": "github-monorepo",
@@ -31674,6 +31676,83 @@
           "description": "Use BusyCal's working-hours window by default when finding availability.",
           "default": true,
           "required": false
+        }
+      ]
+    },
+    {
+      "name": "buzz",
+      "title": "Buzz",
+      "description": "Browse channels, search messages, send direct messages, and set your status in Buzz",
+      "icon": "extension-icon.png",
+      "author": "caasols",
+      "contributors": [],
+      "categories": [
+        "Communication"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/caasols/buzz",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/buzz",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-channels",
+          "title": "Search Channels",
+          "subtitle": "Buzz",
+          "description": "List and open Buzz channels",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-messages",
+          "title": "Search Messages",
+          "subtitle": "Buzz",
+          "description": "Full-text search across Buzz channel messages",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "send-message",
+          "title": "Send Message",
+          "subtitle": "Buzz",
+          "description": "Post a message to a Buzz channel, conversation, or person",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "set-status",
+          "title": "Set Status",
+          "subtitle": "Buzz",
+          "description": "View your current status and apply, create, edit or delete reusable status presets, or set a custom status",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "relayUrl",
+          "title": "Relay URL",
+          "description": "Your Buzz relay base URL. https:// or wss:// (wss is converted automatically)",
+          "type": "textfield",
+          "required": true,
+          "placeholder": "https://relay.example.com"
+        },
+        {
+          "name": "privateKey",
+          "title": "Private Key",
+          "description": "Your Nostr private key (nsec1... or 64-character hex). Stored by Raycast; never leaves your machine.",
+          "type": "password",
+          "required": true
         }
       ]
     },
@@ -85298,6 +85377,91 @@
           "type": "textfield",
           "required": false,
           "default": "30"
+        }
+      ]
+    },
+    {
+      "name": "file-search-by-usage",
+      "title": "File Search by Usage",
+      "description": "Search local and cloud files in one place, ranked by usage.",
+      "icon": "command-icon.png",
+      "author": "raycast_file_search",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/raycast_file_search/file-search-by-usage",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/file-search-by-usage",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search",
+          "title": "Search Files and Folders",
+          "description": "Search files and folders across local and cloud storage, ranked by usage.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "rebuild-index",
+          "title": "Rebuild Search Index",
+          "description": "Scan configured local and cloud folders with fd and rebuild the search index. Runs only when you ask; nothing is scheduled.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "index-settings",
+          "title": "Search Index Settings",
+          "description": "Choose which folders the search index covers, and which names to ignore.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "delete-data",
+          "title": "Delete All Data and Cache",
+          "description": "Delete usage history, pins, searches, learned shortcuts, and cached indexes without touching your files.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "showHidden",
+          "title": "Listing",
+          "label": "Show hidden files",
+          "type": "checkbox",
+          "required": false,
+          "default": false,
+          "description": "Show dot-prefixed files and folders by default. Toggle Hidden Files changes visibility for the current command run."
+        },
+        {
+          "name": "showScores",
+          "title": "",
+          "label": "Show usage scores",
+          "description": "Show each item's usage score in the list. Useful for understanding why results are ordered the way they are.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "fdPath",
+          "title": "Search Index",
+          "description": "Optional full path to an fd executable. Leave empty to use an installed copy or download the pinned, checksum-verified portable copy automatically.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "/opt/homebrew/bin/fd"
         }
       ]
     },
@@ -210227,6 +210391,24 @@
           "preferences": []
         },
         {
+          "name": "open-shared-music",
+          "title": "Open Shared Music",
+          "subtitle": "Qobuz",
+          "description": "Bring a Spotify or YouTube Music track or album over to Qobuz, or see a Qobuz track on every other service. Uses the link you pass, else a track or album link on the clipboard.",
+          "mode": "view",
+          "keywords": [
+            "convert",
+            "link",
+            "share",
+            "spotify",
+            "youtube music",
+            "album",
+            "track",
+            "url"
+          ],
+          "preferences": []
+        },
+        {
           "name": "copy-share-links",
           "title": "Copy Share Links",
           "subtitle": "Qobuz",
@@ -227604,7 +227786,8 @@
         "alexs",
         "peduarte",
         "pernielsentikaer",
-        "0xdhrv"
+        "0xdhrv",
+        "alexi.build"
       ],
       "categories": [
         "Communication",
@@ -227667,6 +227850,15 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "careers",
+          "title": "Careers",
+          "subtitle": "Resend",
+          "description": "Browse open positions at Resend and apply",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": [
@@ -227684,7 +227876,7 @@
           "type": "textfield",
           "placeholder": "John Doe",
           "description": "Your name to use as the default sender",
-          "required": true
+          "required": false
         },
         {
           "name": "sender_email",
@@ -227692,7 +227884,7 @@
           "type": "textfield",
           "placeholder": "john@example.com",
           "description": "Your email address to use as the default sender",
-          "required": true
+          "required": false
         }
       ]
     },
@@ -243712,6 +243904,41 @@
       ]
     },
     {
+      "name": "simready-assets",
+      "title": "SimReady Assets",
+      "description": "Browse, preview, and search NVIDIA's SimReady Assets on Hugging Face. Download only the assets you need.",
+      "icon": "extension_icon.png",
+      "author": "0xdhrv",
+      "contributors": [],
+      "categories": [
+        "Design Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows",
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/0xdhrv/simready-assets",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/simready-assets",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "simready-assets",
+          "title": "Search Assets",
+          "subtitle": "SimReady Assets",
+          "description": "Search NVIDIA's SimReady Assets, preview 3D models, and browse individual files to download on demand.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "simulator-deep-linker",
       "title": "Simulator Deep Linker",
       "description": "Requires the free Simulator Deep Linker 0.2.9+ macOS app; search and open saved links on iOS and Android devices.",
@@ -259036,6 +259263,58 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "summy",
+      "title": "Summy",
+      "description": "Save links, text, and files to Summy, then browse their AI-generated summaries.",
+      "icon": "summy-icon.png",
+      "author": "barlow",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/barlow/summy",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/summy",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "save-to-summy",
+          "title": "Save to Summy",
+          "description": "Choose a link, text, or files to save and summarize in Summy.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "summy-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "browse-summy",
+          "title": "Browse Summy",
+          "description": "Browse, search, and open everything saved in Summy.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "summy-icon.png",
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "sessionToken",
+          "title": "Summy Session Token",
+          "description": "Your private Summy session token. Raycast stores password preferences in its encrypted local database.",
+          "type": "password",
+          "required": true,
+          "placeholder": "Paste your Summy token"
+        }
+      ]
     },
     {
       "name": "sun-moon-times",
@@ -287764,11 +288043,13 @@
     {
       "name": "ulysses",
       "title": "Ulysses",
-      "description": "Use Ulysses with Raycast",
+      "description": "Capture text, keep a journal, and open Ulysses from Raycast",
       "icon": "command-icon.png",
       "author": "praveenjuge",
       "contributors": [],
-      "categories": [],
+      "categories": [
+        "Productivity"
+      ],
       "license": "MIT",
       "platforms": [
         "macOS"
@@ -287782,21 +288063,63 @@
       },
       "commands": [
         {
+          "name": "quick-capture",
+          "title": "Quick Capture",
+          "subtitle": "Ulysses",
+          "description": "Write a new sheet with a title, text, group and format",
+          "mode": "view",
+          "keywords": [],
+          "icon": "quick-capture.png",
+          "preferences": []
+        },
+        {
+          "name": "capture-text",
+          "title": "Capture Text",
+          "subtitle": "Ulysses",
+          "description": "Save typed text, the selected text, or the clipboard as a new sheet",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "capture-text.png",
+          "preferences": []
+        },
+        {
+          "name": "create-journal-entry",
+          "title": "Create Journal Entry",
+          "subtitle": "Ulysses",
+          "description": "Create a sheet titled with today's date in your Journal group",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "create-journal-entry.png",
+          "preferences": [
+            {
+              "name": "journalGroup",
+              "title": "Journal Group",
+              "description": "The group for journal sheets: a name or a path like /Personal/Journal. It's created if it doesn't exist.",
+              "type": "textfield",
+              "default": "Journal",
+              "placeholder": "Journal",
+              "required": false
+            }
+          ]
+        },
+        {
           "name": "new-empty-sheet",
-          "title": "New Empty Sheet",
+          "title": "Create Empty Sheet",
           "subtitle": "Ulysses",
           "description": "Open a new empty sheet in Ulysses",
           "mode": "no-view",
           "keywords": [],
+          "icon": "new-empty-sheet.png",
           "preferences": []
         },
         {
           "name": "new-group",
-          "title": "New Group",
+          "title": "Create Group",
           "subtitle": "Ulysses",
           "description": "Create a new group in Ulysses",
           "mode": "view",
           "keywords": [],
+          "icon": "new-group.png",
           "preferences": []
         },
         {
@@ -287806,6 +288129,7 @@
           "description": "See all sheets in Ulysses",
           "mode": "no-view",
           "keywords": [],
+          "icon": "open-all.png",
           "preferences": []
         },
         {
@@ -287815,6 +288139,7 @@
           "description": "See recently opened files in Ulysses",
           "mode": "no-view",
           "keywords": [],
+          "icon": "open-recent.png",
           "preferences": []
         },
         {
@@ -287824,10 +288149,47 @@
           "description": "See your favorite sheets in Ulysses",
           "mode": "no-view",
           "keywords": [],
+          "icon": "open-favorites.png",
           "preferences": []
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "defaultGroup",
+          "title": "Default Group",
+          "description": "Group for new sheets: a name or a path like /Blog/Drafts. Leave empty to use the Inbox. If the group doesn't exist, sheets go to the Inbox.",
+          "type": "textfield",
+          "placeholder": "Inbox",
+          "required": false
+        },
+        {
+          "name": "format",
+          "title": "Text Format",
+          "description": "How Ulysses imports the text you capture.",
+          "type": "dropdown",
+          "default": "markdown",
+          "required": false,
+          "data": [
+            {
+              "title": "Markdown",
+              "value": "markdown"
+            },
+            {
+              "title": "Plain Text",
+              "value": "text"
+            }
+          ]
+        },
+        {
+          "name": "showInUlysses",
+          "title": "After Saving",
+          "label": "Bring Ulysses to the front",
+          "description": "Show the new sheet, group or journal entry in Ulysses. Turn off to save in the background.",
+          "type": "checkbox",
+          "default": true,
+          "required": false
+        }
+      ]
     },
     {
       "name": "umami",
