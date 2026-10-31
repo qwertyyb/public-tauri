@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-30T22:15:21.722Z",
+  "generatedAt": "2026-10-31T21:26:56.703Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "25aba767edd085c47ce17408bbaf6a054b263101"
+    "commit": "4a675ff62605e728d221a60208b9e88696f21dce"
   },
-  "count": 3487,
+  "count": 3488,
   "extensions": [
     {
       "name": "0x0",
@@ -7742,6 +7742,59 @@
             {
               "title": "United States",
               "value": "com"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "amino-acid-lookup",
+      "title": "Amino Acid Lookup",
+      "description": "Look up amino acids by one-letter code, three-letter code or full name, and convert whole peptide sequences between notations.",
+      "icon": "extension-icon.png",
+      "author": "andreas_zankl",
+      "contributors": [],
+      "categories": [
+        "Data",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/andreas_zankl/amino-acid-lookup",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/amino-acid-lookup",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "lookup",
+          "title": "Look Up Amino Acids",
+          "description": "Type a one-letter code, three-letter code, name or peptide sequence and see the other notations instantly.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "colorScheme",
+          "title": "Color Scheme",
+          "description": "How amino acids are colored in the list.",
+          "type": "dropdown",
+          "required": false,
+          "default": "clustalx",
+          "data": [
+            {
+              "title": "Clustal X",
+              "value": "clustalx"
+            },
+            {
+              "title": "Taylor",
+              "value": "taylor"
             }
           ]
         }
@@ -28639,12 +28692,18 @@
       "description": "⚡Get any websites brand logo in seconds (SVG, PNG)",
       "icon": "extension_icon.png",
       "author": "dilutedev",
-      "contributors": [],
+      "contributors": [
+        "muhammadrizo"
+      ],
       "categories": [
-        "Developer Tools"
+        "Developer Tools",
+        "Media"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "storeUrl": "https://www.raycast.com/dilutedev/brand-fetch",
       "source": {
         "type": "github-monorepo",
@@ -28667,6 +28726,14 @@
               "description": "Key used to authenticate brand fetch api",
               "type": "password",
               "required": true
+            },
+            {
+              "title": "Download Path",
+              "name": "downloadPath",
+              "description": "Choose where downloaded brand images are saved",
+              "type": "directory",
+              "required": false,
+              "default": "~/Downloads"
             }
           ]
         }
@@ -28742,7 +28809,8 @@
         "crisboarna",
         "tleo19",
         "faridrashidi",
-        "pernielsentikaer"
+        "pernielsentikaer",
+        "muhammadrizo"
       ],
       "categories": [
         "Applications",
@@ -28750,7 +28818,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/ron-myers/brave",
       "source": {
@@ -28762,17 +28831,31 @@
       "commands": [
         {
           "name": "new-tab",
-          "title": "New Brave Tab",
-          "subtitle": "Brave",
+          "title": "Open New Tab",
           "description": "Open a new Brave tab.",
-          "mode": "view",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-new-window",
+          "title": "Open New Window",
+          "description": "Open a new Brave window.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-new-incognito-window",
+          "title": "Open New Incognito Window",
+          "description": "Open a new Brave incognito window.",
+          "mode": "no-view",
           "keywords": [],
           "preferences": []
         },
         {
           "name": "search-tab",
-          "title": "Search Brave Tabs",
-          "subtitle": "Brave",
+          "title": "Search Tabs",
           "description": "List all tabs and go to the selected.",
           "mode": "view",
           "keywords": [],
@@ -28780,8 +28863,7 @@
         },
         {
           "name": "search-history",
-          "title": "Search Brave History",
-          "subtitle": "Brave",
+          "title": "Search History",
           "description": "Search browser history.",
           "mode": "view",
           "keywords": [],
@@ -28789,8 +28871,7 @@
         },
         {
           "name": "search-bookmarks",
-          "title": "Search Brave Bookmarks",
-          "subtitle": "Brave",
+          "title": "Search Bookmarks",
           "description": "Search browser bookmarks.",
           "mode": "view",
           "keywords": [],
@@ -28798,8 +28879,7 @@
         },
         {
           "name": "search-bookmark-folders",
-          "title": "Search Brave Bookmark Folders",
-          "subtitle": "Brave",
+          "title": "Search Bookmark Folders",
           "description": "Search browser bookmark folders.",
           "mode": "view",
           "keywords": [],
@@ -28809,7 +28889,7 @@
       "preferences": [
         {
           "name": "useOriginalFavicon",
-          "title": "Fav icon",
+          "title": "Favicon (macOS only)",
           "label": "Extract the favicon from every open tab",
           "description": "Before enable this, you should enable 'View > Developer > Allow JavaScript from Apple Events' in every Brave profile.",
           "required": false,
@@ -28844,7 +28924,7 @@
           "description": "Select the Brave Browser you want to use.",
           "type": "dropdown",
           "required": false,
-          "default": "default",
+          "default": "Brave Browser",
           "data": [
             {
               "title": "Brave Browser",
@@ -28859,6 +28939,20 @@
               "value": "Brave Browser Nightly"
             }
           ]
+        },
+        {
+          "name": "bravePath",
+          "title": "Brave Executable (Windows)",
+          "description": "Optional full path to brave.exe for custom or portable installations. Overrides browser channel selection for launching.",
+          "type": "file",
+          "required": false
+        },
+        {
+          "name": "userDataPath",
+          "title": "User Data Directory (Windows)",
+          "description": "Optional path to the User Data folder containing Local State and profile folders for a custom or portable installation.",
+          "type": "directory",
+          "required": false
         }
       ]
     },
@@ -63191,15 +63285,6 @@
       ],
       "preferences": [
         {
-          "name": "returnToOriginalSpace",
-          "title": "Return to Original Space",
-          "label": "Enable automatic return",
-          "description": "Automatically return to your original desktop after moving windows to a different desktop.",
-          "type": "checkbox",
-          "required": false,
-          "default": true
-        },
-        {
           "name": "communicationMethod",
           "title": "Communication Method",
           "label": "Choose how Raycast communicates with DesktopRenamer",
@@ -86969,6 +87054,7 @@
         {
           "name": "search-tabs",
           "title": "Search Firefox Tabs",
+          "subtitle": "Firefox",
           "description": "Search open Firefox tabs by title or URL",
           "mode": "view",
           "keywords": [],
@@ -86976,9 +87062,10 @@
         },
         {
           "name": "setup-bridge",
-          "title": "Setup Firefox Bridge",
-          "description": "Register the native messaging host with Firefox",
-          "mode": "no-view",
+          "title": "Set Up Firefox Bridge",
+          "subtitle": "Firefox",
+          "description": "Install the native host and check the companion extension in each Firefox profile",
+          "mode": "view",
           "keywords": [],
           "preferences": []
         }
@@ -97097,7 +97184,8 @@
         "clins1994",
         "0xdhrv",
         "Olli0103",
-        "alexi.build"
+        "alexi.build",
+        "hla_htun"
       ],
       "categories": [
         "Media",
@@ -99638,6 +99726,14 @@
           "preferences": []
         },
         {
+          "name": "create-release",
+          "title": "Create Release",
+          "description": "Create a release in one of your GitHub repositories.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "search-repositories",
           "title": "Search Repositories",
           "description": "Search in your public or private repositories by name.",
@@ -99724,6 +99820,14 @@
           "name": "workflow-runs",
           "title": "Workflow Runs",
           "description": "Manage workflow runs for a selected GitHub repository.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "dispatch-workflow",
+          "title": "Dispatch Workflow",
+          "description": "Trigger a workflow_dispatch workflow in one of your GitHub repositories.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -120669,7 +120773,7 @@
           "name": "quick-add-task",
           "title": "Quick Add Task",
           "subtitle": "Hule",
-          "description": "Create a task from a single line, straight into your default list.",
+          "description": "Create a task from a single line, straight into your Quick capture list.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -120719,15 +120823,6 @@
           "required": false,
           "placeholder": "https://api.hule-do.com/api",
           "default": "https://api.hule-do.com/api"
-        },
-        {
-          "name": "defaultList",
-          "title": "Default List",
-          "description": "List that Quick Add Task writes to, as “List” or “Workspace / List”. Leave empty to use your first list.",
-          "type": "textfield",
-          "required": false,
-          "placeholder": "Inbox or Workspace / Inbox",
-          "default": ""
         }
       ]
     },
@@ -125165,7 +125260,7 @@
         {
           "name": "download-instagram-media",
           "title": "Download Instagram Media",
-          "description": "Download Instagram post and reels with URL",
+          "description": "Download a post, reel or story from its link",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -125194,6 +125289,24 @@
           "description": "Path to save downloaded media",
           "type": "directory",
           "required": false
+        },
+        {
+          "name": "downloadMethod",
+          "title": "Download Method",
+          "type": "dropdown",
+          "required": false,
+          "default": "browser",
+          "description": "Browser Tab needs the Raycast browser extension; Instagram may rate-limit.",
+          "data": [
+            {
+              "title": "Browser Tab",
+              "value": "browser"
+            },
+            {
+              "title": "Instagram Directly",
+              "value": "instagram"
+            }
+          ]
         },
         {
           "name": "verboseLogging",
@@ -135955,7 +136068,9 @@
       "description": "Control Kaset - YouTube Music client for macOS",
       "icon": "extension-icon.png",
       "author": "endiruslan",
-      "contributors": [],
+      "contributors": [
+        "danieltsam"
+      ],
       "categories": [
         "Media",
         "Applications"
@@ -135983,7 +136098,7 @@
         {
           "name": "now-playing",
           "title": "Now Playing",
-          "description": "View the currently playing track",
+          "description": "View the current track, queue, and recently played",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -136067,6 +136182,14 @@
           "mode": "no-view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "record-player-state",
+          "title": "Record Player State",
+          "description": "Records the current track for the recently played list",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": [
@@ -136093,6 +136216,59 @@
             {
               "title": "Long (50 chars)",
               "value": "long"
+            },
+            {
+              "title": "Marquee",
+              "value": "marquee"
+            }
+          ]
+        },
+        {
+          "name": "menuBarIconStyle",
+          "type": "dropdown",
+          "title": "Menu Bar Icon",
+          "description": "Show album artwork or a progress ring",
+          "required": false,
+          "default": "artwork",
+          "data": [
+            {
+              "title": "Album Artwork",
+              "value": "artwork"
+            },
+            {
+              "title": "Progress Ring",
+              "value": "progress"
+            }
+          ]
+        },
+        {
+          "name": "hideWhenIdle",
+          "type": "checkbox",
+          "title": "Hide When Idle",
+          "label": "Hide the menu bar icon when nothing is playing",
+          "description": "Hide the menu bar item when no track is playing",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "searchSource",
+          "type": "dropdown",
+          "title": "Play Song Source",
+          "description": "Which source Play Song searches by default",
+          "required": false,
+          "default": "both",
+          "data": [
+            {
+              "title": "YouTube Music + YouTube",
+              "value": "both"
+            },
+            {
+              "title": "YouTube Music",
+              "value": "ytmusic"
+            },
+            {
+              "title": "YouTube",
+              "value": "youtube"
             }
           ]
         }
@@ -163703,7 +163879,9 @@
         "Developer Tools"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/tssujt/mongodb-objectid",
       "source": {
         "type": "github-monorepo",
@@ -233905,7 +234083,8 @@
         "pernielsentikaer",
         "chrismessina",
         "huzef_ansari",
-        "duck69"
+        "duck69",
+        "salman-ar-sar"
       ],
       "categories": [
         "Productivity"
@@ -233949,11 +234128,30 @@
         },
         {
           "name": "recognize-clipboard",
-          "title": "Recognize Text in Clipboard Image (Windows Only)",
-          "description": "Extract text from an image or supported image file in the Windows clipboard",
+          "title": "Recognize Text in Clipboard Image",
+          "description": "Extract text from an image or copied image file in the clipboard on macOS and Windows",
           "mode": "no-view",
           "keywords": [],
-          "preferences": []
+          "preferences": [
+            {
+              "name": "clipboardResultAction",
+              "title": "After Recognition (macOS)",
+              "description": "macOS only: copying text replaces the clipboard image. Paste and keep image pastes into the active app, then restores the original clipboard contents. Windows uses the extension-wide After Recognition (Windows) preference.",
+              "type": "dropdown",
+              "required": false,
+              "default": "copy",
+              "data": [
+                {
+                  "title": "Copy Text (Replaces Image)",
+                  "value": "copy"
+                },
+                {
+                  "title": "Paste Text and Keep Image",
+                  "value": "paste-restore"
+                }
+              ]
+            }
+          ]
         },
         {
           "name": "detect-barcode",
@@ -234120,7 +234318,7 @@
         },
         {
           "name": "playSound",
-          "description": "macOS only: play the camera shutter sound when capturing a screen region.",
+          "description": "macOS only: play the camera shutter sound when capturing a screen region. Applies to screen-capture commands, not Recognize Text in Clipboard Image.",
           "type": "checkbox",
           "required": false,
           "label": "Play sounds",
@@ -234144,7 +234342,7 @@
         },
         {
           "name": "keepImage",
-          "description": "macOS only: copy the captured image to the clipboard before recognition. Copying recognized text may replace it.",
+          "description": "macOS only: copy the captured image to the clipboard before recognition. Applies to screen-capture commands, not Recognize Text in Clipboard Image. Copying recognized text may replace it.",
           "type": "checkbox",
           "required": true,
           "label": "Keep image in clipboard",
@@ -238502,10 +238700,9 @@
       "title": "7TV Emotes Search",
       "description": "Search, preview, copy, and paste emotes from 7TV, BetterTTV, and FrankerFaceZ.",
       "icon": "icon.png",
-      "author": "Paranjayy",
+      "author": "nakama",
       "contributors": [
-        "Kan-A-Pesh",
-        "nakama"
+        "Kan-A-Pesh"
       ],
       "categories": [
         "Media"
@@ -238516,7 +238713,7 @@
         "Windows"
       ],
       "version": "1.0.0",
-      "storeUrl": "https://www.raycast.com/Paranjayy/seventv-search",
+      "storeUrl": "https://www.raycast.com/nakama/seventv-search",
       "source": {
         "type": "github-monorepo",
         "repo": "raycast/extensions",
@@ -257797,7 +257994,9 @@
         "Developer Tools"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "version": "1.0.1",
       "storeUrl": "https://www.raycast.com/douwepausma/strapi-raycast-extension",
       "source": {
@@ -257836,8 +258035,8 @@
         },
         {
           "name": "apiKey",
-          "title": "Strapi API Key",
-          "description": "The API key of your Strapi instance.",
+          "title": "Strapi API Token",
+          "description": "An API token of your Strapi instance (Settings → API Tokens).",
           "type": "password",
           "required": true
         }
@@ -293756,6 +293955,24 @@
           "type": "checkbox",
           "label": "Remux streams without re-encoding (faster, recommended)",
           "default": true,
+          "required": false
+        },
+        {
+          "name": "verboseLogging",
+          "title": "Debug Logging",
+          "description": "Show detailed logs in the console for debugging.",
+          "type": "checkbox",
+          "label": "Enable extra diagnostics in the console",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "strictRedaction",
+          "title": "Strict Redaction",
+          "description": "Turn on before reproducing an issue, then share only the new log lines.",
+          "type": "checkbox",
+          "label": "Also hide URL query strings and fragments in logs",
+          "default": false,
           "required": false
         }
       ]
