@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-31T21:26:56.703Z",
+  "generatedAt": "2026-11-01T22:03:38.664Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "4a675ff62605e728d221a60208b9e88696f21dce"
+    "commit": "c8c5b128758ed35f1e873c5f3cd222ae4acfaf4a"
   },
-  "count": 3488,
+  "count": 3493,
   "extensions": [
     {
       "name": "0x0",
@@ -444,6 +444,47 @@
           "default": "/bin/zsh"
         }
       ]
+    },
+    {
+      "name": "2do",
+      "title": "2Do",
+      "description": "Add, view, and edit 2Do tasks.",
+      "icon": "icon.png",
+      "author": "danielhaven",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/danielhaven/2do",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/2do",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "add-task",
+          "title": "Add Task",
+          "description": "Add a task to 2Do.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "view-tasks",
+          "title": "View Tasks",
+          "description": "Browse 2Do tasks by scope, list, or smart list, and edit, complete, or open them.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "2fa-directory",
@@ -27289,6 +27330,65 @@
       ]
     },
     {
+      "name": "bluecat-ipam-lookup",
+      "title": "BlueCat BAM Lookup",
+      "description": "Look up IP addresses, networks, and DNS records in BlueCat Address Manager",
+      "icon": "bam-ip-lookup-icon-512.png",
+      "author": "afly007",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/afly007/bluecat-ipam-lookup",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/bluecat-ipam-lookup",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-ipam",
+          "title": "BAM Lookup",
+          "subtitle": "BlueCat",
+          "description": "Search BlueCat Address Manager by IP address, CIDR network, or DNS name",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "serverUrl",
+          "title": "Address Manager URL",
+          "description": "Base URL of your BlueCat Address Manager, e.g. https://bam.example.com",
+          "type": "textfield",
+          "required": true,
+          "placeholder": "https://bam.example.com"
+        },
+        {
+          "name": "username",
+          "title": "Username",
+          "description": "API user name",
+          "type": "textfield",
+          "required": true,
+          "placeholder": "api-user"
+        },
+        {
+          "name": "password",
+          "title": "Password",
+          "description": "API user password",
+          "type": "password",
+          "required": true,
+          "placeholder": "Password"
+        }
+      ]
+    },
+    {
       "name": "bluesky",
       "title": "Bluesky",
       "description": "Browse through your Bluesky timeline. Create new posts, find people, and view your notifications.",
@@ -27823,6 +27923,41 @@
           "subtitle": "Bob",
           "description": "Translate the given text",
           "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "bolt-pattern-finder",
+      "title": "Bolt Pattern Finder",
+      "description": "Instant PCD bolt pattern, center bore, and wheel fitment lookup for 12,000+ vehicles.",
+      "icon": "icon.png",
+      "author": "double2dev",
+      "contributors": [],
+      "categories": [
+        "Data",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/double2dev/bolt-pattern-finder",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/bolt-pattern-finder",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "index",
+          "title": "Search Bolt Patterns",
+          "subtitle": "BoltPatternHQ",
+          "description": "Quickly search bolt patterns and wheel fitment for 12,000+ vehicles.",
+          "mode": "view",
           "keywords": [],
           "preferences": []
         }
@@ -71403,7 +71538,8 @@
         "0xdhrv",
         "YourMCGeek",
         "dhaydl",
-        "hugodemenez"
+        "hugodemenez",
+        "danieltsam"
       ],
       "categories": [
         "Productivity",
@@ -136608,6 +136744,258 @@
       ]
     },
     {
+      "name": "keito",
+      "title": "Keito",
+      "description": "Track time in Keito: start, stop, and switch timers, log and edit entries, keep favorites, and see your running timer in the menu bar.",
+      "icon": "keito-icon-5046e5.png",
+      "author": "eluce2",
+      "contributors": [
+        "bchopson",
+        "mrpunkin"
+      ],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/eluce2/keito",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/keito",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "connection",
+          "title": "Keito Connection",
+          "subtitle": "Keito",
+          "description": "Check your Keito API key, Company ID, identity, and project/task access",
+          "mode": "view",
+          "keywords": [],
+          "icon": "keito-icon-5046e5.png",
+          "preferences": []
+        },
+        {
+          "name": "new",
+          "title": "New Time Entry",
+          "subtitle": "Keito",
+          "description": "Start a Keito timer or log a completed time entry",
+          "mode": "view",
+          "keywords": [],
+          "icon": "keito-add-5046e5.png",
+          "preferences": []
+        },
+        {
+          "name": "listTimeEntries",
+          "title": "Today's Timesheet",
+          "subtitle": "Keito",
+          "description": "View, edit, restart, and delete today's or previous days' Keito time entries",
+          "mode": "view",
+          "keywords": [],
+          "icon": "keito-timer-5046e5.png",
+          "preferences": [
+            {
+              "name": "sortBy",
+              "title": "Sort By",
+              "description": "How should the time entries in your timesheet be sorted?",
+              "required": false,
+              "default": "updated-desc",
+              "value": "updated-desc",
+              "type": "dropdown",
+              "data": [
+                {
+                  "title": "Updated Time - Newest First",
+                  "value": "updated-desc"
+                },
+                {
+                  "title": "Updated Time - Oldest First",
+                  "value": "updated-asc"
+                },
+                {
+                  "title": "Created Time - Newest First",
+                  "value": "created-desc"
+                },
+                {
+                  "title": "Created Time - Oldest First",
+                  "value": "created-asc"
+                },
+                {
+                  "title": "No Sorting",
+                  "value": "none"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "listFavorites",
+          "title": "Favorites",
+          "subtitle": "Keito",
+          "description": "Quick access to favorite time entries",
+          "mode": "view",
+          "keywords": [],
+          "icon": "keito-favorite-5046e5.png",
+          "preferences": []
+        },
+        {
+          "name": "stopTimer",
+          "title": "Stop Timer",
+          "subtitle": "Keito",
+          "description": "Stop your running timer",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "keito-stop-5046e5.png",
+          "preferences": []
+        },
+        {
+          "name": "toggleTimer",
+          "title": "Toggle Timer",
+          "subtitle": "Keito",
+          "description": "Stop the running Keito timer, or restart today's most recent entry",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "keito-toggle-5046e5.png",
+          "preferences": []
+        },
+        {
+          "name": "menu-bar",
+          "title": "Running Timer",
+          "subtitle": "Keito",
+          "description": "See your active Keito timer at a glance",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "showTimerInMenuBar",
+              "label": "Show Timer in Menu Bar",
+              "title": "Options",
+              "description": "Show your running timer in the menu bar",
+              "type": "checkbox",
+              "default": true,
+              "required": false
+            },
+            {
+              "name": "statusFolder",
+              "title": "Status Folder",
+              "type": "directory",
+              "description": "Optional folder where currentTimer.json is written while a timer runs, for automation tools. See README.",
+              "required": false,
+              "label": "Status Folder",
+              "placeholder": "Select a directory"
+            }
+          ]
+        },
+        {
+          "name": "resetLocalData",
+          "title": "Reset Local Keito Data",
+          "subtitle": "Keito",
+          "description": "Clear cached Keito projects, entries, and verified identity (favorites are kept)",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "keito-icon-5046e5.png",
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "token",
+          "title": "Keito Integration API Key (Optional)",
+          "description": "Leave blank to sign in with your Keito account in the browser. Or enter a full-access integration key (kto_…) that a Keito Administrator created for you.",
+          "required": false,
+          "link": "https://keito.ai/docs/auth/api-keys",
+          "type": "password",
+          "placeholder": "kto_…"
+        },
+        {
+          "name": "accountID",
+          "title": "Keito Company ID (Optional)",
+          "required": false,
+          "description": "Only needed with an integration key: Settings → API & Developers → Company ID. Leave blank to sign in with Keito.",
+          "link": "https://keito.ai/docs/auth/api-keys",
+          "type": "textfield"
+        },
+        {
+          "name": "showClient",
+          "description": "in the time entry form",
+          "required": false,
+          "label": "Show Client Name above selected project",
+          "type": "checkbox",
+          "title": "Entry Form"
+        },
+        {
+          "name": "showClientInProject",
+          "title": "Project Dropdown",
+          "description": "Show client name alongside project name in the project dropdown for easier filtering",
+          "required": false,
+          "label": "Show Client Name in Project Dropdown",
+          "type": "checkbox",
+          "default": false
+        },
+        {
+          "name": "timeFormat",
+          "title": "Time Format",
+          "required": false,
+          "description": "How durations are displayed. Keito does not expose company display settings through the API.",
+          "type": "dropdown",
+          "default": "hours_minutes",
+          "data": [
+            {
+              "title": "Hours:Minutes (1:30)",
+              "value": "hours_minutes"
+            },
+            {
+              "title": "Decimal (1.50)",
+              "value": "decimal"
+            }
+          ]
+        },
+        {
+          "name": "entryMode",
+          "title": "Entry Fields",
+          "required": false,
+          "description": "Duration, or start and end times (HH:mm in the Keito workspace timezone). Company Default follows Keito's manual entry format.",
+          "type": "dropdown",
+          "default": "company",
+          "data": [
+            {
+              "title": "Company Default",
+              "value": "company"
+            },
+            {
+              "title": "Duration",
+              "value": "duration"
+            },
+            {
+              "title": "Start and End Times",
+              "value": "start_end"
+            }
+          ]
+        },
+        {
+          "name": "titleDisplay",
+          "title": "Title Field",
+          "required": false,
+          "description": "What field to display as the title in a list of tasks. The other field will be shown as an accessory.",
+          "type": "dropdown",
+          "default": "project",
+          "data": [
+            {
+              "title": "Project Name",
+              "value": "project"
+            },
+            {
+              "title": "Task Name",
+              "value": "task"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "keka",
       "title": "Keka",
       "description": "Compress and extract files using Keka, the macOS file archiver",
@@ -191123,6 +191511,149 @@
       ]
     },
     {
+      "name": "passig",
+      "title": "Passig",
+      "description": "Search, copy, paste and save passwords from your zero-knowledge Passig vault, right from Raycast.",
+      "icon": "icon.png",
+      "author": "igsolutions",
+      "contributors": [],
+      "categories": [
+        "Security",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/igsolutions/passig",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/passig",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search",
+          "title": "Search Passwords",
+          "subtitle": "Passig",
+          "description": "Search your vault and copy or paste a username, password or TOTP code.",
+          "mode": "view",
+          "keywords": [
+            "password",
+            "vault",
+            "login",
+            "passig"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "create",
+          "title": "Save Password",
+          "subtitle": "Passig",
+          "description": "Create a new login item in one of your vaults.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "import",
+          "title": "Import Passwords",
+          "subtitle": "Passig",
+          "description": "Import passwords from Bitwarden, 1Password, LastPass, Chrome, Firefox, Safari, KeePass, Dashlane, Keeper, NordPass, Proton Pass, Enpass, RoboForm or a CSV file.",
+          "mode": "view",
+          "keywords": [
+            "import",
+            "bitwarden",
+            "1password",
+            "lastpass",
+            "keepass",
+            "csv"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "generate",
+          "title": "Generate Password",
+          "subtitle": "Passig",
+          "description": "Generate a strong password and copy it to the clipboard.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "lock",
+          "title": "Lock Passig",
+          "subtitle": "Passig",
+          "description": "Clear the unlocked keys and the local session.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "clear-clipboard",
+          "title": "Clear Passig Clipboard",
+          "subtitle": "Passig",
+          "description": "Background command: clears the clipboard 30 seconds after a copy if it still contains the secret.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "email",
+          "title": "Email",
+          "description": "Email address of your Passig account",
+          "type": "textfield",
+          "required": true,
+          "placeholder": "name@example.com"
+        },
+        {
+          "name": "autoLockMinutes",
+          "title": "Auto-Lock (Minutes)",
+          "description": "How many minutes after the last unlock the master password is required again",
+          "type": "dropdown",
+          "required": false,
+          "default": "15",
+          "data": [
+            {
+              "title": "1 Minute",
+              "value": "1"
+            },
+            {
+              "title": "5 Minutes",
+              "value": "5"
+            },
+            {
+              "title": "15 Minutes",
+              "value": "15"
+            },
+            {
+              "title": "30 Minutes",
+              "value": "30"
+            },
+            {
+              "title": "1 Hour",
+              "value": "60"
+            },
+            {
+              "title": "4 Hours",
+              "value": "240"
+            }
+          ]
+        },
+        {
+          "name": "deviceName",
+          "title": "Device Name",
+          "description": "Name shown in the sessions list (e.g. 'Raycast MacBook')",
+          "type": "textfield",
+          "required": false,
+          "default": "Raycast"
+        }
+      ]
+    },
+    {
       "name": "passphrase-generator",
       "title": "Passphrase Generator",
       "description": "Generates a set of random passwords using different generators.",
@@ -207583,11 +208114,14 @@
       "commands": [
         {
           "name": "search-items",
-          "title": "Search Items",
+          "title": "Browse Items",
           "subtitle": "Proton Pass",
-          "description": "Search all items across vaults",
+          "description": "Browse your vaults and search their items",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "search",
+            "vaults"
+          ],
           "preferences": []
         },
         {
@@ -207815,7 +208349,7 @@
           "type": "checkbox",
           "title": "Transient Clipboard",
           "label": "Keep copied secrets out of clipboard history",
-          "description": "Passwords, 2FA codes, notes and hidden fields.",
+          "description": "Passwords, TOTP codes, notes and hidden fields.",
           "default": true,
           "required": false
         },
@@ -245516,17 +246050,26 @@
           "name": "manage-skills",
           "title": "Manage Skills",
           "subtitle": "Skills",
-          "description": "View and remove installed skills",
+          "description": "Review installed skills and manage verified Skills CLI installs",
           "mode": "view",
           "keywords": [],
           "preferences": []
         },
         {
-          "name": "update-all-skills",
-          "title": "Update All Skills",
+          "name": "manage-plugins",
+          "title": "Manage Plugins",
           "subtitle": "Skills",
-          "description": "Update all installed skills",
-          "mode": "no-view",
+          "description": "View installed Claude Code and Codex plugins",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "inspect-agent-package",
+          "title": "Inspect Agent Package",
+          "subtitle": "Skills",
+          "description": "Validate a local Agent Skill or Plugin package",
+          "mode": "view",
           "keywords": [],
           "preferences": []
         }
@@ -266339,7 +266882,7 @@
       "platforms": [
         "macOS"
       ],
-      "version": "1.0.91",
+      "version": "1.0.92",
       "storeUrl": "https://www.raycast.com/praveenjuge/teak-raycast",
       "source": {
         "type": "github-monorepo",
@@ -309513,8 +310056,8 @@
     {
       "name": "youform",
       "title": "Youform",
-      "description": "The most affordable Typeform alternative",
-      "icon": "extension-icon.png",
+      "description": "Beautiful Forms. Unlimited possibilities",
+      "icon": "sunflower.png",
       "author": "xmok",
       "contributors": [],
       "categories": [
