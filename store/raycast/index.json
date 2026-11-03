@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-03T00:57:14.900Z",
+  "generatedAt": "2026-11-03T23:15:09.499Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "4be4c6b94ad1a1a380eabe812f52450affc33ff3"
+    "commit": "75ecd2a0a25b9e207011205b38d0d2c7873ea8b0"
   },
-  "count": 3498,
+  "count": 3512,
   "extensions": [
     {
       "name": "0x0",
@@ -4576,7 +4576,9 @@
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/izm51/ai-text-to-calendar",
       "source": {
         "type": "github-monorepo",
@@ -24668,7 +24670,8 @@
         "litomore",
         "AaronMoat",
         "0xdhrv",
-        "siuhinnn"
+        "siuhinnn",
+        "baukeposthuma"
       ],
       "categories": [
         "Developer Tools"
@@ -24732,6 +24735,41 @@
               "placeholder": "0 = no limit"
             }
           ]
+        },
+        {
+          "name": "notifications",
+          "title": "Notifications",
+          "subtitle": "Bitbucket",
+          "description": "Shows Bitbucket notifications in the menu bar: review requests, approvals and requested changes, comments and mentions on pull requests, merged or declined pull requests, and failed pipelines.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "alwaysShow",
+              "type": "checkbox",
+              "label": "Always Show",
+              "description": "Show the menu bar item even when you have no notifications.",
+              "default": true,
+              "required": false
+            },
+            {
+              "name": "showCount",
+              "type": "checkbox",
+              "label": "Show Notification Count",
+              "description": "Show the notification count in the menu bar.",
+              "default": true,
+              "required": false
+            },
+            {
+              "name": "maxRepoAgeDays",
+              "type": "textfield",
+              "title": "Max Repository Age (Days)",
+              "required": false,
+              "default": "30",
+              "description": "Skips repositories not updated within this many days to keep background refreshes fast. Set to 0 for no limit.",
+              "placeholder": "0 = no limit"
+            }
+          ]
         }
       ],
       "preferences": [
@@ -24756,7 +24794,7 @@
           "type": "password",
           "title": "API Token",
           "required": true,
-          "description": "Generate an API token at https://id.atlassian.com/manage-profile/security/api-tokens with read:* scopes, plus write:pullrequest:bitbucket for review actions (or see README for specific scopes)",
+          "description": "Create an API token at https://id.atlassian.com/manage-profile/security/api-tokens. Required scopes: read:user:bitbucket, read:workspace:bitbucket, read:repository:bitbucket, read:pullrequest:bitbucket, read:pipeline:bitbucket (or simply read:*), plus write:pullrequest:bitbucket for review actions.",
           "placeholder": "bXlzZWNyZXRhcGlrZXkqwd"
         }
       ]
@@ -29484,6 +29522,14 @@
             }
           ],
           "description": "The terminal application/emulator to use when using any Run in Terminal action."
+        },
+        {
+          "name": "runInTerminalByDefault",
+          "type": "checkbox",
+          "required": false,
+          "default": false,
+          "label": "Install and uninstall in the terminal application",
+          "description": "When enabled, brew install and uninstall run in the terminal application. ⌘I still installs inside Raycast."
         },
         {
           "name": "greedyUpgrades",
@@ -47126,7 +47172,7 @@
           "preferences": [
             {
               "name": "hidenWhenDecaffeinated",
-              "description": "Hide the icon when decaffeinated",
+              "description": "Hide when no caffeination is detected. On macOS, external caffeinate processes also keep the icon visible",
               "type": "checkbox",
               "required": false,
               "default": false,
@@ -47149,7 +47195,7 @@
           "title": "Caffeinate for ...",
           "subtitle": "Coffee",
           "description": "Prevent your computer from sleeping for a certain time",
-          "mode": "view",
+          "mode": "no-view",
           "keywords": [],
           "preferences": []
         },
@@ -52440,6 +52486,79 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "cosign",
+      "title": "Cosign",
+      "description": "Use Cosign to discover people and companies in the startup ecosystem, find opportunities, and work with the user's own network. Requires a Cosign account.",
+      "icon": "extension-icon.png",
+      "author": "chrismessina",
+      "contributors": [],
+      "categories": [
+        "Web",
+        "Communication"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows",
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/chrismessina/cosign",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/cosign",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-people",
+          "title": "Search People",
+          "subtitle": "Cosign",
+          "description": "Search Cosign for people by name or handle",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-companies",
+          "title": "Search Companies",
+          "subtitle": "Cosign",
+          "description": "Search Cosign for companies and firms by name",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "find-companies",
+          "title": "Find Companies by Topic",
+          "subtitle": "Cosign",
+          "description": "Discover companies on Cosign by what they do",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "favorites",
+          "title": "My Favorites",
+          "subtitle": "Cosign",
+          "description": "People and companies you starred from Raycast",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "verboseLogging",
+          "type": "checkbox",
+          "required": false,
+          "title": "Debug Logging",
+          "label": "Enable extra diagnostics in the console",
+          "description": "Show detailed logs in the console for debugging.",
+          "default": false
+        }
+      ]
     },
     {
       "name": "cosmic-bookmarks",
@@ -58860,6 +58979,186 @@
               "type": "textfield",
               "default": "dddd, MMMM D, YYYY hh:mm:ss",
               "required": false
+            }
+          ]
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "date-inserter",
+      "title": "Date Inserter",
+      "description": "Pick a date from a keyboard-driven calendar and insert it at the cursor in any app, in your own format.",
+      "icon": "extension-icon.png",
+      "author": "namikaze-40p",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/namikaze-40p/date-inserter",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/date-inserter",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "insert-date",
+          "title": "Insert Date",
+          "description": "Pick a date from a monthly calendar and paste it into the frontmost app.",
+          "mode": "view",
+          "keywords": [
+            "date",
+            "calendar",
+            "insert",
+            "paste",
+            "today",
+            "format",
+            "datepicker"
+          ],
+          "preferences": [
+            {
+              "name": "format1",
+              "title": "Date Format 1",
+              "description": "date-fns format (Unicode tokens), e.g. yyyy-MM-dd or yyyy/MM/dd (EEE). See https://date-fns.org/docs/format",
+              "type": "textfield",
+              "default": "yyyy-MM-dd",
+              "placeholder": "yyyy-MM-dd",
+              "required": false
+            },
+            {
+              "name": "format2",
+              "title": "Date Format 2",
+              "description": "Optional second format. When set, press 1 or 2 in the calendar to switch formats.",
+              "type": "textfield",
+              "default": "",
+              "placeholder": "e.g. MMM d, yyyy",
+              "required": false
+            },
+            {
+              "name": "defaultFormat",
+              "title": "Initial Format",
+              "description": "Format selected when the calendar opens.",
+              "type": "dropdown",
+              "default": "1",
+              "required": false,
+              "data": [
+                {
+                  "title": "Date Format 1",
+                  "value": "1"
+                },
+                {
+                  "title": "Date Format 2",
+                  "value": "2"
+                }
+              ]
+            },
+            {
+              "name": "language",
+              "title": "Language",
+              "description": "Language of the calendar and of names in the inserted date (e.g. EEE, MMMM).",
+              "type": "dropdown",
+              "default": "en",
+              "required": false,
+              "data": [
+                {
+                  "title": "Deutsch",
+                  "value": "de"
+                },
+                {
+                  "title": "English",
+                  "value": "en"
+                },
+                {
+                  "title": "Español",
+                  "value": "es"
+                },
+                {
+                  "title": "Français",
+                  "value": "fr"
+                },
+                {
+                  "title": "Italiano",
+                  "value": "it"
+                },
+                {
+                  "title": "日本語",
+                  "value": "ja"
+                },
+                {
+                  "title": "한국어",
+                  "value": "ko"
+                },
+                {
+                  "title": "ไทย",
+                  "value": "th"
+                },
+                {
+                  "title": "Tiếng Việt",
+                  "value": "vi"
+                },
+                {
+                  "title": "简体中文",
+                  "value": "zh-CN"
+                },
+                {
+                  "title": "繁體中文",
+                  "value": "zh-TW"
+                }
+              ]
+            },
+            {
+              "name": "weekStart",
+              "title": "Week Start",
+              "description": "First day of the week in the calendar.",
+              "type": "dropdown",
+              "default": "0",
+              "required": false,
+              "data": [
+                {
+                  "title": "Sunday",
+                  "value": "0"
+                },
+                {
+                  "title": "Monday",
+                  "value": "1"
+                }
+              ]
+            },
+            {
+              "name": "weekNumbers",
+              "title": "Week Numbers",
+              "description": "Show week numbers in the calendar. \"Auto\" matches the week start: Sunday → Western Traditional, Monday → ISO 8601.",
+              "type": "dropdown",
+              "default": "off",
+              "required": false,
+              "data": [
+                {
+                  "title": "Off",
+                  "value": "off"
+                },
+                {
+                  "title": "ISO 8601",
+                  "value": "iso"
+                },
+                {
+                  "title": "Western Traditional",
+                  "value": "western"
+                },
+                {
+                  "title": "Middle Eastern",
+                  "value": "middle-eastern"
+                },
+                {
+                  "title": "Auto (Based on Week Start)",
+                  "value": "auto"
+                }
+              ]
             }
           ]
         }
@@ -66859,6 +67158,56 @@
           "description": "Please enter your DigitalOcean PAT",
           "required": true,
           "placeholder": "dop_v1_xxx..xxx"
+        }
+      ]
+    },
+    {
+      "name": "digup-search",
+      "title": "DigUp Search",
+      "description": "Search your files by what's in them with DigUp: pictures, PDFs, documents, recordings, videos and code.",
+      "icon": "icon.png",
+      "author": "roy_jiang",
+      "contributors": [
+        "crazybird"
+      ],
+      "categories": [
+        "Productivity",
+        "Applications"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/roy_jiang/digup-search",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/digup-search",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-files",
+          "title": "Search Files",
+          "subtitle": "DigUp",
+          "description": "Describe what you're looking for and find the picture, page, moment or code that matches. Requires DigUp 0.6.1 or newer.",
+          "mode": "view",
+          "keywords": [
+            "digup",
+            "documents",
+            "images"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "player",
+          "title": "Open Videos and Recordings In",
+          "description": "The app that opens videos and recordings. QuickTime Player, VLC and IINA start at the moment that matched; other apps start at the beginning. A file QuickTime Player can't play (MKV, WebM, FLAC…) opens in its default app instead.",
+          "type": "appPicker",
+          "required": false,
+          "default": "com.apple.QuickTimePlayerX"
         }
       ]
     },
@@ -77745,6 +78094,92 @@
           "type": "checkbox",
           "default": true,
           "required": false
+        }
+      ]
+    },
+    {
+      "name": "energy-console",
+      "title": "Energy Console",
+      "description": "Unofficial community tool to monitor and control compatible EcoFlow devices with your own API keys; not affiliated with or endorsed by EcoFlow.",
+      "icon": "extension-icon-v2.png",
+      "author": "Olli0103",
+      "contributors": [],
+      "categories": [
+        "System",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/Olli0103/energy-console",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/energy-console",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "list-devices",
+          "title": "View Devices",
+          "subtitle": "Energy Console",
+          "description": "See battery levels, energy flow, device state, and safe controls.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "device-detail",
+          "title": "Open Device",
+          "subtitle": "Energy Console",
+          "description": "Open a compatible device by name or serial number.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "control-device",
+          "title": "Control Device",
+          "subtitle": "Energy Console",
+          "description": "Choose a supported device control with confirmation.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "menu-bar",
+          "title": "Menu Bar Status",
+          "subtitle": "Energy Console",
+          "description": "Keep battery levels and current power flow in the menu bar.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "accessKey",
+          "title": "Access Key",
+          "description": "Your EcoFlow Developer Platform access key. Raycast stores this as a password.",
+          "type": "password",
+          "required": true
+        },
+        {
+          "name": "secretKey",
+          "title": "Secret Key",
+          "description": "Your EcoFlow Developer Platform secret key. Raycast stores this as a password.",
+          "type": "password",
+          "required": true
+        },
+        {
+          "name": "showOfflineDevices",
+          "title": "Show Offline Devices",
+          "description": "Include offline devices in the dashboard and menu bar.",
+          "type": "checkbox",
+          "label": "Include offline devices",
+          "required": false,
+          "default": true
         }
       ]
     },
@@ -104324,6 +104759,185 @@
       ]
     },
     {
+      "name": "google-chat",
+      "title": "Google Chat",
+      "description": "Search spaces and direct messages, read and reply to messages, see your unread chats, and send messages in Google Chat.",
+      "icon": "google-chat-icon.png",
+      "author": "smrehan",
+      "contributors": [],
+      "categories": [
+        "Communication"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/smrehan/google-chat",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/google-chat",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-spaces",
+          "title": "Search Spaces & DMs",
+          "subtitle": "Google Chat",
+          "description": "Search your spaces, group chats and direct messages, read their messages, and send or mark them as read.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "my-messages",
+          "title": "My Messages",
+          "subtitle": "Google Chat",
+          "description": "Your Google Chat conversations like Chat's Home, with unread ones first.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "defaultView",
+              "title": "Default View",
+              "description": "What My Messages shows the first time you open it. Afterwards it remembers your last choice.",
+              "type": "dropdown",
+              "required": false,
+              "default": "all",
+              "data": [
+                {
+                  "title": "All",
+                  "value": "all"
+                },
+                {
+                  "title": "Unread Only",
+                  "value": "unread"
+                }
+              ]
+            },
+            {
+              "name": "mentionsDays",
+              "title": "Mentions From",
+              "description": "How far back the Mentions section looks for messages that @mention you.",
+              "type": "dropdown",
+              "required": false,
+              "default": "7",
+              "data": [
+                {
+                  "title": "Last Day",
+                  "value": "1"
+                },
+                {
+                  "title": "Last 3 Days",
+                  "value": "3"
+                },
+                {
+                  "title": "Last 7 Days",
+                  "value": "7"
+                },
+                {
+                  "title": "Last 14 Days",
+                  "value": "14"
+                }
+              ]
+            },
+            {
+              "name": "mentionsLimit",
+              "title": "Mentions Shown",
+              "description": "The most messages the Mentions section shows, newest first.",
+              "type": "dropdown",
+              "required": false,
+              "default": "20",
+              "data": [
+                {
+                  "title": "10",
+                  "value": "10"
+                },
+                {
+                  "title": "20",
+                  "value": "20"
+                },
+                {
+                  "title": "50",
+                  "value": "50"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "unread-count",
+          "title": "Unread Chat",
+          "subtitle": "Google Chat",
+          "description": "Shows your unread Google Chat total in root search, refreshed every 5 minutes.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "send-message",
+          "title": "Send Message",
+          "subtitle": "Google Chat",
+          "description": "Send a message to a space, group chat, direct message, or anyone in your directory, optionally in a thread.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "quick-message",
+          "title": "Quick Message",
+          "subtitle": "Google Chat",
+          "description": "Send a message from root search to a person's email or a space name.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-messages",
+          "title": "Search Messages",
+          "subtitle": "Google Chat",
+          "description": "Search messages across your spaces and direct messages, filtered by unread, mentions or links.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "find-person",
+          "title": "Find Person",
+          "subtitle": "Google Chat",
+          "description": "Search your organization's directory and open or send a direct message.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "clientId",
+          "title": "Google OAuth Client ID",
+          "description": "OAuth client ID of type iOS with bundle ID com.raycast, from a Google Cloud project with the Google Chat API (and People API) enabled and the Chat app configuration filled in.",
+          "type": "textfield",
+          "required": true,
+          "placeholder": "1234567890-abc.apps.googleusercontent.com"
+        },
+        {
+          "name": "openWith",
+          "title": "Open With",
+          "description": "Browser or app that opens Google Chat links. Empty uses your default browser.",
+          "type": "appPicker",
+          "required": false
+        },
+        {
+          "name": "unreadLookbackDays",
+          "title": "Unread Lookback (Days)",
+          "description": "Only unread messages from this many recent days are counted.",
+          "type": "textfield",
+          "required": false,
+          "default": "14"
+        }
+      ]
+    },
+    {
       "name": "google-chrome",
       "title": "Google Chrome",
       "description": "Search open tabs, bookmarks and history in Google Chrome.",
@@ -115369,7 +115983,8 @@
       "contributors": [
         "mallsjr",
         "IslamTayeb",
-        "ohivan"
+        "ohivan",
+        "muhammadrizo"
       ],
       "categories": [
         "Applications",
@@ -115484,6 +116099,13 @@
           "type": "textfield",
           "required": false,
           "placeholder": "Detected automatically"
+        },
+        {
+          "name": "userDataPath",
+          "title": "User Data Directory (Windows)",
+          "description": "Optional existing User Data folder containing Local State and profile folders for a custom or portable installation.",
+          "type": "directory",
+          "required": false
         }
       ]
     },
@@ -136556,6 +137178,59 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "keep-md",
+      "title": "Keep.md",
+      "description": "Search and manage bookmarks in Keep.md",
+      "icon": "icon.png",
+      "author": "perry",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/perry/keep-md",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/keep-md",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-bookmarks",
+          "title": "Search Bookmarks",
+          "subtitle": "Keep.md",
+          "description": "Search, open, edit, and archive saved items in Keep.md",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "save-bookmark",
+          "title": "Save Bookmark",
+          "subtitle": "Keep.md",
+          "description": "Save a URL to Keep.md",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "title": "Keep API Key",
+          "description": "Create a personal or connected-client key in Keep Connection settings.",
+          "type": "password",
+          "required": true,
+          "placeholder": "Paste your Keep API key"
+        }
+      ]
     },
     {
       "name": "keepassxc",
@@ -163083,6 +163758,75 @@
       "preferences": []
     },
     {
+      "name": "modelflare",
+      "title": "Modelflare",
+      "description": "Ask any text model and generate images with one Modelflare Smart API Key for every model available to your account.",
+      "icon": "icon.png",
+      "author": "modelflare",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/modelflare/modelflare",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/modelflare",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "ask",
+          "title": "Ask Modelflare",
+          "description": "Ask a question to any text model your Modelflare key can call.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "generate-image",
+          "title": "Generate Image",
+          "description": "Generate an image with any image model your Modelflare key can call.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "type": "password",
+          "required": true,
+          "title": "Modelflare Smart API Key",
+          "description": "One Smart API Key calls every model available to your account. Create one at https://modelflare.dev/keys."
+        },
+        {
+          "name": "baseUrl",
+          "type": "dropdown",
+          "required": false,
+          "title": "Base URL",
+          "description": "Global (default) or China endpoint.",
+          "default": "global",
+          "data": [
+            {
+              "title": "Global (https://modelflare.dev/v1)",
+              "value": "global"
+            },
+            {
+              "title": "China (https://origin.modelflare.dev/v1)",
+              "value": "china"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "models-dev",
       "title": "Models.dev",
       "description": "Explore AI model specifications, pricing, and capabilities from models.dev",
@@ -177464,6 +178208,144 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "nyxe",
+      "title": "Nyxe Mail",
+      "description": "Search, triage and send Nyxe mail, grab sign-in codes, and keep an eye on your inbox from the menu bar.",
+      "icon": "icon.png",
+      "author": "raymondaxyz",
+      "contributors": [],
+      "categories": [
+        "Communication",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/raymondaxyz/nyxe",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/nyxe",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "copy-sign-in-code",
+          "title": "Copy Sign-In Code",
+          "subtitle": "Nyxe Mail",
+          "description": "Copy the newest verification code from the last 15 minutes of your inbox.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-sign-in-link",
+          "title": "Open Sign-In Link",
+          "subtitle": "Nyxe Mail",
+          "description": "Open the newest magic or verification link from the last 15 minutes of your inbox.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-mail",
+          "title": "Search Mail",
+          "subtitle": "Nyxe Mail",
+          "description": "Search your Nyxe mail and act on what you find.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "inbox",
+          "title": "Inbox",
+          "subtitle": "Nyxe Mail",
+          "description": "Your Nyxe inbox, with read, archive, snooze and tag actions.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "send-email",
+          "title": "Send Email",
+          "subtitle": "Nyxe Mail",
+          "description": "Write and send an email from your Nyxe address.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "email-selection-to-myself",
+          "title": "Email Selection to Myself",
+          "subtitle": "Nyxe Mail",
+          "description": "Send the selected text, or your clipboard, to your own Nyxe inbox.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "copy-my-address",
+          "title": "Copy My Address",
+          "subtitle": "Nyxe Mail",
+          "description": "Copy your Nyxe address, an alias or a team address.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "find-contact",
+          "title": "Find Contact",
+          "subtitle": "Nyxe Mail",
+          "description": "Look up people you've had mail from.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "menu-bar-inbox",
+          "title": "Menu Bar Inbox",
+          "subtitle": "Nyxe Mail",
+          "description": "Your unread count and newest mail in the menu bar.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiToken",
+          "title": "API Token",
+          "description": "Create one in Nyxe at https://nyxe.app under Settings → API tokens. It starts with nyxe_pat_.",
+          "type": "password",
+          "required": true,
+          "placeholder": "nyxe_pat_…"
+        },
+        {
+          "name": "openIn",
+          "title": "Open Messages In",
+          "description": "Where \"Open in Nyxe\" goes. Automatic uses the Nyxe app when it's installed, the browser otherwise.",
+          "type": "dropdown",
+          "required": false,
+          "default": "auto",
+          "data": [
+            {
+              "title": "Automatic",
+              "value": "auto"
+            },
+            {
+              "title": "Nyxe App",
+              "value": "app"
+            },
+            {
+              "title": "Browser",
+              "value": "browser"
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "nzbget",
@@ -196774,6 +197656,123 @@
           "type": "password",
           "required": true,
           "title": "Phtororoom API Key"
+        }
+      ]
+    },
+    {
+      "name": "photoshop-projects",
+      "title": "Photoshop Projects",
+      "description": "Search and preview Photoshop files, browse recent projects, and purge caches.",
+      "icon": "extension-icon.png",
+      "author": "yashdoescode",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Design Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/yashdoescode/photoshop-projects",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/photoshop-projects",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "recent",
+          "title": "Recent Projects",
+          "description": "Browse and open recently edited Photoshop files and projects",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-projects",
+          "title": "Search Projects",
+          "description": "Search Photoshop files (.psd, .psb, .psdt) across your Mac",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "clear-cache",
+          "title": "Clear Photoshop Cache",
+          "description": "Purge Photoshop memory/clipboard caches and clean temporary scratch files",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "defaultViewMode",
+          "type": "dropdown",
+          "required": false,
+          "title": "Default View Mode",
+          "description": "Choose between visual Grid view or detailed List view",
+          "default": "grid",
+          "data": [
+            {
+              "title": "Grid View (Visual Cards)",
+              "value": "grid"
+            },
+            {
+              "title": "List View (Dense with Details)",
+              "value": "list"
+            }
+          ]
+        },
+        {
+          "name": "gridColumns",
+          "type": "dropdown",
+          "required": false,
+          "title": "Grid Columns",
+          "description": "Number of columns in Grid view",
+          "default": "5",
+          "data": [
+            {
+              "title": "3 Columns (Large)",
+              "value": "3"
+            },
+            {
+              "title": "4 Columns (Medium-Large)",
+              "value": "4"
+            },
+            {
+              "title": "5 Columns (Standard)",
+              "value": "5"
+            },
+            {
+              "title": "6 Columns (Compact)",
+              "value": "6"
+            },
+            {
+              "title": "8 Columns (Dense)",
+              "value": "8"
+            }
+          ]
+        },
+        {
+          "name": "searchScope",
+          "type": "dropdown",
+          "required": false,
+          "title": "Search Scope",
+          "description": "Choose folder scope for searching Photoshop files",
+          "default": "home",
+          "data": [
+            {
+              "title": "User Home (~)",
+              "value": "home"
+            },
+            {
+              "title": "Entire System (/)",
+              "value": "all"
+            }
+          ]
         }
       ]
     },
@@ -217400,7 +218399,9 @@
         "Developer Tools"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/nathan_schwermann/ray-boop",
       "source": {
         "type": "github-monorepo",
@@ -231390,6 +232391,67 @@
       "preferences": []
     },
     {
+      "name": "row-counter",
+      "title": "Row Counter",
+      "description": "Count your knitting rows with a single command.",
+      "icon": "icon.png",
+      "author": "cosmos",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/cosmos/row-counter",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/row-counter",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "add-row",
+          "title": "Add Row",
+          "subtitle": "Knitting",
+          "description": "Adds a row and shows the current row.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "remove-row",
+          "title": "Remove Row",
+          "subtitle": "Knitting",
+          "description": "Removes a row, without going below 0.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "show-row-count",
+          "title": "Show Row Count",
+          "subtitle": "Knitting",
+          "description": "Shows which row you're on.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "reset-row-counter",
+          "title": "Reset Row Counter",
+          "subtitle": "Knitting",
+          "description": "Resets the row count to 0.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "royal-tsx",
       "title": "Royal TSX",
       "description": "Search and connect to Royal TSX connections",
@@ -237598,6 +238660,66 @@
       "preferences": []
     },
     {
+      "name": "semantic-file-search",
+      "title": "Semantic File Search",
+      "description": "Find local documents, photos, video scenes and sounds by meaning. Requires the Semantic Search Engine.",
+      "icon": "icon.png",
+      "author": "nik_ustinovich",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "0.7.2",
+      "storeUrl": "https://www.raycast.com/nik_ustinovich/semantic-file-search",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/semantic-file-search",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "semantic-search",
+          "title": "Search Files",
+          "subtitle": "Semantic File Search",
+          "description": "Find local files from a natural-language description",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "automatic-index",
+          "title": "Check for Library Updates",
+          "description": "Check the automatic indexing schedule and update changed files when due",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "serviceURL",
+          "type": "textfield",
+          "title": "Custom Local Service (Optional)",
+          "description": "Leave blank to use the installed Semantic Search Engine. Advanced: connect to your own local service.",
+          "default": "",
+          "required": false
+        },
+        {
+          "name": "serviceTokenPath",
+          "type": "textfield",
+          "title": "Custom Service Token File (Optional)",
+          "description": "Advanced: authentication file for your custom local service. Leave blank to use shared storage. Accepts an absolute path or ~/ path.",
+          "default": "",
+          "required": false
+        }
+      ]
+    },
+    {
       "name": "semantic-scholar",
       "title": "Semantic Scholar",
       "description": "Search research papers on semantic scholar (semanticscholar.org)",
@@ -243297,6 +244419,262 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "simple-gif-cap",
+      "title": "Simple GIF Cap",
+      "description": "Record a region, window or screen straight to a GIF on your clipboard.",
+      "icon": "icon.png",
+      "author": "justsamuel",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Media"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/justsamuel/simple-gif-cap",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/simple-gif-cap",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "record-region",
+          "title": "Record GIF of Region",
+          "subtitle": "Simple GIF Cap",
+          "description": "Drag a region, or press Space to pick a window. Run again to stop.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "record-window",
+          "title": "Record GIF of Window",
+          "subtitle": "Simple GIF Cap",
+          "description": "Hover and click the window to record. Run again to stop.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "record-screen",
+          "title": "Record GIF of Screen",
+          "subtitle": "Simple GIF Cap",
+          "description": "Record the display under the mouse. Run again to stop.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "stop-recording",
+          "title": "Stop GIF Recording",
+          "subtitle": "Simple GIF Cap",
+          "description": "Stop the running recording and open the preview.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "preview",
+          "title": "Show Last GIF",
+          "subtitle": "Simple GIF Cap",
+          "description": "Preview, trim, shrink and copy the latest GIF.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "recent-gifs",
+          "title": "Recent GIFs",
+          "subtitle": "Simple GIF Cap",
+          "description": "Browse, copy and edit your recent GIFs.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "outputDir",
+          "title": "Save GIFs To",
+          "description": "Folder for finished GIFs.",
+          "type": "directory",
+          "required": false,
+          "default": "~/Downloads"
+        },
+        {
+          "name": "fps",
+          "title": "Frames per Second",
+          "description": "Higher is smoother but bigger.",
+          "type": "dropdown",
+          "required": false,
+          "default": "15",
+          "data": [
+            {
+              "title": "10",
+              "value": "10"
+            },
+            {
+              "title": "15",
+              "value": "15"
+            },
+            {
+              "title": "20",
+              "value": "20"
+            },
+            {
+              "title": "30",
+              "value": "30"
+            }
+          ]
+        },
+        {
+          "name": "maxWidth",
+          "title": "Max Width (px)",
+          "description": "GIFs wider than this are scaled down.",
+          "type": "dropdown",
+          "required": false,
+          "default": "1000",
+          "data": [
+            {
+              "title": "640",
+              "value": "640"
+            },
+            {
+              "title": "800",
+              "value": "800"
+            },
+            {
+              "title": "1000",
+              "value": "1000"
+            },
+            {
+              "title": "1280",
+              "value": "1280"
+            },
+            {
+              "title": "1600",
+              "value": "1600"
+            },
+            {
+              "title": "Original",
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "name": "encoder",
+          "title": "Encoder",
+          "description": "Built-in needs nothing installed. ffmpeg makes smaller files, gifski sharper ones (brew install ffmpeg gifski).",
+          "type": "dropdown",
+          "required": false,
+          "default": "auto",
+          "data": [
+            {
+              "title": "Best Available",
+              "value": "auto"
+            },
+            {
+              "title": "Built-in",
+              "value": "builtin"
+            },
+            {
+              "title": "ffmpeg",
+              "value": "ffmpeg"
+            },
+            {
+              "title": "gifski",
+              "value": "gifski"
+            }
+          ]
+        },
+        {
+          "name": "countdown",
+          "title": "Countdown",
+          "description": "Seconds to wait before recording starts.",
+          "type": "dropdown",
+          "required": false,
+          "default": "3",
+          "data": [
+            {
+              "title": "None",
+              "value": "0"
+            },
+            {
+              "title": "3 Seconds",
+              "value": "3"
+            },
+            {
+              "title": "5 Seconds",
+              "value": "5"
+            }
+          ]
+        },
+        {
+          "name": "maxDuration",
+          "title": "Stop Automatically After",
+          "description": "Stops long recordings before they get huge.",
+          "type": "dropdown",
+          "required": false,
+          "default": "60",
+          "data": [
+            {
+              "title": "Never",
+              "value": "0"
+            },
+            {
+              "title": "15 Seconds",
+              "value": "15"
+            },
+            {
+              "title": "30 Seconds",
+              "value": "30"
+            },
+            {
+              "title": "1 Minute",
+              "value": "60"
+            },
+            {
+              "title": "2 Minutes",
+              "value": "120"
+            },
+            {
+              "title": "5 Minutes",
+              "value": "300"
+            }
+          ]
+        },
+        {
+          "name": "showClicks",
+          "label": "Show mouse clicks",
+          "title": "Recording",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "description": "Highlight clicks in the recording."
+        },
+        {
+          "name": "showCursor",
+          "label": "Show cursor",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "description": "Include the mouse cursor."
+        },
+        {
+          "name": "ffmpegPath",
+          "title": "ffmpeg Path",
+          "description": "Only needed for an ffmpeg outside Homebrew.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "/opt/homebrew/bin/ffmpeg"
+        }
+      ]
     },
     {
       "name": "simple-http",
@@ -271594,7 +272972,7 @@
     {
       "name": "textexpander-to-raycast",
       "title": "TextExpander to Raycast",
-      "description": "Preview and convert TextExpander snippets into a Raycast import file.",
+      "description": "Review, edit, and combine TextExpander snippets for import into Raycast.",
       "icon": "extension-icon.png",
       "author": "0xdhrv",
       "contributors": [],
@@ -271616,7 +272994,7 @@
         {
           "name": "convert-snippets",
           "title": "Convert TextExpander Snippets",
-          "description": "Read local TextExpander settings or an exported group, review snippets, and export Raycast JSON.",
+          "description": "Combine TextExpander exports, edit snippets, resolve keyword conflicts, and export Raycast JSON with a migration report.",
           "mode": "view",
           "keywords": [
             "migrate",
@@ -281377,6 +282755,69 @@
           "label": "Remember Last Selections",
           "description": "Remember your last used persona and knowledge card selections",
           "default": true
+        }
+      ]
+    },
+    {
+      "name": "tonecue-audio-scenes",
+      "title": "ToneCue - Audio Scenes",
+      "description": "Switch your ToneCue audio scenes, microphone and speakers from Raycast. Requires the ToneCue menu bar app.",
+      "icon": "tonecue-icon.png",
+      "author": "IngoJ",
+      "contributors": [],
+      "categories": [
+        "System",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/IngoJ/tonecue-audio-scenes",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/tonecue-audio-scenes",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "switch-scene",
+          "title": "Switch Scene",
+          "subtitle": "ToneCue",
+          "description": "Pick a ToneCue scene, and mute or pause automation from the same list.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "apply-scene",
+          "title": "Apply Scene",
+          "subtitle": "ToneCue",
+          "description": "Apply a scene by name without opening a list. Handy for aliases and hotkeys.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle-mute",
+          "title": "Toggle Microphone Mute",
+          "subtitle": "ToneCue",
+          "description": "Mute or unmute the current microphone.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "closeAfterApply",
+          "type": "checkbox",
+          "title": "Window",
+          "label": "Close Raycast after applying a scene or device",
+          "description": "Off keeps the list open so you can keep adjusting.",
+          "default": true,
+          "required": false
         }
       ]
     },
@@ -309547,6 +310988,100 @@
           "description": "Your Yap API key",
           "type": "password",
           "required": true
+        }
+      ]
+    },
+    {
+      "name": "yaps",
+      "title": "Yaps Memory",
+      "description": "Search your local Yaps memory and save clipboard text as Markdown notes.",
+      "icon": "extension-icon.png",
+      "author": "yaps",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "0.1.3",
+      "storeUrl": "https://www.raycast.com/yaps/yaps",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/yaps",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-memory",
+          "title": "Search Yaps Memory",
+          "subtitle": "Yaps",
+          "description": "Search your private Yaps vault and inspect or copy matching notes.",
+          "mode": "view",
+          "keywords": [
+            "search",
+            "find",
+            "find note",
+            "notes",
+            "note",
+            "vault",
+            "memory",
+            "local"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "save-clipboard",
+          "title": "Save Clipboard to Yaps",
+          "subtitle": "Yaps",
+          "description": "Save clipboard text as a Markdown note in your Yaps vault.",
+          "mode": "no-view",
+          "keywords": [
+            "save",
+            "capture",
+            "clipboard",
+            "quick capture",
+            "note",
+            "markdown"
+          ],
+          "preferences": [
+            {
+              "name": "captureFolder",
+              "type": "textfield",
+              "title": "Clipboard Capture Folder",
+              "description": "Vault-relative folder used by Save Clipboard to Yaps, such as Inbox.",
+              "default": "Inbox",
+              "placeholder": "Inbox",
+              "required": true
+            }
+          ]
+        },
+        {
+          "name": "open-yaps",
+          "title": "Open Yaps",
+          "subtitle": "Yaps",
+          "description": "Launch Yaps, or open its download page if it is not installed.",
+          "mode": "no-view",
+          "keywords": [
+            "launch",
+            "desktop app",
+            "download",
+            "install",
+            "setup"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "cliPath",
+          "type": "textfield",
+          "title": "Yaps CLI Path",
+          "description": "Optional executable path. Leave blank to auto-detect yaps or yaps_cli in common install locations and Raycast's PATH.",
+          "placeholder": "/Applications/Yaps.app/Contents/MacOS/yaps_cli",
+          "required": false
         }
       ]
     },
