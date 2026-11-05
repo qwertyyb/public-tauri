@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-03T23:15:09.499Z",
+  "generatedAt": "2026-11-05T23:35:03.541Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "75ecd2a0a25b9e207011205b38d0d2c7873ea8b0"
+    "commit": "47d0935ac93ee325e9d6450a18b44987ebe78df1"
   },
-  "count": 3512,
+  "count": 3522,
   "extensions": [
     {
       "name": "0x0",
@@ -3602,6 +3602,127 @@
       ]
     },
     {
+      "name": "agent-inbox",
+      "title": "Agent Inbox",
+      "description": "Subscribe to Claude Code and Codex sessions, get notified when they need your input, and jump back to the conversation.",
+      "icon": "agent-inbox-icon.png",
+      "author": "silencerichard",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/silencerichard/agent-inbox",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/agent-inbox",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "subscribe-current",
+          "title": "Subscribe to Current Conversation",
+          "subtitle": "Agent Inbox",
+          "description": "Subscribe to the Claude Code or Codex conversation in the focused desktop window or terminal tab.",
+          "mode": "no-view",
+          "keywords": [
+            "subscribe",
+            "current",
+            "focused",
+            "window",
+            "conversation"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "all-sessions",
+          "title": "All Sessions",
+          "subtitle": "Agent Inbox",
+          "description": "Find and subscribe to Claude Code and Codex sessions, including past conversations.",
+          "mode": "view",
+          "keywords": [
+            "all sessions",
+            "search",
+            "history"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "inbox",
+          "title": "Subscriptions",
+          "subtitle": "Agent Inbox",
+          "description": "Follow subscribed sessions and jump back to conversations that need your input.",
+          "mode": "view",
+          "keywords": [
+            "subscriptions",
+            "subscribed",
+            "inbox"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "menu-bar",
+          "title": "Session Menu Bar",
+          "subtitle": "Agent Inbox",
+          "description": "Show subscribed sessions and the waiting count in the menu bar.",
+          "mode": "menu-bar",
+          "keywords": [
+            "subscriptions",
+            "refresh",
+            "menu bar"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "resumeTerminal",
+          "title": "Default Terminal",
+          "description": "Focus the original session when possible; otherwise resume in the selected terminal.",
+          "type": "dropdown",
+          "required": false,
+          "default": "terminal",
+          "data": [
+            {
+              "title": "Terminal",
+              "value": "terminal"
+            },
+            {
+              "title": "iTerm2",
+              "value": "iterm"
+            },
+            {
+              "title": "Ghostty",
+              "value": "ghostty"
+            }
+          ]
+        },
+        {
+          "name": "notifications",
+          "title": "System Notifications",
+          "label": "Notify when a subscribed session needs attention",
+          "description": "Only unhandled requests in subscribed sessions trigger a notification. Open a command after changing this preference to sync the background collector.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "contentSearchEnabled",
+          "title": "Full-Text Search",
+          "label": "Index local conversation content",
+          "description": "Read user and agent messages and build a search index on this Mac. Nothing is uploaded. Turning this off stops indexing and queries without deleting the existing index.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        }
+      ]
+    },
+    {
       "name": "agent-usage",
       "title": "Agent Usage",
       "description": "Monitor AI coding agent usage across AIHubMix, Amp, Antigravity, Claude, ClinePass, Codex, Copilot, Cursor, DeepSeek, Droid, Gemini, Grok, Kimi, MiniMax, MinimaxCN, OpenCode Go, OpenRouter, Raycast, Synthetic and z.ai",
@@ -3616,7 +3737,8 @@
         "jalenzz",
         "Jakoss",
         "laughing",
-        "ridemountainpig"
+        "ridemountainpig",
+        "baller_jay"
       ],
       "categories": [
         "Productivity"
@@ -4455,7 +4577,9 @@
         "Fun"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/jochemloedeman/ai-screenshot",
       "source": {
         "type": "github-monorepo",
@@ -7305,7 +7429,9 @@
         "Developer Tools"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/jack_casica/alt-text-generator",
       "source": {
         "type": "github-monorepo",
@@ -7360,6 +7486,49 @@
           "required": false
         }
       ]
+    },
+    {
+      "name": "alter-ego-per-user-hotkeys",
+      "title": "Alter Ego - Per-User Hotkeys",
+      "description": "Run a different app or command per macOS user with one hotkey.",
+      "icon": "icon.png",
+      "author": "sedlacek-martin",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/sedlacek-martin/alter-ego-per-user-hotkeys",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/alter-ego-per-user-hotkeys",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "run-for-current-user",
+          "title": "Run for Current User",
+          "subtitle": "Alter Ego",
+          "description": "Do not run directly — launched automatically by your Alter Ego Quicklink.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "manage-alter-ego",
+          "title": "Manage Alter Ego",
+          "subtitle": "Alter Ego",
+          "description": "Add, edit, or remove per-user mappings.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "alwaysdata",
@@ -27226,6 +27395,136 @@
       "preferences": []
     },
     {
+      "name": "blazwitcher",
+      "title": "Blazwitcher - Fuzzy Chrome Search",
+      "description": "Search Chrome tabs, bookmarks, and history with Chinese, Pinyin, initials, and English.",
+      "icon": "extension-icon.png",
+      "author": "julian0197",
+      "contributors": [
+        "cjinhuo"
+      ],
+      "categories": [
+        "Productivity",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/julian0197/blazwitcher",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/blazwitcher",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-all",
+          "title": "Search Browser",
+          "subtitle": "Blazwitcher",
+          "description": "Search Chrome tabs, bookmarks, and history with fuzzy Pinyin matching.",
+          "mode": "view",
+          "keywords": [
+            "chrome",
+            "pinyin",
+            "blazwitcher",
+            "tabs",
+            "bookmarks",
+            "history"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "searchStrategy",
+          "title": "Search Mode",
+          "description": "Match titles and domains using the Blazwitcher Chrome extension's ranking. Full URL Search also includes paths, query parameters, and fragments, while keeping title matches first.",
+          "type": "dropdown",
+          "default": "chrome",
+          "required": false,
+          "data": [
+            {
+              "title": "Match Chrome Blaz",
+              "value": "chrome"
+            },
+            {
+              "title": "Full URL Search",
+              "value": "full-url"
+            }
+          ]
+        },
+        {
+          "name": "historyDays",
+          "title": "History Date Range (Days)",
+          "description": "Read the last 14 days by default, matching the Blazwitcher Chrome extension. Enter 0 to include all dates.",
+          "type": "textfield",
+          "default": "14",
+          "required": false
+        },
+        {
+          "name": "historyLimit",
+          "title": "History Reading Limit",
+          "description": "Read the most recently visited records first. The default is 1,000, matching the Blazwitcher Chrome extension. Maximum: 100,000.",
+          "type": "textfield",
+          "default": "1000",
+          "required": false
+        },
+        {
+          "name": "historyDisplayCount",
+          "title": "History Result Count",
+          "description": "Maximum history results per search, including Top Suggestions. Range: 1–20. Default: 10.",
+          "type": "textfield",
+          "default": "10",
+          "required": false
+        },
+        {
+          "name": "bookmarkDisplayCount",
+          "title": "Bookmark Result Count",
+          "description": "Maximum bookmark results per search, including Top Suggestions. Range: 1–20. Default: 10.",
+          "type": "textfield",
+          "default": "10",
+          "required": false
+        },
+        {
+          "name": "topSuggestionsCount",
+          "title": "Top Suggestions",
+          "description": "Move the highest-ranked matches into Top Suggestions when a query is entered. Range: 1–10. Default: 2. This does not add results.",
+          "type": "textfield",
+          "default": "2",
+          "required": false
+        },
+        {
+          "name": "enableConsecutiveSearch",
+          "title": "Strict Search (Consecutive English Matches)",
+          "label": "Require consecutive English-character matches",
+          "description": "Off by default. When enabled, rct no longer matches React. Chinese Pinyin and initials are still supported.",
+          "type": "checkbox",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "startupPreview",
+          "title": "Startup Cache",
+          "label": "Show cached results while fresh data loads",
+          "description": "Cache up to 100 bookmarks and 100 history records per Chrome profile locally for five minutes. Tabs and incognito data are excluded. Disable to stop using the cache.",
+          "type": "checkbox",
+          "default": true,
+          "required": false
+        },
+        {
+          "name": "includeIncognito",
+          "title": "Incognito Tabs",
+          "label": "Include tabs from incognito windows",
+          "description": "Read incognito tabs in memory only. They are never written to history or the startup cache.",
+          "type": "checkbox",
+          "default": false,
+          "required": false
+        }
+      ]
+    },
+    {
       "name": "blip-raycast",
       "title": "Blip",
       "description": "Send files and folders to Blip from Raycast.",
@@ -29876,7 +30175,9 @@
         "Other"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/lin/browser-ai",
       "source": {
         "type": "github-monorepo",
@@ -38208,7 +38509,7 @@
     {
       "name": "cheatsheets-remastered",
       "title": "Cheatsheets Remastered",
-      "description": "A remastered Cheatsheets extension with enhanced functionality, custom sheet creation, and an improved browsing experience.",
+      "description": "Browse bundled developer references, personal Markdown and synced GitHub cheatsheets offline. Search, favorite and organize your sheets.",
       "icon": "logo.png",
       "author": "smcnab1",
       "contributors": [],
@@ -38221,7 +38522,6 @@
       "platforms": [
         "macOS"
       ],
-      "version": "1.1.0",
       "storeUrl": "https://www.raycast.com/smcnab1/cheatsheets-remastered",
       "source": {
         "type": "github-monorepo",
@@ -38261,7 +38561,7 @@
           "name": "manage-repos",
           "title": "Repo Manager",
           "subtitle": "Cheatsheets Remastered",
-          "description": "Manage user-specified repositories (list, add, remove) with GitHub OAuth",
+          "description": "Add GitHub repositories and sync Markdown for offline access",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -38273,7 +38573,7 @@
           "type": "password",
           "required": false,
           "title": "GitHub Token (optional)",
-          "description": "Optional: Improves rate limits for online content search (local search doesn't require it)"
+          "description": "Retained for compatibility. Repository sync uses GitHub OAuth; this preference does not override it."
         },
         {
           "name": "defaultSort",
@@ -52546,6 +52846,24 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "inbox",
+          "title": "Cosign Inbox",
+          "subtitle": "Cosign",
+          "description": "Read your Cosign conversations and triage connection requests",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "inbox-menu-bar",
+          "title": "Cosign Inbox Menu Bar",
+          "subtitle": "Cosign",
+          "description": "Unread Cosign messages and pending connection requests",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": [
@@ -56230,7 +56548,8 @@
         "litomore",
         "michalzuch",
         "NirRosh",
-        "alexi.build"
+        "alexi.build",
+        "iloveitaly"
       ],
       "categories": [
         "Applications",
@@ -64154,7 +64473,7 @@
     {
       "name": "dev-servers",
       "title": "Dev Servers",
-      "description": "Project-grouped dashboard for every dev server running on your Mac. Start, restart, and kill them without leaving Raycast, with the framework (Next, Svelte, Astro, Vite, Shopify) and package manager (npm, pnpm, yarn, bun) detected for you. Live count and quick actions in your menu bar.",
+      "description": "Every dev server on your Mac, grouped by project. Start, restart, and kill them without leaving Raycast.",
       "icon": "extension-icon.png",
       "author": "tavlean",
       "contributors": [],
@@ -64289,6 +64608,24 @@
               "description": "Show the number of running dev servers next to the menu bar icon",
               "default": true,
               "required": false
+            },
+            {
+              "name": "startOrder",
+              "type": "dropdown",
+              "title": "Start Section Order",
+              "description": "How the projects under Start are ordered: by when they last ran (including ones started from a terminal), or by how often you start them from the menu bar",
+              "default": "recent",
+              "required": false,
+              "data": [
+                {
+                  "title": "Most Recently Run",
+                  "value": "recent"
+                },
+                {
+                  "title": "Most Started",
+                  "value": "frequent"
+                }
+              ]
             }
           ]
         }
@@ -70916,10 +71253,12 @@
     {
       "name": "doorstopper",
       "title": "Doorstopper",
-      "description": "Prevent your MacBook from going to sleep when you close the lid",
+      "description": "Prevent your MacBook from going to sleep when you close the lid, with timers, auto-off and a low battery cutoff",
       "icon": "icon.png",
       "author": "roele",
-      "contributors": [],
+      "contributors": [
+        "o101k"
+      ],
       "categories": [
         "System"
       ],
@@ -70938,8 +71277,17 @@
         {
           "name": "enable",
           "title": "Enable Doorstopper",
-          "description": "Prevent the MacBook from going to sleep when closing the lid",
+          "description": "Prevent the MacBook from going to sleep when closing the lid, until you disable it",
           "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "enable-for",
+          "title": "Enable Doorstopper for Duration",
+          "subtitle": "Doorstopper",
+          "description": "Pick or type how long to prevent sleep with the lid closed",
+          "mode": "view",
           "keywords": [],
           "preferences": []
         },
@@ -70955,7 +71303,7 @@
           "name": "toggle",
           "title": "Toggle Doorstopper",
           "subtitle": "Doorstopper",
-          "description": "Toggle Doorstopper",
+          "description": "Enable Doorstopper for the default duration, or disable it",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -70971,7 +71319,7 @@
         {
           "name": "statusmenu",
           "title": "Doorstopper Status Menu Bar",
-          "description": "Get the Doorstopper status in your menu bar",
+          "description": "Shows the Doorstopper status in your menu bar, and disables it when a timer ends, the battery is low, or after a restart",
           "mode": "menu-bar",
           "keywords": [],
           "preferences": [
@@ -70985,6 +71333,15 @@
               "label": "Hide the icon"
             }
           ]
+        },
+        {
+          "name": "setup",
+          "title": "Set Up Passwordless Doorstopper",
+          "subtitle": "Doorstopper",
+          "description": "Install or remove the rule that lets Doorstopper toggle sleep without a password, which timers and auto-off need",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": [
@@ -71003,6 +71360,82 @@
             {
               "title": "Door",
               "value": "door"
+            }
+          ]
+        },
+        {
+          "name": "batteryThreshold",
+          "type": "dropdown",
+          "title": "Low Battery Cutoff",
+          "description": "Disable Doorstopper automatically when running on battery below this level. Needs the passwordless rule",
+          "required": false,
+          "default": "20",
+          "data": [
+            {
+              "title": "Off",
+              "value": "0"
+            },
+            {
+              "title": "5%",
+              "value": "5"
+            },
+            {
+              "title": "10%",
+              "value": "10"
+            },
+            {
+              "title": "15%",
+              "value": "15"
+            },
+            {
+              "title": "20%",
+              "value": "20"
+            },
+            {
+              "title": "25%",
+              "value": "25"
+            },
+            {
+              "title": "30%",
+              "value": "30"
+            },
+            {
+              "title": "40%",
+              "value": "40"
+            },
+            {
+              "title": "50%",
+              "value": "50"
+            }
+          ]
+        },
+        {
+          "name": "defaultDuration",
+          "type": "dropdown",
+          "title": "Default Duration",
+          "description": "Used by Toggle Doorstopper",
+          "required": false,
+          "default": "0",
+          "data": [
+            {
+              "title": "Indefinitely",
+              "value": "0"
+            },
+            {
+              "title": "30 Minutes",
+              "value": "30"
+            },
+            {
+              "title": "1 Hour",
+              "value": "60"
+            },
+            {
+              "title": "2 Hours",
+              "value": "120"
+            },
+            {
+              "title": "4 Hours",
+              "value": "240"
             }
           ]
         }
@@ -71888,7 +72321,8 @@
         "YourMCGeek",
         "dhaydl",
         "hugodemenez",
-        "danieltsam"
+        "danieltsam",
+        "ray.dhruv"
       ],
       "categories": [
         "Productivity",
@@ -71946,7 +72380,7 @@
               "name": "showPreview",
               "label": "Show Preview",
               "title": "Show Preview",
-              "description": "Show the preview of the downloaded file or folder",
+              "description": "Show text file contents in the detail pane. Use Quick Look to preview other files.",
               "required": false,
               "default": true
             },
@@ -95361,6 +95795,64 @@
       "preferences": []
     },
     {
+      "name": "geekflare",
+      "title": "Geekflare",
+      "description": "Search the web (including the full Google results page), scrape pages to Markdown, and check websites: uptime, DNS, TLS, redirects, and Lighthouse.",
+      "icon": "icon.png",
+      "author": "chandankumar",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/chandankumar/geekflare",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/geekflare",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-web",
+          "title": "Search Web",
+          "description": "Search the live web with Geekflare and open or copy results.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "check-website",
+          "title": "Check Website",
+          "description": "Run a website check: status, DNS, TLS, redirects, broken links, load time, or Lighthouse.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "scrape-to-clipboard",
+          "title": "Scrape Page to Clipboard",
+          "description": "Copy a public page's content as Markdown to the clipboard.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "title": "API Key",
+          "type": "password",
+          "required": true,
+          "description": "Your Geekflare API key from dash.geekflare.com."
+        }
+      ]
+    },
+    {
       "name": "geforce-now",
       "title": "GeForce NOW",
       "description": "Launch your GeForce NOW games instantly",
@@ -97233,6 +97725,98 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "ghosthand",
+      "title": "Ghosthand",
+      "description": "Control connected iPhones using an installed Ghosthand daemon and signed-in Ghosthand account.",
+      "icon": "extension-icon.png",
+      "author": "0xdhrv",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/0xdhrv/ghosthand",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/ghosthand",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "run-task",
+          "title": "Run iPhone Task",
+          "description": "Give a connected iPhone an instruction using Ghosthand's hosted AI agent",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "list-iphones",
+          "title": "List iPhones",
+          "description": "View connected iPhones, setup requirements, and active leases",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "view-screen",
+          "title": "View iPhone Screen",
+          "description": "Preview, copy, or save an iPhone screenshot without taking control",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "read-screen",
+          "title": "Read Screen Text",
+          "description": "Read and copy visible iPhone text using local OCR",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "quick-actions",
+          "title": "iPhone Quick Actions",
+          "description": "Go home, scroll, lock, mute, type text, or tap a visible label",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-setup",
+          "title": "Open Setup Instructions",
+          "description": "Open Ghosthand installation and iPhone setup instructions",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "taskResponseMode",
+          "title": "Task Progress",
+          "description": "Stream progress, or request a single JSON response if streaming is unavailable. Changing this never retries a task.",
+          "type": "dropdown",
+          "required": false,
+          "default": "stream",
+          "data": [
+            {
+              "title": "Stream Progress",
+              "value": "stream"
+            },
+            {
+              "title": "Final Response Only (JSON)",
+              "value": "json"
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "ghostty",
@@ -106366,7 +106950,8 @@
         "brucemakes012",
         "alexi.build",
         "ridemountainpig",
-        "Anoninz"
+        "Anoninz",
+        "Hadi04"
       ],
       "categories": [
         "Web",
@@ -110817,18 +111402,19 @@
     {
       "name": "gradient-generator",
       "title": "Gradient Generator",
-      "description": "Create, preview, randomize, save and export gradients, using them in your next project.",
+      "description": "Create, preview and save gradients locally; copy CSS, Tailwind and SwiftUI, or export PNG and SVG files.",
       "icon": "icon.png",
       "author": "smcnab1",
       "contributors": [],
       "categories": [
-        "Productivity"
+        "Design Tools",
+        "Developer Tools"
       ],
       "license": "MIT",
       "platforms": [
         "macOS"
       ],
-      "version": "1.1.0",
+      "version": "1.2.0",
       "storeUrl": "https://www.raycast.com/smcnab1/gradient-generator",
       "source": {
         "type": "github-monorepo",
@@ -132545,7 +133131,7 @@
         {
           "name": "siteUrl",
           "title": "Jira Site URL",
-          "description": "Your Jira site URL (e.g foo.atlassian.net)",
+          "description": "Your Jira site URL (e.g. foo.atlassian.net). Selects the site for OAuth and is required for API token authentication.",
           "type": "textfield",
           "required": false,
           "placeholder": "foo.atlassian.com"
@@ -158764,7 +159350,8 @@
       "icon": "extension-icon.png",
       "author": "atkinsmatt101",
       "contributors": [
-        "chrismessina"
+        "chrismessina",
+        "alexi.build"
       ],
       "categories": [
         "Finance"
@@ -159823,6 +160410,54 @@
           ]
         }
       ]
+    },
+    {
+      "name": "mflare",
+      "title": "MFlare",
+      "description": "Check Cloudflare Usage, Workers and Builds from the MFlare app (MFlare Pro required)",
+      "icon": "extension-icon.png",
+      "author": "yuyinws",
+      "contributors": [],
+      "categories": [
+        "Data",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/yuyinws/mflare",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/mflare",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "usage",
+          "title": "Cloudflare Usage",
+          "subtitle": "MFlare",
+          "description": "Usage against Quota for a Cloudflare Account",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "workers",
+          "title": "Cloudflare Workers",
+          "subtitle": "MFlare",
+          "description": "Workers with their latest Deployments, Builds and Build Logs",
+          "mode": "view",
+          "keywords": [
+            "deployments",
+            "builds",
+            "build logs"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "micro-snitch-logs",
@@ -182080,6 +182715,49 @@
       ]
     },
     {
+      "name": "one-dollar-stats",
+      "title": "One Dollar Stats",
+      "description": "$1.00/month web analytics 🚀",
+      "icon": "extension_icon.png",
+      "author": "xmok",
+      "contributors": [],
+      "categories": [
+        "Data"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/xmok/one-dollar-stats",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/one-dollar-stats",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-websites",
+          "title": "Search Websites",
+          "description": "Add your websites and view metrics",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "api_key",
+          "title": "API Key",
+          "description": "OneDollarStats API Key",
+          "placeholder": "ods_xxx...xxx",
+          "required": true,
+          "type": "password"
+        }
+      ]
+    },
+    {
       "name": "one-tab-group",
       "title": "One Tab Group",
       "description": "Search One Tab Group on Raycast",
@@ -194472,7 +195150,7 @@
     {
       "name": "pdf-expert",
       "title": "PDF Expert",
-      "description": "Navigate open tabs and recent documents in PDF Expert",
+      "description": "Navigate open tabs and recent documents in PDF Expert, and copy the current page as an image",
       "icon": "pdf-expert.png",
       "author": "mattiacolombomc",
       "contributors": [],
@@ -194509,6 +195187,38 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "screenshot-current-page",
+          "title": "Screenshot Current Page",
+          "subtitle": "PDF Expert",
+          "description": "Copy the page currently shown in PDF Expert to the clipboard as a clean image",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "dpi",
+              "title": "Image Resolution",
+              "description": "Resolution of the rendered page image",
+              "type": "dropdown",
+              "required": false,
+              "default": "216",
+              "data": [
+                {
+                  "title": "144 DPI (2x)",
+                  "value": "144"
+                },
+                {
+                  "title": "216 DPI (3x)",
+                  "value": "216"
+                },
+                {
+                  "title": "300 DPI (print)",
+                  "value": "300"
+                }
+              ]
+            }
+          ]
         }
       ],
       "preferences": []
@@ -288162,6 +288872,98 @@
       ]
     },
     {
+      "name": "twelfth",
+      "title": "Twelfth",
+      "description": "Your Twelfth workspace from Raycast: what to do today, products, projects, and a quick way to ask Twelfth.",
+      "icon": "icon.png",
+      "author": "twelfth",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Data"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/twelfth/twelfth",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/twelfth",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "today",
+          "title": "What Should I Do Today",
+          "subtitle": "Twelfth",
+          "description": "Your open Twelfth actions, overdue first, then today, this week and later.",
+          "mode": "view",
+          "keywords": [
+            "today",
+            "tasks",
+            "actions",
+            "todo",
+            "brief"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "menu-bar",
+          "title": "Twelfth Today",
+          "subtitle": "Twelfth",
+          "description": "Keeps overdue and due-today Twelfth actions in the menu bar.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-products",
+          "title": "Search Products",
+          "subtitle": "Twelfth",
+          "description": "Search your range with stock, cover, sales, GP% and open findings.",
+          "mode": "view",
+          "keywords": [
+            "sku",
+            "range",
+            "stock",
+            "catalogue"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "projects",
+          "title": "Projects",
+          "subtitle": "Twelfth",
+          "description": "Projects in flight, with their stage and overdue tasks.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "ask",
+          "title": "Ask Twelfth",
+          "subtitle": "Twelfth",
+          "description": "Start a Twelfth chat with your question.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "title": "Workspace API Key",
+          "description": "Optional. Leave empty to sign in with your Twelfth account. Owners and admins can create a key in Settings → AI & agents; a key reads the whole workspace.",
+          "type": "password",
+          "required": false,
+          "placeholder": "twelfth_mcp_…"
+        }
+      ]
+    },
+    {
       "name": "twenty",
       "title": "Twenty",
       "description": "Create Object Record Instantly",
@@ -297830,7 +298632,9 @@
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/crisboarna/vivaldi",
       "source": {
         "type": "github-monorepo",
@@ -301004,6 +301808,61 @@
           ]
         }
       ]
+    },
+    {
+      "name": "weather-fox",
+      "title": "Weather Fox",
+      "description": "Animated weather scenes, live radar, and a fox mascot — multi-city forecasts with no API key.",
+      "icon": "weather-sun-icon.png",
+      "author": "luarmr",
+      "contributors": [],
+      "categories": [
+        "Data",
+        "Fun"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/luarmr/weather-fox",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/weather-fox",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "weather",
+          "title": "Weather",
+          "subtitle": "Weather Fox",
+          "description": "Current conditions, hourly and 7-day forecast with rich visuals.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "cast",
+          "title": "Cast Weather Fox",
+          "subtitle": "Weather Fox",
+          "description": "Meet Cast — an animated fox acting out your current weather in his tiny world.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "weather-fox-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "menubar",
+          "title": "Weather in Menu Bar",
+          "subtitle": "Weather Fox",
+          "description": "Current conditions, rain nowcast, air quality, and alerts for your saved cities, refreshed every 30 minutes.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "web-audit",
@@ -309470,6 +310329,14 @@
               "placeholder": "~/Backup,~/Archive/Xcode"
             },
             {
+              "name": "showDirectoryTag",
+              "type": "checkbox",
+              "required": false,
+              "description": "Show a tag with the git root directory, or the parent directory, instead of the project path. Hover over the tag to see the full path.",
+              "default": false,
+              "label": "Show directory tag instead of path"
+            },
+            {
               "name": "terminalApp",
               "type": "appPicker",
               "required": false,
@@ -314563,6 +315430,59 @@
           "default": true
         }
       ]
+    },
+    {
+      "name": "zero-wire",
+      "title": "Zero Wire",
+      "description": "Search Cloudflare Zero Wire security briefings, follow relevant technologies, and revisit guidance updates. Independent integration.",
+      "icon": "extension_icon.png",
+      "author": "0xdhrv",
+      "contributors": [],
+      "categories": [
+        "Security"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows",
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/0xdhrv/zero-wire",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/zero-wire",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "zero-wire",
+          "title": "Search Security Briefings",
+          "subtitle": "Zero Wire",
+          "description": "Search Cloudflare Zero Wire briefings by title, CVE, or technology and review source guidance",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "saved-briefings",
+          "title": "Saved Briefings",
+          "subtitle": "Zero Wire",
+          "description": "Read bookmarked Zero Wire briefings and acknowledge reviewed revisions",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "follow-technologies",
+          "title": "Follow Technologies",
+          "subtitle": "Zero Wire",
+          "description": "Choose source technology tags to follow in Zero Wire",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "zerodha-portfolio-kite-coin",
