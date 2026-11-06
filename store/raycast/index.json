@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-05T23:35:03.541Z",
+  "generatedAt": "2026-11-06T23:02:51.342Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "47d0935ac93ee325e9d6450a18b44987ebe78df1"
+    "commit": "c62d96aac00e3a3a471e110c96f658cf636cb24f"
   },
-  "count": 3522,
+  "count": 3541,
   "extensions": [
     {
       "name": "0x0",
@@ -28302,6 +28302,77 @@
       "preferences": []
     },
     {
+      "name": "boltai",
+      "title": "BoltAI",
+      "description": "Ask your AI models, run AI Workflows on selected text, start chats and paste prompts with BoltAI.",
+      "icon": "icon.png",
+      "author": "daniel_nguyenx",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/daniel_nguyenx/boltai",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/boltai",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "ask",
+          "title": "Ask BoltAI",
+          "subtitle": "BoltAI",
+          "description": "Send a one-off prompt with your default model and show the answer.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "run-workflow",
+          "title": "Run AI Workflow",
+          "subtitle": "BoltAI",
+          "description": "Run an AI Workflow or Multi-step Workflow on the selected text, the clipboard or typed input.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "new-chat",
+          "title": "New Chat",
+          "subtitle": "BoltAI",
+          "description": "Start a new chat in BoltAI, optionally sending a first message.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-prompts",
+          "title": "Search Prompts",
+          "subtitle": "BoltAI",
+          "description": "Find a saved prompt and paste or copy its text.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "boltPath",
+          "title": "Bolt Path",
+          "description": "Path to the bolt command-line tool. Leave empty to find it in ~/.local/bin, /Applications/BoltAI.app or the Setapp app.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "/Applications/BoltAI.app/Contents/Helpers/bolt"
+        }
+      ]
+    },
+    {
       "name": "bonjour",
       "title": "Bonjour",
       "description": "Manage Bonjour services",
@@ -29613,7 +29684,8 @@
         "ridemountainpig",
         "chrismessina",
         "clins1994",
-        "alexi.build"
+        "alexi.build",
+        "beru"
       ],
       "categories": [
         "Developer Tools",
@@ -29924,6 +29996,388 @@
               "description": "Location to the Brew installation (Defaults to `/opt/homebrew/bin/brew` on M1 Macs, and `/usr/local/bin/brew` otherwise)"
             }
           ]
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "bricks-builder",
+      "title": "Bricks Builder",
+      "description": "Open pages and templates in Bricks Builder, search classes, colors and elements, and manage all your Bricks sites.",
+      "icon": "icon.png",
+      "author": "matejmohar",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/matejmohar/bricks-builder",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/bricks-builder",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-shortcuts",
+          "title": "Search Bricks Shortcuts",
+          "description": "Search Bricks Builder keyboard shortcuts, copy them, or press them in the builder.",
+          "mode": "view",
+          "keywords": [
+            "bricks",
+            "shortcuts",
+            "wordpress",
+            "builder"
+          ],
+          "preferences": [
+            {
+              "name": "keyStyle",
+              "title": "Key Style",
+              "description": "How shortcuts are displayed and copied.",
+              "type": "dropdown",
+              "required": false,
+              "default": "auto",
+              "data": [
+                {
+                  "title": "Match This Computer",
+                  "value": "auto"
+                },
+                {
+                  "title": "Mac (⌘ ⇧ ⌥)",
+                  "value": "mac"
+                },
+                {
+                  "title": "Windows (Ctrl + Shift + Alt)",
+                  "value": "windows"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "open-in-bricks",
+          "title": "Open in Bricks",
+          "description": "Search pages, posts and Bricks templates on your sites and open them in the builder, or create new ones.",
+          "mode": "view",
+          "keywords": [
+            "bricks",
+            "edit",
+            "page",
+            "template",
+            "wordpress",
+            "create",
+            "new",
+            "draft"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "edit-current-page",
+          "title": "Edit Current Page in Bricks",
+          "description": "Open the page in your browser's current tab in Bricks, or go back to the live page from the builder.",
+          "mode": "no-view",
+          "keywords": [
+            "bricks",
+            "toggle",
+            "builder",
+            "live",
+            "frontend"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "search-global-classes",
+          "title": "Search Global Classes",
+          "description": "Search the global classes of a Bricks site and copy or paste their names.",
+          "mode": "view",
+          "keywords": [
+            "bricks",
+            "css",
+            "class",
+            "classes"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "search-colors-variables",
+          "title": "Search Colors and Variables",
+          "description": "Search a Bricks site's color palettes and global CSS variables.",
+          "mode": "view",
+          "keywords": [
+            "bricks",
+            "color",
+            "palette",
+            "variable",
+            "css",
+            "tokens"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "search-dynamic-data",
+          "title": "Search Dynamic Data",
+          "description": "Every dynamic data tag on a Bricks site: Bricks, ACF, Meta Box, JetEngine and more. Paste one into the builder.",
+          "mode": "view",
+          "keywords": [
+            "bricks",
+            "dynamic data",
+            "tags",
+            "acf",
+            "meta box",
+            "jetengine",
+            "custom fields"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "search-elements",
+          "title": "Search Bricks Elements",
+          "description": "Search every Bricks element on a site, across pages, templates and components, by text, class, color, CSS or element type.",
+          "mode": "view",
+          "keywords": [
+            "bricks",
+            "search",
+            "elements",
+            "find",
+            "where used",
+            "class",
+            "form"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "site-info",
+          "title": "Bricks Site Info",
+          "description": "Show breakpoints with their media queries, theme styles and their conditions, states, CSS loading method and Bricks version of your site.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "site-audit",
+          "title": "Bricks Site Audit",
+          "description": "Unused global classes (trash and restore), templates without conditions, Code elements, images without alt text and the heaviest pages.",
+          "mode": "view",
+          "keywords": [
+            "bricks",
+            "audit",
+            "cleanup",
+            "unused classes",
+            "alt text",
+            "performance",
+            "security"
+          ],
+          "preferences": [
+            {
+              "name": "largeImageKb",
+              "title": "Large Image Threshold",
+              "description": "Images whose served file is bigger than this many KB count as large.",
+              "type": "textfield",
+              "default": "300",
+              "required": false
+            }
+          ]
+        },
+        {
+          "name": "template-library",
+          "title": "Bricks Template Library",
+          "description": "Browse a site's Bricks templates and global components with a structure preview, and paste them into the builder on any site.",
+          "mode": "view",
+          "keywords": [
+            "bricks",
+            "templates",
+            "sections",
+            "components",
+            "library",
+            "paste"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "form-submissions",
+          "title": "Bricks Form Submissions",
+          "description": "Browse the form submissions a Bricks site saved, by form, and reply, copy or delete them.",
+          "mode": "view",
+          "keywords": [
+            "bricks",
+            "forms",
+            "submissions",
+            "entries",
+            "leads",
+            "contact"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "form-submissions-menu-bar",
+          "title": "New Bricks Form Submissions",
+          "description": "Shows new form submissions on all your Bricks sites in the menu bar.",
+          "mode": "menu-bar",
+          "keywords": [
+            "bricks",
+            "forms",
+            "submissions",
+            "menu bar",
+            "notifications"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "bricks-snippets",
+          "title": "Search Bricks Snippets",
+          "description": "Your library of Bricks elements, CSS, JS and HTML snippets to paste into the builder.",
+          "mode": "view",
+          "keywords": [
+            "bricks",
+            "snippet",
+            "library",
+            "elements",
+            "paste"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "save-clipboard-snippet",
+          "title": "Save Clipboard as Bricks Snippet",
+          "description": "Save what's on the clipboard, such as elements copied in Bricks with ⌘C, as a snippet.",
+          "mode": "view",
+          "keywords": [
+            "bricks",
+            "snippet",
+            "save",
+            "copy",
+            "elements"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "search-docs",
+          "title": "Search Bricks Docs",
+          "description": "Search Bricks Academy articles and read them in Raycast.",
+          "mode": "view",
+          "keywords": [
+            "bricks",
+            "docs",
+            "academy",
+            "documentation",
+            "help"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "press-shortcut",
+          "title": "Press Bricks Shortcut",
+          "description": "Presses one Bricks shortcut in the builder. Used for hotkeys made with ⌘⇧K in Search Bricks Shortcuts.",
+          "mode": "no-view",
+          "keywords": [
+            "bricks",
+            "shortcut",
+            "press"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "site-health",
+          "title": "Bricks Site Health",
+          "description": "All your Bricks sites at a glance: Bricks, helper, WordPress and PHP versions, available updates, maintenance mode and connection problems.",
+          "mode": "view",
+          "keywords": [
+            "bricks",
+            "health",
+            "sites",
+            "updates",
+            "versions",
+            "status"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "toggle-maintenance-mode",
+          "title": "Toggle Bricks Maintenance Mode",
+          "description": "Turns Bricks maintenance mode on or off on the selected site, after asking.",
+          "mode": "no-view",
+          "keywords": [
+            "bricks",
+            "maintenance",
+            "coming soon",
+            "offline"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "regenerate-css",
+          "title": "Regenerate Bricks CSS Files",
+          "description": "Regenerates Bricks' CSS files on the selected site.",
+          "mode": "no-view",
+          "keywords": [
+            "bricks",
+            "css",
+            "regenerate",
+            "files"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "clear-caches",
+          "title": "Clear Bricks Site Caches",
+          "description": "Flushes the object cache and page cache plugins (LiteSpeed, WP Rocket, W3TC, WP Super Cache, SiteGround, FlyingPress and more) on the selected site.",
+          "mode": "no-view",
+          "keywords": [
+            "bricks",
+            "cache",
+            "purge",
+            "clear",
+            "flush"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "regenerate-code-signatures",
+          "title": "Regenerate Bricks Code Signatures",
+          "description": "Signs every Code element, SVG and query editor again on the selected site, after asking.",
+          "mode": "no-view",
+          "keywords": [
+            "bricks",
+            "code",
+            "signatures",
+            "regenerate",
+            "security"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "bricks-pro",
+          "title": "Bricks Raycast Pro",
+          "description": "Add your Bricks Raycast Pro license key, see which sites have Pro, and activate it on one site or all of them.",
+          "mode": "view",
+          "keywords": [
+            "bricks",
+            "license",
+            "pro",
+            "key",
+            "activate",
+            "buy",
+            "upgrade"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "manage-sites",
+          "title": "Manage Bricks Sites",
+          "description": "Add, edit or remove the WordPress sites used by Open in Bricks.",
+          "mode": "view",
+          "keywords": [
+            "bricks",
+            "sites",
+            "wordpress",
+            "application password"
+          ],
+          "preferences": []
         }
       ],
       "preferences": []
@@ -42904,12 +43358,13 @@
     {
       "name": "clipboard-type",
       "title": "Clipboard Type",
-      "description": "Clipboard Type allows you to paste values of your clipboard, in the places where direct pasting is not allowed, like many web forms or RDP where clipboard is not synced. With Clipboard Type first value of clipboard is typed using internal api rather using OS pasting command",
+      "description": "Type out your clipboard as keystrokes where pasting is blocked, like web forms and remote desktop sessions.",
       "icon": "extension-icon.png",
       "author": "krishna_bhanushali",
       "contributors": [
         "itninja04",
-        "yemor"
+        "yemor",
+        "andriy"
       ],
       "categories": [
         "Productivity",
@@ -42931,7 +43386,7 @@
         {
           "name": "type-clipboard",
           "title": "Type Clipboard",
-          "description": "Will take the value from clipboard history and will type it out",
+          "description": "Type the current clipboard text as keystrokes.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -42939,11 +43394,45 @@
       ],
       "preferences": [
         {
+          "name": "humanCadenceSpeed",
+          "type": "dropdown",
+          "title": "Typing Speed",
+          "required": false,
+          "description": "How fast to type. Times are averages for ordinary characters. Capitals and symbols take longer. Use a slower speed if characters are dropped in remote desktops or browser-based consoles.",
+          "default": "average",
+          "data": [
+            {
+              "title": "Very Slow (~300 ms per key)",
+              "value": "very-slow"
+            },
+            {
+              "title": "Slow (~200 ms per key)",
+              "value": "slow"
+            },
+            {
+              "title": "Average (~160 ms per key)",
+              "value": "average"
+            },
+            {
+              "title": "Fast (~55 ms per key)",
+              "value": "fast"
+            },
+            {
+              "title": "Very Fast (~25 ms per key)",
+              "value": "very-fast"
+            },
+            {
+              "title": "Super Human (~5 ms per key)",
+              "value": "super-human"
+            }
+          ]
+        },
+        {
           "name": "humanCadence",
           "type": "checkbox",
           "label": "Human Cadence",
           "required": false,
-          "description": "Enable to add random delay between keystrokes to mimic human typing.",
+          "description": "Randomly vary the pause between keystrokes to mimic human typing. The average typing speed stays the same.",
           "default": true
         },
         {
@@ -42953,40 +43442,6 @@
           "required": false,
           "description": "Use Shift+Enter for newlines instead of Enter. Useful for apps and websites that treat Enter as submit.",
           "default": false
-        },
-        {
-          "name": "humanCadenceSpeed",
-          "type": "dropdown",
-          "title": "Human Cadence Speed",
-          "required": false,
-          "description": "Choose the speed of the random delay when Human Cadence is enabled",
-          "default": "average",
-          "data": [
-            {
-              "title": "Very Slow (200 ms)",
-              "value": "very-slow"
-            },
-            {
-              "title": "Slow (100 ms)",
-              "value": "slow"
-            },
-            {
-              "title": "Average (50 ms)",
-              "value": "average"
-            },
-            {
-              "title": "Fast (20 ms)",
-              "value": "fast"
-            },
-            {
-              "title": "Very Fast (5 ms)",
-              "value": "very-fast"
-            },
-            {
-              "title": "Super Human (0 ms)",
-              "value": "super-human"
-            }
-          ]
         }
       ]
     },
@@ -44909,6 +45364,65 @@
           "required": false
         }
       ]
+    },
+    {
+      "name": "cmarks",
+      "title": "Cmarks",
+      "description": "Search and open Markdown files from your cmarks workspaces, reopen recent files, and send Finder selections to cmarks.",
+      "icon": "icon.png",
+      "author": "changhyun_yoo",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/changhyun_yoo/cmarks",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/cmarks",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search",
+          "title": "Search Markdown Files",
+          "subtitle": "Cmarks",
+          "description": "Search Markdown files in every cmarks workspace and open one in cmarks.",
+          "mode": "view",
+          "keywords": [
+            "markdown",
+            "md",
+            "readme",
+            "docs",
+            "workspace"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "recent",
+          "title": "Open Recent File",
+          "subtitle": "Cmarks",
+          "description": "Reopen a Markdown file you read recently in cmarks.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-finder-selection",
+          "title": "Open Finder Selection in Cmarks",
+          "subtitle": "Cmarks",
+          "description": "Open the files and folders selected in the Finder with cmarks. Folders become workspaces.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "cmux",
@@ -48503,7 +49017,8 @@
         "clins1994",
         "just_me",
         "0xdhrv",
-        "alexi.build"
+        "alexi.build",
+        "muhammadrizo"
       ],
       "categories": [
         "Design Tools"
@@ -48530,11 +49045,18 @@
           "preferences": [
             {
               "name": "showColorName",
-              "title": "Show color name after picking",
+              "label": "Show color name after picking",
               "description": "Show the name of the picked color after picking",
               "type": "checkbox",
-              "label": "Show",
               "default": false,
+              "required": false
+            },
+            {
+              "name": "closeRaycast",
+              "label": "Close Raycast before picking color",
+              "description": "Disable if you want to pick a color in the Raycast window. You can still use a keyboard shortcut to not see the Raycast window.",
+              "type": "checkbox",
+              "default": true,
               "required": false
             }
           ]
@@ -82446,7 +82968,9 @@
       "description": "View and control your Mac's fan RPM (Apple Silicon) via smctl.",
       "icon": "icon.png",
       "author": "samuelbelo",
-      "contributors": [],
+      "contributors": [
+        "0xAdriaTorralba"
+      ],
       "categories": [
         "System"
       ],
@@ -82488,6 +83012,33 @@
           "mode": "no-view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "toggle-fans",
+          "title": "Toggle Fan Speed",
+          "description": "Switch all fans between macOS control (auto) and full speed in one keystroke. Its subtitle shows the current state and what it will switch to.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "toggleProfile",
+              "type": "dropdown",
+              "title": "Manual Profile",
+              "description": "Profile used when the toggle leaves auto mode.",
+              "required": false,
+              "default": "full",
+              "data": [
+                {
+                  "title": "Full Speed",
+                  "value": "full"
+                },
+                {
+                  "title": "Quiet",
+                  "value": "quiet"
+                }
+              ]
+            }
+          ]
         }
       ],
       "preferences": [
@@ -82498,6 +83049,85 @@
           "description": "Full path to the smctl binary. Leave empty to auto-detect (Homebrew locations).",
           "required": false,
           "placeholder": "/opt/homebrew/bin/smctl"
+        }
+      ]
+    },
+    {
+      "name": "fanbar",
+      "title": "FanBar",
+      "description": "Switch FanBar cooling presets, set a fixed fan speed, and watch fans and temperatures on your Mac.",
+      "icon": "extension-icon.png",
+      "author": "JarinHe",
+      "contributors": [],
+      "categories": [
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/JarinHe/fanbar",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/fanbar",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "switch-preset",
+          "title": "Switch Preset",
+          "subtitle": "FanBar",
+          "description": "Run a built-in or custom cooling preset's curve.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "fan-status",
+          "title": "Fan Status",
+          "subtitle": "FanBar",
+          "description": "Show FanBar's mode, fan speeds and temperatures.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "fixed-rpm",
+          "title": "Fixed RPM",
+          "subtitle": "FanBar",
+          "description": "Hold every fan at a fixed speed.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "automatic",
+          "title": "Automatic",
+          "subtitle": "FanBar",
+          "description": "Hand the fans back to macOS.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "menu-bar",
+          "title": "FanBar Menu Bar",
+          "subtitle": "FanBar",
+          "description": "CPU temperature in the menu bar, with preset switching. Never starts a FanBar you quit.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "fanbarPath",
+          "title": "fanbar Path",
+          "description": "Full path to the fanbar tool. Leave empty to look in /usr/local/bin, /opt/homebrew/bin and /Applications/FanBar.app.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "/usr/local/bin/fanbar"
         }
       ]
     },
@@ -82600,6 +83230,56 @@
           "title": "Auto Get Selected Text",
           "label": "Automatically get the selected text",
           "default": true
+        }
+      ]
+    },
+    {
+      "name": "fans-temperatures",
+      "title": "Fans & Temperatures",
+      "description": "Monitor every Mac temperature sensor and fan speed, and control the fans with overheat protection",
+      "icon": "icon.png",
+      "author": "arturious",
+      "contributors": [],
+      "categories": [
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/arturious/fans-temperatures",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/fans-temperatures",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "index",
+          "title": "Show Fans & Temperatures",
+          "description": "Show fan speeds and all temperature sensors, and control the fans",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle-fans",
+          "title": "Toggle Fans Auto/Max",
+          "description": "Switch all fans between automatic control and maximum speed",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "cliPath",
+          "title": "Ougi Path",
+          "description": "Path to the ougi command-line tool. Leave empty to find it in /opt/homebrew/bin or /usr/local/bin.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "/opt/homebrew/bin/ougi"
         }
       ]
     },
@@ -88891,6 +89571,50 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "flashdata-google-search",
+      "title": "FlashData Google Search",
+      "description": "Search Google and copy structured results for research and AI agent workflows using your own FlashData API key.",
+      "icon": "icon.png",
+      "author": "flashdatadev",
+      "contributors": [],
+      "categories": [
+        "Web",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/flashdatadev/flashdata-google-search",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/flashdata-google-search",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-google",
+          "title": "Search Google",
+          "subtitle": "FlashData",
+          "description": "Run one Google Search with your FlashData Credits, browse sources, and copy results as JSON or Markdown.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "title": "FlashData API Key",
+          "description": "Your own FlashData key with Google Search access. Searches use Credits from your FlashData account.",
+          "type": "password",
+          "required": true,
+          "placeholder": "Enter your FlashData API key"
+        }
+      ]
     },
     {
       "name": "flashspace",
@@ -100708,7 +101432,9 @@
         "0xdhrv",
         "ernest0n",
         "raycast_0ukl",
-        "olafvanmidden"
+        "olafvanmidden",
+        "Berenger",
+        "Robot-Inventor"
       ],
       "categories": [
         "Developer Tools",
@@ -100884,6 +101610,14 @@
           "name": "create-release",
           "title": "Create Release",
           "description": "Create a release in one of your GitHub repositories.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "create-repository",
+          "title": "Create Repository",
+          "description": "Create a repository on your GitHub account or in one of your organizations",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -126501,6 +127235,49 @@
       "preferences": []
     },
     {
+      "name": "inspiration-image",
+      "title": "Inspiration Image",
+      "description": "Compose selected text or clipboard screenshots over a chosen background.",
+      "icon": "extension-icon.png",
+      "author": "zyxing",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/zyxing/inspiration-image",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/inspiration-image",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "text-to-image",
+          "title": "Add Background to Selected Text",
+          "subtitle": "Inspiration Image",
+          "description": "Compose selected text over a background image.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "screenshot-to-image",
+          "title": "Add Background to Clipboard Screenshot",
+          "subtitle": "Inspiration Image",
+          "description": "Compose a clipboard screenshot over a background image.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "inspire-search",
       "title": "Inspire HEP Search",
       "description": "Search papers on inspirehep.net and browse results inside Raycast. Includes actions to copy one or more bibtex entries, look up references or citations, and (when available) download pdf version.",
@@ -139696,6 +140473,173 @@
       ]
     },
     {
+      "name": "kimai-parallel-timers",
+      "title": "Kimai",
+      "description": "Track time in Kimai with parallel timers, recent entries and menu bar controls.",
+      "icon": "extension-icon.png",
+      "author": "mateusz",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/mateusz/kimai-parallel-timers",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/kimai-parallel-timers",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "index",
+          "title": "Start / Stop Timers",
+          "description": "Start / Stop Timers in Kimai",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "create-timer",
+          "title": "Quickstart New Timer",
+          "description": "Quickstart New Timer in Kimai",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "stop-timer",
+          "title": "Quickstop Timer",
+          "description": "Quickstop Timer in Kimai",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "stop-all",
+          "title": "Stop All Timers",
+          "description": "Stop All Timers in Kimai",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "edit-entry",
+          "title": "Update Time Entry",
+          "description": "Update Time Entry in Kimai",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "menu-bar",
+          "title": "Kimai Menu Bar",
+          "description": "Kimai Menu Bar in Kimai",
+          "mode": "menu-bar",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "customers",
+          "title": "Manage Customers",
+          "description": "Manage Customers in Kimai",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "projects",
+          "title": "Manage Projects",
+          "description": "Manage Projects in Kimai",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "activities",
+          "title": "Manage Activities",
+          "description": "Manage Activities in Kimai",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "tags",
+          "title": "Manage Tags",
+          "description": "Manage Tags in Kimai",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "connection",
+          "title": "Connection and Parallel Timer Settings",
+          "description": "Connection and Parallel Timer Settings in Kimai",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "baseUrl",
+          "title": "Kimai URL",
+          "description": "Base URL, including a subdirectory if applicable. HTTPS recommended.",
+          "type": "textfield",
+          "required": true,
+          "placeholder": "https://kimai.example.com"
+        },
+        {
+          "name": "apiToken",
+          "title": "Kimai API Token",
+          "description": "Create an API token in your Kimai profile.",
+          "type": "password",
+          "required": true
+        },
+        {
+          "name": "recentDateFormat",
+          "title": "Recent Entry Date Format",
+          "description": "Show dates as DD/MM/YYYY or use Today and Yesterday for recent entries. Uses your computer’s local timezone.",
+          "type": "dropdown",
+          "required": false,
+          "default": "date",
+          "data": [
+            {
+              "title": "Date (19/10/2026)",
+              "value": "date"
+            },
+            {
+              "title": "Today / Yesterday / Date",
+              "value": "relative"
+            }
+          ]
+        },
+        {
+          "name": "showTimerSummary",
+          "title": "Show Summary in Start / Stop Timers",
+          "description": "Show Today, Yesterday, Week and Month totals above the timer list.",
+          "type": "checkbox",
+          "label": "Show time summary",
+          "required": false,
+          "default": true
+        }
+      ]
+    },
+    {
       "name": "kimi",
       "title": "Kimi",
       "description": "Interact with Moonshot AI's Kimi LLM directly from Raycast",
@@ -142025,6 +142969,51 @@
               "value": ""
             }
           ]
+        }
+      ]
+    },
+    {
+      "name": "lantern-semantic-search",
+      "title": "Lantern – Semantic Search",
+      "description": "Search your Mac by meaning with Lantern: files, code, PDFs, photos and the moment in a recording, entirely on your Mac. Requires the free Lantern app.",
+      "icon": "icon.png",
+      "author": "kacper_piotrowski",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/kacper_piotrowski/lantern-semantic-search",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/lantern-semantic-search",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search",
+          "title": "Search Lantern",
+          "subtitle": "Lantern",
+          "description": "Find files, code definitions, photos and moments in recordings by what is inside them.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "includeApps",
+          "type": "checkbox",
+          "required": false,
+          "default": false,
+          "title": "Results",
+          "label": "Also show apps and System Settings",
+          "description": "Raycast finds those itself; switch on to see Lantern's matches too."
         }
       ]
     },
@@ -152058,7 +153047,7 @@
       "platforms": [
         "macOS"
       ],
-      "version": "1.0.0",
+      "version": "1.1.0",
       "storeUrl": "https://www.raycast.com/smcnab1/luxafor-controller",
       "source": {
         "type": "github-monorepo",
@@ -152077,9 +153066,41 @@
         },
         {
           "name": "luxafor-status",
-          "title": "Luxafor Menu Bar Status",
-          "description": "Show Luxafor device status in menubar",
+          "title": "Luxafor Menu Bar",
+          "description": "View the last API-accepted command and send light changes; physical state is unknown",
           "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "set-busy",
+          "title": "Set Busy",
+          "description": "Send a solid red Luxafor command; suitable for an alias or hotkey",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "set-available",
+          "title": "Set Available",
+          "description": "Send a solid green Luxafor command; suitable for an alias or hotkey",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "turn-off",
+          "title": "Turn off",
+          "description": "Send custom 000000 to turn Luxafor off; suitable for an alias or hotkey",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "custom-colour",
+          "title": "Set Custom Color",
+          "description": "Send a validated three- or six-digit hex color to Luxafor",
+          "mode": "view",
           "keywords": [],
           "preferences": []
         }
@@ -152087,7 +153108,7 @@
       "preferences": [
         {
           "name": "userId",
-          "type": "textfield",
+          "type": "password",
           "required": true,
           "title": "Luxafor User ID",
           "description": "Your Luxafor User ID from the Webhook tab in Luxafor software",
@@ -152099,7 +153120,7 @@
           "type": "dropdown",
           "required": true,
           "title": "API Endpoint",
-          "description": "Choose your preferred API endpoint",
+          "description": "Use the documented .com service; .co.uk is retained for existing configurations and is unverified",
           "default": "com",
           "label": "API Endpoint",
           "data": [
@@ -152118,12 +153139,12 @@
           "type": "dropdown",
           "required": false,
           "title": "Menubar Layout",
-          "description": "Choose between simple toggle or full color control",
+          "description": "Choose Busy/Available actions or all seven base colors",
           "default": "simple",
           "label": "Menubar Layout",
           "data": [
             {
-              "title": "Simple Toggle (Red/Green)",
+              "title": "Busy and Available",
               "value": "simple"
             },
             {
@@ -152136,10 +153157,10 @@
           "name": "debugMode",
           "type": "checkbox",
           "required": false,
-          "title": "Enable Debug Mode",
-          "description": "Show detailed debug information and logging",
+          "title": "Legacy Debug Mode",
+          "description": "Legacy setting retained; request bodies, responses and identifiers are never logged",
           "default": false,
-          "label": "Debug Mode"
+          "label": "Legacy Debug Mode"
         }
       ]
     },
@@ -154063,6 +155084,39 @@
           "name": "view-schedule",
           "title": "View Schedule",
           "description": "View the event schedule",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "makedeck",
+      "title": "Makedeck",
+      "description": "See your makedeck services with live logs, open them in Terminal, restart or stop them.",
+      "icon": "icon.png",
+      "author": "SemL",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/SemL/makedeck",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/makedeck",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "services",
+          "title": "Dev Services",
+          "description": "All running dev services with live logs",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -161070,6 +162124,95 @@
       ]
     },
     {
+      "name": "mictape",
+      "title": "MicTape",
+      "description": "Record your microphone to .m4a files in folders you choose, with a menu bar timer",
+      "icon": "icon.png",
+      "author": "t4kamuna",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Media"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/t4kamuna/mictape",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/mictape",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "start-recording",
+          "title": "Start Recording",
+          "subtitle": "MicTape",
+          "description": "Pick a destination and start recording in the background",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "stop-recording",
+          "title": "Stop Recording",
+          "subtitle": "MicTape",
+          "description": "Stop the current recording and save it",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "recording-status",
+          "title": "Recording Status",
+          "subtitle": "MicTape",
+          "description": "Show the elapsed time of the current recording in the menu bar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "hideWhenIdle",
+              "title": "When Not Recording",
+              "label": "Hide the menu bar item",
+              "description": "Hide the menu bar item while nothing is being recorded",
+              "type": "checkbox",
+              "required": false,
+              "default": true
+            }
+          ]
+        },
+        {
+          "name": "test-microphone",
+          "title": "Test Microphone",
+          "subtitle": "MicTape",
+          "description": "Record five seconds and check the input level",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "configure",
+          "title": "Recording Settings",
+          "subtitle": "MicTape",
+          "description": "Choose where recordings are saved and how files are named",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "mictapePath",
+          "title": "MicTape CLI Path",
+          "description": "Path to the mictape command. Leave empty to look in ~/.local/bin, /opt/homebrew/bin, and /usr/local/bin.",
+          "type": "textfield",
+          "required": false
+        }
+      ]
+    },
+    {
       "name": "midas",
       "title": "Midas",
       "description": "Midas is an AI Agent that manages on-chain trading, voting and more for you.",
@@ -164357,7 +165500,8 @@
       "contributors": [
         "nagauta",
         "pernielsentikaer",
-        "porenes"
+        "porenes",
+        "seifip"
       ],
       "categories": [],
       "license": "MIT",
@@ -166509,7 +167653,8 @@
       "icon": "extension-icon.png",
       "author": "chandlervdw",
       "contributors": [
-        "pernielsentikaer"
+        "pernielsentikaer",
+        "muhammadrizo"
       ],
       "categories": [
         "Productivity",
@@ -166517,7 +167662,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/chandlervdw/moodist",
       "source": {
@@ -166530,7 +167676,6 @@
         {
           "name": "mix-sounds",
           "title": "Mix Sounds",
-          "subtitle": "Moodist",
           "description": "Browse, play, and mix ambient sounds with individual and master volume",
           "mode": "view",
           "keywords": [],
@@ -166539,7 +167684,6 @@
         {
           "name": "toggle-playback",
           "title": "Toggle Playback",
-          "subtitle": "Moodist",
           "description": "Pause or resume the current mix",
           "mode": "no-view",
           "keywords": [],
@@ -166548,8 +167692,7 @@
         {
           "name": "menu-bar",
           "title": "Moodist Menu Bar",
-          "subtitle": "Moodist",
-          "description": "Persistent menu bar controls for Moodist",
+          "description": "Persistent menu bar controls for Moodist (macOS only)",
           "mode": "menu-bar",
           "keywords": [],
           "preferences": []
@@ -166557,7 +167700,6 @@
         {
           "name": "manage-presets",
           "title": "Manage Presets",
-          "subtitle": "Moodist",
           "description": "Save, load, pin, and delete sound mix presets",
           "mode": "view",
           "keywords": [],
@@ -166566,7 +167708,6 @@
         {
           "name": "load-preset",
           "title": "Play Preset",
-          "subtitle": "Moodist",
           "description": "Play a saved preset by name. Create a quicklink from Manage Presets to give a preset its own hotkey",
           "mode": "no-view",
           "keywords": [],
@@ -166625,7 +167766,7 @@
         {
           "name": "showMenuBarCount",
           "title": "Show Sound Count in Menu Bar",
-          "description": "Display the number of active sounds next to the menu bar icon",
+          "description": "Display the number of active sounds next to the menu bar icon. macOS only.",
           "type": "checkbox",
           "default": true,
           "required": false,
@@ -178404,6 +179545,45 @@
       "preferences": []
     },
     {
+      "name": "number-to-stacks",
+      "title": "Number to Stacks",
+      "description": "Convert Minecraft item counts into stacks and back, with exact results for 64- and 16-item stacks.",
+      "icon": "icon.png",
+      "author": "sergi",
+      "contributors": [],
+      "categories": [
+        "Fun",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/sergi/number-to-stacks",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/number-to-stacks",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "number-to-stacks",
+          "title": "Convert Minecraft Stacks",
+          "description": "Convert expressions such as 144 to stacks or 1.5 stacks to items.",
+          "mode": "view",
+          "keywords": [
+            "stacks",
+            "minecraft",
+            "items"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "numi",
       "title": "Numi",
       "description": "Query Numi from Raycast",
@@ -182806,12 +183986,13 @@
       "author": "pernielsentikaer",
       "contributors": [
         "Ek217",
-        "mathieudutour",
-        "CreazioN"
+        "mathieudutour"
       ],
       "categories": [],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/pernielsentikaer/one-thing",
       "source": {
         "type": "github-monorepo",
@@ -188111,7 +189292,9 @@
       "description": "Manage OrbStack with Raycast",
       "icon": "orbstack.png",
       "author": "nicholasq",
-      "contributors": [],
+      "contributors": [
+        "davidlabs"
+      ],
       "categories": [
         "Developer Tools"
       ],
@@ -188139,6 +189322,14 @@
           "name": "machine_create",
           "title": "Machine Create",
           "description": "Create a new machine",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "container_list",
+          "title": "Container List",
+          "description": "List and manage Docker containers",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -203502,6 +204693,241 @@
       "preferences": []
     },
     {
+      "name": "pods-control",
+      "title": "Pods Control",
+      "description": "Control AirPods and Beats listening modes and Conversation Awareness, and show the confirmed mode in command subtitles.",
+      "icon": "pods-control.png",
+      "author": "raulg",
+      "contributors": [],
+      "categories": [
+        "System",
+        "Media"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/raulg/pods-control",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/pods-control",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "set-noise-cancellation",
+          "title": "Set to Noise Cancellation",
+          "description": "Set the connected AirPods or Beats to Noise Cancellation (ANC) listening mode.",
+          "mode": "no-view",
+          "keywords": [
+            "pods-control",
+            "airpods control",
+            "beats control",
+            "pods control",
+            "airpods",
+            "beats",
+            "pods",
+            "control",
+            "anc",
+            "nc",
+            "lm",
+            "noise cancelling"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "set-transparency",
+          "title": "Set to Transparency",
+          "description": "Set the connected AirPods or Beats to Transparency listening mode.",
+          "mode": "no-view",
+          "keywords": [
+            "pods-control",
+            "airpods control",
+            "beats control",
+            "pods control",
+            "airpods",
+            "beats",
+            "pods",
+            "control",
+            "ambient",
+            "passthrough",
+            "trans",
+            "lm"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "set-adaptive",
+          "title": "Set to Adaptive",
+          "description": "Set the connected AirPods or Beats to Adaptive listening mode when the device supports it.",
+          "mode": "no-view",
+          "keywords": [
+            "pods-control",
+            "airpods control",
+            "beats control",
+            "pods control",
+            "airpods",
+            "beats",
+            "pods",
+            "control",
+            "adaptive audio",
+            "auto",
+            "automatic",
+            "lm"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "set-off",
+          "title": "Set to Off",
+          "description": "Set the connected AirPods or Beats to the Off listening mode (no Noise Cancellation or Transparency).",
+          "mode": "no-view",
+          "keywords": [
+            "pods-control",
+            "airpods control",
+            "beats control",
+            "pods control",
+            "airpods",
+            "beats",
+            "pods",
+            "control",
+            "disable",
+            "lm"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "cycle-listening-mode",
+          "title": "Cycle Listening Mode",
+          "description": "Cycle through your enabled listening modes. The current mode is read from the connected AirPods or Beats before cycling, and unsupported modes are skipped.",
+          "mode": "no-view",
+          "keywords": [
+            "pods-control",
+            "airpods control",
+            "beats control",
+            "pods control",
+            "airpods",
+            "beats",
+            "pods",
+            "control",
+            "lm",
+            "anc",
+            "nc",
+            "trans"
+          ],
+          "preferences": [
+            {
+              "name": "cycleOff",
+              "title": "Modes to Cycle Through",
+              "label": "Off",
+              "description": "Enable Off when cycling listening modes.",
+              "type": "checkbox",
+              "default": false,
+              "required": false
+            },
+            {
+              "name": "cycleTransparency",
+              "label": "Transparency",
+              "description": "Enable Transparency when cycling listening modes.",
+              "type": "checkbox",
+              "default": true,
+              "required": false
+            },
+            {
+              "name": "cycleAdaptive",
+              "label": "Adaptive",
+              "description": "Enable Adaptive when cycling listening modes. Skipped automatically if the connected device does not support it.",
+              "type": "checkbox",
+              "default": false,
+              "required": false
+            },
+            {
+              "name": "cycleAnc",
+              "label": "Noise Cancellation",
+              "description": "Enable Noise Cancellation when cycling listening modes.",
+              "type": "checkbox",
+              "default": true,
+              "required": false
+            }
+          ]
+        },
+        {
+          "name": "toggle-conversation-awareness",
+          "title": "Toggle Conversation Awareness",
+          "description": "Toggle Conversation Awareness on or off. Requires AirPods or Beats that support Conversation Awareness.",
+          "mode": "no-view",
+          "keywords": [
+            "pods-control",
+            "airpods control",
+            "beats control",
+            "pods control",
+            "airpods",
+            "beats",
+            "pods",
+            "control",
+            "speech",
+            "switch",
+            "conversational awareness",
+            "ca"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "pods-status",
+          "title": "Pods Status",
+          "description": "Refresh the listening mode and Conversation Awareness shown in command subtitles.",
+          "mode": "no-view",
+          "keywords": [
+            "pods-control",
+            "airpods control",
+            "beats control",
+            "pods control",
+            "airpods",
+            "beats",
+            "pods",
+            "control",
+            "listening mode",
+            "lm",
+            "conversation awareness",
+            "ca"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "manage-cli",
+          "title": "Manage CLI",
+          "description": "Install, update, or fix the pods-control CLI used by this extension.",
+          "mode": "view",
+          "keywords": [
+            "pods-control",
+            "airpods control",
+            "beats control",
+            "pods control",
+            "airpods",
+            "beats",
+            "install",
+            "update",
+            "setup",
+            "fix",
+            "homebrew",
+            "brew"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "cliPath",
+          "title": "CLI Path",
+          "description": "Full path to the CLI binary. Leave empty to let Raycast find it automatically.",
+          "type": "textfield",
+          "placeholder": "/path/to/pods-control",
+          "required": false
+        }
+      ]
+    },
+    {
       "name": "pokedex",
       "title": "Pokédex",
       "description": "Explore the world of Pokémon with stunning visuals and detailed information in Raycast.",
@@ -204923,6 +206349,231 @@
           "type": "checkbox",
           "default": true,
           "required": false
+        }
+      ]
+    },
+    {
+      "name": "pond",
+      "title": "Pond",
+      "description": "Search, save, and organize your local library. Requires the Pond desktop app to be installed and running.",
+      "icon": "icon.png",
+      "author": "0xdhrv",
+      "contributors": [
+        "raphaelsalaja"
+      ],
+      "categories": [
+        "Applications",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/0xdhrv/pond",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/pond",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-saves",
+          "title": "Search Saves",
+          "subtitle": "Pond",
+          "description": "Search your library by keywords or meaning, then open, tag, file, or trash a save.",
+          "mode": "view",
+          "keywords": [
+            "library",
+            "bookmarks",
+            "find"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "search-media",
+          "title": "Search Media",
+          "subtitle": "Pond",
+          "description": "Browse the images and videos in your library as a grid.",
+          "mode": "view",
+          "keywords": [
+            "images",
+            "videos",
+            "grid"
+          ],
+          "preferences": [
+            {
+              "name": "columns",
+              "title": "Columns",
+              "description": "How many saves fit in each row.",
+              "type": "dropdown",
+              "required": false,
+              "default": "5",
+              "data": [
+                {
+                  "title": "3",
+                  "value": "3"
+                },
+                {
+                  "title": "4",
+                  "value": "4"
+                },
+                {
+                  "title": "5",
+                  "value": "5"
+                },
+                {
+                  "title": "6",
+                  "value": "6"
+                },
+                {
+                  "title": "8",
+                  "value": "8"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "search-tags",
+          "title": "Search Tags",
+          "subtitle": "Pond",
+          "description": "Find a tag and see the saves that carry it.",
+          "mode": "view",
+          "keywords": [
+            "labels"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "search-folders",
+          "title": "Search Folders",
+          "subtitle": "Pond",
+          "description": "Find a folder and see the saves inside it.",
+          "mode": "view",
+          "keywords": [
+            "collections"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "search-views",
+          "title": "Search Saved Views",
+          "subtitle": "Pond",
+          "description": "Open a saved view or smart folder from your library.",
+          "mode": "view",
+          "keywords": [
+            "smart folders",
+            "filters"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "random-save",
+          "title": "Open Random Save",
+          "subtitle": "Pond",
+          "description": "Open a random save from your library in Pond.",
+          "mode": "no-view",
+          "keywords": [
+            "shuffle",
+            "surprise"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "save-url",
+          "title": "Save URL",
+          "subtitle": "Pond",
+          "description": "Save a URL with tags and a folder, then watch Pond capture it.",
+          "mode": "view",
+          "keywords": [
+            "add",
+            "bookmark"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "quick-save",
+          "title": "Quick Save",
+          "subtitle": "Pond",
+          "description": "Save a URL without opening a form. Uses your selection, browser tab, or clipboard when you leave it empty.",
+          "mode": "no-view",
+          "keywords": [
+            "add",
+            "bookmark"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "save-current-tab",
+          "title": "Save Current Tab",
+          "subtitle": "Pond",
+          "description": "Save the page open in your browser.",
+          "mode": "no-view",
+          "keywords": [
+            "browser",
+            "safari",
+            "chrome",
+            "arc"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "save-clipboard",
+          "title": "Save Clipboard URL",
+          "subtitle": "Pond",
+          "description": "Save the URL on your clipboard.",
+          "mode": "no-view",
+          "keywords": [
+            "paste"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "switch-library",
+          "title": "Switch Library",
+          "subtitle": "Pond",
+          "description": "Switch Pond to one of your recent libraries.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-library",
+          "title": "Open Library",
+          "subtitle": "Pond",
+          "description": "Bring Pond to the front with your active library.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "menu-bar",
+          "title": "Menu Bar",
+          "subtitle": "Pond",
+          "description": "Show recent saves and capture progress in the menu bar.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "token",
+          "title": "Local API Token",
+          "description": "In Pond, open Settings, then Preferences, and choose Copy Token under Raycast.",
+          "type": "password",
+          "required": true,
+          "placeholder": "Copy from Pond Settings → Preferences → Raycast"
+        },
+        {
+          "name": "baseUrl",
+          "title": "Local API URL",
+          "description": "Change this only if you changed the port in Pond.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "http://127.0.0.1:41610/api/v2",
+          "default": "http://127.0.0.1:41610/api/v2"
         }
       ]
     },
@@ -216655,7 +218306,7 @@
     {
       "name": "r2-uploader",
       "title": "Cloudflare R2 File Uploader",
-      "description": "Upload any files to Cloudflare R2 with optional AVIF or WebP conversion for images. After upload, the URL or Markdown link will be copied to clipboard.",
+      "description": "Upload files to Cloudflare R2, copy public links, and browse your bucket.",
       "icon": "extension-icon.png",
       "author": "ypp",
       "contributors": [],
@@ -216679,7 +218330,7 @@
           "name": "r2-uploader",
           "title": "Upload File to R2",
           "subtitle": "Cloudflare R2",
-          "description": "Upload any files to Cloudflare R2 with optional AVIF or WebP conversion for images. After upload, the URL or Markdown link will be copied to clipboard.",
+          "description": "Upload selected Finder files to Cloudflare R2 and copy their public links. Optionally convert images to AVIF or WebP.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -216731,8 +218382,8 @@
           "name": "customDomain",
           "type": "textfield",
           "required": false,
-          "title": "R2 Public Domain",
-          "description": "Your already-configured public domain for accessing uploaded files",
+          "title": "Public Base URL",
+          "description": "Your bucket's public custom domain or https://pub-xxx.r2.dev URL. Required to upload and copy public links.",
           "placeholder": "https://cdn.example.com"
         },
         {
@@ -216740,7 +218391,7 @@
           "type": "textfield",
           "required": false,
           "title": "File Name Format",
-          "description": "Custom filename format (optional)",
+          "description": "Leave blank to add a unique timestamped suffix to each filename.",
           "placeholder": "{name}_{year}{month}{day}_{hours}{minutes}{seconds}"
         },
         {
@@ -216765,7 +218416,7 @@
           "type": "textfield",
           "required": false,
           "title": "AVIF Encoder Path",
-          "description": "Path to avifenc command (optional)",
+          "description": "Optional path to avifenc. Leave blank to look in Homebrew locations and on PATH.",
           "placeholder": "/opt/homebrew/bin/avifenc"
         },
         {
@@ -216773,7 +218424,7 @@
           "type": "textfield",
           "required": false,
           "title": "AVIF Quality",
-          "description": "Quality setting for AVIF conversion (0-100, default: 80)",
+          "description": "AVIF quality from 0 to 100 (default: 80).",
           "placeholder": "80",
           "default": "80"
         },
@@ -233056,6 +234707,77 @@
           "title": "Custom Database URL",
           "description": "Optional: Override the default database URL with your own JSON link.",
           "type": "textfield",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "roon-discord-presence",
+      "title": "Roon Discord Presence",
+      "description": "See what Roon is showing on your Discord status, and start, stop or restart roon-discord-presence.",
+      "icon": "icon.png",
+      "author": "alvinism",
+      "contributors": [],
+      "categories": [
+        "Media",
+        "Applications"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/alvinism/roon-discord-presence",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/roon-discord-presence",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "menu-bar",
+          "title": "Menu Bar Status",
+          "subtitle": "Roon Discord Presence",
+          "description": "Shows the track on your Discord status in the menu bar, with service controls.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "status",
+          "title": "Show Status",
+          "subtitle": "Roon Discord Presence",
+          "description": "Current track, Roon and Discord connection, zones, and service controls.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle-menu-bar",
+          "title": "Toggle Menu Bar Icon",
+          "subtitle": "Roon Discord Presence",
+          "description": "Hide or show the Roon Discord Presence menu bar icon.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "cliPath",
+          "title": "Path to CLI",
+          "description": "Leave empty to look in ~/.local/bin and Homebrew.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "~/.local/bin/roon-discord-presence"
+        },
+        {
+          "name": "showTrackInMenuBar",
+          "title": "Menu Bar",
+          "label": "Show track title in the menu bar",
+          "description": "Show the title of the track being shown on Discord next to the menu bar icon.",
+          "type": "checkbox",
+          "default": false,
           "required": false
         }
       ]
@@ -249439,17 +251161,22 @@
     {
       "name": "slowed-reverb",
       "title": "Slowed + Reverb",
-      "description": "Turn any song into a Slowed + Reverb version",
+      "description": "Slow down, speed up, add reverb, and convert local audio files.",
       "icon": "extension_icon.png",
-      "author": "tomo_myrman",
-      "contributors": [],
+      "author": "0xdhrv",
+      "contributors": [
+        "ray.dhruv"
+      ],
       "categories": [
         "Fun",
         "Media"
       ],
       "license": "MIT",
-      "platforms": [],
-      "storeUrl": "https://www.raycast.com/tomo_myrman/slowed-reverb",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/0xdhrv/slowed-reverb",
       "source": {
         "type": "github-monorepo",
         "repo": "raycast/extensions",
@@ -249488,17 +251215,24 @@
           "mode": "no-view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "process-audio",
+          "title": "Process Audio",
+          "description": "Batch process audio with custom speed, reverb, and output format",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": [
         {
           "name": "customSoxPath",
-          "title": "Custom Sox Path (install with Homebrew first)",
-          "description": "Custom path to Sox",
+          "title": "SoX Executable Path",
+          "description": "Absolute path to the SoX executable. Leave blank to find SoX automatically.",
           "type": "textfield",
-          "default": "/opt/homebrew/bin/sox",
-          "placeholder": "/opt/homebrew/bin/sox",
-          "required": true
+          "placeholder": "Path to sox or sox.exe",
+          "required": false
         },
         {
           "name": "defaultSlowedSpeed",
@@ -249506,7 +251240,7 @@
           "description": "Default speed for the Slowed version",
           "type": "dropdown",
           "default": "0.8",
-          "required": true,
+          "required": false,
           "data": [
             {
               "title": "0.5",
@@ -249556,7 +251290,7 @@
           "description": "Default speed for the Nightcore version",
           "type": "dropdown",
           "default": "1.2",
-          "required": true,
+          "required": false,
           "data": [
             {
               "title": "1.1",
@@ -249593,6 +251327,31 @@
             {
               "title": "1.5",
               "value": "1.5"
+            }
+          ]
+        },
+        {
+          "name": "defaultOutputFormat",
+          "title": "Default Output Format",
+          "description": "The format used when you do not choose one",
+          "type": "dropdown",
+          "default": {
+            "macOS": "mp3",
+            "Windows": "wav"
+          },
+          "required": false,
+          "data": [
+            {
+              "title": "MP3",
+              "value": "mp3"
+            },
+            {
+              "title": "WAV",
+              "value": "wav"
+            },
+            {
+              "title": "FLAC",
+              "value": "flac"
             }
           ]
         }
@@ -253823,6 +255582,922 @@
           "placeholder": "XxX...xxx"
         }
       ]
+    },
+    {
+      "name": "spacetile",
+      "title": "Spacetile",
+      "description": "Drive the Spacetile tiling window manager from Raycast.",
+      "icon": "extension-icon.png",
+      "author": "alistairstead",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/alistairstead/spacetile",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/spacetile",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "run-command",
+          "title": "Run Command",
+          "subtitle": "Spacetile",
+          "description": "Send any Spacetile command, e.g. focus west or layout stack.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "space-1",
+          "title": "Switch to Space 1",
+          "subtitle": "Spacetile",
+          "description": "Sends `space 1` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "send-1",
+          "title": "Send to Space 1",
+          "subtitle": "Spacetile",
+          "description": "Sends `send 1` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "space-2",
+          "title": "Switch to Space 2",
+          "subtitle": "Spacetile",
+          "description": "Sends `space 2` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "send-2",
+          "title": "Send to Space 2",
+          "subtitle": "Spacetile",
+          "description": "Sends `send 2` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "space-3",
+          "title": "Switch to Space 3",
+          "subtitle": "Spacetile",
+          "description": "Sends `space 3` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "send-3",
+          "title": "Send to Space 3",
+          "subtitle": "Spacetile",
+          "description": "Sends `send 3` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "space-4",
+          "title": "Switch to Space 4",
+          "subtitle": "Spacetile",
+          "description": "Sends `space 4` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "send-4",
+          "title": "Send to Space 4",
+          "subtitle": "Spacetile",
+          "description": "Sends `send 4` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "space-5",
+          "title": "Switch to Space 5",
+          "subtitle": "Spacetile",
+          "description": "Sends `space 5` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "send-5",
+          "title": "Send to Space 5",
+          "subtitle": "Spacetile",
+          "description": "Sends `send 5` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "space-6",
+          "title": "Switch to Space 6",
+          "subtitle": "Spacetile",
+          "description": "Sends `space 6` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "send-6",
+          "title": "Send to Space 6",
+          "subtitle": "Spacetile",
+          "description": "Sends `send 6` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "space-7",
+          "title": "Switch to Space 7",
+          "subtitle": "Spacetile",
+          "description": "Sends `space 7` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "send-7",
+          "title": "Send to Space 7",
+          "subtitle": "Spacetile",
+          "description": "Sends `send 7` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "space-8",
+          "title": "Switch to Space 8",
+          "subtitle": "Spacetile",
+          "description": "Sends `space 8` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "send-8",
+          "title": "Send to Space 8",
+          "subtitle": "Spacetile",
+          "description": "Sends `send 8` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "space-9",
+          "title": "Switch to Space 9",
+          "subtitle": "Spacetile",
+          "description": "Sends `space 9` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "send-9",
+          "title": "Send to Space 9",
+          "subtitle": "Spacetile",
+          "description": "Sends `send 9` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "space-10",
+          "title": "Switch to Space 10",
+          "subtitle": "Spacetile",
+          "description": "Sends `space 10` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "send-10",
+          "title": "Send to Space 10",
+          "subtitle": "Spacetile",
+          "description": "Sends `send 10` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "focus-west",
+          "title": "Focus the Window on the Left",
+          "subtitle": "Spacetile",
+          "description": "Sends `focus west` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "focus-south",
+          "title": "Focus the Window Below",
+          "subtitle": "Spacetile",
+          "description": "Sends `focus south` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "focus-north",
+          "title": "Focus the Window Above",
+          "subtitle": "Spacetile",
+          "description": "Sends `focus north` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "focus-east",
+          "title": "Focus the Window on the Right",
+          "subtitle": "Spacetile",
+          "description": "Sends `focus east` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "space-prev",
+          "title": "Previous Space",
+          "subtitle": "Spacetile",
+          "description": "Sends `space prev` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "space-next",
+          "title": "Next Space",
+          "subtitle": "Spacetile",
+          "description": "Sends `space next` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "space-last",
+          "title": "Last-Used Space",
+          "subtitle": "Spacetile",
+          "description": "Sends `space last` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "display-next",
+          "title": "Focus Next Display",
+          "subtitle": "Spacetile",
+          "description": "Sends `display next` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "display-prev",
+          "title": "Focus Previous Display",
+          "subtitle": "Spacetile",
+          "description": "Sends `display prev` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "stack-prev",
+          "title": "Previous Window in Stack",
+          "subtitle": "Spacetile",
+          "description": "Sends `stack prev` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "stack-next",
+          "title": "Next Window in Stack",
+          "subtitle": "Spacetile",
+          "description": "Sends `stack next` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "swap-west",
+          "title": "Swap with the Window on the Left",
+          "subtitle": "Spacetile",
+          "description": "Sends `swap west` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "swap-south",
+          "title": "Swap with the Window Below",
+          "subtitle": "Spacetile",
+          "description": "Sends `swap south` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "swap-north",
+          "title": "Swap with the Window Above",
+          "subtitle": "Spacetile",
+          "description": "Sends `swap north` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "swap-east",
+          "title": "Swap with the Window on the Right",
+          "subtitle": "Spacetile",
+          "description": "Sends `swap east` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "pop-out",
+          "title": "Pop Out",
+          "subtitle": "Spacetile",
+          "description": "Sends `pop out` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "pop-in",
+          "title": "Pop Back In",
+          "subtitle": "Spacetile",
+          "description": "Sends `pop in` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "send-prev",
+          "title": "Send to Previous Space",
+          "subtitle": "Spacetile",
+          "description": "Sends `send prev` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "send-next",
+          "title": "Send to Next Space",
+          "subtitle": "Spacetile",
+          "description": "Sends `send next` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "send-display-next",
+          "title": "Send to Next Display",
+          "subtitle": "Spacetile",
+          "description": "Sends `send display next` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "send-display-prev",
+          "title": "Send to Previous Display",
+          "subtitle": "Spacetile",
+          "description": "Sends `send display prev` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "join-west",
+          "title": "Join with the Window on the Left",
+          "subtitle": "Spacetile",
+          "description": "Sends `join west` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "join-south",
+          "title": "Join with the Window Below",
+          "subtitle": "Spacetile",
+          "description": "Sends `join south` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "join-north",
+          "title": "Join with the Window Above",
+          "subtitle": "Spacetile",
+          "description": "Sends `join north` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "join-east",
+          "title": "Join with the Window on the Right",
+          "subtitle": "Spacetile",
+          "description": "Sends `join east` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "zoom",
+          "title": "Zoom (Fill the Space)",
+          "subtitle": "Spacetile",
+          "description": "Sends `zoom` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "float",
+          "title": "Toggle Float",
+          "subtitle": "Spacetile",
+          "description": "Sends `float` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "split",
+          "title": "Toggle Split Direction",
+          "subtitle": "Spacetile",
+          "description": "Sends `split` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "balance",
+          "title": "Balance",
+          "subtitle": "Spacetile",
+          "description": "Sends `balance` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "layout-bsp",
+          "title": "Tile This Space",
+          "subtitle": "Spacetile",
+          "description": "Sends `layout bsp` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "layout-stack",
+          "title": "Stack This Space",
+          "subtitle": "Spacetile",
+          "description": "Sends `layout stack` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "layout-float",
+          "title": "Float This Space",
+          "subtitle": "Spacetile",
+          "description": "Sends `layout float` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "mirror-horizontal",
+          "title": "Mirror Left ↔ Right",
+          "subtitle": "Spacetile",
+          "description": "Sends `mirror horizontal` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "mirror-vertical",
+          "title": "Mirror Top ↕ Bottom",
+          "subtitle": "Spacetile",
+          "description": "Sends `mirror vertical` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "rotate-90",
+          "title": "Rotate Clockwise",
+          "subtitle": "Spacetile",
+          "description": "Sends `rotate 90` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "rotate-270",
+          "title": "Rotate Anticlockwise",
+          "subtitle": "Spacetile",
+          "description": "Sends `rotate 270` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "retile",
+          "title": "Retile",
+          "subtitle": "Spacetile",
+          "description": "Sends `retile` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "close",
+          "title": "Close Window",
+          "subtitle": "Spacetile",
+          "description": "Sends `close` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "place-column",
+          "title": "Maximize Height",
+          "subtitle": "Spacetile",
+          "description": "Sends `place column` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "place-left",
+          "title": "Left ½ → ⅔ → ⅓",
+          "subtitle": "Spacetile",
+          "description": "Sends `place left` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "regions/place-left.png",
+          "preferences": []
+        },
+        {
+          "name": "place-right",
+          "title": "Right ½ → ⅔ → ⅓",
+          "subtitle": "Spacetile",
+          "description": "Sends `place right` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "regions/place-right.png",
+          "preferences": []
+        },
+        {
+          "name": "place-top",
+          "title": "Top ½ → ⅔ → ⅓",
+          "subtitle": "Spacetile",
+          "description": "Sends `place top` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "regions/place-top.png",
+          "preferences": []
+        },
+        {
+          "name": "place-bottom",
+          "title": "Bottom ½ → ⅔ → ⅓",
+          "subtitle": "Spacetile",
+          "description": "Sends `place bottom` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "regions/place-bottom.png",
+          "preferences": []
+        },
+        {
+          "name": "place-left-3-4",
+          "title": "Left ¾",
+          "subtitle": "Spacetile",
+          "description": "Sends `place left 3/4` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "regions/place-left-3-4.png",
+          "preferences": []
+        },
+        {
+          "name": "place-right-3-4",
+          "title": "Right ¾",
+          "subtitle": "Spacetile",
+          "description": "Sends `place right 3/4` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "regions/place-right-3-4.png",
+          "preferences": []
+        },
+        {
+          "name": "place-center",
+          "title": "Centre ⅓",
+          "subtitle": "Spacetile",
+          "description": "Sends `place center` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "regions/place-center.png",
+          "preferences": []
+        },
+        {
+          "name": "place-top-left",
+          "title": "Top-Left ¼",
+          "subtitle": "Spacetile",
+          "description": "Sends `place top-left` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "regions/place-top-left.png",
+          "preferences": []
+        },
+        {
+          "name": "place-top-right",
+          "title": "Top-Right ¼",
+          "subtitle": "Spacetile",
+          "description": "Sends `place top-right` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "regions/place-top-right.png",
+          "preferences": []
+        },
+        {
+          "name": "place-bottom-left",
+          "title": "Bottom-Left ¼",
+          "subtitle": "Spacetile",
+          "description": "Sends `place bottom-left` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "regions/place-bottom-left.png",
+          "preferences": []
+        },
+        {
+          "name": "place-bottom-right",
+          "title": "Bottom-Right ¼",
+          "subtitle": "Spacetile",
+          "description": "Sends `place bottom-right` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "regions/place-bottom-right.png",
+          "preferences": []
+        },
+        {
+          "name": "place-top-left-sixth",
+          "title": "Top-Left ⅙",
+          "subtitle": "Spacetile",
+          "description": "Sends `place top-left-sixth` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "regions/place-top-left-sixth.png",
+          "preferences": []
+        },
+        {
+          "name": "place-top-center-sixth",
+          "title": "Top-Centre ⅙",
+          "subtitle": "Spacetile",
+          "description": "Sends `place top-center-sixth` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "regions/place-top-center-sixth.png",
+          "preferences": []
+        },
+        {
+          "name": "place-top-right-sixth",
+          "title": "Top-Right ⅙",
+          "subtitle": "Spacetile",
+          "description": "Sends `place top-right-sixth` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "regions/place-top-right-sixth.png",
+          "preferences": []
+        },
+        {
+          "name": "place-bottom-left-sixth",
+          "title": "Bottom-Left ⅙",
+          "subtitle": "Spacetile",
+          "description": "Sends `place bottom-left-sixth` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "regions/place-bottom-left-sixth.png",
+          "preferences": []
+        },
+        {
+          "name": "place-bottom-center-sixth",
+          "title": "Bottom-Centre ⅙",
+          "subtitle": "Spacetile",
+          "description": "Sends `place bottom-center-sixth` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "regions/place-bottom-center-sixth.png",
+          "preferences": []
+        },
+        {
+          "name": "place-bottom-right-sixth",
+          "title": "Bottom-Right ⅙",
+          "subtitle": "Spacetile",
+          "description": "Sends `place bottom-right-sixth` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "regions/place-bottom-right-sixth.png",
+          "preferences": []
+        },
+        {
+          "name": "grow",
+          "title": "Grow",
+          "subtitle": "Spacetile",
+          "description": "Sends `grow` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "shrink",
+          "title": "Shrink",
+          "subtitle": "Spacetile",
+          "description": "Sends `shrink` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "restore",
+          "title": "Restore",
+          "subtitle": "Spacetile",
+          "description": "Sends `restore` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "border-horizontal-minus100",
+          "title": "Move Vertical Border Left",
+          "subtitle": "Spacetile",
+          "description": "Sends `border horizontal -100` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "border-horizontal-100",
+          "title": "Move Vertical Border Right",
+          "subtitle": "Spacetile",
+          "description": "Sends `border horizontal 100` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "border-vertical-minus100",
+          "title": "Raise Horizontal Border",
+          "subtitle": "Spacetile",
+          "description": "Sends `border vertical -100` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "border-vertical-100",
+          "title": "Lower Horizontal Border",
+          "subtitle": "Spacetile",
+          "description": "Sends `border vertical 100` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "fullscreen",
+          "title": "Toggle Full Screen",
+          "subtitle": "Spacetile",
+          "description": "Sends `fullscreen` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "fullscreen-pair",
+          "title": "Full Screen with the Neighbouring Window",
+          "subtitle": "Spacetile",
+          "description": "Sends `fullscreen pair` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "space-fullscreen-prev",
+          "title": "Previous Full-Screen App",
+          "subtitle": "Spacetile",
+          "description": "Sends `space fullscreen prev` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "space-fullscreen-next",
+          "title": "Next Full-Screen App",
+          "subtitle": "Spacetile",
+          "description": "Sends `space fullscreen next` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "pause",
+          "title": "Pause or Resume Tiling",
+          "subtitle": "Spacetile",
+          "description": "Sends `pause` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "settings",
+          "title": "Open Settings",
+          "subtitle": "Spacetile",
+          "description": "Sends `settings` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle-spacing",
+          "title": "Toggle Spacing",
+          "subtitle": "Spacetile",
+          "description": "Sends `toggle spacing` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle-border",
+          "title": "Toggle Active Border",
+          "subtitle": "Spacetile",
+          "description": "Sends `toggle border` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle-dim",
+          "title": "Toggle Dimming",
+          "subtitle": "Spacetile",
+          "description": "Sends `toggle dim` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "preselect-west",
+          "title": "Next Window Goes Left",
+          "subtitle": "Spacetile",
+          "description": "Sends `preselect west` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "preselect-south",
+          "title": "Next Window Goes Below",
+          "subtitle": "Spacetile",
+          "description": "Sends `preselect south` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "preselect-north",
+          "title": "Next Window Goes Above",
+          "subtitle": "Spacetile",
+          "description": "Sends `preselect north` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "preselect-east",
+          "title": "Next Window Goes Right",
+          "subtitle": "Spacetile",
+          "description": "Sends `preselect east` to Spacetile.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "spacetime-tracking",
@@ -296235,7 +298910,7 @@
       "platforms": [
         "macOS"
       ],
-      "version": "0.1.0",
+      "version": "0.1.1",
       "storeUrl": "https://www.raycast.com/maxim_novak/vaulted",
       "source": {
         "type": "github-monorepo",
@@ -298365,7 +301040,9 @@
         "muhammadrizo",
         "Tambouil"
       ],
-      "categories": [],
+      "categories": [
+        "Developer Tools"
+      ],
       "license": "MIT",
       "platforms": [
         "macOS",
@@ -299600,6 +302277,58 @@
               "required": false
             }
           ]
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "vogels-motionmount",
+      "title": "Vogel's MotionMount",
+      "description": "Control your Vogel's MotionMount TV mount over Bluetooth",
+      "icon": "extension-icon.png",
+      "author": "vigosan",
+      "contributors": [],
+      "categories": [
+        "Media"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/vigosan/vogels-motionmount",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/vogels-motionmount",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "presets",
+          "title": "Move to Preset",
+          "subtitle": "Vogel's MotionMount",
+          "description": "Move your TV to the wall or to one of your presets, and add, edit or delete presets",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "remote",
+          "title": "Remote Control",
+          "subtitle": "Vogel's MotionMount",
+          "description": "Move your TV step by step with the arrow keys, or to an exact position",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "diagnostics",
+          "title": "Run Diagnostics",
+          "subtitle": "Vogel's MotionMount",
+          "description": "Run the MotionMount self-test to check that it works correctly",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": []
@@ -303147,6 +305876,76 @@
           "placeholder": "IL"
         }
       ]
+    },
+    {
+      "name": "whenever",
+      "title": "Whenever",
+      "description": "Find Whenever workflows, run saved versions, and inspect their results.",
+      "icon": "icon.png",
+      "author": "whenever-team",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "version": "0.1.0",
+      "storeUrl": "https://www.raycast.com/whenever-team/whenever",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/whenever",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "open-whenever",
+          "title": "Open Whenever",
+          "description": "Open Whenever in your default browser.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-workflows",
+          "title": "Search Workflows",
+          "subtitle": "Whenever",
+          "description": "Search workflows, see their status, and inspect saved versions.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "run-workflow",
+          "title": "Run Workflow",
+          "subtitle": "Whenever",
+          "description": "Review input and run a saved workflow version.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "workflow-runs",
+          "title": "Workflow Runs",
+          "subtitle": "Whenever",
+          "description": "Inspect run history, failures, and results.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "account",
+          "title": "Whenever Account",
+          "description": "Connect or sign out of your Whenever account.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "whentomeet",
@@ -313562,7 +316361,8 @@
       "contributors": [
         "alexstrnik",
         "zach",
-        "gnostic"
+        "gnostic",
+        "danieltsam"
       ],
       "categories": [
         "Media",
@@ -313580,6 +316380,24 @@
         "ref": "main"
       },
       "commands": [
+        {
+          "name": "play-song",
+          "title": "Play Music",
+          "subtitle": "YouTube Music",
+          "description": "Search YouTube Music and YouTube for songs, albums, artists, playlists, and videos, and play them in the selected browser.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "now-playing",
+          "title": "Now Playing",
+          "subtitle": "YouTube Music",
+          "description": "Show the current track, recent history and what is up next.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
         {
           "name": "play-pause",
           "title": "Toggle Play/Pause",
@@ -313703,12 +316521,85 @@
           ]
         },
         {
+          "name": "searchSource",
+          "title": "Play Music Source",
+          "description": "Which source Play Music searches by default.",
+          "type": "dropdown",
+          "default": "both",
+          "required": false,
+          "data": [
+            {
+              "title": "YouTube Music + YouTube",
+              "value": "both"
+            },
+            {
+              "title": "Songs",
+              "value": "ytmusic"
+            },
+            {
+              "title": "Albums",
+              "value": "albums"
+            },
+            {
+              "title": "Artists",
+              "value": "artists"
+            },
+            {
+              "title": "Playlists",
+              "value": "playlists"
+            },
+            {
+              "title": "YouTube",
+              "value": "youtube"
+            }
+          ]
+        },
+        {
           "name": "ff-rew-seconds",
           "title": "Number of seconds to fast forward or rewind.",
           "default": "10",
           "type": "textfield",
           "description": "Number of seconds to fast forward or rewind.",
           "required": false
+        },
+        {
+          "name": "keepPlayingWatcher",
+          "title": "Keep Playing",
+          "label": "Dismiss the \"Are you still there?\" prompt",
+          "description": "YouTube Music pauses after a long idle period and asks whether you are still listening. Leave this off to answer it yourself.",
+          "type": "checkbox",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "historyLimit",
+          "title": "Recently Played History",
+          "description": "How many recently played tracks Now Playing shows.",
+          "type": "dropdown",
+          "default": "5",
+          "required": false,
+          "data": [
+            {
+              "title": "Off",
+              "value": "0"
+            },
+            {
+              "title": "3 Songs",
+              "value": "3"
+            },
+            {
+              "title": "5 Songs",
+              "value": "5"
+            },
+            {
+              "title": "10 Songs",
+              "value": "10"
+            },
+            {
+              "title": "20 Songs",
+              "value": "20"
+            }
+          ]
         }
       ]
     },
@@ -314254,6 +317145,66 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "zadig",
+      "title": "Zadig",
+      "description": "Search your Zadig workflow runs and environments, and manage sub-environments.",
+      "icon": "icon.png",
+      "author": "philly_cai",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/philly_cai/zadig",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/zadig",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "searchWorkflows",
+          "title": "Search Workflows",
+          "subtitle": "Zadig",
+          "description": "Search workflow runs, see their commits and stages, and retry or cancel a run.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "searchEnvironments",
+          "title": "Search Environments",
+          "subtitle": "Zadig",
+          "description": "Search environments and their services, create sub-environments, add or restart services, and delete test environments.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "domain",
+          "type": "textfield",
+          "required": true,
+          "title": "Domain",
+          "placeholder": "zadig.example.com",
+          "description": "The domain your company serves Zadig from."
+        },
+        {
+          "name": "token",
+          "type": "password",
+          "required": true,
+          "title": "API Token",
+          "description": "Copy it from Account Settings in Zadig.",
+          "placeholder": "Paste your API token"
+        }
+      ]
     },
     {
       "name": "zalgo-text",
@@ -316812,7 +319763,8 @@
         "joshuahhh",
         "faridrashidi",
         "ridemountainpig",
-        "kszenes"
+        "kszenes",
+        "yzy"
       ],
       "categories": [
         "Productivity"
@@ -316883,6 +319835,24 @@
           "title": "Better Bibtex CSL JSON File",
           "description": "Path to Better Bibtex CSL JSON File",
           "placeholder": "~/Zotero/lib.json"
+        },
+        {
+          "name": "csl_source",
+          "type": "dropdown",
+          "required": false,
+          "default": "installed",
+          "title": "CSL Source",
+          "description": "Use a style installed in Zotero or a custom CSL file",
+          "data": [
+            {
+              "title": "Installed Style",
+              "value": "installed"
+            },
+            {
+              "title": "Custom File",
+              "value": "custom"
+            }
+          ]
         },
         {
           "name": "csl_style",
@@ -316995,6 +319965,32 @@
             {
               "title": "Vancouver",
               "value": "vancouver"
+            }
+          ]
+        },
+        {
+          "name": "custom_csl_path",
+          "type": "textfield",
+          "required": false,
+          "title": "Custom CSL File",
+          "description": "Path to an independent .csl style file. Used only when CSL Source is Custom File.",
+          "placeholder": "~/Zotero/styles/my-style.csl"
+        },
+        {
+          "name": "reference_output",
+          "type": "dropdown",
+          "required": false,
+          "default": "bibliography",
+          "title": "Reference Output",
+          "description": "Output used by Copy/Paste Reference. Note requires a note-based style and copies standalone note text.",
+          "data": [
+            {
+              "title": "Bibliography",
+              "value": "bibliography"
+            },
+            {
+              "title": "Note",
+              "value": "note"
             }
           ]
         },
