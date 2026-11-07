@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-06T23:02:51.342Z",
+  "generatedAt": "2026-11-07T21:46:51.787Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "c62d96aac00e3a3a471e110c96f658cf636cb24f"
+    "commit": "be7c704dc16a638875775e31aa686661a519a134"
   },
-  "count": 3541,
+  "count": 3544,
   "extensions": [
     {
       "name": "0x0",
@@ -471,6 +471,14 @@
           "name": "add-task",
           "title": "Add Task",
           "description": "Add a task to 2Do.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "add-link",
+          "title": "Add Link",
+          "description": "Add a web page to 2Do as a task, titled and described from the page.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -1176,6 +1184,200 @@
           "title": "Excluded project paths (comma separated)",
           "description": "A comma separated list of directory paths that should be excluded when searching for recent Ableton Live Projects.",
           "placeholder": "~/Backup, ~/Projects/Old"
+        }
+      ]
+    },
+    {
+      "name": "ableton-project-manager",
+      "title": "Ableton Project Manager",
+      "description": "Browse, organize, and listen to your Ableton Live projects",
+      "icon": "icon.png",
+      "author": "iyek",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Media"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/iyek/ableton-project-manager",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/ableton-project-manager",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-projects",
+          "title": "Search Projects",
+          "subtitle": "Ableton Live",
+          "description": "Search, play, and organize your Ableton Live projects and collections",
+          "mode": "view",
+          "keywords": [
+            "ableton",
+            "ableton live",
+            "als",
+            "daw",
+            "music",
+            "music production",
+            "producer",
+            "projects",
+            "sets",
+            "bounce"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "manage-categories",
+          "title": "Manage Tags",
+          "subtitle": "Ableton Live",
+          "description": "Create and manage Stages, Genres, and Track Roles",
+          "mode": "view",
+          "keywords": [
+            "ableton",
+            "ableton live",
+            "tags",
+            "stages",
+            "genres",
+            "track roles",
+            "music production"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "projectsFolder",
+          "title": "Projects Folder",
+          "description": "The folder containing your Ableton Live projects.",
+          "type": "directory",
+          "required": true
+        },
+        {
+          "name": "bouncesFolderName",
+          "title": "Bounces Subfolder",
+          "description": "The subfolder inside each project where bounces are saved (e.g. Bounces). Leave empty to look directly in each project folder.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "e.g. Bounces"
+        },
+        {
+          "name": "notesFolder",
+          "title": "Notes Folder",
+          "description": "The folder where notes are saved as .md files (e.g. an Obsidian vault). Leave empty to save Notes.md in each project folder.",
+          "type": "directory",
+          "required": false
+        },
+        {
+          "name": "lyricsFolder",
+          "title": "Lyrics Folder",
+          "description": "The folder where lyrics are saved as .md files. Leave empty to save Lyrics.md in each project folder.",
+          "type": "directory",
+          "required": false
+        },
+        {
+          "name": "notesTemplateFile",
+          "title": "Notes Template",
+          "description": "Optional .md file used as the starting point for new notes. Supports {{title}}, {{date}}, and {{time}}.",
+          "type": "file",
+          "required": false
+        },
+        {
+          "name": "lyricsTemplateFile",
+          "title": "Lyrics Template",
+          "description": "Optional .md file used as the starting point for new lyrics. Supports {{title}}, {{date}}, and {{time}}.",
+          "type": "file",
+          "required": false
+        },
+        {
+          "name": "strictLineBreaks",
+          "title": "Strict Line Breaks",
+          "label": "Strict line breaks",
+          "description": "Off: preserve single line breaks. On: follow standard Markdown line breaks (two trailing spaces or a blank line). Affects the preview only; your files aren’t changed.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "weightCrest",
+          "title": "Energy: Density",
+          "description": "How much density (crest factor) affects the energy score. Only the ratio between the three weights matters.",
+          "type": "dropdown",
+          "required": false,
+          "default": "1",
+          "data": [
+            {
+              "title": "Off",
+              "value": "0"
+            },
+            {
+              "title": "Low",
+              "value": "0.5"
+            },
+            {
+              "title": "Normal",
+              "value": "1"
+            },
+            {
+              "title": "High",
+              "value": "2"
+            }
+          ]
+        },
+        {
+          "name": "weightBrightness",
+          "title": "Energy: Brightness",
+          "description": "How much brightness (spectral centroid) affects the energy score.",
+          "type": "dropdown",
+          "required": false,
+          "default": "1",
+          "data": [
+            {
+              "title": "Off",
+              "value": "0"
+            },
+            {
+              "title": "Low",
+              "value": "0.5"
+            },
+            {
+              "title": "Normal",
+              "value": "1"
+            },
+            {
+              "title": "High",
+              "value": "2"
+            }
+          ]
+        },
+        {
+          "name": "weightActivity",
+          "title": "Energy: Movement",
+          "description": "How much movement (spectral flux) affects the energy score.",
+          "type": "dropdown",
+          "required": false,
+          "default": "1",
+          "data": [
+            {
+              "title": "Off",
+              "value": "0"
+            },
+            {
+              "title": "Low",
+              "value": "0.5"
+            },
+            {
+              "title": "Normal",
+              "value": "1"
+            },
+            {
+              "title": "High",
+              "value": "2"
+            }
+          ]
         }
       ]
     },
@@ -66781,7 +66983,26 @@
           "description": "Search tabs in Dia",
           "mode": "view",
           "keywords": [],
-          "preferences": []
+          "preferences": [
+            {
+              "name": "spaceLabel",
+              "type": "dropdown",
+              "title": "Space Label",
+              "description": "How each tab shows the Dia space it belongs to when you have more than one space.",
+              "required": false,
+              "default": "name",
+              "data": [
+                {
+                  "title": "Colored Name",
+                  "value": "name"
+                },
+                {
+                  "title": "Colored Dot",
+                  "value": "dot"
+                }
+              ]
+            }
+          ]
         },
         {
           "name": "search-history",
@@ -66800,6 +67021,25 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "search-extensions",
+          "title": "Search Extensions",
+          "subtitle": "Dia",
+          "description": "Search the browser extensions installed in each Dia profile and open them",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "showBuiltInExtensions",
+              "type": "checkbox",
+              "title": "Built-in Extensions",
+              "label": "Show built-in extensions",
+              "description": "Include extensions bundled with Dia, such as the PDF viewer.",
+              "required": false,
+              "default": false
+            }
+          ]
         },
         {
           "name": "new-window",
@@ -77247,6 +77487,88 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "edits-by-instagram",
+      "title": "Edits",
+      "description": "Browse, open, duplicate, and organize Instagram Edits projects from Raycast. Requires Edits for Mac installed, signed in, and running with automation enabled.",
+      "icon": "extension-icon.png",
+      "author": "0xdhrv",
+      "contributors": [],
+      "categories": [
+        "Media"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/0xdhrv/edits-by-instagram",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/edits-by-instagram",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-projects",
+          "title": "Search Projects",
+          "description": "Search Edits projects and open, duplicate, rename, favorite, or pin them.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-edits",
+          "title": "Open Edits",
+          "description": "Launch the installed Edits application.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "connect-to-edits",
+          "title": "Connect to Edits",
+          "description": "Set up the local automation connection and check its status.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "connection-status",
+          "title": "Connection Status",
+          "description": "Check the local Edits MCP server and available project workflows.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "discover-capabilities",
+          "title": "Discover Capabilities",
+          "description": "Inspect tools, schemas, and resource metadata exposed by Edits.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "endpoint",
+          "type": "password",
+          "required": false,
+          "title": "MCP Endpoint",
+          "description": "Copy the complete local endpoint from Edits → Settings → Automation. No default endpoint is assumed.",
+          "placeholder": "Paste endpoint from Edits"
+        },
+        {
+          "name": "token",
+          "type": "password",
+          "required": false,
+          "title": "Automation Token",
+          "description": "Copy the access token from Edits → Settings → Automation. Never enter Instagram credentials.",
+          "placeholder": "Paste automation token"
+        }
+      ]
     },
     {
       "name": "effect-docs",
@@ -98554,7 +98876,8 @@
         "degouville",
         "mathisfoxius",
         "joaogf.dev",
-        "pernielsentikaer"
+        "pernielsentikaer",
+        "addozhang"
       ],
       "categories": [
         "Productivity",
@@ -98592,7 +98915,7 @@
           "name": "search-ghostty-tab",
           "title": "Search Ghostty Tabs",
           "subtitle": "Ghostty",
-          "description": "List all tabs and go to the selected.",
+          "description": "List all tabs and split surfaces; jump to a surface, rename it or copy its working directory.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -103396,7 +103719,8 @@
         "j3lte",
         "ernest0n",
         "JonathanXDR",
-        "danilorequena"
+        "danilorequena",
+        "danulqua"
       ],
       "categories": [
         "Developer Tools"
@@ -120359,6 +120683,39 @@
       ]
     },
     {
+      "name": "holt",
+      "title": "Holt",
+      "description": "Search your Holt clipboard history and paste from it.",
+      "icon": "extension-icon.png",
+      "author": "lucasnevespereira",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/lucasnevespereira/holt",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/holt",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-clips",
+          "title": "Search Clipboard History",
+          "description": "Find a clip in Holt and paste it.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "homeassistant",
       "title": "Home Assistant",
       "description": "Manage your smart home with Raycast",
@@ -125445,7 +125802,8 @@
         "hitolaus",
         "taschaub",
         "omaerkhan",
-        "clins1994"
+        "clins1994",
+        "petretta"
       ],
       "categories": [
         "Productivity"
@@ -165501,7 +165859,8 @@
         "nagauta",
         "pernielsentikaer",
         "porenes",
-        "seifip"
+        "seifip",
+        "vladimir_mitev"
       ],
       "categories": [],
       "license": "MIT",
