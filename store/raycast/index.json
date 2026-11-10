@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-08T22:03:22.770Z",
+  "generatedAt": "2026-11-10T01:30:10.613Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "c12374ce5a5a26772418b1c3f624943eb8b9ec21"
+    "commit": "8486ca99eaef9f61702d10dc18e7616f651a359f"
   },
-  "count": 3547,
+  "count": 3550,
   "extensions": [
     {
       "name": "0x0",
@@ -16769,7 +16769,9 @@
         "Developer Tools"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/ickas/aspect-raytio",
       "source": {
         "type": "github-monorepo",
@@ -16788,6 +16790,22 @@
             "ratio",
             "calculate",
             "size",
+            "width",
+            "height"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "resize-from-dimensions",
+          "title": "Resize From Dimensions",
+          "description": "Get the aspect ratio of an original size and resize it to a new width or height.",
+          "mode": "view",
+          "keywords": [
+            "aspect",
+            "ratio",
+            "resize",
+            "scale",
+            "dimensions",
             "width",
             "height"
           ],
@@ -29887,7 +29905,8 @@
         "chrismessina",
         "clins1994",
         "alexi.build",
-        "beru"
+        "beru",
+        "raulg"
       ],
       "categories": [
         "Developer Tools",
@@ -29911,7 +29930,10 @@
           "subtitle": "Brew",
           "description": "List installed brew formulae & casks",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "list",
+            "homebrew"
+          ],
           "preferences": []
         },
         {
@@ -29920,7 +29942,9 @@
           "subtitle": "Brew",
           "description": "Search brew formulae & casks",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "homebrew"
+          ],
           "preferences": [
             {
               "name": "showMetadataPanel",
@@ -29939,7 +29963,10 @@
           "subtitle": "Brew",
           "description": "Review available upgrades, choose which to apply, and run it",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "outdated",
+            "homebrew"
+          ],
           "preferences": []
         },
         {
@@ -29953,7 +29980,8 @@
             "vulns",
             "vulnerabilities",
             "cve",
-            "osv"
+            "osv",
+            "homebrew"
           ],
           "preferences": []
         },
@@ -29968,17 +29996,20 @@
             "diagnose",
             "health",
             "check",
-            "problems"
+            "problems",
+            "homebrew"
           ],
           "preferences": []
         },
         {
           "name": "adopt-apps",
           "title": "Adopt Apps",
-          "subtitle": "Homebrew",
+          "subtitle": "Brew",
           "description": "Find applications already on your Mac that Homebrew can manage, and adopt them into a cask.",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "homebrew"
+          ],
           "preferences": []
         },
         {
@@ -29987,7 +30018,9 @@
           "subtitle": "Brew",
           "description": "Upgrade brew formulae & casks",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "homebrew"
+          ],
           "preferences": []
         },
         {
@@ -29996,7 +30029,9 @@
           "subtitle": "Brew",
           "description": "Start, stop & restart Homebrew services",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "homebrew"
+          ],
           "preferences": []
         },
         {
@@ -30005,7 +30040,11 @@
           "subtitle": "Brew",
           "description": "Add, trust & remove third-party Homebrew taps, and explore what they provide",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "untap",
+            "trust",
+            "homebrew"
+          ],
           "preferences": []
         },
         {
@@ -30014,7 +30053,9 @@
           "subtitle": "Brew",
           "description": "Control Homebrew services from the menu bar",
           "mode": "menu-bar",
-          "keywords": [],
+          "keywords": [
+            "homebrew"
+          ],
           "preferences": []
         },
         {
@@ -30023,7 +30064,10 @@
           "subtitle": "Brew",
           "description": "Clean files and packages from the cache that are older than 120 days",
           "mode": "no-view",
-          "keywords": [],
+          "keywords": [
+            "cleanup",
+            "homebrew"
+          ],
           "preferences": [
             {
               "name": "withoutThreshold",
@@ -30042,7 +30086,9 @@
           "subtitle": "Brew",
           "description": "Clear the cached Formulae, Casks, and installed packages files",
           "mode": "no-view",
-          "keywords": [],
+          "keywords": [
+            "homebrew"
+          ],
           "preferences": []
         }
       ],
@@ -30198,6 +30244,40 @@
               "description": "Location to the Brew installation (Defaults to `/opt/homebrew/bin/brew` on M1 Macs, and `/usr/local/bin/brew` otherwise)"
             }
           ]
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "brewpage",
+      "title": "BrewPage Publisher",
+      "description": "Publish selected HTML or Markdown and pasted reports as shareable BrewPage links.",
+      "icon": "icon.png",
+      "author": "maksim_kochetkov",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/maksim_kochetkov/brewpage",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/brewpage",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "publish",
+          "title": "Publish Report",
+          "description": "Publish an explicitly selected file or pasted HTML or Markdown report.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": []
@@ -150391,6 +150471,91 @@
       "preferences": []
     },
     {
+      "name": "little-chrome",
+      "title": "Little Chrome",
+      "description": "Open a URL or Google search in a minimal Chrome app window, like Little Arc.",
+      "icon": "icon.png",
+      "author": "tompenguin",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/tompenguin/little-chrome",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/little-chrome",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "open-little-chrome",
+          "title": "Open Little Chrome",
+          "description": "Open a URL or search keyword in a small Chrome window",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-url",
+          "title": "Open URL in Little Chrome",
+          "description": "Open a URL or search keyword in a small Chrome window without showing suggestions",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "copy-url",
+          "title": "Copy Chrome URL",
+          "description": "Copy the URL of the focused Chrome window (including Little Chrome windows)",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-in-tab",
+          "title": "Open Little Chrome in Tab",
+          "description": "Move the focused Little Chrome window into a tab of a normal Chrome window",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "manage-hidden",
+          "title": "Manage Hidden Suggestions",
+          "description": "List suggestions hidden from Open Little Chrome and unhide them",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "width",
+          "title": "Window Width",
+          "description": "Initial window width in pixels",
+          "type": "textfield",
+          "required": false,
+          "default": "900",
+          "placeholder": "900"
+        },
+        {
+          "name": "height",
+          "title": "Window Height",
+          "description": "Initial window height in pixels",
+          "type": "textfield",
+          "required": false,
+          "default": "700",
+          "placeholder": "700"
+        }
+      ]
+    },
+    {
       "name": "liveblocks",
       "title": "Liveblocks",
       "description": "Exposes the Liveblocks API via a pleasant and easy to use UI.",
@@ -164654,7 +164819,7 @@
           "name": "tasks",
           "title": "Manage Tasks",
           "subtitle": "Mise",
-          "description": "Run global mise tasks in your terminal or capture their output",
+          "description": "Run, create, edit and delete global mise tasks",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -192648,18 +192813,21 @@
     },
     {
       "name": "palette-colors",
-      "title": "Palette Colors",
-      "description": "Pick nice palette colors directly from Raycast",
-      "icon": "command-icon.png",
+      "title": "Color Palette Manager",
+      "description": "Create, manage, and organize color palettes with AI-powered color generation.",
+      "icon": "extension-icon.png",
       "author": "douglas-pires",
-      "contributors": [],
+      "contributors": [
+        "elibattistoni"
+      ],
       "categories": [
-        "Productivity",
         "Design Tools",
-        "Developer Tools"
+        "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/douglas-pires/palette-colors",
       "source": {
         "type": "github-monorepo",
@@ -192669,9 +192837,37 @@
       },
       "commands": [
         {
-          "name": "index",
-          "title": "Palette Colors",
-          "description": "An extension to pick colors from a randomly generated palette",
+          "name": "save-color-palette",
+          "title": "Save Color Palette",
+          "subtitle": "Color Palette Manager",
+          "description": "Create and save a custom color palette with up to 15 hex colors and keywords.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "manage-color-palettes",
+          "title": "Manage Color Palettes",
+          "subtitle": "Color Palette Manager",
+          "description": "Browse, search, edit, duplicate, and delete your saved color palettes.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "import-color-palette",
+          "title": "Import Color Palette",
+          "subtitle": "Color Palette Manager",
+          "description": "Import a color palette by pasting a separator-delimited list of hex colors.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "create-colors-with-ai",
+          "title": "Create Colors with AI",
+          "subtitle": "Color Palette Manager",
+          "description": "Generate a set of colors from a text prompt and save the selection as a new palette.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -212345,14 +212541,63 @@
             "search",
             "vaults"
           ],
-          "preferences": []
+          "preferences": [
+            {
+              "name": "sortBy",
+              "type": "dropdown",
+              "title": "Sort items by",
+              "description": "Order of the items. ⌘⇧S changes it until the window closes.",
+              "default": "mostUsed",
+              "required": false,
+              "data": [
+                {
+                  "title": "Most Used",
+                  "value": "mostUsed"
+                },
+                {
+                  "title": "Name",
+                  "value": "name"
+                },
+                {
+                  "title": "Last Modified",
+                  "value": "modified"
+                },
+                {
+                  "title": "Date Created",
+                  "value": "created"
+                }
+              ]
+            },
+            {
+              "name": "sortVaultsBy",
+              "type": "dropdown",
+              "title": "Sort vaults by",
+              "description": "Order of the vaults. ⌘⇧S changes it until the window closes.",
+              "default": "name",
+              "required": false,
+              "data": [
+                {
+                  "title": "Name",
+                  "value": "name"
+                },
+                {
+                  "title": "Item Count",
+                  "value": "itemCount"
+                },
+                {
+                  "title": "Most Used",
+                  "value": "mostUsed"
+                }
+              ]
+            }
+          ]
         },
         {
           "name": "list-vaults",
           "title": "List Vaults",
           "subtitle": "Proton Pass",
-          "description": "View all your Proton Pass vaults",
-          "mode": "view",
+          "description": "Open Browse Items on your vaults",
+          "mode": "no-view",
           "keywords": [],
           "preferences": []
         },
@@ -212385,17 +212630,17 @@
             {
               "name": "defaultPasswordLength",
               "type": "textfield",
-              "title": "Password Length",
-              "description": "For random passwords, from 8 to 128.",
+              "title": "Random: Length",
+              "description": "Characters in random passwords, from 8 to 128.",
               "default": "20",
               "required": false
             },
             {
               "name": "includeUppercase",
               "type": "checkbox",
-              "title": "Characters",
+              "title": "Random: Characters",
               "label": "Uppercase letters",
-              "description": "In random passwords.",
+              "description": "Include uppercase letters in random passwords.",
               "default": true,
               "required": false
             },
@@ -212404,7 +212649,7 @@
               "type": "checkbox",
               "title": "",
               "label": "Symbols",
-              "description": "In random passwords.",
+              "description": "Include symbols in random passwords.",
               "default": true,
               "required": false
             },
@@ -212413,14 +212658,14 @@
               "type": "checkbox",
               "title": "",
               "label": "Numbers",
-              "description": "In random passwords and passphrases.",
+              "description": "Include numbers in random passwords.",
               "default": true,
               "required": false
             },
             {
               "name": "defaultPassphraseWords",
               "type": "dropdown",
-              "title": "Passphrase Words",
+              "title": "Passphrase: Words",
               "description": "Number of words in passphrases.",
               "default": "4",
               "required": false,
@@ -212462,7 +212707,7 @@
             {
               "name": "passphraseSeparator",
               "type": "dropdown",
-              "title": "Passphrase Separator",
+              "title": "Passphrase: Separator",
               "description": "Between the words of passphrases.",
               "default": "hyphens",
               "required": false,
@@ -212500,9 +212745,18 @@
             {
               "name": "capitalizeWords",
               "type": "checkbox",
-              "title": "Capitalization",
+              "title": "Passphrase: Options",
               "label": "Capitalize words",
-              "description": "In passphrases.",
+              "description": "Start each word of passphrases with a capital letter.",
+              "default": true,
+              "required": false
+            },
+            {
+              "name": "passphraseNumbers",
+              "type": "checkbox",
+              "title": "",
+              "label": "Include numbers",
+              "description": "Include numbers in passphrases.",
               "default": true,
               "required": false
             }
@@ -212515,7 +212769,43 @@
           "description": "Get TOTP codes for your accounts",
           "mode": "view",
           "keywords": [],
-          "preferences": []
+          "preferences": [
+            {
+              "name": "hideCodes",
+              "type": "checkbox",
+              "title": "Codes",
+              "label": "Hide codes",
+              "description": "Show dots instead of the codes until Show Codes (⌘H). Copying still works.",
+              "default": false,
+              "required": false
+            },
+            {
+              "name": "sortBy",
+              "type": "dropdown",
+              "title": "Sort items by",
+              "description": "Order of the codes. ⌘⇧S changes it until the window closes.",
+              "default": "mostUsed",
+              "required": false,
+              "data": [
+                {
+                  "title": "Most Used",
+                  "value": "mostUsed"
+                },
+                {
+                  "title": "Name",
+                  "value": "name"
+                },
+                {
+                  "title": "Last Modified",
+                  "value": "modified"
+                },
+                {
+                  "title": "Date Created",
+                  "value": "created"
+                }
+              ]
+            }
+          ]
         },
         {
           "name": "login",
@@ -212633,7 +212923,7 @@
           "type": "checkbox",
           "title": "",
           "label": "Show website icons",
-          "description": "From Raycast's favicon provider, which receives the domains.",
+          "description": "Needs a Favicon Provider in Raycast's settings. It sees the domains.",
           "default": false,
           "required": false
         }
@@ -300472,6 +300762,96 @@
           "type": "checkbox",
           "label": "Also hide URL query strings and fragments in logs",
           "default": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "video-notes",
+      "title": "Video Notes",
+      "description": "Take notes with a timecode and frame from IINA or a browser video, and export them to an HTML table",
+      "icon": "icon.png",
+      "author": "mikeozornin",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/mikeozornin/video-notes",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/video-notes",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "new-session",
+          "title": "New Video Review",
+          "description": "Create a review folder with notes.md and make it active",
+          "mode": "view",
+          "keywords": [
+            "новый",
+            "разбор",
+            "заметки"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "continue-session",
+          "title": "Continue Video Review",
+          "description": "Pick an existing review and make it active",
+          "mode": "view",
+          "keywords": [
+            "продолжить",
+            "разбор",
+            "выбрать"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "add-note",
+          "title": "Video Note",
+          "description": "Pause, capture timecode and frame, add a comment to notes.md. Start with -- for a general note",
+          "mode": "view",
+          "keywords": [
+            "заметка",
+            "таймкод",
+            "кадр"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "build-html",
+          "title": "Build Video Notes HTML",
+          "description": "Build index.html from notes.md and zip it",
+          "mode": "view",
+          "keywords": [
+            "собрать",
+            "экспорт",
+            "html",
+            "zip"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "notesDir",
+          "title": "Reviews Folder",
+          "description": "Review folders are created here",
+          "type": "directory",
+          "required": true
+        },
+        {
+          "name": "editor",
+          "title": "Editor",
+          "description": "App that opens notes.md",
+          "type": "appPicker",
+          "default": "Sublime Text",
           "required": false
         }
       ]
