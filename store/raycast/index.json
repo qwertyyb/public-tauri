@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-10T01:30:10.613Z",
+  "generatedAt": "2026-11-10T23:13:21.515Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "8486ca99eaef9f61702d10dc18e7616f651a359f"
+    "commit": "755a900b855b37c0119e5e406583ecdd9a64da3e"
   },
-  "count": 3550,
+  "count": 3555,
   "extensions": [
     {
       "name": "0x0",
@@ -115256,6 +115256,85 @@
       ]
     },
     {
+      "name": "hackban",
+      "title": "Hackban",
+      "description": "See what's due, search your boards, and capture cards in Hackban, Hack Club's Trello, across every server you use.",
+      "icon": "icon.png",
+      "author": "leowilkin",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/leowilkin/hackban",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/hackban",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "my-cards",
+          "title": "My Cards",
+          "subtitle": "Hackban",
+          "description": "Cards you're a member of, grouped by when they're due.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search",
+          "title": "Search Hackban",
+          "subtitle": "Hackban",
+          "description": "Search board names and card titles and descriptions.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "boards",
+          "title": "Browse Boards",
+          "subtitle": "Hackban",
+          "description": "Your workspaces and boards, with each board's lists and cards.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "create-card",
+          "title": "Create Card",
+          "subtitle": "Hackban",
+          "description": "Add a card to any list on your boards.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "notifications",
+          "title": "Notifications",
+          "subtitle": "Hackban",
+          "description": "Cards you were added to and comments on cards you watch.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "accounts",
+          "title": "Manage Accounts",
+          "subtitle": "Hackban",
+          "description": "Sign in to more Hackban servers, and rename, recolor, reorder, hide or sign out of them.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "hacker-news",
       "title": "Hacker News",
       "description": "Read the latest stories of Hacker News.",
@@ -162721,6 +162800,448 @@
       "preferences": []
     },
     {
+      "name": "microsoft-teams-keys",
+      "title": "Microsoft Teams Keys",
+      "description": "Drive the Microsoft Teams desktop app from the keyboard without signing in: open a chat and type or send a message, control your meeting, share your screen, set your status, start calls and join or schedule meetings. Everything runs locally.",
+      "icon": "icon.png",
+      "author": "jnbp",
+      "contributors": [],
+      "categories": [
+        "Communication",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/jnbp/microsoft-teams-keys",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/microsoft-teams-keys",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "open-chat",
+          "title": "Open Teams Chat",
+          "description": "Opens the chat with a person and types an optional message. Takes an email address, a saved contact or any name Teams search can find.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "afterTyping",
+              "title": "After Typing the Message",
+              "description": "Whether Open Teams Chat leaves the message as a draft or sends it right away. Messages opened through Teams search always stay as drafts so you can check the recipient.",
+              "type": "dropdown",
+              "required": false,
+              "default": "draft",
+              "data": [
+                {
+                  "title": "Leave It as a Draft",
+                  "value": "draft"
+                },
+                {
+                  "title": "Send It",
+                  "value": "send"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "send-message",
+          "title": "Send Teams Message",
+          "description": "Sends a message to an email address or saved contact. Names looked up through Teams search leave a draft for you to check.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "contacts",
+          "title": "Teams Contacts",
+          "description": "Your saved Teams contacts: chat, message, call or video call them, and add short names for Open Teams Chat.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "control-meeting",
+          "title": "Control Teams Meeting",
+          "description": "Microphone, camera, raise hand, share content, admit from the lobby and leave the call from one list.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle-microphone",
+          "title": "Toggle Teams Microphone",
+          "description": "Mutes or unmutes you in the current Teams call.",
+          "mode": "no-view",
+          "keywords": [
+            "mute",
+            "unmute",
+            "microphone",
+            "mikrofon",
+            "stumm",
+            "stummschalten"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "toggle-camera",
+          "title": "Toggle Teams Camera",
+          "description": "Turns your camera on or off in the current Teams call.",
+          "mode": "no-view",
+          "keywords": [
+            "camera",
+            "video",
+            "kamera"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "raise-hand",
+          "title": "Raise or Lower Hand in Teams",
+          "description": "Raises or lowers your hand in the current Teams meeting.",
+          "mode": "no-view",
+          "keywords": [
+            "hand",
+            "raise hand",
+            "hand heben",
+            "melden"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "leave-call",
+          "title": "Leave Teams Call",
+          "description": "Hangs up the current Teams call.",
+          "mode": "no-view",
+          "keywords": [
+            "hang up",
+            "leave",
+            "auflegen",
+            "verlassen"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "share-screen",
+          "title": "Share Screen in Teams",
+          "description": "Opens Share content in the current Teams call (⌘⇧E), where you pick your screen or a window. Teams stays in front so you can choose.",
+          "mode": "no-view",
+          "keywords": [
+            "share",
+            "screen",
+            "present",
+            "bildschirm teilen",
+            "inhalt freigeben",
+            "präsentieren"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "admit-from-lobby",
+          "title": "Admit from Teams Lobby",
+          "description": "Admits the people waiting in the lobby of the current Teams meeting.",
+          "mode": "no-view",
+          "keywords": [
+            "lobby",
+            "admit",
+            "wartebereich",
+            "zulassen"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "bring-call-to-front",
+          "title": "Bring Current Teams Call to Front",
+          "description": "Brings the window of the running Teams call or meeting to the front, also when it is minimised or hidden behind other windows.",
+          "mode": "no-view",
+          "keywords": [
+            "call",
+            "meeting",
+            "front",
+            "window",
+            "anruf",
+            "besprechung",
+            "fenster",
+            "vordergrund"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "set-status",
+          "title": "Set Teams Status",
+          "description": "Sets your Teams presence to Available, Busy, Do Not Disturb, Be Right Back, Away or Offline.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "status-available",
+          "title": "Set Teams Status to Available",
+          "description": "Sets your Teams presence to Available. Give it a hotkey to switch with one key press.",
+          "mode": "no-view",
+          "keywords": [
+            "verfügbar"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "status-busy",
+          "title": "Set Teams Status to Busy",
+          "description": "Sets your Teams presence to Busy. Give it a hotkey to switch with one key press.",
+          "mode": "no-view",
+          "keywords": [
+            "beschäftigt"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "status-dnd",
+          "title": "Set Teams Status to Do Not Disturb",
+          "description": "Sets your Teams presence to Do Not Disturb. Give it a hotkey to switch with one key press.",
+          "mode": "no-view",
+          "keywords": [
+            "nicht stören",
+            "dnd"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "status-brb",
+          "title": "Set Teams Status to Be Right Back",
+          "description": "Sets your Teams presence to Be Right Back. Give it a hotkey to switch with one key press.",
+          "mode": "no-view",
+          "keywords": [
+            "bin gleich zurück",
+            "brb"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "status-away",
+          "title": "Set Teams Status to Away",
+          "description": "Sets your Teams presence to Away. Give it a hotkey to switch with one key press.",
+          "mode": "no-view",
+          "keywords": [
+            "abwesend"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "status-offline",
+          "title": "Set Teams Status to Offline",
+          "description": "Sets your Teams presence to Offline. Give it a hotkey to switch with one key press.",
+          "mode": "no-view",
+          "keywords": [
+            "offline"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "start-call",
+          "title": "Start Teams Call",
+          "description": "Calls a person in Teams, with or without video. Teams asks once more before it dials.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "meetings",
+          "title": "Teams Meetings",
+          "description": "Today's and the next days' Teams meetings from your calendar, ready to join with Return.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "join-next-meeting",
+          "title": "Join Next Teams Meeting",
+          "description": "Joins the Teams meeting that is running now or starts within the next 15 minutes, taken from your calendar.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "choose-meeting",
+          "title": "Join Teams Meeting",
+          "description": "Pick the Teams meeting to join: what is running or starts within 15 minutes comes first, then the rest of today and tomorrow. Also joins a Teams link from the clipboard or the search bar.",
+          "mode": "view",
+          "keywords": [
+            "join",
+            "meeting",
+            "besprechung",
+            "beitreten",
+            "call"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "join-meeting",
+          "title": "Join Teams Meeting from Link",
+          "description": "Opens a Teams meeting link in the desktop app. Takes the link as an argument or from the clipboard, and unwraps Outlook Safe Links.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "schedule-meeting",
+          "title": "Schedule Teams Meeting",
+          "description": "Fills in the new meeting form in Teams with a subject, attendees, a start time and a duration.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "returnToPreviousApp",
+          "title": "Meeting and Status Commands",
+          "label": "Return to the previous app afterwards",
+          "description": "Teams has to come to the front for a moment to receive the keyboard shortcut. With this on, the app you were in comes back right after.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "teamsLanguage",
+          "title": "Teams Language",
+          "description": "The language of your Teams app. Status commands are named differently in each language (/busy, /beschäftigt …). Automatic follows the macOS language.",
+          "type": "dropdown",
+          "required": false,
+          "default": "auto",
+          "data": [
+            {
+              "title": "Automatic",
+              "value": "auto"
+            },
+            {
+              "title": "English",
+              "value": "en"
+            },
+            {
+              "title": "Deutsch",
+              "value": "de"
+            }
+          ]
+        },
+        {
+          "name": "searchUnknownNames",
+          "title": "Unknown Names",
+          "label": "Look up names that are not saved contacts with Teams search",
+          "description": "Unresolved names are typed into Teams search and the first result is opened. Messages always stay as drafts so you can check the recipient.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "shortcutTiming",
+          "title": "Meeting Shortcut Timing",
+          "description": "How long meeting commands wait for Teams: microphone, camera, raise hand, share screen, admit from lobby and leave call. These are single shortcuts, so fast settings usually work. Normal is recommended.",
+          "type": "dropdown",
+          "required": false,
+          "default": "normal",
+          "data": [
+            {
+              "title": "Instant (0.1×)",
+              "value": "instant"
+            },
+            {
+              "title": "Ultra Fast (0.2×)",
+              "value": "ultraFast"
+            },
+            {
+              "title": "Very Fast (0.35×)",
+              "value": "veryFast"
+            },
+            {
+              "title": "Fast (0.6×)",
+              "value": "fast"
+            },
+            {
+              "title": "Normal (1×, Recommended)",
+              "value": "normal"
+            },
+            {
+              "title": "Slow (1.8×)",
+              "value": "slow"
+            },
+            {
+              "title": "Very Slow (3×)",
+              "value": "verySlow"
+            },
+            {
+              "title": "Custom Factor",
+              "value": "custom"
+            }
+          ]
+        },
+        {
+          "name": "customShortcutTiming",
+          "title": "Custom Meeting Shortcut Factor",
+          "description": "Used when Meeting Shortcut Timing is set to Custom Factor. Multiplies every wait: 1 is Normal, 0.5 half as long, 2 twice as long. Allowed: 0.05 to 10.",
+          "type": "textfield",
+          "required": false,
+          "default": "1",
+          "placeholder": "e.g. 0.5"
+        },
+        {
+          "name": "searchTiming",
+          "title": "Search Timing",
+          "description": "How long chats, messages and status changes wait for Teams, including opening a chat from an email address before sending. Normal is recommended; pick a slower one if Teams misses keystrokes.",
+          "type": "dropdown",
+          "required": false,
+          "default": "normal",
+          "data": [
+            {
+              "title": "Instant (0.1×)",
+              "value": "instant"
+            },
+            {
+              "title": "Ultra Fast (0.2×)",
+              "value": "ultraFast"
+            },
+            {
+              "title": "Very Fast (0.35×)",
+              "value": "veryFast"
+            },
+            {
+              "title": "Fast (0.6×)",
+              "value": "fast"
+            },
+            {
+              "title": "Normal (1×, Recommended)",
+              "value": "normal"
+            },
+            {
+              "title": "Slow (1.8×)",
+              "value": "slow"
+            },
+            {
+              "title": "Very Slow (3×)",
+              "value": "verySlow"
+            },
+            {
+              "title": "Custom Factor",
+              "value": "custom"
+            }
+          ]
+        },
+        {
+          "name": "customSearchTiming",
+          "title": "Custom Search Factor",
+          "description": "Used when Search Timing is set to Custom Factor. Multiplies every wait: 1 is Normal, 0.5 half as long, 2 twice as long. Allowed: 0.05 to 10.",
+          "type": "textfield",
+          "required": false,
+          "default": "1",
+          "placeholder": "e.g. 0.5"
+        }
+      ]
+    },
+    {
       "name": "microsoft-tenant-id",
       "title": "Microsoft Tenant ID",
       "description": "Find the Microsoft Entra (Azure AD) tenant ID for a domain, email, or URL — or reverse-look up the organization behind a tenant ID.",
@@ -166903,6 +167424,68 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "momently",
+      "title": "Momently",
+      "description": "Create, browse and delete countdown events. Requires Momently for Mac with AppleScript support.",
+      "icon": "icon.png",
+      "author": "madza",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/madza/momently",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/momently",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "create-event",
+          "title": "Create Event",
+          "subtitle": "Momently",
+          "description": "Create a new event in Momently.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-events",
+          "title": "Search Events",
+          "subtitle": "Momently",
+          "description": "Search your Momently events, open or delete them.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "app",
+          "title": "App",
+          "description": "Which Momently build to talk to.",
+          "type": "dropdown",
+          "required": false,
+          "default": "rs.madza.Countdown",
+          "data": [
+            {
+              "title": "Momently",
+              "value": "rs.madza.Countdown"
+            },
+            {
+              "title": "Momently Dev",
+              "value": "rs.madza.Countdown.dev"
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "momentum",
@@ -255397,7 +255980,7 @@
       "platforms": [
         "macOS"
       ],
-      "version": "1.0.0",
+      "version": "1.1.0",
       "storeUrl": "https://www.raycast.com/mikael_brostrom/soren-idle",
       "source": {
         "type": "github-monorepo",
@@ -286221,7 +286804,9 @@
       "description": "Switch between show/hide menu bar options",
       "icon": "command-icon.png",
       "author": "iamyeizi",
-      "contributors": [],
+      "contributors": [
+        "0xAdriaTorralba"
+      ],
       "categories": [
         "System"
       ],
@@ -286243,6 +286828,21 @@
           "description": "Toggle auto hide/show menu bar between two options of your choice.",
           "mode": "no-view",
           "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "select-menu-bar-mode",
+          "title": "Set Menu Bar Mode",
+          "description": "Choose one of the four macOS menu bar visibility modes.",
+          "mode": "view",
+          "keywords": [
+            "menu",
+            "bar",
+            "fullscreen",
+            "auto-hide",
+            "select",
+            "choose"
+          ],
           "preferences": []
         }
       ],
@@ -288111,6 +288711,337 @@
           "required": true
         }
       ]
+    },
+    {
+      "name": "trackpad-mouse-tools",
+      "title": "Trackpad & Mouse Tools",
+      "description": "Change trackpad and mouse settings without opening System Settings. Switch secondary click between two fingers and a corner with one hotkey, set mouse and trackpad speed, toggle tap to click, natural scrolling and three finger drag, adjust gestures, and left, right or middle click or hold a mouse button from a hotkey.",
+      "icon": "icon.png",
+      "author": "jnbp",
+      "contributors": [],
+      "categories": [
+        "System",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/jnbp/trackpad-mouse-tools",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/trackpad-mouse-tools",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "toggle-right-click",
+          "title": "Toggle Secondary Click",
+          "subtitle": "Trackpad & Mouse Tools",
+          "description": "Switches secondary click between two fingers and the corner chosen in the preferences.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": [
+            {
+              "name": "toggleCorner",
+              "title": "Corner",
+              "description": "Which corner the toggle switches to when leaving two finger click.",
+              "type": "dropdown",
+              "required": false,
+              "default": "bottom-right",
+              "data": [
+                {
+                  "title": "Bottom Right",
+                  "value": "bottom-right"
+                },
+                {
+                  "title": "Bottom Left",
+                  "value": "bottom-left"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "right-click-two-finger",
+          "title": "Secondary Click with Two Fingers",
+          "subtitle": "Trackpad & Mouse Tools",
+          "description": "Sets secondary click to click or tap with two fingers.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "right-click-bottom-right",
+          "title": "Secondary Click in Bottom Right Corner",
+          "subtitle": "Trackpad & Mouse Tools",
+          "description": "Sets secondary click to the bottom right corner.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "right-click-bottom-left",
+          "title": "Secondary Click in Bottom Left Corner",
+          "subtitle": "Trackpad & Mouse Tools",
+          "description": "Sets secondary click to the bottom left corner.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "toggle-tap-to-click",
+          "title": "Toggle Tap to Click",
+          "subtitle": "Trackpad & Mouse Tools",
+          "description": "Turns tap to click on or off.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "toggle-natural-scrolling",
+          "title": "Toggle Natural Scrolling",
+          "subtitle": "Trackpad & Mouse Tools",
+          "description": "Turns natural scrolling on or off.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "toggle-three-finger-drag",
+          "title": "Toggle Three Finger Drag",
+          "subtitle": "Trackpad & Mouse Tools",
+          "description": "Turns three finger drag on or off. Three finger swipes move to four fingers while it is on, like in macOS.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "set-mouse-speed",
+          "title": "Set Mouse Speed",
+          "subtitle": "Trackpad & Mouse Tools",
+          "description": "Sets mouse tracking speed to a level from 1 (slowest) to 10 (fastest).",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "set-trackpad-speed",
+          "title": "Set Trackpad Speed",
+          "subtitle": "Trackpad & Mouse Tools",
+          "description": "Sets trackpad tracking speed to a level from 1 (slowest) to 10 (fastest).",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "increase-mouse-speed",
+          "title": "Increase Mouse Speed",
+          "subtitle": "Trackpad & Mouse Tools",
+          "description": "Moves mouse tracking speed one step faster.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "decrease-mouse-speed",
+          "title": "Decrease Mouse Speed",
+          "subtitle": "Trackpad & Mouse Tools",
+          "description": "Moves mouse tracking speed one step slower.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "left-click",
+          "title": "Left Click",
+          "subtitle": "Trackpad & Mouse Tools",
+          "description": "Left clicks at the pointer position. Give it a hotkey to click without pressing the trackpad.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "right-click",
+          "title": "Right Click",
+          "subtitle": "Trackpad & Mouse Tools",
+          "description": "Right clicks at the pointer position, independent of your secondary click setting.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "middle-click",
+          "title": "Middle Click",
+          "subtitle": "Trackpad & Mouse Tools",
+          "description": "Middle clicks at the pointer position. Give it a hotkey to open links in a new tab, close tabs or paste the selection without a middle mouse button.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "hold-left-click",
+          "title": "Hold Left Button",
+          "subtitle": "Trackpad & Mouse Tools",
+          "description": "Presses the left button and keeps it down until you run the command again, click, or a few seconds pass (set in the command preferences), for dragging with the trackpad.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": [
+            {
+              "name": "release",
+              "title": "Release",
+              "description": "When the held button is let go. Running the command again always releases it right away.",
+              "type": "dropdown",
+              "required": false,
+              "default": "click",
+              "data": [
+                {
+                  "title": "When I Run the Command Again",
+                  "value": "toggle"
+                },
+                {
+                  "title": "After the Next Click",
+                  "value": "click"
+                },
+                {
+                  "title": "After a Few Seconds",
+                  "value": "timer"
+                }
+              ]
+            },
+            {
+              "name": "seconds",
+              "title": "Seconds",
+              "description": "How long the button stays down when Release is set to After a Few Seconds.",
+              "type": "textfield",
+              "required": false,
+              "default": "5",
+              "placeholder": "5"
+            }
+          ]
+        },
+        {
+          "name": "hold-right-click",
+          "title": "Hold Right Button",
+          "subtitle": "Trackpad & Mouse Tools",
+          "description": "Presses the right button and keeps it down until you run the command again, click, or a few seconds pass (set in the command preferences).",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": [
+            {
+              "name": "release",
+              "title": "Release",
+              "description": "When the held button is let go. Running the command again always releases it right away.",
+              "type": "dropdown",
+              "required": false,
+              "default": "click",
+              "data": [
+                {
+                  "title": "When I Run the Command Again",
+                  "value": "toggle"
+                },
+                {
+                  "title": "After the Next Click",
+                  "value": "click"
+                },
+                {
+                  "title": "After a Few Seconds",
+                  "value": "timer"
+                }
+              ]
+            },
+            {
+              "name": "seconds",
+              "title": "Seconds",
+              "description": "How long the button stays down when Release is set to After a Few Seconds.",
+              "type": "textfield",
+              "required": false,
+              "default": "5",
+              "placeholder": "5"
+            }
+          ]
+        },
+        {
+          "name": "hold-middle-click",
+          "title": "Hold Middle Button",
+          "subtitle": "Trackpad & Mouse Tools",
+          "description": "Presses the middle button and keeps it down until you run the command again, click, or a few seconds pass (set in the command preferences), e.g. to orbit in 3D apps.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": [
+            {
+              "name": "release",
+              "title": "Release",
+              "description": "When the held button is let go. Running the command again always releases it right away.",
+              "type": "dropdown",
+              "required": false,
+              "default": "click",
+              "data": [
+                {
+                  "title": "When I Run the Command Again",
+                  "value": "toggle"
+                },
+                {
+                  "title": "After the Next Click",
+                  "value": "click"
+                },
+                {
+                  "title": "After a Few Seconds",
+                  "value": "timer"
+                }
+              ]
+            },
+            {
+              "name": "seconds",
+              "title": "Seconds",
+              "description": "How long the button stays down when Release is set to After a Few Seconds.",
+              "type": "textfield",
+              "required": false,
+              "default": "5",
+              "placeholder": "5"
+            }
+          ]
+        },
+        {
+          "name": "release-mouse-buttons",
+          "title": "Release Mouse Buttons",
+          "subtitle": "Trackpad & Mouse Tools",
+          "description": "Releases every mouse button held by this extension.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "settings",
+          "title": "Trackpad & Mouse Settings",
+          "subtitle": "Trackpad & Mouse Tools",
+          "description": "Browse and change every trackpad and mouse setting: secondary click, tap to click, look up, click pressure, tracking and scrolling speed, double-click speed, pointer acceleration, zoom and swipe gestures, and dragging style.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "tracktimer",
@@ -318618,6 +319549,125 @@
       ]
     },
     {
+      "name": "zemtu",
+      "title": "Zemtu",
+      "description": "Find and book vehicles with your Zemtu account",
+      "icon": "extension-icon.png",
+      "author": "Roland",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/Roland/zemtu",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/zemtu",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "vehicle-list",
+          "title": "List Vehicles",
+          "subtitle": "Zemtu",
+          "description": "List available vehicles",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "time-based-search",
+          "title": "Find Vehicles in Time Range",
+          "subtitle": "Zemtu",
+          "description": "Search for vehicles available in a specific time range",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "reservation-list",
+          "title": "My Reservations",
+          "subtitle": "Zemtu",
+          "description": "List my future reservations",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "menu-bar-reservations",
+          "title": "Menu Bar Reservations",
+          "subtitle": "Zemtu",
+          "description": "Show current and upcoming vehicle reservations in menu bar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "check-settings",
+          "title": "Check Settings",
+          "subtitle": "Zemtu",
+          "description": "Check that the Zemtu URL, login, location and vehicle access are set up correctly",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "baseUrl",
+          "type": "textfield",
+          "required": false,
+          "title": "Zemtu URL",
+          "description": "The web address of your carsharing provider's Zemtu, e.g. https://yourcompany.zemtu.com. Default: https://demo.zemtu.com (demo system).",
+          "default": "https://demo.zemtu.com",
+          "placeholder": "https://yourcompany.zemtu.com"
+        },
+        {
+          "name": "username",
+          "type": "textfield",
+          "required": true,
+          "title": "Username",
+          "description": "The username you use to log in to Zemtu",
+          "placeholder": "your.name"
+        },
+        {
+          "name": "password",
+          "type": "password",
+          "required": true,
+          "title": "Password",
+          "description": "Your Zemtu password (stored encrypted by Raycast)",
+          "placeholder": "Your Zemtu password"
+        },
+        {
+          "name": "enableMenuBar",
+          "type": "checkbox",
+          "required": false,
+          "title": "Enable Menu Bar",
+          "description": "Show reservations in the menu bar (macOS only)",
+          "default": true,
+          "label": "Display current and upcoming reservations in menu bar"
+        },
+        {
+          "name": "location",
+          "type": "textfield",
+          "required": false,
+          "title": "Your Location",
+          "description": "Used to sort vehicles by distance. Enter an address (e.g. Marktplatz 1, Dornbirn) or coordinates (e.g. 47.4486, 9.7621 – right-click a place in Google Maps to copy them). Addresses are looked up once via OpenStreetMap.",
+          "placeholder": "Marktplatz 1, Dornbirn"
+        }
+      ]
+    },
+    {
       "name": "zen-browser",
       "title": "Zen Browser",
       "description": "Search and open tabs from bookmarks and history in Zen Browser.",
@@ -320142,8 +321192,8 @@
     },
     {
       "name": "zoo",
-      "title": "Zoo - Ask AIs with Your Prompt Library",
-      "description": "Interact with AIs with your own Github Gist prompt library with ease",
+      "title": "Zoo - AI Prompt Library with Your Own Key",
+      "description": "Run GitHub Gist prompts on selected text with your own OpenAI, Gemini, Claude, or DeepSeek API key. No Raycast Pro is required.",
       "icon": "zoo.png",
       "author": "ViGeng",
       "contributors": [],
@@ -320152,7 +321202,9 @@
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/ViGeng/zoo",
       "source": {
         "type": "github-monorepo",
@@ -320234,9 +321286,16 @@
         {
           "name": "ask-gist",
           "title": "Ask by Prompt on Selected Text",
-          "description": "Search and use GitHub gists as prompt for AI.",
+          "description": "Apply a reusable Gist prompt to selected text using your own AI API key.",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "AI",
+            "prompt",
+            "BYOK",
+            "translate",
+            "summarize",
+            "rewrite"
+          ],
           "preferences": [
             {
               "name": "perPage",
@@ -320308,86 +321367,131 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "check-ai-connection",
+          "title": "Check AI Connection",
+          "description": "Check API access and model availability without sending a prompt or input text.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": [
         {
+          "name": "provider",
+          "type": "dropdown",
+          "title": "AI Provider",
+          "description": "Choose a service. Automatic detects it from the model or existing endpoint. Named providers use their official endpoints.",
+          "required": true,
+          "default": "auto",
+          "data": [
+            {
+              "title": "Automatic (from Model or Endpoint)",
+              "value": "auto"
+            },
+            {
+              "title": "OpenAI",
+              "value": "openai"
+            },
+            {
+              "title": "Google Gemini",
+              "value": "gemini"
+            },
+            {
+              "title": "Anthropic Claude",
+              "value": "anthropic"
+            },
+            {
+              "title": "DeepSeek",
+              "value": "deepseek"
+            },
+            {
+              "title": "Custom OpenAI-Compatible API",
+              "value": "custom"
+            }
+          ]
+        },
+        {
           "name": "apikey",
-          "description": "Your API Key",
+          "description": "Enter the API key issued by the selected AI service.",
           "type": "password",
           "required": true,
           "title": "LLM API Key"
         },
         {
           "name": "baseurl",
-          "description": "Custom API endpoint for DeepSeek or ChatGPT, or more",
+          "description": "Set the API base URL for Automatic or Custom mode. Leave it empty to use the official endpoint.",
           "type": "textfield",
           "required": false,
-          "title": "LLM API Endpoint",
-          "default": "https://api.openai.com/v1"
+          "title": "LLM API Endpoint"
         },
         {
           "name": "priceinput",
-          "description": "Input price($) per million characters for your API endpoint",
+          "description": "Optional USD price per million input tokens. Set both prices to show an estimate.",
           "type": "textfield",
           "required": false,
           "title": "Custom Model Input Price"
         },
         {
           "name": "priceoutput",
-          "description": "Output price($) per million characters for your API endpoint",
+          "description": "Optional USD price per million output tokens. Set both prices to show an estimate.",
           "type": "textfield",
           "required": false,
-          "title": "Custom Model Input Price"
+          "title": "Custom Model Output Price"
         },
         {
           "name": "model",
-          "description": "LLM to use for your commands",
+          "description": "Choose a model from the selected provider, or use its default. A custom model ID overrides this choice.",
           "type": "dropdown",
           "data": [
             {
-              "title": "deepseek-chat",
-              "value": "deepseek-chat"
+              "title": "Provider Default",
+              "value": "default"
             },
             {
-              "title": "GPT-4o",
-              "value": "gpt-4o"
+              "title": "OpenAI GPT-6 Luna",
+              "value": "gpt-6-luna"
             },
             {
-              "title": "GPT-4o mini",
-              "value": "gpt-4o-mini"
+              "title": "OpenAI GPT-6.1 Sol",
+              "value": "gpt-6.1-sol"
             },
             {
-              "title": "GPT-4",
-              "value": "gpt-4"
+              "title": "OpenAI GPT-6 Astra",
+              "value": "gpt-6-astra"
             },
             {
-              "title": "GPT-4 Turbo",
-              "value": "gpt-4-turbo"
+              "title": "Gemini 3.8 Flash",
+              "value": "gemini-3.8-flash"
             },
             {
-              "title": "GPT-3.5 Turbo",
-              "value": "gpt-3.5-turbo"
+              "title": "Gemini 3.5 Flash-Lite",
+              "value": "gemini-3.5-flash-lite"
             },
             {
-              "title": "gemini-2.0-flash-exp",
-              "value": "gemini-2.0-flash-exp"
+              "title": "Claude Sonnet 5.5",
+              "value": "claude-sonnet-5-5"
             },
             {
-              "title": "gemini-exp-1206",
-              "value": "gemini-exp-1206"
+              "title": "Claude Haiku 5.5",
+              "value": "claude-haiku-5-5"
             },
             {
-              "title": "learnlm-1.5-pro-experimental",
-              "value": "learnlm-1.5-pro-experimental"
+              "title": "Claude Opus 5.5",
+              "value": "claude-opus-5-5"
             },
             {
-              "title": "gemini-2.0-flash-thinking-exp-1219",
-              "value": "gemini-2.0-flash-thinking-exp-1219"
+              "title": "DeepSeek Flash",
+              "value": "deepseek-flash"
+            },
+            {
+              "title": "DeepSeek V4 Pro",
+              "value": "deepseek-v4-pro"
             }
           ],
           "required": true,
-          "default": "gpt-4o",
+          "default": "default",
           "title": "LLM Model Name"
         },
         {
