@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-10T23:13:21.515Z",
+  "generatedAt": "2026-11-12T00:32:45.205Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "755a900b855b37c0119e5e406583ecdd9a64da3e"
+    "commit": "21b66366e731545cd5c01a3100954bacbb7e7e2f"
   },
-  "count": 3555,
+  "count": 3566,
   "extensions": [
     {
       "name": "0x0",
@@ -238,7 +238,8 @@
         "litomore",
         "vimtor",
         "pavelas",
-        "Logan-8f"
+        "Logan-8f",
+        "tharropoulos"
       ],
       "categories": [
         "Security"
@@ -17025,6 +17026,15 @@
           "preferences": []
         },
         {
+          "name": "find-profile",
+          "title": "Find Profile",
+          "subtitle": "@ Profile",
+          "description": "Find the sites where a username has a profile",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "manage-apps",
           "title": "Manage Apps",
           "subtitle": "@ Profile",
@@ -17069,6 +17079,33 @@
           "title": "Export Directory",
           "description": "Where Export Apps saves its YAML file",
           "default": "~/Downloads"
+        },
+        {
+          "name": "includeNsfw",
+          "type": "checkbox",
+          "required": false,
+          "title": "NSFW",
+          "label": "Include NSFW apps",
+          "description": "Show adult sites in Find Profile and Import from Catalog",
+          "default": false
+        },
+        {
+          "name": "verboseLogging",
+          "title": "Debug Logging",
+          "label": "Enable extra diagnostics in the console",
+          "description": "Show detailed logs in the console for debugging.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "strictRedaction",
+          "type": "checkbox",
+          "required": false,
+          "title": "Strict Redaction",
+          "label": "Also hide URL query strings and fragments in logs",
+          "description": "Turn on before reproducing an issue, then share only the new log lines.",
+          "default": false
         }
       ]
     },
@@ -40209,6 +40246,52 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "chinese-meme-search",
+      "title": "Meme Search",
+      "description": "通过自定义 JSON 数据源搜索表情包，在 Raycast 中预览并回车复制图片。",
+      "icon": "meme-icon-transparent.png",
+      "author": "uncaughtape",
+      "contributors": [],
+      "categories": [
+        "Fun",
+        "Media"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/uncaughtape/chinese-meme-search",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/chinese-meme-search",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search",
+          "title": "Meme Search",
+          "description": "搜索中文表情包并复制图片",
+          "mode": "view",
+          "keywords": [
+            "meme",
+            "表情包",
+            "斗图"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "customSource",
+          "type": "textfield",
+          "required": false,
+          "title": "Custom Source JSON",
+          "description": "配置获准接入的 GET JSON 图片接口，格式见 README。不要在此填写密钥。"
+        }
+      ]
     },
     {
       "name": "chinese-numbers",
@@ -97872,6 +97955,78 @@
       ]
     },
     {
+      "name": "geolocation",
+      "title": "Geolocation",
+      "description": "Copy location to the clipboard: your current geolocation as GPS coordinates, a Google Maps or Apple Maps link, or a geo: URI. Uses macOS Location Services, not your IP address, for accuracy of tens of meters.",
+      "icon": "icon.png",
+      "author": "y87cgp",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/y87cgp/geolocation",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/geolocation",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "copy-location",
+          "title": "Copy Location",
+          "description": "Copy your current location to the clipboard as coordinates or a map link",
+          "mode": "no-view",
+          "keywords": [
+            "geo",
+            "my location",
+            "current location",
+            "copy coordinates",
+            "gps",
+            "coordinates",
+            "where am i",
+            "latitude longitude",
+            "longitude",
+            "share location"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "format",
+          "title": "Format",
+          "description": "How the copied location is formatted",
+          "type": "dropdown",
+          "required": false,
+          "default": "coordinates",
+          "data": [
+            {
+              "title": "Coordinates (55.75580, 37.61730)",
+              "value": "coordinates"
+            },
+            {
+              "title": "Google Maps Link",
+              "value": "google-maps"
+            },
+            {
+              "title": "Apple Maps Link",
+              "value": "apple-maps"
+            },
+            {
+              "title": "Geo URI (geo:55.75580,37.61730)",
+              "value": "geo-uri"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "geoping",
       "title": "Geoping",
       "description": "Pings servers around the globe",
@@ -106868,7 +107023,8 @@
         "smpeotn",
         "radek_cabaj",
         "0xdhrv",
-        "masamallow"
+        "masamallow",
+        "danlane"
       ],
       "categories": [
         "Web"
@@ -106929,6 +107085,14 @@
             {
               "title": "Google Chrome Canary",
               "value": "chrome-canary"
+            },
+            {
+              "title": "Brave Browser",
+              "value": "brave"
+            },
+            {
+              "title": "Brave Origin",
+              "value": "brave-origin"
             }
           ]
         },
@@ -122444,6 +122608,179 @@
           "default": false,
           "label": "Mock Mode",
           "description": "Enable mock data for screenshots"
+        }
+      ]
+    },
+    {
+      "name": "hotspot-meter",
+      "title": "Hotspot Meter",
+      "description": "Menu bar network meter with per-app data usage from the last 15 minutes to 4 hours, spike detection and hotspot-only counting.",
+      "icon": "extension-icon.png",
+      "author": "yigit",
+      "contributors": [],
+      "categories": [
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/yigit/hotspot-meter",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/hotspot-meter",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "meter",
+          "title": "Network Usage",
+          "description": "Shows data usage in the menu bar: totals per window, per-app breakdown, spikes and hotspot diagnosis.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "barMode",
+              "type": "dropdown",
+              "title": "Menu Bar Title",
+              "description": "What the menu bar title shows.",
+              "required": false,
+              "default": "total",
+              "data": [
+                {
+                  "title": "Total of the selected window",
+                  "value": "total"
+                },
+                {
+                  "title": "Total since last reset",
+                  "value": "sum"
+                },
+                {
+                  "title": "Live speed",
+                  "value": "rate"
+                },
+                {
+                  "title": "Icon only",
+                  "value": "icon"
+                }
+              ]
+            },
+            {
+              "name": "window",
+              "type": "dropdown",
+              "title": "Default Window",
+              "description": "Time window summed in the menu bar title.",
+              "required": false,
+              "default": "60",
+              "data": [
+                {
+                  "title": "15 minutes",
+                  "value": "15"
+                },
+                {
+                  "title": "1 hour",
+                  "value": "60"
+                },
+                {
+                  "title": "2 hours",
+                  "value": "120"
+                },
+                {
+                  "title": "4 hours",
+                  "value": "240"
+                }
+              ]
+            },
+            {
+              "name": "showUpload",
+              "type": "checkbox",
+              "title": "Upload",
+              "label": "Show upload in the menu bar title",
+              "description": "Adds the upload amount next to the download amount.",
+              "required": false,
+              "default": true
+            }
+          ]
+        },
+        {
+          "name": "details",
+          "title": "Network Usage Details",
+          "description": "Browse data usage by app for the last 15 minutes to 4 hours, with traffic history, destinations and spikes.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "countOn",
+          "type": "dropdown",
+          "title": "Count Traffic On",
+          "description": "Only traffic on these networks is added to windows, spikes and the total. Everything is recorded, so changing this also re-filters the history.",
+          "required": false,
+          "default": "all",
+          "data": [
+            {
+              "title": "All networks",
+              "value": "all"
+            },
+            {
+              "title": "Personal hotspot only (auto-detected)",
+              "value": "hotspot"
+            },
+            {
+              "title": "Selected networks (tick them in the Networks menu)",
+              "value": "selected"
+            }
+          ]
+        },
+        {
+          "name": "wifiNames",
+          "type": "textfield",
+          "title": "Wi-Fi Names",
+          "description": "Comma-separated Wi-Fi names to count when Count Traffic On is \"Selected networks\", in addition to the networks you tick. Case-insensitive. The name is read once per network, so it takes a few seconds after you join.",
+          "placeholder": "Home, Office",
+          "required": false
+        },
+        {
+          "name": "spikeMB",
+          "type": "textfield",
+          "title": "Spike Threshold (MB per Minute)",
+          "description": "A minute above this amount, and well above your usual minute, counts as a spike.",
+          "placeholder": "10",
+          "required": false,
+          "default": "10"
+        },
+        {
+          "name": "capture",
+          "type": "dropdown",
+          "title": "Per-App Breakdown",
+          "description": "A continuous stream (about 1% of one CPU core) counts every app, including short-lived connections. Without it you only get 10-second snapshots and an optional 30-second capture.",
+          "required": false,
+          "default": "always",
+          "data": [
+            {
+              "title": "Always stream (recommended)",
+              "value": "always"
+            },
+            {
+              "title": "Stream only on a hotspot",
+              "value": "hotspot"
+            },
+            {
+              "title": "Manual capture only",
+              "value": "manual"
+            }
+          ]
+        },
+        {
+          "name": "hotspotCapMB",
+          "type": "textfield",
+          "title": "Daily Hotspot Limit (MB)",
+          "description": "Optional. The icon turns orange at 50% and red at 90% of this amount used on a hotspot today.",
+          "placeholder": "2048",
+          "required": false
         }
       ]
     },
@@ -140885,7 +141222,8 @@
         "mateus_badalotti",
         "jomifepe",
         "0xdhrv",
-        "just_me"
+        "just_me",
+        "ryan_el_ghoul"
       ],
       "categories": [],
       "license": "MIT",
@@ -146886,10 +147224,14 @@
           "description": "Select your preferred programming language",
           "type": "dropdown",
           "required": false,
-          "default": "python",
+          "default": "python3",
           "data": [
             {
-              "title": "Python",
+              "title": "Python3",
+              "value": "python3"
+            },
+            {
+              "title": "Python 2",
               "value": "python"
             },
             {
@@ -146917,20 +147259,48 @@
               "value": "csharp"
             },
             {
-              "title": "Ruby",
-              "value": "ruby"
+              "title": "Go",
+              "value": "golang"
             },
             {
-              "title": "Swift",
-              "value": "swift"
+              "title": "Rust",
+              "value": "rust"
             },
             {
               "title": "Kotlin",
               "value": "kotlin"
             },
             {
-              "title": "Go",
-              "value": "go"
+              "title": "Swift",
+              "value": "swift"
+            },
+            {
+              "title": "Ruby",
+              "value": "ruby"
+            },
+            {
+              "title": "PHP",
+              "value": "php"
+            },
+            {
+              "title": "Dart",
+              "value": "dart"
+            },
+            {
+              "title": "Scala",
+              "value": "scala"
+            },
+            {
+              "title": "Elixir",
+              "value": "elixir"
+            },
+            {
+              "title": "Erlang",
+              "value": "erlang"
+            },
+            {
+              "title": "Racket",
+              "value": "racket"
             }
           ]
         },
@@ -146951,6 +147321,15 @@
           "type": "checkbox",
           "required": false,
           "default": true
+        },
+        {
+          "name": "showTopicTags",
+          "title": "Topic Tags",
+          "label": "Show topic tags in the problem preview",
+          "description": "If enabled, the problem's topic tags (e.g. Array, Hash Table) are shown in the problem preview. Off by default because tags can hint at the solution.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
         }
       ]
     },
@@ -150631,6 +151010,15 @@
           "required": false,
           "default": "700",
           "placeholder": "700"
+        },
+        {
+          "name": "profile",
+          "title": "Default Chrome Profile",
+          "description": "Chrome profile to open windows in. Leave empty to use the profile you used last in Chrome.",
+          "type": "textfield",
+          "required": false,
+          "default": "",
+          "placeholder": "Profile name"
         }
       ]
     },
@@ -153189,6 +153577,75 @@
       "preferences": []
     },
     {
+      "name": "lucide-extended",
+      "title": "Lucide Extended",
+      "description": "Search filled and duotone icons. Not affiliated with or endorsed by Lucide.",
+      "icon": "extension-icon.png",
+      "author": "sepideh_soroush",
+      "contributors": [],
+      "categories": [
+        "Design Tools",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/sepideh_soroush/lucide-extended",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/lucide-extended",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-icons",
+          "title": "Search Icons",
+          "description": "Search filled and duotone icons and copy their name, SVG or component.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "primaryAction",
+              "type": "dropdown",
+              "required": false,
+              "title": "Primary Action",
+              "description": "The action that runs when you press Enter on an icon.",
+              "default": "copy-name",
+              "data": [
+                {
+                  "title": "Copy Name",
+                  "value": "copy-name"
+                },
+                {
+                  "title": "Copy SVG",
+                  "value": "copy-svg"
+                },
+                {
+                  "title": "Paste SVG",
+                  "value": "paste-svg"
+                },
+                {
+                  "title": "Copy Component",
+                  "value": "copy-component"
+                },
+                {
+                  "title": "Copy Import",
+                  "value": "copy-import"
+                },
+                {
+                  "title": "Open in Browser",
+                  "value": "open-in-browser"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "lucide-icons",
       "title": "Lucide Icons Search",
       "description": "Search the Lucide icon set",
@@ -153295,6 +153752,64 @@
           "name": "lucky-surf",
           "title": "Lucky Surf",
           "description": "Navigate to a desired web page with a query from your clipboard or selection",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "ludex",
+      "title": "Ludex",
+      "description": "Launch installed games and open their save, config or install folders",
+      "icon": "extension-icon.png",
+      "author": "Zeocadio",
+      "contributors": [],
+      "categories": [
+        "Fun",
+        "Data"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/Zeocadio/ludex",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/ludex",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "browse-games",
+          "title": "Browse Games",
+          "description": "List installed games, launch them and open their save or config folders",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-games",
+          "title": "Search Games",
+          "description": "Search all games in the Ludusavi manifest",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "refresh-cache",
+          "title": "Refresh Game Database",
+          "description": "Download the game save database again and rebuild its index",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "refresh-installed-games",
+          "title": "Refresh Installed Games",
+          "description": "Re-scan the stores and update the installed games cache",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -154133,6 +154648,51 @@
           "name": "index",
           "title": "Search App Store",
           "description": "Search for Apps on the Mac App Store",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "mac-browse",
+      "title": "Mac Browse",
+      "description": "Search Mac Browse, a hand-picked directory of Mac apps, and open any app's page or website.",
+      "icon": "extension-icon.png",
+      "author": "nmaties",
+      "contributors": [],
+      "categories": [
+        "Applications",
+        "Productivity",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/nmaties/mac-browse",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/mac-browse",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-apps",
+          "title": "Search Mac Apps",
+          "subtitle": "Mac Browse",
+          "description": "Search the hand-picked Mac apps on Mac Browse.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "browse-categories",
+          "title": "Browse by Category",
+          "subtitle": "Mac Browse",
+          "description": "Browse Mac Browse apps one category at a time.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -164849,8 +165409,8 @@
     },
     {
       "name": "mint-mac-care",
-      "title": "Mint - Mac Storage Cleanup for You and Your Agents",
-      "description": "Optimize and clean up Mac storage for you and your AI agents: caches, Xcode builds, duplicate files and the gigabytes Codex, Claude Code and Cursor keep",
+      "title": "Mint - Smart Disk and Memory for You and Your Agents",
+      "description": "Smart disk and memory for you and your agents: space back without deleting, RAM back from idle apps, and what Codex, Claude Code and Cursor leave behind",
       "icon": "extension-icon.png",
       "author": "dzg-studio",
       "contributors": [],
@@ -164875,7 +165435,7 @@
           "name": "mint-status",
           "title": "View Mac Status",
           "subtitle": "Mint",
-          "description": "Disk space, memory and organized folders at a glance, with their Auto Care, like Mint's menu bar",
+          "description": "What Mint can get back, then disk space, memory and organized folders at a glance, with their Auto Care, like Mint's menu bar",
           "mode": "view",
           "keywords": [
             "disk usage",
@@ -164896,7 +165456,7 @@
           "name": "mint-optimize",
           "title": "Optimize Storage",
           "subtitle": "Mint",
-          "description": "Get space back without deleting anything: identical copies share their storage, by source like Codex, Claude Code, Cursor and your files",
+          "description": "Get space back without deleting anything, as Mint's Optimize does: identical copies share their storage and idle files are stored compressed, by source like Codex, Claude Code, Cursor and your files",
           "mode": "view",
           "keywords": [
             "optimizer",
@@ -164976,6 +165536,25 @@
           "preferences": []
         },
         {
+          "name": "mint-autocare",
+          "title": "Auto Care",
+          "subtitle": "Mint",
+          "description": "Turn Mint's Auto Care on or off for Optimizable, Safe to clean and Yours, memory and each organized folder, as in the app",
+          "mode": "view",
+          "keywords": [
+            "auto care",
+            "autocare",
+            "schedule",
+            "automatic cleanup",
+            "automatic",
+            "hourly",
+            "memory guard",
+            "organize automatically",
+            "background"
+          ],
+          "preferences": []
+        },
+        {
           "name": "mint-uninstall",
           "title": "Uninstall App",
           "subtitle": "Mint",
@@ -165022,6 +165601,89 @@
             "disk usage",
             "storage usage",
             "what is using space"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "mint-trash",
+          "title": "Empty Trash",
+          "subtitle": "Mint",
+          "description": "What is in the Trash, largest first; delete chosen items or all of it after confirming in Mint",
+          "mode": "view",
+          "keywords": [
+            "trash",
+            "empty trash",
+            "bin",
+            "deleted files",
+            "free up space",
+            "icloud"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "mint-conversations",
+          "title": "AI Conversations",
+          "subtitle": "Mint",
+          "description": "Optimize Codex conversations, remove their pictures or delete them, clear pictures from Claude Code conversations, and review pictures one by one, each confirmed in Mint",
+          "mode": "view",
+          "keywords": [
+            "codex",
+            "claude code",
+            "conversations",
+            "chat history",
+            "pictures",
+            "screenshots",
+            "ai agents",
+            "agent storage",
+            "archives"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "mint-history",
+          "title": "Mint History",
+          "subtitle": "Mint",
+          "description": "What Mint cleaned, freed, organized and uninstalled, newest first, by hand or by Auto Care",
+          "mode": "view",
+          "keywords": [
+            "history",
+            "log",
+            "activity",
+            "receipts",
+            "what mint did"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "mint-handling",
+          "title": "File Handling",
+          "subtitle": "Mint",
+          "description": "Where Mint never acts (Protect) and where it asks first (Needs Review); loosening a rule is confirmed in Mint",
+          "mode": "view",
+          "keywords": [
+            "protect",
+            "never touch",
+            "needs review",
+            "exclude",
+            "ignore list",
+            "boundaries",
+            "safe folders"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "mint-rules",
+          "title": "Cleanup Rules",
+          "subtitle": "Mint",
+          "description": "Mint's cleanup rules: what each matches and does, a preview of what it finds now, and rules made by hand, each change confirmed in Mint",
+          "mode": "view",
+          "keywords": [
+            "rules",
+            "custom rules",
+            "cleanup rules",
+            "filters",
+            "old installers",
+            "automation"
           ],
           "preferences": []
         }
@@ -177783,7 +178445,9 @@
       "description": "Get a random reason to say no. \n\nInspired by https://github.com/hotheadhacker/no-as-a-service",
       "icon": "extension-icon.png",
       "author": "nedini",
-      "contributors": [],
+      "contributors": [
+        "0xAdriaTorralba"
+      ],
       "categories": [
         "Productivity",
         "Fun"
@@ -181895,7 +182559,8 @@
         "veilwalker",
         "swhl",
         "raulkolaric",
-        "just_me"
+        "just_me",
+        "kirill-markin"
       ],
       "categories": [
         "Productivity"
@@ -190288,7 +190953,9 @@
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/crisboarna/opera",
       "source": {
         "type": "github-monorepo",
@@ -193576,6 +194243,127 @@
           "label": "Hide symbols starting with 'api'",
           "description": "Hide entries whose symbol path starts with 'api' (for example, 'api.types.is_numeric_dtype').",
           "default": true
+        }
+      ]
+    },
+    {
+      "name": "pangram-ai-detector",
+      "title": "Pangram AI Detector",
+      "description": "Check selected or copied text for AI writing with your Pangram API key and prepaid credits.",
+      "icon": "extension-icon.png",
+      "author": "mygirleatsmayo",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/mygirleatsmayo/pangram-ai-detector",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/pangram-ai-detector",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "check-selected-text",
+          "title": "Check Selected Text",
+          "description": "Check the selected text for AI writing.",
+          "mode": "view",
+          "keywords": [
+            "ai",
+            "detect",
+            "detector",
+            "gpt",
+            "pangram"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "check-clipboard-text",
+          "title": "Check Clipboard Text",
+          "description": "Check the clipboard text for AI writing.",
+          "mode": "view",
+          "keywords": [
+            "ai",
+            "detect",
+            "detector",
+            "gpt",
+            "pangram"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "title": "API Key",
+          "description": "Get your key and add prepaid credits at pangram.com/apikey. Each new Check costs about $0.05 per started 100 words.",
+          "type": "password",
+          "required": true
+        },
+        {
+          "name": "model",
+          "title": "Model",
+          "description": "Choose the Model for new Checks. Default uses Pangram's current Model.",
+          "type": "dropdown",
+          "required": false,
+          "default": "default",
+          "data": [
+            {
+              "title": "Default",
+              "value": "default"
+            },
+            {
+              "title": "Pangram 4",
+              "value": "pangram-4"
+            }
+          ]
+        },
+        {
+          "name": "versionInvalidatesCache",
+          "title": "Cache",
+          "label": "Invalidate older Cached Results",
+          "description": "Ignore older Cached Results after detecting a new Model Version. Reusing a Cached Result costs no credits.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "literalSegmentText",
+          "title": "Segments",
+          "label": "Show Segment text literally",
+          "description": "Show Pangram's Segment text exactly as returned, in a code block. Turn off to render it as Markdown.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "confirmAboveWords",
+          "title": "Confirm Above (Words)",
+          "description": "Ask before sending texts above this estimated word count. Default: 2000.",
+          "type": "textfield",
+          "required": false,
+          "default": "2000"
+        },
+        {
+          "name": "limitedConfidenceBelowWords",
+          "title": "Limited Confidence Below (Words)",
+          "description": "Show the extension's Limited Confidence warning below this word count. Separate from Pangram's Segment confidence. Default: 200.",
+          "type": "textfield",
+          "required": false,
+          "default": "200"
+        },
+        {
+          "name": "timeoutSeconds",
+          "title": "Timeout (Seconds)",
+          "description": "Time to wait for a Check to finish. Default: 300 seconds.",
+          "type": "textfield",
+          "required": false,
+          "default": "300"
         }
       ]
     },
@@ -214906,6 +215694,85 @@
           "title": "sci-hub Instance",
           "description": "By entering anything here, you agree that you are completely responsible for your actions on the instance. The developer of the app and the extension are not responsible for the files listed on or distributed through the entered instance.",
           "placeholder": "https://mysci-hub.com/"
+        }
+      ]
+    },
+    {
+      "name": "pulse",
+      "title": "Pulse",
+      "description": "Search stocks, indices and crypto across US, Hong Kong, China, Japan, Korea and Taiwan in five languages, with live prices and today's chart.",
+      "icon": "extension-icon.png",
+      "author": "fatwang266",
+      "contributors": [],
+      "categories": [
+        "Finance"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/fatwang266/pulse",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/pulse",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-symbol",
+          "title": "Search Symbol",
+          "subtitle": "Pulse",
+          "description": "Find a stock, index or crypto pair by ticker or by name in English, Chinese, Japanese or Korean, and see its price and today's chart.",
+          "mode": "view",
+          "keywords": [
+            "stock",
+            "quote",
+            "ticker",
+            "crypto",
+            "market",
+            "股票",
+            "行情",
+            "株価",
+            "주식"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "nameLanguage",
+          "title": "Name Language",
+          "description": "The language company names are shown in. Search always matches every language.",
+          "type": "dropdown",
+          "required": false,
+          "default": "auto",
+          "data": [
+            {
+              "title": "Match System",
+              "value": "auto"
+            },
+            {
+              "title": "English",
+              "value": "en"
+            },
+            {
+              "title": "简体中文",
+              "value": "zh-Hans"
+            },
+            {
+              "title": "繁體中文",
+              "value": "zh-Hant"
+            },
+            {
+              "title": "日本語",
+              "value": "ja"
+            },
+            {
+              "title": "한국어",
+              "value": "ko"
+            }
+          ]
         }
       ]
     },
@@ -239021,6 +239888,40 @@
       "preferences": []
     },
     {
+      "name": "schemastore",
+      "title": "JSON Schema Store",
+      "description": "Search schemastore.org",
+      "icon": "extension-icon.png",
+      "author": "hasansezertasan",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/hasansezertasan/schemastore",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/schemastore",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-schema-store",
+          "title": "Search Schema Store",
+          "description": "Search the SchemaStore catalog for JSON schemas",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "schoology",
       "title": "Schoology - Grade Viewer",
       "description": "View your courselists, grades, graphs, and individual assignments quickly using Raycast.",
@@ -259503,7 +260404,8 @@
       "icon": "spokenly.png",
       "author": "mattiacolombomc",
       "contributors": [
-        "pernielsentikaer"
+        "pernielsentikaer",
+        "itsdanielsultan"
       ],
       "categories": [
         "Productivity"
@@ -259609,6 +260511,38 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "manage-word-replacements",
+          "title": "Manage Word Replacements",
+          "description": "Search your word replacements, add or remove a rule, and copy a JSON backup.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "cliPath",
+              "type": "file",
+              "required": false,
+              "title": "Spokenly CLI Path",
+              "description": "Optional: choose the official Spokenly CLI executable. Otherwise /usr/local/bin/spokenly and /opt/homebrew/bin/spokenly are checked."
+            }
+          ]
+        },
+        {
+          "name": "add-word-replacement",
+          "title": "Add Word Replacement",
+          "description": "Add a literal or regular-expression correction (pre-filled from selected text) and verify it was saved.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "cliPath",
+              "type": "file",
+              "required": false,
+              "title": "Spokenly CLI Path",
+              "description": "Optional: choose the official Spokenly CLI executable. Otherwise /usr/local/bin/spokenly and /opt/homebrew/bin/spokenly are checked."
+            }
+          ]
         }
       ],
       "preferences": [
@@ -262580,9 +263514,13 @@
         "ViGeng",
         "alschetinin",
         "xmok",
-        "benhepburn"
+        "benhepburn",
+        "olafvanmidden"
       ],
-      "categories": [],
+      "categories": [
+        "Developer Tools",
+        "System"
+      ],
       "license": "MIT",
       "platforms": [
         "macOS"
@@ -271248,7 +272186,9 @@
       "description": "Start T3 Code sessions, search threads, and jump to the ones waiting on you.",
       "icon": "icon.png",
       "author": "skilux",
-      "contributors": [],
+      "contributors": [
+        "yoshiki_ozaki"
+      ],
       "categories": [
         "Developer Tools"
       ],
@@ -271939,6 +272879,94 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "tablestudio",
+      "title": "TableStudio",
+      "description": "Search your TableStudio connections, tables and views and open them straight in the app, and start or stop your local database servers.",
+      "icon": "command-icon.png",
+      "author": "johntan",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/johntan/tablestudio",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/tablestudio",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search",
+          "title": "Search Databases",
+          "subtitle": "TableStudio",
+          "description": "Find a connection, table or view and open it in TableStudio. Filter by kind in the search bar, or press ↵ on a connection to browse just its tables.",
+          "mode": "view",
+          "keywords": [
+            "connection",
+            "connections",
+            "table",
+            "tables",
+            "view",
+            "views",
+            "database",
+            "db",
+            "postgres",
+            "mysql",
+            "sqlite"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "localdatabases",
+          "title": "Manage Local Databases",
+          "subtitle": "TableStudio",
+          "description": "Start or stop the database servers TableStudio runs on this Mac.",
+          "mode": "view",
+          "keywords": [
+            "local",
+            "server",
+            "start",
+            "stop",
+            "postgres",
+            "mysql",
+            "sqlite"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "token",
+          "type": "password",
+          "required": false,
+          "title": "Access Token",
+          "description": "Usually filled in for you by the Connect Raycast button in TableStudio → Settings → Search & Launchers. Paste it here only if you'd rather set it manually."
+        },
+        {
+          "name": "port",
+          "type": "textfield",
+          "required": false,
+          "title": "Port",
+          "description": "Only needed if you set the token manually and changed the port from 7432."
+        },
+        {
+          "name": "cacheResults",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "title": "Offline Access",
+          "label": "Keep a copy for when TableStudio isn't running",
+          "description": "Stores the list inside Raycast so you can still search when the app is closed. Turn off to keep nothing at rest."
+        }
+      ]
     },
     {
       "name": "tabletop-dice-roller",
@@ -300934,7 +301962,8 @@
         "sebdanielsson",
         "1weiho",
         "thomas-forbes",
-        "0xdhrv"
+        "0xdhrv",
+        "Undolog"
       ],
       "categories": [],
       "license": "MIT",
@@ -300942,7 +301971,7 @@
         "macOS",
         "Windows"
       ],
-      "version": "2.20.0",
+      "version": "2.21.0",
       "storeUrl": "https://www.raycast.com/MaxLeiter/vercast",
       "source": {
         "type": "github-monorepo",
@@ -300969,8 +301998,8 @@
         },
         {
           "name": "menu-bar-deployments",
-          "title": "Menu Bar Deployments",
-          "description": "View recent deployments in the menu bar",
+          "title": "Deploy & Status",
+          "description": "View recent deployments and Vercel's service status in the menu bar",
           "mode": "menu-bar",
           "keywords": [],
           "preferences": [
@@ -301063,6 +302092,14 @@
           "name": "ai-gateway-playground",
           "title": "AI Gateway Playground",
           "description": "Send a prompt through Vercel AI Gateway",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "service-status",
+          "title": "Service Status",
+          "description": "Check the status of Vercel services, active incidents and scheduled maintenance",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -318998,6 +320035,59 @@
           "subtitle": "South African Fake ID Number Generator",
           "description": "Create a fake South African ID number and copy it to your clipboard",
           "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "zabreuit-tools",
+      "title": "Zabreuit Web Tools",
+      "description": "Turn any web page into clean Markdown or structured data, audit its SEO metadata, and find publicly listed business contacts.",
+      "icon": "extension-icon.png",
+      "author": "jose_antonio_abreu_yanez",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/jose_antonio_abreu_yanez/zabreuit-tools",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/zabreuit-tools",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "quick-scraper",
+          "title": "Quick Web Scraper",
+          "subtitle": "Convert a URL to clean Markdown or JSON",
+          "description": "Extract readable text, structured data or RAG-ready markdown from any URL.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "seo-auditor",
+          "title": "SEO & OpenGraph Auditor",
+          "subtitle": "Audit metadata and social tags",
+          "description": "Check titles, descriptions, canonical URLs and OpenGraph tags of any page.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "b2b-extractor",
+          "title": "B2B Contact Extractor",
+          "subtitle": "Find public emails, phones and socials",
+          "description": "Extract publicly listed business emails, phone numbers, social profiles and detected technologies.",
+          "mode": "view",
           "keywords": [],
           "preferences": []
         }
