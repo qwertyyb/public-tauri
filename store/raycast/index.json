@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-12T00:32:45.205Z",
+  "generatedAt": "2026-11-12T23:32:32.592Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "21b66366e731545cd5c01a3100954bacbb7e7e2f"
+    "commit": "0721a4296480afc863f16e6caed4109cc3ef305c"
   },
-  "count": 3566,
+  "count": 3569,
   "extensions": [
     {
       "name": "0x0",
@@ -11741,6 +11741,130 @@
       ]
     },
     {
+      "name": "app-icons",
+      "title": "App Icons Finder",
+      "description": "Search the App Store and download official app icons as PNG.",
+      "icon": "icon.png",
+      "author": "uwarp",
+      "contributors": [],
+      "categories": [
+        "Design Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/uwarp/app-icons",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/app-icons",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-app-icons",
+          "title": "Search App Icons",
+          "description": "Find App Store icons and save them as PNG.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "country",
+          "title": "App Store Region",
+          "description": "Default storefront used for search.",
+          "type": "dropdown",
+          "required": false,
+          "default": "US",
+          "data": [
+            {
+              "title": "United States",
+              "value": "US"
+            },
+            {
+              "title": "China",
+              "value": "CN"
+            },
+            {
+              "title": "Hong Kong",
+              "value": "HK"
+            },
+            {
+              "title": "Taiwan",
+              "value": "TW"
+            },
+            {
+              "title": "Japan",
+              "value": "JP"
+            },
+            {
+              "title": "Korea",
+              "value": "KR"
+            },
+            {
+              "title": "United Kingdom",
+              "value": "GB"
+            },
+            {
+              "title": "Germany",
+              "value": "DE"
+            },
+            {
+              "title": "France",
+              "value": "FR"
+            },
+            {
+              "title": "Canada",
+              "value": "CA"
+            },
+            {
+              "title": "Australia",
+              "value": "AU"
+            },
+            {
+              "title": "Singapore",
+              "value": "SG"
+            },
+            {
+              "title": "India",
+              "value": "IN"
+            },
+            {
+              "title": "Brazil",
+              "value": "BR"
+            },
+            {
+              "title": "Spain",
+              "value": "ES"
+            },
+            {
+              "title": "Italy",
+              "value": "IT"
+            },
+            {
+              "title": "Mexico",
+              "value": "MX"
+            },
+            {
+              "title": "Netherlands",
+              "value": "NL"
+            },
+            {
+              "title": "Sweden",
+              "value": "SE"
+            },
+            {
+              "title": "Turkey",
+              "value": "TR"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "app-keeper-manager",
       "title": "App Keeper Manager",
       "description": "This extention offers users the ability to manage currently running applications, with options to choose which apps to keep open and which to close during cleanup. It's especially suited for users looking to optimize their work environment and increase productivity. Users can set apps to “Always Keep,” ensuring they aren't closed during cleanup operations. The extension also provides an intuitive interface to add or remove apps from the preset keep list and features a one-click function to close non-kept apps.",
@@ -17292,6 +17416,65 @@
           "label": "Enable debug mode for troubleshooting",
           "description": "Enable debug mode for troubleshooting",
           "default": false
+        }
+      ]
+    },
+    {
+      "name": "atom",
+      "title": "Atom",
+      "description": "Manage Contact Profiles and Domains in atom.com",
+      "icon": "atom-logo.png",
+      "author": "xmok",
+      "contributors": [],
+      "categories": [
+        "Data"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/xmok/atom",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/atom",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "check-domain-availability",
+          "title": "Check Domain Availability",
+          "description": "Returns whether Atom can register the domain",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "contact-profiles",
+          "title": "Contact Profiles",
+          "description": "Manage saved contact info for quick access",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "domain-manager",
+          "title": "Domain Manager",
+          "description": "Domain Manager",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "api_token",
+          "title": "API Token",
+          "placeholder": "xxx...xxx",
+          "description": "Atom API Token",
+          "required": true,
+          "type": "password"
         }
       ]
     },
@@ -90809,7 +90992,8 @@
       "contributors": [
         "damian_duchnowski",
         "effektsvk",
-        "samuelkraft"
+        "samuelkraft",
+        "0xdhrv"
       ],
       "categories": [],
       "license": "MIT",
@@ -156390,7 +156574,7 @@
     {
       "name": "makedeck",
       "title": "Makedeck",
-      "description": "See your makedeck services with live logs, open them in Terminal, restart or stop them.",
+      "description": "See your makedeck services with live logs, open them in Terminal, restart or stop them, and spot dev servers started outside makedeck.",
       "icon": "icon.png",
       "author": "SemL",
       "contributors": [],
@@ -168986,7 +169170,7 @@
     {
       "name": "monobank",
       "title": "monobank",
-      "description": "View currency rates and all your accounts in monobank.",
+      "description": "View currency rates, all your accounts and their transactions in monobank, set monthly budgets per category, see your subscriptions, keep a rate, a jar or your next subscription charge in the menu bar, and ask AI about them. Unofficial, not affiliated with mono.",
       "icon": "command-icon.png",
       "author": "danulqua",
       "contributors": [
@@ -169018,25 +169202,237 @@
           "preferences": []
         },
         {
+          "name": "convert",
+          "title": "Convert Currency",
+          "subtitle": "monobank",
+          "description": "Convert an amount at monobank's rates, e.g. Convert 100 USD.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "accounts",
           "title": "Show Accounts",
           "subtitle": "monobank",
           "description": "All your accounts in monobank.",
           "mode": "view",
           "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "statement",
+          "title": "Show Statement",
+          "subtitle": "monobank",
+          "description": "Transactions of your monobank accounts and jars.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "budgets",
+          "title": "Show Budgets",
+          "subtitle": "monobank",
+          "description": "Monthly spending limits per category for your monobank accounts.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "subscriptions",
+          "title": "Show Subscriptions",
+          "subtitle": "monobank",
+          "description": "Recurring charges on your monobank cards, with their amount and next expected date.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "sync-statements",
+          "title": "Sync Statements",
+          "subtitle": "monobank",
+          "description": "Keeps the statements of all your accounts and jars up to date in the background: the last 31 days are refreshed daily, and older history is loaded up to \"Keep Statements For\", one request every 2 minutes.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "rates-menu-bar",
+          "title": "Currency Rate Menu Bar",
+          "subtitle": "monobank",
+          "description": "A monobank currency rate in the menu bar, with the other rates in its menu.",
+          "mode": "menu-bar",
+          "keywords": [],
           "preferences": [
             {
-              "name": "token",
-              "type": "password",
-              "title": "Access Token",
-              "description": "Your monobank Access Token",
-              "placeholder": "Enter Your Access Token",
-              "required": true
+              "name": "rateTitle",
+              "title": "Menu Bar Title",
+              "description": "Which rate is shown next to the flag. Pairs with only a cross rate always show it.",
+              "type": "dropdown",
+              "required": false,
+              "default": "sell",
+              "data": [
+                {
+                  "title": "Sell",
+                  "value": "sell"
+                },
+                {
+                  "title": "Buy",
+                  "value": "buy"
+                },
+                {
+                  "title": "Buy / Sell",
+                  "value": "buySell"
+                },
+                {
+                  "title": "Icon Only",
+                  "value": "none"
+                }
+              ]
+            },
+            {
+              "name": "showRateChange",
+              "title": "Change in Title",
+              "label": "Show change since yesterday",
+              "description": "Add how much the rate in the title changed since the previous day, e.g. ↑0.12. The menu always shows it.",
+              "type": "checkbox",
+              "required": false,
+              "default": false
+            }
+          ]
+        },
+        {
+          "name": "jar-menu-bar",
+          "title": "Jar Progress Menu Bar",
+          "subtitle": "monobank",
+          "description": "A monobank jar's progress in the menu bar, with your other jars in its menu.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "jarTitle",
+              "title": "Menu Bar Title",
+              "description": "What is shown next to the progress icon. Jars without a goal show their balance.",
+              "type": "dropdown",
+              "required": false,
+              "default": "percentage",
+              "data": [
+                {
+                  "title": "Percentage",
+                  "value": "percentage"
+                },
+                {
+                  "title": "Balance",
+                  "value": "balance"
+                },
+                {
+                  "title": "Balance and Goal",
+                  "value": "balanceAndGoal"
+                },
+                {
+                  "title": "Icon Only",
+                  "value": "none"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "subscriptions-menu-bar",
+          "title": "Subscriptions Menu Bar",
+          "subtitle": "monobank",
+          "description": "Your next monobank subscription charge in the menu bar, with all your subscriptions in its menu.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "subscriptionsTitle",
+              "title": "Menu Bar Title",
+              "description": "What is shown next to the icon.",
+              "type": "dropdown",
+              "required": false,
+              "default": "nextCharge",
+              "data": [
+                {
+                  "title": "Next Charge",
+                  "value": "nextCharge"
+                },
+                {
+                  "title": "Next Charge and Price",
+                  "value": "nextChargeAndPrice"
+                },
+                {
+                  "title": "Monthly Total",
+                  "value": "monthlyTotal"
+                },
+                {
+                  "title": "Upcoming Count",
+                  "value": "upcomingCount"
+                },
+                {
+                  "title": "Icon Only",
+                  "value": "none"
+                }
+              ]
             }
           ]
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "token",
+          "type": "password",
+          "title": "Access Token",
+          "description": "Your monobank Access Token. Required for the \"Show Accounts\", \"Show Statement\", \"Show Budgets\", \"Show Subscriptions\", \"Sync Statements\", \"Jar Progress Menu Bar\" and \"Subscriptions Menu Bar\" commands and for AI questions about your accounts, transactions, budgets and subscriptions.",
+          "placeholder": "Enter Your Access Token",
+          "required": false
+        },
+        {
+          "name": "statementRetention",
+          "type": "dropdown",
+          "title": "Keep Statements For",
+          "description": "How long transactions stay stored on this device. \"Sync Statements\" loads history up to this length (a year for Unlimited). Older ones are deleted the next time a statement is read. Unlimited never deletes them, so storage keeps growing.",
+          "required": false,
+          "default": "3",
+          "data": [
+            {
+              "title": "1 Month",
+              "value": "1"
+            },
+            {
+              "title": "3 Months",
+              "value": "3"
+            },
+            {
+              "title": "6 Months",
+              "value": "6"
+            },
+            {
+              "title": "1 Year",
+              "value": "12"
+            },
+            {
+              "title": "Unlimited (uses more disk space)",
+              "value": "unlimited"
+            }
+          ]
+        },
+        {
+          "name": "fullName",
+          "type": "textfield",
+          "title": "Full Name for Requisites",
+          "description": "Your full name for \"Copy Requisites\" in \"Show Accounts\". Overrides the name from monobank, which has no patronymic.",
+          "placeholder": "Прізвище Ім'я По батькові",
+          "required": false
+        },
+        {
+          "name": "taxId",
+          "type": "textfield",
+          "title": "Tax ID (РНОКПП)",
+          "description": "Your tax ID for \"Copy Requisites\" in \"Show Accounts\". Left out when empty.",
+          "placeholder": "1234567890",
+          "required": false
+        }
+      ]
     },
     {
       "name": "monocle",
@@ -194066,9 +194462,9 @@
       "title": "Color Palette Manager",
       "description": "Create, manage, and organize color palettes with AI-powered color generation.",
       "icon": "extension-icon.png",
-      "author": "douglas-pires",
+      "author": "elibattistoni",
       "contributors": [
-        "elibattistoni"
+        "douglas-pires"
       ],
       "categories": [
         "Design Tools",
@@ -194076,9 +194472,10 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
-      "storeUrl": "https://www.raycast.com/douglas-pires/palette-colors",
+      "storeUrl": "https://www.raycast.com/elibattistoni/palette-colors",
       "source": {
         "type": "github-monorepo",
         "repo": "raycast/extensions",
@@ -252873,6 +253270,28 @@
       ],
       "preferences": [
         {
+          "name": "openLinksIn",
+          "title": "Open Links In",
+          "description": "Choose Slack App if automatic detection opens channels in your browser despite Slack being installed.",
+          "type": "dropdown",
+          "required": false,
+          "default": "auto",
+          "data": [
+            {
+              "title": "Automatic",
+              "value": "auto"
+            },
+            {
+              "title": "Slack App",
+              "value": "slack"
+            },
+            {
+              "title": "Browser",
+              "value": "browser"
+            }
+          ]
+        },
+        {
           "description": "View extension's README for instructions.",
           "name": "accessToken",
           "placeholder": "xoxp-...",
@@ -255645,6 +256064,78 @@
       ]
     },
     {
+      "name": "snow-report",
+      "title": "Snow Report",
+      "description": "Snow forecasts for ski resorts worldwide, comparing base and summit.",
+      "icon": "chairlift-icon-c.png",
+      "author": "jonathan_hunt",
+      "contributors": [],
+      "categories": [
+        "Data",
+        "Fun"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/jonathan_hunt/snow-report",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/snow-report",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "snow-report",
+          "title": "Search Resorts",
+          "subtitle": "Snow Report",
+          "description": "Search ski resorts worldwide and compare snow forecasts at the base and summit.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "snow-menu-bar",
+          "title": "Favorites in Menu Bar",
+          "subtitle": "Snow Report",
+          "description": "Show the next 24 hours of snow at your favorite resorts in the menu bar.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "add-custom-resort",
+          "title": "Add Resort",
+          "subtitle": "Snow Report",
+          "description": "Add a resort that isn't listed, by its coordinates and base and summit elevations.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "units",
+          "title": "Units",
+          "description": "Units for snowfall, depth, temperature, elevation and wind.",
+          "type": "dropdown",
+          "required": false,
+          "default": "metric",
+          "data": [
+            {
+              "title": "Metric (cm, °C, m, km/h)",
+              "value": "metric"
+            },
+            {
+              "title": "Imperial (in, °F, ft, mph)",
+              "value": "imperial"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "soaring-symbols",
       "title": "Soaring Symbols",
       "description": "Browse and search a curated collection of airline branding assets — logos, icons, and tails in SVG",
@@ -255681,7 +256172,7 @@
           "name": "airline-info",
           "title": "Airline Information",
           "subtitle": "Soaring Symbols",
-          "description": "View detailed airline information including name, IATA, ICAO, country, website, and related assets.",
+          "description": "View detailed airline information including name, IATA, ICAO, callsign, founding year, country, alliance, hubs, and website.",
           "mode": "view",
           "keywords": [],
           "preferences": []
