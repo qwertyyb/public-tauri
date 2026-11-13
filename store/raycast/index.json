@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-12T23:32:32.592Z",
+  "generatedAt": "2026-11-13T23:31:51.820Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "0721a4296480afc863f16e6caed4109cc3ef305c"
+    "commit": "390960f1f66e25a4fdaa8bf18e3c371f8588e9a0"
   },
-  "count": 3569,
+  "count": 3578,
   "extensions": [
     {
       "name": "0x0",
@@ -15958,6 +15958,92 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "argo",
+      "title": "Argo",
+      "description": "Continue existing Agent sessions through Argo bridges or control Herdr terminals directly in Raycast.",
+      "icon": "icon.png",
+      "author": "fernando_jacob",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/fernando_jacob/argo",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/argo",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "sessions",
+          "title": "Agent Sessions",
+          "subtitle": "Argo",
+          "description": "Browse Argo and Herdr sessions, view output, send tasks, and respond to prompts inside Raycast.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "recent",
+          "title": "Recent Agent Session",
+          "subtitle": "Argo",
+          "description": "Continue the last session opened in Argo.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "connect",
+          "title": "Connect a Server",
+          "subtitle": "Argo",
+          "description": "Start with an uninstalled Agent, discover ordinary forwarded ports and pair once.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "configPath",
+          "title": "Client Configuration File",
+          "description": "Private JSON file containing the local hub URL and token. Defaults to ~/.argo/client.json. Credentials are never stored in Raycast preferences.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "~/.argo/client.json"
+        },
+        {
+          "name": "portStart",
+          "title": "Discovery Port Range Start",
+          "description": "Only Mac loopback ports are checked. Forward server bridges into this range. Maximum 64 ports.",
+          "type": "textfield",
+          "required": false,
+          "default": "49120"
+        },
+        {
+          "name": "portEnd",
+          "title": "Discovery Port Range End",
+          "description": "Last Mac loopback port to check for signed Argo bridge identities.",
+          "type": "textfield",
+          "required": false,
+          "default": "49139"
+        },
+        {
+          "name": "hcSocketPath",
+          "title": "Herdr Socket Path",
+          "description": "Optional absolute path to an existing herdr-core Unix socket. Leave blank for HC_SOCKET or the official default session path. Discovery never starts a core.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "Default Herdr session socket"
+        }
+      ]
     },
     {
       "name": "argocd",
@@ -36625,7 +36711,9 @@
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/EvanZhouDev/cerebras",
       "source": {
         "type": "github-monorepo",
@@ -36952,6 +37040,231 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "chainscope",
+      "title": "ChainScope",
+      "description": "Decode Ethereum and Solana transactions, calldata, and addresses from your clipboard, with ABI resolution, proxy and multisig detection, and event-log decoding.",
+      "icon": "icon.png",
+      "author": "auralshin",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/auralshin/chainscope",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/chainscope",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "decode",
+          "title": "Decode",
+          "subtitle": "ChainScope",
+          "description": "Reads the clipboard and works out what you pasted (tx hash, calldata, address, ENS name, number, or Solana signature), then decodes it.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "convert-units",
+          "title": "Convert Units",
+          "subtitle": "ChainScope",
+          "description": "wei, gwei, ether, hex to decimal, and bytes32 padding, updated as you type.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "hash-selector",
+          "title": "Hash & Selector",
+          "subtitle": "ChainScope",
+          "description": "keccak256 of a string and the 4-byte function selector / event topic for a signature.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-explorer",
+          "title": "Search Explorer",
+          "subtitle": "ChainScope",
+          "description": "Detects an address, tx hash, or block and opens it in a block explorer.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-tokens",
+          "title": "Search Tokens",
+          "subtitle": "ChainScope",
+          "description": "Search popular tokens by symbol, name, or address across EVM chains and Solana, with verification and audit info.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-chains",
+          "title": "Search Chains",
+          "subtitle": "ChainScope",
+          "description": "Search every supported chain by name or id, including your custom chains. Copy the id or RPC, or open the explorer.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "manage-networks",
+          "title": "Manage Networks",
+          "subtitle": "ChainScope",
+          "description": "Set an RPC for any network and add your own, each with its own ID, name, RPC, and token.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "defaultChain",
+          "title": "EVM Default Chain",
+          "description": "Chain used for transactions, ABIs, and explorer links. For other chains and RPCs, use the Manage Networks command. A default set there wins over this one.",
+          "type": "dropdown",
+          "required": false,
+          "default": "1",
+          "data": [
+            {
+              "title": "Ethereum Mainnet",
+              "value": "1"
+            },
+            {
+              "title": "Optimism",
+              "value": "10"
+            },
+            {
+              "title": "BNB Smart Chain",
+              "value": "56"
+            },
+            {
+              "title": "Polygon",
+              "value": "137"
+            },
+            {
+              "title": "Base",
+              "value": "8453"
+            },
+            {
+              "title": "Arbitrum One",
+              "value": "42161"
+            },
+            {
+              "title": "Sepolia (testnet)",
+              "value": "11155111"
+            }
+          ]
+        },
+        {
+          "name": "solanaCluster",
+          "title": "Solana Cluster",
+          "description": "Cluster used for Solana signatures, addresses, and Solscan links.",
+          "type": "dropdown",
+          "required": false,
+          "default": "mainnet-beta",
+          "data": [
+            {
+              "title": "Mainnet Beta",
+              "value": "mainnet-beta"
+            },
+            {
+              "title": "Devnet",
+              "value": "devnet"
+            },
+            {
+              "title": "Testnet",
+              "value": "testnet"
+            }
+          ]
+        },
+        {
+          "name": "solanaRpc",
+          "title": "Solana RPC URL",
+          "description": "Your own Solana RPC, used instead of the selected cluster's public one. Also works for SVM rollups like Eclipse.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "https://my-solana-rpc.example.com"
+        },
+        {
+          "name": "etherscanApiKey",
+          "title": "Etherscan API Key",
+          "description": "Optional. Tried first when set. Without a key, ABIs come from the sources below.",
+          "type": "password",
+          "required": false,
+          "placeholder": "Optional"
+        },
+        {
+          "name": "useSourcify",
+          "title": "ABI Sources",
+          "label": "Sourcify",
+          "description": "Used in this order after Etherscan. A source you turn off receives none of your data.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "useBlockscout",
+          "title": "",
+          "label": "Blockscout",
+          "description": "Built in for Ethereum, Optimism, and Sepolia.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "useSignatureDb",
+          "title": "",
+          "label": "Signature Database",
+          "description": "Last resort for function and event names. Matches are marked best guess.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "sourcifyUrl",
+          "title": "Sourcify URL",
+          "description": "Optional. Your own Sourcify server.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "https://sourcify.dev/server"
+        },
+        {
+          "name": "signatureDbUrl",
+          "title": "Signature Database URL",
+          "description": "Optional. Your own signature database.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "https://api.openchain.xyz/signature-database/v1/lookup"
+        },
+        {
+          "name": "tokenListUrl",
+          "title": "EVM Token List URL",
+          "description": "Optional. Any list in the Uniswap token list format.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "https://tokens.uniswap.org"
+        },
+        {
+          "name": "jupiterUrl",
+          "title": "Solana Token Search URL",
+          "description": "Optional. Your own Jupiter-compatible search.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "https://datapi.jup.ag/v1/assets/search"
+        }
+      ]
     },
     {
       "name": "chainscout",
@@ -60850,19 +61163,21 @@
     {
       "name": "day-one",
       "title": "Day One",
-      "description": "Add entries to Day One",
+      "description": "Search, write, and sync your Day One journals and Daily Chat with the Day One CLI",
       "icon": "day-one.png",
       "author": "AntonNiklasson",
       "contributors": [
         "bestemic",
-        "Fizzbow"
+        "Fizzbow",
+        "chrismessina"
       ],
       "categories": [
         "Productivity"
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/AntonNiklasson/day-one",
       "source": {
@@ -60873,16 +61188,88 @@
       },
       "commands": [
         {
+          "name": "search-entries",
+          "title": "Search Entries",
+          "subtitle": "Day One",
+          "description": "Search your Day One entries by meaning, or browse the newest ones",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "add-entry",
           "title": "Add Entry",
           "subtitle": "Day One",
-          "description": "Add a new entry to one of your journals in Day One",
+          "description": "Write a new entry in one of your Day One journals",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "syncAfterSaving",
+              "type": "checkbox",
+              "required": false,
+              "default": true,
+              "title": "Sync",
+              "label": "Sync after saving",
+              "description": "Upload the new entry to Day One right away"
+            }
+          ]
+        },
+        {
+          "name": "add-to-daily-chat",
+          "title": "Add to Daily Chat",
+          "subtitle": "Day One",
+          "description": "Add a message to today's Daily Chat in Day One",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "sync",
+          "title": "Sync Day One",
+          "subtitle": "Day One",
+          "description": "Download new entries and upload the ones you wrote here",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "doctor",
+          "title": "Run Doctor",
+          "subtitle": "Day One",
+          "description": "Install the Day One CLI, sign in, and fix setup problems",
           "mode": "view",
           "keywords": [],
           "preferences": []
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "cliPath",
+          "type": "file",
+          "required": false,
+          "title": "Day One CLI",
+          "description": "Leave empty to find the Day One CLI automatically"
+        },
+        {
+          "name": "verboseLogging",
+          "title": "Debug Logging",
+          "label": "Enable extra diagnostics in the console",
+          "description": "Show detailed logs in the console for debugging.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "strictRedaction",
+          "type": "checkbox",
+          "required": false,
+          "title": "Strict Redaction",
+          "label": "Also hide URL query strings and fragments in logs",
+          "description": "Turn on before reproducing an issue, then share only the new log lines.",
+          "default": false
+        }
+      ]
     },
     {
       "name": "daycal-google-calendar",
@@ -67305,7 +67692,8 @@
         "xmok",
         "heytommy",
         "christianmagill",
-        "Berenger"
+        "Berenger",
+        "clins1994"
       ],
       "categories": [
         "Productivity"
@@ -67381,7 +67769,7 @@
           "name": "search-extensions",
           "title": "Search Extensions",
           "subtitle": "Dia",
-          "description": "Search the browser extensions installed in each Dia profile and open them",
+          "description": "Search the browser extensions installed in Dia and open them",
           "mode": "view",
           "keywords": [],
           "preferences": [
@@ -85912,7 +86300,7 @@
     {
       "name": "figa",
       "title": "Figa",
-      "description": "Access your Figa workspace from Raycast.",
+      "description": "Track bills and expenses, check monthly forecasts, and mark confirmed bills paid from Raycast.",
       "icon": "icon.png",
       "author": "figa",
       "contributors": [],
@@ -85925,7 +86313,7 @@
         "macOS",
         "Windows"
       ],
-      "version": "0.1.0",
+      "version": "0.2.0",
       "storeUrl": "https://www.raycast.com/figa/figa",
       "source": {
         "type": "github-monorepo",
@@ -85953,7 +86341,7 @@
         {
           "name": "show-monthly-summary",
           "title": "Show Monthly Summary",
-          "description": "Review recent monthly expense totals for the current workspace.",
+          "description": "Review monthly totals and forecasts, then copy a month summary with a Figa link.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -85978,6 +86366,14 @@
           "name": "search-recipients",
           "title": "Search Recipients",
           "description": "Search Figa recipients for the current workspace.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-tags",
+          "title": "Search Tags",
+          "description": "Find workspace tags, copy their names and open them in Figa.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -94767,6 +95163,94 @@
           "required": false,
           "default": false,
           "label": "Enable Debug Logging"
+        }
+      ]
+    },
+    {
+      "name": "frihet",
+      "title": "Frihet ERP",
+      "description": "Search invoices, clients, products, and review your daily operational business brief in Frihet ERP directly from the keyboard.",
+      "icon": "icon.png",
+      "author": "viktor_berthelius",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Finance"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/viktor_berthelius/frihet",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/frihet",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "business-brief",
+          "title": "Business Brief",
+          "subtitle": "Frihet ERP",
+          "description": "Daily operational brief: what to review today in your business and why, with explicit coverage and draft vs issued separation.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-invoices",
+          "title": "Search Invoices",
+          "subtitle": "Frihet ERP",
+          "description": "Search and filter invoices by status, inspect line items and tax breakdown, copy invoice numbers, or open in Frihet.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-clients",
+          "title": "Search Clients",
+          "subtitle": "Frihet ERP",
+          "description": "Search clients, inspect contact details and recent CRM activities, copy email or tax ID, and open in Frihet.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-products",
+          "title": "Search Products",
+          "subtitle": "Frihet ERP",
+          "description": "Search catalogue products and services, filter by active status with legacy fallback, and inspect pricing and tax rates.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "switch-workspace",
+          "title": "Switch Workspace & Clear Cache",
+          "subtitle": "Frihet ERP",
+          "description": "Inspect the connected Frihet workspace, verify tenant cache isolation, purge cached records, or switch API credentials.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "type": "password",
+          "required": true,
+          "title": "Frihet API Key",
+          "description": "Your Frihet API key (starts with fri_). Generate a scoped key in Frihet -> Settings -> API Keys.",
+          "placeholder": "fri_..."
+        },
+        {
+          "name": "apiBaseUrl",
+          "type": "textfield",
+          "required": false,
+          "default": "https://api.frihet.io/v1",
+          "title": "API Base URL",
+          "description": "Canonical Frihet v1 REST endpoint (leave default unless testing against a staging environment)."
         }
       ]
     },
@@ -120385,6 +120869,78 @@
       ]
     },
     {
+      "name": "highseat",
+      "title": "Highseat",
+      "description": "See your website analytics and manage notes, goals, funnels and reports from Raycast. Requires a Highseat account.",
+      "icon": "icon.png",
+      "author": "piotrkulpinski",
+      "contributors": [],
+      "categories": [
+        "Data",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/piotrkulpinski/highseat",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/highseat",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "view-sites",
+          "title": "View Sites",
+          "description": "Browse your sites and compare their traffic for a period.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "view-stats",
+          "title": "View Stats",
+          "description": "See a site's visitors, top pages, sources and countries for a period.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "live-visitors",
+          "title": "Live Visitors",
+          "subtitle": "Highseat",
+          "description": "Keep the number of visitors on a site right now in your menu bar.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "view-goals",
+          "title": "View Goals",
+          "description": "See how many visitors reached each of a site's goals.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        },
+        {
+          "name": "add-note",
+          "title": "Add Note",
+          "description": "Pin a note to a day of a site's chart.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "icon.png",
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "hiit",
       "title": "HIIT",
       "description": "High Intensity Interval Training directly from Raycast",
@@ -120528,7 +121084,9 @@
         "Communication"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/jns/himalaya",
       "source": {
         "type": "github-monorepo",
@@ -122312,7 +122870,7 @@
     {
       "name": "hora-calendar",
       "title": "Hora Calendar",
-      "description": "The official hora Calendar extension. Create events and tasks in plain language and join your next meeting, without leaving Raycast.",
+      "description": "The official hora Calendar extension. Create events and tasks in plain language, join your next meeting, run Focus and share your availability, without leaving Raycast.",
       "icon": "icon.png",
       "author": "szamski",
       "contributors": [],
@@ -122395,6 +122953,72 @@
             "video call",
             "conference",
             "standup"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "start-focus",
+          "title": "Start Focus",
+          "subtitle": "hora Calendar",
+          "description": "Start a Focus session in hora, optionally with a length in minutes.",
+          "mode": "no-view",
+          "keywords": [
+            "focus",
+            "pomodoro",
+            "timer",
+            "deep work",
+            "concentrate",
+            "start timer"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "stop-focus",
+          "title": "Stop Focus",
+          "subtitle": "hora Calendar",
+          "description": "Stop the running Focus session in hora.",
+          "mode": "no-view",
+          "keywords": [
+            "focus",
+            "pomodoro",
+            "timer",
+            "stop timer",
+            "end focus",
+            "break"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "copy-availability",
+          "title": "Copy My Availability",
+          "subtitle": "hora Calendar",
+          "description": "Copy your free time slots as text, ready to paste into a message.",
+          "mode": "no-view",
+          "keywords": [
+            "availability",
+            "free time",
+            "free slots",
+            "schedule meeting",
+            "open slots",
+            "when am i free"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "todays-agenda",
+          "title": "Today's Agenda",
+          "subtitle": "hora Calendar",
+          "description": "See what is left today and tomorrow, then join, RSVP, copy a link or delete an event.",
+          "mode": "view",
+          "keywords": [
+            "agenda",
+            "today",
+            "schedule",
+            "events",
+            "what's next",
+            "rsvp",
+            "tomorrow",
+            "calendar"
           ],
           "preferences": []
         }
@@ -128407,6 +129031,45 @@
       "preferences": []
     },
     {
+      "name": "input-switcher",
+      "title": "Keyboard Layout Switcher",
+      "description": "Extension to switch keyboard layouts",
+      "icon": "command-icon.png",
+      "author": "lucaschultz",
+      "contributors": [],
+      "categories": [],
+      "license": "MIT",
+      "platforms": [],
+      "storeUrl": "https://www.raycast.com/lucaschultz/input-switcher",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/input-switcher",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "switch",
+          "title": "Switch Layouts",
+          "subtitle": "Keyboard",
+          "description": "Show the active keyboard layout and switch to other available layouts",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle",
+          "title": "Toggle Next Layout",
+          "subtitle": "Keyboard",
+          "description": "Toggle to the next keyboard layout",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "inspiration-image",
       "title": "Inspiration Image",
       "description": "Compose selected text or clipboard screenshots over a chosen background.",
@@ -131297,6 +131960,131 @@
       ]
     },
     {
+      "name": "ipdata",
+      "title": "ipdata IP Lookup",
+      "description": "Look up any IP address or hostname with ipdata: city and country, operator (ASN), owner, coordinates, local time, currency, and with an API key VPN, proxy, Tor and threat intelligence. Free tier needs no key.",
+      "icon": "extension-icon.png",
+      "author": "jonathan_k",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/jonathan_k/ipdata",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/ipdata",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "lookup-ip",
+          "title": "Look Up IP",
+          "subtitle": "ipdata",
+          "description": "Look up an IPv4 or IPv6 address or a hostname: location, operator, owner, coordinates, local time and threat data.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "lookup-selected-ip",
+          "title": "Look Up Selected IP",
+          "subtitle": "ipdata",
+          "description": "Look up the IP address selected in the frontmost app (or, with nothing selected, the one in the clipboard) and show its city, country and operator. Give it a hotkey for a hover-like workflow on the desktop.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "my-ip",
+          "title": "My IP",
+          "subtitle": "ipdata",
+          "description": "Show this machine's public IPv4 and IPv6 addresses with their location and operator.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "lookup-clipboard-ip",
+          "title": "Look Up Clipboard IP",
+          "subtitle": "ipdata",
+          "description": "Look up the first IP address found in the clipboard and show its city, country and operator.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "menu-bar",
+          "title": "IP Menu Bar",
+          "subtitle": "ipdata",
+          "description": "Show your country flag and public IP address in the menu bar, with the last part hidden by default and the full record one click away. Refreshes every 10 minutes.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "menuBarLabel",
+              "type": "dropdown",
+              "required": false,
+              "title": "Menu Bar Label",
+              "description": "What the menu bar shows next to your country flag. The menu always lists your full addresses.",
+              "default": "partial",
+              "data": [
+                {
+                  "title": "Partial Address (203.0.113.x)",
+                  "value": "partial"
+                },
+                {
+                  "title": "Full Address (203.0.113.42)",
+                  "value": "full"
+                },
+                {
+                  "title": "“My IP”",
+                  "value": "label"
+                },
+                {
+                  "title": "Flag Only",
+                  "value": "flag"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "type": "password",
+          "required": false,
+          "title": "API Key",
+          "description": "Optional. An ipdata API key unlocks the full record (company, carrier, VPN, proxy and Tor detection, threat and trust scores) and removes the free tier's daily limit. Get one at dashboard.ipdata.co.",
+          "placeholder": "Leave empty to use the free tier"
+        },
+        {
+          "name": "endpoint",
+          "type": "dropdown",
+          "required": false,
+          "title": "API Endpoint",
+          "description": "The ipdata endpoint used with your API key. The free tier always uses ipdata.co.",
+          "default": "global",
+          "data": [
+            {
+              "title": "Global (api.ipdata.co)",
+              "value": "global"
+            },
+            {
+              "title": "EU (eu-api.ipdata.co)",
+              "value": "eu"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "ipf-os",
       "title": "iPF OS",
       "description": "Raise, track, and action iPF OS tickets without leaving your keyboard.",
@@ -131500,7 +132288,9 @@
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/crisboarna/iridium",
       "source": {
         "type": "github-monorepo",
@@ -140633,45 +141423,6 @@
           ]
         }
       ]
-    },
-    {
-      "name": "input-switcher",
-      "title": "Keyboard Layout Switcher",
-      "description": "Extension to switch keyboard layouts",
-      "icon": "command-icon.png",
-      "author": "lucaschultz",
-      "contributors": [],
-      "categories": [],
-      "license": "MIT",
-      "platforms": [],
-      "storeUrl": "https://www.raycast.com/lucaschultz/input-switcher",
-      "source": {
-        "type": "github-monorepo",
-        "repo": "raycast/extensions",
-        "path": "extensions/keyboard-layout-switcher",
-        "ref": "main"
-      },
-      "commands": [
-        {
-          "name": "switch",
-          "title": "Switch Layouts",
-          "subtitle": "Keyboard",
-          "description": "Show the active keyboard layout and switch to other available layouts",
-          "mode": "view",
-          "keywords": [],
-          "preferences": []
-        },
-        {
-          "name": "toggle",
-          "title": "Toggle Next Layout",
-          "subtitle": "Keyboard",
-          "description": "Toggle to the next keyboard layout",
-          "mode": "no-view",
-          "keywords": [],
-          "preferences": []
-        }
-      ],
-      "preferences": []
     },
     {
       "name": "list-keyboard-maestro-macros",
@@ -169247,6 +169998,15 @@
           "preferences": []
         },
         {
+          "name": "statistics",
+          "title": "Show Statistics",
+          "subtitle": "monobank",
+          "description": "Spending, income, savings and transfers between your own accounts as a chart, by category and across your monobank cards.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "sync-statements",
           "title": "Sync Statements",
           "subtitle": "monobank",
@@ -169382,7 +170142,7 @@
           "name": "token",
           "type": "password",
           "title": "Access Token",
-          "description": "Your monobank Access Token. Required for the \"Show Accounts\", \"Show Statement\", \"Show Budgets\", \"Show Subscriptions\", \"Sync Statements\", \"Jar Progress Menu Bar\" and \"Subscriptions Menu Bar\" commands and for AI questions about your accounts, transactions, budgets and subscriptions.",
+          "description": "Your monobank Access Token. Required for the \"Show Accounts\", \"Show Statement\", \"Show Budgets\", \"Show Subscriptions\", \"Show Statistics\", \"Sync Statements\", \"Jar Progress Menu Bar\" and \"Subscriptions Menu Bar\" commands and for AI questions about your accounts, transactions, budgets and subscriptions.",
           "placeholder": "Enter Your Access Token",
           "required": false
         },
@@ -178526,6 +179286,166 @@
             }
           ],
           "default": "logarithmic"
+        }
+      ]
+    },
+    {
+      "name": "ninety",
+      "title": "Ninety",
+      "description": "Manage your Ninety.io To-Dos, Issues, Rocks, Headlines, Scorecard and Meetings from Raycast. Requires a Ninety Thrive or Legacy plan.",
+      "icon": "extension-icon.png",
+      "author": "parterburn",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/parterburn/ninety",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/ninety",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "my-todos",
+          "title": "My To-Dos",
+          "subtitle": "Ninety",
+          "description": "View, complete and edit your To-Dos, or browse a Team's To-Dos.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "issues",
+          "title": "Issues",
+          "subtitle": "Ninety",
+          "description": "Browse a Team's Short-Term and Long-Term Issues and solve them.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "rocks",
+          "title": "Rocks",
+          "subtitle": "Ninety",
+          "description": "View your Rocks or a Team's Rocks, update their status and manage Milestones.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "headlines",
+          "title": "Headlines",
+          "subtitle": "Ninety",
+          "description": "Read a Team's Headlines and Cascading Messages.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "scorecard",
+          "title": "Scorecard",
+          "subtitle": "Ninety",
+          "description": "View a Team's Scorecard and enter Measurable scores.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "showAverage",
+              "type": "checkbox",
+              "required": false,
+              "default": true,
+              "title": "Details",
+              "label": "Show Average",
+              "description": "Show each Measurable's average, compared with its goal, at the top of its score table."
+            },
+            {
+              "name": "showTotal",
+              "type": "checkbox",
+              "required": false,
+              "default": false,
+              "title": "",
+              "label": "Show Total",
+              "description": "Show each Measurable's total at the top of its score table."
+            }
+          ]
+        },
+        {
+          "name": "meetings",
+          "title": "Meetings",
+          "subtitle": "Ninety",
+          "description": "See each Team's Meeting happening now, the next one coming up, and past Meetings with their notes.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "create-todo",
+          "title": "Create To-Do",
+          "subtitle": "Ninety",
+          "description": "Create a personal or Team To-Do.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "create-issue",
+          "title": "Create Issue",
+          "subtitle": "Ninety",
+          "description": "Add an Issue to a Team's Issues List.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "create-headline",
+          "title": "Create Headline",
+          "subtitle": "Ninety",
+          "description": "Share a Headline or Cascading Message with a Team.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "create-rock",
+          "title": "Create Rock",
+          "subtitle": "Ninety",
+          "description": "Create a Rock owned by you.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiToken",
+          "type": "password",
+          "title": "Personal Access Token",
+          "required": true,
+          "placeholder": "From app.ninety.io/settings/user/developer-settings",
+          "description": "Generate one at https://app.ninety.io/settings/user/developer-settings (User Settings → Developer Settings → Generate New Token). Requires a Thrive or Legacy plan."
+        },
+        {
+          "name": "email",
+          "type": "textfield",
+          "title": "Your Ninety Email",
+          "required": false,
+          "placeholder": "you@company.com",
+          "description": "Optional, but needed for My Rocks and your avatar. Ninety's API has no way to look up the signed-in user, so the extension finds you by this email."
+        },
+        {
+          "name": "avatarUrl",
+          "type": "textfield",
+          "required": false,
+          "title": "Your Avatar URL",
+          "description": "Optional. Ninety's API doesn't share profile photos, so people show as initials. Paste the link to your Ninety photo (right-click your avatar in Ninety, then Copy Image Address) to show it on items you own.",
+          "placeholder": "https://s3.amazonaws.com/ninety-avatars-prod/people/…"
         }
       ]
     },
@@ -194801,7 +195721,9 @@
       "description": "List and manage Pantheon sites",
       "icon": "command-icon.png",
       "author": "matbrady",
-      "contributors": [],
+      "contributors": [
+        "bdimaggio"
+      ],
       "categories": [
         "Developer Tools"
       ],
@@ -237396,6 +238318,39 @@
       ]
     },
     {
+      "name": "romaji-to-kana",
+      "title": "Romaji to Kana",
+      "description": "Retype selected romaji text in Japanese Kana input mode with a single keystroke",
+      "icon": "extension-icon.png",
+      "author": "vivi-0124",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/vivi-0124/romaji-to-kana",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/romaji-to-kana",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "retype-as-kana",
+          "title": "Retype Selection as Kana",
+          "description": "Switches to Japanese Kana mode and retypes the selected text, leaving it unconfirmed",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "roon-discord-presence",
       "title": "Roon Discord Presence",
       "description": "See what Roon is showing on your Discord status, and start, stop or restart roon-discord-presence.",
@@ -237741,7 +238696,8 @@
         "alexi.build",
         "degouville",
         "massimiliano_pasquini",
-        "ridemountainpig"
+        "ridemountainpig",
+        "Astatine-213"
       ],
       "categories": [],
       "license": "MIT",
@@ -257930,17 +258886,21 @@
     },
     {
       "name": "sourcegraph-amp-dash-x",
-      "title": "Amp Dash X",
-      "description": "Organize and execute Amp prompts with execute mode (-x flag)",
-      "icon": "command-icon.png",
+      "title": "Amp",
+      "description": "Browse projects and threads, steer agents, start threads and saved prompts, talk to Puck, and open orb portals. Requires the Amp CLI and a signed-in Amp account.",
+      "icon": "amp-icon.png",
       "author": "jdorfman",
-      "contributors": [],
+      "contributors": [
+        "pc-style"
+      ],
       "categories": [
         "Developer Tools",
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/jdorfman/sourcegraph-amp-dash-x",
       "source": {
         "type": "github-monorepo",
@@ -257950,42 +258910,179 @@
       },
       "commands": [
         {
-          "name": "amp",
-          "title": "Execute Amp Prompts",
-          "description": "Run saved Amp prompts with execute mode",
+          "name": "browse",
+          "title": "Amp",
+          "subtitle": "Amp",
+          "description": "Your projects and threads: what is working, what is ready for you, and thread search.",
+          "mode": "view",
+          "keywords": [
+            "search threads",
+            "search projects",
+            "threads",
+            "projects",
+            "inbox"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "new-thread",
+          "title": "New Thread",
+          "subtitle": "Amp",
+          "description": "Compose a new Amp thread with a project, mode, and orb size.",
           "mode": "view",
           "keywords": [],
-          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "start-thread",
+          "title": "Start Thread",
+          "subtitle": "Amp",
+          "description": "Fire off an orb thread in your default project straight from the root search.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "ask-puck",
+          "title": "Ask Puck",
+          "subtitle": "Amp",
+          "description": "Chat with Puck, your Amp assistant, in Raycast.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "call-puck",
+          "title": "Call Puck",
+          "subtitle": "Amp",
+          "description": "Start a voice call with Puck via the Amp Mac app's Call Puck shortcut.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-portal",
+          "title": "Open Portal",
+          "subtitle": "Amp",
+          "description": "Open a portal of one of your running orbs, found in their transcripts.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "amp",
+          "title": "Execute Amp Prompts",
+          "subtitle": "Amp",
+          "description": "Run saved prompts as orb threads, or paste them as amp -x commands.",
+          "mode": "view",
+          "keywords": [
+            "prompts",
+            "dash x"
+          ],
           "preferences": []
         },
         {
           "name": "categories",
           "title": "Manage Prompt Categories",
-          "description": "Add, edit, and delete prompt categories",
+          "subtitle": "Amp",
+          "description": "Add, edit, and delete prompt categories.",
           "mode": "view",
           "keywords": [],
-          "icon": "command-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "menu-bar",
+          "title": "Amp Menu Bar",
+          "subtitle": "Amp",
+          "description": "Agents working right now and threads ready for you, with a heads-up when one finishes.",
+          "mode": "menu-bar",
+          "keywords": [
+            "currently running",
+            "thread activity"
+          ],
           "preferences": []
         }
       ],
       "preferences": [
         {
           "name": "ampBinaryPath",
-          "type": "textfield",
-          "required": false,
           "title": "Amp Binary Path",
-          "description": "Path to the amp executable",
-          "default": "amp",
-          "placeholder": "amp"
+          "description": "Path to the amp binary. Leave empty to look in ~/.amp/bin, ~/.local/bin, Homebrew, and /usr/local/bin.",
+          "type": "textfield",
+          "placeholder": "~/.amp/bin/amp",
+          "required": false
         },
         {
           "name": "defaultFlags",
-          "type": "textfield",
-          "required": false,
           "title": "Default Flags",
-          "description": "Additional flags to pass to amp command",
-          "default": "",
-          "placeholder": "--verbose"
+          "description": "Extra flags for the amp -x commands that Paste Command and Copy Command build.",
+          "type": "textfield",
+          "placeholder": "--mode high",
+          "required": false
+        },
+        {
+          "name": "accessToken",
+          "title": "Access Token",
+          "description": "Optional. Only needed when the CLI is not signed in. Create one at ampcode.com/settings/security.",
+          "type": "password",
+          "placeholder": "Amp access token",
+          "required": false
+        },
+        {
+          "name": "defaultProject",
+          "title": "Default Project",
+          "description": "Project for Start Thread when none is given, as namespace/name.",
+          "type": "textfield",
+          "placeholder": "namespace/name",
+          "required": false
+        },
+        {
+          "name": "defaultMode",
+          "title": "Default Mode",
+          "description": "Agent mode for new threads.",
+          "type": "dropdown",
+          "required": false,
+          "default": "medium",
+          "data": [
+            {
+              "title": "Low",
+              "value": "low"
+            },
+            {
+              "title": "Medium",
+              "value": "medium"
+            },
+            {
+              "title": "High",
+              "value": "high"
+            },
+            {
+              "title": "Ultra",
+              "value": "ultra"
+            },
+            {
+              "title": "Claude Code",
+              "value": "claude-code"
+            }
+          ]
+        },
+        {
+          "name": "openIn",
+          "title": "Open Threads In",
+          "description": "Where thread links open.",
+          "type": "dropdown",
+          "required": false,
+          "default": "browser",
+          "data": [
+            {
+              "title": "Browser",
+              "value": "browser"
+            },
+            {
+              "title": "Amp for Mac",
+              "value": "app"
+            }
+          ]
         }
       ]
     },
@@ -258290,6 +259387,64 @@
           "title": "Jump to Space",
           "description": "Quickly jump to a space by name",
           "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "spacepal",
+      "title": "Spacepal",
+      "description": "Switch macOS Spaces by name, jump back to your last Space and send windows between Spaces with Spacepal.",
+      "icon": "icon.png",
+      "author": "Halberd",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/Halberd/spacepal",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/spacepal",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "switch-space",
+          "title": "Switch Space",
+          "description": "Search your Spaces by name, note or app and switch.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "move-window",
+          "title": "Move Window to Space",
+          "description": "Send the front window to another Space.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "last-space",
+          "title": "Back to Last Space",
+          "description": "Return to the Space you were on before.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "show-overview",
+          "title": "Show Space Overview",
+          "description": "Open Spacepal's overview of every Space.",
+          "mode": "no-view",
           "keywords": [],
           "preferences": []
         }
@@ -265599,7 +266754,8 @@
       "contributors": [
         "litomore",
         "taken",
-        "clins1994"
+        "clins1994",
+        "danulqua"
       ],
       "categories": [
         "Media",
@@ -265628,6 +266784,24 @@
           "preferences": []
         },
         {
+          "name": "my-games",
+          "title": "My Games",
+          "subtitle": "Steam",
+          "description": "Browse the games you own on Steam, with your pinned games on top.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "most-played",
+          "title": "Most Played Games",
+          "subtitle": "Steam",
+          "description": "See which Steam games have the most players right now.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "search-users",
           "title": "Search Users",
           "subtitle": "Steam",
@@ -265642,9 +266816,9 @@
           "name": "token",
           "type": "password",
           "title": "Web API Key",
-          "description": "Enables local mode for fast searches: https://steamcommunity.com/dev/apikey",
+          "description": "Get one at https://steamcommunity.com/dev/apikey",
           "placeholder": "Web API Key",
-          "required": false
+          "required": true
         },
         {
           "name": "steamid",
@@ -265652,6 +266826,15 @@
           "title": "Steam ID",
           "description": "Steam ID, profile URL, or custom URL name",
           "placeholder": "Steam ID or profile URL",
+          "required": false
+        },
+        {
+          "name": "launchOnEnter",
+          "type": "checkbox",
+          "title": "Return Key",
+          "label": "Launch games with Return",
+          "description": "Return launches the game and ⌘Return opens its details. Turn off for the opposite. Applies to My Games and the Recently Added and Recently Played lists.",
+          "default": false,
           "required": false
         },
         {
@@ -308311,6 +309494,71 @@
           "placeholder": "Enter your password"
         }
       ]
+    },
+    {
+      "name": "webcull",
+      "title": "WebCull",
+      "description": "Find your WebCull bookmarks, open the links you need, and save new URLs from Raycast.",
+      "icon": "icon.png",
+      "author": "andrew_dear",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/andrew_dear/webcull",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/webcull",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "connect-account",
+          "title": "Manage WebCull Account",
+          "description": "Connect or switch WebCull accounts, and manage their Raycast access.",
+          "mode": "view",
+          "keywords": [
+            "login",
+            "auth",
+            "connect",
+            "account",
+            "switch",
+            "logout"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "search-bookmarks",
+          "title": "Search WebCull Bookmarks",
+          "description": "Find saved links by title, URL, notes, or tags, then open or copy them.",
+          "mode": "view",
+          "keywords": [
+            "bookmark",
+            "bookmarks",
+            "links",
+            "search"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "save-url-to-stack",
+          "title": "Save URL to WebCull Stack",
+          "description": "Save a URL to Root or a selected WebCull folder.",
+          "mode": "view",
+          "keywords": [
+            "bookmark",
+            "save",
+            "stack"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "webdav-uploader",
