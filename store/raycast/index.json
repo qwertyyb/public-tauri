@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-13T23:31:51.820Z",
+  "generatedAt": "2026-11-14T22:19:11.174Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "390960f1f66e25a4fdaa8bf18e3c371f8588e9a0"
+    "commit": "28bf9eb29c72c2df9b4b1d17e3f7b51001de6c0d"
   },
   "count": 3578,
   "extensions": [
@@ -42920,6 +42920,14 @@
           "name": "recent-sessions",
           "title": "ClaudeScope Recent Sessions",
           "description": "Browse and filter recently indexed coding-agent sessions",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "live-agents",
+          "title": "ClaudeScope Live Agents",
+          "description": "Watch live coding-agent sessions and see which ones are waiting for you",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -103955,7 +103963,9 @@
         "Fun"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/ViGeng/github-profile",
       "source": {
         "type": "github-monorepo",
@@ -103986,7 +103996,7 @@
         {
           "name": "githubToken",
           "title": "GitHub Personal Access Token",
-          "description": "Your GitHub personal access token (optional, but recommended to avoid rate limits)",
+          "description": "Your GitHub personal access token, which is required to load the contribution calendar",
           "type": "password",
           "required": true,
           "placeholder": "ghp_xxxxxxxxxxxxxxxx"
@@ -195781,6 +195791,15 @@
           "type": "textfield",
           "required": false,
           "placeholder": "/usr/local/bin/terminus"
+        },
+        {
+          "title": "Site List Timeout (Seconds)",
+          "name": "siteListTimeout",
+          "description": "Max seconds to wait for 'terminus site:list'. Accounts with many sites can take well over the 10s default.",
+          "type": "textfield",
+          "required": false,
+          "default": "120",
+          "placeholder": "120"
         }
       ]
     },
@@ -258169,7 +258188,7 @@
       "name": "sonos",
       "title": "Sonos",
       "description": "Control your Sonos system",
-      "icon": "sonos.png",
+      "icon": "sonos-icon-2.png",
       "author": "AntonNiklasson",
       "contributors": [
         "pastenes",
@@ -295496,6 +295515,14 @@
           "title": "Generate Title & Summary",
           "description": "Generate and save a title & summary for your most recent call with AI — applied immediately, no review.",
           "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "send-reaction",
+          "title": "Send Reaction",
+          "description": "Choose a sound or webcam reaction from your installed Tuple CLI and send it to the active call.",
+          "mode": "view",
           "keywords": [],
           "preferences": []
         },
