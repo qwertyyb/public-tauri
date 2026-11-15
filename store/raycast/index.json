@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-14T22:19:11.174Z",
+  "generatedAt": "2026-11-15T22:47:05.512Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "28bf9eb29c72c2df9b4b1d17e3f7b51001de6c0d"
+    "commit": "ce76978a153dcf04cbb87dce41278958eac227a3"
   },
-  "count": 3578,
+  "count": 3581,
   "extensions": [
     {
       "name": "0x0",
@@ -16001,6 +16001,15 @@
           "preferences": []
         },
         {
+          "name": "screenshot",
+          "title": "Screenshot and Comment",
+          "subtitle": "Argo",
+          "description": "Capture a screen region, add a comment, and send it to your recent Agent session.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "connect",
           "title": "Connect a Server",
           "subtitle": "Argo",
@@ -16166,6 +16175,163 @@
           "type": "textfield",
           "required": false,
           "default": "argocd"
+        }
+      ]
+    },
+    {
+      "name": "aria2-download",
+      "title": "Aria2 Download",
+      "description": "One queue for direct URLs, torrents, magnet/BT, and LinkSwift netdisk links. Requires aria2 to be installed separately.",
+      "icon": "icon.png",
+      "author": "1at3ncy",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/1at3ncy/aria2-download",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/aria2-download",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "tasks",
+          "title": "Aria2 Tasks",
+          "subtitle": "Aria2",
+          "description": "Show active, waiting, paused, completed and failed downloads.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle",
+          "title": "Toggle Aria2",
+          "subtitle": "Aria2",
+          "description": "Toggle the aria2 RPC daemon; the command subtitle shows the current daemon state.",
+          "mode": "no-view",
+          "keywords": [
+            "start",
+            "stop",
+            "daemon",
+            "rpc",
+            "engine",
+            "toggle",
+            "on",
+            "off"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "add-download",
+          "title": "Add Download",
+          "subtitle": "Aria2",
+          "description": "Queue a URL, magnet link, or local .torrent file in one form.",
+          "mode": "view",
+          "keywords": [
+            "url",
+            "magnet",
+            "torrent",
+            "bt",
+            "download"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "configuration",
+          "title": "Aria2 Configuration",
+          "subtitle": "Aria2",
+          "description": "Edit aria2 HTTP, BT, RPC and notification settings.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "refreshInterval",
+          "title": "Refresh Interval",
+          "description": "How often the task list and task detail refresh while open.",
+          "type": "dropdown",
+          "required": false,
+          "default": "1",
+          "data": [
+            {
+              "title": "1 second",
+              "value": "1"
+            },
+            {
+              "title": "2 seconds",
+              "value": "2"
+            },
+            {
+              "title": "3 seconds",
+              "value": "3"
+            },
+            {
+              "title": "5 seconds",
+              "value": "5"
+            }
+          ]
+        },
+        {
+          "name": "chunkViz",
+          "title": "Chunk View",
+          "description": "Heatmap is the polished fixed-layout PNG card. Mosaic is the native Raycast color grid fallback.",
+          "type": "dropdown",
+          "required": false,
+          "default": "heatmap",
+          "data": [
+            {
+              "title": "PNG Heatmap",
+              "value": "heatmap"
+            },
+            {
+              "title": "Native Mosaic",
+              "value": "mosaic"
+            }
+          ]
+        },
+        {
+          "name": "chunkColumns",
+          "title": "Fallback Chunk Columns",
+          "description": "Used by the native mosaic fallback, and by the heatmap when its image cannot be rendered.",
+          "type": "dropdown",
+          "required": false,
+          "default": "48",
+          "data": [
+            {
+              "title": "32 columns",
+              "value": "32"
+            },
+            {
+              "title": "40 columns",
+              "value": "40"
+            },
+            {
+              "title": "48 columns",
+              "value": "48"
+            },
+            {
+              "title": "56 columns",
+              "value": "56"
+            }
+          ]
+        },
+        {
+          "name": "showStopped",
+          "title": "Show Stopped Tasks",
+          "label": "Show completed and failed tasks in the list",
+          "description": "Turn off to keep the list focused on active and waiting tasks.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
         }
       ]
     },
@@ -35959,6 +36125,69 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "ccswap",
+      "title": "CCSwap",
+      "description": "See Claude Code and Codex account usage and switch accounts with the ccswap CLI",
+      "icon": "icon.png",
+      "author": "errhythm",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/errhythm/ccswap",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/ccswap",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "show-accounts",
+          "title": "Show Accounts",
+          "subtitle": "ccswap",
+          "description": "List Claude Code and Codex accounts with their usage, and switch between them",
+          "mode": "view",
+          "keywords": [
+            "claude",
+            "codex",
+            "account",
+            "usage",
+            "quota",
+            "rate limit"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "switch-best",
+          "title": "Switch to Best Account",
+          "subtitle": "ccswap",
+          "description": "Switch Claude Code to the account with the most quota left",
+          "mode": "no-view",
+          "keywords": [
+            "claude",
+            "account",
+            "quota",
+            "rate limit"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "ccswapPath",
+          "title": "ccswap Path",
+          "description": "The ccswap binary. Leave empty to look in ~/.local/bin, /opt/homebrew/bin and /usr/local/bin.",
+          "type": "file",
+          "required": false
+        }
+      ]
     },
     {
       "name": "ccusage",
@@ -63007,12 +63236,12 @@
                   "value": "global"
                 },
                 {
-                  "title": "DeepSeek-V3",
-                  "value": "deepseek-chat"
+                  "title": "DeepSeek Flash",
+                  "value": "deepseek-flash"
                 },
                 {
-                  "title": "DeepSeek-R1",
-                  "value": "deepseek-reasoner"
+                  "title": "DeepSeek V4 Pro",
+                  "value": "deepseek-v4-pro"
                 },
                 {
                   "title": "GPT-4o",
@@ -63066,12 +63295,12 @@
                   "value": "global"
                 },
                 {
-                  "title": "DeepSeek-V3",
-                  "value": "deepseek-chat"
+                  "title": "DeepSeek Flash",
+                  "value": "deepseek-flash"
                 },
                 {
-                  "title": "DeepSeek-R1",
-                  "value": "deepseek-reasoner"
+                  "title": "DeepSeek V4 Pro",
+                  "value": "deepseek-v4-pro"
                 },
                 {
                   "title": "GPT-4o",
@@ -63125,12 +63354,12 @@
                   "value": "global"
                 },
                 {
-                  "title": "DeepSeek-V3",
-                  "value": "deepseek-chat"
+                  "title": "DeepSeek Flash",
+                  "value": "deepseek-flash"
                 },
                 {
-                  "title": "DeepSeek-R1",
-                  "value": "deepseek-reasoner"
+                  "title": "DeepSeek V4 Pro",
+                  "value": "deepseek-v4-pro"
                 },
                 {
                   "title": "GPT-4o",
@@ -63209,12 +63438,12 @@
                   "value": "global"
                 },
                 {
-                  "title": "DeepSeek-V3",
-                  "value": "deepseek-chat"
+                  "title": "DeepSeek Flash",
+                  "value": "deepseek-flash"
                 },
                 {
-                  "title": "DeepSeek-R1",
-                  "value": "deepseek-reasoner"
+                  "title": "DeepSeek V4 Pro",
+                  "value": "deepseek-v4-pro"
                 },
                 {
                   "title": "GPT-4o",
@@ -63268,12 +63497,12 @@
                   "value": "global"
                 },
                 {
-                  "title": "DeepSeek-V3",
-                  "value": "deepseek-chat"
+                  "title": "DeepSeek Flash",
+                  "value": "deepseek-flash"
                 },
                 {
-                  "title": "DeepSeek-R1",
-                  "value": "deepseek-reasoner"
+                  "title": "DeepSeek V4 Pro",
+                  "value": "deepseek-v4-pro"
                 },
                 {
                   "title": "GPT-4o",
@@ -63327,12 +63556,12 @@
                   "value": "global"
                 },
                 {
-                  "title": "DeepSeek-V3",
-                  "value": "deepseek-chat"
+                  "title": "DeepSeek Flash",
+                  "value": "deepseek-flash"
                 },
                 {
-                  "title": "DeepSeek-R1",
-                  "value": "deepseek-reasoner"
+                  "title": "DeepSeek V4 Pro",
+                  "value": "deepseek-v4-pro"
                 },
                 {
                   "title": "GPT-4o",
@@ -63386,12 +63615,12 @@
                   "value": "global"
                 },
                 {
-                  "title": "DeepSeek-V3",
-                  "value": "deepseek-chat"
+                  "title": "DeepSeek Flash",
+                  "value": "deepseek-flash"
                 },
                 {
-                  "title": "DeepSeek-R1",
-                  "value": "deepseek-reasoner"
+                  "title": "DeepSeek V4 Pro",
+                  "value": "deepseek-v4-pro"
                 },
                 {
                   "title": "GPT-4o",
@@ -63445,12 +63674,12 @@
                   "value": "global"
                 },
                 {
-                  "title": "DeepSeek-V3",
-                  "value": "deepseek-chat"
+                  "title": "DeepSeek Flash",
+                  "value": "deepseek-flash"
                 },
                 {
-                  "title": "DeepSeek-R1",
-                  "value": "deepseek-reasoner"
+                  "title": "DeepSeek V4 Pro",
+                  "value": "deepseek-v4-pro"
                 },
                 {
                   "title": "GPT-4o",
@@ -63504,12 +63733,12 @@
                   "value": "global"
                 },
                 {
-                  "title": "DeepSeek-V3",
-                  "value": "deepseek-chat"
+                  "title": "DeepSeek Flash",
+                  "value": "deepseek-flash"
                 },
                 {
-                  "title": "DeepSeek-R1",
-                  "value": "deepseek-reasoner"
+                  "title": "DeepSeek V4 Pro",
+                  "value": "deepseek-v4-pro"
                 },
                 {
                   "title": "GPT-4o",
@@ -63563,12 +63792,12 @@
                   "value": "global"
                 },
                 {
-                  "title": "DeepSeek-V3",
-                  "value": "deepseek-chat"
+                  "title": "DeepSeek Flash",
+                  "value": "deepseek-flash"
                 },
                 {
-                  "title": "DeepSeek-R1",
-                  "value": "deepseek-reasoner"
+                  "title": "DeepSeek V4 Pro",
+                  "value": "deepseek-v4-pro"
                 },
                 {
                   "title": "GPT-4o",
@@ -63614,12 +63843,12 @@
                   "value": "global"
                 },
                 {
-                  "title": "DeepSeek-V3",
-                  "value": "deepseek-chat"
+                  "title": "DeepSeek Flash",
+                  "value": "deepseek-flash"
                 },
                 {
-                  "title": "DeepSeek-R1",
-                  "value": "deepseek-reasoner"
+                  "title": "DeepSeek V4 Pro",
+                  "value": "deepseek-v4-pro"
                 },
                 {
                   "title": "GPT-4o",
@@ -63689,16 +63918,12 @@
           "type": "dropdown",
           "data": [
             {
-              "title": "deepseek-chat",
-              "value": "deepseek-chat"
+              "title": "DeepSeek Flash",
+              "value": "deepseek-flash"
             },
             {
-              "title": "deepseek-reasoner",
-              "value": "deepseek-reasoner"
-            },
-            {
-              "title": "deepseek-r1",
-              "value": "deepseek-r1"
+              "title": "DeepSeek V4 Pro",
+              "value": "deepseek-v4-pro"
             },
             {
               "title": "GPT-4o",
@@ -96669,6 +96894,14 @@
           "name": "fxcodex",
           "title": "fxCodex",
           "description": "Manage fxCodex workspaces, application, and executable",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-link",
+          "title": "Open Link in Workspace",
+          "description": "Deliver a codex:// link to one workspace's Codex instance",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -138202,7 +138435,7 @@
         {
           "name": "upcoming-flights",
           "title": "Upcoming Flights",
-          "description": "See your upcoming flights and travel details",
+          "description": "See your upcoming and past flights and travel details",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -138603,6 +138836,49 @@
           "label": "Rent"
         }
       ]
+    },
+    {
+      "name": "jw-library-linker",
+      "title": "JW Library Linker",
+      "description": "Navigate JW Library with Bible references, publication lookup, chapter search, and bookmarks.",
+      "icon": "icon.png",
+      "author": "martin_sakowski",
+      "contributors": [],
+      "categories": [
+        "Applications",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/martin_sakowski/jw-library-linker",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/jw-library-linker",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "jw-library-linker",
+          "title": "Search JW Library",
+          "description": "Open Bible references, publications, and bookmarks in JW Library",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "containerUuid",
+              "title": "JW Library Container UUID",
+              "description": "Optional UUID under ~/Library/Containers. Leave empty to auto-detect.",
+              "placeholder": "Leave empty to auto-detect",
+              "type": "textfield",
+              "required": false
+            }
+          ]
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "jwt-decoder",
@@ -146852,13 +147128,18 @@
     {
       "name": "launch-agents",
       "title": "Launch Agents",
-      "description": "Manage Launch Agents",
+      "description": "Manage, load, unload and run your macOS launch agents",
       "icon": "launch-icon.png",
       "author": "stevensd2m",
       "contributors": [],
-      "categories": [],
+      "categories": [
+        "Developer Tools",
+        "System"
+      ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/stevensd2m/launch-agents",
       "source": {
         "type": "github-monorepo",
@@ -146870,7 +147151,7 @@
         {
           "name": "index",
           "title": "Manage User Launch Agents",
-          "description": "Manage User Launch Agents",
+          "description": "View, load, unload, run and remove your user launch agents",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -146878,7 +147159,7 @@
         {
           "name": "list-system-launch-agents",
           "title": "List System Launch Agents",
-          "description": "List System Launch Agents. This list will not have details available because it needs binary conversion to work.",
+          "description": "List system launch agents and run them now. Details are not available because these files need binary conversion.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -146886,7 +147167,7 @@
         {
           "name": "list-loaded-launch-agents",
           "title": "List Loaded Launch Agents",
-          "description": "List Loaded Launch Agents",
+          "description": "List loaded launch agents and run them now",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -154168,7 +154449,7 @@
       "name": "lorem-ipsum",
       "title": "Lorem Ipsum",
       "description": "Generate placeholder content",
-      "icon": "paragraph-icon.png",
+      "icon": "icon.png",
       "author": "AntonNiklasson",
       "contributors": [
         "GastroGeek",
@@ -154218,6 +154499,24 @@
           "title": "Generate Words",
           "subtitle": "Lorem Ipsum",
           "description": "Generate random words and copy them to the clipboard",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "markdown",
+          "title": "Generate Markdown",
+          "subtitle": "Lorem Ipsum",
+          "description": "Generate random placeholder content as a Markdown document",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "html",
+          "title": "Generate HTML",
+          "subtitle": "Lorem Ipsum",
+          "description": "Generate random placeholder content as an HTML document",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -184743,10 +185042,15 @@
       "description": "Open URLs from Obsidian markdown files' frontmatter",
       "icon": "command-icon.png",
       "author": "osteele",
-      "contributors": [],
+      "contributors": [
+        "andrew_horbach"
+      ],
       "categories": [],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "storeUrl": "https://www.raycast.com/osteele/obsidian-link-opener",
       "source": {
         "type": "github-monorepo",
@@ -194179,18 +194483,10 @@
         {
           "name": "open-recipe",
           "title": "Open Otty Recipe",
-          "description": "Open an exported Otty recipe to rebuild its tabs and panes.",
+          "description": "Open one of your saved Otty recipes to rebuild its tabs and panes.",
           "mode": "view",
           "keywords": [],
-          "preferences": [
-            {
-              "name": "recipesDirectory",
-              "title": "Recipes Folder",
-              "description": "Folder that holds your exported .ottyrecipe files.",
-              "type": "directory",
-              "required": false
-            }
-          ]
+          "preferences": []
         },
         {
           "name": "otty-settings",
@@ -213649,7 +213945,9 @@
       ],
       "categories": [],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/honzatmn/productboard",
       "source": {
         "type": "github-monorepo",
@@ -248514,13 +248812,16 @@
       "description": "Track your packages and shipments with Ship24's powerful tracking service. Add parcels, monitor delivery status in real-time, and get detailed tracking history. Free plan includes 10 packages per month. Unofficial extension for Ship24.com with support for 1200+ carriers worldwide.",
       "icon": "extension-icon.png",
       "author": "Pr0tey",
-      "contributors": [],
+      "contributors": [
+        "xmok"
+      ],
       "categories": [
         "Productivity"
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/Pr0tey/ship24-client",
       "source": {
@@ -257139,6 +257440,15 @@
           "title": "Browse Airlines",
           "subtitle": "Soaring Symbols",
           "description": "Browse and search a curated collection of airline branding assets — logos, icons, and tails in SVG.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "browse-alliances",
+          "title": "Browse Alliances",
+          "subtitle": "Soaring Symbols",
+          "description": "Browse airline alliances, their marks in SVG and the airlines that fly, or flew, in each.",
           "mode": "view",
           "keywords": [],
           "preferences": []
