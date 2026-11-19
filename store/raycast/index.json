@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-18T00:56:26.546Z",
+  "generatedAt": "2026-11-19T00:16:06.751Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "092555dd3e726bf33ce2a1b3da5f434bfab1ea71"
+    "commit": "9906af9bec25c6450c3305b001073e3a56654c71"
   },
-  "count": 3599,
+  "count": 3610,
   "extensions": [
     {
       "name": "0x0",
@@ -184,7 +184,6 @@
       "author": "kud",
       "contributors": [
         "kgrhartlage",
-        "sxn",
         "xmok"
       ],
       "categories": [
@@ -2600,7 +2599,7 @@
           "description": "Search the Adonis JS documentation from within Raycast.",
           "mode": "view",
           "keywords": [],
-          "icon": "adonis-logo-128.png",
+          "icon": "adonis-logo.png",
           "preferences": []
         },
         {
@@ -2630,7 +2629,7 @@
           "description": "Search the Bento Cache documentation from within Raycast.",
           "mode": "view",
           "keywords": [],
-          "icon": "adonis-logo-128.png",
+          "icon": "adonis-logo.png",
           "preferences": []
         },
         {
@@ -3046,9 +3045,7 @@
       "description": "Get a random piece of advice from the Advice Slip API.",
       "icon": "advice.png",
       "author": "pernielsentikaer",
-      "contributors": [
-        "andreaselia"
-      ],
+      "contributors": [],
       "categories": [
         "Fun"
       ],
@@ -13060,7 +13057,6 @@
         "ridemountainpig",
         "teemu_suvinen",
         "juan_saldana",
-        "andreaselia",
         "fhf1121",
         "charlesharries",
         "janosorcsik",
@@ -15499,6 +15495,41 @@
           "required": false,
           "title": "IPC Password",
           "description": "The IPC password defined in ASF, if any."
+        }
+      ]
+    },
+    {
+      "name": "architect-inference",
+      "title": "Architect Inference",
+      "description": "Use Architect Inference models in Raycast AI Chat, Quick AI, and AI Commands. Requires Raycast Pro and an account with credits.",
+      "icon": "extension-icon.png",
+      "author": "vinhloc30796",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/vinhloc30796/architect-inference",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/architect-inference",
+        "ref": "main"
+      },
+      "commands": [],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "type": "password",
+          "required": true,
+          "title": "Architect Inference API Key",
+          "placeholder": "Enter your Architect Inference API key",
+          "description": "Create a buyer API key at https://inference.ai.exchange. Requests use your Architect Inference account balance."
         }
       ]
     },
@@ -21779,7 +21810,8 @@
         "JuanBanchero",
         "ramsay",
         "stelo",
-        "xmok"
+        "xmok",
+        "mlw"
       ],
       "categories": [],
       "license": "MIT",
@@ -27491,7 +27523,6 @@
       "author": "jomifepe",
       "contributors": [
         "daniel-stoneuk",
-        "andreaselia",
         "pernielsentikaer",
         "eth-p",
         "Yamen",
@@ -31549,7 +31580,8 @@
         "just_me",
         "mguellsegarra",
         "teziovsky",
-        "robertanderson"
+        "robertanderson",
+        "demaya"
       ],
       "categories": [
         "Web"
@@ -45326,7 +45358,6 @@
       "icon": "command-icon.png",
       "author": "isma",
       "contributors": [
-        "sxn",
         "kuddl",
         "azlekov",
         "sebboer",
@@ -62784,6 +62815,122 @@
       "preferences": []
     },
     {
+      "name": "deapi",
+      "title": "deAPI",
+      "description": "Generate images, videos and speech, transcribe links and files, and edit, upscale or remove backgrounds from images with open-source models on deAPI. Requires a deAPI account and paid API credits.",
+      "icon": "deapi.png",
+      "author": "pietrus-914",
+      "contributors": [],
+      "categories": [
+        "Media",
+        "Design Tools",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/pietrus-914/deapi",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/deapi",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "generate-image",
+          "title": "Generate Image",
+          "subtitle": "deAPI",
+          "description": "Generate an image from a text prompt with FLUX, Z-Image and other models.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "edit-image",
+          "title": "Edit Image",
+          "subtitle": "deAPI",
+          "description": "Change an image with a text instruction.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "generate-video",
+          "title": "Generate Video",
+          "subtitle": "deAPI",
+          "description": "Generate a short video from a text prompt, or animate an image.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "text-to-speech",
+          "title": "Text to Speech",
+          "subtitle": "deAPI",
+          "description": "Turn text, or the text you have selected, into an MP3.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "transcribe",
+          "title": "Transcribe",
+          "subtitle": "deAPI",
+          "description": "Transcribe a YouTube, X, TikTok, Twitch or Kick link, or an audio or video file.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "remove-background",
+          "title": "Remove Background",
+          "subtitle": "deAPI",
+          "description": "Remove the background from an image and get a transparent PNG.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "upscale-image",
+          "title": "Upscale Image",
+          "subtitle": "deAPI",
+          "description": "Upscale an image to four times its size.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "history",
+          "title": "Generation History",
+          "subtitle": "deAPI",
+          "description": "Browse your deAPI results, check jobs that are still running, and see your balance.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "title": "deAPI API Key",
+          "description": "Create one at https://app.deapi.ai/settings/api-keys",
+          "type": "password",
+          "placeholder": "Paste Your deAPI API Key",
+          "required": true
+        },
+        {
+          "name": "outputDirectory",
+          "title": "Save Results To",
+          "description": "Folder for generated files. Defaults to your Downloads folder.",
+          "type": "directory",
+          "required": false
+        }
+      ]
+    },
+    {
       "name": "debank",
       "title": "debank",
       "description": "Look up crypto wallet balances, tokens and protocols for any address with the DeBank API, and save favorite addresses.",
@@ -65348,6 +65495,110 @@
       ]
     },
     {
+      "name": "delta",
+      "title": "Delta",
+      "description": "Search, create and open Delta threads, and ask about past work. Requires the Delta desktop app and a signed-in account.",
+      "icon": "icon.png",
+      "author": "lbv",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/lbv/delta",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/delta",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-threads",
+          "title": "Search Threads",
+          "subtitle": "Delta",
+          "description": "Search your Delta threads, then open, share, fork or archive them, or ask Delta a question about them",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "defaultFilter",
+              "title": "Default Filter",
+              "description": "Which threads Search Threads shows when it opens",
+              "type": "dropdown",
+              "required": false,
+              "default": "active",
+              "data": [
+                {
+                  "title": "Active",
+                  "value": "active"
+                },
+                {
+                  "title": "Archived",
+                  "value": "archived"
+                },
+                {
+                  "title": "All Threads",
+                  "value": "all"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "create-thread",
+          "title": "Create Thread",
+          "subtitle": "Delta",
+          "description": "Create a Delta thread with a draft prompt and open it in Delta to review and send",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "defaultVisibility",
+              "title": "Default Visibility",
+              "description": "Who can open a new thread unless you choose otherwise in the form",
+              "type": "dropdown",
+              "required": false,
+              "default": "private",
+              "data": [
+                {
+                  "title": "Private",
+                  "value": "private"
+                },
+                {
+                  "title": "Organization",
+                  "value": "organization"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "open-with-delta",
+          "title": "Open with Delta",
+          "subtitle": "Delta",
+          "description": "Open the selected Finder items, or the front Finder folder, in Delta",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "ask-past-threads",
+          "title": "Ask Past Threads",
+          "subtitle": "Delta",
+          "description": "Ask a question and get an answer drawn from your past Delta threads",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "demo-flow",
       "title": "Demo Flow",
       "description": "Organize live demo snippets into ordered playlists and paste the next or previous snippet with one shortcut during a walkthrough.",
@@ -67798,6 +68049,698 @@
             "jwt",
             "formatter",
             "converter"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "devtools-launcher",
+      "title": "DevTools Launcher",
+      "description": "Open any DevTools tool, such as JSON Viewer, Hash Generator, or JWT Decoder, straight from Raycast.",
+      "icon": "icon.png",
+      "author": "ahmed_shamim",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/ahmed_shamim/devtools-launcher",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/devtools-launcher",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-tools",
+          "title": "Search Tools",
+          "subtitle": "DevTools",
+          "description": "Search the DevTools app's tools by name and open one.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-devtools",
+          "title": "Open DevTools",
+          "subtitle": "DevTools",
+          "description": "Open the DevTools app, or its command palette with a search.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "tool-json-viewer",
+          "title": "JSON Viewer",
+          "subtitle": "DevTools",
+          "description": "Open JSON Viewer in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "json",
+            "format",
+            "pretty",
+            "minify",
+            "validate",
+            "jsonpath",
+            "query"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-code-playground",
+          "title": "Code Playground",
+          "subtitle": "DevTools",
+          "description": "Open Code Playground in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "javascript",
+            "js",
+            "html",
+            "css",
+            "run",
+            "editor"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-regex-generator",
+          "title": "Regex Generator",
+          "subtitle": "DevTools",
+          "description": "Open Regex Generator in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "regex",
+            "regexp",
+            "pattern",
+            "match"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-json-typescript",
+          "title": "JSON to Code",
+          "subtitle": "DevTools",
+          "description": "Open JSON to Code in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "typescript",
+            "ts",
+            "interface",
+            "types",
+            "go",
+            "golang",
+            "struct",
+            "rust",
+            "serde",
+            "python"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-certificate-decoder",
+          "title": "X.509 Certificate Decoder",
+          "subtitle": "DevTools",
+          "description": "Open X.509 Certificate Decoder in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "x509",
+            "certificate",
+            "pem",
+            "der",
+            "ssl",
+            "tls",
+            "csr",
+            "fingerprint",
+            "chain",
+            "san"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-html-preview",
+          "title": "HTML Preview",
+          "subtitle": "DevTools",
+          "description": "Open HTML Preview in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "html",
+            "preview",
+            "render",
+            "live",
+            "sandbox",
+            "iframe",
+            "responsive",
+            "viewport"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-code-formatter",
+          "title": "Code Formatter",
+          "subtitle": "DevTools",
+          "description": "Open Code Formatter in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "beautify",
+            "prettify",
+            "minify",
+            "html",
+            "css",
+            "js",
+            "xml",
+            "sql"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-hash-generator",
+          "title": "Hash Generator",
+          "subtitle": "DevTools",
+          "description": "Open Hash Generator in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "md5",
+            "sha",
+            "sha1",
+            "sha256",
+            "sha512",
+            "hmac",
+            "checksum",
+            "keccak"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-uuid-generator",
+          "title": "UUID Generator",
+          "subtitle": "DevTools",
+          "description": "Open UUID Generator in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "uuid",
+            "guid",
+            "ulid",
+            "v4",
+            "v7"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-password-generator",
+          "title": "Password Generator",
+          "subtitle": "DevTools",
+          "description": "Open Password Generator in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "password",
+            "passphrase",
+            "secure"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-lorem-generator",
+          "title": "Lorem Ipsum",
+          "subtitle": "DevTools",
+          "description": "Open Lorem Ipsum in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "lorem",
+            "placeholder",
+            "dummy text"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-qr-generator",
+          "title": "QR Generator",
+          "subtitle": "DevTools",
+          "description": "Open QR Generator in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "qr",
+            "qrcode",
+            "barcode"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-bcrypt-generator",
+          "title": "Bcrypt Generator",
+          "subtitle": "DevTools",
+          "description": "Open Bcrypt Generator in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "bcrypt",
+            "hash",
+            "password"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-random-string",
+          "title": "Random String",
+          "subtitle": "DevTools",
+          "description": "Open Random String in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "nanoid",
+            "nano id",
+            "token",
+            "random",
+            "id"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-base64",
+          "title": "Base64",
+          "subtitle": "DevTools",
+          "description": "Open Base64 in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "b64",
+            "encode",
+            "decode",
+            "data uri"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-case-converter",
+          "title": "Case Converter",
+          "subtitle": "DevTools",
+          "description": "Open Case Converter in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "camelcase",
+            "snake_case",
+            "kebab",
+            "pascal",
+            "upper",
+            "lower"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-number-base",
+          "title": "Number Base",
+          "subtitle": "DevTools",
+          "description": "Open Number Base in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "binary",
+            "hex",
+            "octal",
+            "decimal",
+            "radix"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-markdown",
+          "title": "Markdown",
+          "subtitle": "DevTools",
+          "description": "Open Markdown in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "md",
+            "preview",
+            "html"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-url-encoder",
+          "title": "URL Encoder",
+          "subtitle": "DevTools",
+          "description": "Open URL Encoder in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "url",
+            "uri",
+            "percent",
+            "encode",
+            "decode",
+            "query string"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-csv-json",
+          "title": "CSV to JSON",
+          "subtitle": "DevTools",
+          "description": "Open CSV to JSON in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "csv",
+            "tsv",
+            "spreadsheet"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-yaml-json",
+          "title": "YAML to JSON",
+          "subtitle": "DevTools",
+          "description": "Open YAML to JSON in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "yaml",
+            "yml"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-escape-tools",
+          "title": "Escape Tools",
+          "subtitle": "DevTools",
+          "description": "Open Escape Tools in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "escape",
+            "unescape",
+            "html entities",
+            "backslash",
+            "unicode",
+            "hex"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-html-to-jsx",
+          "title": "HTML to JSX",
+          "subtitle": "DevTools",
+          "description": "Open HTML to JSX in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "jsx",
+            "react",
+            "html",
+            "convert",
+            "classname",
+            "component",
+            "tsx",
+            "markup"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-svg-to-css",
+          "title": "SVG to CSS",
+          "subtitle": "DevTools",
+          "description": "Open SVG to CSS in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "svg",
+            "css",
+            "data uri",
+            "base64",
+            "background-image",
+            "mask",
+            "icon",
+            "encode"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-curl-to-code",
+          "title": "cURL to Code",
+          "subtitle": "DevTools",
+          "description": "Open cURL to Code in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "curl",
+            "fetch",
+            "python requests",
+            "go",
+            "php",
+            "reqwest",
+            "httpie",
+            "http request"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-timestamp",
+          "title": "Timestamp",
+          "subtitle": "DevTools",
+          "description": "Open Timestamp in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "unix",
+            "epoch",
+            "date",
+            "time"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-date-difference",
+          "title": "Date Difference",
+          "subtitle": "DevTools",
+          "description": "Open Date Difference in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "days",
+            "between",
+            "duration"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-cron-calculator",
+          "title": "Cron Calculator",
+          "subtitle": "DevTools",
+          "description": "Open Cron Calculator in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "cron",
+            "crontab",
+            "schedule"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-color-palette",
+          "title": "Color Palette",
+          "subtitle": "DevTools",
+          "description": "Open Color Palette in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "color",
+            "colour",
+            "hex",
+            "rgb",
+            "hsl",
+            "contrast",
+            "wcag"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-image-converter",
+          "title": "Image Converter",
+          "subtitle": "DevTools",
+          "description": "Open Image Converter in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "image",
+            "png",
+            "jpg",
+            "webp",
+            "compress",
+            "resize"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-qr-reader",
+          "title": "QR Reader",
+          "subtitle": "DevTools",
+          "description": "Open QR Reader in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "qr",
+            "scan",
+            "decode",
+            "read"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-text-compare",
+          "title": "Text Compare",
+          "subtitle": "DevTools",
+          "description": "Open Text Compare in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "diff",
+            "compare",
+            "difference"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-jwt-decoder",
+          "title": "JWT Decoder",
+          "subtitle": "DevTools",
+          "description": "Open JWT Decoder in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "jwt",
+            "token",
+            "bearer",
+            "decode",
+            "verify"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-api-formatter",
+          "title": "API Formatter",
+          "subtitle": "DevTools",
+          "description": "Open API Formatter in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "api",
+            "rest",
+            "graphql",
+            "response"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-string-inspector",
+          "title": "String Inspector",
+          "subtitle": "DevTools",
+          "description": "Open String Inspector in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "count",
+            "characters",
+            "words",
+            "bytes",
+            "unicode",
+            "invisible",
+            "zero width"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-line-tools",
+          "title": "Line Tools",
+          "subtitle": "DevTools",
+          "description": "Open Line Tools in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "sort",
+            "dedupe",
+            "unique",
+            "lines",
+            "shuffle",
+            "reverse"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-unit-converter",
+          "title": "Unit Converter",
+          "subtitle": "DevTools",
+          "description": "Open Unit Converter in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "units",
+            "length",
+            "weight",
+            "temperature",
+            "currency"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-image-metadata",
+          "title": "Image Metadata Cleaner",
+          "subtitle": "DevTools",
+          "description": "Open Image Metadata Cleaner in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "exif",
+            "metadata",
+            "remove metadata",
+            "gps",
+            "c2pa",
+            "content credentials",
+            "ai generated",
+            "stable diffusion prompt",
+            "privacy",
+            "strip exif"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-secret-redactor",
+          "title": "Secret & PII Redactor",
+          "subtitle": "DevTools",
+          "description": "Open Secret & PII Redactor in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "redact",
+            "secrets",
+            "api key",
+            "token",
+            "password",
+            "pii",
+            "mask",
+            "sanitize",
+            "chatgpt",
+            "privacy"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-token-counter",
+          "title": "Token Counter",
+          "subtitle": "DevTools",
+          "description": "Open Token Counter in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "tokens",
+            "tokenizer",
+            "gpt",
+            "openai",
+            "o200k",
+            "llm",
+            "prompt",
+            "cost",
+            "context window",
+            "claude"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-ai-text-cleaner",
+          "title": "AI Text Cleaner",
+          "subtitle": "DevTools",
+          "description": "Open AI Text Cleaner in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "clean text",
+            "invisible characters",
+            "zero width",
+            "smart quotes",
+            "em dash",
+            "citations",
+            "markdown",
+            "chatgpt",
+            "normalize"
           ],
           "preferences": []
         }
@@ -71497,6 +72440,49 @@
       "preferences": []
     },
     {
+      "name": "dock-cleanup",
+      "title": "Dock Cleanup",
+      "description": "Drag a box over Dock icons to quit those apps and remove them from the Dock.",
+      "icon": "extension-icon.png",
+      "author": "alara_martin",
+      "contributors": [],
+      "categories": [
+        "System",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/alara_martin/dock-cleanup",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/dock-cleanup",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "dock-cleanup",
+          "title": "Dock Cleanup",
+          "description": "Start a sweep: drag a box over Dock icons, confirm, and those apps quit and leave the Dock.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "protectedApps",
+              "title": "Protected Apps",
+              "type": "textfield",
+              "required": false,
+              "description": "App names or bundle IDs a sweep never quits or removes, separated by commas.",
+              "placeholder": "Terminal, Notes, com.spotify.client"
+            }
+          ]
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "dock-tinker",
       "title": "Dock Tinker",
       "description": "Change hidden macOS Dock settings: add spacers, toggle auto-hide and its delay, set position, icon size and minimize effect, and hide recent apps.",
@@ -71876,7 +72862,7 @@
     {
       "name": "docklock-plus",
       "title": "DockLock Plus",
-      "description": "Move the macOS Dock between displays and screen edges, and choose which monitors the Dock may appear on, using DockLock Plus.",
+      "description": "Move the macOS Dock between displays, choose where it can appear, hide it, and adjust its size with DockLock Plus.",
       "icon": "icon.png",
       "author": "IGHOR",
       "contributors": [],
@@ -71885,7 +72871,7 @@
       "platforms": [
         "macOS"
       ],
-      "version": "0.2.0",
+      "version": "0.3.0",
       "storeUrl": "https://www.raycast.com/IGHOR/docklock-plus",
       "source": {
         "type": "github-monorepo",
@@ -71897,17 +72883,65 @@
         {
           "name": "set-dock-control-mode",
           "title": "Set Dock Control Mode",
-          "subtitle": "Select Dock Control operation mode",
-          "description": "Shows a list of Dock Control modes to choose from and applies the selected mode using 'DockLock Plus mode <token>'",
+          "subtitle": "DockLock Plus",
+          "description": "Choose Lock to Selected Displays, Dock Follows Mouse, or Off.",
           "mode": "view",
           "keywords": [],
           "preferences": []
         },
         {
+          "name": "toggle-dock-visibility",
+          "title": "Toggle Dock Visibility",
+          "subtitle": "DockLock Plus",
+          "description": "Hide the Dock on all displays or restore its previous auto-hide setting.",
+          "mode": "no-view",
+          "keywords": [
+            "show dock",
+            "hide dock"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "increase-dock-size",
+          "title": "Increase Dock Size",
+          "subtitle": "DockLock Plus",
+          "description": "Make the Dock larger by the size step configured in DockLock Plus.",
+          "mode": "no-view",
+          "keywords": [
+            "larger",
+            "resize"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "decrease-dock-size",
+          "title": "Decrease Dock Size",
+          "subtitle": "DockLock Plus",
+          "description": "Make the Dock smaller by the size step configured in DockLock Plus.",
+          "mode": "no-view",
+          "keywords": [
+            "smaller",
+            "resize"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "set-dock-size",
+          "title": "Set Dock Size",
+          "subtitle": "DockLock Plus",
+          "description": "Choose a Dock size from 0% to 100%. A checkmark shows the current size.",
+          "mode": "view",
+          "keywords": [
+            "percentage",
+            "resize"
+          ],
+          "preferences": []
+        },
+        {
           "name": "move-dock-left",
           "title": "Move Dock Left",
-          "subtitle": "Send the Dock to the left side of the screen",
-          "description": "Moves the Dock to the left edge of the current or specified display using DockLock Plus automation",
+          "subtitle": "DockLock Plus",
+          "description": "Move the Dock to the neighboring display on the left.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -71915,8 +72949,8 @@
         {
           "name": "move-dock-right",
           "title": "Move Dock Right",
-          "subtitle": "Send the Dock to the right side of the screen",
-          "description": "Moves the Dock to the right edge of the current or specified display using DockLock Plus automation",
+          "subtitle": "DockLock Plus",
+          "description": "Move the Dock to the neighboring display on the right.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -71924,8 +72958,8 @@
         {
           "name": "move-dock-up",
           "title": "Move Dock Up",
-          "subtitle": "Send the Dock to the up side of the screen",
-          "description": "Moves the Dock to the up edge of the current or specified display using DockLock Plus automation",
+          "subtitle": "DockLock Plus",
+          "description": "Move the Dock to the neighboring display above.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -71933,8 +72967,8 @@
         {
           "name": "move-dock-down",
           "title": "Move Dock Down",
-          "subtitle": "Send the Dock to the down side of the screen",
-          "description": "Moves the Dock to the down edge of the current or specified display using DockLock Plus automation",
+          "subtitle": "DockLock Plus",
+          "description": "Move the Dock to the neighboring display below.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -71942,8 +72976,8 @@
         {
           "name": "move-dock-to-display-by-name",
           "title": "Move Dock to Display by Name",
-          "subtitle": "Move the Dock to a specific display by Name",
-          "description": "Relocates the Dock to a display using its name",
+          "subtitle": "DockLock Plus",
+          "description": "Choose a compatible display by name or number and request a Dock move.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -71951,8 +72985,8 @@
         {
           "name": "allow-dock-on-display",
           "title": "Allow Dock on Display",
-          "subtitle": "Allow Dock appearance on a specific display",
-          "description": "Shows a list of displays and allows Dock appearance on the selected one using DockLock Plus automation",
+          "subtitle": "DockLock Plus",
+          "description": "Allow the Dock on a compatible display in the current arrangement.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -71960,8 +72994,8 @@
         {
           "name": "disallow-dock-on-display",
           "title": "Disallow Dock on Display",
-          "subtitle": "Disallow Dock appearance on a specific display",
-          "description": "Shows a list of displays and disallows Dock appearance on the selected one using DockLock Plus automation",
+          "subtitle": "DockLock Plus",
+          "description": "Remove a display from the allowed displays in the current arrangement.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -75326,7 +76360,7 @@
           "description": "Captures a full screen shot and uploads with Dropshare.",
           "mode": "no-view",
           "keywords": [],
-          "icon": "dropshare.png",
+          "icon": "dropshare_512.png",
           "preferences": []
         },
         {
@@ -75336,7 +76370,7 @@
           "description": "Captures a  selection full screen shot and uploads with Dropshare.",
           "mode": "no-view",
           "keywords": [],
-          "icon": "dropshare.png",
+          "icon": "dropshare_512.png",
           "preferences": []
         },
         {
@@ -75346,7 +76380,7 @@
           "description": "Captures a pretty screen shot and uploads with Dropshare.",
           "mode": "no-view",
           "keywords": [],
-          "icon": "dropshare.png",
+          "icon": "dropshare_512.png",
           "preferences": []
         },
         {
@@ -75356,7 +76390,7 @@
           "description": "Captures a screen recording and uploads with Dropshare.",
           "mode": "no-view",
           "keywords": [],
-          "icon": "dropshare.png",
+          "icon": "dropshare_512.png",
           "preferences": []
         },
         {
@@ -75366,7 +76400,7 @@
           "description": "Uploads file with Dropshare.",
           "mode": "no-view",
           "keywords": [],
-          "icon": "dropshare.png",
+          "icon": "dropshare_512.png",
           "preferences": []
         }
       ],
@@ -80163,7 +81197,6 @@
       "icon": "command-icon.png",
       "author": "FezVrasta",
       "contributors": [
-        "sxn",
         "maxdavid",
         "sinasab",
         "pernielsentikaer"
@@ -83960,6 +84993,85 @@
       ]
     },
     {
+      "name": "external-hdr",
+      "title": "External HDR",
+      "description": "Turn high dynamic range on or off for external displays",
+      "icon": "icon.png",
+      "author": "jjuan",
+      "contributors": [],
+      "categories": [
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/jjuan/external-hdr",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/external-hdr",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "toggle-hdr",
+          "title": "Toggle HDR",
+          "description": "Flip high dynamic range for your external display",
+          "mode": "no-view",
+          "keywords": [
+            "display",
+            "monitor"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "menu-bar",
+          "title": "HDR Displays",
+          "description": "See and change HDR state from the menu bar",
+          "mode": "menu-bar",
+          "keywords": [
+            "display",
+            "monitor"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "hdr-on-connect",
+          "title": "HDR on Connect",
+          "subtitle": "Auto-apply rules",
+          "description": "Choose which displays get HDR applied automatically when connected",
+          "mode": "view",
+          "keywords": [
+            "display",
+            "monitor"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "watch-displays",
+          "title": "Apply HDR Rules",
+          "description": "Applies saved HDR rules when a display connects. Open once to enable its background refresh.",
+          "mode": "no-view",
+          "keywords": [
+            "display",
+            "monitor"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "displayName",
+          "type": "textfield",
+          "required": false,
+          "title": "Target Display",
+          "description": "Name of the display Toggle HDR should act on. Leave empty to use the first external HDR-capable display.",
+          "placeholder": "e.g. LG HDR 4K"
+        }
+      ]
+    },
+    {
       "name": "f1-standings",
       "title": "Formula 1",
       "description": "See Formula 1 driver and constructor standings, the F1 race schedule and race and qualifying results, including past seasons.",
@@ -84123,6 +85235,138 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "fabric-patterns",
+      "title": "Fabric Patterns",
+      "description": "Run Daniel Miessler's fabric patterns on your selection, a URL or a file. Search patterns, manage strategies, contexts, sessions, configs and chains. Requires the fabric CLI.",
+      "icon": "command-icon.png",
+      "author": "michaelhixon",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/michaelhixon/fabric-patterns",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/fabric-patterns",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search",
+          "title": "Run Fabric Pattern",
+          "subtitle": "Fabric Patterns",
+          "description": "Find a fabric pattern, chain or session and run it. Enter runs it on your selection; Cmd+Enter opens the run form.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "browse",
+          "title": "Manage Fabric",
+          "subtitle": "Fabric Patterns",
+          "description": "Create, edit and organize custom patterns, strategies, contexts, sessions, configs and chains, and view the built-in patterns.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "update-patterns",
+          "title": "Update Fabric Patterns",
+          "subtitle": "Fabric Patterns",
+          "description": "Download the newest built-in fabric patterns (runs fabric --updatepatterns).",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "background-runs",
+          "title": "Show Background Runs",
+          "subtitle": "Fabric Patterns",
+          "description": "See fabric runs started in the background, copy or paste finished results, or stop a running one.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "fabricPath",
+          "type": "textfield",
+          "required": false,
+          "title": "Fabric Path",
+          "description": "Absolute path to the fabric binary. Left at the default, it also finds Homebrew's Intel install at /usr/local/bin/fabric-ai; a path you type here is used as is.",
+          "default": "/opt/homebrew/bin/fabric-ai"
+        },
+        {
+          "name": "defaultOutput",
+          "type": "dropdown",
+          "required": false,
+          "title": "When a Run Finishes",
+          "description": "Where the answer goes when a run finishes. The Run form can override it.",
+          "default": "clipboard",
+          "data": [
+            {
+              "title": "Copy to Clipboard",
+              "value": "clipboard"
+            },
+            {
+              "title": "Paste into Current App",
+              "value": "paste"
+            },
+            {
+              "title": "Save to File",
+              "value": "file"
+            },
+            {
+              "title": "Copy to Clipboard + Save to File",
+              "value": "clipboard-file"
+            }
+          ]
+        },
+        {
+          "name": "saveFolder",
+          "type": "textfield",
+          "required": false,
+          "title": "Save Folder",
+          "placeholder": "~/Documents/Fabric",
+          "description": "Where saved results and background-run results are written. Paste or type a path; ~ and file:// URLs work.",
+          "default": "~/Documents/Fabric"
+        },
+        {
+          "name": "longInputs",
+          "type": "dropdown",
+          "required": false,
+          "title": "Long Runs (Web Pages, YouTube, Audio, Video)",
+          "description": "How runs on a web page, YouTube, audio or video are handled.",
+          "default": "background",
+          "data": [
+            {
+              "title": "Run in Background",
+              "value": "background"
+            },
+            {
+              "title": "Keep Raycast Open",
+              "value": "foreground"
+            }
+          ]
+        },
+        {
+          "name": "customPatternsFolder",
+          "type": "textfield",
+          "required": false,
+          "title": "Custom Patterns Folder",
+          "placeholder": "~/.config/fabric/custom",
+          "description": "fabric's Custom Patterns folder. Must match fabric's own setting (fabric --setup › Custom Patterns). Paste or type a path; ~ and file:// URLs work."
+        }
+      ]
     },
     {
       "name": "fabulous",
@@ -90361,7 +91605,9 @@
         "Applications"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/nickscamara/firecrawl",
       "source": {
         "type": "github-monorepo",
@@ -90396,19 +91642,12 @@
           "description": "Your custom Firecrawl API key."
         },
         {
-          "name": "maxDepth",
-          "title": "Max Depth - Deep Research",
+          "name": "maxCredits",
+          "title": "Max Credits",
           "type": "textfield",
-          "description": "The maximum depth of the research.",
-          "default": "3",
-          "required": false
-        },
-        {
-          "name": "timeLimit",
-          "title": "Time Limit - Deep Research",
-          "type": "textfield",
-          "description": "The time limit of the research in seconds.",
-          "default": "500",
+          "description": "Maximum Firecrawl agent credits per Deep Research run. The run stops with an error if it reaches this cap.",
+          "default": "100",
+          "placeholder": "100",
           "required": false
         }
       ]
@@ -108241,7 +109480,6 @@
       "contributors": [
         "bromanko",
         "crisboarna",
-        "andreaselia",
         "rtyke",
         "KarolRe",
         "Aiee",
@@ -117106,9 +118344,7 @@
       "author": "thomas",
       "contributors": [
         "GastroGeek",
-        "sxn",
         "itsnwa",
-        "andreaselia",
         "russellyeo"
       ],
       "categories": [
@@ -119560,7 +120796,8 @@
         "mallsjr",
         "IslamTayeb",
         "ohivan",
-        "muhammadrizo"
+        "muhammadrizo",
+        "Reivaj"
       ],
       "categories": [
         "Applications",
@@ -119580,6 +120817,14 @@
         "ref": "main"
       },
       "commands": [
+        {
+          "name": "search-helium",
+          "title": "Search Helium",
+          "description": "Search open tabs, bookmarks, browsing history and the web in Helium browser",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
         {
           "name": "search-tabs",
           "title": "Search Tabs",
@@ -119641,11 +120886,15 @@
         {
           "name": "searchEngine",
           "title": "Search Engine",
-          "description": "Choose your preferred search engine for suggestions and searches",
+          "description": "Search engine for web searches and suggestions. \"Same as Helium\" follows the default search engine set in Helium's settings.",
           "type": "dropdown",
           "required": false,
-          "default": "google",
+          "default": "helium",
           "data": [
+            {
+              "title": "Same as Helium",
+              "value": "helium"
+            },
             {
               "title": "Google",
               "value": "google"
@@ -119692,7 +120941,8 @@
       "icon": "command-icon.png",
       "author": "alexstrnik",
       "contributors": [
-        "litomore"
+        "litomore",
+        "tim_gailey"
       ],
       "categories": [
         "Fun",
@@ -121878,9 +123128,7 @@
       "description": "Run HIIT interval timers: create and save high intensity interval training workouts and track your workout history.",
       "icon": "extension-icon.png",
       "author": "pernielsentikaer",
-      "contributors": [
-        "andreaselia"
-      ],
+      "contributors": [],
       "categories": [
         "Fun"
       ],
@@ -126259,7 +127507,6 @@
       "icon": "icon.png",
       "author": "destiner",
       "contributors": [
-        "sxn",
         "robert",
         "kuddl",
         "kevinxo328",
@@ -161151,6 +162398,150 @@
       "preferences": []
     },
     {
+      "name": "me-mark-everything",
+      "title": "Mark Everything",
+      "description": "Search, save, and edit bookmarks in your local ME library. Requires Mark Everything to be installed and configured separately.",
+      "icon": "me-icon.png",
+      "author": "roy",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/roy/me-mark-everything",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/me-mark-everything",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search",
+          "title": "Search Bookmarks",
+          "subtitle": "ME",
+          "description": "Search your ME library; edit bookmarks inline with configurable shortcuts",
+          "mode": "view",
+          "keywords": [],
+          "icon": "me-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "save",
+          "title": "Save Bookmark",
+          "subtitle": "ME",
+          "description": "Save bookmarks and their details to your local ME library.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "me-icon.png",
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "discoveryPath",
+          "type": "textfield",
+          "title": "Helper Discovery Record",
+          "description": "Optional absolute helper-install.json path; leave blank to use the installed ME (me-raindrop).",
+          "required": false,
+          "placeholder": "/absolute/path/to/helper-install.json"
+        },
+        {
+          "name": "shortcutOpen",
+          "type": "textfield",
+          "title": "Shortcut: Open in Browser",
+          "description": "Use cmd, ctrl, opt, shift and a key, e.g. ctrl+shift+x. Use none to disable. Reopen the command after changes. Additional shortcut; Return remains available.",
+          "required": false,
+          "default": "",
+          "placeholder": "cmd+shift+x or none"
+        },
+        {
+          "name": "shortcutCopy",
+          "type": "textfield",
+          "title": "Shortcut: Copy URL",
+          "description": "Use cmd, ctrl, opt, shift and a key, e.g. ctrl+shift+x. Use none to disable. Reopen the command after changes. Additional shortcut; cmd+Return remains available when this is the second action.",
+          "required": false,
+          "default": "",
+          "placeholder": "cmd+shift+x or none"
+        },
+        {
+          "name": "shortcutDetails",
+          "type": "textfield",
+          "title": "Shortcut: Show Details",
+          "description": "Use cmd, ctrl, opt, shift and a key, e.g. ctrl+shift+x. Use none to disable. Reopen the command after changes.",
+          "required": false,
+          "default": "cmd+shift+d",
+          "placeholder": "cmd+shift+x or none"
+        },
+        {
+          "name": "shortcutEdit",
+          "type": "textfield",
+          "title": "Shortcut: Edit in Raycast",
+          "description": "Use cmd, ctrl, opt, shift and a key, e.g. ctrl+shift+x. Use none to disable. Reopen the command after changes.",
+          "required": false,
+          "default": "cmd+e",
+          "placeholder": "cmd+shift+x or none"
+        },
+        {
+          "name": "shortcutTrash",
+          "type": "textfield",
+          "title": "Shortcut: Move to Trash",
+          "description": "Use cmd, ctrl, opt, shift and a key, e.g. ctrl+shift+x. Use none to disable. Reopen the command after changes. The confirmation dialog still appears.",
+          "required": false,
+          "default": "ctrl+x",
+          "placeholder": "cmd+shift+x or none"
+        },
+        {
+          "name": "shortcutManager",
+          "type": "textfield",
+          "title": "Shortcut: Open in ME Manager",
+          "description": "Use cmd, ctrl, opt, shift and a key, e.g. ctrl+shift+x. Use none to disable. Reopen the command after changes.",
+          "required": false,
+          "default": "",
+          "placeholder": "cmd+shift+x or none"
+        },
+        {
+          "name": "shortcutRefresh",
+          "type": "textfield",
+          "title": "Shortcut: Refresh / Reload",
+          "description": "Use cmd, ctrl, opt, shift and a key, e.g. ctrl+shift+x. Use none to disable. Reopen the command after changes.",
+          "required": false,
+          "default": "",
+          "placeholder": "cmd+shift+x or none"
+        },
+        {
+          "name": "shortcutSave",
+          "type": "textfield",
+          "title": "Shortcut: Save Bookmark / Changes",
+          "description": "Use cmd, ctrl, opt, shift and a key, e.g. ctrl+shift+x. Use none to disable. Reopen the command after changes. Additional shortcut; cmd+Return remains available.",
+          "required": false,
+          "default": "",
+          "placeholder": "cmd+shift+x or none"
+        },
+        {
+          "name": "shortcutAddUrl",
+          "type": "textfield",
+          "title": "Shortcut: Add Another URL",
+          "description": "Use cmd, ctrl, opt, shift and a key. Use none to disable. Reopen the command after changes.",
+          "required": false,
+          "default": "ctrl+shift+a",
+          "placeholder": "cmd+shift+x or none"
+        },
+        {
+          "name": "shortcutRemoveUrl",
+          "type": "textfield",
+          "title": "Shortcut: Remove URL",
+          "description": "Use cmd, ctrl, opt, shift and a key. Use none to disable. Reopen the command after changes.",
+          "required": false,
+          "default": "ctrl+shift+r",
+          "placeholder": "cmd+shift+x or none"
+        }
+      ]
+    },
+    {
       "name": "mealie",
       "title": "Mealie",
       "description": "Search your Mealie recipes, import recipes from a URL, manage shopping lists and edit your weekly meal plan.",
@@ -178015,9 +179406,12 @@
       "author": "chyroc",
       "contributors": [
         "IceGiraffe",
-        "Anoninz"
+        "Anoninz",
+        "ViGeng"
       ],
-      "categories": [],
+      "categories": [
+        "Media"
+      ],
       "license": "MIT",
       "platforms": [
         "macOS"
@@ -216754,7 +218148,7 @@
             {
               "name": "includeUppercase",
               "type": "checkbox",
-              "title": "Characters",
+              "title": "",
               "label": "Random: Uppercase letters",
               "description": "Include uppercase letters in random passwords.",
               "default": true,
@@ -216861,7 +218255,7 @@
             {
               "name": "capitalizeWords",
               "type": "checkbox",
-              "title": "Options",
+              "title": "",
               "label": "Passphrase: Capitalize words",
               "description": "Start each word of passphrases with a capital letter.",
               "default": true,
@@ -216938,7 +218332,7 @@
           "name": "cliPath",
           "type": "textfield",
           "title": "CLI Path",
-          "description": "Leave as pass-cli to use pass-cli 2.5.1, which the extension downloads. Or enter the path to another pass-cli.",
+          "description": "Leave as pass-cli to use the downloaded pass-cli 2.5.1, or enter another path.",
           "default": "pass-cli",
           "required": false
         },
@@ -216946,7 +218340,7 @@
           "name": "primaryAction",
           "type": "dropdown",
           "title": "Primary Action",
-          "description": "What Enter does on an item.",
+          "description": "What Enter does. Fill Login and Paste are for macOS: on Windows, they copy.",
           "default": "details",
           "required": false,
           "data": [
@@ -216959,8 +218353,24 @@
               "value": "copy"
             },
             {
-              "title": "Fill Login (macOS)",
+              "title": "Copy TOTP Code",
+              "value": "copyTotp"
+            },
+            {
+              "title": "Fill Login",
               "value": "fill"
+            },
+            {
+              "title": "Paste Password",
+              "value": "pastePassword"
+            },
+            {
+              "title": "Paste TOTP Code",
+              "value": "pasteTotp"
+            },
+            {
+              "title": "Open Website",
+              "value": "openWebsite"
             }
           ]
         },
@@ -218460,7 +219870,9 @@
       "description": "Search stocks, ETFs, indices and crypto in US, Hong Kong, China, Japan, Korea and Taiwan markets, with live prices and today's chart.",
       "icon": "extension-icon.png",
       "author": "fatwang266",
-      "contributors": [],
+      "contributors": [
+        "1weiho"
+      ],
       "categories": [
         "Finance"
       ],
@@ -218494,6 +219906,48 @@
             "주식"
           ],
           "preferences": []
+        },
+        {
+          "name": "menu-bar-favorites",
+          "title": "Favorites in Menu Bar",
+          "subtitle": "Pulse",
+          "description": "Show your favorite symbols' prices and changes in the menu bar. The first favorite leads the menu bar title.",
+          "mode": "menu-bar",
+          "keywords": [
+            "favorites",
+            "watchlist",
+            "menu bar",
+            "stock",
+            "crypto"
+          ],
+          "preferences": [
+            {
+              "name": "titleStyle",
+              "title": "Menu Bar Title",
+              "description": "What the menu bar shows for your first favorite.",
+              "type": "dropdown",
+              "required": false,
+              "default": "change",
+              "data": [
+                {
+                  "title": "Symbol and Change",
+                  "value": "change"
+                },
+                {
+                  "title": "Symbol, Price and Change",
+                  "value": "full"
+                },
+                {
+                  "title": "Symbol and Price",
+                  "value": "price"
+                },
+                {
+                  "title": "Icon Only",
+                  "value": "icon"
+                }
+              ]
+            }
+          ]
         }
       ],
       "preferences": [
@@ -218528,6 +219982,28 @@
             {
               "title": "한국어",
               "value": "ko"
+            }
+          ]
+        },
+        {
+          "name": "priceColors",
+          "title": "Price Colors",
+          "description": "Which color marks a gain. Taiwan, China, Japan and Korea show gains in red; crypto exchanges show them in green.",
+          "type": "dropdown",
+          "required": false,
+          "default": "green-up",
+          "data": [
+            {
+              "title": "Green Up, Red Down",
+              "value": "green-up"
+            },
+            {
+              "title": "Red Up, Green Down",
+              "value": "red-up"
+            },
+            {
+              "title": "Red Up for Stocks, Green Up for Crypto",
+              "value": "red-up-stocks"
             }
           ]
         }
@@ -222969,7 +224445,6 @@
       "contributors": [
         "jrnxf",
         "3llomi",
-        "sxn",
         "yvysunu",
         "ridemountainpig",
         "erayack"
@@ -232707,8 +234182,8 @@
               "value": "default"
             },
             {
-              "title": "GPT-5.6 Terra",
-              "value": "OpenAI_GPT-5.6_Terra"
+              "title": "GPT-6.1 Terra",
+              "value": "OpenAI_GPT-6.1_Terra"
             },
             {
               "title": "Claude Haiku 5.5",
@@ -236663,8 +238138,7 @@
       "icon": "extension_icon.png",
       "author": "xmorse",
       "contributors": [
-        "ridemountainpig",
-        "andreaselia"
+        "ridemountainpig"
       ],
       "categories": [
         "System",
@@ -249986,6 +251460,49 @@
       ]
     },
     {
+      "name": "shell-click",
+      "title": "Shell Click",
+      "description": "Companion extension for Shell Click (https://shellclick.dev): search and run saved commands, switch workspaces, and manage listening ports. Requires the Shell Click macOS app.",
+      "icon": "icon.png",
+      "author": "Envl",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/Envl/shell-click",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/shell-click",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "palette",
+          "title": "Search Command",
+          "description": "Search and run saved commands, or manage listening ports",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "applicationBundlePath",
+          "title": "Shell Click App Path",
+          "description": "Optional absolute path to ShellClick.app. Leave blank to find an installed copy.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "/Applications/ShellClick.app"
+        }
+      ]
+    },
+    {
       "name": "shell-history",
       "title": "Shell History",
       "description": "Search your zsh, bash and fish shell command history, and copy, paste or run commands in your terminal.",
@@ -255986,7 +257503,6 @@
         "clins1994",
         "stephlv",
         "artistro08",
-        "andreaselia",
         "0xdhrv",
         "naoya-otani"
       ],
@@ -260441,7 +261957,6 @@
       "icon": "command-icon.png",
       "author": "pernielsentikaer",
       "contributors": [
-        "andreaselia",
         "anh_nguyen",
         "jor",
         "n0kovo",
@@ -265657,9 +267172,7 @@
       "author": "mattisssa",
       "contributors": [
         "peduarte",
-        "sxn",
         "dillionverma",
-        "andreaselia",
         "stuart",
         "tonka3000"
       ],
@@ -266046,9 +267559,7 @@
       "author": "mattisssa",
       "contributors": [
         "peduarte",
-        "sxn",
         "dillionverma",
-        "andreaselia",
         "stuart",
         "tonka3000",
         "pernielsentikaer",
@@ -285004,7 +286515,6 @@
       "icon": "things-icon.png",
       "author": "loris",
       "contributors": [
-        "andreaselia",
         "stelo",
         "srikirank",
         "vimtor",
@@ -289814,6 +291324,86 @@
       ]
     },
     {
+      "name": "tiro",
+      "title": "Tiro",
+      "description": "Search notes with a Tiro account and control recordings in the separately installed Tiro desktop app (4.12.1+).",
+      "icon": "tiro-icon.png",
+      "author": "paul-theplato",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Communication"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/paul-theplato/tiro",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/tiro",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-notes",
+          "title": "Search Notes",
+          "subtitle": "Tiro",
+          "description": "Search your Tiro notes and read summaries and transcripts.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "start-live-note",
+          "title": "Start Live Note",
+          "subtitle": "Tiro",
+          "description": "Start a new live note in the Tiro desktop app.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "end-live-note",
+          "title": "End Live Note and Create Document",
+          "subtitle": "Tiro",
+          "description": "End the current live note and create its document. Requires Tiro desktop 4.12.1 or later.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "start-offline-recording",
+          "title": "Start Offline Recording",
+          "subtitle": "Tiro",
+          "description": "Start a new offline recording in the Tiro desktop app.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "end-offline-recording",
+          "title": "End and Upload Offline Recording",
+          "subtitle": "Tiro",
+          "description": "End and upload the current offline recording. Does not end a live note. Requires the latest Tiro desktop app.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "title": "API Key",
+          "description": "Optional. Paste an account API key from tiro.ooo/platform/me/api-keys to use it instead of signing in.",
+          "type": "password",
+          "placeholder": "Optional account API key",
+          "required": false
+        }
+      ]
+    },
+    {
       "name": "tl-dr-ai-summary-tool",
       "title": "TL;DR (Too Long; Didn't Read)",
       "description": "Summarize web articles from a URL with AI using Zhipu's ChatGLM API, and chat with the article content.",
@@ -290270,7 +291860,6 @@
       "icon": "command-icon.png",
       "author": "Aayush9029",
       "contributors": [
-        "andreaselia",
         "j3lte",
         "joeynotjoe",
         "VBenny42"
@@ -290416,7 +292005,6 @@
       "icon": "command-icon.png",
       "author": "louishuyng",
       "contributors": [
-        "sxn",
         "jasonshanks",
         "guide",
         "janwvjaarsveld",
@@ -292494,7 +294082,6 @@
       "contributors": [
         "briankosw",
         "oranja",
-        "sxn",
         "pernielsentikaer",
         "rspeicher",
         "roele",
@@ -292806,7 +294393,7 @@
       "title": "Torr Manager",
       "description": "Browse, search and upload torrents on your self-hosted TorrServer and stream movies from it.",
       "icon": "extension_icon.png",
-      "author": "dannius",
+      "author": "danniuz",
       "contributors": [],
       "categories": [
         "Media",
@@ -292814,7 +294401,7 @@
       ],
       "license": "MIT",
       "platforms": [],
-      "storeUrl": "https://www.raycast.com/dannius/torr-manager",
+      "storeUrl": "https://www.raycast.com/danniuz/torr-manager",
       "source": {
         "type": "github-monorepo",
         "repo": "raycast/extensions",
@@ -311128,7 +312715,6 @@
       "icon": "wayback-icon.png",
       "author": "pernielsentikaer",
       "contributors": [
-        "andreaselia",
         "j3lte",
         "chrismessina",
         "tofrankie"
@@ -313572,7 +315158,7 @@
           "description": "Displays a list of employees who are not at work today",
           "mode": "view",
           "keywords": [],
-          "icon": "remote.svg",
+          "icon": "remote.png",
           "preferences": []
         }
       ],
@@ -320349,6 +321935,202 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "xdr-boost",
+      "title": "XDR Boost",
+      "description": "Make SDR content brighter on XDR displays by using their extra EDR headroom.",
+      "icon": "icon.png",
+      "author": "chrismessina",
+      "contributors": [],
+      "categories": [
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/chrismessina/xdr-boost",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/xdr-boost",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "menu-bar",
+          "title": "Show XDR Boost in Menu Bar",
+          "description": "Show the boost in the menu bar and change its level from there.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle-boost",
+          "title": "Toggle XDR Boost",
+          "description": "Turn the boost on at your default level, or turn it off.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "increase-boost",
+          "title": "Increase Boost",
+          "description": "Step each display up one preset from its own level.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "decrease-boost",
+          "title": "Decrease Boost",
+          "description": "Step each display down one preset from its own level, down to off.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "set-boost",
+          "title": "Set XDR Boost",
+          "description": "Pick a level for all displays or for one connected XDR display.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "quick-set-boost",
+          "title": "Quick Set XDR Boost",
+          "description": "Set every XDR display to a level from 1.0 to 1.75, a percent, or a preset name.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "defaultLevel",
+          "title": "Default Level",
+          "description": "The level Toggle XDR Boost turns on.",
+          "type": "dropdown",
+          "required": false,
+          "default": "high",
+          "data": [
+            {
+              "title": "Low (1.19)",
+              "value": "low"
+            },
+            {
+              "title": "Medium (1.38)",
+              "value": "medium"
+            },
+            {
+              "title": "High (1.56)",
+              "value": "high"
+            },
+            {
+              "title": "Max (1.75)",
+              "value": "max"
+            }
+          ]
+        },
+        {
+          "name": "restoreAfterRestart",
+          "title": "After Restart",
+          "label": "Restore the boost after a restart",
+          "description": "The menu bar command restarts the boost at your last level.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "boostStrategy",
+          "title": "Boost Strategy",
+          "description": "Follow Brightness raises Max as you lower the brightness slider.",
+          "type": "dropdown",
+          "required": false,
+          "default": "adaptive",
+          "data": [
+            {
+              "title": "Follow Brightness (Recommended)",
+              "value": "adaptive"
+            },
+            {
+              "title": "Fixed Maximum",
+              "value": "fixed"
+            }
+          ]
+        },
+        {
+          "name": "externalMax",
+          "title": "External XDR Maximum",
+          "description": "Fixed Maximum only: light boost at Max on external XDR displays.",
+          "type": "dropdown",
+          "required": false,
+          "default": "2",
+          "data": [
+            {
+              "title": "1.5×",
+              "value": "1.5"
+            },
+            {
+              "title": "2× (Recommended)",
+              "value": "2"
+            },
+            {
+              "title": "2.5×",
+              "value": "2.5"
+            },
+            {
+              "title": "3×",
+              "value": "3"
+            },
+            {
+              "title": "3.4× (Full, may blank a Pro Display XDR)",
+              "value": "3.42"
+            }
+          ]
+        },
+        {
+          "name": "pauseBelowBattery",
+          "title": "Pause When Battery Below",
+          "description": "On battery power, pause the boost below this charge.",
+          "type": "dropdown",
+          "required": false,
+          "default": "20",
+          "data": [
+            {
+              "title": "Never",
+              "value": "0"
+            },
+            {
+              "title": "10%",
+              "value": "10"
+            },
+            {
+              "title": "20%",
+              "value": "20"
+            },
+            {
+              "title": "30%",
+              "value": "30"
+            },
+            {
+              "title": "50%",
+              "value": "50"
+            }
+          ]
+        },
+        {
+          "name": "notifyOnChange",
+          "title": "Notifications",
+          "label": "Show a notification when the boost changes",
+          "description": "Posts a macOS notification with the new level after every change.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        }
+      ]
     },
     {
       "name": "xecutor",
