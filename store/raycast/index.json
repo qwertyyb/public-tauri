@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-20T00:37:18.748Z",
+  "generatedAt": "2026-11-20T23:59:04.775Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "2a17f29c567e4ae3c8adb0ae4518b304fa3d435a"
+    "commit": "ce8f05c5abe34002f1a21c35d6a4cda6d44d63db"
   },
-  "count": 3614,
+  "count": 3623,
   "extensions": [
     {
       "name": "0x0",
@@ -11598,6 +11598,98 @@
       "preferences": []
     },
     {
+      "name": "app-folders",
+      "title": "App Folders",
+      "description": "Group apps into smartphone-like folders and launch them instantly with dedicated shortcuts.",
+      "icon": "icon.png",
+      "author": "infovore28",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/infovore28/app-folders",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/app-folders",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "folder-1",
+          "title": "App Folder 1",
+          "description": "Open App Folder 1 directly via dedicated shortcut.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "folder-2",
+          "title": "App Folder 2",
+          "description": "Open App Folder 2 directly via dedicated shortcut.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "folder-3",
+          "title": "App Folder 3",
+          "description": "Open App Folder 3 directly via dedicated shortcut.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "folder-4",
+          "title": "App Folder 4",
+          "description": "Open App Folder 4 directly via dedicated shortcut.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "folder-5",
+          "title": "App Folder 5",
+          "description": "Open App Folder 5 directly via dedicated shortcut.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-app-folder",
+          "title": "All App Folders",
+          "description": "Browse and open all app folders in a unified grid.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "manage-folders",
+          "title": "Manage App Folders",
+          "description": "Manage, create, rename, and delete app folders.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "showShortcutHints",
+          "type": "checkbox",
+          "required": false,
+          "title": "Shortcuts",
+          "label": "Show ⌘1–⌘9 shortcuts under items",
+          "description": "Displays ⌘1–⌘9 hotkey badges beneath the first 9 folders and apps.",
+          "default": true
+        }
+      ]
+    },
+    {
       "name": "app-icon-generator",
       "title": "App Icon Generator",
       "description": "Generate app icons in every size for iOS, iPadOS, macOS, Android, watchOS and Windows ICO from a single image.",
@@ -14246,33 +14338,25 @@
         },
         {
           "name": "searchAutomation",
-          "title": "Search Automation",
-          "description": "How far to go after typing a title into Apple TV Search. 'Open top result' stops on the title page so you pick the streaming app. Pressing Play blindly can start the wrong provider.",
+          "title": "Play Automation",
+          "description": "How far \"play <title>\" goes once it finds the title. Play presses the title page's own button, which resumes from the last episode watched. In Apple TV Search the button uses the Apple TV app's choice of service.",
           "type": "dropdown",
-          "default": "open",
+          "default": "play",
           "required": false,
           "data": [
             {
-              "title": "Type the title only",
-              "value": "type"
+              "title": "Play or resume (recommended)",
+              "value": "play"
             },
             {
-              "title": "Open top result (recommended)",
+              "title": "Open the title page",
               "value": "open"
             },
             {
-              "title": "Open and press Play (may pick the wrong app)",
-              "value": "play"
+              "title": "Type the title into search only",
+              "value": "type"
             }
           ]
-        },
-        {
-          "name": "connectTimeout",
-          "title": "Connection Timeout",
-          "description": "How long commands wait to reach the Apple TV (milliseconds).",
-          "type": "textfield",
-          "default": "8000",
-          "required": false
         }
       ]
     },
@@ -30456,7 +30540,7 @@
               "required": false,
               "title": "Search View",
               "label": "Show metadata panel in search results",
-              "description": "Display a metadata panel next to the search results list showing details for the selected package."
+              "description": "Show the selected package's details beside the search results."
             }
           ]
         },
@@ -30579,7 +30663,7 @@
               "default": false,
               "required": false,
               "label": "Include --prune=all when cleaning",
-              "description": "Include --prune=all when cleaning files & packages from cache.\nThis option bypasses the 120 days threshold."
+              "description": "Remove every cached download (--prune=all), not only those over 120 days old."
             }
           ]
         },
@@ -30651,7 +30735,7 @@
           "required": false,
           "default": false,
           "label": "Install and uninstall in the terminal application",
-          "description": "When enabled, brew install and uninstall run in the terminal application. ⌘I still installs inside Raycast."
+          "description": "Install and uninstall run in your terminal. ⌘I still installs in Raycast."
         },
         {
           "name": "greedyUpgrades",
@@ -30668,11 +30752,11 @@
           "required": false,
           "title": "Uninstall",
           "label": "Remove all files associated with a cask",
-          "description": "Run cask uninstall with the --zap option for a more complete uninstallation of files associated with cask.\nWARNING: This may remove files shared with other applications."
+          "description": "Also remove a cask's support files (--zap). Some may be shared with other apps."
         },
         {
           "default": false,
-          "description": "Homebrew enables parallel downloads by default. Enable this option to disable concurrent downloads if you experience issues.",
+          "description": "Download one package at a time. Turn on if parallel downloads fail.",
           "label": "Disable concurrent downloads",
           "name": "disableDownloadConcurrency",
           "required": false,
@@ -30681,7 +30765,7 @@
         },
         {
           "default": true,
-          "description": "Show pinned formulae and casks at the top of Show Installed and Show Upgrades, rather than at the bottom. Pinned packages are excluded from upgrades until you unpin them.",
+          "description": "List pinned packages first in Show Installed and Show Upgrades.",
           "label": "Show pinned items at the top of lists",
           "title": "Lists",
           "name": "pinnedFirst",
@@ -30690,7 +30774,7 @@
         },
         {
           "default": false,
-          "description": "Close the Raycast window after performing actions like install, uninstall, or upgrade.",
+          "description": "Close Raycast after an install, uninstall or upgrade.",
           "label": "Close immediately after action",
           "name": "closeAfterAction",
           "required": false,
@@ -32799,6 +32883,78 @@
           "type": "password",
           "required": true,
           "placeholder": "Find your Private API key here, https://builtbybit.com/account/api. Requires an Ultimate Subscription."
+        }
+      ]
+    },
+    {
+      "name": "bulkpublish",
+      "title": "BulkPublish",
+      "description": "Write, schedule and publish social media posts to all your BulkPublish channels, and keep an eye on your queue, without leaving Raycast.",
+      "icon": "extension-icon.png",
+      "author": "azeemkafridi",
+      "contributors": [],
+      "categories": [
+        "Communication",
+        "Productivity",
+        "Media"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/azeemkafridi/bulkpublish",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/bulkpublish",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "create-post",
+          "title": "Create Post",
+          "subtitle": "BulkPublish",
+          "description": "Write a post and publish it now, add it to your queue, schedule it or save it as a draft.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-posts",
+          "title": "Search Posts",
+          "subtitle": "BulkPublish",
+          "description": "Browse and search your recent posts, see where each one was published, and retry or publish them.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "view-queue",
+          "title": "View Queue",
+          "subtitle": "BulkPublish",
+          "description": "See what is scheduled to go out next, day by day, and your next free queue slot.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "list-channels",
+          "title": "List Channels",
+          "subtitle": "BulkPublish",
+          "description": "See your connected social accounts and which ones need attention.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "title": "API Key",
+          "description": "Your BulkPublish API key. Create one at app.bulkpublish.com/developer. It starts with bp_.",
+          "type": "password",
+          "required": true,
+          "placeholder": "bp_..."
         }
       ]
     },
@@ -35422,6 +35578,40 @@
           "mode": "no-view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "caps-lock-on",
+          "title": "Turn Caps Lock On",
+          "description": "Turn Caps Lock on (does nothing if it is already on).",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "caps-lock-off",
+          "title": "Turn Caps Lock Off",
+          "description": "Turn Caps Lock off (does nothing if it is already off).",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "menu-bar",
+          "title": "Caps Lock Indicator",
+          "description": "Show whether Caps Lock is on in the menu bar, with a one-click toggle.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "hideWhenOff",
+              "type": "checkbox",
+              "required": false,
+              "default": true,
+              "title": "Visibility",
+              "label": "Only show while Caps Lock is on",
+              "description": "Hide the menu bar icon whenever Caps Lock is off."
+            }
+          ]
         }
       ],
       "preferences": []
@@ -60226,6 +60416,58 @@
           "required": false
         }
       ]
+    },
+    {
+      "name": "daily-karte",
+      "title": "Daily Karte",
+      "description": "Record activities and review daily timelines and weekly calendars in Daily Karte. Requires a Google account.",
+      "icon": "icon.png",
+      "author": "ViGeng",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/ViGeng/daily-karte",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/daily-karte",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "record-activity",
+          "title": "Record Activity",
+          "subtitle": "Daily Karte",
+          "description": "Record a completed activity with an estimated duration and an optional note.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "today",
+          "title": "Today",
+          "subtitle": "Daily Karte",
+          "description": "Review today's activities and estimated duration totals.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "this-week",
+          "title": "This Week",
+          "subtitle": "Daily Karte",
+          "description": "View this week's activity calendar.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "daily-sites",
@@ -127596,6 +127838,225 @@
       "preferences": []
     },
     {
+      "name": "hush-translate",
+      "title": "Hush Translate",
+      "description": "Translate text, the clipboard, a selection or a screenshot with Apple Intelligence, on your Mac. No account, no API key, nothing leaves the device.",
+      "icon": "extension_icon.png",
+      "author": "whamwong",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/whamwong/hush-translate",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/hush-translate",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "translate",
+          "title": "Translate",
+          "subtitle": "Apple Intelligence",
+          "description": "Type text and translate it.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "clipboard",
+          "title": "Translate Clipboard",
+          "subtitle": "Apple Intelligence",
+          "description": "Translate the text on the clipboard. An image on the clipboard is read with OCR first.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "selection",
+          "title": "Translate Selection",
+          "subtitle": "Apple Intelligence",
+          "description": "Translate the text selected in the frontmost app.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "screenshot",
+          "title": "Translate Screenshot",
+          "subtitle": "Apple Intelligence",
+          "description": "Select an area of the screen and translate the text in it.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "toLang",
+          "type": "dropdown",
+          "required": false,
+          "title": "Translate into",
+          "description": "The language you usually translate into.",
+          "default": "zh-Hans",
+          "data": [
+            {
+              "value": "zh-Hans",
+              "title": "简体中文"
+            },
+            {
+              "value": "zh-Hant",
+              "title": "繁體中文"
+            },
+            {
+              "value": "en",
+              "title": "English"
+            },
+            {
+              "value": "ja",
+              "title": "日本語"
+            },
+            {
+              "value": "ko",
+              "title": "한국어"
+            },
+            {
+              "value": "fr",
+              "title": "Français"
+            },
+            {
+              "value": "de",
+              "title": "Deutsch"
+            },
+            {
+              "value": "es",
+              "title": "Español"
+            },
+            {
+              "value": "it",
+              "title": "Italiano"
+            },
+            {
+              "value": "pt",
+              "title": "Português"
+            },
+            {
+              "value": "nl",
+              "title": "Nederlands"
+            },
+            {
+              "value": "sv",
+              "title": "Svenska"
+            },
+            {
+              "value": "da",
+              "title": "Dansk"
+            },
+            {
+              "value": "nb",
+              "title": "Norsk"
+            },
+            {
+              "value": "tr",
+              "title": "Türkçe"
+            },
+            {
+              "value": "vi",
+              "title": "Tiếng Việt"
+            }
+          ]
+        },
+        {
+          "name": "altLang",
+          "type": "dropdown",
+          "required": false,
+          "title": "Fallback Language",
+          "description": "Used when the text is already in the language above.",
+          "default": "en",
+          "data": [
+            {
+              "value": "zh-Hans",
+              "title": "简体中文"
+            },
+            {
+              "value": "zh-Hant",
+              "title": "繁體中文"
+            },
+            {
+              "value": "en",
+              "title": "English"
+            },
+            {
+              "value": "ja",
+              "title": "日本語"
+            },
+            {
+              "value": "ko",
+              "title": "한국어"
+            },
+            {
+              "value": "fr",
+              "title": "Français"
+            },
+            {
+              "value": "de",
+              "title": "Deutsch"
+            },
+            {
+              "value": "es",
+              "title": "Español"
+            },
+            {
+              "value": "it",
+              "title": "Italiano"
+            },
+            {
+              "value": "pt",
+              "title": "Português"
+            },
+            {
+              "value": "nl",
+              "title": "Nederlands"
+            },
+            {
+              "value": "sv",
+              "title": "Svenska"
+            },
+            {
+              "value": "da",
+              "title": "Dansk"
+            },
+            {
+              "value": "nb",
+              "title": "Norsk"
+            },
+            {
+              "value": "tr",
+              "title": "Türkçe"
+            },
+            {
+              "value": "vi",
+              "title": "Tiếng Việt"
+            }
+          ]
+        },
+        {
+          "name": "autoCopy",
+          "type": "checkbox",
+          "required": false,
+          "title": "Clipboard",
+          "label": "Copy every translation automatically",
+          "description": "Copies each finished translation to the clipboard without pressing Return.",
+          "default": false
+        }
+      ]
+    },
+    {
       "name": "hyper-focus",
       "title": "Hyper Focus",
       "description": "Control the hyper-focus daemon that blocks distracting websites and apps: view the current schedule, pause focus and set overrides.",
@@ -139761,6 +140222,109 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "jot",
+      "title": "Jot",
+      "description": "Search, add, and capture jots in Jot, the quick capture app for Mac: voice notes, quick draw, screen annotation, images and sections. Needs the Jot app.",
+      "icon": "extension-icon.png",
+      "author": "mohak_bajaj",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/mohak_bajaj/jot",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/jot",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-jots",
+          "title": "Search Jots",
+          "subtitle": "Jot",
+          "description": "Search open jots, then open, copy, finish, archive, or tag them.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "add-jot",
+          "title": "Add Jot",
+          "subtitle": "Jot",
+          "description": "Write a new jot in Markdown, with optional tags.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "quick-jot",
+          "title": "Quick Jot",
+          "subtitle": "Jot",
+          "description": "Add a jot straight from the Raycast bar. End with #tags to tag it.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "voice-note",
+          "title": "Voice Note",
+          "subtitle": "Jot",
+          "description": "Speak a jot. Opens Jot's voice note, transcribed on your Mac.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "quick-draw",
+          "title": "Quick Draw",
+          "subtitle": "Jot",
+          "description": "Sketch something and save it as a jot.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "annotate-screen",
+          "title": "Annotate Screen",
+          "subtitle": "Jot",
+          "description": "Grab a region of the screen and mark it up.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "quick-note",
+          "title": "Quick Note",
+          "subtitle": "Jot",
+          "description": "Open Jot's quick note window over any app.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "cliPath",
+          "title": "Jot CLI",
+          "description": "Path to the jot CLI. Leave empty to use /usr/local/bin/jot or /Applications/Jot.app/Contents/Helpers/jot.",
+          "type": "file",
+          "required": false
+        },
+        {
+          "name": "vault",
+          "title": "Vault Folder",
+          "description": "Vault folder to use. Leave empty to use the vault from Jot settings.",
+          "type": "directory",
+          "required": false
+        }
+      ]
     },
     {
       "name": "jotaid",
@@ -191553,7 +192117,8 @@
       "icon": "extension-icon.png",
       "author": "timothy_boye",
       "contributors": [
-        "Undolog"
+        "Undolog",
+        "rsantos722"
       ],
       "categories": [
         "Productivity",
@@ -201088,9 +201653,14 @@
       "icon": "extension-icon.png",
       "author": "NormC",
       "contributors": [],
-      "categories": [],
+      "categories": [
+        "Developer Tools",
+        "Productivity"
+      ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/NormC/parse-logs",
       "source": {
         "type": "github-monorepo",
@@ -201102,7 +201672,7 @@
         {
           "name": "parse-log-file",
           "title": "Parse Log File",
-          "description": "Extract lines out of a log file that contain a given string.",
+          "description": "Extract the lines of a log file that contain some text or match a regular expression.",
           "mode": "view",
           "keywords": [],
           "preferences": [
@@ -201129,6 +201699,13 @@
               "required": true,
               "default": ".log",
               "placeholder": ".log, .txt, .out"
+            },
+            {
+              "name": "outputFolderPath",
+              "title": "Output Folder",
+              "description": "Where to save parsed results. Leave empty to save next to the log file (or in Downloads if that folder can't be written to).",
+              "type": "directory",
+              "required": false
             }
           ]
         }
@@ -217330,6 +217907,59 @@
       ]
     },
     {
+      "name": "profile-porter",
+      "title": "Profile Porter",
+      "description": "Open links and sites in the right browser profile, with Profile Porter.",
+      "icon": "icon.png",
+      "author": "rahmakyan",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/rahmakyan/profile-porter",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/profile-porter",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "open-in-profile",
+          "title": "Open in Profile",
+          "subtitle": "Profile Porter",
+          "description": "Pick a browser profile and open a link in it. Without a link, the link on the clipboard, or just a window of the profile.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-link",
+          "title": "Open Link in the Right Profile",
+          "subtitle": "Profile Porter",
+          "description": "Hand a link to Profile Porter, which opens it in the profile you use that site in.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search",
+          "title": "Search Sites and Pages",
+          "subtitle": "Profile Porter",
+          "description": "Show Profile Porter's panel with what you typed: the profile each site is used in, and the pages you visited.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "project-code-to-text",
       "title": "Project Code to Text",
       "description": "Combine a project's source code, folder structure and metadata into one text file to paste into ChatGPT, Claude or other AI tools, or to archive.",
@@ -222817,19 +223447,10 @@
       },
       "commands": [
         {
-          "name": "search-data",
-          "title": "Search Data",
+          "name": "show-data",
+          "title": "Show Data",
           "subtitle": "QR Code Sharing",
-          "description": "Search saved content, show its code, and create new ones.",
-          "mode": "view",
-          "keywords": [],
-          "preferences": []
-        },
-        {
-          "name": "export-data",
-          "title": "Export Data",
-          "subtitle": "QR Code Sharing",
-          "description": "Choose a folder and save a CSV with every entry there, for backup or to restore later.",
+          "description": "Show the clipboard as a QR code, a barcode, or typing-friendly text.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -269803,7 +270424,9 @@
       "contributors": [],
       "categories": [],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/Harry_Huang/st-andrews-main-library-occupancy",
       "source": {
         "type": "github-monorepo",
@@ -295018,6 +295641,150 @@
       ]
     },
     {
+      "name": "toolbox-for-mac",
+      "title": "Toolbox for Mac",
+      "description": "Compress videos, remove backgrounds, merge PDFs, extract text, download videos and 30+ more file tools, right from Raycast. Requires the paid Toolbox for Mac app (2.0 or later); everything runs on your Mac.",
+      "icon": "icon.png",
+      "author": "nikhil_barik",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Media",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/nikhil_barik/toolbox-for-mac",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/toolbox-for-mac",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-tools",
+          "title": "Search Toolbox Tools",
+          "subtitle": "Toolbox",
+          "description": "Find any Toolbox tool, pick files and options, and run it.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "compress-video",
+          "title": "Compress Video",
+          "subtitle": "Toolbox",
+          "description": "Makes the videos selected in Finder much smaller.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "compress-images",
+          "title": "Compress Images",
+          "subtitle": "Toolbox",
+          "description": "Makes the images selected in Finder smaller without visible loss.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "remove-background",
+          "title": "Remove Background",
+          "subtitle": "Toolbox",
+          "description": "Cuts out the subject of the photos selected in Finder as transparent PNGs.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "compress-pdf",
+          "title": "Compress PDF",
+          "subtitle": "Toolbox",
+          "description": "Makes the PDFs selected in Finder smaller.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "merge-pdfs",
+          "title": "Merge PDFs",
+          "subtitle": "Toolbox",
+          "description": "Combines the PDFs and images selected in Finder into one PDF.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "extract-text",
+          "title": "Extract Text from Files",
+          "subtitle": "Toolbox",
+          "description": "Reads the text in the images or PDFs selected in Finder and copies it.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "transcribe",
+          "title": "Transcribe Audio or Video",
+          "subtitle": "Toolbox",
+          "description": "Turns speech in the selected audio or video into text and copies it.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "video-to-gif",
+          "title": "Video to GIF",
+          "subtitle": "Toolbox",
+          "description": "Turns the videos selected in Finder into GIFs.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "download-video",
+          "title": "Download Video",
+          "subtitle": "Toolbox",
+          "description": "Saves a video or its audio from a link (YouTube, X, Vimeo and 1,000+ sites).",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "toolboxApp",
+          "title": "Toolbox App",
+          "description": "Pick Toolbox if it isn't in /Applications.",
+          "type": "appPicker",
+          "required": false,
+          "default": "com.nklm.Toolbox"
+        },
+        {
+          "name": "afterRun",
+          "title": "When a Quick Command Finishes",
+          "description": "What to do with the results of quick commands like Compress Video.",
+          "type": "dropdown",
+          "required": false,
+          "default": "toast",
+          "data": [
+            {
+              "title": "Show a notification",
+              "value": "toast"
+            },
+            {
+              "title": "Reveal the results in Finder",
+              "value": "reveal"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "toothpick",
       "title": "Toothpick",
       "description": "Connect, disconnect and toggle Bluetooth devices like AirPods, headphones, keyboards and mice, with favorite device shortcuts, on Mac and Windows.",
@@ -308384,6 +309151,40 @@
       "preferences": []
     },
     {
+      "name": "venue-rank",
+      "title": "Venue Rank",
+      "description": "Search computer science conferences and journals across versioned ranking lists, offline.",
+      "icon": "icon.png",
+      "author": "ViGeng",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Data"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/ViGeng/venue-rank",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/venue-rank",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-venues",
+          "title": "Search Venues",
+          "description": "Look up venue grades and their sources.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "vercast",
       "title": "Vercel",
       "description": "Manage Vercel projects, deployments, domains and environment variables, check domain availability and Vercel status, and explore AI Gateway.",
@@ -313792,6 +314593,80 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "wcag-testing-guide",
+      "title": "WCAG Testing Guide",
+      "description": "Explore WCAG 2.1 and 2.2, test web and mobile accessibility, track findings, and export HTML and PDF reports.",
+      "icon": "extension-icon.png",
+      "author": "lukaszgd",
+      "contributors": [],
+      "categories": [
+        "Documentation",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/lukaszgd/wcag-testing-guide",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/wcag-testing-guide",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "wcag-explorer",
+          "title": "Explore WCAG Criteria",
+          "description": "Review WCAG requirements, follow manual test steps, and manage accessibility audit results.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "defaultVersion",
+          "title": "WCAG Version",
+          "description": "Select the WCAG version you want to use for accessibility testing.",
+          "type": "dropdown",
+          "required": true,
+          "data": [
+            {
+              "title": "WCAG 2.2 (Recommended)",
+              "value": "2.2"
+            },
+            {
+              "title": "WCAG 2.1",
+              "value": "2.1"
+            }
+          ]
+        },
+        {
+          "name": "defaultLevel",
+          "title": "Testing Scope",
+          "description": "Select your testing scope. A + AA is recommended for most accessibility assessments. Verify applicable legal requirements.",
+          "type": "dropdown",
+          "required": true,
+          "data": [
+            {
+              "title": "A + AA (Recommended)",
+              "value": "AA"
+            },
+            {
+              "title": "A Only",
+              "value": "A"
+            },
+            {
+              "title": "A + AA + AAA (Extended)",
+              "value": "AAA"
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "weather",
