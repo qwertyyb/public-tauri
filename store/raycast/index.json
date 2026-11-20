@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-19T00:16:06.751Z",
+  "generatedAt": "2026-11-20T00:37:18.748Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "9906af9bec25c6450c3305b001073e3a56654c71"
+    "commit": "2a17f29c567e4ae3c8adb0ae4518b304fa3d435a"
   },
-  "count": 3610,
+  "count": 3614,
   "extensions": [
     {
       "name": "0x0",
@@ -32585,6 +32585,77 @@
           "title": "Find Login",
           "subtitle": "BugMeNot",
           "description": "Find login on BugMeNot",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "buildinpublic",
+      "title": "Build in Public",
+      "description": "Manage your Build in Public projects, find member deals and search the maker directory from Raycast. Requires a Build in Public account.",
+      "icon": "extension-icon.png",
+      "author": "marckohlbrugge",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/marckohlbrugge/buildinpublic",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/buildinpublic",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "my-projects",
+          "title": "My Projects",
+          "subtitle": "Build in Public",
+          "description": "See, edit and remove the projects on your Build in Public profile",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "add-project",
+          "title": "Add Project",
+          "subtitle": "Build in Public",
+          "description": "Add a project to your Build in Public profile",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-deals",
+          "title": "Search Deals",
+          "subtitle": "Build in Public",
+          "description": "Search the discounts and credits on software that members get",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-projects",
+          "title": "Search Projects",
+          "subtitle": "Build in Public",
+          "description": "Search projects in the Build in Public directory",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-members",
+          "title": "Search Members",
+          "subtitle": "Build in Public",
+          "description": "Search makers in the Build in Public directory",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -68109,7 +68180,12 @@
             "minify",
             "validate",
             "jsonpath",
-            "query"
+            "query",
+            "python dict",
+            "ruby hash",
+            "js object",
+            "json5",
+            "jsonc"
           ],
           "preferences": []
         },
@@ -68131,15 +68207,18 @@
         },
         {
           "name": "tool-regex-generator",
-          "title": "Regex Generator",
+          "title": "Regex Tester",
           "subtitle": "DevTools",
-          "description": "Open Regex Generator in DevTools.",
+          "description": "Open Regex Tester in DevTools.",
           "mode": "no-view",
           "keywords": [
             "regex",
             "regexp",
             "pattern",
-            "match"
+            "match",
+            "replace",
+            "capture group",
+            "regex generator"
           ],
           "preferences": []
         },
@@ -68159,7 +68238,46 @@
             "struct",
             "rust",
             "serde",
-            "python"
+            "python",
+            "dataclass",
+            "pydantic"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-json-schema",
+          "title": "JSON Schema Validator",
+          "subtitle": "DevTools",
+          "description": "Open JSON Schema Validator in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "json schema",
+            "validate",
+            "validator",
+            "ajv",
+            "draft 2020-12",
+            "draft-07",
+            "openapi",
+            "kubernetes",
+            "yaml"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-json-diff",
+          "title": "JSON Diff",
+          "subtitle": "DevTools",
+          "description": "Open JSON Diff in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "json diff",
+            "compare",
+            "difference",
+            "json patch",
+            "rfc 6902",
+            "structural",
+            "yaml",
+            "jsonpath"
           ],
           "preferences": []
         },
@@ -68220,6 +68338,26 @@
           "preferences": []
         },
         {
+          "name": "tool-semver",
+          "title": "Semver Calculator",
+          "subtitle": "DevTools",
+          "description": "Open Semver Calculator in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "semver",
+            "version range",
+            "caret",
+            "tilde",
+            "npm version",
+            "cargo version",
+            "pep 440",
+            "composer",
+            "satisfies",
+            "compare versions"
+          ],
+          "preferences": []
+        },
+        {
           "name": "tool-hash-generator",
           "title": "Hash Generator",
           "subtitle": "DevTools",
@@ -68274,7 +68412,11 @@
           "keywords": [
             "lorem",
             "placeholder",
-            "dummy text"
+            "dummy text",
+            "fake data",
+            "name",
+            "email",
+            "url"
           ],
           "preferences": []
         },
@@ -68287,7 +68429,9 @@
           "keywords": [
             "qr",
             "qrcode",
-            "barcode"
+            "barcode",
+            "wifi",
+            "vcard"
           ],
           "preferences": []
         },
@@ -68320,6 +68464,28 @@
           "preferences": []
         },
         {
+          "name": "tool-key-generator",
+          "title": "Key Pair Generator",
+          "subtitle": "DevTools",
+          "description": "Open Key Pair Generator in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "rsa",
+            "ecdsa",
+            "ed25519",
+            "ssh-keygen",
+            "ssh key",
+            "pem",
+            "jwk",
+            "keypair",
+            "public key",
+            "private key",
+            "openssh",
+            "fingerprint"
+          ],
+          "preferences": []
+        },
+        {
           "name": "tool-base64",
           "title": "Base64",
           "subtitle": "DevTools",
@@ -68329,7 +68495,9 @@
             "b64",
             "encode",
             "decode",
-            "data uri"
+            "data uri",
+            "base32",
+            "totp"
           ],
           "preferences": []
         },
@@ -68345,7 +68513,13 @@
             "kebab",
             "pascal",
             "upper",
-            "lower"
+            "lower",
+            "train-case",
+            "dot.case",
+            "constant",
+            "slug",
+            "slugify",
+            "url slug"
           ],
           "preferences": []
         },
@@ -68360,7 +68534,14 @@
             "hex",
             "octal",
             "decimal",
-            "radix"
+            "radix",
+            "two's complement",
+            "signed",
+            "expression",
+            "calculator",
+            "evaluate",
+            "bitwise",
+            "bit shift"
           ],
           "preferences": []
         },
@@ -68373,7 +68554,11 @@
           "keywords": [
             "md",
             "preview",
-            "html"
+            "html",
+            "gfm",
+            "github",
+            "readme",
+            "table"
           ],
           "preferences": []
         },
@@ -68408,13 +68593,23 @@
         },
         {
           "name": "tool-yaml-json",
-          "title": "YAML to JSON",
+          "title": "Config Converter",
           "subtitle": "DevTools",
-          "description": "Open YAML to JSON in DevTools.",
+          "description": "Open Config Converter in DevTools.",
           "mode": "no-view",
           "keywords": [
             "yaml",
-            "yml"
+            "yml",
+            "yaml to json",
+            "json to yaml",
+            "toml",
+            "dotenv",
+            ".env",
+            "properties",
+            "spring boot",
+            "configmap",
+            "docker compose",
+            "toon"
           ],
           "preferences": []
         },
@@ -68430,7 +68625,13 @@
             "html entities",
             "backslash",
             "unicode",
-            "hex"
+            "hex",
+            "punycode",
+            "idn",
+            "idna",
+            "internationalized domain",
+            "xn--",
+            "unicode domain"
           ],
           "preferences": []
         },
@@ -68466,7 +68667,49 @@
             "background-image",
             "mask",
             "icon",
-            "encode"
+            "encode",
+            "svgo",
+            "optimize svg",
+            "minify svg",
+            "compress svg"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-php-tools",
+          "title": "PHP Tools",
+          "subtitle": "DevTools",
+          "description": "Open PHP Tools in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "php",
+            "serialize",
+            "unserialize",
+            "wordpress",
+            "laravel",
+            "session",
+            "array",
+            "var_export",
+            "json"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-compression",
+          "title": "Compression",
+          "subtitle": "DevTools",
+          "description": "Open Compression in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "gzip",
+            "gunzip",
+            "zlib",
+            "deflate",
+            "inflate",
+            "compress",
+            "decompress",
+            "helm",
+            "gz"
           ],
           "preferences": []
         },
@@ -68489,6 +68732,90 @@
           "preferences": []
         },
         {
+          "name": "tool-ip-cidr",
+          "title": "IP / CIDR Calculator",
+          "subtitle": "DevTools",
+          "description": "Open IP / CIDR Calculator in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "ip",
+            "ipv4",
+            "ipv6",
+            "cidr",
+            "subnet",
+            "netmask",
+            "subnet mask",
+            "wildcard mask",
+            "prefix",
+            "network address",
+            "broadcast",
+            "host range"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-har-viewer",
+          "title": "HAR Viewer",
+          "subtitle": "DevTools",
+          "description": "Open HAR Viewer in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "har",
+            "http archive",
+            "network log",
+            "devtools export",
+            "waterfall",
+            "requests",
+            "curl",
+            "sanitize"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-email-reader",
+          "title": "Email Reader",
+          "subtitle": "DevTools",
+          "description": "Open Email Reader in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "email",
+            "eml",
+            "msg",
+            "outlook",
+            "mime",
+            "rfc 822",
+            "rfc 5322",
+            "message",
+            "headers",
+            "attachments",
+            "mail",
+            "inbox"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-email-headers",
+          "title": "Email Header Analyzer",
+          "subtitle": "DevTools",
+          "description": "Open Email Header Analyzer in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "email headers",
+            "received",
+            "spf",
+            "dkim",
+            "dmarc",
+            "arc",
+            "authentication-results",
+            "deliverability",
+            "delivery delay",
+            "hops",
+            "spam",
+            "phishing"
+          ],
+          "preferences": []
+        },
+        {
           "name": "tool-timestamp",
           "title": "Timestamp",
           "subtitle": "DevTools",
@@ -68498,7 +68825,11 @@
             "unix",
             "epoch",
             "date",
-            "time"
+            "time",
+            "milliseconds",
+            "iso 8601",
+            "time zone",
+            "utc"
           ],
           "preferences": []
         },
@@ -68524,7 +68855,30 @@
           "keywords": [
             "cron",
             "crontab",
-            "schedule"
+            "schedule",
+            "builder",
+            "quartz"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-date-format",
+          "title": "Date Format Translator",
+          "subtitle": "DevTools",
+          "description": "Open Date Format Translator in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "strftime",
+            "golang time format",
+            "go layout",
+            "simpledateformat",
+            "datetimeformatter",
+            "moment format",
+            "dayjs",
+            "date-fns",
+            "php date",
+            "dotnet",
+            "date format"
           ],
           "preferences": []
         },
@@ -68541,7 +68895,12 @@
             "rgb",
             "hsl",
             "contrast",
-            "wcag"
+            "wcag",
+            "gradient",
+            "css gradient",
+            "hwb",
+            "oklch",
+            "alpha"
           ],
           "preferences": []
         },
@@ -68557,7 +68916,13 @@
             "jpg",
             "webp",
             "compress",
-            "resize"
+            "resize",
+            "avif",
+            "mozjpeg",
+            "oxipng",
+            "palette",
+            "crop",
+            "rotate"
           ],
           "preferences": []
         },
@@ -68572,6 +68937,28 @@
             "scan",
             "decode",
             "read"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-pdf-tools",
+          "title": "PDF Tools",
+          "subtitle": "DevTools",
+          "description": "Open PDF Tools in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "pdf",
+            "merge pdf",
+            "combine pdf",
+            "split pdf",
+            "extract pages",
+            "delete pages",
+            "reorder pages",
+            "rotate pdf",
+            "image to pdf",
+            "jpg to pdf",
+            "png to pdf",
+            "pdf to image"
           ],
           "preferences": []
         },
@@ -68630,7 +69017,12 @@
             "bytes",
             "unicode",
             "invisible",
-            "zero width"
+            "zero width",
+            "normalization",
+            "normalize",
+            "nfc",
+            "nfd",
+            "nfkc"
           ],
           "preferences": []
         },
@@ -68646,7 +69038,13 @@
             "unique",
             "lines",
             "shuffle",
-            "reverse"
+            "reverse",
+            "split",
+            "join",
+            "wrap",
+            "replace",
+            "sum",
+            "product"
           ],
           "preferences": []
         },
@@ -68662,6 +69060,26 @@
             "weight",
             "temperature",
             "currency"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-chmod-calculator",
+          "title": "chmod Calculator",
+          "subtitle": "DevTools",
+          "description": "Open chmod Calculator in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "chmod",
+            "permissions",
+            "file mode",
+            "octal",
+            "rwx",
+            "umask",
+            "setuid",
+            "setgid",
+            "sticky bit",
+            "ls -l"
           ],
           "preferences": []
         },
@@ -68682,6 +69100,28 @@
             "stable diffusion prompt",
             "privacy",
             "strip exif"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-video-metadata",
+          "title": "Video Metadata Cleaner",
+          "subtitle": "DevTools",
+          "description": "Open Video Metadata Cleaner in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "video metadata",
+            "remove metadata",
+            "mp4",
+            "mov",
+            "mkv",
+            "webm",
+            "c2pa",
+            "content credentials",
+            "ai video",
+            "sora",
+            "veo",
+            "runway"
           ],
           "preferences": []
         },
@@ -68741,6 +69181,133 @@
             "markdown",
             "chatgpt",
             "normalize"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-xml-inspector",
+          "title": "XML Inspector",
+          "subtitle": "DevTools",
+          "description": "Open XML Inspector in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "xml",
+            "xpath",
+            "namespace",
+            "format",
+            "minify"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-checksum",
+          "title": "Checksum",
+          "subtitle": "DevTools",
+          "description": "Open Checksum in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "crc",
+            "crc32",
+            "crc32c",
+            "crc16",
+            "modbus",
+            "luhn",
+            "check digit"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-asn1-inspector",
+          "title": "ASN.1 Inspector",
+          "subtitle": "DevTools",
+          "description": "Open ASN.1 Inspector in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "asn1",
+            "asn.1",
+            "der",
+            "ber",
+            "pem",
+            "oid",
+            "binary"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-stopwatch",
+          "title": "Stopwatch",
+          "subtitle": "DevTools",
+          "description": "Open Stopwatch in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "stopwatch",
+            "timer",
+            "elapsed",
+            "laps",
+            "split"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-time-zone-converter",
+          "title": "Time Zone Converter",
+          "subtitle": "DevTools",
+          "description": "Open Time Zone Converter in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "timezone",
+            "time zone",
+            "convert",
+            "utc to local",
+            "local to utc",
+            "world clock",
+            "dst",
+            "daylight saving",
+            "meeting time"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-mermaid-renderer",
+          "title": "Mermaid Renderer",
+          "subtitle": "DevTools",
+          "description": "Open Mermaid Renderer in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "mermaid",
+            "diagram",
+            "flowchart",
+            "sequence diagram",
+            "class diagram",
+            "er diagram",
+            "gantt",
+            "mind map",
+            "svg",
+            "png",
+            "draw",
+            "flowchart editor"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "tool-db-diagram",
+          "title": "DB Diagram",
+          "subtitle": "DevTools",
+          "description": "Open DB Diagram in DevTools.",
+          "mode": "no-view",
+          "keywords": [
+            "dbml",
+            "erd",
+            "er diagram",
+            "entity relationship",
+            "database diagram",
+            "schema",
+            "dbdiagram",
+            "drawsql",
+            "sql",
+            "ddl",
+            "create table",
+            "postgres"
           ],
           "preferences": []
         }
@@ -69288,14 +69855,16 @@
         "heytommy",
         "christianmagill",
         "Berenger",
-        "clins1994"
+        "clins1994",
+        "0xdhrv"
       ],
       "categories": [
         "Productivity"
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/tleo19/dia",
       "source": {
@@ -69383,7 +69952,7 @@
           "name": "new-window",
           "title": "New Window",
           "subtitle": "Dia",
-          "description": "Create a new window with an optional profile.",
+          "description": "Create a new window. The optional profile argument is supported on macOS only.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -69402,6 +69971,15 @@
           "title": "Open URL in Dia",
           "subtitle": "Dia",
           "description": "Open a URL in a new Dia tab. Falls back to clipboard or the configured search engine.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "new-tab",
+          "title": "New Tab",
+          "subtitle": "Dia",
+          "description": "Create a new Dia tab.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -72862,7 +73440,7 @@
     {
       "name": "docklock-plus",
       "title": "DockLock Plus",
-      "description": "Move the macOS Dock between displays, choose where it can appear, hide it, and adjust its size with DockLock Plus.",
+      "description": "Move the macOS Dock between displays, set its orientation, choose where it can appear, hide it, and adjust its size with DockLock Plus.",
       "icon": "icon.png",
       "author": "IGHOR",
       "contributors": [],
@@ -72871,7 +73449,7 @@
       "platforms": [
         "macOS"
       ],
-      "version": "0.3.0",
+      "version": "0.4.0",
       "storeUrl": "https://www.raycast.com/IGHOR/docklock-plus",
       "source": {
         "type": "github-monorepo",
@@ -72934,6 +73512,42 @@
           "keywords": [
             "percentage",
             "resize"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "set-dock-orientation-left",
+          "title": "Set Dock Orientation to Left",
+          "subtitle": "DockLock Plus",
+          "description": "Place the Dock along the left edge of the screen.",
+          "mode": "no-view",
+          "keywords": [
+            "dock position",
+            "vertical dock"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "set-dock-orientation-bottom",
+          "title": "Set Dock Orientation to Bottom",
+          "subtitle": "DockLock Plus",
+          "description": "Place the Dock along the bottom edge of the screen.",
+          "mode": "no-view",
+          "keywords": [
+            "dock position",
+            "horizontal dock"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "set-dock-orientation-right",
+          "title": "Set Dock Orientation to Right",
+          "subtitle": "DockLock Plus",
+          "description": "Place the Dock along the right edge of the screen.",
+          "mode": "no-view",
+          "keywords": [
+            "dock position",
+            "vertical dock"
           ],
           "preferences": []
         },
@@ -131212,13 +131826,18 @@
     {
       "name": "input-switcher",
       "title": "Keyboard Layout Switcher",
-      "description": "Switch keyboard layouts and input sources on your Mac, or toggle to the next layout with a hotkey.",
+      "description": "Switch keyboard layouts and input sources, or toggle to the next layout with a hotkey.",
       "icon": "command-icon.png",
       "author": "lucaschultz",
-      "contributors": [],
+      "contributors": [
+        "muhammadrizo"
+      ],
       "categories": [],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "storeUrl": "https://www.raycast.com/lucaschultz/input-switcher",
       "source": {
         "type": "github-monorepo",
@@ -131230,20 +131849,36 @@
         {
           "name": "switch",
           "title": "Switch Layouts",
-          "subtitle": "Keyboard",
           "description": "Show the active keyboard layout and switch to other available layouts",
           "mode": "view",
           "keywords": [],
-          "preferences": []
+          "preferences": [
+            {
+              "name": "closeRaycast",
+              "type": "checkbox",
+              "label": "Close Raycast",
+              "description": "Close Raycast after activating a layout.",
+              "required": false,
+              "default": true
+            }
+          ]
         },
         {
           "name": "toggle",
           "title": "Toggle Next Layout",
-          "subtitle": "Keyboard",
           "description": "Toggle to the next keyboard layout",
           "mode": "no-view",
           "keywords": [],
-          "preferences": []
+          "preferences": [
+            {
+              "name": "closeRaycast",
+              "type": "checkbox",
+              "label": "Close Raycast",
+              "description": "Close Raycast after activating a layout.",
+              "required": false,
+              "default": true
+            }
+          ]
         }
       ],
       "preferences": []
@@ -175244,6 +175879,57 @@
       "preferences": []
     },
     {
+      "name": "multimeter",
+      "title": "Multimeter",
+      "description": "Send numbers to Multimeter, the Mac menu bar app that shows live meters for anything.",
+      "icon": "extension-icon.png",
+      "author": "jakemarsh",
+      "contributors": [],
+      "categories": [
+        "Applications",
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/jakemarsh/multimeter",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/multimeter",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "set-meter-value",
+          "title": "Set Meter Value",
+          "subtitle": "Multimeter",
+          "description": "Send a number to a Sent Value meter in your menu bar.",
+          "mode": "view",
+          "keywords": [
+            "meter",
+            "push",
+            "send",
+            "number",
+            "menu bar"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "add-meter",
+          "title": "Add Meter",
+          "subtitle": "Multimeter",
+          "description": "Open Multimeter's Add Meter window.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "multipass",
       "title": "Multipass",
       "description": "List Multipass Ubuntu VM instances on your Mac and start, stop or suspend them.",
@@ -179530,7 +180216,7 @@
       "name": "netlify",
       "title": "Netlify",
       "description": "Search Netlify sites, deploys, domains, DNS records, team members, audit log and docs, find local sites, and invite team members.",
-      "icon": "extension-icon.png",
+      "icon": "logo-netlify-monogram.png",
       "author": "destiner",
       "contributors": [
         "jonohewitt",
@@ -182885,6 +183571,41 @@
           ]
         }
       ]
+    },
+    {
+      "name": "nodebookmd",
+      "title": "NodebookMD",
+      "description": "Search the Houdini documentation offline with NodebookMD and open pages in the app.",
+      "icon": "extension-icon.png",
+      "author": "john_chedeville",
+      "contributors": [],
+      "categories": [
+        "Documentation",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/john_chedeville/nodebookmd",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/nodebookmd",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search",
+          "title": "Search Houdini Docs",
+          "description": "Search nodes, VEX functions, Python and every other page of the Houdini docs. Type v:, sop: or h: to search one part.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "solana_nodes",
@@ -202566,10 +203287,14 @@
       "description": "Compress PDF files selected in Finder using the native macOS PDFKit, with no extra software or online services.",
       "icon": "extension-icon.png",
       "author": "birkhoff",
-      "contributors": [],
+      "contributors": [
+        "xmok"
+      ],
       "categories": [],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/birkhoff/pdf-compression",
       "source": {
         "type": "github-monorepo",
@@ -218099,6 +218824,28 @@
                   "value": "mostUsed"
                 }
               ]
+            },
+            {
+              "name": "sortFoldersBy",
+              "type": "dropdown",
+              "title": "Sort folders by",
+              "description": "Order of the folders. ⌘⇧S on a folder changes it until the window closes.",
+              "default": "name",
+              "required": false,
+              "data": [
+                {
+                  "title": "Name",
+                  "value": "name"
+                },
+                {
+                  "title": "Item Count",
+                  "value": "itemCount"
+                },
+                {
+                  "title": "Most Used",
+                  "value": "mostUsed"
+                }
+              ]
             }
           ]
         },
@@ -218332,7 +219079,7 @@
           "name": "cliPath",
           "type": "textfield",
           "title": "CLI Path",
-          "description": "Leave as pass-cli to use the downloaded pass-cli 2.5.1, or enter another path.",
+          "description": "Leave as pass-cli: the extension picks your Mac's pass-cli or downloads 2.5.1.",
           "default": "pass-cli",
           "required": false
         },
@@ -234064,7 +234811,8 @@
       "icon": "reader-icon.png",
       "author": "chrismessina",
       "contributors": [
-        "heytommy"
+        "heytommy",
+        "litomore"
       ],
       "categories": [
         "News",
@@ -257445,6 +258193,199 @@
       "preferences": []
     },
     {
+      "name": "skyfrom",
+      "title": "SkyFrom",
+      "description": "Explore the sky over any supported city, copy gradients, and sync your desktop wallpaper.",
+      "icon": "skyfrom-icon.png",
+      "author": "0xdhrv",
+      "contributors": [],
+      "categories": [
+        "Design Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/0xdhrv/skyfrom",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/skyfrom",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "explore-sky",
+          "title": "Explore Sky",
+          "subtitle": "SkyFrom",
+          "description": "Search cities and preview their sky gradients.",
+          "mode": "view",
+          "keywords": [
+            "city",
+            "gradient",
+            "skyfrom",
+            "color"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "current-sky",
+          "title": "Current Sky",
+          "subtitle": "SkyFrom",
+          "description": "Preview the sky for your default location.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "copy-gradient",
+          "title": "Copy Sky Gradient",
+          "subtitle": "SkyFrom",
+          "description": "Copy a gradient in your preferred format.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "set-wallpaper",
+          "title": "Set Sky Wallpaper",
+          "subtitle": "SkyFrom",
+          "description": "Apply a sky gradient as your desktop wallpaper.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "auto-update-wallpaper",
+          "title": "Auto Update Wallpaper",
+          "subtitle": "SkyFrom",
+          "description": "Refresh your sky wallpaper now and periodically when enabled.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "favorite-skies",
+          "title": "Favorite Skies",
+          "subtitle": "SkyFrom",
+          "description": "Browse and reuse saved locations and times.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "sky-menu-bar",
+          "title": "Sky Menu Bar",
+          "subtitle": "SkyFrom",
+          "description": "See your last refreshed sky and access wallpaper controls.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "defaultCity",
+          "placeholder": "Lisbon",
+          "title": "Default City",
+          "description": "Enter a city name or SkyFrom city slug. You can also set a default in Explore Sky.",
+          "type": "textfield",
+          "required": false
+        },
+        {
+          "name": "exportFormat",
+          "title": "Export Format",
+          "description": "Format used by Copy Sky Gradient and the copy shortcut.",
+          "type": "dropdown",
+          "required": false,
+          "default": "css",
+          "data": [
+            {
+              "title": "CSS",
+              "value": "css"
+            },
+            {
+              "title": "Tailwind",
+              "value": "tailwind"
+            },
+            {
+              "title": "SVG",
+              "value": "svg"
+            },
+            {
+              "title": "JSON",
+              "value": "json"
+            },
+            {
+              "title": "Figma Design Tokens",
+              "value": "figma"
+            },
+            {
+              "title": "CSS Variables",
+              "value": "tokens"
+            }
+          ]
+        },
+        {
+          "name": "autoWallpaper",
+          "title": "Automatic Wallpaper",
+          "label": "Update wallpaper in the background",
+          "description": "Allow wallpaper updates while Raycast is running.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "updateFrequency",
+          "title": "Update Frequency",
+          "description": "Minimum time between automatic wallpaper updates.",
+          "type": "dropdown",
+          "required": false,
+          "default": "30",
+          "data": [
+            {
+              "value": "15",
+              "title": "15 minutes"
+            },
+            {
+              "value": "30",
+              "title": "30 minutes"
+            },
+            {
+              "value": "60",
+              "title": "60 minutes"
+            }
+          ]
+        },
+        {
+          "name": "autoCity",
+          "placeholder": "Tokyo",
+          "title": "Automatic Wallpaper City",
+          "description": "Leave empty to use your default city.",
+          "type": "textfield",
+          "required": false
+        },
+        {
+          "name": "saveImages",
+          "title": "Save Downloaded Images",
+          "label": "Keep a copy of each manually applied wallpaper",
+          "description": "Save a copy in the wallpaper directory or Downloads.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "wallpaperDirectory",
+          "title": "Wallpaper Directory",
+          "description": "Destination for saved copies and PNG exports. Defaults to Downloads. Active wallpapers are managed by SkyFrom.",
+          "type": "directory",
+          "required": false
+        }
+      ]
+    },
+    {
       "name": "skyscanner-flights",
       "title": "Flight Search",
       "description": "Search flights in plain English or with a quick form and open the results on Skyscanner, with 6,000+ airports.",
@@ -267593,7 +268534,8 @@
         "shivraj-roy",
         "ridemountainpig",
         "clemenzi",
-        "0xdhrv"
+        "0xdhrv",
+        "stefanbd"
       ],
       "categories": [
         "Media",
@@ -287193,7 +288135,9 @@
       "description": "Track stocks, crypto, tokens, perpetual futures and prediction markets in your Mac menu bar, with a searchable watchlist.",
       "icon": "extension-icon.png",
       "author": "kays0x",
-      "contributors": [],
+      "contributors": [
+        "svist"
+      ],
       "categories": [
         "Finance"
       ],
@@ -303193,15 +304137,6 @@
               "title": "500 words"
             }
           ]
-        },
-        {
-          "type": "checkbox",
-          "title": "Detect System Voice Settings for TTS (macOS only)",
-          "label": "Enable",
-          "name": "detechSystemVoiceSettings",
-          "description": "Enable this option to detect available voices on your system for text-to-speech. (Siri voices are not included)",
-          "required": false,
-          "default": false
         },
         {
           "type": "checkbox",
