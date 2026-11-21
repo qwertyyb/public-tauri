@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-20T23:59:04.775Z",
+  "generatedAt": "2026-11-21T23:04:39.526Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "ce8f05c5abe34002f1a21c35d6a4cda6d44d63db"
+    "commit": "d0cd72a2a83719a8a8ef93633655b93b0df1b254"
   },
-  "count": 3623,
+  "count": 3629,
   "extensions": [
     {
       "name": "0x0",
@@ -1213,7 +1213,6 @@
         {
           "name": "search-projects",
           "title": "Search Projects",
-          "subtitle": "Ableton Live",
           "description": "Search, play, and organize your Ableton Live projects and collections",
           "mode": "view",
           "keywords": [
@@ -1231,9 +1230,16 @@
           "preferences": []
         },
         {
+          "name": "search-bounces",
+          "title": "Search Bounces",
+          "description": "Search the bounces of all your projects",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "manage-categories",
           "title": "Manage Tags",
-          "subtitle": "Ableton Live",
           "description": "Create and manage Stages, Genres, and Track Roles",
           "mode": "view",
           "keywords": [
@@ -1244,6 +1250,35 @@
             "genres",
             "track roles",
             "music production"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "export-data",
+          "title": "Export Data",
+          "description": "Save your tags, collections and other extension data to a file",
+          "mode": "view",
+          "keywords": [
+            "export",
+            "backup",
+            "data",
+            "tags",
+            "collections"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "import-data",
+          "title": "Import Data",
+          "description": "Restore extension data from an exported file",
+          "mode": "view",
+          "keywords": [
+            "import",
+            "restore",
+            "backup",
+            "data",
+            "tags",
+            "collections"
           ],
           "preferences": []
         }
@@ -1257,12 +1292,26 @@
           "required": true
         },
         {
+          "name": "sharedBouncesFolder",
+          "title": "Shared Bounces Folder",
+          "description": "One folder for bounces from all your projects. Files are matched to projects by name.",
+          "type": "directory",
+          "required": false
+        },
+        {
           "name": "bouncesFolderName",
           "title": "Bounces Subfolder",
           "description": "The subfolder inside each project where bounces are saved (e.g. Bounces). Leave empty to look directly in each project folder.",
           "type": "textfield",
           "required": false,
           "placeholder": "e.g. Bounces"
+        },
+        {
+          "name": "templatesFolder",
+          "title": "Templates Folder",
+          "description": "The folder that holds your templates. Leave empty to use the default location.",
+          "type": "directory",
+          "required": false
         },
         {
           "name": "notesFolder",
@@ -6375,14 +6424,16 @@
       "name": "aiven",
       "title": "Aiven",
       "description": "View your Aiven projects and their services, including service logs and backups.",
-      "icon": "aiven.png",
+      "icon": "extension_icon.png",
       "author": "xmok",
       "contributors": [],
       "categories": [
         "Developer Tools"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/xmok/aiven",
       "source": {
         "type": "github-monorepo",
@@ -18252,7 +18303,8 @@
         "inovvia",
         "mateus_badalotti",
         "pavzagor",
-        "alexi.build"
+        "alexi.build",
+        "ViGeng"
       ],
       "categories": [],
       "license": "MIT",
@@ -28334,11 +28386,12 @@
     {
       "name": "blip-raycast",
       "title": "Blip",
-      "description": "Send files and folders to Blip by picking them in a form or sending the current Finder or file manager selection.",
+      "description": "Send files, folders, text, and your clipboard to your devices and contacts with Blip, and manage transfers.",
       "icon": "blip-icon.png",
       "author": "astroboii47",
       "contributors": [
-        "brunocbreis"
+        "brunocbreis",
+        "ikupenov"
       ],
       "categories": [
         "Productivity"
@@ -28359,22 +28412,160 @@
       "commands": [
         {
           "name": "send-to-blip",
-          "title": "Send to Blip",
-          "description": "Pick a file or folder and send it to Blip. Requires Raycast Accessibility permission.",
+          "title": "Send Anything",
+          "description": "Send the clipboard, selected files, typed text or any file to a device or contact.",
           "mode": "view",
-          "keywords": [],
+          "keywords": [
+            "share",
+            "airdrop",
+            "transfer",
+            "file"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "send-clipboard",
+          "title": "Send Clipboard",
+          "description": "Send what you copied (text, an image or files) to a device or contact.",
+          "mode": "view",
+          "keywords": [
+            "share",
+            "paste",
+            "airdrop"
+          ],
           "preferences": []
         },
         {
           "name": "send-selected-finder-item",
-          "title": "Send Selected File to Blip",
-          "description": "Send the current file manager selection to Blip. Requires Raycast Accessibility permission.",
+          "title": "Send Selected Files",
+          "description": "Send the files and folders selected in Finder or File Explorer to a device or contact.",
+          "mode": "view",
+          "keywords": [
+            "share",
+            "finder",
+            "airdrop"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "quick-send-clipboard",
+          "title": "Quick Send Clipboard",
+          "description": "Send the clipboard straight to your Quick Send recipient. The first time, you choose who that is.",
           "mode": "no-view",
-          "keywords": [],
+          "keywords": [
+            "share",
+            "paste",
+            "instant",
+            "quick"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "quick-send-selected-files",
+          "title": "Quick Send Selected Files",
+          "description": "Send the selected files straight to your Quick Send recipient. The first time, you choose who that is.",
+          "mode": "no-view",
+          "keywords": [
+            "share",
+            "finder",
+            "instant",
+            "quick"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "transfers",
+          "title": "Manage Transfers",
+          "description": "See progress, accept or decline incoming files, and pause, resume or cancel transfers.",
+          "mode": "view",
+          "keywords": [
+            "downloads",
+            "history",
+            "progress"
+          ],
           "preferences": []
         }
       ],
-      "preferences": []
+      "preferences": [
+        {
+          "name": "closeAfterSend",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "title": "After Sending",
+          "label": "Close Raycast after a send starts",
+          "description": "Close Raycast as soon as Blip starts the transfer. Progress shows in Manage Transfers."
+        },
+        {
+          "name": "autoAccept",
+          "type": "dropdown",
+          "required": false,
+          "default": "keep",
+          "title": "Auto-Accept",
+          "description": "Accept files from your own devices and contacts without asking.",
+          "data": [
+            {
+              "title": "Keep Blip's setting",
+              "value": "keep"
+            },
+            {
+              "title": "On",
+              "value": "on"
+            },
+            {
+              "title": "Off",
+              "value": "off"
+            }
+          ]
+        },
+        {
+          "name": "saveToPhotos",
+          "type": "dropdown",
+          "required": false,
+          "default": "keep",
+          "title": "Save Media to Photos",
+          "description": "macOS only. Save received photos and videos to the Photos library.",
+          "data": [
+            {
+              "title": "Keep Blip's setting",
+              "value": "keep"
+            },
+            {
+              "title": "On",
+              "value": "on"
+            },
+            {
+              "title": "Off",
+              "value": "off"
+            }
+          ]
+        },
+        {
+          "name": "saveFolder",
+          "type": "directory",
+          "required": false,
+          "title": "Save Received Files To",
+          "description": "Folder for received files. Leave empty to keep Blip's setting (Downloads by default)."
+        },
+        {
+          "name": "uploadLimitMbps",
+          "type": "textfield",
+          "required": false,
+          "default": "",
+          "title": "Sending Speed Limit (Mbps)",
+          "placeholder": "Keep Blip's setting",
+          "description": "Whole number of megabits per second. 0 removes the limit. Leave empty to keep Blip's setting."
+        },
+        {
+          "name": "downloadLimitMbps",
+          "type": "textfield",
+          "required": false,
+          "default": "",
+          "title": "Receiving Speed Limit (Mbps)",
+          "placeholder": "Keep Blip's setting",
+          "description": "Whole number of megabits per second. 0 removes the limit. Leave empty to keep Blip's setting."
+        }
+      ]
     },
     {
       "name": "blockchain-explorer-search",
@@ -36002,16 +36193,20 @@
     {
       "name": "capture-raycast-metadata",
       "title": "Capture Raycast Metadata",
-      "description": "Capture a screenshot of the Raycast window sized for an extension's Store metadata images, saved to your Downloads folder.",
+      "description": "Easily capture screenshots for your extension ready for the Raycast Store.",
       "icon": "capture-icon.png",
       "author": "koinzhang",
-      "contributors": [],
+      "contributors": [
+        "chrismessina"
+      ],
       "categories": [
         "Media",
         "System"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/koinzhang/capture-raycast-metadata",
       "source": {
         "type": "github-monorepo",
@@ -36031,17 +36226,17 @@
       ],
       "preferences": [
         {
-          "name": "screenshotName",
+          "name": "fileNameFormat",
           "title": "Screenshot Name",
-          "description": "Set the screenshot name.",
+          "description": "%e extension, %i next number, %y %m %d date, %H %M %S time.",
           "type": "textfield",
           "required": false,
-          "default": "Metadata"
+          "default": "%e-%i"
         },
         {
           "name": "screenshotFormat",
           "title": "Screenshot Format",
-          "description": "Set the screenshot format.",
+          "description": "For the Default Save Location. Extension metadata is always PNG.",
           "type": "dropdown",
           "data": [
             {
@@ -36065,12 +36260,28 @@
           "default": "png"
         },
         {
+          "name": "saveToDevelopedExtension",
+          "title": "Extension in Development",
+          "label": "Save into its metadata folder",
+          "description": "Applies while one extension is running with npm run dev.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        },
+        {
           "name": "screenshotsDirectory",
-          "title": "Screenshots Directory",
-          "description": "The directory of screenshots to save.",
+          "title": "Default Save Location",
+          "description": "Where screenshots go when no single development extension is running.",
           "type": "directory",
           "required": false,
           "default": "~/Downloads"
+        },
+        {
+          "name": "customWallpaper",
+          "title": "Custom Wallpaper",
+          "description": "An image to place behind the Raycast window instead of your desktop.",
+          "type": "file",
+          "required": false
         }
       ]
     },
@@ -54544,7 +54755,8 @@
         "ridemountainpig",
         "INCHMAN1900",
         "arjan.flac",
-        "dans_huang"
+        "dans_huang",
+        "dewi_erwan"
       ],
       "categories": [
         "Developer Tools",
@@ -58889,7 +59101,8 @@
         "michalzuch",
         "NirRosh",
         "alexi.build",
-        "iloveitaly"
+        "iloveitaly",
+        "tahashariff"
       ],
       "categories": [
         "Applications",
@@ -58898,7 +59111,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/degouville/cursor-recent-projects",
       "source": {
@@ -58921,7 +59135,7 @@
           "name": "open-with-cursor",
           "title": "Open with Cursor",
           "subtitle": "Cursor",
-          "description": "Opens the currently selected Finder item with Cursor.",
+          "description": "Opens the currently selected Finder or File Explorer item with Cursor.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -59001,7 +59215,10 @@
         {
           "name": "terminalApp",
           "type": "appPicker",
-          "default": "com.apple.Terminal",
+          "default": {
+            "macOS": "com.apple.Terminal",
+            "Windows": "Terminal"
+          },
           "required": false,
           "title": "Terminal App",
           "description": "Select which Terminal App to use when opening with a terminal"
@@ -65294,6 +65511,58 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "deja-vu",
+      "title": "Deja-Vu",
+      "description": "Search and resume sessions across Claude Code, Codex, Cursor, OpenCode, Gemini CLI and 38 more coding agents using the local deja CLI.",
+      "icon": "command-icon.png",
+      "author": "vshulcz",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/vshulcz/deja-vu",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/deja-vu",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-sessions",
+          "title": "Search Sessions",
+          "subtitle": "Deja-Vu",
+          "description": "Full-text search across every coding agent session on this Mac.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "recent-sessions",
+          "title": "Recent Sessions",
+          "subtitle": "Deja-Vu",
+          "description": "Browse the 100 most recent coding agent sessions across all harnesses.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "dejaPath",
+          "type": "file",
+          "required": false,
+          "title": "deja Binary Path",
+          "description": "Optional path to the deja binary if not in /opt/homebrew/bin, /usr/local/bin, ~/.local/bin or ~/go/bin."
+        }
+      ]
     },
     {
       "name": "dekudeals",
@@ -73453,7 +73722,8 @@
         "kosha",
         "Olivier-OG",
         "Krosnoz",
-        "ahetzm"
+        "ahetzm",
+        "xmok"
       ],
       "categories": [],
       "license": "MIT",
@@ -102375,7 +102645,8 @@
       "icon": "icon.png",
       "author": "oslen",
       "contributors": [
-        "chrismessina"
+        "chrismessina",
+        "ViGeng"
       ],
       "categories": [
         "Developer Tools"
@@ -105502,7 +105773,8 @@
         "raycast_0ukl",
         "olafvanmidden",
         "Berenger",
-        "Robot-Inventor"
+        "Robot-Inventor",
+        "ViGeng"
       ],
       "categories": [
         "Developer Tools",
@@ -106447,7 +106719,8 @@
         "LunaticMuch",
         "pernielsentikaer",
         "perat",
-        "Astatine-213"
+        "Astatine-213",
+        "ViGeng"
       ],
       "categories": [],
       "license": "MIT",
@@ -107143,7 +107416,9 @@
       "description": "Open GitHub search for code, issues, pull requests and repos with advanced filters, exclude bots, and save searches to rerun later.",
       "icon": "extension_icon.png",
       "author": "webpro",
-      "contributors": [],
+      "contributors": [
+        "ViGeng"
+      ],
       "categories": [
         "Developer Tools",
         "Productivity",
@@ -107228,7 +107503,8 @@
       "icon": "icon.png",
       "author": "mrmartineau",
       "contributors": [
-        "prince_yadav"
+        "prince_yadav",
+        "ViGeng"
       ],
       "categories": [],
       "license": "MIT",
@@ -107351,13 +107627,17 @@
       "description": "Search GitHub users and view their profile details, website and social links.",
       "icon": "icon.png",
       "author": "luisFilipePT",
-      "contributors": [],
+      "contributors": [
+        "ViGeng"
+      ],
       "categories": [
         "Other",
         "Communication"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/luisFilipePT/github-users",
       "source": {
         "type": "github-monorepo",
@@ -205633,6 +205913,56 @@
       "preferences": []
     },
     {
+      "name": "persian-calendar",
+      "title": "Persian Calendar",
+      "description": "An offline Persian (Jalali) calendar with monthly navigation and today's Persian date.",
+      "icon": "extension-icon.png",
+      "author": "mimsalavati",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows",
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/mimsalavati/persian-calendar",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/persian-calendar",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "persian-calendar",
+          "title": "Persian Calendar",
+          "subtitle": "Jalali Monthly Calendar",
+          "description": "Browse Persian calendar months.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "today-date",
+          "title": "Today's Date",
+          "subtitle": "Persian Calendar",
+          "description": "Show today's Persian date.",
+          "mode": "no-view",
+          "keywords": [
+            "چندمه",
+            "امروز",
+            "تاریخ امروز",
+            "today",
+            "date"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "personio",
       "title": "Personio",
       "description": "Track working time in Personio, submit past attendance, find employee numbers, and view attendances.",
@@ -214265,6 +214595,69 @@
       ]
     },
     {
+      "name": "popnow",
+      "title": "PopNow",
+      "description": "Generate AI images and videos with Nano Banana, Seedream, Kling, Seedance, MiniMax H3, Veo and more. See the price before every generation. Requires a PopNow account and paid API credits.",
+      "icon": "extension-icon.png",
+      "author": "kyuminjo",
+      "contributors": [],
+      "categories": [
+        "Media",
+        "Design Tools",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/kyuminjo/popnow",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/popnow",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "generate-image",
+          "title": "Generate Image",
+          "subtitle": "PopNow",
+          "description": "Create an image from a prompt with the model of your choice.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "generate-video",
+          "title": "Generate Video",
+          "subtitle": "PopNow",
+          "description": "Create a short video from a prompt with the model of your choice.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "browse-models",
+          "title": "Browse Models",
+          "subtitle": "PopNow",
+          "description": "Search PopNow image, video and audio models with their prices.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "title": "API Key",
+          "description": "Create a key at popnow.ai/api/console/keys",
+          "type": "password",
+          "required": true,
+          "placeholder": "sk-popnow-..."
+        }
+      ]
+    },
+    {
       "name": "porkbun",
       "title": "Porkbun",
       "description": "Manage Porkbun domains: create, edit and delete DNS records, manage URL forwarding, get SSL bundles, check TLD pricing and account balance.",
@@ -216860,7 +217253,9 @@
       "description": "Copy the GitHub pull request open in your browser as a Markdown link with its title, optionally marked urgent, to request reviews.",
       "icon": "extension-icon.png",
       "author": "jopcmelo",
-      "contributors": [],
+      "contributors": [
+        "ViGeng"
+      ],
       "categories": [
         "Developer Tools",
         "Productivity",
@@ -226081,6 +226476,68 @@
           "title": "Qutebrowser Path",
           "description": "Path to the qutebrowser executable",
           "placeholder": "/opt/homebrew/bin/qutebrowser"
+        }
+      ]
+    },
+    {
+      "name": "qveris",
+      "title": "QVeris",
+      "description": "Discover, inspect, and safely run capabilities from the QVeris network.",
+      "icon": "icon.png",
+      "author": "dev_qveris",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/dev_qveris/qveris",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/qveris",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "discover-capabilities",
+          "title": "Discover Capabilities",
+          "description": "Find and inspect tools available through QVeris",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "type": "password",
+          "required": true,
+          "title": "QVeris API Key",
+          "description": "API key used only to authenticate requests to the selected QVeris API region.",
+          "placeholder": "Enter your QVeris API key"
+        },
+        {
+          "name": "apiRegion",
+          "type": "dropdown",
+          "required": true,
+          "title": "API Region",
+          "description": "Choose the QVeris service where your API key was created.",
+          "default": "global",
+          "data": [
+            {
+              "title": "Global",
+              "value": "global"
+            },
+            {
+              "title": "China",
+              "value": "china"
+            }
+          ]
         }
       ]
     },
@@ -251682,11 +252139,17 @@
       "icon": "command-icon.png",
       "author": "jffrykkn",
       "contributors": [
-        "xilopaint"
+        "xilopaint",
+        "chrismessina"
       ],
-      "categories": [],
+      "categories": [
+        "Developer Tools",
+        "Design Tools"
+      ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/jffrykkn/sf-symbols-search",
       "source": {
         "type": "github-monorepo",
@@ -251761,8 +252224,8 @@
         {
           "name": "minimumVersionOS",
           "type": "dropdown",
-          "title": "Show Minimum OS Version (Show Name required)",
-          "description": "Show the minimum OS version that's required for an SF Symbol below its name",
+          "title": "Show Minimum OS Version (Show Name Required)",
+          "description": "Shows each symbol's first OS version below its name. Hover a symbol to see all.",
           "data": [
             {
               "title": "iOS",
@@ -251790,7 +252253,7 @@
             }
           ],
           "required": false,
-          "default": "iOS"
+          "default": "disabled"
         },
         {
           "name": "showRecent",
@@ -251800,6 +252263,169 @@
           "description": "Show recently used SF Symbols",
           "required": false,
           "default": true
+        },
+        {
+          "name": "aiSearch",
+          "type": "checkbox",
+          "title": "AI Suggestions",
+          "label": "Suggest Symbols with Raycast AI",
+          "description": "Adds matches for descriptive searches like “write with pen”.",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "outputPath",
+          "type": "directory",
+          "title": "Export Folder",
+          "description": "Exports go into an SF Symbols folder inside this one.",
+          "required": false,
+          "default": "~/Downloads/"
+        },
+        {
+          "name": "defaultExportSize",
+          "type": "dropdown",
+          "title": "Export Size",
+          "description": "Point size for Export Symbol and Copy Image.",
+          "required": false,
+          "default": "128",
+          "data": [
+            {
+              "title": "16 pt",
+              "value": "16"
+            },
+            {
+              "title": "32 pt",
+              "value": "32"
+            },
+            {
+              "title": "64 pt",
+              "value": "64"
+            },
+            {
+              "title": "128 pt",
+              "value": "128"
+            },
+            {
+              "title": "256 pt",
+              "value": "256"
+            },
+            {
+              "title": "512 pt",
+              "value": "512"
+            },
+            {
+              "title": "1024 pt",
+              "value": "1024"
+            }
+          ]
+        },
+        {
+          "name": "exportWeight",
+          "type": "dropdown",
+          "title": "Export Weight",
+          "description": "Use Export Symbol Weight… for a one-off weight.",
+          "required": false,
+          "default": "regular",
+          "data": [
+            {
+              "title": "Ultralight",
+              "value": "ultralight"
+            },
+            {
+              "title": "Thin",
+              "value": "thin"
+            },
+            {
+              "title": "Light",
+              "value": "light"
+            },
+            {
+              "title": "Regular",
+              "value": "regular"
+            },
+            {
+              "title": "Medium",
+              "value": "medium"
+            },
+            {
+              "title": "Semibold",
+              "value": "semibold"
+            },
+            {
+              "title": "Bold",
+              "value": "bold"
+            },
+            {
+              "title": "Heavy",
+              "value": "heavy"
+            },
+            {
+              "title": "Black",
+              "value": "black"
+            }
+          ]
+        },
+        {
+          "name": "exportRenderingMode",
+          "type": "dropdown",
+          "title": "Export Rendering Mode",
+          "description": "Multicolor uses Apple's colors where a symbol has them.",
+          "required": false,
+          "default": "monochrome",
+          "data": [
+            {
+              "title": "Monochrome",
+              "value": "monochrome"
+            },
+            {
+              "title": "Hierarchical",
+              "value": "hierarchical"
+            },
+            {
+              "title": "Palette",
+              "value": "palette"
+            },
+            {
+              "title": "Multicolor",
+              "value": "multicolor"
+            }
+          ]
+        },
+        {
+          "name": "exportColor",
+          "type": "textfield",
+          "title": "Export Color",
+          "description": "A color name such as blue or gray, or a #RRGGBB hex value.",
+          "placeholder": "#RRGGBB or color name",
+          "required": false,
+          "default": "black"
+        },
+        {
+          "name": "formatPng",
+          "type": "checkbox",
+          "title": "Export Formats",
+          "label": "PNG",
+          "description": "Transparent background. The safe default.",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "formatPdf",
+          "type": "checkbox",
+          "title": "",
+          "label": "PDF",
+          "description": "Vector, at the chosen size and weight.",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "formatSvg",
+          "type": "checkbox",
+          "title": "",
+          "label": "SVG Template",
+          "description": "Apple's editable template with every weight, for custom symbols.",
+          "required": false,
+          "default": false
         }
       ]
     },
@@ -252581,7 +253207,8 @@
         "mohamedk1",
         "anirudh_gupta",
         "pernielsentikaer",
-        "sataros"
+        "sataros",
+        "just_me"
       ],
       "categories": [
         "Developer Tools"
@@ -281317,7 +281944,7 @@
       "platforms": [
         "macOS"
       ],
-      "version": "1.0.92",
+      "version": "1.0.95",
       "storeUrl": "https://www.raycast.com/praveenjuge/teak-raycast",
       "source": {
         "type": "github-monorepo",
@@ -318778,6 +319405,88 @@
       "preferences": []
     },
     {
+      "name": "windscribe-vpn",
+      "title": "Windscribe VPN",
+      "description": "Control the Windscribe desktop VPN from Raycast.",
+      "icon": "extension-icon.png",
+      "author": "hugomarfani",
+      "contributors": [],
+      "categories": [
+        "Security"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/hugomarfani/windscribe-vpn",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/windscribe-vpn",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "connect",
+          "title": "Connect Windscribe",
+          "description": "Connect to your last used location or Best Location.",
+          "mode": "no-view",
+          "keywords": [
+            "VPN",
+            "Windscribe"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "connect-best",
+          "title": "Connect to Best Location",
+          "subtitle": "Windscribe VPN",
+          "description": "Let Windscribe pick a server when the VPN is disconnected.",
+          "mode": "no-view",
+          "keywords": [
+            "VPN",
+            "Windscribe",
+            "Server"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "disconnect",
+          "title": "Disconnect Windscribe",
+          "description": "Disconnect the Windscribe VPN.",
+          "mode": "no-view",
+          "keywords": [
+            "VPN",
+            "Windscribe"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "toggle",
+          "title": "Toggle Windscribe",
+          "description": "Connect or disconnect based on Windscribe's current status.",
+          "mode": "no-view",
+          "keywords": [
+            "VPN",
+            "Windscribe"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "status",
+          "title": "Windscribe Status",
+          "description": "See the current VPN state, location, and protocol.",
+          "mode": "view",
+          "keywords": [
+            "VPN",
+            "Windscribe"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "windsurf",
       "title": "Windsurf Extension",
       "description": "Open files and folders in the Windsurf IDE and browse the projects you opened with it.",
@@ -326356,6 +327065,86 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "you-up",
+      "title": "You Up?",
+      "description": "Monitor your websites, APIs, servers, and cron jobs from Raycast: macOS menu bar status, Monitors, Incidents, Acknowledge, Snooze, and AI tools. Requires a You Up? account and API token.",
+      "icon": "icon.png",
+      "author": "frenzyfunky",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/frenzyfunky/you-up",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/you-up",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "monitors",
+          "title": "Monitors",
+          "subtitle": "You Up?",
+          "description": "View Monitors across your Projects, inspect 30-day uptime and Check details, Acknowledge open Incidents, Snooze alerts, and Pause or Resume Monitors",
+          "mode": "view",
+          "keywords": [
+            "uptime",
+            "monitoring",
+            "heartbeat",
+            "cron",
+            "status",
+            "snooze"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "incidents",
+          "title": "Incidents",
+          "subtitle": "You Up?",
+          "description": "View open and recent Incidents, inspect multi-location outage evidence, and Acknowledge, Snooze, or Resolve Incidents with one keystroke",
+          "mode": "view",
+          "keywords": [
+            "outage",
+            "alerts",
+            "acknowledge",
+            "snooze",
+            "downtime"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "status-menu-bar",
+          "title": "Menu Bar Status",
+          "subtitle": "You Up?",
+          "description": "Keep an eye on open Incidents and degraded Monitors from the macOS menu bar",
+          "mode": "menu-bar",
+          "keywords": [
+            "menubar",
+            "status",
+            "uptime",
+            "outage"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiToken",
+          "title": "API Token",
+          "description": "Your You Up? API token (uup_api_...), created under Organization Settings -> API Tokens at https://app.uup.dev. Read-only tokens view status, Monitors, and Incidents. Full tokens also Acknowledge, Snooze, Pause, and Resume.",
+          "type": "password",
+          "required": true,
+          "placeholder": "uup_api_..."
+        }
+      ]
     },
     {
       "name": "youdao-translate",
