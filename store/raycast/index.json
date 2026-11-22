@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-21T23:04:39.526Z",
+  "generatedAt": "2026-11-22T23:35:40.362Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "d0cd72a2a83719a8a8ef93633655b93b0df1b254"
+    "commit": "1b0c3cf1d4976edaf9019232569117822a79268f"
   },
-  "count": 3629,
+  "count": 3631,
   "extensions": [
     {
       "name": "0x0",
@@ -11737,6 +11737,49 @@
           "label": "Show ⌘1–⌘9 shortcuts under items",
           "description": "Displays ⌘1–⌘9 hotkey badges beneath the first 9 folders and apps.",
           "default": true
+        }
+      ]
+    },
+    {
+      "name": "app-hider",
+      "title": "App Hider",
+      "description": "Hide selected Mac apps from normal app listings and restore them later.",
+      "icon": "extension-icon.png",
+      "author": "leonidalekseev",
+      "contributors": [],
+      "categories": [
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/leonidalekseev/app-hider",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/app-hider",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "manage-apps",
+          "title": "Manage Hidden Apps",
+          "description": "Move selected apps into a hidden, Spotlight-excluded folder and restore them later.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "resetLaunchpad",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "title": "Launchpad",
+          "label": "Refresh Launchpad after hiding or restoring",
+          "description": "macOS 15 and older: resets Launchpad and restarts the Dock (Launchpad folders and icon order are reset). macOS 26 and newer: restarts Spotlight, which hosts the Apps view."
         }
       ]
     },
@@ -129606,7 +129649,9 @@
       "description": "Manage your /etc/hosts file with iHosts: enable, edit and organize hosts entries in folders, switch them from the menu bar and update remote hosts.",
       "icon": "ihosts.png",
       "author": "JinShi",
-      "contributors": [],
+      "contributors": [
+        "amarbunty"
+      ],
       "categories": [
         "Applications",
         "Data",
@@ -129615,7 +129660,9 @@
         "System"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/JinShi/ihosts",
       "source": {
         "type": "github-monorepo",
@@ -165043,7 +165090,7 @@
         {
           "name": "switch-media",
           "title": "Switch Media",
-          "description": "Switch between media sessions",
+          "description": "Switch between and control media sessions.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -220104,7 +220151,7 @@
           "name": "cliPath",
           "type": "textfield",
           "title": "CLI Path",
-          "description": "Leave as pass-cli: the extension picks your Mac's pass-cli or downloads 2.5.1.",
+          "description": "Leave as pass-cli: the extension picks your Mac's pass-cli or downloads 2.7.1.",
           "default": "pass-cli",
           "required": false
         },
@@ -267932,6 +267979,73 @@
           "description": "Use System Events to replay your Spokenly dictation shortcut. Required if the URL scheme cannot stop an in-progress dictation. Needs Accessibility permission for Raycast.",
           "type": "checkbox",
           "default": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "sponge",
+      "title": "Sponge",
+      "description": "Save links and search your reading library with the Sponge CLI installed on your Mac.",
+      "icon": "icon.png",
+      "author": "0thernet",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/0thernet/sponge",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/sponge",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "save-url",
+          "title": "Save URL",
+          "subtitle": "Sponge",
+          "description": "Save a link to your Sponge library. Uses the clipboard when no URL is entered.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-library",
+          "title": "Search Library",
+          "subtitle": "Sponge",
+          "description": "Search the saved text in your Sponge library.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "recent-items",
+          "title": "Show Recent Items",
+          "subtitle": "Sponge",
+          "description": "Browse the newest items in your Sponge library.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "cliPath",
+          "title": "Sponge CLI",
+          "description": "The sponge command, if it is not in /opt/homebrew/bin, /usr/local/bin or your npm global folder.",
+          "type": "file",
+          "required": false
+        },
+        {
+          "name": "library",
+          "title": "Library Folder",
+          "description": "An existing Sponge library. Leave empty to use your default library.",
+          "type": "directory",
           "required": false
         }
       ]
