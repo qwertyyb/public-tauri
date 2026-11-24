@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-22T23:35:40.362Z",
+  "generatedAt": "2026-11-24T03:59:34.192Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "1b0c3cf1d4976edaf9019232569117822a79268f"
+    "commit": "41c4399494d4546199e997f15b030c1c70545962"
   },
-  "count": 3631,
+  "count": 3641,
   "extensions": [
     {
       "name": "0x0",
@@ -1866,6 +1866,68 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "adaptlypost",
+      "title": "AdaptlyPost",
+      "description": "Create and schedule social media posts and manage connected accounts with AdaptlyPost; requires an account with API access.",
+      "icon": "extension-icon.png",
+      "author": "taras_shynkarenko",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Communication"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/taras_shynkarenko/adaptlypost",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/adaptlypost",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "create-post",
+          "title": "Create Post",
+          "subtitle": "AdaptlyPost",
+          "description": "Write a text post, then save it as a draft, schedule it or publish it now.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-posts",
+          "title": "Search Posts",
+          "subtitle": "AdaptlyPost",
+          "description": "Find drafts, scheduled posts and published posts, and act on them.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-accounts",
+          "title": "Search Accounts",
+          "subtitle": "AdaptlyPost",
+          "description": "See connected social accounts and which ones need reconnecting.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "title": "API Key",
+          "description": "Create a key at adaptlypost.com/api-tokens. It starts with adaptly_.",
+          "placeholder": "adaptly_...",
+          "type": "password",
+          "required": true
+        }
+      ]
     },
     {
       "name": "adb",
@@ -11784,6 +11846,41 @@
       ]
     },
     {
+      "name": "app-hopper-window-and-tab-switcher",
+      "title": "App Hopper - Window and Tab Switcher",
+      "description": "Find and switch between running apps, windows, and browser tabs.",
+      "icon": "app-hopper-icon-512.png",
+      "author": "chenghsj",
+      "contributors": [],
+      "categories": [
+        "Applications",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/chenghsj/app-hopper-window-and-tab-switcher",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/app-hopper-window-and-tab-switcher",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "app-hopper",
+          "title": "App Hopper",
+          "description": "Search running apps, windows, and browser tabs on macOS and switch to the result you need.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "app-hopper-icon-512.png",
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "app-icon-generator",
       "title": "App Icon Generator",
       "description": "Generate app icons in every size for iOS, iPadOS, macOS, Android, watchOS and Windows ICO from a single image.",
@@ -18576,6 +18673,142 @@
       ]
     },
     {
+      "name": "audio-recorder",
+      "title": "Audio Recorder",
+      "description": "Record meetings, microphone and system audio locally as M4A or WAV, with pause, resume and a searchable recording library.",
+      "icon": "icon.png",
+      "author": "radouane-tamouss",
+      "contributors": [],
+      "categories": [
+        "Media",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/radouane-tamouss/audio-recorder",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/audio-recorder",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "recorder",
+          "title": "Audio Recorder",
+          "description": "Record audio and manage previous recordings",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "start-recording",
+          "title": "Start Recording",
+          "subtitle": "Audio Recorder",
+          "description": "Start recording using your preferred audio mode",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "pause-recording",
+          "title": "Pause Recording",
+          "subtitle": "Audio Recorder",
+          "description": "Pause the current audio recording",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "resume-recording",
+          "title": "Resume Recording",
+          "subtitle": "Audio Recorder",
+          "description": "Resume the paused audio recording",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "stop-recording",
+          "title": "Stop Recording",
+          "subtitle": "Audio Recorder",
+          "description": "Stop and save the current audio recording",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "mode",
+          "title": "Recording Mode",
+          "description": "Choose microphone, audio playing on your Mac, or both.",
+          "type": "dropdown",
+          "required": false,
+          "default": "both",
+          "data": [
+            {
+              "title": "Microphone + System Audio",
+              "value": "both"
+            },
+            {
+              "title": "System Audio",
+              "value": "system"
+            },
+            {
+              "title": "Microphone",
+              "value": "microphone"
+            }
+          ]
+        },
+        {
+          "name": "microphoneSource",
+          "title": "Microphone Input",
+          "description": "Choose Built-in Microphone to keep headphone playback while recording with the Mac microphone.",
+          "type": "dropdown",
+          "required": false,
+          "default": "default",
+          "data": [
+            {
+              "title": "System Default Microphone",
+              "value": "default"
+            },
+            {
+              "title": "Built-in Microphone",
+              "value": "built-in"
+            }
+          ]
+        },
+        {
+          "name": "format",
+          "title": "Audio Format",
+          "description": "M4A uses AAC at 256 kbps. WAV is uncompressed and uses more disk space.",
+          "type": "dropdown",
+          "required": false,
+          "default": "m4a",
+          "data": [
+            {
+              "title": "M4A",
+              "value": "m4a"
+            },
+            {
+              "title": "WAV",
+              "value": "wav"
+            }
+          ]
+        },
+        {
+          "name": "outputFolder",
+          "title": "Output Folder",
+          "description": "Leave empty to use ~/Documents/Recordings.",
+          "type": "directory",
+          "required": false
+        }
+      ]
+    },
+    {
       "name": "audio-writer",
       "title": "Audio Writer",
       "description": "Record voice notes, import audio files and view transcripts in the Audio Writer transcription app for Mac.",
@@ -19559,7 +19792,7 @@
     {
       "name": "aztu-lms",
       "title": "AzTU LMS",
-      "description": "Check your AzTU LMS class schedule, announcements, transcript, grades, attendance and lectures at Azerbaijan Technical University.",
+      "description": "Log in to the AzTU LMS of Azerbaijan Technical University in one step.",
       "icon": "icon.png",
       "author": "yusifaliyevpro",
       "contributors": [],
@@ -19592,56 +19825,8 @@
         {
           "name": "delete-session",
           "title": "Delete Session",
-          "description": "Delete old session to get new link and token",
+          "description": "Delete old session to get a new login link",
           "mode": "no-view",
-          "keywords": [],
-          "preferences": []
-        },
-        {
-          "name": "schedule",
-          "title": "Class Schedule",
-          "description": "View and manage your upcoming classes and schedule",
-          "mode": "view",
-          "keywords": [],
-          "preferences": []
-        },
-        {
-          "name": "announcements",
-          "title": "Announcements",
-          "description": "Get important updates from AzTU LMS",
-          "mode": "view",
-          "keywords": [],
-          "preferences": []
-        },
-        {
-          "name": "profile-info",
-          "title": "Profile Information",
-          "description": "View and manage your AzTU LMS profile information",
-          "mode": "view",
-          "keywords": [],
-          "preferences": []
-        },
-        {
-          "name": "transcript",
-          "title": "Academic Transcript",
-          "description": "View your academic transcript and grades",
-          "mode": "view",
-          "keywords": [],
-          "preferences": []
-        },
-        {
-          "name": "attendance",
-          "title": "Attendance",
-          "description": "View your attendance and results",
-          "mode": "view",
-          "keywords": [],
-          "preferences": []
-        },
-        {
-          "name": "lectures",
-          "title": "Lectures",
-          "description": "View your lectures",
-          "mode": "view",
           "keywords": [],
           "preferences": []
         }
@@ -19660,13 +19845,6 @@
           "title": "Password",
           "description": "Enter your AzTU LMS password",
           "type": "password",
-          "required": true
-        },
-        {
-          "name": "downloadPath",
-          "title": "Download Path",
-          "description": "Enter the directory path where materials will be downloaded",
-          "type": "directory",
           "required": true
         }
       ]
@@ -49253,6 +49431,97 @@
       ]
     },
     {
+      "name": "codex-account-switcher",
+      "title": "Codex Account Switcher",
+      "description": "Add, remove, and switch Codex accounts and check usage in a list or menu bar with the required codex-auth CLI.",
+      "icon": "icon.png",
+      "author": "zhen",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/zhen/codex-account-switcher",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/codex-account-switcher",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "switch-codex-account",
+          "title": "Switch Codex Account",
+          "subtitle": "Codex",
+          "description": "Add, remove, switch, and view usage for saved Codex accounts",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "refreshMode",
+              "title": "Usage Refresh",
+              "description": "API refresh is current; local refresh avoids network requests but may be stale.",
+              "type": "dropdown",
+              "required": false,
+              "default": "api",
+              "data": [
+                {
+                  "title": "Current via OpenAI",
+                  "value": "api"
+                },
+                {
+                  "title": "Local Cache Only",
+                  "value": "local"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "codex-usage-menu",
+          "title": "Codex Usage in Menu Bar",
+          "subtitle": "Codex",
+          "description": "Show the active Codex account usage in the menu bar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "refreshMode",
+              "title": "Usage Refresh",
+              "description": "Local cache is recommended for background refresh; API refresh makes a request every five minutes.",
+              "type": "dropdown",
+              "required": false,
+              "default": "local",
+              "data": [
+                {
+                  "title": "Local Cache Only",
+                  "value": "local"
+                },
+                {
+                  "title": "Current via OpenAI",
+                  "value": "api"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "preferences": [
+        {
+          "name": "codexAuthPath",
+          "title": "codex-auth Executable",
+          "description": "Absolute path to codex-auth 0.3.0 or newer.",
+          "type": "file",
+          "required": false,
+          "placeholder": "/opt/homebrew/bin/codex-auth"
+        }
+      ]
+    },
+    {
       "name": "codex-claude-cli",
       "title": "PromptCast for Claude & Codex",
       "description": "Send prompts to Claude Code and OpenAI Codex CLI, manage sessions, MCP servers and skills, and check usage limits in the menu bar.",
@@ -61125,6 +61394,71 @@
       ]
     },
     {
+      "name": "dashboard-icons",
+      "title": "Dashboard Icons",
+      "description": "Search dashboardicons.com and copy or save icons as WebP, PNG, or SVG, including light and dark variants.",
+      "icon": "extension-icon.png",
+      "author": "macx",
+      "contributors": [],
+      "categories": [
+        "Design Tools",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/macx/dashboard-icons",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/dashboard-icons",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-icons",
+          "title": "Search Icons",
+          "description": "Search dashboardicons.com and copy or save an icon in any available format and variant.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "defaultFormat",
+          "title": "Default Format",
+          "description": "Format listed first and used by the quick copy action.",
+          "type": "dropdown",
+          "required": false,
+          "default": "webp",
+          "data": [
+            {
+              "title": "WebP",
+              "value": "webp"
+            },
+            {
+              "title": "PNG",
+              "value": "png"
+            },
+            {
+              "title": "SVG",
+              "value": "svg"
+            }
+          ]
+        },
+        {
+          "name": "downloadDirectory",
+          "title": "Download Folder",
+          "description": "Folder used by the Save action. Defaults to your Downloads folder.",
+          "type": "directory",
+          "required": false,
+          "placeholder": "~/Downloads"
+        }
+      ]
+    },
+    {
       "name": "dashlane",
       "title": "Dashlane",
       "description": "Open your Dashlane password vault in the web app (app.dashlane.com).",
@@ -61968,7 +62302,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/namikaze-40p/date-inserter",
       "source": {
@@ -94719,6 +95054,68 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "flowsery",
+      "title": "Flowsery",
+      "description": "Check website traffic, live visitors and AI-detected issues in Flowsery; requires a Flowsery account and API key.",
+      "icon": "extension-icon.png",
+      "author": "taras_shynkarenko",
+      "contributors": [],
+      "categories": [
+        "Data",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/taras_shynkarenko/flowsery",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/flowsery",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "view-analytics",
+          "title": "View Analytics",
+          "subtitle": "Flowsery",
+          "description": "See visitors, revenue, top pages, referrers and countries for a website.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-issues",
+          "title": "Search Issues",
+          "subtitle": "Flowsery",
+          "description": "Find the issues Flowsery detected in session recordings and update their status.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "live-visitors",
+          "title": "Show Live Visitors",
+          "subtitle": "Flowsery",
+          "description": "Keep the number of people on your websites in the menu bar.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "title": "API Key",
+          "description": "Create a key at flowsery.com/api-tokens. A workspace key covers every website, and a website key covers one.",
+          "placeholder": "flow_...",
+          "type": "password",
+          "required": true
+        }
+      ]
     },
     {
       "name": "flowspeech-tts",
@@ -156323,7 +156720,7 @@
           "name": "defaultModel",
           "type": "textfield",
           "title": "Default Model",
-          "description": "Model for new commands. Check Setup lists the models this Mac offers.",
+          "description": "Model for new commands. Leave as system to use the on-device model.",
           "default": "system",
           "required": false
         },
@@ -160544,6 +160941,24 @@
           "mode": "no-view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "save-mail-as-file",
+          "title": "Save Mail as File",
+          "description": "Copy the first selected email in Apple Mail as an EML file and optionally save it to the configured folder.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "saveExportedEmails",
+              "title": "Save Exported Emails",
+              "label": "Also save exported emails to the configured folder",
+              "description": "When enabled, the command also saves the EML file to Save Files To, which defaults to Downloads. Otherwise, it only copies a temporary file to the clipboard.",
+              "type": "checkbox",
+              "default": true,
+              "required": false
+            }
+          ]
         }
       ],
       "preferences": [
@@ -160567,8 +160982,8 @@
         },
         {
           "name": "saveDirectory",
-          "title": "Save Attachments To",
-          "description": "Directory to save mail attachments.",
+          "title": "Save Files To",
+          "description": "Choose where to save mail attachments and exported emails.",
           "type": "directory",
           "default": "~/Downloads",
           "required": false
@@ -176974,7 +177389,8 @@
         "christianmagill",
         "0xdhrv",
         "stillo",
-        "shanto462"
+        "shanto462",
+        "nilsingwersen"
       ],
       "categories": [],
       "license": "MIT",
@@ -196909,8 +197325,8 @@
     },
     {
       "name": "orbit",
-      "title": "Orbit",
-      "description": "Search your screen history in the Orbit Mac app, open the timeline at a specific date or time, and open Orbit settings.",
+      "title": "Memory Machine",
+      "description": "Search your screen history in the Memory Machine Mac app, open history at a specific date or time, and open Memory Machine settings.",
       "icon": "extension-icon.png",
       "author": "michaelheckmann",
       "contributors": [],
@@ -196932,17 +197348,18 @@
       "commands": [
         {
           "name": "search-orbit",
-          "title": "Search in Orbit",
-          "description": "Open Orbit and run a keyword search. Your text goes directly to the search bar.",
+          "title": "Open Search",
+          "subtitle": "Memory Machine",
+          "description": "Open Memory Machine and run a keyword search. Your text goes directly to the search bar.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
         },
         {
           "name": "open-orbit-timeline",
-          "title": "Open Timeline",
-          "subtitle": "Orbit",
-          "description": "Open the Orbit timeline. Optionally, type a date or time in plain language to jump straight to that moment.",
+          "title": "Open History",
+          "subtitle": "Memory Machine",
+          "description": "Open the Memory Machine history. Optionally, type a date or time in plain language to jump straight to that moment.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -196950,8 +197367,8 @@
         {
           "name": "open-orbit-settings",
           "title": "Open Settings",
-          "subtitle": "Orbit",
-          "description": "Open the Orbit settings.",
+          "subtitle": "Memory Machine",
+          "description": "Open the Memory Machine settings.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -200385,6 +200802,15 @@
       },
       "commands": [
         {
+          "name": "check-setup",
+          "title": "Check Setup",
+          "subtitle": "Paper Agent",
+          "description": "Check the core installation, paper directories, and configuration sources without running the pipeline.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "today-papers",
           "title": "Browse Today's Papers",
           "subtitle": "Paper Agent",
@@ -200498,7 +200924,7 @@
           "name": "paperDir",
           "type": "textfield",
           "title": "Paper Directory",
-          "description": "Root directory for papers (daily digest and notes). Library is stored under paper_dir/library. Maps to delivery.paper_dir.",
+          "description": "Optional override for delivery.paper_dir. Leave empty to use config.yaml, including its custom library directory.",
           "placeholder": "/path/to/your/paper/repo",
           "default": "",
           "required": false
@@ -217704,7 +218130,7 @@
     {
       "name": "prisma-docs-search",
       "title": "Prisma Docs Search",
-      "description": "Ask Prisma's AI-powered docs search, powered by kapa.ai, and read the answers about Prisma ORM.",
+      "description": "Ask Prisma's AI docs assistant and get sourced answers about Prisma Postgres, Prisma Compute, and Prisma ORM.",
       "icon": "prisma.png",
       "author": "petra",
       "contributors": [
@@ -238881,6 +239307,68 @@
       ]
     },
     {
+      "name": "redreplier",
+      "title": "RedReplier",
+      "description": "Review scored Reddit, X, Bluesky, Hacker News and Facebook mentions, copy AI reply drafts and manage keywords with a RedReplier account.",
+      "icon": "extension-icon.png",
+      "author": "taras_shynkarenko",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/taras_shynkarenko/redreplier",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/redreplier",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-mentions",
+          "title": "Search Mentions",
+          "subtitle": "RedReplier",
+          "description": "Read scored conversations, copy the suggested reply and approve or reject them.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-websites",
+          "title": "Search Websites",
+          "subtitle": "RedReplier",
+          "description": "See monitored websites and turn their keywords on or off.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "add-keywords",
+          "title": "Add Keywords",
+          "subtitle": "RedReplier",
+          "description": "Add keywords to a monitored website.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "title": "API Key",
+          "description": "Create a key at redreplier.com/api-tokens. It starts with redreplier_.",
+          "placeholder": "redreplier_...",
+          "type": "password",
+          "required": true
+        }
+      ]
+    },
+    {
       "name": "reflect",
       "title": "Reflect",
       "description": "Append to your Reflect daily note, create and search notes, open daily notes and record audio memos in the Reflect app.",
@@ -245196,6 +245684,47 @@
           "default": true
         }
       ]
+    },
+    {
+      "name": "safay",
+      "title": "Safay",
+      "description": "Search accounts in the installed Safay app and copy two-factor codes after Touch ID or your master password.",
+      "icon": "icon.png",
+      "author": "kakegu",
+      "contributors": [],
+      "categories": [
+        "Security",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/kakegu/safay",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/safay",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search",
+          "title": "Search Accounts",
+          "description": "Search your Safay accounts and copy a code after Touch ID or your master password.",
+          "mode": "view",
+          "keywords": [
+            "sf",
+            "safay",
+            "2fa",
+            "totp",
+            "otp",
+            "two-factor"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "safe-secret",
@@ -279762,6 +280291,15 @@
           "placeholder": "http://127.0.0.1:3773"
         },
         {
+          "name": "extraServers",
+          "type": "password",
+          "required": false,
+          "title": "Additional Servers",
+          "default": "",
+          "description": "Other T3 Code servers to search, such as another Mac. One \"<origin> <token>\" pair per entry, entries split by commas. Plain http:// is allowed only for loopback and Tailscale MagicDNS names (*.ts.net).",
+          "placeholder": "http://my-mac.tailnet.ts.net:3773 <token>, https://..."
+        },
+        {
           "name": "appName",
           "type": "textfield",
           "required": false,
@@ -307729,6 +308267,68 @@
       ]
     },
     {
+      "name": "useful-apps",
+      "title": "The Useful Apps",
+      "description": "Search 450+ hand-picked Mac and iPhone apps, find better alternatives to the apps on your Mac, and catch confirmed app deals.",
+      "icon": "icon.png",
+      "author": "theusefultech",
+      "contributors": [],
+      "categories": [
+        "Applications",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/theusefultech/useful-apps",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/useful-apps",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-apps",
+          "title": "Search Apps",
+          "subtitle": "The Useful Apps",
+          "description": "Search 450+ hand-picked Mac and iPhone apps, with who each one is for, who should skip it and what it costs.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "find-alternatives",
+          "title": "Find Alternatives",
+          "subtitle": "The Useful Apps",
+          "description": "See better picks for the apps already on your Mac, with a line on why to pick each one.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "browse-deals",
+          "title": "Browse App Deals",
+          "subtitle": "The Useful Apps",
+          "description": "Mac and iPhone app deals confirmed by the developer, with the discount and the date each one ends.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "best-apps",
+          "title": "Find Best App",
+          "subtitle": "The Useful Apps",
+          "description": "Ranked picks for 40 jobs, from clipboard managers to screen recorders, with the winner first.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "useless-facts",
       "title": "Useless Facts",
       "description": "Get a random useless but true fact, or today's useless fact.",
@@ -310151,6 +310751,58 @@
           "description": "API Key from APILayer",
           "required": true,
           "type": "password"
+        }
+      ]
+    },
+    {
+      "name": "verwatch",
+      "title": "VerWatch",
+      "description": "Search Craft CMS projects, check packages and track or start updates in VerWatch with a team that has API access.",
+      "icon": "verwatch.png",
+      "author": "chrisrowe",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/chrisrowe/verwatch",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/verwatch",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-projects",
+          "title": "Search Projects",
+          "subtitle": "VerWatch",
+          "description": "Search projects across your teams and see where each package stands",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "recent-updates",
+          "title": "Recent Updates",
+          "subtitle": "VerWatch",
+          "description": "The latest update runs, who started them and their pull requests",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiToken",
+          "title": "API Token",
+          "description": "Optional. A personal API token from Settings → API / MCP, used instead of signing in.",
+          "type": "password",
+          "required": false,
+          "placeholder": "Paste your personal API token"
         }
       ]
     },
