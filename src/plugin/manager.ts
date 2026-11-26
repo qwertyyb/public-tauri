@@ -78,7 +78,7 @@ export const registerPlugin = async (pluginPath: string) => {
         ? {
           content: `window.$commands = ${JSON.stringify((publicPlugin.commands || []).map((item: any) => {
             if (!item.preload) return null;
-            const url = getEntryUrl(name, path.join('/', item.preload));
+            const url = `${getEntryUrl(name, path.join('/', item.preload))}?t=${Date.now()}`;
             return {
               url,
               name: item.name,

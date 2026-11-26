@@ -46,13 +46,33 @@ const createDatabase = async () => {
   await db.execute('CREATE INDEX IF NOT EXISTS hashIndex on clipboardHistory(hash)');
 };
 
-const checkDuplicate = async (hash: string): Promise<boolean> => {
-  if (!db) return false;
-  const result = await db.select<{ id: number }[]>(
+const firstId = (rows: { id: number }[] | null | undefined) => {
+  const id = rows?.[0]?.id;
+  return typeof id === 'number' ? id : null;
+};
+
+const findRecordId = async (hash: string, text?: string) => {
+  if (!db) return null;
+  const byHash = await db.select<{ id: number }[]>(
     'SELECT id FROM clipboardHistory WHERE hash = $1 LIMIT 1',
     [hash],
   );
-  return result.length > 0;
+  const hashId = firstId(byHash);
+  if (hashId) return hashId;
+  if (!text) return null;
+  const byText = await db.select<{ id: number }[]>(
+    'SELECT id FROM clipboardHistory WHERE text = $1 ORDER BY lastUseAt DESC LIMIT 1',
+    [text],
+  );
+  return firstId(byText);
+};
+
+const touchRecordById = async (id: number) => {
+  if (!db) return;
+  await db.execute(
+    'UPDATE clipboardHistory SET lastUseAt = $1 WHERE id = $2',
+    [formatDate(new Date()), id],
+  );
 };
 
 const insertRecord = async (record: {
@@ -110,49 +130,61 @@ const ensureDbReady = async () => {
   return db;
 };
 
-clipboard.onClipboardUpdate(async () => {
-  const [text, imgbase64] = await Promise.all([
-    clipboard.readText().catch(() => null),
-    clipboard.readImageBase64().catch(() => null),
-  ]);
+let suppressClipboardUntil = 0;
 
-  await ensureDbReady();
+const rememberClipboard = async (text: string | null, imgbase64: string | null) => {
+  const textValue = typeof text === 'string' ? text : '';
 
-  // 处理图片
-  if (imgbase64) {
-    const hash = await getHash(imgbase64);
-
-    // 去重检查
-    if (await checkDuplicate(hash)) {
-      console.log('Duplicate image, skipping');
+  // 正文已在历史里时先置顶。网页复制经常同时带一份图片，不能因此放过原来的文本记录。
+  if (textValue) {
+    const id = await findRecordId(await getHash(textValue), textValue);
+    if (id) {
+      await touchRecordById(id);
+      await reloadActiveList();
       return;
     }
+  }
 
-    // 图片的 text 字段存储简短描述
-    const text = `[图片] ${formatDate(new Date())}`;
+  if (imgbase64) {
+    const hash = await getHash(imgbase64);
+    const id = await findRecordId(hash);
+    if (id) {
+      await touchRecordById(id);
+      await reloadActiveList();
+      return;
+    }
     await insertRecord({
       contentType: ContentType.image,
-      text,
+      text: `[图片] ${formatDate(new Date())}`,
       content: imgbase64,
       hash,
     });
-    console.log('Saved image to clipboard history');
-  } else if (text) {
-    const hash = await getHash(text);
+    await reloadActiveList();
+    return;
+  }
 
-    // 去重检查
-    if (await checkDuplicate(hash)) {
-      console.log('Duplicate text, skipping');
-      return;
-    }
+  if (!textValue) return;
+  const textHash = await getHash(textValue);
+  await insertRecord({
+    contentType: ContentType.text,
+    text: textValue,
+    content: null,
+    hash: textHash,
+  });
+  await reloadActiveList();
+};
 
-    await insertRecord({
-      contentType: ContentType.text,
-      text,
-      content: null,
-      hash,
-    });
-    console.log('Saved text to clipboard history:', truncateText(text));
+clipboard.onClipboardUpdate(async () => {
+  if (Date.now() < suppressClipboardUntil) return;
+  try {
+    const [text, imgbase64] = await Promise.all([
+      clipboard.readText().catch(() => null),
+      clipboard.readImageBase64().catch(() => null),
+    ]);
+    await ensureDbReady();
+    await rememberClipboard(text, imgbase64);
+  } catch (err) {
+    console.error('clipboard update failed', err);
   }
 });
 
@@ -177,6 +209,7 @@ const buildListItem = (item: any) => {
 
   return {
     key: `plugin:clipboard:${item.id}`,
+    id: item.id,
     title: item.text,
     subtitle,
     icon: isImage ? `data:image/png;base64,${item.content}` : './assets/text.png',
@@ -196,22 +229,43 @@ const search = async (keyword?: string) => {
   return list.map(buildListItem);
 };
 
+let activeQuery = '';
+let activeSetList: ((list: any[]) => void) | null = null;
+let listSeq = 0;
+
+const publishList = async (keyword: string | undefined, setList: (list: any[]) => void) => {
+  const seq = ++listSeq;
+  activeQuery = keyword || '';
+  activeSetList = setList;
+  const list = await search(activeQuery);
+  if (seq !== listSeq) return;
+  setList(list);
+};
+
+const reloadActiveList = async () => {
+  if (!activeSetList) return;
+  await publishList(activeQuery, activeSetList);
+};
+
+const showList = async (keyword: string | undefined, setList: (list: any[]) => void) => {
+  await publishList(keyword, setList);
+};
+
 const listView: IListViewCommand = {
   async onShow(_query, _action, setList) {
     try {
-      const list = await search();
-      console.log('list', list);
-      setList(list);
+      await showList(undefined, setList);
     } catch (err) {
       console.error('clipboard onShow failed', err);
       setList([]);
     }
   },
+  onHide() {
+    activeSetList = null;
+  },
   onSearch: async (value: string, setList: (list: any[]) => void) => {
     try {
-      const list = await search(value);
-      console.log('list', list);
-      setList(list);
+      await showList(value, setList);
     } catch (err) {
       console.error('clipboard onSearch failed', err);
       setList([]);
@@ -235,10 +289,21 @@ const listView: IListViewCommand = {
     return el;
   },
   async onAction(item) {
-    if (item.contentType === ContentType.text) {
-      clipboard.writeText(item.contentValue);
-    } else if (item.contentType === ContentType.image) {
-      clipboard.writeImageBinary(item.contentValue);
+    suppressClipboardUntil = Date.now() + 2000;
+    try {
+      await ensureDbReady();
+      if (item.id != null) {
+        await touchRecordById(Number(item.id));
+      }
+      await reloadActiveList();
+      if (item.contentType === ContentType.image) {
+        const base64 = String(item.icon || '').replace(/^data:image\/\w+;base64,/, '');
+        if (base64) await clipboard.writeImageBase64(base64);
+      } else {
+        await clipboard.writeText(item.contentValue ?? '');
+      }
+    } catch (err) {
+      console.error('clipboard paste failed', err);
     }
     await mainWindow.hide();
     clipboard.paste();

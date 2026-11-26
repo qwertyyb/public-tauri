@@ -2,7 +2,7 @@ import fuzzysort from 'fuzzysort';
 import { dispatchPluginAction, enterCommand, getPlugins } from './manager';
 import { resultsMap } from './store';
 import { getLocalPath, hanziToPinyin, htmlEscape } from './utils';
-import { AsyncFile, type IAction, type ICommandFileMatch, type ICommand as IPluginCommand, type ICommandActionOptions } from '@public-tauri/schema';
+import { AsyncFile, type IAction, type ICommandFileMatch, type ICommandTextMatch, type ICommand as IPluginCommand, type ICommandActionOptions } from '@public-tauri/schema';
 import type { IRunningPlugin } from '@/types/plugin';
 
 const compileString = (template: string, vars: any) => {
@@ -10,6 +10,9 @@ const compileString = (template: string, vars: any) => {
   const func = new Function('matches', `return \`${template.replaceAll('`', '``')}\``);
   return func(vars);
 };
+
+/** `$query` 按字面量替换，查询串中的 `$` 不参与替换模式。 */
+const substituteQuery = (template: string, query: string) => template.replaceAll('$query', () => query);
 
 const pinyinHighlight = (words: string, pinyin: string, indexes: readonly number[]) => {
   let startIndex = -1;
@@ -102,7 +105,7 @@ export const handleQuery = async (input: { keyword: string, files?: File[] }) =>
       title: compileString(regMatch.title || item.command.title, matches),
       subtitle: compileString(regMatch.subtitle || item.command.subtitle || '', matches),
     };
-    resultsMap.set(result, { owner: item.owner, command: item.command, match: regMatch, result: { matches }, query: matches[1] ?? '' });
+    resultsMap.set(result, { owner: item.owner, command: item.command, match: regMatch, result: { matches }, query: matches[0] ?? '' });
     commandsSet.add(`${item.owner.manifest.name}:${item.command.name}`);
     return [...acc, result];
   }, []));
@@ -118,8 +121,8 @@ export const handleQuery = async (input: { keyword: string, files?: File[] }) =>
     const query = keyword.substring(trigger.length + 1);
     const result = {
       ...item.command,
-      title: (query && triggerMatch.title) ? triggerMatch.title.replaceAll('$query', query) : item.command.title,
-      subtitle: (query && triggerMatch.subtitle) ? triggerMatch.subtitle.replaceAll('$query', query) : item.command.subtitle,
+      title: (query && triggerMatch.title) ? substituteQuery(triggerMatch.title, query) : item.command.title,
+      subtitle: (query && triggerMatch.subtitle) ? substituteQuery(triggerMatch.subtitle, query) : item.command.subtitle,
     };
     resultsMap.set(result, { owner: item.owner, query, command: item.command, match: triggerMatch, result: { trigger, query } });
     commandsSet.add(`${item.owner.manifest.name}:${item.command.name}`);
@@ -148,7 +151,13 @@ export const handleQuery = async (input: { keyword: string, files?: File[] }) =>
       // 拼音匹配副标题
       command.subtitle = pinyinHighlight(result.obj.subtitle!, result[3].target, result[3].indexes);
     }
-    resultsMap.set(command, { owner: result.obj.owner, query: '', command: result.obj.command });
+    const textMatch = result.obj.command.matches?.find((match): match is ICommandTextMatch => match.type === 'text');
+    resultsMap.set(command, {
+      owner: result.obj.owner,
+      query: keyword,
+      command: result.obj.command,
+      ...(textMatch ? { match: textMatch, result: { keyword } } : {}),
+    });
     commandsSet.add(`${result.obj.owner.manifest.name}:${result.obj.command.name}`);
     return command;
   }));
@@ -162,8 +171,8 @@ export const handleQuery = async (input: { keyword: string, files?: File[] }) =>
     if (!fullMatch) return acc;
     const result = {
       ...command,
-      title: (keyword && fullMatch.title) ? fullMatch.title.replaceAll('$query', keyword) : command.title,
-      subtitle: (keyword && fullMatch.subtitle) ? fullMatch.subtitle.replaceAll('$query', keyword) : command.subtitle,
+      title: (keyword && fullMatch.title) ? substituteQuery(fullMatch.title, keyword) : command.title,
+      subtitle: (keyword && fullMatch.subtitle) ? substituteQuery(fullMatch.subtitle, keyword) : command.subtitle,
     };
     resultsMap.set(result, { owner, command: result, match: fullMatch, result: { query: keyword }, query: keyword });
     commandsSet.add(`${item.owner.manifest.name}:${item.command.name}`);

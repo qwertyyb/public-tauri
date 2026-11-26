@@ -1,8 +1,6 @@
 
 ignoreWorkspaceRootCheck: true
 
-useNodeVersion: 24.11.1
-
 packages:
   - src-node
   - packages/*
@@ -19,11 +17,11 @@ hoist: true
 
 linkWorkspacePackages: true
 
-nodeVersion: 24.5.0
+nodeVersion: 24.11.1
 
-onlyBuiltDependencies:
-  - better-sqlite3
-  - electron
-  - esbuild
-  - sharp
-  - vue-demi
+allowBuilds:
+  better-sqlite3: true
+  electron: true
+  esbuild: true
+  sharp: true
+  vue-demi: true

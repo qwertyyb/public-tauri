@@ -41,7 +41,7 @@ onInput(keyword) {
 - **参数**：
   - `command: ICommand` - 被触发的命令对象
   - `action: IAction` - 当前执行的操作（manifest 中 `commands[].actions[]` 的一项；若无 `actions`，宿主会使用命令自身合成的默认操作）
-  - `keyword: string` - 与本次结果关联的查询串（含义与匹配方式一致，见 `onSelect`）
+  - `keyword: string` - 这条命令要处理的文本，按命中方式取值：`regexp` 为匹配到的整段文本（`matches[0]`），`trigger` 为触发词后的内容，`text` 与 `full` 为输入框全文，`file` 为空字符串。捕获组、触发词和文件在 `options.result` 中。
   - `options?: ICommandActionOptions` - 匹配来源与结果（搜索命中时通常有；快捷键等场景可能较简）
 - **可用模式**：所有模式
 
