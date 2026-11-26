@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-24T03:59:34.192Z",
+  "generatedAt": "2026-11-26T01:48:11.549Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "41c4399494d4546199e997f15b030c1c70545962"
+    "commit": "adb34f87ff97d6f2835222f1a48c00cfb2fa61fb"
   },
-  "count": 3641,
+  "count": 3662,
   "extensions": [
     {
       "name": "0x0",
@@ -8137,7 +8137,9 @@
       "description": "Search Amazon with autosuggestions and choose your Amazon marketplace, with recent searches saved.",
       "icon": "amazon-logo.png",
       "author": "xilopaint",
-      "contributors": [],
+      "contributors": [
+        "alexi.build"
+      ],
       "categories": [
         "Web"
       ],
@@ -8161,6 +8163,23 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "searchSelectText",
+          "title": "Search Selected Text",
+          "description": "Search Amazon for the selected text",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "useClipboardFallback",
+              "type": "checkbox",
+              "required": false,
+              "default": false,
+              "label": "Use Clipboard Fallback",
+              "description": "Use clipboard text for the search when no text is selected."
+            }
+          ]
         }
       ],
       "preferences": [
@@ -31898,6 +31917,103 @@
       ]
     },
     {
+      "name": "brix-signage",
+      "title": "Brix Signage",
+      "description": "Search your digital signage screens, files and playlists, change what a screen plays, send screen commands and post a message to screens.",
+      "icon": "extension-icon.png",
+      "author": "brixsignage",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/brixsignage/brix-signage",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/brix-signage",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-screens",
+          "title": "Search Screens",
+          "subtitle": "Brix",
+          "description": "Find a screen, see what it shows, change its content or send a command to it.",
+          "mode": "view",
+          "keywords": [
+            "display",
+            "player",
+            "tv",
+            "restart",
+            "reload"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "search-files",
+          "title": "Search Files",
+          "subtitle": "Brix",
+          "description": "Find images, videos and other files in your Brix library.",
+          "mode": "view",
+          "keywords": [
+            "media",
+            "image",
+            "video",
+            "library"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "search-playlists",
+          "title": "Search Playlists",
+          "subtitle": "Brix",
+          "description": "Find a playlist and play it on a screen.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "post-message",
+          "title": "Post Message to Screens",
+          "subtitle": "Brix",
+          "description": "Show a headline on your screens for a set time. Then the screens go back to their usual content.",
+          "mode": "view",
+          "keywords": [
+            "announce",
+            "alert",
+            "broadcast",
+            "cast"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "screen-status",
+          "title": "Screen Status",
+          "subtitle": "Brix",
+          "description": "Show in the menu bar how many screens are offline.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "type": "password",
+          "required": true,
+          "title": "API Key",
+          "description": "Make an API key in Brix in Settings › AI, API & MCP › API keys. The key starts with ak_.",
+          "placeholder": "ak_us_…"
+        }
+      ]
+    },
+    {
       "name": "browser-ai",
       "title": "Browser AI Companion",
       "description": "Summarize YouTube videos, ask questions about web pages and run custom prompts on selected text with Perplexity, OpenRouter or Groq models.",
@@ -39560,7 +39676,8 @@
         "smilemachine",
         "iamEvan",
         "alex925",
-        "nocdn"
+        "nocdn",
+        "edin"
       ],
       "categories": [
         "Productivity",
@@ -39682,12 +39799,30 @@
       ],
       "preferences": [
         {
+          "name": "connectionMode",
+          "title": "Preferred Connection",
+          "description": "Prefer API Key uses OpenAI API billing when a key is set. Prefer ChatGPT Account uses your signed-in account through Codex. If the preferred connection is unavailable, the other is used. Both can accept images with a capable model.",
+          "type": "dropdown",
+          "required": true,
+          "default": "apiKey",
+          "data": [
+            {
+              "title": "Prefer OpenAI API Key",
+              "value": "apiKey"
+            },
+            {
+              "title": "Prefer ChatGPT Account",
+              "value": "chatgpt"
+            }
+          ]
+        },
+        {
           "name": "apiKey",
-          "label": "Open AI API Key",
-          "description": "Enter your personal Open AI API Key",
+          "label": "OpenAI API Key",
+          "description": "Used for OpenAI API requests when selected as the preferred connection or when ChatGPT sign-in is unavailable. Remove the key here to stop using it.",
           "type": "password",
           "title": "API Key",
-          "required": true
+          "required": false
         },
         {
           "name": "useStream",
@@ -39774,7 +39909,7 @@
           "name": "visionModelName",
           "required": false,
           "title": "Vision Model Name",
-          "placeholder": "gpt-4o",
+          "placeholder": "gpt-6-luna",
           "type": "textfield"
         },
         {
@@ -50450,6 +50585,90 @@
       ]
     },
     {
+      "name": "coffee-notes",
+      "title": "Coffee Notes",
+      "description": "Requires the Coffee app. Search, read and open your Markdown notes in Coffee, start a note, or add to your inbox, without leaving the keyboard.",
+      "icon": "extension-icon.png",
+      "author": "pedro_pt_thomaz",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Applications"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/pedro_pt_thomaz/coffee-notes",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/coffee-notes",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-notes",
+          "title": "Search Notes",
+          "subtitle": "Coffee",
+          "description": "Find a note by its title or folder, read it, and open it in Coffee.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "new-note",
+          "title": "New Note",
+          "subtitle": "Coffee",
+          "description": "Write a note with a title and open it in Coffee.",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "add-to-inbox",
+          "title": "Add to Inbox",
+          "subtitle": "Coffee",
+          "description": "Add a line to Inbox.md without switching to Coffee.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "open-today",
+          "title": "Open Today's Note",
+          "subtitle": "Coffee",
+          "description": "Open today's daily note, made from your Daily note template if it isn't there yet.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        },
+        {
+          "name": "search-in-coffee",
+          "title": "Search in Coffee",
+          "subtitle": "Coffee",
+          "description": "Open Coffee's own search with these words.",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "extension-icon.png",
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "notesFolder",
+          "title": "Notes Folder",
+          "description": "The folder Coffee keeps your notes in. Left empty, the one Coffee is set to is used.",
+          "type": "directory",
+          "required": false
+        }
+      ]
+    },
+    {
       "name": "cognimemo",
       "title": "CogniMemo",
       "description": "Add text, URLs and documents to your CogniMemo AI knowledge base and search your saved memories.",
@@ -56442,6 +56661,464 @@
           "description": "Copy the content to the Clipboard and also paste to the frontmost application"
         }
       ]
+    },
+    {
+      "name": "cra",
+      "title": "Cra",
+      "description": "Search Cra browser tabs, spaces, history and downloads, switch to any open tab, and open new windows and incognito windows.",
+      "icon": "cra-icon.png",
+      "author": "bohdan_lytvynenko",
+      "contributors": [],
+      "categories": [
+        "Web",
+        "Applications",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/bohdan_lytvynenko/cra",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/cra",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-history",
+          "title": "Search History",
+          "subtitle": "Cra",
+          "description": "Search your browsing history",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "new-window",
+          "title": "Open New Window",
+          "subtitle": "Cra",
+          "description": "Create and open a new window",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "space",
+              "title": "Space",
+              "description": "The Space to open the new tab in",
+              "type": "textfield",
+              "required": false,
+              "placeholder": "e.g. Work"
+            }
+          ]
+        },
+        {
+          "name": "search-spaces",
+          "title": "Search Spaces",
+          "subtitle": "Cra",
+          "description": "Search and select your spaces",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-tabs",
+          "title": "Search Tabs",
+          "subtitle": "Cra",
+          "description": "Search and select your tabs",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-space-tabs",
+          "title": "Search Space Tabs",
+          "subtitle": "Cra",
+          "description": "Search and select tabs in your current space",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-downloads",
+          "title": "Search Downloads",
+          "subtitle": "Cra",
+          "description": "Search your downloads",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "new-incognito-window",
+          "title": "Open New Incognito Window",
+          "subtitle": "Cra",
+          "description": "Create and open a new incognito window",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "url",
+              "title": "Default URL",
+              "description": "The URL to open in the new tab if no argument is provided",
+              "type": "textfield",
+              "required": false,
+              "default": "https://google.com",
+              "placeholder": "https://example.com"
+            },
+            {
+              "name": "engine",
+              "title": "Search Engine",
+              "description": "Search engine used when opening incognito window with a non-url argument",
+              "type": "dropdown",
+              "required": false,
+              "default": "google",
+              "data": [
+                {
+                  "title": "Google",
+                  "value": "google"
+                },
+                {
+                  "title": "DuckDuckGo",
+                  "value": "duckduckgo"
+                },
+                {
+                  "title": "Bing",
+                  "value": "bing"
+                },
+                {
+                  "title": "Yahoo!",
+                  "value": "yahoo"
+                },
+                {
+                  "title": "Ecosia",
+                  "value": "ecosia"
+                },
+                {
+                  "title": "Kagi",
+                  "value": "kagi"
+                },
+                {
+                  "title": "UnDuck",
+                  "value": "unduck"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "new-tab",
+          "title": "Open New Tab",
+          "subtitle": "Cra",
+          "description": "Create and open a new tab in the current window",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "url",
+              "title": "URL",
+              "description": "The URL to open in the new tab",
+              "type": "textfield",
+              "required": false,
+              "placeholder": "https://example.com"
+            },
+            {
+              "name": "space",
+              "title": "Space",
+              "description": "The Space to open the new tab in",
+              "type": "textfield",
+              "required": false,
+              "placeholder": "e.g. Work"
+            }
+          ]
+        },
+        {
+          "name": "menu-bar",
+          "title": "Access Spaces and Favorites",
+          "description": "Access your spaces and favorites from the menu bar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search",
+          "title": "Search Cra",
+          "description": "Search tabs, history and search suggestions",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "engine",
+              "title": "Search Engine",
+              "description": "Search engine used for suggestions",
+              "type": "dropdown",
+              "required": false,
+              "default": "google",
+              "data": [
+                {
+                  "title": "Google",
+                  "value": "google"
+                },
+                {
+                  "title": "DuckDuckGo",
+                  "value": "duckduckgo"
+                },
+                {
+                  "title": "Bing",
+                  "value": "bing"
+                },
+                {
+                  "title": "Yahoo!",
+                  "value": "yahoo"
+                },
+                {
+                  "title": "Ecosia",
+                  "value": "ecosia"
+                },
+                {
+                  "title": "Kagi",
+                  "value": "kagi"
+                },
+                {
+                  "title": "UnDuck",
+                  "value": "unduck"
+                }
+              ]
+            },
+            {
+              "name": "sorting",
+              "title": "Sorting",
+              "description": "Sorting of sections in search results",
+              "type": "dropdown",
+              "required": false,
+              "default": "tabsHistorySuggestions",
+              "data": [
+                {
+                  "title": "Tabs → History → Suggestions",
+                  "value": "tabsHistorySuggestions"
+                },
+                {
+                  "title": "History → Tabs → Suggestions",
+                  "value": "historyTabsSuggestions"
+                }
+              ]
+            },
+            {
+              "name": "favoritesTabsOrder",
+              "title": "Favorites Tabs Order",
+              "label": "Favorites Tabs Order",
+              "description": "Order of favorites tabs in search results",
+              "type": "dropdown",
+              "required": false,
+              "default": "1",
+              "data": [
+                {
+                  "title": "1",
+                  "value": "1"
+                },
+                {
+                  "title": "2",
+                  "value": "2"
+                },
+                {
+                  "title": "3",
+                  "value": "3"
+                }
+              ]
+            },
+            {
+              "name": "pinnedTabsOrder",
+              "title": "Pinned Tabs Order",
+              "label": "Pinned Tabs Order",
+              "description": "Order of pinned tabs in search results",
+              "type": "dropdown",
+              "required": false,
+              "default": "2",
+              "data": [
+                {
+                  "title": "1",
+                  "value": "1"
+                },
+                {
+                  "title": "2",
+                  "value": "2"
+                },
+                {
+                  "title": "3",
+                  "value": "3"
+                }
+              ]
+            },
+            {
+              "name": "unpinnedTabsOrder",
+              "title": "Unpinned Tabs Order",
+              "label": "Unpinned Tabs Order",
+              "description": "Order of unpinned tabs in search results",
+              "type": "dropdown",
+              "required": false,
+              "default": "3",
+              "data": [
+                {
+                  "title": "1",
+                  "value": "1"
+                },
+                {
+                  "title": "2",
+                  "value": "2"
+                },
+                {
+                  "title": "3",
+                  "value": "3"
+                }
+              ]
+            },
+            {
+              "name": "showFavorites",
+              "title": "Sections",
+              "label": "Show Favorites",
+              "description": "Show favorites in search results",
+              "type": "checkbox",
+              "required": false,
+              "default": true
+            },
+            {
+              "name": "showPinnedTabs",
+              "label": "Show Pinned Tabs",
+              "description": "Show pinned tabs in search results",
+              "type": "checkbox",
+              "required": false,
+              "default": true
+            },
+            {
+              "name": "showUnpinnedTabs",
+              "label": "Show Unpinned Tabs",
+              "description": "Show unpinned tabs in search results",
+              "type": "checkbox",
+              "required": false,
+              "default": true
+            },
+            {
+              "name": "showHistory",
+              "label": "Show History",
+              "description": "Show history in search results",
+              "type": "checkbox",
+              "required": false,
+              "default": true
+            },
+            {
+              "name": "showSuggestions",
+              "label": "Show Suggestions",
+              "description": "Show suggestions in search results",
+              "type": "checkbox",
+              "required": false,
+              "default": true
+            }
+          ]
+        },
+        {
+          "name": "new-blank-window",
+          "title": "Open New Blank Window",
+          "subtitle": "Cra",
+          "description": "Create and open a new blank window",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "new-little-window",
+          "title": "Open New Little Window",
+          "subtitle": "Cra",
+          "description": "Create and open a new Little Window",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "url",
+              "title": "Default URL",
+              "description": "The URL to open in the Little Window if no argument is provided",
+              "type": "textfield",
+              "placeholder": "https://google.com",
+              "required": false,
+              "default": "https://google.com"
+            },
+            {
+              "name": "engine",
+              "title": "Search Engine",
+              "description": "Search engine used when opening a Little Window with a non-URL argument",
+              "type": "dropdown",
+              "required": false,
+              "default": "google",
+              "data": [
+                {
+                  "title": "Google",
+                  "value": "google"
+                },
+                {
+                  "title": "DuckDuckGo",
+                  "value": "duckduckgo"
+                },
+                {
+                  "title": "Bing",
+                  "value": "bing"
+                },
+                {
+                  "title": "Yahoo!",
+                  "value": "yahoo"
+                },
+                {
+                  "title": "Ecosia",
+                  "value": "ecosia"
+                },
+                {
+                  "title": "Kagi",
+                  "value": "kagi"
+                },
+                {
+                  "title": "UnDuck",
+                  "value": "unduck"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "new-easel",
+          "title": "Open New Easel",
+          "subtitle": "Cra",
+          "description": "Open a new Easel",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "reset-space-tabs",
+          "title": "Reset All Tabs in Current Space",
+          "subtitle": "Cra",
+          "description": "Reset all tabs in the currently active space",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "boost-gallery",
+          "title": "Open Cra Boost Gallery",
+          "subtitle": "Cra",
+          "description": "Open the Cra Boost Gallery",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "release-notes",
+          "title": "Open Cra Release Notes",
+          "subtitle": "Cra",
+          "description": "Open the Cra release notes",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "craft-cms-docs",
@@ -65584,6 +66261,86 @@
       "preferences": []
     },
     {
+      "name": "defi",
+      "title": "Defi",
+      "description": "Switch windows, jump between workspaces, and run commands in the Defi window manager; requires Defi.app.",
+      "icon": "icon.png",
+      "author": "qeude",
+      "contributors": [],
+      "categories": [
+        "System",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/qeude/defi",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/defi",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-windows",
+          "title": "Search Windows",
+          "subtitle": "Defi",
+          "description": "Find any window Defi manages, then focus it, bring it here, or move it",
+          "mode": "view",
+          "keywords": [
+            "switch",
+            "window",
+            "focus",
+            "alt tab",
+            "app"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "search-workspaces",
+          "title": "Search Workspaces",
+          "subtitle": "Defi",
+          "description": "Jump to a workspace on any display, or move the focused window there",
+          "mode": "view",
+          "keywords": [
+            "space",
+            "desktop",
+            "virtual",
+            "display",
+            "monitor"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "run-command",
+          "title": "Search Commands",
+          "subtitle": "Defi",
+          "description": "Run any Defi command; type 60 for a width or a workspace name to go there",
+          "mode": "view",
+          "keywords": [
+            "tiling",
+            "column",
+            "width",
+            "layout",
+            "overview",
+            "stack"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "defiApp",
+          "title": "Defi App",
+          "description": "Leave empty to use Defi.app from /Applications or ~/Applications.",
+          "type": "appPicker",
+          "required": false
+        }
+      ]
+    },
+    {
       "name": "defichain-dobby",
       "title": "Defichain Dobby",
       "description": "Show your DeFiChain vaults from Defichain Dobby, with vault details and collateral status.",
@@ -72870,6 +73627,97 @@
       ]
     },
     {
+      "name": "display-control",
+      "title": "Display Control",
+      "description": "Adjust monitor speaker volume, brightness, and contrast. External displays require m1ddc on Apple Silicon.",
+      "icon": "extension-icon.png",
+      "author": "ViGeng",
+      "contributors": [],
+      "categories": [
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/ViGeng/display-control",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/display-control",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "control-displays",
+          "title": "Control Displays",
+          "description": "Select a display and adjust its speaker volume, brightness, and contrast with keyboard shortcuts.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "m1ddcPath",
+          "type": "textfield",
+          "required": false,
+          "title": "m1ddc Path",
+          "description": "The extension detects Homebrew installations automatically. You can provide an absolute path for a custom installation.",
+          "placeholder": "/opt/homebrew/bin/m1ddc"
+        },
+        {
+          "name": "step",
+          "type": "dropdown",
+          "required": false,
+          "title": "Adjustment Step",
+          "description": "Slow presses use this percentage of the control's maximum. Rapid repeats accelerate up to 10% per adjustment.",
+          "default": "1",
+          "data": [
+            {
+              "title": "1%",
+              "value": "1"
+            },
+            {
+              "title": "5%",
+              "value": "5"
+            },
+            {
+              "title": "10%",
+              "value": "10"
+            }
+          ]
+        },
+        {
+          "name": "defaultVolume",
+          "type": "textfield",
+          "required": false,
+          "title": "Default Volume (%)",
+          "description": "Reset Volume uses this whole percentage from 0 to 100. The command does not apply it automatically.",
+          "default": "20",
+          "placeholder": "20"
+        },
+        {
+          "name": "defaultBrightness",
+          "type": "textfield",
+          "required": false,
+          "title": "Default Brightness (%)",
+          "description": "Reset Brightness uses this whole percentage from 0 to 100. The command does not apply it automatically.",
+          "default": "50",
+          "placeholder": "50"
+        },
+        {
+          "name": "defaultContrast",
+          "type": "textfield",
+          "required": false,
+          "title": "Default Contrast (%)",
+          "description": "Reset Contrast uses this whole percentage from 0 to 100. The command does not apply it automatically.",
+          "default": "50",
+          "placeholder": "50"
+        }
+      ]
+    },
+    {
       "name": "display-input-switcher",
       "title": "Display Input Switcher",
       "description": "Switch your external monitor's input source (HDMI, DisplayPort, USB-C) on Apple Silicon Macs using m1ddc, with preview and toggle.",
@@ -73948,6 +74796,78 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "dock-dodger",
+      "title": "Dock Dodger",
+      "description": "Move windows that hide behind the Dock back into view.",
+      "icon": "icon.png",
+      "author": "timbroddin",
+      "contributors": [],
+      "categories": [
+        "System",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/timbroddin/dock-dodger",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/dock-dodger",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "lift-windows",
+          "title": "Lift Windows Above Dock",
+          "subtitle": "Dock Dodger",
+          "description": "Move every window that sits behind the Dock up into the visible area.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "keep-above-dock",
+          "title": "Keep Windows Above Dock",
+          "subtitle": "Dock Dodger",
+          "description": "Check every 10 seconds in the background and lift windows that slipped behind the Dock. Run once to activate, use Deactivate Command to stop.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "margin",
+          "title": "Gap Above Dock",
+          "description": "Pixels to keep between a window and the Dock.",
+          "type": "textfield",
+          "required": false,
+          "default": "8",
+          "placeholder": "8"
+        },
+        {
+          "name": "shrink",
+          "title": "Fit",
+          "label": "Shrink windows that are too tall to fit",
+          "description": "If a window is taller than the space above the Dock, resize it instead of leaving it partly hidden.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "ignoredApps",
+          "title": "Ignored Apps",
+          "description": "Comma-separated app names to never move, e.g. Finder, Preview",
+          "type": "textfield",
+          "required": false,
+          "default": "",
+          "placeholder": "Finder, Preview"
+        }
+      ]
     },
     {
       "name": "dock-tinker",
@@ -80838,14 +81758,6 @@
           "default": true
         },
         {
-          "name": "enableTencentLanguageDetect",
-          "type": "checkbox",
-          "label": "Enable Tencent Language Detect",
-          "required": false,
-          "description": "Turn on/off Tencent Language Detect.",
-          "default": false
-        },
-        {
           "name": "enableVolcanoLanguageDetect",
           "type": "checkbox",
           "label": "Enable Volcano Language Detect",
@@ -80901,7 +81813,7 @@
           "type": "checkbox",
           "name": "enableYoudaoDictionary",
           "label": "Youdao Dictionary",
-          "required": false,
+          "required": true,
           "description": "Support 5 languages: (Chinese), English, French, Japanese, Korean.",
           "default": true
         },
@@ -80909,9 +81821,17 @@
           "type": "checkbox",
           "name": "enableLingueeDictionary",
           "label": "Linguee Dictionary",
-          "required": false,
+          "required": true,
           "description": "Support 19 languages: (Chinese, Japanese, Russian), English, French, Spanish, Portuguese, Italian, German, Swedish, Romanian, Slovak, Dutch, Hungarian, Greek, Danish, Finnish, Polish, Czech.",
           "default": true
+        },
+        {
+          "type": "checkbox",
+          "name": "enableWiktionaryDictionary",
+          "label": "Wiktionary Dictionary",
+          "required": true,
+          "description": "Free dictionary with English definitions and available translations for English words. Useful for language pairs such as English and Danish. No API key required.",
+          "default": false
         },
         {
           "title": "Translation Services",
@@ -80971,14 +81891,6 @@
           "default": false
         },
         {
-          "name": "enableTencentTranslate",
-          "type": "checkbox",
-          "label": "Tencent Translate",
-          "required": false,
-          "description": "Turn on/off Tencent Translate. App Key is required.",
-          "default": false
-        },
-        {
           "name": "enableVolcanoTranslate",
           "type": "checkbox",
           "label": "Volcano Translate",
@@ -81009,7 +81921,7 @@
           "required": false,
           "description": "Separate by comma. Only initializes Manage Providers until a saved provider order exists.",
           "default": "",
-          "placeholder": "youdao dictionary, linguee dictionary, openai, gemini, deepl, google, bing, apple, baidu, tencent, volcano, youdao, caiyun"
+          "placeholder": "youdao dictionary, linguee dictionary, openai, gemini, deepl, google, bing, apple, baidu, volcano, youdao, caiyun"
         },
         {
           "title": "Legacy OpenAI API Key",
@@ -81096,21 +82008,6 @@
           "type": "password",
           "required": false,
           "description": "Your Baidu App Secret"
-        },
-        {
-          "title": "Tencent SecretId",
-          "name": "tencentSecretId",
-          "type": "textfield",
-          "required": false,
-          "description": "Your Tencent SecretId (for Translate & Detect)",
-          "default": ""
-        },
-        {
-          "title": "Tencent SecretKey",
-          "name": "tencentSecretKey",
-          "type": "password",
-          "required": false,
-          "description": "Your Tencent SecretKey (for Translate & Detect)"
         },
         {
           "title": "Volcano Access Key ID",
@@ -82853,7 +83750,8 @@
       "icon": "icon.png",
       "author": "ViGeng",
       "contributors": [
-        "LitoMore"
+        "LitoMore",
+        "dofy"
       ],
       "categories": [
         "Productivity",
@@ -82878,6 +83776,15 @@
           "subtitle": "Add emojis to selected text",
           "description": "Use AI to emojify the text",
           "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "append-emoji",
+          "title": "Append Emoji",
+          "subtitle": "Emojify",
+          "description": "Append up to three relevant emoji to the end of the selected text.",
+          "mode": "no-view",
           "keywords": [],
           "preferences": []
         },
@@ -86447,6 +87354,143 @@
       "preferences": []
     },
     {
+      "name": "expo-orbit",
+      "title": "Expo Orbit",
+      "description": "Launch simulators and emulators, pair Android devices, and open builds, updates, and Snacks with Expo Orbit, which must be installed.",
+      "icon": "extension-icon.png",
+      "author": "michalzuch",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/michalzuch/expo-orbit",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/expo-orbit",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "manage-devices",
+          "title": "Manage Devices",
+          "subtitle": "Expo Orbit",
+          "description": "See your simulators, emulators, and connected devices, then launch, stop, or open builds on them.",
+          "mode": "view",
+          "keywords": [
+            "simulator",
+            "emulator",
+            "ios",
+            "android",
+            "iphone",
+            "boot",
+            "launch",
+            "stop",
+            "device"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "launch-build",
+          "title": "Launch Build or Update",
+          "subtitle": "Expo Orbit",
+          "description": "Install and launch an EAS build, an app file, an EAS Update, or a Snack on a simulator, emulator, or device.",
+          "mode": "view",
+          "keywords": [
+            "install",
+            "open",
+            "apk",
+            "ipa",
+            "eas",
+            "update",
+            "snack",
+            "expo go",
+            "artifact"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "pair-android-device",
+          "title": "Pair Android Device",
+          "subtitle": "Expo Orbit",
+          "description": "Connect a physical Android device over Wi-Fi with a pairing code or a QR code.",
+          "mode": "view",
+          "keywords": [
+            "wifi",
+            "wi-fi",
+            "wireless",
+            "adb",
+            "qr",
+            "debugging"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "emulatorWithoutAudio",
+          "title": "Android Emulators",
+          "label": "Launch without audio",
+          "description": "Start Android emulators with their audio turned off.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "androidSdkPath",
+          "title": "Android SDK Location",
+          "description": "The folder of your Android SDK. Leave empty to use $ANDROID_HOME or Expo Orbit's setting.",
+          "type": "directory",
+          "required": false
+        },
+        {
+          "name": "trustedSources",
+          "title": "Trusted Sources",
+          "description": "Extra sources for builds and updates, separated by commas. Expo Orbit trusts expo.dev by default. These are added to Expo Orbit's trusted sources.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "https://example.com/*"
+        },
+        {
+          "name": "showIos",
+          "title": "Platforms",
+          "label": "iOS",
+          "description": "Show iOS simulators and connected iPhones and iPads.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "showAndroid",
+          "label": "Android",
+          "description": "Show Android emulators and connected Android devices.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "showTvos",
+          "label": "tvOS",
+          "description": "Show tvOS simulators.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "showWatchos",
+          "label": "watchOS",
+          "description": "Show watchOS simulators.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        }
+      ]
+    },
+    {
       "name": "extend-display",
       "title": "Extend Display",
       "description": "Connect your Mac to Sidecar and AirPlay displays such as an iPad while keeping your current audio output.",
@@ -86680,6 +87724,39 @@
               "default": "HH:mm"
             }
           ]
+        }
+      ],
+      "preferences": []
+    },
+    {
+      "name": "faaaaahhh",
+      "title": "Faaaaahhh",
+      "description": "Play the Faaaaahhh meme sound with a global Raycast hotkey.",
+      "icon": "icon.png",
+      "author": "rafaosquito98",
+      "contributors": [],
+      "categories": [
+        "Fun"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/rafaosquito98/faaaaahhh",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/faaaaahhh",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "play",
+          "title": "Play Faaaaahhh",
+          "description": "Play the bundled meme sound immediately, without opening a view.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": []
@@ -93096,7 +94173,7 @@
     {
       "name": "firecrawl",
       "title": "Firecrawl",
-      "description": "Scrape web pages to Markdown, search the web, extract data and run deep research with Firecrawl AI tools, and generate LLMs.txt for any site.",
+      "description": "Scrape web pages to Markdown, search the web and run deep research with Firecrawl AI tools, and generate LLMs.txt for any site.",
       "icon": "firecrawl-extension-icon.png",
       "author": "nickscamara",
       "contributors": [
@@ -95292,6 +96369,76 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "fluidvoice",
+      "title": "FluidVoice",
+      "description": "Transcribe audio and video files or web media with the FluidVoice Local API",
+      "icon": "fluidvoice-icon.png",
+      "author": "volkmar_eich",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Media"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/volkmar_eich/fluidvoice",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/fluidvoice",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "transcribe-audio",
+          "title": "Transcribe Audio",
+          "subtitle": "FluidVoice",
+          "description": "Transcribe a URL or local audio/video file",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "history",
+          "title": "Browse Dictation History",
+          "subtitle": "FluidVoice",
+          "description": "Browse dictation history from FluidVoice",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "connection",
+          "title": "Check Connection",
+          "subtitle": "FluidVoice",
+          "description": "Check the FluidVoice Local API version and connection",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "fluidVoicePort",
+          "type": "textfield",
+          "required": false,
+          "title": "Local API Port",
+          "description": "Port configured in FluidVoice Local API settings",
+          "default": "47733"
+        },
+        {
+          "name": "retainedDownloads",
+          "type": "textfield",
+          "required": false,
+          "title": "Downloaded Files to Keep",
+          "description": "Number of completed media downloads to keep; 0 deletes them after transcription. Original local files are never deleted.",
+          "default": "5"
+        }
+      ]
     },
     {
       "name": "flush-dns",
@@ -109249,6 +110396,64 @@
       ]
     },
     {
+      "name": "glimmer",
+      "title": "Glimmer",
+      "description": "Stream apps from your paired PCs, wake a PC, and check your Glimmer stream from Raycast.",
+      "icon": "extension-icon.png",
+      "author": "ugfuglio",
+      "contributors": [],
+      "categories": [
+        "Applications",
+        "Media"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/ugfuglio/glimmer",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/glimmer",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "stream-app",
+          "title": "Stream App",
+          "description": "Browse apps on paired PCs and start or resume a Glimmer stream",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "wake-pc",
+          "title": "Wake PC",
+          "description": "Wake a paired PC and wait for it to answer",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "stop-streaming",
+          "title": "Stop Streaming",
+          "description": "Stop this Mac’s Glimmer stream using its disconnect setting, after confirmation",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "glimmer-status",
+          "title": "Glimmer Status",
+          "description": "Show this Mac’s stream and video details in the menu bar",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "glimpse",
       "title": "Glimpse",
       "description": "Search and copy Glimpse dictations, transcribe audio and video files, manage dictionary words and replacements, and control recordings.",
@@ -110414,7 +111619,7 @@
     {
       "name": "google-advanced-search",
       "title": "Google Advanced Search",
-      "description": "Run Google advanced searches with exact phrases, excluded words, site or domain, language, file type and usage rights filters.",
+      "description": "Search Google with exact phrases, excluded words, sites, languages, file types, and usage rights.",
       "icon": "command-icon.png",
       "author": "developerlover",
       "contributors": [],
@@ -110423,7 +111628,9 @@
         "Web"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/developerlover/google-advanced-search",
       "source": {
         "type": "github-monorepo",
@@ -111247,7 +112454,8 @@
         "radek_cabaj",
         "0xdhrv",
         "masamallow",
-        "danlane"
+        "danlane",
+        "alexi.build"
       ],
       "categories": [
         "Web"
@@ -111345,6 +112553,15 @@
               "value": "lastUsed"
             }
           ]
+        },
+        {
+          "name": "maskProfileEmails",
+          "title": "Privacy",
+          "label": "Mask profile emails",
+          "type": "checkbox",
+          "required": false,
+          "default": false,
+          "description": "Show masked email addresses in Switch Profiles and Move Current Tab. You can still search by email."
         },
         {
           "name": "popToRootAfterOpen",
@@ -112376,7 +113593,26 @@
           "description": "Google search with autosuggestions",
           "mode": "view",
           "keywords": [],
-          "preferences": []
+          "preferences": [
+            {
+              "name": "returnAction",
+              "type": "dropdown",
+              "required": false,
+              "default": "default",
+              "title": "Return Key Action",
+              "description": "Choose what pressing Return does for search results.",
+              "data": [
+                {
+                  "title": "Open in Browser",
+                  "value": "default"
+                },
+                {
+                  "title": "Search in AI Mode",
+                  "value": "ai"
+                }
+              ]
+            }
+          ]
         },
         {
           "name": "aiSearch",
@@ -116788,16 +118024,20 @@
     {
       "name": "govee",
       "title": "Govee",
-      "description": "Control Govee lights over your local network: toggle, set brightness and color, and create scenarios for several devices.",
+      "description": "Control Govee lights over LAN or the cloud, set colors and brightness, apply snapshots and music modes, and run scenarios.",
       "icon": "govee.png",
       "author": "j3lte",
-      "contributors": [],
+      "contributors": [
+        "dimik"
+      ],
       "categories": [
         "Fun",
         "Other"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/j3lte/govee",
       "source": {
         "type": "github-monorepo",
@@ -116814,6 +118054,15 @@
           "mode": "view",
           "keywords": [],
           "preferences": []
+        },
+        {
+          "name": "govee-menu-bar",
+          "title": "Govee Menu Bar",
+          "subtitle": "Govee",
+          "description": "Your lights, scenarios and snapshots in the macOS menu bar. Off until you enable it.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
         }
       ],
       "preferences": [
@@ -116822,6 +118071,134 @@
           "name": "deviceDiscoveryTimeout",
           "type": "textfield",
           "description": "Timeout in milliseconds for device discovery (default: 5000)",
+          "required": false
+        },
+        {
+          "title": "Devices Section",
+          "name": "devicesPosition",
+          "type": "dropdown",
+          "required": false,
+          "default": "1",
+          "data": [
+            {
+              "title": "1st",
+              "value": "1"
+            },
+            {
+              "title": "2nd",
+              "value": "2"
+            },
+            {
+              "title": "3rd",
+              "value": "3"
+            },
+            {
+              "title": "4th",
+              "value": "4"
+            },
+            {
+              "title": "Hidden",
+              "value": "hidden"
+            }
+          ],
+          "description": "Where the Devices section appears in the list, or Hidden to remove it. If two sections share a position, they keep the default order (Devices, Scenarios, Snapshots, Music Modes)."
+        },
+        {
+          "title": "Scenarios Section",
+          "name": "scenariosPosition",
+          "type": "dropdown",
+          "required": false,
+          "default": "2",
+          "data": [
+            {
+              "title": "1st",
+              "value": "1"
+            },
+            {
+              "title": "2nd",
+              "value": "2"
+            },
+            {
+              "title": "3rd",
+              "value": "3"
+            },
+            {
+              "title": "4th",
+              "value": "4"
+            },
+            {
+              "title": "Hidden",
+              "value": "hidden"
+            }
+          ],
+          "description": "Where the Scenarios section appears in the list, or Hidden to remove it."
+        },
+        {
+          "title": "Snapshots Section",
+          "name": "snapshotsPosition",
+          "type": "dropdown",
+          "required": false,
+          "default": "3",
+          "data": [
+            {
+              "title": "1st",
+              "value": "1"
+            },
+            {
+              "title": "2nd",
+              "value": "2"
+            },
+            {
+              "title": "3rd",
+              "value": "3"
+            },
+            {
+              "title": "4th",
+              "value": "4"
+            },
+            {
+              "title": "Hidden",
+              "value": "hidden"
+            }
+          ],
+          "description": "Where the Snapshots section appears in the list, or Hidden to remove it."
+        },
+        {
+          "title": "Music Modes Section",
+          "name": "musicPosition",
+          "type": "dropdown",
+          "required": false,
+          "default": "4",
+          "data": [
+            {
+              "title": "1st",
+              "value": "1"
+            },
+            {
+              "title": "2nd",
+              "value": "2"
+            },
+            {
+              "title": "3rd",
+              "value": "3"
+            },
+            {
+              "title": "4th",
+              "value": "4"
+            },
+            {
+              "title": "Hidden",
+              "value": "hidden"
+            }
+          ],
+          "description": "Where the Music Modes section appears in the list, or Hidden to remove it."
+        },
+        {
+          "title": "Govee API Key (optional)",
+          "name": "goveeApiKey",
+          "type": "password",
+          "placeholder": "Your Govee API key",
+          "description": "Lets you control lights without LAN Control (e.g. bulbs) and use snapshots, music modes and white temperature through the Govee cloud. Lights on LAN still use LAN. How to get a key (with screenshots): https://developer.govee.com/reference/apply-you-govee-api-key",
           "required": false
         }
       ]
@@ -120677,7 +122054,9 @@
         "Web"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/hazelhedmine/hardcover",
       "source": {
         "type": "github-monorepo",
@@ -120753,7 +122132,7 @@
       "preferences": [
         {
           "name": "api_key",
-          "description": "Hardcover API key. You can get it from https://hardcover.app/account/api",
+          "description": "Hardcover API key.",
           "type": "password",
           "required": true,
           "title": "API Key"
@@ -123322,7 +124701,8 @@
       "icon": "icon.png",
       "author": "dailin4321",
       "contributors": [
-        "RaviTharuma"
+        "RaviTharuma",
+        "GollyJer"
       ],
       "categories": [
         "Productivity",
@@ -123330,7 +124710,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/dailin4321/hermes-agent",
       "source": {
@@ -123846,6 +125227,195 @@
           "placeholder": "your-api-key"
         }
       ]
+    },
+    {
+      "name": "hex",
+      "title": "Hex",
+      "description": "Control Hex dictation and browse saved dictations, captures, and meetings. Requires Hex 3.4.0 or later",
+      "icon": "icon.png",
+      "author": "tim_gailey",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Applications"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/tim_gailey/hex",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/hex",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "toggle-dictation",
+          "title": "Toggle Dictation",
+          "subtitle": "Hex",
+          "description": "Start a dictation, or stop it and paste the transcript. Opens Hex if it isn't running",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "start-dictation",
+          "title": "Start Dictation",
+          "subtitle": "Hex",
+          "description": "Start a dictation that runs until you stop it. Opens Hex if it isn't running",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "stop-dictation",
+          "title": "Stop Dictation",
+          "subtitle": "Hex",
+          "description": "Stop the Hex dictation in progress and paste the transcript",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "cancel-dictation",
+          "title": "Cancel Dictation",
+          "subtitle": "Hex",
+          "description": "Discard the Hex dictation in progress without transcribing or pasting it",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "paste-last-dictation",
+          "title": "Paste Last Dictation",
+          "subtitle": "Hex",
+          "description": "Paste your most recent Hex dictation into the active app",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "copy-last-dictation",
+          "title": "Copy Last Dictation",
+          "subtitle": "Hex",
+          "description": "Copy your most recent Hex dictation to the clipboard",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-history",
+          "title": "Search Dictation History",
+          "subtitle": "Hex",
+          "description": "Search the dictations Hex has kept, then paste or copy one",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "primaryAction",
+              "title": "Primary Action",
+              "description": "What Enter does on a dictation",
+              "type": "dropdown",
+              "required": false,
+              "default": "paste",
+              "data": [
+                {
+                  "title": "Paste to Active App",
+                  "value": "paste"
+                },
+                {
+                  "title": "Copy to Clipboard",
+                  "value": "copy"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "browse-captures",
+          "title": "Browse Captures",
+          "subtitle": "Hex",
+          "description": "Browse the screenshots, screen recordings, and annotations Hex has saved, then paste, copy, or open one",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "take-screenshot",
+          "title": "Take Screenshot",
+          "subtitle": "Hex",
+          "description": "Open Hex's screenshot picker to copy and save a screenshot. Requires Labs › Screenshots",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle-annotation",
+          "title": "Toggle Annotation",
+          "subtitle": "Hex",
+          "description": "Start a Hex annotation that records your screen with drawing and narration, or stop the one in progress",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle-annotation-sending",
+          "title": "Toggle Sending Annotations to OpenCode",
+          "subtitle": "Hex",
+          "description": "Choose whether Hex sends annotations to OpenCode or only saves and copies them. Off also stops Hex's OpenCode warning",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-meetings",
+          "title": "Search Meetings",
+          "subtitle": "Hex",
+          "description": "Browse the meetings Hex has recorded and read or copy their transcripts",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle-meeting-recording",
+          "title": "Toggle Meeting Recording",
+          "subtitle": "Hex",
+          "description": "Start recording a meeting in Hex, or stop and transcribe the one in progress",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "manage-vocabulary",
+          "title": "Manage Vocabulary",
+          "subtitle": "Hex",
+          "description": "View, add, edit, and remove vocabulary terms",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "add-vocabulary-term",
+          "title": "Add Vocabulary Term",
+          "subtitle": "Hex",
+          "description": "Add a word or name, with the misspellings Hex should correct",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "switch-model",
+          "title": "Switch Model",
+          "subtitle": "Hex",
+          "description": "Select or download a transcription model",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
     },
     {
       "name": "hexlify",
@@ -131846,6 +133416,54 @@
       "preferences": []
     },
     {
+      "name": "inbox-for-human",
+      "title": "Inbox for Human",
+      "description": "Review the docs, apps, and other artifacts that your Claude Code and Codex agents queue for you with the inbox-for-human skill.",
+      "icon": "extension-icon.png",
+      "author": "jasoneric",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/jasoneric/inbox-for-human",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/inbox-for-human",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "inbox",
+          "title": "Review Inbox for Human",
+          "description": "See the files your agent asked you to review, newest first, and open or archive each one.",
+          "mode": "view",
+          "keywords": [
+            "claude",
+            "codex",
+            "agent",
+            "inbox for human"
+          ],
+          "preferences": [
+            {
+              "name": "secondaryApp",
+              "title": "Open With (⌘O)",
+              "description": "The app ⌘O opens files in. Leave it empty to pick an app each time. Enter always opens the file in its usual app.",
+              "type": "appPicker",
+              "required": false,
+              "default": "md.obsidian"
+            }
+          ]
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "incident-io",
       "title": "Incident.io",
       "description": "View incident.io incidents, see who is on call, search incidents in natural language with AI, and show live incidents in the menu bar.",
@@ -135415,7 +137033,7 @@
     {
       "name": "ip-geolocation",
       "title": "IP Geolocation",
-      "description": "Show your local and public IPv4 and IPv6 address, look up geolocation for any IP or domain, and compare five IP geolocation providers.",
+      "description": "Show your local and public IPv4 and IPv6 address, look up geolocation for any IP or domain, and compare six IP geolocation providers.",
       "icon": "extension-icon.png",
       "author": "koinzhang",
       "contributors": [
@@ -135452,7 +137070,7 @@
           "name": "compare-ip-providers",
           "title": "Compare IP Providers",
           "subtitle": "IP Geolocation",
-          "description": "Look up an IP address at five geolocation providers and see where they agree or differ.",
+          "description": "Look up an IP address at six geolocation providers and see where they agree or differ.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -145299,6 +146917,119 @@
       "preferences": []
     },
     {
+      "name": "kensaku",
+      "title": "Kensaku",
+      "description": "Search local files, document text, OCR, and code symbols; requires Kensaku and kensaku-cli installed locally.",
+      "icon": "extension-icon.png",
+      "author": "ooodnakov",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows",
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/ooodnakov/kensaku",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/kensaku",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search",
+          "title": "Search Files",
+          "subtitle": "Kensaku",
+          "description": "Search your local Kensaku index by filename, content, OCR, and meaning",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-symbols",
+          "title": "Search Code Symbols",
+          "subtitle": "Kensaku",
+          "description": "Find code symbol definitions across indexed Rust, Python, JavaScript, and TypeScript files",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "index-status",
+          "title": "Index Status",
+          "subtitle": "Kensaku",
+          "description": "Inspect Kensaku index statistics and manage the local search server",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "cliPath",
+          "type": "textfield",
+          "required": false,
+          "default": "",
+          "title": "Kensaku CLI Path",
+          "placeholder": "Auto-detect kensaku-cli",
+          "description": "Optional full path to the kensaku-cli executable. Leave empty to auto-detect."
+        },
+        {
+          "name": "serverPort",
+          "type": "textfield",
+          "required": false,
+          "default": "8765",
+          "title": "Local Server Port",
+          "placeholder": "8765",
+          "description": "Loopback port used by kensaku-cli serve for fast warm searches."
+        },
+        {
+          "name": "autoStartServer",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "title": "Auto-Start Search Server",
+          "label": "Automatically start kensaku-cli serve in the background",
+          "description": "Starts a persistent local kensaku-cli serve process on demand."
+        },
+        {
+          "name": "defaultLimit",
+          "type": "dropdown",
+          "required": false,
+          "default": "25",
+          "title": "Results per Page",
+          "description": "Number of search results fetched per page.",
+          "data": [
+            {
+              "title": "10",
+              "value": "10"
+            },
+            {
+              "title": "25",
+              "value": "25"
+            },
+            {
+              "title": "50",
+              "value": "50"
+            }
+          ]
+        },
+        {
+          "name": "showDetailByDefault",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "title": "Preview Pane",
+          "label": "Show snippet and metadata detail pane by default",
+          "description": "Display the right-hand snippet and metadata preview pane in Search Files."
+        }
+      ]
+    },
+    {
       "name": "kesha-voice-kit",
       "title": "Kesha Voice Kit",
       "description": "Dictate offline on your Mac with Kesha Voice Kit: record from your microphone, transcribe speech to text locally, and copy it to the clipboard.",
@@ -148561,14 +150292,18 @@
       "description": "Search Minecraft player profiles by username and browse Minecraft skins and capes with data from laby.net.",
       "icon": "command-icon.png",
       "author": "niklaswa",
-      "contributors": [],
+      "contributors": [
+        "muhammadrizo"
+      ],
       "categories": [
+        "Fun",
         "Data",
         "Developer Tools"
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/niklaswa/laby-net",
       "source": {
@@ -148581,17 +150316,23 @@
         {
           "name": "profile-search",
           "title": "Search Profiles",
-          "subtitle": "laby.net",
           "description": "Searches Minecraft user profile via username.",
           "mode": "view",
           "keywords": [],
           "preferences": []
         },
         {
-          "name": "texture-search",
-          "title": "Search Textures",
-          "subtitle": "laby.net",
-          "description": "Searches Minecraft skins & capes",
+          "name": "skin-search",
+          "title": "Search Skins",
+          "description": "Searches Minecraft skins",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "cape-search",
+          "title": "Search Capes",
+          "description": "Searches Minecraft capes",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -156363,6 +158104,76 @@
       ]
     },
     {
+      "name": "llyfr",
+      "title": "Llyfr",
+      "description": "Search and manage a local BibTeX library of papers, and import entries and PDFs from NASA ADS (requires a free ADS API token).",
+      "icon": "extension-icon.png",
+      "author": "haykh",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Data"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows",
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/haykh/llyfr",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/llyfr",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "llyfr",
+          "title": "Search Library",
+          "subtitle": "Llyfr",
+          "description": "Display list of papers in the local library",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "llyfr-ads",
+          "title": "Search ADS",
+          "subtitle": "Llyfr",
+          "description": "Search papers on ADS",
+          "mode": "view",
+          "keywords": [],
+          "icon": "extension-icon-ads.png",
+          "preferences": [
+            {
+              "name": "api_token",
+              "title": "ADS API Token",
+              "description": "Your ADS API Token (get it from ADS -> Account -> Settings -> API Token)",
+              "type": "password",
+              "placeholder": "Paste your ADS API token",
+              "required": true
+            }
+          ]
+        }
+      ],
+      "preferences": [
+        {
+          "name": "path",
+          "title": "Library Folder",
+          "description": "Folder where the PDFs of your library are stored",
+          "type": "directory",
+          "required": true
+        },
+        {
+          "name": "bibfile",
+          "title": "BibTeX File",
+          "description": "The .bib file containing your bibliography",
+          "type": "file",
+          "required": true
+        }
+      ]
+    },
+    {
       "name": "lm-studio",
       "title": "LM Studio",
       "description": "Chat with local AI models in LM Studio, transform selected text, load and download models, and search your notes, privately on your Mac.",
@@ -158990,6 +160801,61 @@
       "preferences": []
     },
     {
+      "name": "luckynote",
+      "title": "Luckynote",
+      "description": "Capture notes and tasks in your Luckynote account, with searchable folder selection.",
+      "icon": "icon-original.png",
+      "author": "luckyursus",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/luckyursus/luckynote",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/luckynote",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "save-message",
+          "title": "Save Message",
+          "subtitle": "Luckynote",
+          "description": "Save a message to your Luckynote account",
+          "mode": "view",
+          "keywords": [],
+          "icon": "icon-original.png",
+          "preferences": []
+        },
+        {
+          "name": "quick-note",
+          "title": "Quick Save Note",
+          "subtitle": "Luckynote",
+          "description": "Quickly save a note with just text",
+          "mode": "no-view",
+          "keywords": [],
+          "icon": "icon-original.png",
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "serverUrl",
+          "type": "textfield",
+          "required": false,
+          "title": "Server URL",
+          "description": "Your Luckynote server URL",
+          "placeholder": "https://luckynote.io",
+          "default": "https://luckynote.io"
+        }
+      ]
+    },
+    {
       "name": "ludex",
       "title": "Ludex",
       "description": "Launch installed PC games and open their save, config or install folders, using the Ludusavi game save database. For Windows.",
@@ -159975,6 +161841,15 @@
           "title": "Cool Until Below",
           "subtitle": "Mac Fan Control",
           "description": "Hold a speed until the hottest sensor drops below a temperature, then release.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "thermal-trigger",
+          "title": "Thermal Trigger",
+          "subtitle": "Mac Fan Control",
+          "description": "Spin the fans up at a trigger temperature and release them below a second one.",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -168075,6 +169950,57 @@
       ]
     },
     {
+      "name": "metrix-bar",
+      "title": "Metrix.Bar",
+      "description": "Search your local Metrix.Bar dashboards and open their panels or settings.",
+      "icon": "icon.png",
+      "author": "miantiao",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/miantiao/metrix-bar",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/metrix-bar",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-dashboards",
+          "title": "Search Dashboards",
+          "description": "Open a dashboard panel, configure a disabled dashboard, or create a Quicklink.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiUrl",
+          "type": "textfield",
+          "title": "Local API URL",
+          "placeholder": "http://127.0.0.1:6387",
+          "description": "Copy the local API base URL from Metrix.Bar → Settings → Agent (for example, http://127.0.0.1:6387).",
+          "required": true
+        },
+        {
+          "name": "apiToken",
+          "type": "password",
+          "title": "API Token",
+          "placeholder": "Paste API Token",
+          "description": "Copy the Bearer token from Metrix.Bar → Settings → Agent.",
+          "required": true
+        }
+      ]
+    },
+    {
       "name": "metronome",
       "title": "Metronome",
       "description": "Start a metronome at any BPM that keeps ticking in the background.",
@@ -174133,7 +176059,9 @@
         "Productivity"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/freak4pc/monday-com",
       "source": {
         "type": "github-monorepo",
@@ -181156,10 +183084,12 @@
     {
       "name": "netbird",
       "title": "NetBird",
-      "description": "Connect and disconnect your NetBird mesh VPN network, view peers, status and network routes, update NetBird and open the admin panel.",
+      "description": "Connect and disconnect your NetBird mesh VPN network, view peers, status, network routes and exit nodes, update NetBird and open the admin panel.",
       "icon": "netbird-icon.png",
       "author": "mi7chal",
-      "contributors": [],
+      "contributors": [
+        "dnwjn"
+      ],
       "categories": [
         "Developer Tools",
         "Applications",
@@ -181219,6 +183149,15 @@
           "title": "Show Networks",
           "subtitle": "NetBird",
           "description": "View and manage network routes selection.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "exit-nodes",
+          "title": "Show Exit Nodes",
+          "subtitle": "NetBird",
+          "description": "View and manage exit node selection (only one can be active at a time).",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -195362,7 +197301,8 @@
       "contributors": [
         "asaph_kotzin",
         "RaviTharuma",
-        "Olli0103"
+        "Olli0103",
+        "dofy"
       ],
       "categories": [
         "Productivity",
@@ -195380,6 +197320,14 @@
         "ref": "main"
       },
       "commands": [
+        {
+          "name": "local-gateway",
+          "title": "Manage Local OpenClaw Gateway",
+          "description": "Browse local Gateway logs, request a restart, and run session maintenance.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
         {
           "name": "control-center",
           "title": "OpenClaw Control Center",
@@ -199326,6 +201274,91 @@
       "preferences": []
     },
     {
+      "name": "outseta",
+      "title": "Outseta",
+      "description": "Look up people and accounts, and triage support cases in your Outseta account.",
+      "icon": "extension-icon.png",
+      "author": "antonio_manzanares",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/antonio_manzanares/outseta",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/outseta",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-people",
+          "title": "Search People",
+          "subtitle": "Outseta",
+          "description": "Search people in your Outseta CRM.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-accounts",
+          "title": "Search Accounts",
+          "subtitle": "Outseta",
+          "description": "Search accounts and see their plan and subscription status.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "support-cases",
+          "title": "Support Cases",
+          "subtitle": "Outseta",
+          "description": "Browse and reply to support cases.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "subdomain",
+          "title": "Subdomain",
+          "description": "The part before .outseta.com in your admin URL. Use \"demo\" to try the extension with sample data.",
+          "type": "textfield",
+          "required": true,
+          "placeholder": "your-company"
+        },
+        {
+          "name": "apiKey",
+          "title": "API Key",
+          "description": "Settings → Integrations → API Keys in Outseta.",
+          "type": "textfield",
+          "required": true
+        },
+        {
+          "name": "secretKey",
+          "title": "Secret Key",
+          "description": "Shown once when the API key is created.",
+          "type": "password",
+          "required": true
+        },
+        {
+          "name": "agentName",
+          "title": "Agent Name",
+          "description": "Your name as customers see it on support replies. Leave empty to sign replies with your company name.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "Jane Doe"
+        }
+      ]
+    },
+    {
       "name": "ovhcloud",
       "title": "OVHcloud",
       "description": "Manage OVHcloud domains: DNS records, nameservers and renewal settings, and read your OVHcloud messages and contacts.",
@@ -200403,6 +202436,86 @@
       ]
     },
     {
+      "name": "pangalin-space-manager",
+      "title": "Pangalin Space Manager",
+      "description": "See free space on your Mac and open the right page in Pangalin Space Manager. Every command except Free Space needs Pangalin Space Manager 3.62.0 or later.",
+      "icon": "extension-icon.png",
+      "author": "pangalin",
+      "contributors": [],
+      "categories": [
+        "System",
+        "Applications"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/pangalin/pangalin-space-manager",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/pangalin-space-manager",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "free-space",
+          "title": "Free Space",
+          "subtitle": "Space Manager",
+          "description": "Show how much space is free on your startup disk.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "whats-taking-up-space",
+          "title": "What's Taking up Space",
+          "subtitle": "Space Manager",
+          "description": "Open the Space Manager dashboard to see what uses your disk.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "scan-my-mac",
+          "title": "Scan My Mac",
+          "subtitle": "Space Manager",
+          "description": "Start a new scan in Space Manager.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "review-safe-items",
+          "title": "Review Safe Items",
+          "subtitle": "Space Manager",
+          "description": "Open Space Manager's review with the safe items ticked. Nothing is removed from Raycast; you check and confirm in the app.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "find-files",
+          "title": "Find Files",
+          "subtitle": "Space Manager",
+          "description": "Search your files in Space Manager, for example \"PDFs from last week\".",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-page",
+          "title": "Open Page",
+          "subtitle": "Space Manager",
+          "description": "Pick a Space Manager page and open it.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "pangram-ai-detector",
       "title": "Pangram AI Detector",
       "description": "Check selected or copied text for AI-generated writing with the Pangram AI detector. Requires a Pangram API key and credits.",
@@ -200620,6 +202733,14 @@
           "type": "textfield",
           "required": false,
           "placeholder": "/usr/local/bin/terminus"
+        },
+        {
+          "title": "Organization Filter",
+          "name": "organization",
+          "description": "Only list sites from this organization (name or UUID, passed as --org). Leave blank for all sites. Can make loading much faster for large accounts.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "my-agency"
         },
         {
           "title": "Site List Timeout (Seconds)",
@@ -208714,18 +210835,20 @@
     {
       "name": "pick-your-wallpaper",
       "title": "Pick Your Wallpaper",
-      "description": "Change your Mac desktop wallpaper by picking an image from a folder, or let AI suggest and set a wallpaper based on mood or style.",
+      "description": "Change your desktop wallpaper by picking an image from a folder, or let AI suggest and set a wallpaper based on mood or style.",
       "icon": "command-icon.png",
       "author": "hugomarfani",
       "contributors": [
-        "heytommy"
+        "heytommy",
+        "Shrp"
       ],
       "categories": [
         "System"
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/hugomarfani/pick-your-wallpaper",
       "source": {
@@ -208738,7 +210861,7 @@
         {
           "name": "choose-wallpaper",
           "title": "Choose Wallpaper",
-          "description": "Pick a wallpaper from a folder of finder.",
+          "description": "Pick a wallpaper from a folder.",
           "mode": "view",
           "keywords": [],
           "preferences": [
@@ -216462,6 +218585,70 @@
       ]
     },
     {
+      "name": "postwire",
+      "title": "PostWire",
+      "description": "Write one post and publish it to all your social accounts at once. Requires a PostWire account (free plan available) and its API key.",
+      "icon": "icon.png",
+      "author": "perufitlife",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Web"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/perufitlife/postwire",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/postwire",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "post",
+          "title": "Post to Social",
+          "subtitle": "PostWire",
+          "description": "Write a post, pick your networks and publish. Starts with the text you have selected.",
+          "mode": "view",
+          "keywords": [
+            "social",
+            "publish",
+            "share",
+            "tweet",
+            "crosspost"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "accounts",
+          "title": "Connected Accounts",
+          "subtitle": "PostWire",
+          "description": "See the social accounts connected to PostWire and connect more.",
+          "mode": "view",
+          "keywords": [
+            "social",
+            "networks",
+            "connections"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "apiKey",
+          "title": "PostWire API Key",
+          "description": "Your key from postwire.io (Dashboard, API key). A free account works.",
+          "type": "password",
+          "required": true,
+          "placeholder": "pw_live_..."
+        }
+      ]
+    },
+    {
       "name": "potter-db",
       "title": "Potter DB",
       "description": "Search Harry Potter books, characters, movies, potions and spells from Potter DB.",
@@ -218096,7 +220283,7 @@
     {
       "name": "prisma-cli-commands",
       "title": "Prisma CLI Commands",
-      "description": "Search Prisma CLI commands with details and examples, and copy them.",
+      "description": "Search and copy Prisma ORM 7 CLI commands with details and examples, including prisma init --db to start a project on Prisma Postgres.",
       "icon": "prisma-logo.png",
       "author": "raj_asha",
       "contributors": [],
@@ -218106,7 +220293,9 @@
         "Developer Tools"
       ],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/raj_asha/prisma-cli-commands",
       "source": {
         "type": "github-monorepo",
@@ -218184,7 +220373,7 @@
     {
       "name": "prisma-postgres",
       "title": "Prisma Postgres",
-      "description": "Create a Prisma Postgres database instantly with no setup, and list your databases with connection strings, expiry times and claim URLs.",
+      "description": "Create free Prisma Postgres databases in seconds and view connection strings, expiry times, and claim URLs.",
       "icon": "extension-icon.png",
       "author": "amanvarshney01",
       "contributors": [
@@ -234779,7 +236968,8 @@
       "author": "yosy2010",
       "contributors": [
         "tim.shilov",
-        "chromy"
+        "chromy",
+        "a13z"
       ],
       "categories": [
         "Productivity"
@@ -240410,7 +242600,7 @@
     {
       "name": "remove-background",
       "title": "Remove Background",
-      "description": "Remove the background from an image file selected in Finder with the remove.bg API.",
+      "description": "Remove the background from an image file selected in Finder with the Leonardo.Ai background removal API (formerly remove.bg).",
       "icon": "command-icon.png",
       "author": "maantje",
       "contributors": [
@@ -240418,7 +242608,9 @@
       ],
       "categories": [],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/maantje/remove-background",
       "source": {
         "type": "github-monorepo",
@@ -240430,17 +242622,17 @@
         {
           "name": "index",
           "title": "Remove Background From Image",
-          "subtitle": "remove.bg",
+          "subtitle": "Leonardo.Ai",
           "description": "Remove the background from an image",
           "mode": "view",
           "keywords": [],
           "preferences": [
             {
-              "name": "apiKey",
+              "name": "leonardoApiKey",
               "required": true,
-              "title": "API key",
+              "title": "Leonardo.Ai API Key",
               "type": "password",
-              "description": "You can find your API key on the remove.bg Dashboard."
+              "description": "remove.bg moved its API to Leonardo.Ai, so remove.bg keys no longer work. Create a key on the API Access page at app.leonardo.ai."
             }
           ]
         }
@@ -242726,7 +244918,7 @@
     {
       "name": "ring-intercom",
       "title": "Ring Intercom",
-      "description": "Unlock your door with your Ring Intercom without opening the Ring app.",
+      "description": "Unlock your door with your Ring Intercom, choose which intercom to use, and see its battery and connection.",
       "icon": "command-icon.png",
       "author": "stefanbd",
       "contributors": [],
@@ -242734,8 +244926,10 @@
         "Other"
       ],
       "license": "MIT",
-      "platforms": [],
-      "version": "1.0.0",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
       "storeUrl": "https://www.raycast.com/stefanbd/ring-intercom",
       "source": {
         "type": "github-monorepo",
@@ -242748,8 +244942,17 @@
           "name": "unlock",
           "title": "Unlock Door",
           "subtitle": "Ring Intercom",
-          "description": "Unlock using Ring Intercom",
+          "description": "Unlock your default Ring Intercom",
           "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "select-intercom",
+          "title": "Select Default Intercom",
+          "subtitle": "Ring Intercom",
+          "description": "Choose which Ring Intercom Unlock Door uses, and see each one's battery and connection",
+          "mode": "view",
           "keywords": [],
           "preferences": []
         },
@@ -242757,7 +244960,7 @@
           "name": "authenticate",
           "title": "Authenticate",
           "subtitle": "Ring Intercom",
-          "description": "Create a refresh token for authentication with your Ring account",
+          "description": "Sign in to your Ring account",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -245883,6 +248086,81 @@
           "placeholder": "CustObj__c(Title, Subtitle); …",
           "description": "Additional object types to search (see extension's documentation for exact syntax)",
           "required": false
+        }
+      ]
+    },
+    {
+      "name": "sandglass-simple-timer",
+      "title": "Sandglass - Simple Timer",
+      "description": "Start a calm countdown timer with a live dial, pause or resume it, and get a Windows notification when time is up.",
+      "icon": "icon.png",
+      "author": "peter_teitscheid",
+      "contributors": [],
+      "categories": [
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/peter_teitscheid/sandglass-simple-timer",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/sandglass-simple-timer",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "start-timer",
+          "title": "Start Timer",
+          "subtitle": "Sandglass",
+          "description": "Pick a preset or type a duration and watch a calm dial count down.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle-timer",
+          "title": "Pause or Resume Timer",
+          "subtitle": "Sandglass",
+          "description": "Pause the running timer, or resume it if it is paused.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "stop-timer",
+          "title": "Stop Timer",
+          "subtitle": "Sandglass",
+          "description": "Stop the current timer without opening Raycast.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "alertSound",
+          "title": "Alert Sound",
+          "description": "What plays when the timer finishes.",
+          "type": "dropdown",
+          "required": false,
+          "default": "chime",
+          "data": [
+            {
+              "title": "Gentle Chime",
+              "value": "chime"
+            },
+            {
+              "title": "Alarm (Repeats Until Dismissed)",
+              "value": "alarm"
+            },
+            {
+              "title": "Silent",
+              "value": "silent"
+            }
+          ]
         }
       ]
     },
@@ -271525,7 +273803,8 @@
         "alschetinin",
         "xmok",
         "benhepburn",
-        "olafvanmidden"
+        "olafvanmidden",
+        "dofy"
       ],
       "categories": [
         "Developer Tools",
@@ -282149,7 +284428,9 @@
       "description": "Create TaskNotes tasks in Obsidian from natural language, search tasks and see an agenda of tasks by due and scheduled date.",
       "icon": "icon.png",
       "author": "robinradx",
-      "contributors": [],
+      "contributors": [
+        "alewkinr"
+      ],
       "categories": [
         "Productivity"
       ],
@@ -287274,7 +289555,9 @@
       ],
       "categories": [],
       "license": "MIT",
-      "platforms": [],
+      "platforms": [
+        "macOS"
+      ],
       "storeUrl": "https://www.raycast.com/chyroc/the-blue-cloud",
       "source": {
         "type": "github-monorepo",
@@ -302115,6 +304398,14 @@
           "preferences": []
         },
         {
+          "name": "stop-webcam",
+          "title": "Stop Webcam",
+          "description": "Ask Tuple to stop sharing your webcam in the active call.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
           "name": "hang-up",
           "title": "End Call",
           "description": "Hang up the active call.",
@@ -302250,6 +304541,38 @@
           "name": "volume-down",
           "title": "Decrease Volume",
           "description": "Lower Tutti's output volume by a fixed step.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "set-brightness",
+          "title": "Set Brightness",
+          "description": "Set Tutti's brightness control group to a percentage. Requires Tutti 2.1.0 or later.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "brightness-up",
+          "title": "Increase Brightness",
+          "description": "Raise Tutti's group brightness by 5 percentage points. Requires Tutti 2.1.0 or later.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "brightness-down",
+          "title": "Decrease Brightness",
+          "description": "Lower Tutti's group brightness by 5 percentage points. Requires Tutti 2.1.0 or later.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle-input-mute",
+          "title": "Toggle Microphone Mute",
+          "description": "Mute or unmute the current default microphone. Requires Tutti 2.1.0 or later.",
           "mode": "no-view",
           "keywords": [],
           "preferences": []
@@ -308267,6 +310590,66 @@
       ]
     },
     {
+      "name": "usb-devices",
+      "title": "USB Devices",
+      "description": "List every connected USB device with glanceable tags for type, link speed, power, drivers, volumes and serial ports.",
+      "icon": "extension-icon.png",
+      "author": "dimik",
+      "contributors": [],
+      "categories": [
+        "System",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/dimik/usb-devices",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/usb-devices",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "usb-devices",
+          "title": "USB Devices",
+          "description": "Browse connected USB devices by type or by hub, with a detail pane for each one.",
+          "mode": "view",
+          "keywords": [
+            "usb",
+            "hub",
+            "ioreg",
+            "peripherals",
+            "midi",
+            "serial"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "autoRefresh",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "title": "Live Updates",
+          "label": "Refresh every 2 seconds while open",
+          "description": "Picks up plugged and unplugged devices without pressing ⌘R."
+        },
+        {
+          "name": "showBuiltIn",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "label": "Show built-in devices",
+          "description": "Include internal devices such as the keyboard, trackpad and camera.",
+          "title": "Built-in Devices"
+        }
+      ]
+    },
+    {
       "name": "useful-apps",
       "title": "The Useful Apps",
       "description": "Search 450+ hand-picked Mac and iPhone apps, find better alternatives to the apps on your Mac, and catch confirmed app deals.",
@@ -310757,7 +313140,7 @@
     {
       "name": "verwatch",
       "title": "VerWatch",
-      "description": "Search Craft CMS projects, check packages and track or start updates in VerWatch with a team that has API access.",
+      "description": "Search your Craft CMS projects, check their packages and start updates in VerWatch.",
       "icon": "verwatch.png",
       "author": "chrisrowe",
       "contributors": [],
@@ -310789,7 +313172,7 @@
           "name": "recent-updates",
           "title": "Recent Updates",
           "subtitle": "VerWatch",
-          "description": "The latest update runs, who started them and their pull requests",
+          "description": "The latest update runs across your teams, with their status and pull requests",
           "mode": "view",
           "keywords": [],
           "preferences": []
@@ -332174,6 +334557,20 @@
             "snip",
             "region",
             "selection"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "capture-scrolling",
+          "title": "Capture Scrolling Area",
+          "description": "Capture a scrolling area as one tall screenshot with Zoomer.",
+          "mode": "no-view",
+          "keywords": [
+            "screenshot",
+            "scrolling",
+            "long",
+            "full page",
+            "stitch"
           ],
           "preferences": []
         },
