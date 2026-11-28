@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-27T01:45:37.327Z",
+  "generatedAt": "2026-11-28T01:24:56.934Z",
   "source": {
     "repo": "raycast/extensions",
     "ref": "main",
-    "commit": "cc7554af9ab77fd7923794c765d199595aa21fbb"
+    "commit": "87a6d3d0ff3a30d28f1dd6effc1074a49868d6e6"
   },
-  "count": 3662,
+  "count": 3677,
   "extensions": [
     {
       "name": "0x0",
@@ -2678,6 +2678,103 @@
           "required": true,
           "title": "Azure DevOps Email",
           "type": "textfield"
+        }
+      ]
+    },
+    {
+      "name": "adobe-cache-cleaner",
+      "title": "Adobe Cache Cleaner",
+      "description": "Find and purge Adobe caches like the After Effects disk cache, media cache and Photoshop scratch files, with sizes per app.",
+      "icon": "extension-icon.png",
+      "author": "dimik",
+      "contributors": [],
+      "categories": [
+        "System",
+        "Media"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/dimik/adobe-cache-cleaner",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/adobe-cache-cleaner",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "manage-adobe-caches",
+          "title": "Manage Adobe Caches",
+          "description": "See every Adobe cache with its size and purge them one by one or all at once.",
+          "mode": "view",
+          "keywords": [
+            "after effects",
+            "premiere",
+            "photoshop",
+            "media cache",
+            "disk cache",
+            "purge",
+            "clear",
+            "clean"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "purge-adobe-caches",
+          "title": "Purge All Adobe Caches",
+          "description": "Purge every Adobe cache at once, with confirmation before permanent deletion and warnings about open apps.",
+          "mode": "no-view",
+          "keywords": [
+            "after effects",
+            "premiere",
+            "photoshop",
+            "media cache",
+            "disk cache",
+            "purge",
+            "clear",
+            "clean"
+          ],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "useTrash",
+          "title": "Deletion",
+          "label": "Move to Trash instead of deleting permanently",
+          "description": "Off: cache files are deleted permanently and the space is freed at once. On: they go to the Trash, and the space is only freed after you empty it.",
+          "type": "checkbox",
+          "default": true,
+          "required": false
+        },
+        {
+          "name": "confirmPermanentDelete",
+          "title": "Confirmation",
+          "label": "Ask before deleting permanently",
+          "description": "Shows a confirmation before cache files are deleted permanently. The warning about open Adobe apps is always shown.",
+          "type": "checkbox",
+          "default": true,
+          "required": false
+        },
+        {
+          "name": "detectFromAdobePrefs",
+          "title": "Auto-Detect",
+          "label": "Read cache locations from Adobe preferences",
+          "description": "Picks up custom Media Cache and After Effects Disk Cache folders you set inside the Adobe apps (from com.Adobe.Common *.plist and the After Effects Prefs.txt files).",
+          "type": "checkbox",
+          "default": true,
+          "required": false
+        },
+        {
+          "name": "customFolders",
+          "title": "Extra Cache Folders",
+          "description": "Semicolon-separated folders whose contents should be purged too. Use the Copy Detected Locations action to grab the paths Adobe's preferences point to. These count as unsafe while any Adobe app is open.",
+          "type": "textfield",
+          "default": "",
+          "required": false,
+          "placeholder": "/Volumes/Cache SSD/Ae Cache; ~/Movies/Old Previews"
         }
       ]
     },
@@ -45147,6 +45244,185 @@
       "preferences": []
     },
     {
+      "name": "cleanshotz",
+      "title": "CleanShotZ",
+      "description": "Screenshots, recordings, text recognition and color picking with CleanShotZ, the free and open source screenshot app.",
+      "icon": "icon.png",
+      "author": "houseofmackee",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Media"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/houseofmackee/cleanshotz",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/cleanshotz",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "capture-area",
+          "title": "Capture Area",
+          "subtitle": "CleanShotZ",
+          "description": "Select an area of the screen and capture it.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "capture-previous-area",
+          "title": "Capture Previous Area",
+          "subtitle": "CleanShotZ",
+          "description": "Capture the last selected area again.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "capture-fullscreen",
+          "title": "Capture Fullscreen",
+          "subtitle": "CleanShotZ",
+          "description": "Capture the display under the pointer.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "capture-window",
+          "title": "Capture Window",
+          "subtitle": "CleanShotZ",
+          "description": "Pick a window and capture it.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "self-timer",
+          "title": "Self-Timer",
+          "subtitle": "CleanShotZ",
+          "description": "Select an area, then capture it after a countdown.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "scrolling-capture",
+          "title": "Scrolling Capture",
+          "subtitle": "CleanShotZ",
+          "description": "Capture content that scrolls, down or sideways.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "capture-text",
+          "title": "Capture Text",
+          "subtitle": "CleanShotZ",
+          "description": "Select an area and copy its text (or QR code) to the clipboard.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "pick-color",
+          "title": "Pick Color",
+          "subtitle": "CleanShotZ",
+          "description": "Click a color on the screen to copy it as hex.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "step-capture",
+          "title": "Step Capture",
+          "subtitle": "CleanShotZ",
+          "description": "Capture the window under the pointer at every click, for a step-by-step guide. Run again to finish.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "record-screen",
+          "title": "Record Screen",
+          "subtitle": "CleanShotZ",
+          "description": "Start a screen recording, or stop the one in progress.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-history",
+          "title": "Open Capture History",
+          "subtitle": "CleanShotZ",
+          "description": "Show recent screenshots and recordings.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "restore-recently-closed",
+          "title": "Restore Recently Closed",
+          "subtitle": "CleanShotZ",
+          "description": "Show the most recently closed Quick Access thumbnail again.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "open-from-clipboard",
+          "title": "Annotate Clipboard Image",
+          "subtitle": "CleanShotZ",
+          "description": "Open the image on the clipboard in the editor.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "toggle-desktop-icons",
+          "title": "Toggle Desktop Icons",
+          "subtitle": "CleanShotZ",
+          "description": "Hide or show desktop icons and widgets.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "annotate-selection",
+          "title": "Annotate Selected File",
+          "subtitle": "CleanShotZ",
+          "description": "Open the image selected in Finder in the CleanShotZ editor.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "pin-selection",
+          "title": "Pin Selected File",
+          "subtitle": "CleanShotZ",
+          "description": "Pin the image selected in Finder to the screen.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "run-pipeline",
+          "title": "Run Pipeline on Selected File",
+          "subtitle": "CleanShotZ",
+          "description": "Run a pipeline from the CleanShotZ settings on the image selected in Finder.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "clear-clipboard",
       "title": "Clear Clipboard",
       "description": "Clear your clipboard in one step so you don't accidentally paste something into work chat.",
@@ -68822,6 +69098,58 @@
       ]
     },
     {
+      "name": "devbroom",
+      "title": "Devbroom",
+      "description": "Clean the build folders, caches, and worktrees that coding agents and dev tools leave on your Mac, with the free Devbroom app installed.",
+      "icon": "icon.png",
+      "author": "merttopuz",
+      "contributors": [],
+      "categories": [
+        "Developer Tools",
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/merttopuz/devbroom",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/devbroom",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "status",
+          "title": "Status",
+          "subtitle": "Devbroom",
+          "description": "What the last scan found: how much is ready to clean, and the biggest items",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "clean",
+          "title": "Scan and Clean",
+          "subtitle": "Devbroom",
+          "description": "Scans, lists what is Ready to clean, and cleans what you choose after you confirm",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "cli",
+          "title": "devbroom Command",
+          "description": "Where the devbroom command is. Leave empty for ~/.local/bin/devbroom, which Devbroom sets up in Settings, Agents and integrations.",
+          "type": "file",
+          "required": false
+        }
+      ]
+    },
+    {
       "name": "devcontainer-features",
       "title": "DevContainer Features",
       "description": "Search Dev Container features from the official registry, read their docs and options, and copy the feature reference.",
@@ -82233,6 +82561,76 @@
           "title": "EBIRD_API_TOKEN",
           "description": "Get API Key at https://ebird.org/api/keygen",
           "placeholder": "Get API Key at https://ebird.org/api/keygen"
+        }
+      ]
+    },
+    {
+      "name": "echo-media-player-history",
+      "title": "Echo - Media Player & History",
+      "description": "Search and resume your media history, see what is playing and play or pause it with Echo, a paid Mac app.",
+      "icon": "echo-icon.png",
+      "author": "theodore_hq",
+      "contributors": [],
+      "categories": [
+        "Media",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/theodore_hq/echo-media-player-history",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/echo-media-player-history",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-history",
+          "title": "Search Echo History",
+          "description": "One tidy history across every app and tab, and Echo drops you back at the exact second you left off.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "now-playing",
+          "title": "Now Playing",
+          "subtitle": "Echo",
+          "description": "Show what is currently playing, as a live line you can keep in Favorites. Return plays or pauses it.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "resume-last",
+          "title": "Resume Last Played",
+          "subtitle": "Echo",
+          "description": "Pick up the most recent thing you were playing.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "play-pause",
+          "title": "Play or Pause",
+          "subtitle": "Echo",
+          "description": "Toggle playback of whatever is currently playing.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "token",
+          "title": "Access Token",
+          "description": "Copy this from Echo, under Settings > Raycast.",
+          "type": "password",
+          "required": true,
+          "placeholder": "Paste the token from Echo"
         }
       ]
     },
@@ -97220,6 +97618,155 @@
       "preferences": []
     },
     {
+      "name": "focus-stage",
+      "title": "Focus Stage",
+      "description": "Put one window center stage with a calm backdrop on every display, auto-hide the menu bar and Dock, and optionally hold notifications.",
+      "icon": "focus-stage-window-outline.png",
+      "author": "mirkopoloni",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/mirkopoloni/focus-stage",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/focus-stage",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "toggle-focus-stage",
+          "title": "Toggle Focus Stage",
+          "description": "Center the focused window, cover everything else with a plain backdrop on every display and hide the menu bar. Run again to restore everything.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "reset-focus-stage",
+          "title": "Reset Focus Stage",
+          "description": "End any focus stage, even one that looks wrong or won't turn off, and restore windows, menu bar, Dock and notifications.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "focus-stage-menu-bar",
+          "title": "Focus Stage Menu Bar",
+          "description": "Show whether a focus stage is on, and start or end it from the menu bar.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "windowSize",
+          "title": "Window Size",
+          "description": "How much of the screen the focused window takes.",
+          "type": "dropdown",
+          "required": false,
+          "default": "0.8",
+          "data": [
+            {
+              "title": "60%",
+              "value": "0.6"
+            },
+            {
+              "title": "70%",
+              "value": "0.7"
+            },
+            {
+              "title": "80%",
+              "value": "0.8"
+            },
+            {
+              "title": "90%",
+              "value": "0.9"
+            },
+            {
+              "title": "Keep the window's size",
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "name": "grain",
+          "title": "Background Grain",
+          "description": "Film grain on the backdrop.",
+          "type": "dropdown",
+          "required": false,
+          "default": "1",
+          "data": [
+            {
+              "title": "Off",
+              "value": "0"
+            },
+            {
+              "title": "Subtle",
+              "value": "1"
+            },
+            {
+              "title": "Medium",
+              "value": "2"
+            },
+            {
+              "title": "Strong",
+              "value": "3"
+            }
+          ]
+        },
+        {
+          "name": "glow",
+          "title": "Appearance",
+          "label": "Glow around the focused window",
+          "description": "A soft halo in your accent color marks the window you are focusing on.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "showLabel",
+          "label": "Show “Focus Stage on”",
+          "description": "A small label in the top-left corner of every display.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "coverSameAppWindows",
+          "title": "Behavior",
+          "label": "Cover the app's other windows",
+          "description": "The backdrop sits directly behind the focused window and covers all other windows, including the same app's. When off, the app's other windows stay visible next to it.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "hideDock",
+          "label": "Hide the Dock",
+          "description": "Turns on “Automatically hide and show the Dock” during the session, and back off afterwards if it was off. The window can then use the Dock's space.",
+          "type": "checkbox",
+          "required": false,
+          "default": true
+        },
+        {
+          "name": "holdNotifications",
+          "label": "Hold notifications until focus ends",
+          "description": "No banners during the session; the ones that arrived show up when it ends, and all of them stay in Notification Center. Notification Center and desktop widgets don't open while it's on.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        }
+      ]
+    },
+    {
       "name": "focustask",
       "title": "FocusTask",
       "description": "Search and create FocusTask tasks and see your current tasks in the Mac menu bar.",
@@ -97890,6 +98437,160 @@
           "type": "checkbox",
           "required": false,
           "default": false
+        }
+      ]
+    },
+    {
+      "name": "folnaro",
+      "title": "Folnaro",
+      "description": "Search invoices, quotes and customers, track time and capture receipts in Folnaro, the invoicing app for freelancers in Germany.",
+      "icon": "extension-icon.png",
+      "author": "folnaro",
+      "contributors": [],
+      "categories": [
+        "Finance",
+        "Productivity"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/folnaro/folnaro",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/folnaro",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-folnaro",
+          "title": "Search Folnaro",
+          "description": "Find invoices, quotes, customers, expenses and projects in Folnaro.",
+          "mode": "view",
+          "keywords": [
+            "invoice",
+            "quote",
+            "customer",
+            "expense",
+            "project",
+            "rechnung",
+            "angebot",
+            "kunde",
+            "ausgabe",
+            "projekt"
+          ],
+          "icon": "command-search.png",
+          "preferences": []
+        },
+        {
+          "name": "start-timer",
+          "title": "Start Timer",
+          "subtitle": "Folnaro",
+          "description": "Start the Folnaro timer for a project or customer, with your recent ones first.",
+          "mode": "view",
+          "keywords": [
+            "time",
+            "track",
+            "zeit",
+            "zeiterfassung"
+          ],
+          "icon": "command-start-timer.png",
+          "preferences": []
+        },
+        {
+          "name": "stop-timer",
+          "title": "Stop Timer",
+          "subtitle": "Folnaro",
+          "description": "Stop the running Folnaro timer and save the time entry.",
+          "mode": "no-view",
+          "keywords": [
+            "time",
+            "zeit",
+            "stoppen"
+          ],
+          "icon": "command-stop-timer.png",
+          "preferences": []
+        },
+        {
+          "name": "running-timer",
+          "title": "Running Timer",
+          "subtitle": "Folnaro",
+          "description": "Show the running Folnaro timer in the menu bar.",
+          "mode": "menu-bar",
+          "keywords": [
+            "menu bar",
+            "time",
+            "zeit"
+          ],
+          "icon": "command-running-timer.png",
+          "preferences": [
+            {
+              "name": "hideWhenIdle",
+              "title": "Menu Bar",
+              "label": "Hide when no timer runs",
+              "description": "Only show the menu bar item while a timer is running.",
+              "type": "checkbox",
+              "required": false,
+              "default": false
+            }
+          ]
+        },
+        {
+          "name": "create-invoice-draft",
+          "title": "Create Invoice Draft",
+          "subtitle": "Folnaro",
+          "description": "Create an invoice draft for a customer. Folnaro computes totals and VAT.",
+          "mode": "view",
+          "keywords": [
+            "invoice",
+            "rechnung",
+            "entwurf",
+            "draft"
+          ],
+          "icon": "command-create-invoice.png",
+          "preferences": []
+        },
+        {
+          "name": "capture-receipt",
+          "title": "Capture Receipt",
+          "subtitle": "Folnaro",
+          "description": "Add the PDF or image selected in Finder to Folnaro's receipt inbox.",
+          "mode": "view",
+          "keywords": [
+            "receipt",
+            "expense",
+            "beleg",
+            "ausgabe",
+            "finder"
+          ],
+          "icon": "command-capture-receipt.png",
+          "preferences": []
+        },
+        {
+          "name": "open-section",
+          "title": "Open Section",
+          "subtitle": "Folnaro",
+          "description": "Jump to a section of Folnaro, like Invoices, Time or Expenses.",
+          "mode": "view",
+          "keywords": [
+            "go",
+            "navigate",
+            "bereich",
+            "gehe zu"
+          ],
+          "icon": "command-open-section.png",
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "helperPath",
+          "title": "Helper Path",
+          "description": "Only if Folnaro is not in Applications: the full path of folnaro-mcp inside Folnaro.app.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "/Applications/Folnaro.app/Contents/MacOS/folnaro-mcp"
         }
       ]
     },
@@ -108227,7 +108928,8 @@
         "pedro_dcc",
         "xilopaint",
         "jakoss",
-        "slmnbruno"
+        "slmnbruno",
+        "intellectronica"
       ],
       "categories": [
         "Developer Tools",
@@ -119693,6 +120395,101 @@
           "title": "Auto-save Conversation",
           "default": true,
           "required": true
+        }
+      ]
+    },
+    {
+      "name": "grok-bots",
+      "title": "Grok Bots",
+      "description": "Send prompts to your Grok Bot teammates, preview their latest messages and recent chats, and sort Bots by activity, usage, sidebar order or name.",
+      "icon": "extension-icon.png",
+      "author": "stanleybogode",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Communication"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/stanleybogode/grok-bots",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/grok-bots",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "chat-with-bot",
+          "title": "Chat with Grok Bot",
+          "description": "Pick one of your Grok Bots, see its latest messages, and send it a prompt.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "sortOrder",
+          "type": "dropdown",
+          "title": "Sort Bots By",
+          "description": "How Chat with Grok Bot orders your Bots.",
+          "default": "frequent",
+          "required": false,
+          "data": [
+            {
+              "title": "Most Used",
+              "value": "frequent"
+            },
+            {
+              "title": "Latest Activity",
+              "value": "recent"
+            },
+            {
+              "title": "Grok Bot Sidebar Order",
+              "value": "sidebar"
+            },
+            {
+              "title": "Name",
+              "value": "alphabetical"
+            }
+          ]
+        },
+        {
+          "name": "autoSend",
+          "type": "checkbox",
+          "title": "Delivery",
+          "label": "Send automatically (press Return in Grok Bot)",
+          "description": "Grok Bot's prompt links only fill in the message box. When this is on, Raycast waits until your prompt is in the box and presses Return for you. Needs Raycast to be allowed in System Settings → Privacy & Security → Accessibility.",
+          "default": true,
+          "required": false
+        },
+        {
+          "name": "useWebhooks",
+          "type": "checkbox",
+          "title": "Webhooks",
+          "label": "Send through a bot's routine webhook when one is set",
+          "description": "Bots with a webhook set up in this extension get the prompt in the background, without opening Grok Bot.",
+          "default": true,
+          "required": false
+        },
+        {
+          "name": "showHidden",
+          "type": "checkbox",
+          "title": "Hidden Bots",
+          "label": "Include bots hidden from the sidebar",
+          "default": true,
+          "required": false,
+          "description": "List Bots you've hidden from Grok Bot's sidebar. They stay active and can still get prompts."
+        },
+        {
+          "name": "dataDir",
+          "type": "directory",
+          "title": "Grok Bot Data Folder",
+          "description": "Only needed if Grok Bot stores its data somewhere other than ~/Library/Application Support/Grok Bot.",
+          "required": false
         }
       ]
     },
@@ -137705,7 +138502,7 @@
     {
       "name": "ipf-os",
       "title": "iPF OS",
-      "description": "Search, create and action iPF OS tickets, and see a count of your assigned and overdue tickets in the menu bar.",
+      "description": "Manage your iPF OS tickets and staff meals, with weekly planning and AI assistance.",
       "icon": "extension-icon.png",
       "author": "joseph_emmanuel",
       "contributors": [],
@@ -137771,6 +138568,51 @@
             "queue",
             "overdue",
             "workload"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "my-meals",
+          "title": "My Meals",
+          "subtitle": "iPF OS",
+          "description": "See today’s meal, browse your selections and history, and manage absence notices and meal preferences.",
+          "mode": "view",
+          "keywords": [
+            "lunch",
+            "food",
+            "meal",
+            "menu",
+            "absence"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "plan-my-meals",
+          "title": "Plan My Meals",
+          "subtitle": "iPF OS",
+          "description": "Choose weekly meals, preview recent or popular choices, and review before submitting.",
+          "mode": "view",
+          "keywords": [
+            "lunch",
+            "food",
+            "menu",
+            "plan",
+            "weekly",
+            "meal"
+          ],
+          "preferences": []
+        },
+        {
+          "name": "meals-status",
+          "title": "Meals Status",
+          "subtitle": "iPF OS",
+          "description": "Optional macOS menu bar view of today’s meal and the current selection window.",
+          "mode": "menu-bar",
+          "keywords": [
+            "lunch",
+            "food",
+            "menu",
+            "meal"
           ],
           "preferences": []
         }
@@ -147031,6 +147873,56 @@
       ]
     },
     {
+      "name": "kero",
+      "title": "Kero",
+      "description": "Find, focus, and create local terminal sessions in Kero; requires the Kero app.",
+      "icon": "extension-icon.png",
+      "author": "comf4rt_noise",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/comf4rt_noise/kero",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/kero",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-sessions",
+          "title": "Search Kero Sessions",
+          "description": "Search local Kero panes by project, session, directory, branch, or agent.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "new-session",
+          "title": "New Kero Session",
+          "description": "Create a local Kero shell session in a project or directory and open it.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "keroPath",
+          "type": "textfield",
+          "required": false,
+          "title": "Kero CLI Path",
+          "description": "Leave empty for auto-detection.",
+          "placeholder": "/usr/local/bin/kero"
+        }
+      ]
+    },
+    {
       "name": "kesha-voice-kit",
       "title": "Kesha Voice Kit",
       "description": "Dictate offline on your Mac with Kesha Voice Kit: record from your microphone, transcribe speech to text locally, and copy it to the clipboard.",
@@ -153087,6 +153979,49 @@
               "value": "se"
             }
           ]
+        }
+      ]
+    },
+    {
+      "name": "layauto-any-window",
+      "title": "LayAuto 4 Any Window",
+      "description": "Search every window, browser tab, terminal session, and Codex task with LayAuto 4, then bring the one you pick to the front.",
+      "icon": "extension-icon.png",
+      "author": "AntScript",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "System"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/AntScript/layauto-any-window",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/layauto-any-window",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-windows",
+          "title": "Search Windows",
+          "subtitle": "LayAuto 4",
+          "description": "Search every window, Deep Window, and session, most recently used first.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "application",
+          "title": "LayAuto 4 App",
+          "description": "The LayAuto 4 app to search with. Leave empty to find it automatically.",
+          "type": "appPicker",
+          "required": false
         }
       ]
     },
@@ -162018,6 +162953,921 @@
       "preferences": []
     },
     {
+      "name": "mac-performance-monitor",
+      "title": "Mac Performance Monitor",
+      "description": "View CPU, memory, GPU, disk, power, and thermal history and quit busy apps; requires Mac Performance Monitor with recording enabled.",
+      "icon": "extension-icon.png",
+      "author": "SARRAF",
+      "contributors": [],
+      "categories": [
+        "System",
+        "Data"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/SARRAF/mac-performance-monitor",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/mac-performance-monitor",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "dashboard",
+          "title": "Performance Dashboard",
+          "subtitle": "Mac Performance Monitor",
+          "description": "Consolidated view of panels selected from all categories (CPU, Memory, etc)",
+          "mode": "view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "slot1",
+              "type": "dropdown",
+              "required": false,
+              "label": "Panel 1 (Left)",
+              "default": "memory_pressure",
+              "description": "Select panel for Row 1, Left",
+              "data": [
+                {
+                  "title": "None",
+                  "value": "none"
+                },
+                {
+                  "title": "Memory Pressure",
+                  "value": "memory_pressure"
+                },
+                {
+                  "title": "Memory Composition Breakdown",
+                  "value": "memory_composition"
+                },
+                {
+                  "title": "CPU Usage",
+                  "value": "cpu_usage"
+                },
+                {
+                  "title": "GPU Usage",
+                  "value": "gpu_usage"
+                },
+                {
+                  "title": "Disk Read & Write Records",
+                  "value": "disk_io"
+                },
+                {
+                  "title": "Power Consumption",
+                  "value": "power_consumption"
+                },
+                {
+                  "title": "Thermals",
+                  "value": "thermals"
+                },
+                {
+                  "title": "Top Memory Users",
+                  "value": "top_memory"
+                },
+                {
+                  "title": "Top CPU Users",
+                  "value": "top_cpu"
+                },
+                {
+                  "title": "Top GPU Users",
+                  "value": "top_gpu"
+                },
+                {
+                  "title": "Top Disk Users",
+                  "value": "top_disk"
+                },
+                {
+                  "title": "Top Energy Users",
+                  "value": "top_energy"
+                }
+              ],
+              "title": "Panel 1 (Left)"
+            },
+            {
+              "name": "slot2",
+              "type": "dropdown",
+              "required": false,
+              "label": "Panel 2 (Right)",
+              "default": "top_memory",
+              "description": "Select panel for Row 1, Right",
+              "data": [
+                {
+                  "title": "None",
+                  "value": "none"
+                },
+                {
+                  "title": "Memory Pressure",
+                  "value": "memory_pressure"
+                },
+                {
+                  "title": "Memory Composition Breakdown",
+                  "value": "memory_composition"
+                },
+                {
+                  "title": "CPU Usage",
+                  "value": "cpu_usage"
+                },
+                {
+                  "title": "GPU Usage",
+                  "value": "gpu_usage"
+                },
+                {
+                  "title": "Disk Read & Write Records",
+                  "value": "disk_io"
+                },
+                {
+                  "title": "Power Consumption",
+                  "value": "power_consumption"
+                },
+                {
+                  "title": "Thermals",
+                  "value": "thermals"
+                },
+                {
+                  "title": "Top Memory Users",
+                  "value": "top_memory"
+                },
+                {
+                  "title": "Top CPU Users",
+                  "value": "top_cpu"
+                },
+                {
+                  "title": "Top GPU Users",
+                  "value": "top_gpu"
+                },
+                {
+                  "title": "Top Disk Users",
+                  "value": "top_disk"
+                },
+                {
+                  "title": "Top Energy Users",
+                  "value": "top_energy"
+                }
+              ],
+              "title": "Panel 2 (Right)"
+            },
+            {
+              "name": "slot3",
+              "type": "dropdown",
+              "required": false,
+              "label": "Panel 3 (Left)",
+              "default": "cpu_usage",
+              "description": "Select panel for Row 2, Left",
+              "data": [
+                {
+                  "title": "None",
+                  "value": "none"
+                },
+                {
+                  "title": "Memory Pressure",
+                  "value": "memory_pressure"
+                },
+                {
+                  "title": "Memory Composition Breakdown",
+                  "value": "memory_composition"
+                },
+                {
+                  "title": "CPU Usage",
+                  "value": "cpu_usage"
+                },
+                {
+                  "title": "GPU Usage",
+                  "value": "gpu_usage"
+                },
+                {
+                  "title": "Disk Read & Write Records",
+                  "value": "disk_io"
+                },
+                {
+                  "title": "Power Consumption",
+                  "value": "power_consumption"
+                },
+                {
+                  "title": "Thermals",
+                  "value": "thermals"
+                },
+                {
+                  "title": "Top Memory Users",
+                  "value": "top_memory"
+                },
+                {
+                  "title": "Top CPU Users",
+                  "value": "top_cpu"
+                },
+                {
+                  "title": "Top GPU Users",
+                  "value": "top_gpu"
+                },
+                {
+                  "title": "Top Disk Users",
+                  "value": "top_disk"
+                },
+                {
+                  "title": "Top Energy Users",
+                  "value": "top_energy"
+                }
+              ],
+              "title": "Panel 3 (Left)"
+            },
+            {
+              "name": "slot4",
+              "type": "dropdown",
+              "required": false,
+              "label": "Panel 4 (Right)",
+              "default": "top_cpu",
+              "description": "Select panel for Row 2, Right",
+              "data": [
+                {
+                  "title": "None",
+                  "value": "none"
+                },
+                {
+                  "title": "Memory Pressure",
+                  "value": "memory_pressure"
+                },
+                {
+                  "title": "Memory Composition Breakdown",
+                  "value": "memory_composition"
+                },
+                {
+                  "title": "CPU Usage",
+                  "value": "cpu_usage"
+                },
+                {
+                  "title": "GPU Usage",
+                  "value": "gpu_usage"
+                },
+                {
+                  "title": "Disk Read & Write Records",
+                  "value": "disk_io"
+                },
+                {
+                  "title": "Power Consumption",
+                  "value": "power_consumption"
+                },
+                {
+                  "title": "Thermals",
+                  "value": "thermals"
+                },
+                {
+                  "title": "Top Memory Users",
+                  "value": "top_memory"
+                },
+                {
+                  "title": "Top CPU Users",
+                  "value": "top_cpu"
+                },
+                {
+                  "title": "Top GPU Users",
+                  "value": "top_gpu"
+                },
+                {
+                  "title": "Top Disk Users",
+                  "value": "top_disk"
+                },
+                {
+                  "title": "Top Energy Users",
+                  "value": "top_energy"
+                }
+              ],
+              "title": "Panel 4 (Right)"
+            },
+            {
+              "name": "slot5",
+              "type": "dropdown",
+              "required": false,
+              "label": "Panel 5 (Left)",
+              "default": "gpu_usage",
+              "description": "Select panel for Row 3, Left",
+              "data": [
+                {
+                  "title": "None",
+                  "value": "none"
+                },
+                {
+                  "title": "Memory Pressure",
+                  "value": "memory_pressure"
+                },
+                {
+                  "title": "Memory Composition Breakdown",
+                  "value": "memory_composition"
+                },
+                {
+                  "title": "CPU Usage",
+                  "value": "cpu_usage"
+                },
+                {
+                  "title": "GPU Usage",
+                  "value": "gpu_usage"
+                },
+                {
+                  "title": "Disk Read & Write Records",
+                  "value": "disk_io"
+                },
+                {
+                  "title": "Power Consumption",
+                  "value": "power_consumption"
+                },
+                {
+                  "title": "Thermals",
+                  "value": "thermals"
+                },
+                {
+                  "title": "Top Memory Users",
+                  "value": "top_memory"
+                },
+                {
+                  "title": "Top CPU Users",
+                  "value": "top_cpu"
+                },
+                {
+                  "title": "Top GPU Users",
+                  "value": "top_gpu"
+                },
+                {
+                  "title": "Top Disk Users",
+                  "value": "top_disk"
+                },
+                {
+                  "title": "Top Energy Users",
+                  "value": "top_energy"
+                }
+              ],
+              "title": "Panel 5 (Left)"
+            },
+            {
+              "name": "slot6",
+              "type": "dropdown",
+              "required": false,
+              "label": "Panel 6 (Right)",
+              "default": "top_gpu",
+              "description": "Select panel for Row 3, Right",
+              "data": [
+                {
+                  "title": "None",
+                  "value": "none"
+                },
+                {
+                  "title": "Memory Pressure",
+                  "value": "memory_pressure"
+                },
+                {
+                  "title": "Memory Composition Breakdown",
+                  "value": "memory_composition"
+                },
+                {
+                  "title": "CPU Usage",
+                  "value": "cpu_usage"
+                },
+                {
+                  "title": "GPU Usage",
+                  "value": "gpu_usage"
+                },
+                {
+                  "title": "Disk Read & Write Records",
+                  "value": "disk_io"
+                },
+                {
+                  "title": "Power Consumption",
+                  "value": "power_consumption"
+                },
+                {
+                  "title": "Thermals",
+                  "value": "thermals"
+                },
+                {
+                  "title": "Top Memory Users",
+                  "value": "top_memory"
+                },
+                {
+                  "title": "Top CPU Users",
+                  "value": "top_cpu"
+                },
+                {
+                  "title": "Top GPU Users",
+                  "value": "top_gpu"
+                },
+                {
+                  "title": "Top Disk Users",
+                  "value": "top_disk"
+                },
+                {
+                  "title": "Top Energy Users",
+                  "value": "top_energy"
+                }
+              ],
+              "title": "Panel 6 (Right)"
+            },
+            {
+              "name": "slot7",
+              "type": "dropdown",
+              "required": false,
+              "label": "Panel 7 (Left)",
+              "default": "power_consumption",
+              "description": "Select panel for Row 4, Left",
+              "data": [
+                {
+                  "title": "None",
+                  "value": "none"
+                },
+                {
+                  "title": "Memory Pressure",
+                  "value": "memory_pressure"
+                },
+                {
+                  "title": "Memory Composition Breakdown",
+                  "value": "memory_composition"
+                },
+                {
+                  "title": "CPU Usage",
+                  "value": "cpu_usage"
+                },
+                {
+                  "title": "GPU Usage",
+                  "value": "gpu_usage"
+                },
+                {
+                  "title": "Disk Read & Write Records",
+                  "value": "disk_io"
+                },
+                {
+                  "title": "Power Consumption",
+                  "value": "power_consumption"
+                },
+                {
+                  "title": "Thermals",
+                  "value": "thermals"
+                },
+                {
+                  "title": "Top Memory Users",
+                  "value": "top_memory"
+                },
+                {
+                  "title": "Top CPU Users",
+                  "value": "top_cpu"
+                },
+                {
+                  "title": "Top GPU Users",
+                  "value": "top_gpu"
+                },
+                {
+                  "title": "Top Disk Users",
+                  "value": "top_disk"
+                },
+                {
+                  "title": "Top Energy Users",
+                  "value": "top_energy"
+                }
+              ],
+              "title": "Panel 7 (Left)"
+            },
+            {
+              "name": "slot8",
+              "type": "dropdown",
+              "required": false,
+              "label": "Panel 8 (Right)",
+              "default": "top_energy",
+              "description": "Select panel for Row 4, Right",
+              "data": [
+                {
+                  "title": "None",
+                  "value": "none"
+                },
+                {
+                  "title": "Memory Pressure",
+                  "value": "memory_pressure"
+                },
+                {
+                  "title": "Memory Composition Breakdown",
+                  "value": "memory_composition"
+                },
+                {
+                  "title": "CPU Usage",
+                  "value": "cpu_usage"
+                },
+                {
+                  "title": "GPU Usage",
+                  "value": "gpu_usage"
+                },
+                {
+                  "title": "Disk Read & Write Records",
+                  "value": "disk_io"
+                },
+                {
+                  "title": "Power Consumption",
+                  "value": "power_consumption"
+                },
+                {
+                  "title": "Thermals",
+                  "value": "thermals"
+                },
+                {
+                  "title": "Top Memory Users",
+                  "value": "top_memory"
+                },
+                {
+                  "title": "Top CPU Users",
+                  "value": "top_cpu"
+                },
+                {
+                  "title": "Top GPU Users",
+                  "value": "top_gpu"
+                },
+                {
+                  "title": "Top Disk Users",
+                  "value": "top_disk"
+                },
+                {
+                  "title": "Top Energy Users",
+                  "value": "top_energy"
+                }
+              ],
+              "title": "Panel 8 (Right)"
+            },
+            {
+              "name": "slot9",
+              "type": "dropdown",
+              "required": false,
+              "label": "Panel 9 (Left)",
+              "default": "disk_io",
+              "description": "Select panel for Row 5, Left",
+              "data": [
+                {
+                  "title": "None",
+                  "value": "none"
+                },
+                {
+                  "title": "Memory Pressure",
+                  "value": "memory_pressure"
+                },
+                {
+                  "title": "Memory Composition Breakdown",
+                  "value": "memory_composition"
+                },
+                {
+                  "title": "CPU Usage",
+                  "value": "cpu_usage"
+                },
+                {
+                  "title": "GPU Usage",
+                  "value": "gpu_usage"
+                },
+                {
+                  "title": "Disk Read & Write Records",
+                  "value": "disk_io"
+                },
+                {
+                  "title": "Power Consumption",
+                  "value": "power_consumption"
+                },
+                {
+                  "title": "Thermals",
+                  "value": "thermals"
+                },
+                {
+                  "title": "Top Memory Users",
+                  "value": "top_memory"
+                },
+                {
+                  "title": "Top CPU Users",
+                  "value": "top_cpu"
+                },
+                {
+                  "title": "Top GPU Users",
+                  "value": "top_gpu"
+                },
+                {
+                  "title": "Top Disk Users",
+                  "value": "top_disk"
+                },
+                {
+                  "title": "Top Energy Users",
+                  "value": "top_energy"
+                }
+              ],
+              "title": "Panel 9 (Left)"
+            },
+            {
+              "name": "slot10",
+              "type": "dropdown",
+              "required": false,
+              "label": "Panel 10 (Right)",
+              "default": "top_disk",
+              "description": "Select panel for Row 5, Right",
+              "data": [
+                {
+                  "title": "None",
+                  "value": "none"
+                },
+                {
+                  "title": "Memory Pressure",
+                  "value": "memory_pressure"
+                },
+                {
+                  "title": "Memory Composition Breakdown",
+                  "value": "memory_composition"
+                },
+                {
+                  "title": "CPU Usage",
+                  "value": "cpu_usage"
+                },
+                {
+                  "title": "GPU Usage",
+                  "value": "gpu_usage"
+                },
+                {
+                  "title": "Disk Read & Write Records",
+                  "value": "disk_io"
+                },
+                {
+                  "title": "Power Consumption",
+                  "value": "power_consumption"
+                },
+                {
+                  "title": "Thermals",
+                  "value": "thermals"
+                },
+                {
+                  "title": "Top Memory Users",
+                  "value": "top_memory"
+                },
+                {
+                  "title": "Top CPU Users",
+                  "value": "top_cpu"
+                },
+                {
+                  "title": "Top GPU Users",
+                  "value": "top_gpu"
+                },
+                {
+                  "title": "Top Disk Users",
+                  "value": "top_disk"
+                },
+                {
+                  "title": "Top Energy Users",
+                  "value": "top_energy"
+                }
+              ],
+              "title": "Panel 10 (Right)"
+            },
+            {
+              "name": "slot11",
+              "type": "dropdown",
+              "required": false,
+              "label": "Panel 11 (Left)",
+              "default": "memory_composition",
+              "description": "Select panel for Row 6, Left",
+              "data": [
+                {
+                  "title": "None",
+                  "value": "none"
+                },
+                {
+                  "title": "Memory Pressure",
+                  "value": "memory_pressure"
+                },
+                {
+                  "title": "Memory Composition Breakdown",
+                  "value": "memory_composition"
+                },
+                {
+                  "title": "CPU Usage",
+                  "value": "cpu_usage"
+                },
+                {
+                  "title": "GPU Usage",
+                  "value": "gpu_usage"
+                },
+                {
+                  "title": "Disk Read & Write Records",
+                  "value": "disk_io"
+                },
+                {
+                  "title": "Power Consumption",
+                  "value": "power_consumption"
+                },
+                {
+                  "title": "Thermals",
+                  "value": "thermals"
+                },
+                {
+                  "title": "Top Memory Users",
+                  "value": "top_memory"
+                },
+                {
+                  "title": "Top CPU Users",
+                  "value": "top_cpu"
+                },
+                {
+                  "title": "Top GPU Users",
+                  "value": "top_gpu"
+                },
+                {
+                  "title": "Top Disk Users",
+                  "value": "top_disk"
+                },
+                {
+                  "title": "Top Energy Users",
+                  "value": "top_energy"
+                }
+              ],
+              "title": "Panel 11 (Left)"
+            },
+            {
+              "name": "slot12",
+              "type": "dropdown",
+              "required": false,
+              "label": "Panel 12 (Right)",
+              "default": "thermals",
+              "description": "Select panel for Row 6, Right",
+              "data": [
+                {
+                  "title": "None",
+                  "value": "none"
+                },
+                {
+                  "title": "Memory Pressure",
+                  "value": "memory_pressure"
+                },
+                {
+                  "title": "Memory Composition Breakdown",
+                  "value": "memory_composition"
+                },
+                {
+                  "title": "CPU Usage",
+                  "value": "cpu_usage"
+                },
+                {
+                  "title": "GPU Usage",
+                  "value": "gpu_usage"
+                },
+                {
+                  "title": "Disk Read & Write Records",
+                  "value": "disk_io"
+                },
+                {
+                  "title": "Power Consumption",
+                  "value": "power_consumption"
+                },
+                {
+                  "title": "Thermals",
+                  "value": "thermals"
+                },
+                {
+                  "title": "Top Memory Users",
+                  "value": "top_memory"
+                },
+                {
+                  "title": "Top CPU Users",
+                  "value": "top_cpu"
+                },
+                {
+                  "title": "Top GPU Users",
+                  "value": "top_gpu"
+                },
+                {
+                  "title": "Top Disk Users",
+                  "value": "top_disk"
+                },
+                {
+                  "title": "Top Energy Users",
+                  "value": "top_energy"
+                }
+              ],
+              "title": "Panel 12 (Right)"
+            }
+          ]
+        },
+        {
+          "name": "memory",
+          "title": "Memory Stats",
+          "subtitle": "Mac Performance Monitor",
+          "description": "Shows memory pressure, composition, and apps sorted by RAM usage",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "cpu",
+          "title": "CPU Stats",
+          "subtitle": "Mac Performance Monitor",
+          "description": "Shows the CPU usage graph and apps sorted by CPU usage",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "gpu",
+          "title": "GPU Stats",
+          "subtitle": "Mac Performance Monitor",
+          "description": "Shows the GPU usage graph and the apps using the GPU",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "disk",
+          "title": "Disk Stats",
+          "subtitle": "Mac Performance Monitor",
+          "description": "Shows read/write throughput graphs and apps sorted by disk I/O",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "energy",
+          "title": "Power & Thermals Stats",
+          "subtitle": "Mac Performance Monitor",
+          "description": "Shows power consumption, thermals, and apps sorted by energy impact",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "copy-ai-instructions",
+          "title": "Copy AI Instructions",
+          "subtitle": "Mac Performance Monitor",
+          "description": "Copies structured context and database rules for AI agents",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "defaultRange",
+          "type": "dropdown",
+          "required": false,
+          "title": "Default Time Range",
+          "description": "Time window for graphs on initial view. Capped at how long Mac Performance Monitor keeps high-res history. Change 'Settings>Advanced>High Resolution Logging' in Mac Performance Monitor to see more history (upto 2 days)",
+          "default": "30m",
+          "data": [
+            {
+              "title": "Last 5 Minutes",
+              "value": "5m"
+            },
+            {
+              "title": "Last 15 Minutes",
+              "value": "15m"
+            },
+            {
+              "title": "Last 30 Minutes",
+              "value": "30m"
+            },
+            {
+              "title": "Last 1 Hour",
+              "value": "1h"
+            },
+            {
+              "title": "Last 2 Hours",
+              "value": "2h"
+            },
+            {
+              "title": "Last 6 Hours",
+              "value": "6h"
+            },
+            {
+              "title": "Last 12 Hours",
+              "value": "12h"
+            },
+            {
+              "title": "Last 24 Hours",
+              "value": "24h"
+            },
+            {
+              "title": "Last 48 Hours",
+              "value": "48h"
+            }
+          ]
+        },
+        {
+          "name": "refreshCadence",
+          "type": "dropdown",
+          "required": false,
+          "title": "Live Refresh Cadence",
+          "description": "How frequently to refresh stats while command is open",
+          "default": "2s",
+          "data": [
+            {
+              "title": "Every 1 Second",
+              "value": "1s"
+            },
+            {
+              "title": "Every 2 Seconds",
+              "value": "2s"
+            },
+            {
+              "title": "Every 5 Seconds",
+              "value": "5s"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "mach-triage",
       "title": "Mach Triage",
       "description": "Search Jira, Linear and GitHub tickets and view your Today board through the local Mach Triage desktop app.",
@@ -162576,6 +164426,315 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "macwhisper",
+      "title": "MacWhisper",
+      "description": "Transcribe audio and video on-device with MacWhisper: subtitles, AI summaries, meeting notes, folder watching and Raycast AI tools.",
+      "icon": "extension-icon.png",
+      "author": "xjo_nd",
+      "contributors": [],
+      "categories": [
+        "Applications",
+        "Productivity",
+        "Media"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/xjo_nd/macwhisper",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/macwhisper",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "transcribe-file",
+          "title": "Transcribe File",
+          "subtitle": "MacWhisper",
+          "description": "Transcribe one or more audio or video files with your choice of model, language and format.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "transcribe-finder-selection",
+          "title": "Transcribe Finder Selection",
+          "subtitle": "MacWhisper",
+          "description": "Transcribe the files selected in Finder and copy the transcript to the clipboard.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "transcribe-latest-recording",
+          "title": "Transcribe Latest Recording",
+          "subtitle": "MacWhisper",
+          "description": "Transcribe the newest audio or video file from your recording folders.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "summarize-recording",
+          "title": "Summarize Recording",
+          "subtitle": "MacWhisper",
+          "description": "Transcribe a recording and let Raycast AI summarize it, extract action items, translate it or draft a follow-up email.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "generate-subtitles",
+          "title": "Generate Subtitles",
+          "subtitle": "MacWhisper",
+          "description": "Create SRT or VTT subtitles next to the videos selected in Finder.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "subtitleFormat",
+              "title": "Subtitle Format",
+              "description": "File format of the generated subtitles.",
+              "type": "dropdown",
+              "required": false,
+              "default": "srt",
+              "data": [
+                {
+                  "title": "SubRip (.srt)",
+                  "value": "srt"
+                },
+                {
+                  "title": "WebVTT (.vtt)",
+                  "value": "vtt"
+                }
+              ]
+            },
+            {
+              "name": "maxCharsPerLine",
+              "title": "Max Characters per Line",
+              "description": "Wrap subtitle lines at this many characters. Leave empty for MacWhisper's default.",
+              "type": "textfield",
+              "required": false,
+              "default": "42",
+              "placeholder": "42"
+            },
+            {
+              "name": "overwriteSubtitles",
+              "title": "Existing Subtitles",
+              "label": "Overwrite existing subtitle files",
+              "description": "When off, videos that already have a subtitle file are skipped.",
+              "type": "checkbox",
+              "required": false,
+              "default": false
+            }
+          ]
+        },
+        {
+          "name": "batch-transcribe-folder",
+          "title": "Batch Transcribe Folder",
+          "subtitle": "MacWhisper",
+          "description": "Transcribe every audio and video file in a folder into transcript or subtitle files.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "watch-folder",
+          "title": "Watch Folder",
+          "subtitle": "MacWhisper",
+          "description": "Automatically transcribe new recordings added to a folder. Run it once to start watching; it then checks every 10 minutes.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": [
+            {
+              "name": "watchedFolder",
+              "title": "Watched Folder",
+              "description": "New audio and video files in this folder (not its subfolders) get a transcript next to them.",
+              "type": "directory",
+              "required": true
+            },
+            {
+              "name": "watchFormat",
+              "title": "Transcript Format",
+              "description": "Format of the transcript written next to each new recording.",
+              "type": "dropdown",
+              "required": false,
+              "default": "txt",
+              "data": [
+                {
+                  "title": "Plain Text (.txt)",
+                  "value": "txt"
+                },
+                {
+                  "title": "Markdown (.md)",
+                  "value": "md"
+                },
+                {
+                  "title": "SubRip Subtitles (.srt)",
+                  "value": "srt"
+                },
+                {
+                  "title": "WebVTT Subtitles (.vtt)",
+                  "value": "vtt"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "export-presets",
+          "title": "Export Presets",
+          "subtitle": "MacWhisper",
+          "description": "Save export settings (format, style, grouping, timestamps, line length, Avid fps) and transcribe with them in one step.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "manage-models",
+          "title": "Manage Models",
+          "subtitle": "MacWhisper",
+          "description": "List downloaded transcription models and switch the active one.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "active-model",
+          "title": "Active Model",
+          "subtitle": "MacWhisper",
+          "description": "Show MacWhisper's active model in the menu bar and switch models from there.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "defaultLanguage",
+          "title": "Default Language",
+          "description": "Spoken language used when a command does not ask for one. Auto-detect works for most recordings.",
+          "type": "dropdown",
+          "required": false,
+          "default": "auto",
+          "data": [
+            {
+              "title": "Auto-detect",
+              "value": "auto"
+            },
+            {
+              "title": "English",
+              "value": "en"
+            },
+            {
+              "title": "French",
+              "value": "fr"
+            },
+            {
+              "title": "German",
+              "value": "de"
+            },
+            {
+              "title": "Spanish",
+              "value": "es"
+            },
+            {
+              "title": "Italian",
+              "value": "it"
+            },
+            {
+              "title": "Portuguese",
+              "value": "pt"
+            },
+            {
+              "title": "Dutch",
+              "value": "nl"
+            },
+            {
+              "title": "Polish",
+              "value": "pl"
+            },
+            {
+              "title": "Swedish",
+              "value": "sv"
+            },
+            {
+              "title": "Danish",
+              "value": "da"
+            },
+            {
+              "title": "Norwegian",
+              "value": "no"
+            },
+            {
+              "title": "Finnish",
+              "value": "fi"
+            },
+            {
+              "title": "Russian",
+              "value": "ru"
+            },
+            {
+              "title": "Ukrainian",
+              "value": "uk"
+            },
+            {
+              "title": "Turkish",
+              "value": "tr"
+            },
+            {
+              "title": "Arabic",
+              "value": "ar"
+            },
+            {
+              "title": "Hindi",
+              "value": "hi"
+            },
+            {
+              "title": "Japanese",
+              "value": "ja"
+            },
+            {
+              "title": "Korean",
+              "value": "ko"
+            },
+            {
+              "title": "Chinese",
+              "value": "zh"
+            }
+          ]
+        },
+        {
+          "name": "recordingFolders",
+          "title": "Recording Folders",
+          "description": "Comma-separated folders searched for your latest recording (two levels deep).",
+          "type": "textfield",
+          "required": false,
+          "default": "~/Downloads, ~/Desktop, ~/Movies, ~/Documents/Zoom",
+          "placeholder": "~/Downloads, ~/Movies"
+        },
+        {
+          "name": "saveToHistory",
+          "title": "History",
+          "label": "Save transcriptions to MacWhisper history",
+          "description": "Pass --persist so transcriptions also appear in MacWhisper.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "mwPath",
+          "title": "mw CLI Path",
+          "description": "Custom path to the MacWhisper `mw` CLI. Leave empty to auto-detect /usr/local/bin/mw or the copy inside MacWhisper.app.",
+          "type": "textfield",
+          "required": false,
+          "placeholder": "/usr/local/bin/mw"
+        }
+      ]
     },
     {
       "name": "magic-home",
@@ -201629,6 +203788,68 @@
       ]
     },
     {
+      "name": "owndrop",
+      "title": "OwnDrop",
+      "description": "Send and receive text, links, screenshots, and files across macOS and Windows using your self-hosted or Cloudflare-hosted OwnDrop instance.",
+      "icon": "extension-icon.png",
+      "author": "Logan-8f",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/Logan-8f/owndrop",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/owndrop",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "drop-clipboard",
+          "title": "Drop",
+          "subtitle": "OwnDrop",
+          "description": "Automatically send clipboard text, links, or files, then browse your drops",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "browse-drops",
+          "title": "Browse",
+          "subtitle": "OwnDrop",
+          "description": "See your newest drops, copy, download, and manage them",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "serverUrl",
+          "title": "Server URL (Manual Setup)",
+          "description": "Your OwnDrop instance URL (e.g., https://drop.example.com)",
+          "type": "textfield",
+          "placeholder": "https://drop.example.com",
+          "required": false
+        },
+        {
+          "name": "apiToken",
+          "title": "Connection Details or Device API Token",
+          "description": "Paste Copy Connection Details from OwnDrop Devices, or enter a token with the manual Server URL",
+          "type": "password",
+          "placeholder": "owd_...",
+          "required": true
+        }
+      ]
+    },
+    {
       "name": "oxford-collocation-dictionary",
       "title": "Oxford Collocation Dictionary",
       "description": "Look up English collocations for a word or the selected text in the Oxford Collocation Dictionary.",
@@ -207409,6 +209630,60 @@
       "preferences": []
     },
     {
+      "name": "perigon",
+      "title": "Perigon",
+      "description": "Search Perigon news and stories, browse monitor events and briefings, and research news with AI using your Perigon account.",
+      "icon": "icon.png",
+      "author": "galen-perigon",
+      "contributors": [],
+      "categories": [
+        "News",
+        "Data"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "storeUrl": "https://www.raycast.com/galen-perigon/perigon",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/perigon",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "search-news",
+          "title": "Search News",
+          "subtitle": "Perigon",
+          "description": "Search recent news articles from Perigon and open or copy sources.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "search-stories",
+          "title": "Search Stories",
+          "subtitle": "Perigon",
+          "description": "Search clustered news stories from Perigon.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "my-monitors",
+          "title": "My Monitors",
+          "subtitle": "Perigon",
+          "description": "Browse your Perigon monitors, events, and topic briefings.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": []
+    },
+    {
       "name": "perplexity",
       "title": "Perplexity",
       "description": "Ask Perplexity AI a question and open the answer in your browser or the Perplexity app.",
@@ -212955,6 +215230,57 @@
         }
       ],
       "preferences": []
+    },
+    {
+      "name": "pitchfork-daemons",
+      "title": "Pitchfork Daemons",
+      "description": "Start, stop and restart daemons with the Pitchfork CLI, read their logs, open their URLs and see them in the menu bar.",
+      "icon": "extension-icon.png",
+      "author": "dieter_luypaert",
+      "contributors": [],
+      "categories": [
+        "Developer Tools"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/dieter_luypaert/pitchfork-daemons",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/pitchfork-daemons",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "daemons",
+          "title": "Search Daemons",
+          "subtitle": "Pitchfork",
+          "description": "List every Pitchfork daemon by namespace, and start, stop, restart or read the logs of any of them.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "menu-bar",
+          "title": "Running Daemons",
+          "subtitle": "Pitchfork",
+          "description": "Show how many Pitchfork daemons run in the menu bar, with start, stop and open for each.",
+          "mode": "menu-bar",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "binary",
+          "title": "Pitchfork Binary",
+          "type": "file",
+          "required": false,
+          "description": "Absolute path to pitchfork. Leave empty to look in the mise, Homebrew, Cargo and ~/.local/bin locations."
+        }
+      ]
     },
     {
       "name": "pivot",
@@ -243239,7 +245565,8 @@
       ],
       "license": "MIT",
       "platforms": [
-        "macOS"
+        "macOS",
+        "Windows"
       ],
       "storeUrl": "https://www.raycast.com/francesco_mecchi/repository-manager",
       "source": {
@@ -243265,8 +245592,11 @@
           "title": "Projects Path",
           "description": "The path to the folder containing your projects",
           "required": true,
-          "default": "~/dev",
-          "placeholder": "~/dev"
+          "default": {
+            "macOS": "~/dev",
+            "Windows": "~\\dev"
+          },
+          "placeholder": "Choose your projects folder"
         },
         {
           "type": "dropdown",
@@ -243352,9 +245682,12 @@
           "type": "appPicker",
           "name": "terminalApp",
           "title": "Terminal App",
-          "description": "The terminal app to use",
+          "description": "The terminal app to use. On Windows, supported terminals are Windows Terminal, Windows PowerShell, PowerShell 7, and Command Prompt.",
           "required": true,
-          "default": "Terminale"
+          "default": {
+            "macOS": "Terminale",
+            "Windows": "Windows Terminal"
+          }
         },
         {
           "type": "appPicker",
@@ -243362,7 +245695,10 @@
           "title": "Browser App",
           "description": "The browser app to use",
           "required": true,
-          "default": "Google Chrome"
+          "default": {
+            "macOS": "Google Chrome",
+            "Windows": "Microsoft Edge"
+          }
         },
         {
           "type": "textfield",
@@ -243377,14 +245713,14 @@
           "type": "checkbox",
           "label": "Resize Editor Window After Launch",
           "name": "resizeEditorWindowAfterLaunch",
-          "description": "Resize the editor window after launching a project",
+          "description": "Resize the editor window after launching a project (macOS only)",
           "required": false
         },
         {
           "type": "dropdown",
           "name": "windowResizeMode",
           "title": "Resize Mode",
-          "description": "The mode to use when resizing the editor window",
+          "description": "The mode to use when resizing the editor window (macOS only)",
           "required": false,
           "default": "almost-maximize",
           "placeholder": "almost-maximize",
@@ -248553,6 +250889,116 @@
           "type": "textfield",
           "required": true,
           "placeholder": "Example: https://cubox.pro/c/api/save/xxxx"
+        }
+      ]
+    },
+    {
+      "name": "save-vcards",
+      "title": "Save vCards",
+      "description": "Save a contact from highlighted text, a screenshot or a business-card photo to Apple Contacts, read entirely on your Mac.",
+      "icon": "command-icon.png",
+      "author": "julianpaul",
+      "contributors": [],
+      "categories": [
+        "Productivity",
+        "Communication"
+      ],
+      "license": "MIT",
+      "platforms": [
+        "macOS"
+      ],
+      "storeUrl": "https://www.raycast.com/julianpaul/save-vcards",
+      "source": {
+        "type": "github-monorepo",
+        "repo": "raycast/extensions",
+        "path": "extensions/save-vcards",
+        "ref": "main"
+      },
+      "commands": [
+        {
+          "name": "save-vcard-from-selection",
+          "title": "Save vCard from Selection",
+          "description": "Reads the highlighted text and shows the contact it found. With nothing highlighted, it reads the clipboard.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "save-vcard-from-screenshot",
+          "title": "Save vCard from Screenshot",
+          "description": "Drag a box around a signature, business card or profile; the contact in it is read on your Mac.",
+          "mode": "no-view",
+          "keywords": [],
+          "preferences": []
+        },
+        {
+          "name": "save-vcard",
+          "title": "Save vCard from Clipboard",
+          "description": "Reads the clipboard: copied text, or a copied image such as a business-card photo from your iPhone.",
+          "mode": "view",
+          "keywords": [],
+          "preferences": []
+        }
+      ],
+      "preferences": [
+        {
+          "name": "defaultCountry",
+          "title": "Your Country",
+          "description": "Adds your country code to phone numbers written without one (0664 … becomes +43 664 …), so your iPhone matches incoming calls. Off by default.",
+          "type": "dropdown",
+          "required": false,
+          "default": "",
+          "data": [
+            {
+              "title": "Leave as Written",
+              "value": ""
+            },
+            {
+              "title": "Austria (+43)",
+              "value": "43"
+            },
+            {
+              "title": "Germany (+49)",
+              "value": "49"
+            },
+            {
+              "title": "Switzerland (+41)",
+              "value": "41"
+            },
+            {
+              "title": "United Kingdom (+44)",
+              "value": "44"
+            },
+            {
+              "title": "United States / Canada (+1)",
+              "value": "1"
+            },
+            {
+              "title": "Netherlands (+31)",
+              "value": "31"
+            },
+            {
+              "title": "France (+33)",
+              "value": "33"
+            },
+            {
+              "title": "Italy (+39)",
+              "value": "39"
+            },
+            {
+              "title": "Spain (+34)",
+              "value": "34"
+            }
+          ]
+        },
+        {
+          "name": "debugLogging",
+          "title": "Debug Logging",
+          "label": "Include contact details in the debug log",
+          "description": "Steps, timings and errors are always logged to ~/Library/Logs/SaveVCards.log. Turn this on to also log names, emails and accounts while troubleshooting.",
+          "type": "checkbox",
+          "required": false,
+          "default": false
         }
       ]
     },
